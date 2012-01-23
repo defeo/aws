@@ -1,6 +1,5 @@
 ---
 title: Web Applications and Security
-categories: Class Tutorial Help
 ...
 
 The times when the web used to be a mere collection of "documents" are long gone. SGML and HTML frames are things of the past, and Flash may become soon. Nowadays, the web developer 2.0 speaks dozens of domain specific languages -[ECMAScript](), [HTML5](HTML), [CSS](), [SVG](), [XML](), [JSON](), [Perl](), [PHP](), [Python](), [SQL](), ...- and constantly preaches for [AJAX]().
@@ -78,7 +77,7 @@ Tutorial 11 (04/17/2012)
 - [How to use this wiki](/_category/Wikihelp)
 - [Installing software](/_category/Install)
 - [Troubleshooting](/_category/Troubleshooting)
-- [Other help](/_categories)
+- [Other help](/_category/Help)
 
 
 # Links
