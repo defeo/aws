@@ -28,9 +28,11 @@ view this as a [slideshow](?export&format=Slidy)
 
 If you don't have one, you can borrow it from the UFR: go and see [Fabienne Chevalier](http://applis.uvsq.fr/AnnuairePersonnel/FicheEmploye?CN=20621-110-0) at least 15 mins before the tutorial.
 
+**Network connection:** you will need a working network connection. The best solution is to make the wifi networks *Eduroam* or *UVSQ* work on your laptop. Second best is a cable connection. **Always bring an ethernet** cable to the tutorials, just in case...
+
 **Administering your software environment:** You will need *a lot* of software! Free at least 1GB (2GB is better) on your disk.
 
-I have prepared some standard, minimalist, software configurations, but you are strongly encouraged to set up your own environment.
+I have prepared some minimalist **standard software configurations**, but you are *strongly encouraged* to set up your own environment.
 
 
 
@@ -42,8 +44,16 @@ To stay tuned, **add the ATOM feed** <http://swift.prism.uvsq/_feed> to your fav
 
 **Use the wiki** to discuss your installation problems with others. To get started, read [How to use the wiki]().
 
-> - one
-> - two
+Once you've solved the problem **create a tutorial** on the wiki.
+
+
+
+# The World Wide Web (WWW)
+
+**1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the World Wide Web
+
+![Image from the original proposal by Berners-Lee](http://www.w3.org/History/1989/Image2.gif)
+
 
 
 # The end
