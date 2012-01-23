@@ -1,12 +1,51 @@
+---
+toc: no
+categories: Classes PHP
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+
 # Web Applications and Security
 
 **Instructor:** Luca De Feo <http://www.prism.uvsq.fr/~dfl>
 
-view this as a [slidy slideshow](?export&format=Slidy) or as a [S5 slideshow](?export&format=S5) or go back to [normal](?)
+**Course wiki:** <http://swift.prism.uvsq.fr/>. Read it, use it, ask questions, contribute to it!
+
+**Language:** English is **the only** language of the web. Course material will be in English, please write in English on the wiki.
+
+**Course structure:** 12 lessons, first half web programming, second half security.
+
+**Final project:** Work in pairs. Dynamic web application (e.g. online multiplayer game) + short description (max. 5 pages).
 
 
-# Item lists?
 
-- one
-- two
-- three
+# Practical matters
+
+**Classes:** come with your laptop if you wish.
+
+**Tutorials:** (TDs) you will need a laptop. Coming with yours is (by far!) the preferred way.
+
+If you don't have one, you can borrow it from the UFR: go and see [Fabienne Chevalier](http://applis.uvsq.fr/AnnuairePersonnel/FicheEmploye?CN=20621-110-0) at least 15 mins before the tutorial.
+
+**Administering your software environment:** You will need *a lot* of software! Free at least 1GB (2GB is better) on your disk.
+
+I have prepared some standard, minimalist, software configurations, but you are strongly encouraged to set up your own environment.
+
+
+
+# Read the wiki
+
+All the course material (classes, tutorials and more) will be on the wiki.
+
+To stay tuned, **add the ATOM feed** <http://swift.prism.uvsq/_feed> to your favorite aggregator. If you don't know what a feed aggregator is, search the web.
+
+**Use the wiki** to discuss your installation problems with others. To get started, read [How to use the wiki]().
+
+> - one
+> - two
+
+
+# The end
+
+Go back to the [front page](/).
