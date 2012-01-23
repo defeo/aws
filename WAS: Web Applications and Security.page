@@ -1,1 +1,93 @@
-La page web du cours bientôt ici!
+---
+title: Web Applications and Security
+categories: Class Tutorial Help
+...
+
+The times when the web used to be a mere collection of "documents" are long gone. SGML and HTML frames are things of the past, and Flash may become soon. Nowadays, the web developer 2.0 speaks dozens of domain specific languages -[ECMAScript](), [HTML5](HTML), [CSS](), [SVG](), [XML](), [JSON](), [Perl](), [PHP](), [Python](), [SQL](), ...- and constantly preaches for [AJAX]().
+
+To succeed in this fast paced domain, the IT professional must possess many diverse skills. She must fully understand the way data are exchanged between the components of the application, she must know a large palette of languages and tools and constantly keep up to date, and finally she must understand what are the critical entry points of her application and how to secure them from external attackers.
+
+This course aims at giving the bases of modern dynamic web programming, with a spin on attack techniques and security analysis.
+
+
+# Practical information
+
+**Instructor:** Luca De Feo <http://www.prism.uvsq.fr/~dfl>
+
+**Class:** Wednesdays 1:30pm - 3pm, amphi H  
+**Tutorial (Group 1):** Tuesdays 9:45am - 1pm, salle G210  
+**Tutorial (Group 2):** Wednesdays 3:15pm - 6:30pm, salle G102  
+
+
+# Classes
+
+Class 1 (01/25/2012)
+:   [The World Wide Web, introduction to PHP]()
+Class 2 (02/01/2012)
+:   
+Class 3 (02/08/2012)
+:   
+Class 4 (02/15/2012)
+:   
+Class 5 (02/22/2012)
+:   
+Class 6 (03/07/2012)
+:   
+Class 7 (03/14/2012)
+:   
+Class 8 (03/21/2012)
+:   
+Class 9 (03/28/2012)
+:   
+Class 10 (04/04/2012)
+:   
+Class 11 (04/11/2012)
+:   
+Class 12 (04/18/2012)
+:   
+
+
+# Tutorials
+
+Tutorial 1 (01/31/2012)
+:   First steps in PHP
+Tutorial 2 (02/07/2012)
+:   
+Tutorial 3 (02/14/2012)
+:   
+Tutorial 4 (02/21/2012)
+:   
+Tutorial 5 (03/06/2012)
+:   
+Tutorial 6 (03/13/2012)
+:   
+Tutorial 7 (03/20/2012)
+:   
+Tutorial 8 (03/27/2012)
+:   
+Tutorial 9 (04/03/2012)
+:   
+Tutorial 10 (04/10/2012)
+:   
+Tutorial 11 (04/17/2012)
+:   
+
+
+# Help topics
+
+- [How to use this wiki](/_category/Wikihelp)
+- [Installing software](/_category/Install)
+- [Troubleshooting](/_category/Troubleshooting)
+- [Other help](/_category)
+
+
+# Links
+
+- The PHP main site <http://www.php.net/>, reference manual <http://www.php.net/manual/en/> and its French version <http://www.php.net/manual/fr/>;
+- Python docs <http://docs.python.org/>;
+- The WWW Consortium <http://www.w3.org/>;
+- The W3 Schools <http://www.w3schools.com/> and their HTML5 tutorial <http://www.w3schools.com/html5/>;
+- JQuery's documentation <http://docs.jquery.com/>;
+- The [Firefox](http://www.mozilla.org/firefox) and [Chrome](http://www.google.com/chrome) browsers;
+- Firefox add-ons <https://addons.mozilla.org/> and their [Web Development section](https://addons.mozilla.org/firefox/extensions/web-development/);
+- The OWASP project <http://www.owasp.org/> and their [WebGoat training application](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project).
