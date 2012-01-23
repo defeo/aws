@@ -48,11 +48,52 @@ Once you've solved the problem **create a tutorial** on the wiki.
 
 
 
-# The World Wide Web (WWW)
+# History of the World Wide Web (WWW)
+
+From the wonderful [Short history of the World Wide Web](http://www.w3.org/History.html)
 
 **1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the World Wide Web
 
+> *"HyperText is a way to link and access information of various kinds as a web of nodes in which the user can browse at will."*
+
+- Hypertext definition based on Dynatext SGML (precursor to HTML);
+- They invent the [HTTP]() protocol;
+- They write the first web server,
+- and the first **web browser and editor** (called WorldWideWeb, then Nexus).
+
+In three months the World Wide Web is created.
+
+------------
+
 ![Image from the original proposal by Berners-Lee](http://www.w3.org/History/1989/Image2.gif)
+
+------------
+
+**1993** ViolaWWW and Mosaic are the first popular graphical web browsers.
+
+**1994** Foundation of the World Wide Web Consortium ([W3C]()) by Berners-Lee.
+
+**1995** Rasmus Ledorf creates [PHP]().
+
+**1995** Development of Netscape (predecessor of Mozilla) starts. [JavaScript]() is born.
+
+**1996** Macromedia releases Flash.
+
+**1997** Standardization of [JavaScript]() into [ECMAScript](). Documents become *dynamic*.
+
+------------
+
+**1998** Publication of the [XML]() standard.
+
+**1999** Java publicizes the term *Web application*.
+
+**2004** Apple, Mozilla and Opera leave the [W3C]() to found the WHATWG. Work on HTML5 is started.
+
+**2005** Jesse James Garret coins the word [AJAX](), acronym for "Asynchronous Javascript and XML". Web applications abandon the push-pull design.
+
+**2010** Steve Jobs announces the future death of Flash. One year later Adobe acknowledges it.
+
+**2011** HTML5 *Last Call* is out.
 
 
 
