@@ -1,0 +1,53 @@
+---
+category: Help Linux Install
+title: Linux on VirtualBox + Lighttpd + MySQL + PHP
+...
+
+LVBLMP (Linux on VirtualBox + Lighttpd + MySQL + PHP) is the customized [Application stack]() used in this course. It consists of a virtualized Debian environment with a minimal console-based set of tools.
+
+The latest version is 1.0 and is available [here](http://www.prism.uvsq.fr/~dfl/fileserve/AWS.ova).
+
+
+# Installation
+
+Launch VirtualBox, go to File -> Import appliance (Ctrl+I), choose the file [`AWS.ova`](http://www.prism.uvsq.fr/~dfl/fileserve/AWS.ova) you've downloaded and follow the tutorial.
+
+
+# Configuring port forwarding
+
+You will need to forward a local port on your host machine (port 80 is the standard [HTTP]() port, but your firewall may block it) to port 80 on the guest LVBLMP machine.
+
+In the VirtualBox manager, right click on the AWS virtual machine, go to Settings -> Network -> Adapter 1. Make sure "NAT" is the selected method, open the "advanced" drop-down section, click the "Port forwarding" button and add a new port forwarding. Here's an example of safe port forwarding:
+
+ Name   Protocol    Host IP    Host Port   Guest IP   Guest Port
+------ ---------- ----------- ----------- ---------- ------------
+ http   TCP        127.0.0.1     8000                    80
+
+
+
+# Configuring a shared host-guest repository
+
+Haven't tried yet. Any positive experiences?
+
+
+# First steps with the virtual machine
+
+When you start the virtual machine you are automatically logged in a console (as user `aws`). There are 6 other login consoles available, you can switch between them using the key combination Host+F1, Host+F2, etc. (note: the Host key depends on your VirtualBox configuration, it usually is the right Ctrl key). Your login name is `aws`, your password is the same.
+
+A web server (`lighttpd`) is already running and serving files from the directory `www` in your home directory. If you are not familiar with [Linux]() go and read the [help](Linux).
+
+To create your first web application, create a file, say `www/myapp.php`, and edit it with a text editor. [Emacs]() and [Vim]() are already installed; you can install more software using `apt-get`.
+
+Once you've created the file, you can run it by connecting to the web server. You can either browse in text mode from your guest machine:
+
+    w3m http://localhost/myapp
+
+or you can open a [browser](Browser) in your host machine and point it to <http://localhost:8000/myapp> (assuming you have correctly forwarded the port 8000 on the host to port 80 on the guest).
+
+
+# Database management in the virtual machine
+
+There is also a [MySQL]() server running on the guest. An account `aws` with no password is already configured; it has all rights on a database named `aws`. You can access the database via [PHP]() or via the command-line tools `mysql`, `mysqladmin`, etc. For administrative purposes, you can login as `root` (no password required).
+
+[phpMyAdmin]() is also installed and offers an alternative way to administer the database. To use it, point your browser to <http://localhost:8000/phpmyadmin>.
+
