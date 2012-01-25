@@ -198,7 +198,7 @@ serving web documents.
     <text
 	   x="220" y="170"
 	   style="font-family:monospace"
-	   xml:space="preserve" >&lt;html&gt;...&lt;/html&gt;</text>
+	   xml:space="preserve" ><html>...</html></text>
     <text
 	   x="730" y="35"
 	   style="font-size:smaller"
@@ -1036,7 +1036,7 @@ The **`$_SESSION`** array contains data for server-side
 
 ### LVBLMP (Linux on VirtualBox + Lighttpd + MySQL + PHP)
 
-The easy way. Download [the Virtual Box image](), install it and get
+The easy way. Download [the Virtual Box image](LVBLMP), install it and get
 started immediately.
 
 **Pros:** easy install, hopefully not too hard to configure, supported
