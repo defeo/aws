@@ -21,7 +21,7 @@ This course aims at giving the bases of modern dynamic web programming, with a s
 # Classes
 
 Class 1 (01/25/2012)
-:   [The World Wide Web, introduction to PHP]()
+:   [The World Wide Web, introduction to PHP](The World Wide Web, introduction to PHP?export&format=Slidy)
 Class 2 (02/01/2012)
 :   
 Class 3 (02/08/2012)
@@ -83,10 +83,11 @@ Tutorial 11 (04/17/2012)
 # Links
 
 - The PHP main site <http://www.php.net/>, reference manual <http://www.php.net/manual/en/> and its French version <http://www.php.net/manual/fr/>;
-- Python docs <http://docs.python.org/>;
 - The WWW Consortium <http://www.w3.org/>;
 - The W3 Schools <http://www.w3schools.com/> and their HTML5 tutorial <http://www.w3schools.com/html5/>;
+- The HTML validator <http://validator.w3.org/> and the CSS validator <http://jigsaw.w3.org/css-validator/>;
 - JQuery's documentation <http://docs.jquery.com/>;
 - The [Firefox](http://www.mozilla.org/firefox) and [Chrome](http://www.google.com/chrome) browsers;
 - Firefox add-ons <https://addons.mozilla.org/> and their [Web Development section](https://addons.mozilla.org/firefox/extensions/web-development/);
+- Python docs <http://docs.python.org/>;
 - The OWASP project <http://www.owasp.org/> and their [WebGoat training application](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project).
