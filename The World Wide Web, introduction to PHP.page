@@ -1,7 +1,8 @@
 ---
 toc: no
-categories: Classes PHP
+categories: Classes HTTP PHP
 ...
+
 
 view this as a [slideshow](?export&format=Slidy)
 
@@ -52,26 +53,38 @@ Once you've solved the problem **create a tutorial** on the wiki.
 
 From the wonderful [Short history of the World Wide Web](http://www.w3.org/History.html)
 
-**1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the World Wide Web
+**1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the
+  World Wide Web
 
-> *"HyperText is a way to link and access information of various kinds as a web of nodes in which the user can browse at will."*
+> *"HyperText is a way to link and access information of various kinds
+   as a web of nodes in which the user can browse at will."*
 
-- Hypertext definition based on Dynatext SGML (precursor to HTML);
-- They invent the [HTTP]() protocol;
-- They write the first web server,
+In three months they
+
+- Define Hypertext, based on Dynatext SGML (precursor to HTML);
+- Invent the [HTTP]() protocol;
+- Write the first web server,
 - and the first **web browser and editor** (called WorldWideWeb, then Nexus).
 
-In three months the World Wide Web is created.
+# History of the World Wide Web (WWW)
 
-------------
+From the wonderful [Short history of the World Wide Web](http://www.w3.org/History.html)
+
+**1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the
+  World Wide Web (and implement it in only three months)
+
+> *"HyperText is a way to link and access information of various kinds
+   as a web of nodes in which the user can browse at will."*
 
 ![Image from the original proposal by Berners-Lee](http://www.w3.org/History/1989/Image2.gif)
-
+	 
 ------------
 
 **1993** ViolaWWW and Mosaic are the first popular graphical web browsers.
 
 **1994** Foundation of the World Wide Web Consortium ([W3C]()) by Berners-Lee.
+
+**1995** First release of the [Apache]() web server.
 
 **1995** Rasmus Ledorf creates [PHP]().
 
@@ -83,18 +96,990 @@ In three months the World Wide Web is created.
 
 ------------
 
+![Description of the Web 1.0 dataflow model, by Jesse J Garret](/web1.0.png)
+
+------------
+
 **1998** Publication of the [XML]() standard.
 
-**1999** Java publicizes the term *Web application*.
+**1999** Java publicizes (coins?) the term *Web application*.
 
-**2004** Apple, Mozilla and Opera leave the [W3C]() to found the WHATWG. Work on HTML5 is started.
+> *"Java Servlet API 2.2 includes one new feature so significant it
+> may change the way the Web works. That feature: <span
+> style="color:red">Web applications</span>."*
+
+**2002** The [JSON]() data interchange format is published through <http://json.org>.
+
+**2004** Members of Apple, Mozilla and Opera leave the [W3C]() to
+  found the WHATWG. Work on HTML5 is started.
 
 **2005** Jesse James Garret coins the word [AJAX](), acronym for "Asynchronous Javascript and XML". Web applications abandon the push-pull design.
 
-**2010** Steve Jobs announces the future death of Flash. One year later Adobe acknowledges it.
+**2007** The [W3C]() HTML working group agrees to adopt WHATWG's HTML5
+  proposal as base for the next [HTML]() standard.
+
+**2010** Steve Jobs announces the future death of Flash.
+
+**2011** Adobe announces it will stop development of Flash and start
+  working on HTML5-based products.
 
 **2011** HTML5 *Last Call* is out.
 
+------------
+
+![Description of the AJAX dataflow model, by Jesse J Garret](/web2.0.png)
+
+
+
+# Understanding the HyperText Transfer Protocol
+
+[HTTP]() is a *text-based stateless request-response* protocol for
+serving web documents.
+
+<div class="figure">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="860"
+   height="190">
+  <defs>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+  </defs>
+  <g>
+    <image
+       xlink:href="/firefox.png"
+       x="0" y="30"
+       width="138" height="99" />
+    <image
+       xlink:href="/server.png"
+       x="600" y="20"
+       width="138" height="139" />
+    <image
+       xlink:href="/document.png"
+       x="750" y="10"
+	   style="opacity:0.5"
+       width="44" height="60" />
+    <path
+       d="m 150,60 400,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)" />
+    <path
+       d="m 550,90 -400,0"
+       id="path4280"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)" />
+    <text
+	   x="25" y="160"
+	   xml:space="preserve" >CLIENT</text>
+    <text
+	   x="650" y="190"
+	   xml:space="preserve" >SERVER</text>
+    <text
+	   x="160" y="40"
+	   style="font-family:monospace"
+	   xml:space="preserve" >GET /index.html HTTP/1.1</text>
+    <text
+	   x="220" y="120"
+	   style="font-family:monospace"
+	   xml:space="preserve" >HTTP/1.1 200 OK</text>
+    <text
+	   x="220" y="170"
+	   style="font-family:monospace"
+	   xml:space="preserve" >&lt;html&gt;...&lt;/html&gt;</text>
+    <text
+	   x="730" y="35"
+	   style="font-size:smaller"
+	   xml:space="preserve" >index.html</text>
+  </g>
+</svg>
+</div>
+
+**Request:** The client (browser) asks to read or modify a document (hypertext, image, ...)
+
+**Response:** The server sends a reply (not necessarily the document).
+
+**Text-based:** All communication is encoded in ASCII.
+
+**Stateless:** The server does not remember the client between two
+  consecutive requests.
+
+
+# The HTTP protocol
+
+Usually served on port 80. Try this with [Telnet]().
+
+**REQUEST**
+
+	GET / HTTP/1.1
+	Host: www.google.fr
+
+**RESPONSE**
+
+	HTTP/1.1 200 OK
+	Date: Tue, 24 Jan 2012 17:09:10 GMT
+	Expires: -1
+	Cache-Control: private, max-age=0
+	Content-Type: text/html; charset=ISO-8859-1
+	Set-Cookie: PREF=ID=4479751101deda66:FF=0:TM=1327424950:LM=1327424950:S=CDCjreHNXoofkoQk; expires=Thu, 23-Jan-2014 17:09:10 GMT; path=/; domain=.google.fr
+	Set-Cookie: NID=56=jkWXBR2FaxtIwRcpdJ-3nAJqgoJ2hDIqdo0Q7-ttgoCSX_5go3FrbRWBWg0em3oKnE88UcPz-4sjCwQNxb7iPcs7vu-kXQ3zKnSlXH97v-TAQgOQfNx2QqCM2XNPCUUl; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+	P3P: CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info."
+	Server: gws
+	X-XSS-Protection: 1; mode=block
+	X-Frame-Options: SAMEORIGIN
+	Transfer-Encoding: chunked
+
+	1000
+	<!doctype html>...
+
+
+
+# HTTP Request
+
+    POST /document.html HTTP/1.1
+	Host: www.example.com
+	User-Agent: Mosaic/2.1
+	Cookie: sessionid=aa03x;
+	Content-Length: 10
+	
+	1234567890
+	
+Request line:
+
+    POST /document.html HTTP/1.1
+
+Headers (only `Host` is required)
+
+	Host: www.example.com
+	User-Agent: Mosaic/2.1
+	Cookie: sessionid=aa03x;
+	Content-Length: 10
+
+One blank line (attention: `<CR><LF>`)
+
+Message body (Optional)
+
+	1234567890
+
+
+# The request line
+
+    POST /document.html HTTP/1.1
+
+### Method
+
+> - **HEAD** Request only headers, no content.
+> - **GET** Request page. No modification should happen on the server
+> - **POST** Submit data. A modification of the server can ensue.
+
+Other methods seldom used: `PUT`, `DELETE`, `TRACE`, `OPTIONS`,
+`CONNECT`, `PATCH`.
+
+### Resource
+
+Address of the web document.
+
+### Protocol
+
+Only two possibilities: `HTTP/1.0` or `HTTP/1.1`.
+
+
+
+# Request headers
+
+	Host: www.example.com
+	User-Agent: Mosaic/2.1
+	Cookie: sessionid=aa03x;
+	Content-Length: 10
+
+Used to send meta-information to the server.
+
+### Required
+
+> - **Host** The domain name of the server the request is being sent to.
+> - **Content-Length** Required only in POST and PUT requests. Specifies the length in bytes of the request body.
+
+### Most used
+
+> - **Accept-*** Type of content that the client can handle (type, charset, encoding, language)
+> - **Cookie** Used to implement [persistent storage](Persistent storage) on the client side.
+> - **Referer** Address of the page that originated the request.
+> - **User-Agent** Name of the client software.
+> - **Content-Type** Used to specify the content [MIME type]() (text, HTML, etc.) of the request body.
+
+Applications may define their own headers (usually prefixed with **X-**).
+
+
+
+# HTTP Response
+
+	HTTP/1.1 200 OK
+	Date: Tue, 24 Jan 2012 18:34:40 GMT
+	Server: Apache/2.2.21 (Debian)
+	Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+	Content-Length: 53
+	Content-Type: text/html
+	Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+	
+	<html><head></head><body><h1>Hello world!</h1></html>
+
+Status line
+
+	HTTP/1.1 200 OK
+
+Headers
+
+	Date: Tue, 24 Jan 2012 18:34:40 GMT
+	Server: Apache/2.2.21 (Debian)
+	Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+	Content-Length: 53
+	Content-Type: text/html
+	Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+
+One blank line (attention: `<CR><LF>`)
+
+Content (Optional)
+
+	<html><head></head><body><h1>Hello world!</h1></html>
+
+
+# The status line
+
+	HTTP/1.1 200 OK
+
+### Protocol + Status code + message
+
+Status codes describe the result of the request. Most common:
+
+> - **200 OK** Document was found and sent to the client.
+> - **301 MOVED PERMANENTLY** Permanent redirection (requires `Location` header).
+> - **302 FOUND**
+> - **303 SEE OTHER**
+> - **307 TEMPORARY REDIRECT** Various kinds of redirection (require `Location` header).
+> - **400 BAD REQUEST** The client issued a badly formed request.
+> - **403 FORBIDDEN** The document is not accessible.
+> - **404 NOT FOUND** The document is unknown to the server.
+> - **410 GONE** The document no longer exists.
+> - **418 I'M A TEAPOT** [1998 IETF April fools'](http://tools.ietf.org/html/rfc2324).
+> - **500 INTERNAL SERVER ERROR** Something nasty happened on the server.
+> - **503 SERVICE UNAVAILABLE** The server is temporary down.
+
+
+# Response Headers
+
+	Date: Tue, 24 Jan 2012 18:34:40 GMT
+	Server: Apache/2.2.21 (Debian)
+	Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+	Content-Length: 53
+	Content-Type: text/html
+	Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+
+Most used:
+
+> - **Date**, **Expires**, **Last-Modified** Used for caching purposes.
+> - **Content-Type** [MIME type]() of the response content.
+> - **Content-Length** Length in bytes of the response content. Not required (may be specified otherwise).
+> - **Location** Used for redirections.
+> - **Sever** Name of the server software.
+> - **Set-Cookie** Used to implement [persistent storage](Persistent storage) on the client side.
+
+
+# Web 1.0: Dynamic generation of content
+
+<div class="figure">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="900"
+   height="300">
+  <defs>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+  </defs>
+  <g>
+    <image
+       xlink:href="/server.png"
+       x="300" y="80"
+       width="138" height="139" />
+    <image
+       xlink:href="/php.png"
+       x="460" y="90"
+       width="95" height="51" />
+    <image
+       xlink:href="/server.png"
+       x="700" y="0"
+	   style="opacity:0.5"
+       width="70" height="70" />
+    <image
+       xlink:href="/db.png"
+       x="700" y="80"
+	   style="opacity:0.5"
+       width="60" height="60" />
+    <image
+       xlink:href="/document.png"
+       x="705" y="160"
+	   style="opacity:0.3"
+       width="44" height="60" />
+    <image
+       xlink:href="/document.png"
+       x="120" y="210"
+	   style="opacity:0.2"
+       width="66" height="90" />
+    <path
+       d="m 40,120 250,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)" />
+    <path
+       d="m 290,150 -250,0"
+       id="path4280"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)" />
+    <path
+       d="m 550,90 100,-30"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)" />
+    <path
+       d="m 560,115 90,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)" />
+    <path
+       d="m 550,140 100,30"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)" />
+    <text
+	   x="0" y="100"
+	   style="font-family:monospace"
+	   xml:space="preserve" >GET /app HTTP/1.1</text>
+    <text
+	   x="0" y="190"
+	   style="font-family:monospace"
+	   xml:space="preserve" >HTTP/1.1 200 OK</text>
+    <text
+	   x="450" y="190"
+	   xml:space="preserve" >Scripting</text>
+    <text
+	   x="450" y="220"
+	   xml:space="preserve" >engine</text>
+    <text
+	   x="620" y="50"
+	   style="font-size:smaller"
+	   xml:space="preserve" >Authentication server</text>
+    <text
+	   x="680" y="120"
+	   style="font-size:smaller"
+	   xml:space="preserve" >Database</text>
+    <text
+	   x="660" y="210"
+	   style="font-size:smaller"
+	   xml:space="preserve" >XML template</text>
+    <text
+	   x="60" y="250"
+	   xml:space="preserve" >Generated HTML</text>
+    <text
+	   x="100" y="290"
+	   xml:space="preserve" >document</text>
+  </g>
+</svg>
+</div>
+
+- The **server** receives request for document (e.g. `/app`) and
+  passes it to a **scripting engine** (e.g. [PHP](), a [CGI]() module,
+  ...);
+- The **scripting engine** interacts with **services** (e.g. a
+  [MySQL]() database, a Kerberos serves), **libraries** (e.g. an
+  [XML]() parsers), a **file-system**, ...
+- The **scripting engine** generates a web **document** (e.g. an
+  [HTML]() document) and returns it to the **server**;
+- The **server** serves the generated document to the **client**.
+
+
+# Data transfer from the client to the server
+
+Often the client needs to send information to the server (e.g.,
+authentication information, search queries, etc.). The three most used
+methods are:
+
+**GET request:** the data is appended to the URL (often **`?`** and
+  **`&`** are used as separators).
+
+	http://www.google.fr/search?q=web+application&hl=fr
+
+> Better suited for *safe requests* (i.e., requests that do not
+> permanently modify data on the server).
+	
+**POST request:** the data is sent in the body of a POST request.
+
+> Better suited for requests that modify data on the server.
+
+**Cookies:** the data is sent in the Cookie HTTP header.
+
+> Mostly used for [Persistent storage]().
+  
+Any combination of the three is possible.
+
+
+# Solution stacks
+
+A collection of software (OS + web server + scripting engine +
+database) that acts as dynamic server.
+
+Some widespread stacks:
+
+**LAMP:** **L**inux + **A**pache + **M**ySQL + **P**HP
+
+**WAMP:** **W**indows + **A**pache + **M**ySQL + **P**HP
+
+**WINS:** **W**indows + **I**IS + ASP.**N**ET + Microsoft **S**QL
+  Server
+
+This wiki:
+
+**LHGH:** **L**inux + **H**appstack + **G**it + **H**askell (*not a
+  complete stack, properly speaking*)
+
+
+
+
+# Programming in PHP
+
+[PHP]() is an *interpreted, dynamically typed, imperative* language
+with syntax inspired by [Perl](), C and similar languages.
+
+The current version is PHP5 (with PHP4 still being widely used). The
+full language and library documentation is available at
+<http://www.php.net/>.
+
+We will make a brief tour of [PHP]()'s syntax. The full documentation
+is available at <http://www.php.net/manual/en/langref.php>.
+
+~~~ {.php}
+<?php
+	echo "Hello World!";
+?>
+~~~
+
+
+# PHP delimiters
+
+[PHP]() is a text-oriented language:
+
+> - Only code between the delimiters **`<?php`** and **`?>`** is executed.
+> - Any other text is printed *verbatim*.
+
+**Source file:**
+
+~~~ {.php}
+<?php
+	echo "Hello World!\n";
+?>
+Hello Again!
+~~~
+
+**Output:**
+
+	Hello World!
+	Hello Again!
+
+
+**Even this code is valid (but NEVER write it!):**
+
+~~~ {.php}
+<?php
+	while (true) {
+	?>
+		Hello World!
+	<?php
+	}
+?>
+~~~
+
+
+# Comments
+
+Comments can be written in C style
+
+~~~ {.php}
+<?php
+	echo "Hello "; // A one line comment
+	/*
+	   A multi-line
+	   comment
+	*/
+?>
+~~~
+
+Or in [Perl]() style
+
+~~~ {.php}
+<?php
+	echo "World!"; # Another one line comment
+?>
+~~~
+
+
+# Variables
+
+Variables names always start with a dollar (`$`) symbol.
+
+~~~ {.php}
+<?php
+	$a = 10;
+	echo $a;
+?>
+~~~
+
+Variables have **no fixed type**, they **are not declared**, they are
+**initialized to a default value**.
+
+~~~ {.php}
+<?php
+	$foo = 10;
+	echo $foo;
+	$foo = " apples";
+	echo $foo;            # Writes "10 apples"
+?>
+~~~
+
+Variables are **automatically converted**, or their type can be forced
+with a **cast** (like in C)
+
+~~~ {.php}
+<?php
+	$foo = "10";
+	$foo += 2;                   # $foo now is the integer 12
+	$bar = $foo . " apples";     # $bar is the string "12 apples"
+	$fee = (boolean) $bar;       # $fee is TRUE
+?>
+~~~
+
+
+# Scoping
+
+Variables have **local scope**. Functions introduce a new **local scope**.
+
+~~~ {.php}
+<?php
+	$a = "Hello";
+	
+	function foo() {
+		echo $a;       # This variable is local to foo
+	}
+	
+	foo();             # Writes nothing
+	                   # and issues a warning in PHP5
+?>
+~~~
+
+A function may explicitly declare variables as **global**, to import
+them from outer scopes
+
+~~~ {.php}
+<?php
+	$a = "Hello";
+	
+	function foo() {
+		global $a;
+		echo $a;       # This variable is local to foo
+	}
+	
+	foo();             # Writes "Hello";
+?>
+~~~
+
+
+# Constants
+
+Constants **are not preceded by a $ sign**. They can be defined with
+the **`define`** function
+
+~~~ {.php}
+<?php
+	define("COLOR", "blue");
+	echo COLOR;                # Writes "blue"
+?>
+~~~
+
+or with the **`const`** keyword
+
+
+~~~ {.php}
+<?php
+	const COLOR="blue";
+	echo COLOR;                # Writes "blue"
+?>
+~~~
+
+Their scope is always **global**
+
+~~~ {.php}
+<?php
+	const COLOR="blue";
+	
+	function foo() {
+		echo COLOR;
+    }
+	
+	foo();                # Writes "blue"
+?>
+~~~
+
+
+# Strings
+
+Strings can be **single-quoted**, **double-quoted** or use the
+**heredoc syntax**.
+
+**Single-quoted** strings are the simplest ones.
+
+~~~ {.php}
+<?php
+	echo 'Hello, ';
+	echo 'I\'m learning "PHP". ';               # Single quotes must be escaped with a backslash \
+	echo 'Line breaks
+are allowed
+   in single-quoted strings.
+';
+	echo 'This is a backslash \\';              # To write a backslash, escape it
+	echo ' this \ is a backslash too. ';
+	echo 'Even this is just a backslash: \n';   # Any other backslashes are taken as literal
+?>
+~~~
+
+**Output:**
+
+~~~
+Hello, I'm learning PHP. Line breaks
+are allowed
+   in single-quoted strings.
+This is a backslash \ this \ is a backslash too. Even this is just a backslash: \n
+~~~
+
+---------------
+
+**Double-quoted** strings allow **escape sequences** and variable
+  expansion:
+  
+~~~ {.php}
+<?php
+	echo "This is call'd \"backslash\": \\
+";                                             # Double quotes must be escaped
+	echo "This is a newline: \n";
+	$foo = 42;
+	echo '$foo is a variable';
+	echo "\nThe answer is: $foo \n";           # Variables are evaluated
+	echo "Your {balance} is 2*${foo}00\n";     # Braces are used to lift ambiguities
+?>
+~~~
+
+**Output:**
+
+~~~
+This is call'd "backslash": \
+This is a newline: 
+$foo is a variable
+The answer is: 42 
+Your {balance} is 2*4200
+~~~
+
+The dot (`.`) is the **string concatenation** operator.
+
+~~~ {.php}
+<?php
+	$a = 'Hello' . " World";
+	$b = "$a!";
+	$c = (2 * 10) . " " . $b;   # $c equals "20 Hello World!"
+?>
+~~~
+
+
+------------
+
+**Heredoc** strings are used for long texts spanning several
+  lines. The string is contained between a starting
+  **`<<<Identifier`** and a closing **Identifier**, where
+  **Identifier** is any valid PHP identifier.
+
+~~~ {.php}
+<?php
+	echo <<<EOT
+'A thousand kisses buys my heart from me;
+And pay them at thy leisure, one by one.
+What is ten hundred touches unto thee?
+Are they not quickly told and quickly gone?
+Say, for non-payment that the debt should double,
+Is twenty hundred kisses such a trouble?
+
+EOT;
+?>
+~~~
+
+They behave exactly like double-quoted strings, except that they do
+not need escaping double quotes.
+
+
+
+# Associative arrays
+
+In [PHP]() arrays can be indexed by any data.
+
+~~~ {.php}
+<?php
+	$tab[0] = "Hello";
+	$tab["one"] = "World";
+	$tab[true] = "!";
+	echo "$tab[0] ${tab['one']} ${tab[true]}";   # Writes "Hello world !"
+?>
+~~~
+
+They can be constructed with the **`array`** syntax and visualized
+with the **`print_r`** function.
+
+~~~ {.php}
+<?php
+	$tab = array(0 => 10, "nested" => array(6 => 5, 13 => 9, "a" => 42));
+	print_r($tab);
+?>
+~~~
+
+**Output:**
+
+~~~ 
+Array
+(
+    [0] => 10
+    [nested] => Array
+        (
+            [6] => 5
+            [13] => 9
+            [a] => 42
+        )
+
+)
+~~~
+
+
+# Control structures
+
+**Conditional**
+
+~~~ {.php}
+<?php
+	if ($a > $b) {
+		echo "a is bigger than b";
+	} elseif ($a == $b) {
+		echo "a is equal to b";
+	} else {
+		echo "a is smaller than b";
+	}
+?>
+~~~
+
+**While loop**
+
+~~~ {.php}
+<?php
+	$i = 1;
+	while ($i <= 10) {
+		echo $i++;
+	}
+?>
+~~~
+
+------------
+
+**For loop**
+
+~~~ {.php}
+<?php
+	for ($i = 1; $i <= 10; $i++) {
+		echo $i;
+	}
+?>
+~~~
+
+**Foreach loop**
+
+~~~ {.php}
+<?php
+	$arr = array(1, 2, 3, 4);
+	foreach ($arr as $value) {
+		echo $value * 2;
+	}
+?>
+~~~
+
+
+~~~ {.php}
+<?php
+	$jours = array(
+		"Sunday" => "Lundi",
+		"Monday" => "Mardi",
+		"Tuesday" => "Mercredi"
+	);
+	
+	foreach ($jours as $eng => $fr) {
+		echo "$eng translates to $fr.\n";
+	}
+?>
+~~~
+
+------------
+
+**Functions**
+
+~~~ {.php}
+<?php
+	function foo($a, $b, $c=true) {
+		if ($c)
+			return $a + $b;
+		else
+			return $a - $b;
+	}
+	
+	echo foo(1, 2) . " ";
+	echo foo(1, 2, false);
+?>
+~~~
+
+**Import files**
+
+~~~ {.php}
+<?php
+	include 'script1.php';        # execute the contents of script1.php.
+	require 'script1.php';        # same as before, but stop if file does not exist.
+	include_once 'script2.php';   # execute the contents of script2.php,
+	                              # only if it hasn't been executed yet.
+	require_once 'script2.php';   # same as before, but stop if file does not exist.
+?>
+~~~
+
+
+# Server API
+
+When [PHP]() is executed by a web server, communication with the
+server is done through some **predefined associative arrays**.
+
+**GET parameters** are stored in the global **`$_GET`** array.
+
+Request
+
+	http://www.google.fr/search?q=web+application&hl=fr
+
+[PHP]() code
+
+~~~ {.php}
+<?php
+	print_r($_GET)
+?>
+~~~
+
+Output
+
+~~~
+Array
+(
+    [q] => web+application
+    [hl] => fr
+)
+~~~
+
+
+# Server API
+
+**POST parameters** are stored in the global **`$_POST`** array.
+
+**HTTP headers**  are stored in the global **`$_SERVER`** array.
+
+**Cookies**  are stored in the global **`$_COOKIE`** array.
+
+**Files uploaded** (via POST) are stored in the global **`$_FILES`**
+  array.
+
+The **`$_SESSION`** array contains data for server-side
+[Persistent storage]().
+
+
+
+# For next week's tutorial: install your stack
+
+### LVBLMP (Linux on VirtualBox + Lighttpd + MySQL + PHP)
+
+The easy way. Download [the Virtual Box image](), install it and get
+started immediately.
+
+**Pros:** easy install, hopefully not too hard to configure, supported
+  by the teacher, relatively secure;
+
+**Cons:** too easy, text-only interface, big installer (over 500MB).
+
+### XAMPP (X(cross)-platform + Apache + MySQL + PHP (+ Perl)
+
+The recommended way. Go to
+<http://www.apachefriends.org/en/xampp.html>, download, install,
+configure and get started.
+
+**Pros:** free, easy graphical installer, community supported,
+  formative experience.
+
+**Cons:** some configuration might be needed, no support by the
+  teacher (but you can use the wiki), watch out for security problems.
+
+### Other solutions
+
+Feel free to try out any other stack you like.
+
+**For next week** come with at least **LVBLMP** installed and
+  functioning (you may progressively abandon it as the course
+  advances).
+
+
+
+# Other software needed
+
+To test your web applications, you will need:
+
+- At least two web browsers. Compulsory for this course are
+  [Firefox 9.0.*](Firefox) and [Chrome 16.0.*](Chrome) (freeze at
+  these versions).
+- A scripting language with a good network library. For example:
+  [Python]() (recommended), [Java](), [Perl](), [Ruby](), or even
+  [PHP]().
+- A development environment supporting at least [HTML](), [PHP](),
+  [Javascript]() and your scripting language of choice. This could be
+  [Netbeans](), [Eclipse]() (not recommended), [Emacs](), [Gedit](),
+  [Geany](), [Notepad++]().
 
 
 # The end
