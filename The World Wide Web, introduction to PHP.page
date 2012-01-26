@@ -198,7 +198,7 @@ serving web documents.
     <text
 	   x="220" y="170"
 	   style="font-family:monospace"
-	   xml:space="preserve" ><html>...</html></text>
+	   xml:space="preserve" >&lt;html&gt;...&lt;/html&gt;</text>
     <text
 	   x="730" y="35"
 	   style="font-size:smaller"
