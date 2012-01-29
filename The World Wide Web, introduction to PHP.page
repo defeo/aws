@@ -4,7 +4,17 @@ categories: Classes HTTP PHP
 ...
 
 
-view this as a [slideshow](?export&format=Slidy)
+View this as a [slideshow](?export&format=Slidy)
+
+If your browser supports the ogg encoding, you can listen to the audio
+recording of this class by using the controls below:
+
+<audio controls="controls">
+  <source src="/class20120125.ogg" type="audio/ogg" />
+
+  <p>Your browser does not support the audio tag. <a
+  href="/class20120125.ogg">Download the file</a>.</p>
+</audio>
 
 
 # Web Applications and Security
