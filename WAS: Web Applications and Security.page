@@ -91,3 +91,83 @@ Tutorial 11 (04/17/2012)
 - Firefox add-ons <https://addons.mozilla.org/> and their [Web Development section](https://addons.mozilla.org/firefox/extensions/web-development/);
 - Python docs <http://docs.python.org/>;
 - The OWASP project <http://www.owasp.org/> and their [WebGoat training application](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project).
+
+
+# Bibliography
+
+The bibliography on web programming is overblown. The Science Library
+shelves crack under the weight of redundant and obsolescent literature
+on the subject.
+
+To deepen your understanding of [PHP](), [Javascript](), etc., you can
+basically take any book from the library and quickly read
+through. Avoid old books, though: check that the first edition (not
+the last) hasn't been written more than, say, five years ago.
+
+Here is a small selection of links and books that may be more useful
+than the average one.
+
+### Web application generics
+
+A. Hendrix, B. Brinzarea, C. Darie.  *AJAX et PHP*
+:   2ème édition. Dunod, 2009. ISBN 978-2-10-055278-8. Côte BU:
+    005.71aja HEN. Somewhat old text, but a complete reference on how
+    to program web apps, both on the client and the server side.
+
+
+### PHP
+
+M. Achour et al. *PHP Manual*.
+:   <http://www.php.net/manual>. The one and only. The best way to learn
+    the [PHP]() language.
+F.-X. Bois. *PHP5 et MySQL, Le guide complet*
+:   Micro Application Éditions, 2010. ISBN 978-2-300-031946. Côte BU:
+    005.71php BOI. Slightly more advanced manual, treating database
+    interaction and security.
+J.-M. Culot. OEM Eyrolles, 2004. *PHP5, Guide de prise en main*
+:   ISBN 2-212-11487-7. Côte BU: 005.71php CUL. Introductory manual for
+    the beginner.
+
+### HTML and CSS
+
+W3Schools. *HTML5 Tutorial*
+:   <http://www.w3schools.com/html5/>. Very good tutorial for beginners, with plenty of examples that you can try online.
+W3Schools. *CSS Tutorial*
+:   <http://www.w3schools.com/CSS/>. Very good tutorial for beginners, with plenty of examples that you can try online.
+W3Schools.
+:   <http://www.w3schools.com>. Plenty of other tutorials are available on the W3Schools website.
+L. van Lancker. *HTML5 et CSS3*
+:   Eni Éditions, 2011. ISBN: 978-2-7460-6242-9. Côte BU: 005.71htm VAN. Introductory manual, mainly dealing with the basics of [HTML]() and [CSS]() (it could have been written for HTML4 and CSS2, but better to keep the pace, right?)
+B. Lawson and R. Sharp. *Introduction à  HTML5*
+:   Pearson Education France, 2011. ISBN: 978-2-7440-2476-4. Côte BU: 005.71htm LAW. Intended for readers already familiar with HTML, who wish to learn the most salient new features in HTML5 and its scripting API.
+
+### Javascript
+
+T. Stubbs and G. Allain. *JQuery, Le guide complet*
+:   Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte BU: 005.71jsp ALL. For the programmer who already knows [Javascript]() and wishes to get the best out of the advanced features of [JQuery]().
+
+### AJAX
+
+B. Catteau and N. Faugout. *AJAX, Le Guide Complet*
+:   4ème édtion. Micro Application Éditions, 2009. ISBN: 978-2-300-022029. Côte BU: 005.71aja CAT. Introductory text on [AJAX](), with some advanced chapters treating design patrons and best practices.
+
+
+### Security
+
+OWASP. *OWASP development guide*
+:   <https://www.owasp.org/index.php/Category:OWASP_Guide_Project>. Very
+    complete guide from the OWASP foundation to securing web
+    applications.
+OWASP. *OWASP development guide*
+:   <https://www.owasp.org/>. Wiki of the OWASP foundation, packed of
+    excellent information on securing, testing and attaking web
+    applications.
+R. Cannings, H.Dwivedi and Z. Lackey. *Haking sur le Web 2.0*
+:   Pearson Education France, 2008. ISBN: 978-2-7440-2306-4. Côte BU:
+    005.8 CAN. Badly written, translated even worse, and essentially
+    an advertisement booklet for the authors' company. Nevertheless,
+    it is one of the few books on the security of web apps available
+    at the library. It is divided in four parts, each ending with a
+    case study. Part I is extremely interesting, so be sure to read
+    it. Part II talks about [CSRF](), so read at least the first
+    chapter and the case study.
