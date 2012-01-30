@@ -1,0 +1,380 @@
+---
+category: Tutorials PHP HTTP
+...
+
+
+# PHP is a programming language
+
+Many people associate PHP with server-side web scripting, but PHP is,
+first and foremost, a *programming language*.
+
+Open VirtualBox and start the [AWS machine](LVBLMP). Read the welcome
+message. Type `pwd`, then enter, this command shows the directory you
+are currently working in, namely `/home/aws`. This is your *home
+directory*. The *command prompt* (i.e., those things written right
+before the blinking cursor, ending with a $ sign) also shows you this
+information. It shows even more: it says your user name is `aws`,
+plugged at (`@`) the machine `aws`, currently working in your home
+directory (`~` is short for *"my home directory"*).
+
+Type `ls`, this shows the contents of the directory. There is only one
+element, called `www`; it is shown in blue because it is a
+directory. To enter it type `cd www`. Do `ls` again, there is only one
+file in `www`, called `index.php`. To read it, type `cat index.php`.
+Fine, it is a [PHP]() source file. You can also read it typing `less
+index.php`, this reader is a little more sophisticated than `cat` and
+will wait for commands, type `q` to terminate it.
+
+You can learn more commands and tricks by reading the [Linux]() page.
+
+
+## Hello world!
+
+To create our first file we will use the editor [Emacs]() (but if you
+are familiar with [Linux]() and prefer [Vim](), you can use it
+instead). Type `emacs hello.php`. In the editor type
+
+~~~ {.php}
+<?php
+	echo "Hello world!\n";
+?>
+~~~
+
+You will see two asterisks appearing in the lower left corner of the
+screen, this means your file has unsaved modifications. Type `Ctrl-x
+Ctrl-s` to save your changes. Type `Ctrl-x Ctrl-c` to quit [Emacs]().
+
+If you type `ls` you will see your newly created file. To run it with
+[PHP](), type `php hello.php`. It is as simple as that !
+
+Alternatively, if you use a different application stack ([XAMPP](),
+for example), create `hello.php` using your favorite editor and run it
+from a console using a command named `php` or `php-cli` (finding where
+this command has been installed is usually the hard part, especially
+in Windows).
+
+
+## Dates
+
+If you work in the AWS virtual machine, you will find yourself needing
+to switch frequently between [Emacs]() and the console. To make things
+smoother, you can log in a second shell and switch between the
+twos. To change shell type `Host+F2` (the `Host` key depends on your
+VirtualBox configuration, it is usually mapped on the right `Ctrl`)
+and log in. To go back to the first shell type `Host+F2`. You can use
+up to seven different shells.
+
+Browse <http://www.php.net/manual/> and find the documentation of the
+`date` function. 
+
+1. Write a program `date.php` that prints a message like the following
+
+    > Good morning/afternoon/evening! It is 10am on Tuesday 31 January
+      and you are learning PHP.
+
+    The welcome sentence must print "morning", "afternoon" or
+    "evening", depending on the time of the day.
+
+2. Using associative arrays, modify the program so that it prints the
+    sentence in English, French, Spanish, Esperanto and any other
+    language you like, depending on a constant defined in the source
+    file.
+
+3. Move the constant for choosing the language in a separate file
+    called `config.php`, use the `include` directive to read it in
+    your program.
+
+4. Let's say you don't trust the contents of `config.php` (it might be
+    a configuration file edited by the website administrator). Modify
+    your program so that it prints an error message if the requested
+    language is not supported. Have a look at
+    <http://fr2.php.net/manual/en/book.array.php> and at the
+    documentation of the function `isset`.
+
+5. Using a `foreach` statement, modify the program so that instead of
+    the error message it prints all the accepted languages followed by
+    the sentence.
+
+
+
+# PHP is a scripting engine
+
+[PHP]() is mostly used as a scripting engine for a web server. In a
+classical configuration, when the server receives a request for a
+resource written in [PHP]() (usually identified by its filename
+extension), it calls the [PHP]() interpreter and evaluates the source
+code; the resulting output is sent in the response to the client.
+
+A number of APIs permits the communication between the web server and
+the scripting engine, we are going to study the most prominent ones.
+
+
+## Talking to a web server using telnet
+
+[Telnet]() is a very simple text-based protocol for the remote control
+of servers. Due to its lack of security, it has been abandoned in
+favor of more modern protocols such as SSH. Its client program, also
+known as [Telnet](), is often used by system administrators because it
+allows to directly talk to servers without any encapsulation.
+
+From the command prompt type `telnet localhost 80`. The telnet client
+connects to the web browser running on your virtual machine and waits
+for instructions. Every time you end a line with an `Enter` key, the
+line is sent to the distant server. Since we are connected to a web
+server, we are going to talk [HTTP]().
+
+Assuming the program you created in the previous section was called
+`date.php`, type the following line followed by two `Enter` keys.
+
+~~~
+GET /date.php HTTP/1.0
+~~~
+
+If you've correctly typed the request, the web server will immediately
+send the request, then close the connection. Here's an excerpt of a
+communication:
+
+~~~
+Trying ::1...
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+GET /date.php HTTP/1.0
+
+HTTP/1.0 200 OK
+X-Powered-By: PHP/5.3.3-7+squeeze3
+Content-type: text/html
+Content-Length: 7
+Connection: close
+Date: Sun, 29 Jan 2012 22:46:51 GMT
+Server: lighttpd/1.4.28
+
+Sunday
+Connection closed by foreign host.
+~~~
+
+
+Now, try issuing the same request using HTTP/1.1 instead of HTTP/1.0
+(remember that the `Host:` header is compulsory in the version 1.1 of
+the protocol). You will notice some interesting differences between
+the two protocols:
+
+- The `Content-Length` header is not compulsory in HTTP/1.1, (the
+  length is given on the first line of the response, instead).
+- The web server hasn't used the `Connection: close` header and indeed
+  it has kept the connection for a couple of seconds before
+  terminating it. This feature allows web client to send more requests
+  on the same TCP connection.
+
+There may be other differences, but we won't get into more details.
+
+
+## My first web browser
+
+Using [Telnet]() to talk to a web server is not very comfortable. To
+replace it, We are going to write a very minimalist web browser... in
+[PHP]()!
+
+The ["Stream" library](http://www.php.net/manual/en/book.stream.php)
+handles transparently internet and Unix sockets, making it very easy
+to build simple applications working over TCP. The only function we
+need is `stream_socket_client`: it performs the DNS name resolution
+and the TCP connection for us, and returns a file handler to perform
+reads and writes on the socket. Read its documentation.
+
+1. Get out of the `www` directory (`cd ..` takes you one level up in
+    the directory tree. Create a [PHP]() script that connects to
+    `localhost` on port `80` and asks via HTTP/1.0 the document
+    `/date.php`.
+
+2. Just like in C, the arguments passed to the program on the command
+    line are stored in the `$argv` array (and its length is stored in
+    the variable `$argc`). Modify your program so that the document,
+    the port and the host are passed on the command line.
+	
+3. [PCRE]() is a very popular library for regular expressions
+    (inspired from [Perl]() syntax). Its manual is located here:
+    <http://www.php.net/manual/en/book.pcre.php>. Read the
+    documentation of the [PCRE]() syntax, then read the documentation
+    of the `preg_match` function. Modify your program so that running
+    it like this:
+	
+	    php mybrowser.php http://www.google.fr:80/search
+
+	produces the correct HTTP/1.1 request. Do not over-refine your
+	program: a decently working implementation will do.
+	
+4. Modify the program so that additional [HTTP]() headers can be
+    passed on the command line.
+	
+Finally, test your browser by making a request to
+<http://www.google.fr/>. The output will be too long to fit on a
+screen, using the [Linux]() console you can *pipe* it to a program,
+such as `less`, that will show the file progressively:
+
+    php mybrowser.php http://www.google.fr/ "User-Agent: AWS/0.1" | less
+
+In case you have difficulties completing this exercise, here's a spoiler:
+
+<div style="max-height:6ex;overflow:hidden"
+onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.style.maxHeight='6ex'">
+
+~~~ {.php}
+<?php                    # Show the full solution by clicking here!
+  if ($argc < 2) exit(0);
+  $url = $argv[1];
+
+  $headers = array();
+  for ($i = 2; $i < $argc; $i++)
+	$headers[$i-2] = $argv[$i];
+
+  preg_match("|^http://([^/]*)(:[0-9])?/?(.*)|", $url, $matches);
+  $host = $matches[1];
+  if (!$host) $host = "localhost";
+  $port = $matches[2];
+  if (!$port) $port = 80;
+  $doc = "/" . $matches[3];
+
+  $req = "GET $doc HTTP/1.1\r\nHost:$host\r\nConnection:close\r\n";
+  foreach ($headers as $header)
+	$req .= $header . "\r\n";
+  $req .= "\r\n";
+
+  $conn = stream_socket_client("tcp://$host:$port/");
+  echo $req;
+  fwrite($conn, $req);
+
+  while (!feof($conn))
+	echo fgets($conn, 1024);
+  fclose($conn);
+?>
+~~~
+
+</div>
+
+
+# Do you speak HTTP?
+
+## GET
+
+Clients have various methods to pass parameters to a web
+application. The simplest method, called the GET method, is to embed
+them in the request URL.
+
+The most widespread convention consists in appending a question mark
+`?` to the URL of the document, followed by a list of `key=value` (the
+`=value` part is optional) pairs separated by ampersands `&`. The
+[W3C]() recommends that web servers accept semicolons `;` as an
+alternate separator character. This conventions are stated in
+[RFCs](RFC) 1738 and 3986, they are not part of [HTTP]().
+
+For example, the following request to Google's search page passes the
+parameters `q=a` and `hl=en` (the first is the search string, the
+second is the language).
+
+    GET /search?q=a&hl=en HTTP/1.1
+	Host: www.google.com
+	
+GET parameters are passed down to [PHP]() in an associative array
+called `$_GET`.
+
+1. In the directory `www`, create a file `reflector.php` simply
+    containing
+	
+	~~~ {.php}
+	<?php print_r($_GET); ?>
+	~~~
+	
+	Play around with your browser and see how the parameters passed in
+	the URL are parsed in the $_GET array.
+	
+2. Try passing the following key-value pairs: `magasin=Marks&Spencer`,
+    `id=#3`, `trois=2+1`, `nom=Mon nom`. The first three will behave
+    strange, the fourth one just won't work because it will mess up
+    the request line. Go read the [URL]() article to find out how to
+    properly pass these special characters.
+	 
+3. Modify your `date.php` script to take the output language as a GET
+    parameter.
+
+4. A not so useful extension to the [URL]() standard is the
+    possibility to pass arrays via the get parameters. The syntax is
+    the following:
+	
+	    http://example.com/?arr[]=val1&arr[]=val2&arr[]=val3
+		
+	This is automatically parsed by the web server and passed down to
+	[PHP]() as an enumerated array. Of course, the same could be
+	achieved with one key-value pair and some string splitting. Modify
+	your program so that it outputs the date in all the requested
+	languages.
+
+## HTTP headers
+
+The `Accept-Language` header is sent by the browser to communicate the
+user preferences in terms of language. It is a list of language codes
+separated by commas, optionally the language code is followed by a
+colon and a preference factor of the form `q=x`, where `x` is a number
+between 0 and 1. Here's an example.
+	
+    Accept-Language: en, fr;q=0.8, da;q=0.1
+	
+Some request headers are made available to [PHP]() in the array
+`$_SERVER` (read the
+[doc](http://www.php.net/manual/en/reserved.variables.server.php) to
+know which ones). Modify `reflector.php` to also print the contents of
+`$_SERVER`. Modify `date.php` so that it prints its message in a
+language accepted by the user (ignore the quality factor, the order of
+appearance is the order of preference).
+
+
+### MIME types
+
+We now go graphical. If you are working in the AWS virtual machine,
+configure [port forwarding](LVBLMP). Assuming you've set up VirtualBox
+to forward port 8000 on the host, open your web browser and visit
+<http://localhost:8000/reflector.php>. 
+
+You will notice that the text is garbled. This is because by default
+browsers tend to interpret anything they receive as [HTML](), and
+`reflector.php` is not sending any [HTML]().
+
+The `Content-Type` header permits to declare the content of the
+request or response as something different from [HTML](). Its value
+must be the [MIME type]() corresponding to the content. For example,
+the [MIME type]() of plain textual data is `text/plain`, and browsers
+know how to display it correctly.
+
+Read the documentation of the `header` function. Modify your scripts
+so that they correctly announce their [MIME type]().
+
+
+### Redirection
+
+`Location` is an interesting header. It is used in conjunction with
+[HTTP codes](HTTP) 3xx to redirect the browser to another destination.
+
+Write a script `redirector.php` containing
+
+~~~ {.php}
+<?php header("Location: http://${_SERVER['HTTP_HOST']}/reflector.php"); ?>
+~~~
+
+and observe its behavior using your mini browser and a real browser on
+the host machine.
+
+
+## POST
+
+The last communication method we will study is the POST method. With
+this method the data is sent in the body of the [HTTP]()
+request.
+
+1. Modify your reflector to also print the `$_POST` array.
+
+2. Modify your mini browser (make a fresh copy, or add a command line
+    switch) so that it sends POST requests. The post data will be
+    passed on the command line (e.g., just after the URL). Do not
+    forget that the `Content-Length` header is compulsory in POST
+    requests. Make sure to use the `x-form-www-urlencoded`
+    [MIME type]() so that the server interprets correctly the data.

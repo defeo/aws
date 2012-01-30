@@ -759,7 +759,7 @@ Their scope is always **global**
 	
 	function foo() {
 		echo COLOR;
-    }
+	}
 	
 	foo();                # Writes "blue"
 ?>
