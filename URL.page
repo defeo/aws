@@ -1,0 +1,22 @@
+URL is an acronym for Uniform Resource Locator. It is a string uniquely
+identifying a resource on the internet. Familiar URLs are
+<http://en.wikipedia.org/wiki/URL#Syntax>, <ftp://ftp.fr.debian.org/>,
+
+The quick development of the WWW pushed the IETF to standardize it in
+1994.
+
+# Syntax
+
+The general syntax is
+
+    scheme://username:password@domain:port/path?query_string#fragment_id
+
+# URL encoding
+
+An URL cannot contain certain characters (spaces, for example). To
+encode those characters, an UTF coding is used instead: the character is
+coded as a percent sign `%` followed by its hexadecimal code. For
+example, space is encoded as `%20`.
+
+Read more on [percent encoding on
+Wikipedia](http://en.wikipedia.org/wiki/Percent-encoding).
