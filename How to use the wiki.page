@@ -1,0 +1,11 @@
+To edit a page click on the **edit** tab above. To create a new page,
+simply type its address in the address bar of your browser.
+
+In the editor, the wiki syntax is shown on the right. This should be
+enough for a simple page, but if you want more you can also read the
+[Pandoc documentation](http://johnmacfarlane.net/pandoc/README.html).
+
+Add the [feed](/_feed) to your favorite aggregator to keep up with
+changes on the wiki.
+
+To discuss about topics related to a page, click on the **discuss** tab.
