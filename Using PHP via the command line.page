@@ -25,3 +25,8 @@ This depends on the solution stack you installed. Here's a list of the most comm
 
 XAMMP
 :   Go under `C:\xampp\php`. The executable is named `php.exe`.
+
+WAMP
+:   Go under `C:\wamp\bin\php\phpX.X.X\php.exe C:\wamp\www\NomDeLaPage.php`
+
+    X.X.X is your PHP version.
