@@ -1,5 +1,5 @@
 ---
-category: Troubleshooting Help Install
+categories: Troubleshooting Help Install
 ...
 
 Some exercises require invoking the [PHP]() command line interpreter, like this:
