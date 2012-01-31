@@ -1,0 +1,27 @@
+---
+category: Troubleshooting Help Install
+...
+
+Some exercises require invoking the [PHP]() command line interpreter, like this:
+
+    php hello.php
+
+If you work under Windows with an installed solution stack (e.g. [XAMPP]()), some additional steps are needed to run this command.
+
+1. Open a terminal
+2. Find your install of [PHP](). This will depend on your solution stack, see below.
+3. Descend into the [PHP]() install and run `php.exe` followed by the name of the program.
+
+Here's an example of what a session might look like
+
+~~~
+C:\Users\Luca> cd C:/xampp/php
+C:\xammp\php> php C:/Users/Luca/hello.php
+~~~
+
+## Where is the PHP install?
+
+This depends on the solution stack you installed. Here's a list of the most common ones:
+
+XAMMP
+:   Go under `C:\xampp\php`. The executable is named `php.exe`.
