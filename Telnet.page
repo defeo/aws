@@ -1,0 +1,17 @@
+Telnet is a very simple text-based protocol for the remote control of servers. Due to its lack of security, it has been abandoned in favor of more modern protocols such as SSH. Its client program, also known as Telnet, is often used by system administrators because it allows to directly talk to servers without any encapsulation.
+
+
+You can use telnet on any [Linux]() machine (assuming it is installed). From the command prompt simply type 
+
+    telnet host port
+
+It will connect to the host `host` on port `port`. For example
+
+    telnet www.google.fr 80
+
+will connect to the Google web server.
+
+
+## Using telnet on Windows
+
+Apparently the Telnet client is distributed with Windows, but hidden.
