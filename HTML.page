@@ -1,1 +1,6 @@
-HTML is very **cool**!
+HTML is a *markup* language, originally inspirded by SGML, for the writing of human readable HyperText documents.
+
+# Links
+
+- [This document](http://dev.w3.org/html5/html-author) by the W3C provides a quick introduction to HTML and to the main differences between HTML 5 and its predecessors.
+- W3Schools have many tutorials on HTML and HTML5: <http://www.w3schools.com>
