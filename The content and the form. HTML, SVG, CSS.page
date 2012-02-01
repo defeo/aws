@@ -1,0 +1,565 @@
+---
+category: Classes HTML SVG CSS
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+
+# HTML markup
+
+[HTML]() is a *markup language*, originally inspirded by SGML, for the
+writing of **human readable** (!!!) HyperText documents.
+
+~~~ {.html}
+<tag>
+  My content <someothertag>some more content</someothertag>
+</tag>
+~~~
+
+**Tags** delimit textual content:
+
+> - To any opening tag `<tag1>` corresponds a closing tag `</tag1>`.
+> - Tags may contain other tags, properly nested.
+> - Not any tag can go inside any other tag.
+> - Certain tags must have no content. 
+    In this case `<tag></tag>` can be shortened to `<tag/>`.
+
+
+# Attributes
+
+Tags may have **attributes**, going in the opening tag.  
+
+~~~ {.html}
+<tag attribute1="value 1"
+     attribute2='value 2'
+     attribute3=value3>
+  Content
+</tag>
+~~~
+
+> - Attribute values go in simple, double or no quotes.
+    Unquoted values (avoid them, though) must contain no spaces.
+> - Some attributes are compulsory for certain tags
+
+
+## Comments
+
+Comments are written between a starting **`<!--`** and closing
+**`-->`**
+
+~~~ {.html}
+<!-- This is a comment, it will be ignored -->
+<tag>This will be parsed</tag>
+~~~
+
+Obviously, a comment **is not a tag**. It just looks a bit like one.
+
+
+# The structure of an HTML document
+
+There is a limited number of tags, the user **may not** invent its own.
+
+Any HTML document **must** look like this
+
+~~~ {.html}
+<html>
+  <head>
+    <!-- The head contains any information 
+	     on the document that is not content
+	 -->
+    <title>Some title</title>
+  </head>
+  <body>
+    <!-- The body contains the real HyperText -->
+  </body>
+</html>
+~~~
+
+
+# What goes in the head
+
+The `<head>` section of an [HTML]() document contains everything that
+is relevant to the document but that is not part of it. Here's some
+important tags.
+
+**`<title>`:** The title of the document. Compulsory.
+
+**`<script>`:** Client-side scripting code ([Javascript](), VBScript, etc.).
+
+**`<style`>:** Presentation directives ([CSS](), etc.).
+
+**`<meta>`:** Meta-information on the document (language, encoding, etc.).
+
+**`<link>`:** Related documents (feeds, favicons, etc.)
+
+**`<base>`:** Link resolution base.
+
+
+# What goes in the body
+
+The `<body>` section contains the real content. Here's a little
+selection of tags.
+
+**`<section>`, `<nav>`:** Structure of the document.
+
+**`<header>`, `<footer>`, `<aside>`, `<address>`:** Structure of a section.
+
+**`<p>`, `<h1>`, ..., `<h6>`:** A paragraph of text, a first level
+  section title, ..., a sixth level section title.
+
+**`<a>`:** An *anchor*, i.e. a link to some other content.
+
+**`<img>`, `<audio>`, `<video>`, `<object>`, `<svg>`:** Embedding media.
+
+**`<form>`, `<input>`, ...:** User interaction.
+
+**`<table>`, `<tr>`, `<td>`, ...:** Tables.
+
+**`<strong>`, `<em>`:** Text presented *differently* (e.g., bold or italic)
+
+**`<div>`, `<span>`:** Tags with absolutely no meaning (useful for
+  linking to style and scripts).
+
+Read more on <http://www.w3schools.com>.
+
+
+# Attributes
+
+Attributes serve many goals. Here's some of the most common.
+
+**`id`:** Assigns an identifier to a tag. Must be unique.
+
+**`class`:** Assigns the tag to a **class** (for logical grouping).
+
+**`src`:** Used to point to the source of external resources.
+
+**`href`:** HyperReference. Used for linking to external resources.
+
+**`style`:** To add styling directives (will talk more about this).
+
+**`title`:** Specify extra information.
+
+**`onclick`, `onload`, `onmouseover`, ...:** Event hooks for scripting.
+
+**`data-*`:** User definable attributes (since [HTML5]()).
+
+
+# The inline, the block and the ugly
+
+There are rules on which tags can go in which. In the old days, there
+used to be two categories:
+
+**Block level:**  `<div>`, `<p>`, `<h1>`, `<form>`, `<td>`, etc.
+
+**Inline (flow) level:** `<span>`, `<a>`, `<strong>`, etc.
+
+> - Blocks can go into blocks,
+> - Inlines can go inside inlines or blocks,
+> - Blocs cannot go inside inlines.
+
+Plus some other rules (`<td>` inside `<tr>` inside `<table>`, no `<p>`
+inside a `<p>`, nothing inside `<img>`, etc.). Things got more
+complicated recently with the design of [HTML5]().
+
+
+# Follow the standards
+
+By striving to ease or enhance web programming, browser developers
+have introduced tons of non-standard tags and parsing rules.
+
+This has ultimately led to **bad practices** in web programming and
+browser **incompatibilities**.
+
+[W3C]() tries to enforce the standards by providing tools for the
+**validation** of web pages.
+
+**Use it:** <http://validator.w3c.org>
+
+
+
+
+# Properly declare your language
+
+You must declare the language and the variant you're writing the
+document in. A properly declared [HTML5]() document looks like this
+(preferred way in our course)
+
+~~~ {.html}
+<!DOCTYPE html>
+<html>
+	<head>...</head>
+	<body>...</body>
+</html>
+~~~
+
+Or like this (using the [XHTML]() encoding)
+
+~~~ {.html}
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>...</head>
+	<body>...</body>
+</html>
+~~~
+
+
+# Never said enough: properly nest your tags!
+
+**Good**
+
+~~~ {.html}
+<p>
+  <strong>This text is bold <em>and this is italic too</em></strong>
+</p>
+~~~
+
+**BAD!!!!!!!**
+
+~~~ {.html}
+<p>
+  <strong>This text is bold <em>and this is italic too</strong></em>
+</p>
+~~~
+
+~~~ {.html}
+<p>
+  <strong>This text is bold <em>and this is italic too</em></strong>
+~~~
+
+
+
+# Good practice: declare your character encoding
+
+For example (always prefer Unicode encodings)
+
+~~~ {.html}
+<head>
+  <meta charset="utf-8" />
+  ...
+</head>
+~~~
+
+or like this (still common on french Windows systems)
+
+~~~ {.html}
+<head>
+  <meta charset="iso-8859-1" />
+  ...
+</head>
+~~~
+
+
+
+# Declarative drawing: SVG
+
+[SVG]() is a *declarative*, [XML]()-based language for Scalable Vector
+Graphics.
+
+**XML-based:** Tags that look a lot like [HTML]() ones.
+
+**Scalable:** Resizing does not lower quality.
+
+**Vector graphics:** Declare geometrical objects, rather than trace
+  pixels.
+
+<div style="resize:both;overflow:hidden;width:8em">
+
+![](/svg-logo.svg)
+
+</div>
+
+Directly **embeddable** in [HTML5]() with the **`<svg>`** tag.
+
+Also an independent image format that can be used with **`<img>`**.
+
+Animation via [Javascript]() or specialized languages (SMIL).
+
+
+# SVG Example
+
+~~~ {.html}
+<svg height="40%">
+  <rect x="10%" y="0%" width="5%" height="20%"/> 
+  <rect x="20%" y="10%" width="20%" height="5%" fill="red"/>
+  <circle cx="30%" cy="25%" r="5%" fill="blue"/>
+</svg>
+~~~
+
+<svg height="40%">
+  <rect x="10%" y="0%" width="5%" height="20%"/> 
+  <rect x="20%" y="10%" width="20%" height="5%" fill="red"/>
+  <circle cx="30%" cy="25%" r="5%" fill="blue"/>
+</svg>
+
+In practice, don't do it by hand. Use cool software like
+[Inkscape](http://inkscape.org/).
+
+
+
+# HTML is for content, not visualization
+
+HTML tags instruct on what is the **meaning** (the **semantic**) of a
+piece of data. Not on how the data should be **presented**
+
+Example. The much debated `<i>` tag (which originally stands for *italic*)
+
+~~~
+<i>Some text</i>
+~~~
+
+is usually displayed like this
+
+> *Some text*
+
+However the [HTML5]() definition now says
+
+> The i element now represents a span of text in an alternate voice or
+  mood, or otherwise offset from the normal prose in a manner
+  indicating a different quality of text, such as a taxonomic
+  designation, a technical term, an idiomatic phrase from another
+  language, a thought, or a ship name in Western texts.
+
+
+# Never make assumptions on how a tag is presented in a browser
+
+Think of:
+
+> - Textual browsers;
+> - Visually impaired users;
+> - Users who read in foreign languages (which may not have the concept of *italic*);
+> - Third party websites that may reuse your content.
+
+So, who decides how things are presented?
+
+The answer is **Style sheets**.
+
+
+
+# Cascading Style Sheets
+
+CSS is a language for asserting presentational directives.
+
+**Cascading** means that multiple style sheets can be applied to a
+  document, the result being calculated according to some precise
+  precedence rules.
+  
+~~~ {.css}
+p.lead {
+  font-weight: bold;
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, sans-serif;
+  padding: 2pt;
+}
+
+p.lead:first-letter {
+  font-size: 200%;
+}
+
+p.lead em {
+  font-variant: small-caps;
+  font-style: normal;
+}
+~~~
+
+<div>
+<style scoped>
+p.lead {
+  font-weight: bold;
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, sans-serif;
+  padding: 2pt;
+}
+
+p.lead:first-letter {
+  font-size: 200%;
+}
+
+p.lead em {
+  font-variant: small-caps;
+  font-style: normal;
+}
+</style>
+
+<p class="lead">Lorem ispsum <em>dolor sit</em> amet</p>
+</div>
+
+
+# The general CSS syntax
+
+**CSS rule**
+
+~~~ {.css}
+selector {property: value; property:value; ...}
+~~~
+
+**Comments**
+
+~~~ {.css}
+/* This is the only way to make a comment in CSS
+   (i.e., // does not introduce a comment)       */
+~~~
+
+**At-rules**
+
+~~~ {.css}
+@import "otherstyle.css";    /* Reads in the style sheet */
+@media screen;               /* Only apply to screen presentation
+                                (e.g., not for printing) */
+~~~
+
+Current reference: <http://www.w3.org/TR/2011/REC-CSS2-20110607/>
+
+CSS3 draft is too big to fit in one module. See <http://www.w3.org/Style/CSS/>
+
+
+# CSS Selectors
+
+**Simple selectors (`tag` is always optional)**
+
+~~~ {.css}
+tag {...}                /* Apply to any <tag>                     */
+tag.class {...}          /* Apply to <tag>'s of class class        */
+#id {...}                /* Apply to the element identified by id  */
+tag:pseudoclass {...}    /* Selection of special content           */
+tag[att=val] {...}       /* Apply to <tag> only if it has attribute
+                            att equal to val                       */
+~~~
+
+**Selector combinators**
+
+~~~ {.css}
+selector, selector {...}  /* Apply to each selector                       */
+parent child {...}        /* Apply to child only when it is contained in
+                             parent                                       */
+parent > child {...}      /* Apply to child only when it is immediately
+                             contained in parent                          */
+sister ~ brother {...}    /* Apply to brother only when it follows sister */
+sister + brother {...}    /* Apply to brother only when it immediately
+                             follows sister                               */
+~~~
+
+Complete reference: <http://www.w3.org/TR/CSS2/selector.html>
+
+CSS3 draft: <http://www.w3.org/TR/2011/REC-css3-selectors-20110929>
+
+
+# Where goes the style?
+
+~~~ {.html}
+<html>
+  <head>
+    <title>...</title>
+	<!-- These apply to the whole document -->
+    <link rel='stylesheet' href='sheet.css' type='text/css' />
+	<style>
+	  body {font-family: Arial;}
+	</style>
+  </head>
+  <body>
+    <div>
+	  <!-- This only applies inside this div (since HTML5) -->
+	  <style scoped>
+	    p {color:blue;}
+      </style>
+	  
+	  <!-- This only affects this paragraph.
+	       CSS syntax inside the style attribute
+		   is limited -->
+	  <p style="font-weight:bold">...</p>
+	</div>
+  </body>
+</html>
+~~~
+
+
+# The document and the style
+
+~~~ {.html}
+<style>
+  .lerouge {color:red;}
+  div.lerouge {background-color:yellow;}
+  #lenoir {color:black;}
+  div p {font-style:italic;}
+</style>
+...
+<p class="lerouge">First</p>
+<div class="lerouge">
+  <p id="lenoir">Second</p>
+  <p>Third</p>
+</div>
+~~~
+
+<div>
+<style scoped>
+  .lerouge {color:red;}
+  div.lerouge {background-color:yellow;}
+  #lenoir {color:black;}
+  /* I cheat to avoid HTML4 unscoped problems */
+  div.lerouge p {font-style:italic;}
+</style>
+<p class="lerouge">First</p>
+<div class="lerouge">
+  <p id="lenoir">Second</p>
+  <p>Third</p>
+</div>
+</div>
+
+
+# The box model
+
+Every element is seen by CSS as one of these three types of **boxes**:
+
+<div style="background-color: yellow">
+
+**Block:** A block looks like a rectangle. It takes the whole width of
+  the page and as much height as necessary.
+
+</div>
+
+**Inline:** <span style="background-color:yellow"> Inlines look like
+lines of text, which can wrap around the end of a line. They take just
+as much space as they need.</span>
+
+<div style="display:inline-block;width:60%;background-color:yellow">
+
+**Inline-block:** Inline blocks look like blocks in that they do not
+  wrap around line ends, but more inline blocks can live on the same
+  line and they take only as much space as they need.
+
+</div>
+
+<div style="display:inline-block;background-color:red;">
+
+I take few space
+
+</div>
+
+> - Blocks by default: **`<div>`**, `<hX>`, `<p>`, ...
+> - Inlines by default: **`<span>`**, `<a>`, `<em>`, `<img>`, just text, ...
+
+The default can be changed using the **`display`** CSS property.
+
+
+# The flow
+
+In the **normal flow**, boxes are laid out from **top to bottom** and
+from **left to right** (but the latter can be changed).
+
+Boxes can **exit the flow** by being positioned explicitly, using the
+**`position`** CSS property:
+
+> - **static:** The default normal flow.
+> - **absolute:** X-Y coordinates from the point where it would have been normally laid out.
+> - **fixed:**  X-Y coordinates from the top left (right) corner.
+> - **relative:** X-Y coordinates from the top left (right) corner of the containing block.
+
+Boxes can also exit the flow by **floating** (**`float`** property).
+
+
+# Let's practice the box model
+
+## Firefox 10 is out!
+
+And it comes with the *coolest* gadget already included: a **document
+inspector**.
+
+Install the new version for next week!
+
+
