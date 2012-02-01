@@ -50,8 +50,8 @@ If you type `ls` you will see your newly created file. To run it with
 Alternatively, if you use a different application stack ([XAMPP](),
 for example), create `hello.php` using your favorite editor and run it
 from a console using a command named `php` or `php-cli` (finding where
-this command has been installed is usually the hard part, especially
-in Windows).
+this command has been installed is usually the hard part, [especially
+in Windows](Using PHP via the command line)).
 
 
 ## Dates
