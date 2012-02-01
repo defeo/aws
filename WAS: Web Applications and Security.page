@@ -8,6 +8,7 @@ To succeed in this fast paced domain, the IT professional must possess many dive
 
 This course aims at giving the bases of modern dynamic web programming, with a spin on attack techniques and security analysis.
 
+This wiki is yours. Use it, peruse it, abuse it (but not too much, please... it is software in development and it is quite vulnerable to XSS attacks). Please read [How to use the wiki]()
 
 # Practical information
 
@@ -23,15 +24,15 @@ This course aims at giving the bases of modern dynamic web programming, with a s
 Class 1 (01/25/2012)
 :   [The World Wide Web, introduction to PHP](), [audio recording](/class20120125.ogg).
 Class 2 (02/01/2012)
-:   [The content and the form: HTML, SVG, CSS]().
+:   [The content and the form. HTML, SVG, CSS]().
 Class 3 (02/08/2012)
-:   [Exchanging data: forms, cookies, persistence]().
+:   [Exchanging data. forms, cookies, persistence]().
 Class 4 (02/15/2012)
-:   [Client-side scripting: Javscript and JQuery]().
+:   [Client-side scripting. Javscript and JQuery]().
 Class 5 (02/22/2012)
-:   [Asynchronous interaction: AJAX and JQuery]().
+:   [Asynchronous interaction. AJAX and JQuery]().
 Class 6 (03/07/2012)
-:   [Database storage: MySQL and the PHP library]().
+:   [Database storage. MySQL and the PHP library]().
 Class 7 (03/14/2012)
 :   
 Class 8 (03/21/2012)
