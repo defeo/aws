@@ -17,7 +17,7 @@ will connect to the Google web server.
 Apparently the Telnet client is distributed with Windows, but hidden.
 
 To be able to use telnet , you have to write in MS-DOS the command "pkgmgr /iu:TelnetClient"
-then, you can use the telnet command normaly 
-for exemple 
+then, you can use the telnet command normaly.
+for exemple:
 
-tenet www.google.fr 80 
+    tenet www.google.fr 80 
