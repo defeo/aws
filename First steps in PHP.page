@@ -61,7 +61,7 @@ to switch frequently between [Emacs]() and the console. To make things
 smoother, you can log in a second shell and switch between the
 twos. To change shell type `Host+F2` (the `Host` key depends on your
 VirtualBox configuration, it is usually mapped on the right `Ctrl`)
-and log in. To go back to the first shell type `Host+F2`. You can use
+and log in. To go back to the first shell type `Host+F1`. You can use
 up to seven different shells.
 
 Browse <http://www.php.net/manual/> and find the documentation of the
