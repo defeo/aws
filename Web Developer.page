@@ -1,0 +1,18 @@
+Web Developer is a Firefox extension targeted to developers working on web applications.
+
+It is available for download here: <https://addons.mozilla.org/en-US/firefox/addon/web-developer/>.
+
+
+# Web developer bar
+
+Once installed, Web Developer adds a bar to the top of Firefox. All the tools in Web Developer can be accessed through it. The bar can be toggled with `Shift Ctrl B`. All the items in the bar are also available in the context menu (right click).
+
+
+# HTML and validation
+
+Web developer offers two ways to contact <http://validator.w3.org>; they are both accessible via the "Tools" menu.
+
+- **Validate HTML** (`Shift Ctrl H`) contacts the [W3C]() validator by passing the URL of the currently viewed page. It only works with documents on the web accessible to the validator.
+- **Validate Local HTML** (`Shift Ctrl A`) contacts the validator by *direct input*, passing the full HTML document currently viewed. This method is adapted for files on the local disk and for access-protected content.
+
+The same methods are available for [CSS]() validation.
