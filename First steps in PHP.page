@@ -36,7 +36,7 @@ instead). Type `emacs hello.php`. In the editor type
 
 ~~~ {.php}
 <?php
-	echo "Hello world!\n";
+    echo "Hello world!\n";
 ?>
 ~~~
 
@@ -191,22 +191,22 @@ reads and writes on the socket. Read its documentation.
     line are stored in the `$argv` array (and its length is stored in
     the variable `$argc`). Modify your program so that the document,
     the port and the host are passed on the command line.
-	
+    
 3. [PCRE]() is a very popular library for regular expressions
     (inspired from [Perl]() syntax). Its manual is located here:
     <http://www.php.net/manual/en/book.pcre.php>. Read the
     documentation of the [PCRE]() syntax, then read the documentation
     of the `preg_match` function. Modify your program so that running
     it like this:
-	
-	    php mybrowser.php http://www.google.fr:80/search
+    
+        php mybrowser.php http://www.google.fr:80/search
 
-	produces the correct HTTP/1.1 request. Do not over-refine your
-	program: a decently working implementation will do.
-	
+    produces the correct HTTP/1.1 request. Do not over-refine your
+    program: a decently working implementation will do.
+    
 4. Modify the program so that additional [HTTP]() headers can be
     passed on the command line.
-	
+    
 Finally, test your browser by making a request to
 <http://www.google.fr/>. The output will be too long to fit on a
 screen, using the [Linux]() console you can *pipe* it to a program,
@@ -226,7 +226,7 @@ onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.s
 
   $headers = array();
   for ($i = 2; $i < $argc; $i++)
-	$headers[$i-2] = $argv[$i];
+    $headers[$i-2] = $argv[$i];
 
   preg_match("|^http://([^/]*)(:[0-9])?/?(.*)|", $url, $matches);
   $host = $matches[1];
@@ -237,7 +237,7 @@ onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.s
 
   $req = "GET $doc HTTP/1.1\r\nHost:$host\r\nConnection:close\r\n";
   foreach ($headers as $header)
-	$req .= $header . "\r\n";
+    $req .= $header . "\r\n";
   $req .= "\r\n";
 
   $conn = stream_socket_client("tcp://$host:$port/");
@@ -245,7 +245,7 @@ onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.s
   fwrite($conn, $req);
 
   while (!feof($conn))
-	echo fgets($conn, 1024);
+    echo fgets($conn, 1024);
   fclose($conn);
 ?>
 ~~~
@@ -273,41 +273,41 @@ parameters `q=a` and `hl=en` (the first is the search string, the
 second is the language).
 
     GET /search?q=a&hl=en HTTP/1.1
-	Host: www.google.com
-	
+    Host: www.google.com
+    
 GET parameters are passed down to [PHP]() in an associative array
 called `$_GET`.
 
 1. In the directory `www`, create a file `reflector.php` simply
     containing
-	
-	~~~ {.php}
-	<?php print_r($_GET); ?>
-	~~~
-	
-	Play around with your browser and see how the parameters passed in
-	the URL are parsed in the $_GET array.
-	
+    
+    ~~~ {.php}
+    <?php print_r($_GET); ?>
+    ~~~
+    
+    Play around with your browser and see how the parameters passed in
+    the URL are parsed in the $_GET array.
+    
 2. Try passing the following key-value pairs: `magasin=Marks&Spencer`,
     `id=#3`, `trois=2+1`, `nom=Mon nom`. The first three will behave
     strange, the fourth one just won't work because it will mess up
     the request line. Go read the [URL]() article to find out how to
     properly pass these special characters.
-	 
+     
 3. Modify your `date.php` script to take the output language as a GET
     parameter.
 
 4. A not so useful extension to the [URL]() standard is the
     possibility to pass arrays via the get parameters. The syntax is
     the following:
-	
-	    http://example.com/?arr[]=val1&arr[]=val2&arr[]=val3
-		
-	This is automatically parsed by the web server and passed down to
-	[PHP]() as an enumerated array. Of course, the same could be
-	achieved with one key-value pair and some string splitting. Modify
-	your program so that it outputs the date in all the requested
-	languages.
+    
+        http://example.com/?arr[]=val1&arr[]=val2&arr[]=val3
+        
+    This is automatically parsed by the web server and passed down to
+    [PHP]() as an enumerated array. Of course, the same could be
+    achieved with one key-value pair and some string splitting. Modify
+    your program so that it outputs the date in all the requested
+    languages.
 
 ## HTTP headers
 
@@ -316,9 +316,9 @@ user preferences in terms of language. It is a list of language codes
 separated by commas, optionally the language code is followed by a
 colon and a preference factor of the form `q=x`, where `x` is a number
 between 0 and 1. Here's an example.
-	
+    
     Accept-Language: en, fr;q=0.8, da;q=0.1
-	
+    
 Some request headers are made available to [PHP]() in the array
 `$_SERVER` (read the
 [doc](http://www.php.net/manual/en/reserved.variables.server.php) to

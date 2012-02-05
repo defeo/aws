@@ -66,8 +66,8 @@ Any HTML document **must** look like this
 <html>
   <head>
     <!-- The head contains any information 
-	     on the document that is not content
-	 -->
+         on the document that is not content
+     -->
     <title>Some title</title>
   </head>
   <body>
@@ -188,8 +188,8 @@ document in. A properly declared [HTML5]() document looks like this
 ~~~ {.html}
 <!DOCTYPE html>
 <html>
-	<head>...</head>
-	<body>...</body>
+    <head>...</head>
+    <body>...</body>
 </html>
 ~~~
 
@@ -197,8 +197,8 @@ Or like this (using the [XHTML]() encoding)
 
 ~~~ {.html}
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>...</head>
-	<body>...</body>
+    <head>...</head>
+    <body>...</body>
 </html>
 ~~~
 
@@ -447,24 +447,24 @@ CSS3 draft: <http://www.w3.org/TR/2011/REC-css3-selectors-20110929>
 <html>
   <head>
     <title>...</title>
-	<!-- These apply to the whole document -->
+    <!-- These apply to the whole document -->
     <link rel='stylesheet' href='sheet.css' type='text/css' />
-	<style>
-	  body {font-family: Arial;}
-	</style>
+    <style>
+      body {font-family: Arial;}
+    </style>
   </head>
   <body>
     <div>
-	  <!-- This only applies inside this div (since HTML5) -->
-	  <style scoped>
-	    p {color:blue;}
+      <!-- This only applies inside this div (since HTML5) -->
+      <style scoped>
+        p {color:blue;}
       </style>
-	  
-	  <!-- This only affects this paragraph.
-	       CSS syntax inside the style attribute
-		   is limited -->
-	  <p style="font-weight:bold">...</p>
-	</div>
+      
+      <!-- This only affects this paragraph.
+           CSS syntax inside the style attribute
+           is limited -->
+      <p style="font-weight:bold">...</p>
+    </div>
   </body>
 </html>
 ~~~
