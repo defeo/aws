@@ -1,0 +1,212 @@
+---
+categories: Tutorials HTML CSS
+...
+
+
+Throughout this tutorial we will refer to
+<http://www.w3schools.com/html5/> for the list and description of
+[HTML]() tags. We will refer to <http://www.w3schools.com/css/> for
+the list and description of [CSS]() properties.
+
+The reference browsers will be Firefox 10 and Chrome 16.
+
+
+# HTML5
+
+## Don't forget the `<milk>`
+
+Using your favorite editor, create a file `cv.html`. To see the
+results, open it in a web browser.
+
+Remember that a valid [HTML5](HTML) document has the following minimal
+structure.
+
+~~~ {.html}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  </body>
+</html>
+~~~
+
+Properly declare your character encoding (it probably is `utf-8`, or
+`iso-8859-1`, or `windows-1252`). Test it by typing some accented
+characters and looking at the result in your browser.
+
+In what follows, do not care about elegance and style. Just create a
+document with content as specified. Give a title to your document and
+create your *curriculum vitae* containing:
+
+- A `<section>` for personal details.
+- A `<section>` for the rest of the data.
+
+Give an `id` to each section. Start filling the first section:
+
+- Using a *definition list* (`<dl>`), list your personal data.
+- Include a picture of yours (remember that the `alt` attribute is
+  compulsory for `<img>`) inside a `<figure>` tag.
+
+Now fill the second section:
+
+- Create the following sections (each with its own id): *Current
+    Studies*, *Education*, *Diplomas*, *Skills*, *Hobbies*, *Geek code*.
+    
+- Start each section with a `<h1>` header.
+
+- Fill each of the sections using paragraphs (`<p>`), lists (`<ul>`)
+    or numbered lists (`<ol>`), whichever is more appropriate. Fill
+    free to use emphasizing markup such as `<strong>` and `<em>`.
+    
+- In the *Diplomas* section, insert a `<table>` summarizing for each
+    diploma the year it was obtained, the granting institution and the
+    grade, if any.
+    
+- The *Geek code* section should contain your
+    [geek code](http://www.geekcode.com/geek.html) inside a `<pre>`
+    tag. Read the documentation of `<pre>` to understand how it is
+    different from other tags. If you don't know what a geek code is,
+    use this one:
+    
+	~~~
+    -----BEGIN GEEK CODE BLOCK-----
+	Version: 3.1
+    GCS/M/ED d---(x) s--: a- C++(++++)
+	ULU++++ !P L+++ E W+++ N? o? K? w--
+	O-- M-- V? PS++ PE-- Y+ PGP+ t-
+    5? X R->+ tv-- b+(++) DI D-
+	G-() e++++ h--- r++ y+++
+    ------END GEEK CODE BLOCK------
+	~~~
+    
+- At the beginning of the section, add a navigation area (`<nav>`)
+    containing a list of links (`<a>`), one for each
+    subsection. Remember that you can link any element with an id
+    using the `#id` [URL]().
+
+
+## Have roast, not soup
+
+The document you've just produced contains about every tag you shall
+ever need for structuring content (we will learn a few more tags for
+user interaction in the next tutorials). It is time now to check that
+tags are used properly.
+
+The page <http://validator.w3.org/> offers an [HTML]()/[XHTML](HTML)
+*validation tool*, i.e. a parser whose sole goal is to warn developers
+about non-compliant code.
+
+In its default operation mode, it asks for the address of a web page
+and checks that it complies to the standard it declares. Try it on the
+addresses <http://validator.w3.org/> and <http://www.google.com>. 
+
+Your page `cv.html` is not online, thus you cannot give its address to
+the validator. You can instead use the
+"[validate by File Upload](http://validator.w3.org/#validate_by_upload)"
+and
+"[Validate by direct input](http://validator.w3.org/#validate_by_input)"
+tabs; the names are self-explanatory.
+
+A quicker way to perform this validation is provided by the Firefox
+extension [Web Developer](). Check it out!
+
+Check your page `cv.html` and correct errors until it passes
+validation.
+
+
+
+# CSS
+
+## How to serve roast
+
+Create a CSS file, say `destijl.css`, and link `cv.html` to it using a
+`<link>` tag.
+
+- Make the subsections contained in the main section begin with a
+  horizontal line (see the border properties). Adjust padding and
+  margin to your pleasure.
+- Make the titles of the subsections be centered, and adjust the other
+  font properties as you like.
+- Move your picture to the right of the page (see the positioning
+  properties).
+- Make the bullets before the links in the navigation section
+  disappear (see the list properties).
+- Make the links in the navigation section appear as normal black
+  text, turning red when the mouse passes over them (see the link
+  *pseudoclasses* `:link`, `:hover`, `:active` and `:visited`).
+- Make the links in the navigation section appear as buttons lying on
+  the same line (use the `display` property, among others).
+- Using the `class` attribute, make even lines in the diploma table
+  have a different background color from odd lines. Put borders on the
+  table as you like.
+- In the *Geek code*, color the version line in red and the letters
+  (only the letters, not the `+` and `-`) in blue. For this, use
+  `<span>` tags inside `cv.html` and link them to the stylesheet using
+  the `class` attribute.
+
+
+## Peel off the grease
+
+Stylesheet rules follow some strict precedence rules. The least
+important rules are those set by the browser defaults, then come the
+web developer rules, and finally the user rules.
+
+[Stylish](https://addons.mozilla.org/en-US/firefox/addon/stylish/) is
+a Firefox add-on that allows to add user stylesheets on a per-page
+basis. Install it. We will use it to hide ads on the Google search page.
+
+- Make sure you have AdBlock and other ad-removing extension disabled.
+- Visit <http://www.google.fr/search?q=web+development>. You will see
+  some adds on the top of search results and some more in the right
+  area.
+- Using the document inspector (the document inspector is part of
+  Firefox 10, you can run it typing `Ctrl Shift I`), find the
+  `<div>`'s containing those adds.
+- Click on the Stylish icon (in the plugin bar), go to "Write new
+  style" -> "For www.google.fr". In the editor, write a stylesheet
+  that removes the ads (using the `display` property).
+
+
+
+# Dynamic HTML generation and a classic layout
+
+## Layout
+
+In this part, we study a classic layout for web pages, that is
+sometimes called *pseudoframes*. Create a page `mysite.html` with a
+simplified layout similar to Wikipedia's:
+
+<iframe src="http://en.wikipedia.org/wiki/Css" style="width:80%;
+height:15em; margin-left:2ex; "></iframe>
+
+In particular, you should have a fixed-with *navigation bar* on the
+left, a variable width *content pane* taking the rest of the space and
+a *footer*.
+
+You can construct each of those three elements using `<div>` tags (the
+[HTML 4.01](HTML) way), or using `<section>` and `<nav>` tags (the
+[HTML5](HTML) way). Avoid using the `float` property (this used to be
+a bad practice introduced before modern revisions of [CSS]() came
+out). You can inspect Wikipedia's page to get an idea.
+
+
+## Page generation using PHP
+
+Rename `mysite.html` to `mysite.php`. Move the menu, the content and
+the footer in three separate files named `menu.php`, `content.1.php`
+and `footer.php`, and include them using the `include` function. Put
+all the files in the web server directory (`~/www` on the virtual
+machine) and test the result with your browser.
+
+Create a new file named `content.2.php`, similar to `content.1.php`
+but with a different text. Modify `mysite.php` so that it includes
+`content.1.php` or `content.2.php` depending on a GET parameter. For
+example, a request for the former may look like
+
+    http://localhost/mysite.php?content=1
+    
+What happens when the client requests no content, or a content that
+does not exist?  Properly handle this case (you can use associative
+arrays as seen in [First steps in PHP]()).
