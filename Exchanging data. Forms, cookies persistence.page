@@ -1,0 +1,610 @@
+---
+categories: Classes PHP HTML
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy).
+
+
+# Flashback: sending information to the server
+
+Often the client needs to send information to the server (e.g.,
+authentication information, search queries, etc.). The three most used
+methods are:
+
+**GET request:** the data is appended to the URL (often **`?`** and
+  **`&`** are used as separators).
+
+    http://www.google.fr/search?q=web+application&hl=fr
+
+> Better suited for *safe requests* (i.e., requests that do not
+> permanently modify data on the server).
+    
+**POST request:** the data is sent in the body of a POST request.
+
+> Better suited for requests that modify data on the server.
+
+**Cookies:** the data is sent in the Cookie HTTP header.
+
+> Mostly used for [Persistent storage]().
+  
+Any combination of the three is possible.
+
+
+
+# How to get the user input in a friendlier manner?
+
+Obviously, the average user doesn't want to (and doesn't know how to)
+manually type its input in the body of an [HTTP]() request.
+
+Web technologies offer an interesting palette of solutions to this
+problem
+
+- [HTML forms]()
+
+    <div style="text-align:center">
+    <input type="text" name="text-input-example" placeholder="type something" />
+    <input type="button" name="submit-example" value="Go!" />
+    </div>
+    
+    can send data using **both** GET and POST methods.
+
+- [Cookies](Cookie) are normally set by the browser (following a request by
+    the server) **without user interaction**. They are used for
+    [Persistent storage]().
+  
+- [Javascript]() is able to fill and submit [HTML forms]() and to set
+  [Cookies](Cookie).
+  
+- [XMLHttpRequest]() (a [Javascript]() object) can perform directly
+    GET and POST requests **with or without user interaction**. This
+    is the basis of [AJAX]().
+
+
+# HTML forms
+
+<div style="text-align:center;display:inline-block;max-width:15%">
+<img src="/server.png" width="90%" height="90%">
+<p style="font-size:smaller">www.captcha.net</p>
+</div>
+<svg
+   id="post-img"
+   style="opacity:0.3"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="25%"
+   height="60%">
+  <defs>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000;stroke-width:1pt;marker-start:none" />
+    </marker>
+  </defs>
+  <g style="font-size:smaller;font-family:monospace">
+    <text x="20" y="10%" xml:space="preserve">POST /user HTTP/1.1</text>
+    <text x="20" y="17%" xml:space="preserve">Host: www.captcha.net</text>
+    <text x="20" y="24%" xml:space="preserve">...</text>
+    <text x="20" y="38%" xml:space="preserve">first=Alan&</text>
+    <text x="20" y="45%" xml:space="preserve">last=Turing&</text>
+    <text x="20" y="52%" xml:space="preserve">sex=M&</text>
+    <text x="20" y="59%" xml:space="preserve">email=alan@gchq.gov.uk</text>
+    <line x1="100%" y1="80%" x2="1%" y2="80%"
+       style="fill:none;stroke:#000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)" />
+  </g>
+</svg>
+<div style="max-width:60%;display:inline-block;">
+<label for="name">First name:</label>
+<input type="text" value="Alan" name="first" id="first" />
+<br \>
+<label for="name">Last name:</label>
+<input type="text" value="Turing" name="last" id="last" />
+<br \>
+Gender: <label for="male">Male</label>
+<input type="radio" name="sex" id="male" value="M" checked />
+<label for="female">Female</label>
+<input type="radio" name="sex" id="female" value="F" />
+<br \>
+<label for="email">e-mail:</label>
+<input type="email" value="alan@gchq.gov.uk" name="email" id="email" />
+<br \>
+<input type="button" value="Subscribe" onclick="document.getElementById('post-img').style.opacity=1;" />
+
+~~~ {.html}
+<form method="POST"
+      action="http://www.captcha.net/user">
+  First name:
+  <input type="text" name="first" />
+  <br \>
+  Last name:
+  <input type="text" name="last" />
+  <br \>
+  Gender: Male
+  <input type="radio" name="sex" value="M" />
+  Female
+  <input type="radio" name="sex" value="F" />
+  <br \>
+  e-mail:
+  <input type="email" name="email" />
+  <br \>
+  <input type="submit" value="Subscribe" />
+</form>
+~~~
+
+</div>
+
+
+
+# Form controls
+
+The **`<input>`** tag represents almost all form controls. The choice
+is done by the **`type`** attribute.
+
+**Text fields:** <input type="text" placeholder="type something" />
+
+~~~ {.html}
+<input type="text" />
+~~~
+
+**Radio buttons:** <input type="radio" name="choice" value="1" /> A <input type="radio" name="choice" value="2" /> B
+
+~~~ {.html}
+<input type="radio" name="choice" value="choice-1" /> A
+<input type="radio" name="choice" value="choice-2" /> B
+~~~
+
+**Checkbox:** <input type="checkbox" name="check" value="1" /> C <input type="checkbox" name="check" value="2" /> D
+
+~~~ {.html}
+<input type="checkbox" name="check" value="check-1" />
+<input type="checkbox" name="check" value="check-2" />
+~~~
+
+**Password:** <input type="password" value="strongpass" />
+
+~~~ {.html}
+<input type="password" />
+~~~
+
+
+---------------
+
+
+**File:** <input type="file" />
+
+~~~ {.html}
+<input type="file" />
+~~~
+
+**Submit:** (more on this later) <input type="submit" value="Send data" />
+
+~~~ {.html}
+<input type="submit" value="Send data" />
+~~~
+
+
+**Button:** (mostly used with [Javascript]()) <input type="button" value="Click me!" />
+
+~~~ {.html}
+<input type="button" value="Click me!" />
+~~~
+
+
+**Image:** (submits the click coordinates) <input type="image" src="/like.svg" width="40" alt="Like!" />
+
+~~~ {.html}
+<input type="image" src="like.svg" alt="Like!" />
+~~~
+
+**Email:** (since [HTML5](HTML), checks for @) <input type="email" />
+
+~~~ {.html}
+<input type="email" />
+~~~
+
+
+More new types defined in [HTML5](HTML) (mostly not implemented yet):
+**date**, **time**, **number**, **range**, **color**, **tel**,
+**url**, ...
+
+
+
+# Other form controls
+
+**Text area:** <textarea> Some very very long text </textarea>
+
+~~~ {.html}
+<textarea>
+Some very very long text
+</textarea>
+~~~
+
+
+**Selection list:**
+<select>
+  <option value="M">MySQL injection</option>
+  <option value="X">XSS</option>
+  <option value="C">CSRF</option>
+</select>
+
+~~~ {.html}
+<select>
+  <option value="M">MySQL injection</option>
+  <option value="X">XSS</option>
+  <option value="C">CSRF</option>
+</select>
+~~~
+
+
+New (badly supported) form controls in [HTML5](HTML):
+**`<datalist>`**, **`<keygen>`** and **`<output>`**.
+
+
+
+# What is sent where
+
+~~~ {.html}
+<form method="POST"
+      action="/script.php" >
+  <input type="text" name="key1" />
+  <input type="text" name="key2" />
+  <!-- More input controls... -->
+  <input type="submit" />
+</form>
+~~~
+
+When the user clicks a **submit** control:
+
+- The browser sends a [HTTP]() request to **`/script.php`**, the HTTP
+    method is either **GET** or **POST**, depending on the
+    **`method`** attribute:
+    
+    - if the method is **GET**, the request is sent to
+    
+            /script.php?key1=value1&key2=value2
+        
+        where the values come from the user input.
+        
+    - if the method is **POST**, the data is transmitted in the body
+      of the request using the same format.
+
+- The browser **waits for the server response** and presents it to the
+  user.
+
+
+
+# Form validation
+
+[HTML5]() introduces some handy mechanism to warn the user about
+errors in his input.
+
+<style>
+.validation:invalid {background-color:#F66}
+</style>
+
+
+**`required`** attribute: warns if not filled <input class="validation" type="text" required>
+
+~~~ {.html}
+<input type="text" required>
+~~~
+
+**`pattern`** attribute: regexp match against a pattern <input class="validation" type="text" pattern="[0-9]{6}" />
+
+~~~ {.html}
+<input type="text" pattern="[0-9]{6}" />
+~~~
+
+**`placeholder`** attribute: gives a suggestion to the user <input class="validation" type="text" placeholder="type something" />
+
+~~~ {.html}
+<input type="text" placeholder="type something" />
+~~~
+
+**`novalidate`** attribute: deactivates all the previous validations.
+
+
+Plus other standard controls (e.g., urls, emails, etc.) and attributes
+related to ranges, files, numbers, etc.
+
+More complex validation can be done through [Javascript]().
+
+
+
+# CSS pseudoclasses for form validation
+
+The way errors are displayed can be handled via [CSS]() pseudoclasses.
+
+Your browser's default: <input type="text" required>
+
+~~~ {.html}
+<input type="text" required>
+~~~
+
+With **`:invalid`** pseudoclass: <input class="validation" type="text" required>
+
+~~~ {.html}
+<style>
+input:invalid {background-color:#F66}
+</style>
+
+<input type="text" required>
+~~~
+
+Other pseudoclasses: `:valid`, `:required`, `:optional`, `:in-range`,
+`:out-of-range`, `:read-only`, `:read-write`
+
+
+
+# Never trust the form validation!
+
+Form validation is done by the browser (on the client side). There are
+many reasons why it could fail:
+
+> - The browser is old.
+> - The client has deactivated validation on purpose (for example, using the [Web Developer]() extension).
+> - The client is a robot (spammer, worm, etc...).
+
+For these reasons, **always check your inputs on the server side** in
+your [PHP]() scripts.
+
+Most of the **security holes** in web applications come from this simple
+mistake.
+
+
+
+# Persistence 
+
+[HTTP]() is a *stateless* protocol: there is no native way for the
+server to remember a client's state between two successive requests.
+
+State can be simulated through data exchanges:
+
+**HTTP headers:** e.g., [HTTP]() authentication. Not common (hard to customize).
+
+**GET/POST persistence:** e.g., session ids. short term persistence.
+
+**Cookies:** short to long term **client-side**.
+
+**PHP sessions:** short term **server-side** (depends on the server+langauge)
+
+**Permanent storage:** long term **server-side**. filestore or [SQL]() database.
+
+
+
+# GET persistence
+
+Pass a **session id** in GET parameters.
+
+**Example:**
+
+    http://www.mysite.com/index.php?sessionid=0xaaf451
+    
+**Advantages:**
+
+> - Easy to implement;
+> - Robust: browser aren't likely to block this.
+
+**Disadvantages:**
+
+> - Every link to the web application must be dynamically modified to include the session id;
+> - **Insecure**: the data passed in the GET parameters is stored in server logs and browsing history (even if using HTTPS)
+
+
+
+# POST persistence
+
+**`hidden`** is a special type of `<input>`
+
+~~~ {.html}
+<input type="hidden" name="sessionid" value="0xaaf451" />
+~~~
+
+Its value is not visible to the user and cannot be modified. It is
+sent at each form submit.
+
+**Advantages:**
+
+> - Robust: browser aren't likely to block this.
+
+**Disadvantages:**
+
+> - Only available within forms.
+
+
+
+# Cookie persistance
+
+[Cookies](Cookie) are key-value pairs *temporarily* set by the server on the
+local storage of the client.
+
+- The server asks the browser to store a cookie by sending a
+    **`Set-Cookie` header** in the response:
+
+    ~~~
+    HTTP/1.1 200 OK
+    ...
+    Set-Cookie: sessionid=0xaaf451; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr
+    ~~~
+
+    This can be triggered in [PHP]() by the **`setcookie`** function.
+
+- If the browser is configured to accept [Cookies](Cookie), it stores the
+  cookie on the local filestore.
+  
+- From this moment on, the browser sends the [Cookie]() along with any
+    request **to the same domain**.
+
+    ~~~
+    GET /page.php HTTP/1.1
+    ...
+    Cookie: sessionid=0xaaf451
+    ~~~
+    
+    [Cookies](Cookie) are available in [PHP]() in the **`$_COOKIE`**
+    array.
+    
+
+# Structure of a Cookie
+
+~~~
+sessionid=0xaaf451; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+~~~
+
+**Key-value pair**
+
+~~~
+sessionid=0xaaf451
+~~~
+
+**Domain and path** send the cookie only to **domain** and only to
+  documents under **path**. The domain can be different from the
+  server that sets the cookie (*third-party cookies*).
+
+~~~
+path=/; domain=.google.fr
+~~~
+
+**Expires** tells the browser when to delete the [Cookie]() (at the
+  latest). A cookie that declares no expiration expires when the
+  browser is shut down.
+
+~~~
+expires=Wed, 25-Jul-2012 17:09:10 GMT
+~~~
+
+**Secure / HttpOnly** secure [Cookies](Cookie) are only sent over
+  HTTPS, HttpOnly [Cookies](Cookie) are only sent over [HTTP]()
+  
+~~~
+HttpOnly
+~~~
+
+
+
+# Cookie persistence
+
+
+**Advantages:**
+
+> - Requires no modification of the web page: cookies are automatically sent in the headers.
+> - Persistence can be long termed.
+
+**Disadvantages:**
+
+> - The client may refuse cookies.
+
+
+
+# Never trust client-side persistance !
+
+> - The client may refuse cookies.
+
+> - Hidden inputs can be easily modified using extensions (e.g. [Web Developer]()).
+
+> - GET, POST and Cookies can be modified by a malicious attacker.
+
+> - The client may be a robot.
+
+
+**Never ever** store secret information on the client (for example in
+  a [Cookie]()). For example, this is the **dumbest cookie use ever**:
+  
+~~~
+Set-Cookie: password=mysecretpassword
+~~~
+
+~~~ {.php}
+<?php
+    if ($_POST['password'] == $_COOKIE['password']) {
+        transfer_money_to($_POST['account']);
+    }
+?>
+~~~
+
+
+
+# PHP sessions
+
+[PHP]() **sessions** implement a temporary server-side persistence.
+
+- When the client connects for the first time, a **session id** is
+  generated and sent to the client. This is implemented using **GET
+  persistence** or **[cookies](Cookie)**, depending on if the browser
+  accepts cookies.
+  
+- After the session is created, a **temporary file** linked to the
+  session is opened **on the server**. [PHP]() can store key-value
+  pairs in the file via the **`$_SESSION`** array.
+  
+- At each following connection using the same session id, the
+**`$_SESSION`** array is **initialized** with the contents of the
+temporary file.
+
+
+# PHP sessions
+
+<img width="80%" src="/php-session.gif" alt="PHP session example" />
+
+
+
+# PHP sessions
+
+Now this is better:
+
+~~~ {.php}
+<?php
+    session_start();
+    
+    if ($_POST['password'] == $_SESSION['password']) {
+        transfer_money_to($_POST['account']);
+    }
+?>
+~~~
+
+
+**Advantages:**
+
+> - Transparent to the programmer.
+> - Optimized by the server.
+
+**Disadvantages:**
+
+> - Additional server load.
+
+
+
+# The sooner said, the better!
+
+**Do not store sensible data on the client**, do not use GET
+  parameters for transmitting them.
+
+**Make session ids hard to guess:** use random generators and large
+  keyspace.
+  
+**Encrypt critical session:** cookies that handle critical operations
+  should only travel over HTTPS.
+
+A hacker who can **steal a session [Cookie]()** may gain access to a
+user's private data
+
+**Make short-lived cookies:** session cookies, identification data,
+  etc. should expire quickly, and in no case should survive the
+  browser shut-down (unlike Facebook cookies!)
+  
+**Double check before doing critical operations:** e.g., ask the
+  password again before transferring money to an external bank
+  account!
+
+**AND ALWAYS SANITIZE YOUR DATA!**
