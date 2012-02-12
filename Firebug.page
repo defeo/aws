@@ -1,0 +1,15 @@
+Firebug is a Firefox extension for on-the-fly inspection of [HTML](), [CSS](), [Javascript](), [DOM]() and [HTTP]() traffic.
+
+The add-on and the documentation are available at <http://getfirebug.com/>.
+
+# Use
+
+Type `F12` and start clicking.
+
+# FirePHP
+
+FirePHP is a logging facility and debugging system for [PHP](). It is made up of two components: a Firefox extension working together with Firebug, and a PHP script to be invoked on the server.
+
+It works by including debugging data in the [HTTP]() headers of the server response, then by showing them in the Firebug console on the client side.
+
+The software and the documentation are available at <http://www.firephp.org/>.
