@@ -50,15 +50,15 @@ controls of your choice.
 1. Include in the form at least one **reset**,
     one **button** and two **submit** controls like this:
 
- ~~~ {.html}
- <input type="button" name="b" value="Something" />
- <input type="reset" name="r" value="Erase" />
- <input type="submit" name="submit" value="Left" />
- <input type="submit" name="submit" value="Right" />
- ~~~
+    ~~~ {.html}
+    <input type="button" name="b" value="Something" />
+    <input type="reset" name="r" value="Erase" />
+    <input type="submit" name="submit" value="Left" />
+    <input type="submit" name="submit" value="Right" />
+    ~~~
 
- Test the form by submitting data to `reflector.php` using both the
- GET and the POST methods.
+    Test the form by submitting data to `reflector.php` using both the
+    GET and the POST methods.
  
 2. Test the `<input type="image">` control.
 
@@ -143,12 +143,12 @@ is printed on the output of the [PHP]() script. Thus, even a script
 like this may not work (depending on your `php.ini` configuration):
  
 ~~~ {.php}
- <?php
+   <?php
 setcookie('moncookie');
 ?>
 ~~~
  
-Indeed, the white space before the `<?php` marker is a character of
+Indeed, the white spaces before the `<?php` marker are characters of
 output.
 
 1. Write a script `countCookie.php` achieving the same result as
