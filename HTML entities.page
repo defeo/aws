@@ -1,0 +1,11 @@
+In [HTML](), SGML, [XML]() and derived languages, a **character entity reference** (or *character entity* or *character reference*) is a reference to a character that is declared in the Document Type Definition.
+
+In [HTML](), character entities are mainly used as an escape sequence for characters with special meaning, or eventually to circumvent character encoding issues.
+
+A character reference always starts with an *ampersand* character (`&`) and ends with a semi-colon (`;`). There are two forms of character references: named and numeric.
+
+The most used named character references in [HTML]() are **`&gt;`**, **`&lt;`** and **`&amp;`**, representing respectively the characters **<**, **>** and **&**. Other useful character references are **`&quot;`** for **"** and **`&apos;`** for **'**. These five make out all predefined character references in [XML]().
+
+Other named references exist in [HTML]() for commonly used characters, including letters with diacritic signs. A list is available at [w3schools](http://www.w3schools.com/tags/ref_entities.asp), the official list for [HTML 4](HTML) is defined in the document <http://www.w3.org/TR/html4/sgml/entities.html>.
+
+On the other hand, numeric references can be used for any Unicode character using the syntax **`&#XXX;`** where `XXX` is the numeric Unicode *code point*. For example, **`&#0931;`** is the greek letter sigma (Σ).
