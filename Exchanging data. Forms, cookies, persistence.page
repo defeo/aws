@@ -377,7 +377,7 @@ State can be simulated through data exchanges:
 
 **Cookies:** short to long term **client-side**.
 
-**PHP sessions:** short term **server-side** (depends on the server+langauge)
+**PHP sessions:** short term **server-side** (depends on the server+language)
 
 **Permanent storage:** long term **server-side**. filestore or [SQL]() database.
 
