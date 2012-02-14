@@ -1,0 +1,7 @@
+XSS, standing for *Cross Site Scripting*, is one of the simplest forms of attack to a website.
+
+# Browser protections
+
+Chrome implements a *reflective XSS protection*. Read here: <http://lwn.net/Articles/360424/>
+
+It can be deactivated by sending a `X-XSS-Protection: 0` [HTTP]() header. Read here: <http://www.vbulletin.org/forum/archive/index.php/t-276212.html>
