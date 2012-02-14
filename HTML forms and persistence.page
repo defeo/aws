@@ -27,7 +27,7 @@ PHP#do-you-speak-http): a request reflector.
 </table>
 </div>
 
-2. A little [XSS](). Visit the following [URL]():
+2. A little [XSS]()^[If you're using Chrome, this [XSS]() attack won't work because of Chrome's [reflective XSS protection](XSS#browser-protections). There is currently no easy way to disable this protection in Chrome, so resort to another browser.]. Visit the following [URL]():
    `reflector.php?<script>alert("XSS");</script>`. View the source
    [HTML]() code of the generated page (`Ctrl+U` on most
    browsers). Ikes!!! Use
