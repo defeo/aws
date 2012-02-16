@@ -237,8 +237,8 @@ function counter() {
     }
 }
 
-cnt = counter();
-x = [cnt(1), cnt(2), cnt(1)]   // x equals [1, 3, 4]
+var cnt = counter();
+[cnt(1), cnt(2), cnt(1)]      // result is [1, 3, 4]
 ~~~
 
 # Variadic functions
@@ -262,7 +262,7 @@ maybe(1, 2);       // result is 3
 
 ~~~ {.javascript}
 function prepend(x) {
-    res = []
+    var res = []
     for (a in arguments)            // notice the difference with PHP !
         res.push(x + arguments[a]);
     
@@ -278,7 +278,7 @@ prepend('pre-', 'a', 'bbb', 'c');   // result is ['pre-a', 'pre-bbb', 'pre-c']
 **Anonymous objects** (similar to associative arrays)
 
 ~~~ {.javascript}
-myObj = {
+var myObj = {
     car: "Peugeot",
     color: "blue"
 };
@@ -286,6 +286,7 @@ myObj = {
 'car' in myObj;              // true
 myObj.car == "Peugeot";      // true
 myObj['car'] == "Peugeot";   // true
+
 var prop = 'car';
 myObj[prop] == "Peugeot";    // true
 ~~~
@@ -293,7 +294,7 @@ myObj[prop] == "Peugeot";    // true
 Object contents can be **dynamically changed**
 
 ~~~ {.javascript}
-myObj = {};
+var myObj = {};
 myObj.car = "Renault";
 ~~~
 
@@ -301,7 +302,7 @@ myObj.car = "Renault";
 # Methods
 
 ~~~ {.javascript}
-myObj = {
+var myObj = {
     day: "5",
     month: "January",
     year: "2012",
@@ -359,7 +360,7 @@ function A() { this.one = 1; }
 function B() { this.two = 2; }
 B.prototype = new A();
 
-C = new B();
+var C = new B();
 C.one;                         // result is 1
 C.two;                         // result is 2
 ~~~
@@ -368,7 +369,7 @@ C.two;                         // result is 2
 Prototypes enrich objects
 
 ~~~ {.javascript}
-foo = "bar";
+var foo = "bar";
 foo.sillyMethod;                    // undefined
 
 String.prototype.sillyMethod =
@@ -429,11 +430,11 @@ Features:
 
 ~~~ {.html}
 <script type="text/javascript">
-function foo() {
-    return 'bar';
-}
+    function foo() {
+        return 'bar';
+    }
 
-alert(foo());
+    alert(foo());
 </script>
 ~~~
 
@@ -548,7 +549,7 @@ function h() {
 **Direct access**: [`getElementById`](javascript:L()), `getElementsByName`.
 
 ~~~ {.javascript}
-document.getElementById('L').style.background = "red";
+document.getElementById('L').style.backgroundColor = 'red';
 ~~~
 
 **Traversing the tree**: `childNodes`, `firstChild`, `lastChild`,
@@ -556,7 +557,7 @@ document.getElementById('L').style.background = "red";
   ...
 
 ~~~ {.javascript}
-document.getElementById('L').previousSibling().style.backgroundColor='blue'
+document.getElementById('L').previousSibling.style.backgroundColor = 'blue';
 ~~~
 
 **Modifying the tree**: [`appendChild`](javascript:x()), `removeChild`, `insertBefore`, `replaceChild`, ...
@@ -566,6 +567,11 @@ document.getElementById('ilove').appendChild(document.createTextNode('!'));
 ~~~
 
 **Access by tag**: [`getElementsByTagName`](javascript:h()),
+
+~~~ {.javascript}
+Array.map(document.getElementById('ilove').getElementsByTagName('span'),
+          function(x) { x.style.color='white' } );
+~~~
 
 **Access by class** (since [HTML5](HTML)): `getElementsByClassName`.
 
