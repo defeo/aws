@@ -1,0 +1,69 @@
+Code injection is the simplest form of web application exploit. Using programming errors in the code of the web application, the attacker *injects* malicious source code written in one of the languages used by the application. Typically, the injection will happen through [GET and POST parameters](HTTP) or [cookies](Cookie).
+
+The different forms of injection are usually categorized according to the language they use.
+
+
+# Variable injection and PHP's `register_globals`
+
+This kind of injection, due to a poor understanding of how GET/POST parameters work, can happen in any server-side scripting language. It used to be a very common security hole in [PHP]() scripts before version 4.2.0.
+
+The attack consists in injecting unsolicited values into variables that are not meant to be set by the client. This can happen because of code written, or a language directive set by the developer to facilitate importing legitimate client input into local variables.
+
+Here's an example of [PHP]() code (inspired by some code I have seen written in tutorials) that takes any GET parameter and saves it in a variable by the same name.
+
+~~~ {.php}
+<?php
+foreach ($_GET as $k => $v)
+  $$k = $v;
+?>
+~~~
+
+A similar behavior was enabled by default in versions of [PHP]() prior to 4.2.0 by an infamous directive called `register_globals`. You can read more about it [here](http://php.net/manual/security.globals.php). Why is this dangerous? Consider the following excerpt of code:
+
+~~~ {.php}
+<?php
+// Start the session
+$session_start();
+
+// Do authentication, etc....
+
+// Read user's query
+$search = '';
+$lang = 'en';
+foreach ($_GET as $k => $v)
+  $$k = $v;
+?>
+
+<!-- The search form -->
+<form action='' method='get'>
+  <input type='text' name='search' value="<?php echo $search ?>" />
+  <select name='lang'>
+  <option value='en'>English</option>
+  <option value='fr'>Français</option>  
+  </select>
+  <input type='submit' value='Search'/>
+</form>
+
+<!-- Some more HTML and PHP code... -->
+
+<?
+// If the user is logged in, activate admin controls
+if ($_SESSION['loggedin']) {
+  echo "<p>Hello " . $_SESSION['name'] . "</p>";
+  echo "<p><a href='secure/admin.php?action=endoftheworld'>
+        Don't click this unless you know what you are doing!</a></p>";
+}
+?>
+~~~
+
+Can you spot the problem? Try sending the following query!
+
+~~~
+?search=injection&_SESSION[loggedin]=1
+~~~
+
+
+
+# SQL injection
+
+Coming soon
