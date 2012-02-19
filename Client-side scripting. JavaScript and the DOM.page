@@ -423,7 +423,7 @@ Features:
 **Inclusion of an external script file** (the preferred way)
 
 ~~~ {.html}
-<script type="text/javascript" src="myscripts.js" />
+<script type="text/javascript" src="myscripts.js"></script>
 ~~~
 
 **The `<script>` tag**
