@@ -252,7 +252,7 @@ terminal. The final result should look like the animation in
 the box below when you click on the button (doesn't work in old
 versions of IE).
 
-<script type='text/javascript' src='incremental.js'></script>
+<script type='text/javascript' src='js/incremental.js'></script>
 
 <input type='button' style='margin:2px 4em 2px 4em' onclick='Incremental.start()' value='Click to start the animation' />
 <div style="margin:0 4em 0 4em; padding: 1em; border:solid thin black; overflow:
