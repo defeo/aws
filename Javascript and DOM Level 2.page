@@ -1,0 +1,340 @@
+<!---
+categories: Tutorials JavaScript DOM
+...-->
+
+# Hello world
+
+[JavaScript]() is not meant to be run via standard system tools such
+as a console or a window manager, for this reason there is no easy way
+of writing a hello world program.
+
+1. Here's a first, old fashioned, hello world program. This is the
+    first and last time you will use the `alert` function in this
+    course! Create an [HTML]() page like this:
+
+    ~~~ {.html}
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Hello world</title>
+    <script type='text/javascript'>
+      alert('Hello world!');
+    </script>
+    </head>
+    <body>
+    </body>
+    </html>
+    ~~~
+    
+    Now visit the page in your browser.
+    
+2. Here's a second hello world, much more modern and useful. Create
+    the following page
+
+    ~~~ {.html}
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Hello world</title>
+    <script type='text/javascript'>
+       console.log('Hello world!');
+    </script>
+    </head>
+    <body>
+    </body>
+    </html>
+    ~~~
+    
+    Visit the page using Firefox or Chrome. Open the browser console
+    (`Shift+Ctrl+K` in Firefox, `F12` then go to the "Console" tab in
+    Chrome). Eventually, reload the page.
+
+    
+# Dates, again!
+
+This exercise can be done by executing [JavaScript]() from an [HTML]()
+file, or by running it directly via the console.
+
+[JavaScript]() has a native
+[`Date`](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date)
+object to represents dates.
+
+1. Create a script that outputs the current date and time to the console.
+
+2. Using the
+    [`setTimeout`](https://developer.mozilla.org/en/DOM/window.setTimeout)
+    or the
+    [`setInterval`](https://developer.mozilla.org/en/DOM/window.setInterval)
+    functions, make the script write the date and time to the console every second.
+
+3. Create an anonymous object named `Timer` containing two methods
+    `start` and `stop`.
+
+    - The `start` method starts writing the current date on the
+      console every second.
+    - The `stop` method stops the logging. Read the documentation of
+      [`clearTimeout`](https://developer.mozilla.org/en/DOM/window.clearTimeout)
+      or
+      [`clearInterval`](https://developer.mozilla.org/en/DOM/window.clearInterval)
+      to solve this point.
+      
+    If you want to type this code in the console, remember that
+    `Shift+Enter` makes a line break in the console; it is probably
+    easier to write this code in an [HTML]() file, though. Test your
+    code by running the two methods via the console.
+    
+
+Here's the solution to this exercise (using one method instead of two).
+
+<div onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.style.maxHeight='6ex'"
+     style="max-height:6ex;overflow:hidden">
+
+~~~ {.javascript}
+               // click here to see the solution
+var Timer = {
+  top : function () {
+    if (this.int === undefined)
+      this.int = setInterval('console.log(new Date())', 1000);
+    else {
+      clearInterval(this.int);
+      this.int = undefined;
+    }
+  }
+}
+~~~
+
+</div>
+
+
+
+# Styling the DOM
+
+We finally get to the real use of [JavaScript](): animating a web
+page. The [DOM]() gives a tree representation of an [HTML]() document
+(and more generally of an [XML]() document). In this section, we will
+only work on the style of the page by modifying its [CSS]()
+properties.
+
+Create the following page (or a similar one) :
+
+~~~ {.html}
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOM and CSS</title>
+</head>
+<body>
+<h1 id='hello'>Hello world!</h1>
+<p id='msg1' class='content'>This is my first dynamic page.</p>
+<p id='msg2' class='content'>So, please, don't be to critic.</p>
+<p id='msg3' class='content'>Thanks.</p>
+<p id='footer'>Created on <span class='date'>Jul 1, 2013</span>.</p>
+</body>
+</html>
+~~~
+
+## Via the console 
+
+The two starting points to explore the [DOM]() are the `window` and
+the `document` object.
+
+Here are some popular ways to access elements further down the tree:
+
+~~~ {.javascript}
+document.getElementById('msg1');
+document.getElementsByClass('content');
+document.getElementsByTagName('p');
+~~~
+
+1. Test the above methods in the console and explore the resulting objects.
+
+All the style properties of a [DOM]() node are stored inside the
+`style` attribute. Their names are identical to those of the [CSS]()
+spec, with dashes changed to CamelCase (i.e., the `background-color`
+[CSS]() property becomes the `backgroundColor` [DOM]() attribute).
+
+For example, to change the color of the first paragraph, you can write
+
+~~~ {.javascript}
+document.getElementById('msg1').style.backgroundColor = 'red';
+~~~
+
+Via the [JavaScript]() console
+
+1. Change the text color of the `<h1>` block.
+2. Change the font properties of all the paragraphs belonging to the class `content`.
+3. Center the `footer` paragraph and draw a line over it.
+4. Make the second paragraph disappear using the `visibility` property
+first, then the `display` property.
+5. Blink! Modify the `Timer` object of the previous section so that, instead
+of logging the date to the console, it alternatively makes the third
+paragraph appear and disappear.
+
+## DOM events and SVG animation
+
+Recall that [SVG]() is a standard for vector drawing. The following
+code draws a rectangle like the one in the box below.
+
+~~~ {.html}
+<svg id='mysvg' width='100%' height='10'>
+<rect id='myrectangle' x='0' width='2%' height='8'/>
+</svg>
+~~~
+
+<svg
+  id='mysvg'
+  style='padding:1ex; border: solid thin black; margin-left:25%'
+  width='50%'
+  height='10'>
+<rect id='myrectangle' width='2%' height='8'/>
+</svg>
+
+<script type='text/javascript'>
+  var Slider = {
+    svg : document.getElementById('mysvg'),
+    rect : document.getElementById('myrectangle'),
+    hasFocus : false,
+    
+    move : function(e) {
+      if (this.hasFocus) {
+        if (e.keyCode == 39)
+          this.rect.setAttribute('x', Number(this.rect.getAttribute('x')) + 10);
+        else if (e.keyCode == 37)
+          this.rect.setAttribute('x', Number(this.rect.getAttribute('x')) - 10);
+      }
+    },
+    
+    init : function() {
+      document.addEventListener('keydown', function(e) { Slider.move(e) }, false);
+      this.svg.addEventListener('mouseover', function() { Slider.hasFocus = true }, false);
+      this.svg.addEventListener('mouseout', function() { Slider.hasFocus = false }, false);
+    }
+  }
+  
+  Slider.init();
+</script>
+
+If you put your mouse over the box and use the left or right arrow,
+the rectangle will move. You will implement a similar behavior. At any
+time, you can read the source code of this page to seek help.
+
+1. Write the following function (an event handler):
+    
+    ~~~ {.javascript}
+    function move(e) { console.log(e.keyCode) }
+    ~~~
+
+2. Register the function `move` as event handler for the `keydown`
+event. You can use either
+[`document.onkeydown`](https://developer.mozilla.org/en/DOM/window.onkeydown)
+or
+[`document.addEventListener`](https://developer.mozilla.org/en/DOM/element.addEventListener)
+to register the event.
+
+3. Open the console and see what the key codes for left and right
+arrow are.
+
+4. Modify the `move` function so that on a left arrow key the
+rectangle is moved to the left by 10. You can use the standard [DOM]()
+functions `getAttribute` and `setAttribute` to modify the `x`
+attribute of the rectangle. Beware that these functions work on
+strings; to convert a string to a number you can use the
+[`Number`](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number)
+object.
+
+
+
+# Advanced topic: Unobtrusive Javascript
+
+In this exercise, we want to add a (not that) simple animation on
+[HTML]() text, making it look like if a human was typing it in a
+terminal. The final result should look like the animation in
+the box below when you click on the button (doesn't work in old
+versions of IE).
+
+<script type='text/javascript' src='incremental.js'></script>
+
+<input type='button' style='margin:2px 4em 2px 4em' onclick='Incremental.start()' value='Click to start the animation' />
+<div style="margin:0 4em 0 4em; padding: 1em; border:solid thin black; overflow:
+scroll; max-height:8em;">
+<p class='incremental' data-incremental-by-letter >Here's an example of animated text.</p>
+<p class='incremental' data-incremental-by-letter data-incremental-speed='10'>And here's 
+another example flowing faster.</p>
+</div>
+
+At any stage, you can read the source of the script above. Try to
+solve the exercise by your own as much as you can, though.
+
+To make the script more portable (and the exercise more difficult), we
+will adhere to the principles of
+[unobtrusive Javascript](http://en.wikipedia.org/wiki/Unobtrusive_JavaScript),
+meaning that no [Javascript]() is going to appear in the [HTML]() at
+all. The link between the [HTML]() sources and the script will be made
+through standard and customized [HTML]() attributes.
+
+To get an idea, use the document inspector to read the sources of this
+page and see how the animation is implemented.  If you except the
+attribute
+
+~~~
+onclick='Incremental.start()'
+~~~
+
+of the `input` tag (a minor concession), all the [Javascript]() is
+contained in a separate file called `incremental.js`. We have thus
+strictly adhered to the principles of unobtrusive [Javascript](). To
+tell the script to animate the paragraphs, they have been declared as
+follows:
+
+~~~ {.html}
+<p class='incremental' data-incremental-by-letter >Here's an example of animated text.</p>
+<p class='incremental' data-incremental-by-letter data-incremental-speed='10'>And here's 
+  another example flowing faster.</p>
+~~~
+
+The [Javascript]() code looks for elements belonging to the
+`incremental` class and animates them (and only them). The other
+attributes `data-incremental-by-letter` and `data-incremental-speed`
+are user-defined attributes (a cool new feature of [HTML5](HTML)) that
+allow the user to configure the script behavior.
+
+Using this style of coding, the [HTML]() document is much smaller and
+human readable than if we had included the [Javascript]() code in
+it. A user that has deactivated [Javascript]() will experience faster
+download and improved accessibility. This is the way to the future of
+web applications!
+
+Write a script implementing the above behavior. Here's some
+suggestions:
+
+- Implement all the logic in an object (we called it `Incremental`).
+- Write a method that gets the list of elements belonging to the
+  `incremental` class and hides them.
+- Write a method `prepare` that gets the next paragraph to uncover. If there is
+  one, it calls the method `show` below, if there is no
+  paragraph left it terminates.
+- Write a method `show` that shows the current paragraph character
+  by character. Use `setTimeout` to repeatedly call `show`. When the
+  paragraph is over, call back `prepare`.
+- Write a function `start` that starts the animation. Be careful to
+  only call this function after the document has been loaded, for
+  otherwise it won't be able to find nodes of the [DOM](). You can
+  register it to the `window.onload` event if you want it to be called
+  on startup just after the [DOM]() has been loaded.
+- You will certainly run into problems with the binding of the `this`
+  identifier. [Read this](http://bonsaiden.github.com/JavaScript-Garden/#function.this).
+- Access and modify the text of each paragraph using `firstChild.data`.
+- You can access custom attributes in the [HTML]() document using the
+  syntax `elt.dataset.myCustomAttribute`. Dashes get transformed to
+  CamelCase, as for the styling attributes.
+- The blinking cursor is better implemented in a separate object, but
+  you can use the `Incremental` object as a namespace for it. This is
+  a good practice to avoid name clashes.
+
+Once you're done, here's some ideas to improve this script. If you
+implement any of these, I'd be interested in reading your solution:
+
+- Make the script correctly work with tags that contain arbitrary
+  content (not just text).
+- Make the `start` function restart the script even when it is in the
+  middle of the animation.
