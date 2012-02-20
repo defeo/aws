@@ -30,21 +30,15 @@ Class 3 (02/08/2012)
 Class 4 (02/15/2012)
 :   [Client-side scripting. JavaScript and the DOM]().
 Class 5 (02/22/2012)
-:   [Asynchronous interaction. AJAX and JQuery]().
+:   [Permanent storage. MySQL, PHP and code injections]().
 Class 6 (03/07/2012)
-:   [Database storage. MySQL and the PHP library]().
+:   [Code injection and Cross Site Scripting]().
 Class 7 (03/14/2012)
-:   
+:   [Asynchronous interaction. AJAX, JQuery and more code injections]().
 Class 8 (03/21/2012)
-:   
+:   [The same domain policy and Cross-Site Request Forgeries]().
 Class 9 (03/28/2012)
-:   
-Class 10 (04/04/2012)
-:   
-Class 11 (04/11/2012)
-:   
-Class 12 (04/18/2012)
-:   
+:   [What's the future of the web]().
 
 
 # Tutorials
@@ -56,20 +50,12 @@ Tutorial 2 (02/07/2012)
 Tutorial 3 (02/14/2012)
 :   [HTML forms and persistence]().
 Tutorial 4 (02/21/2012)
-:   [HTML forms and persistence]().
+:   [HTML forms and persistence](), [Javascript and DOM Level 2]().
 Tutorial 5 (03/06/2012)
-:   
+:   [Javascript and DOM Level 2](), [Permanent user management]().
 Tutorial 6 (03/13/2012)
 :   
 Tutorial 7 (03/20/2012)
-:   
-Tutorial 8 (03/27/2012)
-:   
-Tutorial 9 (04/03/2012)
-:   
-Tutorial 10 (04/10/2012)
-:   
-Tutorial 11 (04/17/2012)
 :   
 
 
@@ -144,11 +130,24 @@ B. Lawson and R. Sharp. *Introduction à  HTML5*
 
 ### Javascript
 
+Mozilla foundation. *Javascript 1.5 Guide and Reference*.
+:   <https://developer.mozilla.org/en/JavaScript/Guide>, <https://developer.mozilla.org/en/JavaScript/Guide>. The first place to look for help on [Javascript]().
+W3C. *The Document Object Model*.
+:   Level 2 (current) and Level 3 (upcoming) <http://www.w3.org/DOM/DOMTR>.
+Ivo Wetzel and Zhang Yi Jiang. *JavaScript Garden*.
+:   A guide to the more obscure features of [JavaScript]() <http://bonsaiden.github.com/JavaScript-Garden>.
+C. Porteneuve. *Bien développer pour le Web 2.0*.
+:   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Although the main focus of this book is [AJAX](), the first two chapters and the annexes make an excellent introduction to how to write elegant and compliant [Javascript]().
+Mozilla foundation. *Mozilla DOM resources*.
+:   The reference for the part of the DOM API supported by Firefox <https://developer.mozilla.org/en/Gecko_DOM_Reference>, and related documents <https://developer.mozilla.org/en/DOM>.
 T. Stubbs and G. Allain. *JQuery, Le guide complet*
 :   Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte BU: 005.71jsp ALL. For the programmer who already knows [Javascript]() and wishes to get the best out of the advanced features of [JQuery]().
 
+
 ### AJAX
 
+C. Porteneuve. *Bien développer pour le Web 2.0*.
+:   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Excellent book to learn how to write modern and compliant [Javascript]() and [AJAX](), with an emphasis on best practices. Online examples are available from Eyrolles website. The first edition is very good too, although slightly outdated (2006).
 B. Catteau and N. Faugout. *AJAX, Le Guide Complet*
 :   4ème édtion. Micro Application Éditions, 2009. ISBN: 978-2-300-022029. Côte BU: 005.71aja CAT. Introductory text on [AJAX](), with some advanced chapters treating design patrons and best practices.
 
