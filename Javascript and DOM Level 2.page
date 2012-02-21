@@ -1,6 +1,6 @@
-<!---
+---
 categories: Tutorials JavaScript DOM
-...-->
+...
 
 # Hello world
 
@@ -206,16 +206,24 @@ code draws a rectangle like the one in the box below.
     
     init : function() {
       document.addEventListener('keydown', function(e) { Slider.move(e) }, false);
-      this.svg.addEventListener('mouseover', function() { Slider.hasFocus = true }, false);
-      this.svg.addEventListener('mouseout', function() { Slider.hasFocus = false }, false);
+      this.svg.addEventListener('mouseover',
+                                function() {
+                                  Slider.rect.style.fill = 'red';
+                                  Slider.hasFocus = true },
+                                  false);
+      this.svg.addEventListener('mouseout',
+                                function() {
+                                  Slider.rect.style.fill = 'black';
+                                  Slider.hasFocus = false },
+                                  false);
     }
   }
   
   Slider.init();
 </script>
 
-If you put your mouse over the box and use the left or right arrow,
-the rectangle will move. You will implement a similar behavior. At any
+If you put your mouse over the box, the rectangle turns red (be careful: in Chrome, the box is very tiny!); then you can use the left or right arrow to move
+the rectangle. You will implement a similar behavior. At any
 time, you can read the source code of this page to seek help.
 
 1. Write the following function (an event handler):
@@ -231,7 +239,7 @@ or
 [`document.addEventListener`](https://developer.mozilla.org/en/DOM/element.addEventListener)
 to register the event.
 
-3. Open the console and see what the key codes for left and right
+3. Open the console and see what the *key codes* for left and right
 arrow are.
 
 4. Modify the `move` function so that on a left arrow key the
@@ -241,6 +249,8 @@ attribute of the rectangle. Beware that these functions work on
 strings; to convert a string to a number you can use the
 [`Number`](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number)
 object.
+
+5. Implement the behavior that colors the rectangle in red and deactivates the key action when the mouse is not over the box. You can use the `mouseover` and the `mouseout` events, but be careful: Chrome drove me mad on this one!
 
 
 
