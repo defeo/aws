@@ -142,7 +142,7 @@ Here are some popular ways to access elements further down the tree:
 
 ~~~ {.javascript}
 document.getElementById('msg1');
-document.getElementsByClass('content');
+document.getElementsByClassName('content');
 document.getElementsByTagName('p');
 ~~~
 
