@@ -4,7 +4,7 @@ In [HTML](), character entities are mainly used as an escape sequence for charac
 
 A character reference always starts with an *ampersand* character (`&`) and ends with a semi-colon (`;`). There are two forms of character references: named and numeric.
 
-The most used named character references in [HTML]() are **`&gt;`**, **`&lt;`** and **`&amp;`**, representing respectively the characters **<**, **>** and **&**. Other useful character references are **`&quot;`** for **"** and **`&apos;`** for **'**. These five make out all predefined character references in [XML]().
+The most used named character references in [HTML]() are **`&lt;`**, **`&gt;`** and **`&amp;`**, representing respectively the characters **<**, **>** and **&**. Other useful character references are **`&quot;`** for **"** and **`&apos;`** for **'**. These five make out all predefined character references in [XML]().
 
 Other named references exist in [HTML]() for commonly used characters, including letters with diacritic signs. A list is available at [w3schools](http://www.w3schools.com/tags/ref_entities.asp), the official list for [HTML 4](HTML) is defined in the document <http://www.w3.org/TR/html4/sgml/entities.html>.
 

