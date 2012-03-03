@@ -1,0 +1,17 @@
+---
+categories: Help SQL
+...
+
+This page collects some useful information on how to administer your [SQL]() database, depending on your specific installation. Please, share your experience.
+
+# The virtual machine
+
+The [virtual machine](LVBLMP) comes with MySQL already installed. The server listens on the default port (3306) on the virtual machine. You can talk to the server using the command line tools `mysql` and `mysqladmin`, or you can use the graphical front end [PHPMyAdmin]() (for the latter, you need to configure [port forwarding](LVBLMP#configuring-a-shared-host-guest-repository)).
+
+There is an already configured user named `aws` with no password. It owns a database named `aws`.
+
+# XAMPP
+
+# EasyPHP
+
+# MAMP
