@@ -279,8 +279,8 @@ there are [PHP]() errors that cannot be caught by it.
 ## Accounts with Cookies
 
 In this section we are going to reuse the pseudoframe structure we
-studied in [tutorial 1](HTML, CSS and dynamic
-layout#page-generation-using-php). We want to create a simple website
+studied in [this tutorial](HTML, CSS and dynamic
+layout#layout). We want to create a simple website
 where users can register; the user data will be stored in one or more
 cookies on the client side.
 
