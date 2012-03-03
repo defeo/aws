@@ -1,0 +1,219 @@
+---
+categories: Tutorials SQL PHP
+...
+
+# Database administration
+
+Before interfacing your web application to a database, you need a
+database. Most web stacks come with a database pre-installed, the
+exact parameters depend on your particular stack, refer to
+[this page](Database administration) for details.  The
+[virtual machine](LVBLMP) also includes a MySQL installation.
+
+Our needs in terms of database management are very simple, thus we are
+going to simplify our lives by using a graphical database management
+tool: [PHPMyAdmin]() is a database management application written in
+PHP offering a reach set of commands.
+
+If you are running the [virtual machine](LVBLMP), be sure to have set
+[port forwarding](LVBLMP#configuring-a-shared-host-guest-repository)
+up, then visit <http://localhost:8000/phpmyadmin> (change the port
+number if you have set it up differently). The user name is `aws` and
+there is no password. If you are using a different web stack, you'll
+have to figure these parameters out by yourself; check out
+[this page](Database administration), and if none has given them
+already, share your experience.
+
+The main page of [PHPMyAdmin]() contains some useful information on
+your system and web stack, plus some basic configuration options. You
+can change the language of the interface if you like. Create a
+database named `aws` (this database already exists in the
+[virtual machine](LVBLMP) and you can create no other), then enter
+into its administration interface.
+
+1. Create a table named `test` containing three columns. The first
+   column is an id, make it *PRIMARY Index* and *AUTO_INCREMENT*, the
+   two other columns can be anything you like. Save the table:
+   [PHPMyAdmin]() shows the [SQL]() request that has been generated to
+   create it.
+
+2. Click on the "Insert" tab, insert some lines in the table (you can
+   insert many lines at once). Click on the "Browse" tab, it will show
+   you the contents of the table. Play around with the other
+   controls. Each time, [PHPMyAdmin]() shows you the corresponding
+   [SQL]() query.
+
+3. Click on the "SQL" tab. Here you can enter your own [SQL]() query
+   directly. Try doing some `SELECT` queries and see the result. Now
+   add some more lines to the table via the "SQL" tab (hint, you can
+   use again the "Insert" tab to see how an `INSERT` query is done).
+
+4. Click on the "Export" tab, this allows you to save the contents of
+   the table to a file. The default values are fine, just click on
+   "Go" and download the file. Read the file: it is contains [SQL]()
+   commands that will generate a table identical to the current state
+   of `test`. Keep in mind this feature: it is fundamental to save
+   your work if you use the department laptops; you will also need it
+   to send your final project. **Note:** you can also export the whole
+   `aws` database.
+
+Here ends this quick introduction to [PHPMyAdmin](). Feel free to
+experiment more with it and learn more of its powerful features. Also
+feel free to learn other database administration tools, such as the
+command line tools `mysql` and `mysqladmin` (they are both installed
+in the [virtual machine](LVBLMP) and come by default with most MySQL
+installation).
+
+
+# A clean design for user management
+
+## Unique entry point
+
+A website with *unique entry point* is one where
+
+- One script, for example `index.php`, is responsible to serve any
+  page: this is the *unique entry point*.
+- Any other script writes **no ouptut**: these are called *library
+  files*.
+
+We are going to create a simple [PHP]() site handling user accounts
+with an *unique entry point*.
+
+
+1. Create the entry point `index.php` with a pseudoframe structure: a
+    menu section, a content section and a footer. For the moment,
+    leave those sections empty.
+
+2. Create a script `static-contents.php`. This script makes no output
+   (this means **no `echo` and no `print`** in the script!), it only
+   contains some functions that return strings. Write two functions
+   named `static_default()` and `static_about()`. They both return a
+   string containing some [HTML]() code: the first one returns some
+   standard welcome message, the second one returns information about
+   the site (its author, legal info, etc.)
+   
+3. Using the
+    [`require`](http://www.php.net/manual/function.require.php)
+    function, include `static-contents.php` from `index.php`. The
+    entry point decides whether to show the "default" page or the
+    "about" page depending on a GET parameter. For example, a visit to
+    
+    ~~~
+    index.php?page=default
+    ~~~
+    
+    should call the `static_default()` function, while a visit to 
+    
+    ~~~
+    index.php?page=about
+    ~~~
+
+    should call the `static_about()` function. Treat carefully the case
+    where the user asks for a non existing page!
+
+4. Add links to the "default" and the "about" page in the menu. Write
+   something in the footer.
+
+
+## User management
+
+Now that we have a well organized page, we can go to the user
+management part.
+
+5. Using [PHPMyAdmin]() or any other tool, create a table named
+    `users` corresponding to the following query (you can add more
+    columns, if you like).
+
+    ~~~ {.sql}
+    CREATE TABLE users (
+        username VARCHAR( 20 ) NOT NULL ,
+        password VARCHAR( 20 ) NOT NULL ,
+        first_name VARCHAR( 255 ) ,
+        last_name VARCHAR( 255 ) ,
+        email VARCHAR( 255 ) NOT NULL ,
+        PRIMARY KEY ( username )
+    )
+    ~~~
+
+6. Create a script `db-interface.php` containing the following code.
+
+    ~~~ {.php}
+    <?php
+        const HOST = 'localhost';
+        const USER = 'aws';
+        const PASS = '';
+        const DB   = 'aws';
+        
+        $db = mysql_connect(HOST, USER, PASS);
+        mysql_select_db(DB, $db);
+    ?>
+    ~~~
+
+    Modify the parameters so that they work with your
+    database. Include this script from `index.php`.
+
+7. In `db-interface.php`, write a function `db_register()` that
+    inserts an user in the table and returns `0` if the insertion was
+    successful, `1` if the parameters are wrong (e.g. username already
+    in use, empty password, etc.), and `2` if a MySQL server error has
+    taken place.
+    
+    Remember that passwords should never be stored in clear: you can
+    use the MySQL functions
+    [`SHA`](http://dev.mysql.com/doc/refman/4.1/en/encryption-functions.html)
+    and
+    [`MD5`](http://dev.mysql.com/doc/refman/4.1/en/encryption-functions.html),
+    or the php functions
+    [`sha1`](http://www.php.net/manual/function.sha1.php) and
+    [`md5`](http://www.php.net/manual/function.md5.php) to hash the
+    password.
+   
+8. In `static-contents.php`, write a function `static_registration()`
+   that returns a [HTML]() form for user registration: the form should
+   contain one text field per column in the table. Modify `index.php`
+   so that a visit to `index.php?page=register` shows the registration
+   form.
+   
+9. The data of the registration form should be submitted via POST to
+    the following [URL]().
+    
+    ~~~
+    index.php?action=register
+    ~~~
+
+    When it receives the data, `index.php` calls the function
+    `db_register()` to add the user, then shows a success page
+    or an error page depending on the result.
+
+10. Make your site use [PHP]() sessions; the best place to use
+    [`session_start`](http://www.php.net/manual/function.session-start.php)
+    is inside `index.php`.
+
+11. In `db-interface.php`, write a function `db_login($user,
+    $pass)`. If the arguments match an existing user, its data is
+    imported inside the `$_SESSION` array and `True` is returned;
+    otherwise `False` is returned.
+
+12. Modify the menu so that it contains a login form and a link to the
+    registration form. The login form submits data via POST to the
+    following [URL]().
+
+    ~~~
+    index.php?action=login
+    ~~~
+    
+    When it receives the data, the server uses the `db_login()`
+    function to verify the user.
+
+13. Modify the menu so that, if the user is logged in, it shows a
+    logout link and some personalized links instead of the login
+    form. It is suggested, as you did before, that you write some
+    functions in `static-contents.php` returning a string, and that
+    you call these functions from `index.php` accordingly.
+    
+14. Implement the logout functionality. The user should stay logged in
+    while navigating the site as long as she doesn't click on the
+    logout link.
+
+15. Go back to the `db_register()` and `db_login()` functions. Verify
+    that they are not vulnerable to [SQL injections](Code injection).
