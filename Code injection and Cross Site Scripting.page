@@ -224,7 +224,7 @@ User-Agent: Mozilla/5.0"><script>alert('injection');</script><p class="
 # Cross Site Scripting
 
 [XSS]() (Cross Site Scripting) is another name for
-[HTMl]()/[JavaScript]() code injection in the response to the client.
+[HTML]()/[JavaScript]() code injection in the response to the client.
 
 
 [PHP]() code *reflects* user input with no filtering
@@ -411,7 +411,7 @@ setTimeout(req, 5000);
 ~~~
 
 ~~~ {.html}
-&lt;script&gt;alert("XSS");&lt;/script&gt;
+<script>alert("XSS");</script>
 ~~~
 
 **Use filtering functions**
