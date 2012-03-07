@@ -8,9 +8,9 @@ view this as a [slideshow](?export&format=Slidy)
 
 # Code injection
 
-<svg
-   width="1200"
-   height="650">
+<svg style="border:solid black thin"
+   width="1000"
+   height="500">
   <defs
      id="defs4">
     <marker
@@ -26,7 +26,7 @@ view this as a [slideshow](?export&format=Slidy)
          transform="matrix(-0.8,0,0,-0.8,-10,0)" />
     </marker>
   </defs>
-  <g transform="translate(282.72338,-54.173922) scale(1.25)">
+  <g transform="translate(282.72338,-54.173922)">
     <rect
        style="fill:none;stroke:#000;stroke-width:0.6;stroke-dasharray:2.92992042, 0.97664014"
        width="165.71237"
