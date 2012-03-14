@@ -496,7 +496,7 @@ Content-Type: application/json
 
 # REST
 
-**REST** (Representation State Transfer) is a paradigm for distributed applications
+**REST** (Representational State Transfer) is a paradigm for distributed applications
 
 > - **Client-Server** (no peer-to-peer);
 > - **Stateless** (unlike CORBA, etc.);
