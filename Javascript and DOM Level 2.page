@@ -126,7 +126,7 @@ Create the following page (or a similar one) :
 <body>
 <h1 id='hello'>Hello world!</h1>
 <p id='msg1' class='content'>This is my first dynamic page.</p>
-<p id='msg2' class='content'>So, please, don't be to critic.</p>
+<p id='msg2' class='content'>So, please, don't be too critic.</p>
 <p id='msg3' class='content'>Thanks.</p>
 <p id='footer'>Created on <span class='date'>Jul 1, 2013</span>.</p>
 </body>
