@@ -96,6 +96,18 @@ Setter methods **return the same object** for chaining
 $('#menu').css('color', 'red').css('visibility', 'visible');
 ~~~
 
+Simple interface for (optimized) **delayed execution**
+
+~~~ {.javascript}
+// All these are equivalent
+$(document).ready(callback);
+$().ready(callback);          // not recommended
+$(callback);
+
+// And (better) serve the same purpose as this
+document.addEventListener('load', callback, true);
+~~~
+
 
 # JQuery UI
 
