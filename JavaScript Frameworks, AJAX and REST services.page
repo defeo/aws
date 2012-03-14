@@ -364,7 +364,7 @@ $.ajax({ success : function(data) {
 ~~~
 
 **Problem:** Breaks the separation between **data**, **presentation**
-  and **logic** (MVC).
+  and **logic** (MVC : Model View Control).
 
 
 ---------------
