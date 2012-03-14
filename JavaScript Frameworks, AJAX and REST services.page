@@ -67,8 +67,7 @@ jQuery('p');
 jQuery('.classname');
 ~~~
 
-**Example:** <input type="button" onclick="jQuery('p, li').toggleClass('alerted');"
-    value="Click to highlight <p>'s and <li>'s " />
+**Example:** <input type="button" onclick="jQuery('p, li').toggleClass('alerted');" value="Click to highlight p's and li's" />
 
 ~~~ {.javascript}
 jQuery('p, li').toggleClass('alerted');
