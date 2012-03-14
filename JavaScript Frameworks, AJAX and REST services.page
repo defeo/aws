@@ -68,7 +68,7 @@ jQuery('.classname');
 ~~~
 
 **Example:** <input type="button" onclick="jQuery('p, li').toggleClass('alerted');"
-    value="Click to highlight &lt;p&gt;'s and &lt;li&gt;'s " />
+    value="Click to highlight <p>'s and <li>'s " />
 
 ~~~ {.javascript}
 jQuery('p, li').toggleClass('alerted');
@@ -306,7 +306,7 @@ $('#yahoo').click(yahoo);
 
 # What formats for an AJAX request?
 
-[AJAX]() stands for Asynchronous [JavaScript]() and [XMl](). But each
+[AJAX]() stands for Asynchronous [JavaScript]() and [XML](). But each
 component is optional, especially [XML]()!
 
 ## Text or Nothing
