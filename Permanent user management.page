@@ -153,7 +153,7 @@ management part.
     database. Include this script from `index.php`.
 
 7. In `db-interface.php`, write a function `db_register()` that
-    inserts an user in the table and returns `0` if the insertion was
+    inserts a user in the table and returns `0` if the insertion was
     successful, `1` if the parameters are wrong (e.g. username already
     in use, empty password, etc.), and `2` if a MySQL server error has
     taken place.
