@@ -509,14 +509,14 @@ Content-Type: application/json
 > - [HTTP]() (in practice, a **RESTful service** is one that works like [HTTP]());
 > - ATOM feeds.
 
-**Counter-example:** SOAP.
+**Counter-example:** [SOAP]() (Simple Object Access Protocol).
 
 **Advantages:** Simplicity, Scalability.
 
 
 # REST APIs
 
-After a long period of predominance of SOAP interfaces, most web
+After a long period of predominance of [SOAP]() interfaces, most web
 services are now migrating to REST APIs.
 
 > - **Google APIs**: <http://code.google.com/more/>;
