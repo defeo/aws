@@ -20,7 +20,7 @@ view this as a [slideshow](?export&format=Slidy)
 
 # JQuery
 
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 
 [JQuery]() is a very popular [JavaScript]() framework. It inherits
 concepts from [Prototype](http://prototypejs.org/) and
@@ -114,7 +114,7 @@ A rich library of **user interface components**
 
 Here's just a small example: sortable elements (drag them)
 
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="/js/jquery-ui.packed.js"></script>
 
 <div id='sortable'/>
 
