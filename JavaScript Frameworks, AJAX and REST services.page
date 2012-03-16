@@ -285,6 +285,7 @@ $.ajax({
 function yahoo() {
     $('#yahoo').add('#query').prop('disabled', true);
 
+    var query = $('query').val();
     $.ajax({
         url : 'http://query.yahooapis.com/v1/public/yql',
         dataType : 'json',
