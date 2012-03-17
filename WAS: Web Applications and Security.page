@@ -154,6 +154,8 @@ B. Catteau and N. Faugout. *AJAX, Le Guide Complet*
 
 ### Security
 
+M. Zalewski. *Browser Security Handbook*.
+:   Google Inc 2009. <http://code.google.com/p/browsersec/wiki/Main>. Excellent review on browser security, Same Origin Policy and other experimental mechanisms.
 D. Seguy and P. Gamache. *Sécurité PHP5 et MySQL*.
 :   2ème édition. Eyrolles 2009. ISBN: 978-2-212-12554-2. Côte BU: 005.8 SEG. Introductory book on web security, specifically targeted to the languages of this course. Chapter 2 treats [XSS]() and [CRSF](). The following chapters focus more on the practical than the theoretical side and give tips to secure your [PHP]()+[MySQL]() application. Very useful for your project!
 OWASP. *OWASP development guide*
