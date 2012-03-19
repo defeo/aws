@@ -1,0 +1,25 @@
+REST stands for Representational State Transfer. A REST API is one that conforms to certain constraints, very similar to the constraints of the [HTTP]() protocol.
+
+REST service constraints
+
+A REST service must be:
+
+Client-Server
+:   Which excludes peer-to-peer prtocols.
+Stateless 
+:   Which excludes CORBA, and other RPC protocols.
+Cacheable
+:   
+Layered
+:   Meaning that it is compatible with the use of proxies.
+Have a uniform Interface
+:   By implenting a well defined set of verbs (for example GET, POST, PUT and DELETE).
+(Optional) Scriptable
+:   e.g. [JavaScript]()
+
+
+# REST Verbs
+
+REST APIs are composed of a set of verbs, usually `GET`, `POST`, `PUT` and `DELETE`.
+
+**Idempotent** verbs are verbs such that two successive calls to them yield the same result. In other words, idempotent verbs do not modify the server state.
