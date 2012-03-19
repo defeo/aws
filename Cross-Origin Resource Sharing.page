@@ -1,0 +1,7 @@
+Cross-Origin Resource Sharing, or CORS, is a technology permitting controlled cross-domain [AJAX]() requests. It was introduced in Firefox 3.5.
+
+# Specifications
+
+<http://www.w3.org/TR/cors/>
+
+<https://developer.mozilla.org/en/http_access_control>
