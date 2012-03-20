@@ -22,4 +22,6 @@ Have a uniform Interface
 
 REST APIs are composed of a set of verbs, usually `GET`, `POST`, `PUT` and `DELETE`.
 
-**Idempotent** verbs are verbs such that two successive calls to them yield the same result. In other words, idempotent verbs do not modify the server state.
+**Safe** verbs are verbs that do not change the state of the server. `GET` is usually defined to be safe.
+
+**Idempotent** verbs are verbs such that multiple successive calls to them yield the same result as a single one. Any safe verb is also idempotent. `PUT` and `DELETE` are usually defined to be idempotent.
