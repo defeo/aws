@@ -418,7 +418,7 @@ xhr.open("GET", "https://api.finance.com/cac40?c=total")
 
 # CSRF: legit attacks!
 
-[**Cross-Site Request Forgeries**](CRSF) are an intrinsic flaw of the Web
+[**Cross-Site Request Forgeries**](CSRF) are an intrinsic flaw of the Web
 
 ## The actors
 
@@ -436,7 +436,7 @@ A malicious **attacker** who:
 The attacker gains access to the confidential data as if she were the legitimate user.
 
 
-# CRSF: How?
+# CSRF: How?
 
 **Prerequisites**
 
@@ -463,7 +463,7 @@ The attacker gains access to the confidential data as if she were the legitimate
     **authenticated money transfer**.
 
 
-# CRSF demo: e-campus 2
+# CSRF demo: e-campus 2
 
 > 1. Connect to <http://e-campus2.uvsq.fr/>,
 > 2. Go to [the forum section](http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view?selected_tab=forum&etudiant=None).
