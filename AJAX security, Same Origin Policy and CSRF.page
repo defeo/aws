@@ -594,7 +594,7 @@ function UserData() {
 **Developer:**
 
 > - Prefer POST to GET for requests that trigger actions;
-> - Check the `Referrer` header;
+> - Check the `Referer` header;
 > - Ask for confirmation;
 > - Make sessions expire quickly;
 > - Use captchas;
