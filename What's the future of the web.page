@@ -1,0 +1,444 @@
+---
+categories: Classes AJAX Security HTTP
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+
+# The recent history of the WWW
+
+**1995** Netscape has a 80% share on the browser market. Microsoft
+  releases IE 1.
+
+**1996** Macromedia releases Flash.
+
+**1997** Standardization of [JavaScript]() into [ECMAScript]().
+
+**1997** Microsoft bundles IE 4 into Windows NT.
+
+**1998** Netscape Communications is bought by AOL. MS has won the
+  first browser war.
+
+**1998** Publication of the [XML]() standard. Work on [XHTML](HTML)
+  begins.
+
+> "The XHTML family is the next step in the evolution of the
+> Internet. By migrating to XHTML today, content developers can enter
+> the XML world with all of its attendant benefits, while still
+> remaining confident in their content's backward and future
+> compatibility."
+
+**2002** The [JSON]() data interchange format is published through
+  <http://json.org>.
+
+-----------
+
+**2002** Apple forks KHTML and KJS, the engines of the Konqueror
+  browser. The project is named WebKit.
+
+**2003** Apple releases Safari for MacOS.
+
+**2004** The Mozilla Foundation releases Firefox 1.
+
+**2004** Members of Apple, Mozilla and Opera leave the [W3C]() to
+  found the WHATWG. Work on HTML5 is started.
+
+**2005** Jesse James Garret coins the word [AJAX]().
+
+**2005** IE 7 is out.  It doesn't display `application/xhtml+xml`
+  documents.
+
+**2006** MS discontinues the FrontPage WYSIWYG web editor.
+
+**2006** Tim Berners Lee declares:
+
+> "The attempt to get the world to switch to XML... all at once didn't
+> work. The large HTML-generating public did not move... Some large
+> communities did shift and are enjoying the fruits of well-formed
+> systems... The plan is to charter a completely new HTML group."
+
+---------
+
+**2007** The [W3C]() HTML working group agrees to adopt WHATWG's HTML5
+  proposal as base for the next [HTML]() standard.
+
+**2008** Google releases Chrome 1. It uses the WebKit engine.
+
+**2009** IE 8 is out. It still doesn't display `application/xhtml+xml`
+  documents!
+
+**2010** Steve Jobs announces the future death of Flash.
+
+**2011** Adobe announces it will stop development of Flash and start
+  working on HTML5-based products.
+
+**2011** IE9 is out. It is the first time IE scores a 100/100 in Acid3
+  tests.
+
+**2011** HTML5 *Last Call* is out.
+
+
+# Browser usage statistics: prehistory
+
+**Source:** Net Applications through
+<http://en.wikipedia.org/wiki/Usage_share_of_web_browsers>
+
+            IE   Opera   Netscape   Mozilla   Firefox   Safari
+--------  ----- ------- ---------- --------- --------- --------
+**2004**    91%    1%       2%       1%         4%        2%
+**2005**    86%    1%       1%                  9%        3%
+**2006**    80%    1%       1%                 14%        4%
+**2007**    80%    2%                          16%        3%
+
+
+# Browser usage statistics year 2008
+
+<div id="browser-ww-monthly-200812-200912-bar" width="600"
+height="400" style="width:600px; height: 400px;"></div><p>Source: <a
+href="http://gs.statcounter.com/#browser-ww-monthly-200812-200912-bar">StatCounter
+Global Stats - Browser Market Share</a></p><script
+type="text/javascript"
+src="http://www.statcounter.com/js/FusionCharts.js"></script><script
+type="text/javascript"
+src="http://gs.statcounter.com/chart.php?browser-ww-monthly-200812-200912-bar"></script>
+
+# Browser usage statistics last year
+
+<div id="browser-ww-monthly-201103-201203-bar" width="600"
+height="400" style="width:600px; height: 400px;"></div><p>Source: <a
+href="http://gs.statcounter.com/#browser-ww-monthly-201103-201203-bar">StatCounter
+Global Stats - Browser Market Share</a></p><script
+type="text/javascript"
+src="http://www.statcounter.com/js/FusionCharts.js"></script><script
+type="text/javascript"
+src="http://gs.statcounter.com/chart.php?browser-ww-monthly-201103-201203-bar"></script>
+
+
+
+# What's left of the XHTML years
+
+> - Write valid markup, use validator tools: <http://validator.w3.org>;
+> - Content ([HTML]()) - Presentation ([CSS]()) - Logic ([JavaScript]()) separation;
+> - Incremental development
+> - Graceful degradation;
+> - Unobtrusive [JavaScript]() and [CSS]().
+
+**And read the standards!!!**
+
+> - <http://www.w3.org> ([HTML](), [CSS](), [DOM](), ...);
+> - <https://developer.mozilla.org> ([JavaScript]());
+> - <http://www.php.net> ([PHP]()).
+
+**Bad sources:** `www.siteduzero.com`, `www.developpez.net`, ...  even
+  `www.stackoverflow.com`!
+
+
+# Incremental development
+
+Construct your application by **layers**:
+
+> - Start with a pure [HTML]()/[PHP]()+[MySQL](SQL) application
+> - Add [CSS]() to layout content in a useful way. Add experimental [CSS]() directives (e.g. `-moz-border-radius`) last.
+> - Add dynamic features with [JavaScript](), eventually overwriting the previous [DOM]() and/or [CSS]()
+
+The web page/application should be usable, at least in principle, even
+in a browser that doesn't support [JavaScript]() or [CSS]().
+
+Do not forget to **filter your data** on the server side, even if
+[JavaScript]() does pre-filtering!
+
+
+# Unobtrusive JavaScript
+
+Unobtrusive [JavaScript]() goes further: logic should be kept
+**completely separated** from the content.
+
+**Forbidden:**
+
+~~~ {.html}
+<script>
+  function blah() {
+    ...
+  }
+</script>
+~~~
+
+~~~ {.html}
+<div onclick="toto()" id="mydiv">
+~~~
+
+~~~ {.html}
+<a href="javascript:foo()">
+~~~
+
+**Only permitted way** (in a separate file)
+
+~~~ {.javascript}
+document.getElementById('mydiv').addEventListener('click', foo, true);
+~~~
+
+# Unobtrusive JavaScript benefits
+
+> 1. **Usability:** An unobtrusive DOM script does not draw the
+  attention of the user - visitors use it without thinking about it.
+
+> 2. **Graceful degradation:** Unobtrusive DOM scripts never generate
+  error messages, in any browser, even when they fail. If features
+  cannot be presented properly, they silently disappear.
+
+> 3. **Accessibility:** If any script fails, the page still delivers
+  its core functions and information via the markup, stylesheets
+  and/or server-side scripting.
+
+> 4. **Separation:** For the sake of interoperability and reusability,
+  all JavaScript code is maintained separately, without impacting
+  other files of script, markup or code.
+
+
+Read the WaSP manifesto:
+<http://www.webstandards.org/action/dstf/manifesto/>
+
+
+# Unobtrusive JavaScript example
+
+A form with a date field:
+<input id="date" type="date" /><input id="subdate" type="submit"
+value="Check availability">
+
+<div id="datetext" style="text-align:center"></div>
+
+> - The server does a **minimal validation** : it only needs three numbers
+
+~~~ {.php}
+<?php
+  /*
+    This test accepts many date formats:
+      it accepts      03/09/2012
+      or              3/9/12
+      or even         03day09month2012yeaaaaar!0000
+  */
+  if (preg_match_all('/[0-9]+/', $_POST['date'], $date) &&
+      count($date[0]) >= 3 &&
+      checkdate(date[0][0], date[0][1], date[0][2]))
+    mysql_query("INSERT INTO ....");
+?>
+~~~
+
+> - At startup, [JavaScript]() transforms the form into an
+auto-submitting AJAX widget ([click here](javascript:gently())). This
+helps the user into formatting the date in a standard way.
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-ui.packed.js"></script>
+<style>
+@import url('/css/smoothness/jquery-ui.all.css');
+</style>
+
+<script>
+function gently() {
+  $('#subdate').hide();
+  $('#date').datepicker({
+    onSelect : function (date, inst) {
+      $('#datetext').html('Flights available on ' + date + ': ...');
+    }
+  });
+}
+</script>
+
+
+
+# How HTML5 is changing the web
+
+> - **Semanting tagging** (help search engines),
+> - **Client storage** (better cookies),
+> - **Offline applications** (e.g. offline emails),
+> - **`postMessage()` API**
+> - **WebSockets** (bidirectinal client-server channel)
+> - **`<audio>`/`<video>` API** (for rich media)
+> - **Advanced graphics:** SVG (vectorized), canvas (2D), WebGL (3D)
+> - **Web workers:** native multithreading
+> - **Other features:** Fonts, ARIA, Geolocation, drag and drop
+
+See <http://slides.html5rocks.com>
+
+
+# Are (mobile) browsers going to be the next gaming platform?
+
+<http://browserquest.mozilla.org/>
+
+> - Published yesterday!
+> - A massively multiplayer real-time game;
+> - Uses **WebSocket** and **canvas**;
+> - Local storage to store character data;
+> - Multithreaded execution using **WebWorkers**;
+> - Scalable, distributed on many servers;
+> - Entirely written in [JavaScript]() (both on the client and server side).
+
+Does not work in IE...
+
+
+# And your role as a web developer?
+
+It is in your **interest** that many different browsers keep competing
+**at an equal level**:
+
+> - More R&D, faster releases;
+> - Better compatibility.
+
+It is your **duty** to:
+
+> - Develop portably, follow standards;
+> - Test on many platforms;
+> - Openly distribute your code;
+> - Participate to the development of the standards, comment, request features.
+
+**Remember:** any time you rely upon a proprietary feature, you are
+  **taking side in a war**!
+
+
+# And what about security?
+
+**Problems that would be easy to fix**
+
+> - Inconsistent Same Origin Policies;
+> - Lack of strict type policies: makes [XSS]() the default behaviour;
+
+**Problems that would require a major effort**
+
+> - Flaws in the [HTTP]() protocol: [CSRF]() attacks will stay a major problem;
+> - Mash-up model too liberal: click-jacking.
+
+**Another war taking place**
+
+> - Web developers want **more features**, **easy learning curves**;
+> - Security experts advocate for **more strictness**, **richer languages**.
+
+Browsers are clearly **favoring the former** (because they generate more
+revenue?)
+
+
+# Easy problems
+
+**Same Origin Policy**
+
+> - It never has been object of a [W3C]() working group;
+> - A serious reflection on a default SOP and directives on its implementation would be beneficial.
+
+**Preventing injections and XSS**
+
+> - Injections come from a confusion between **data** and **logic**:
+    e.g. **textual inputs** are wrongly interpreted as **[SQL]()
+    commands**.
+
+**Strict typing techniques** could prevent such confusion.
+    
+> - Strictly typed languages like Java are regarded as **too verbose**
+    for quick web development (and dynamic polymorphism makes
+    security checks slower).
+
+> - Statically typed languages (generally functional) like OCaml and
+    Haskell are regarded as **too hard to learn**.
+
+
+# Beyond JavaScript: Frameworks
+
+**Web Application Frameworks** are complete client-server solutions
+for developing web applications.
+
+Typically use the **same language** for server and client logic.
+
+Handle **user**, or in some cases **multi-user**, **sessions**.
+
+Compile high-level code to:
+
+> - Fast interpreted or executable code on the server side,
+> - [JavaScript]() code on the client side.
+> - Remote calls can be translated to [AJAX]().
+
+**Automatically** introduce **security checks** where possible:
+
+> - Automatic sanitization of user input (much easier with strict types),
+> - Automatic inclusion of anti-[CSRF]() tokens.
+
+
+
+# Beyond JavaScript: Frameworks
+
+Usually offer [HTML]() templating languages:
+
+> - Clean separation of structure, content, logic and presentation;
+> - Faster development, more readable sources.
+
+Optionally handle a **database interface**.
+
+Can automatically produce a **[REST]() or SOAP API**.
+
+
+# Some frameworks
+
+**Microsoft:** [ASP.NET](http://www.asp.net/),
+
+**PHP:** [Zend](http://www.zend.com/),
+
+**Python:** [Zope](http://zope.org/), [Django](http://www.djangoproject.com/)
+
+**Ruby:** [RubyOnRails](http://rubyonrails.org),
+
+**Java:** [J2EE](http://java.sun.com/), [GWT](http://code.google.com/webtoolkit) (Google Web Toolkit),
+
+**JavaScript:** [Node.js](http://nodejs.org), Server-side in [JavaScript]()!!!
+
+**OCaml:** 
+
+> - [OCSIGEN](http://ocsigen.org/) developed at Paris 6, 7 and CNRS,
+> - [OPA](http://opalang.org/) developed by [MLState](http://www.mlstate.com/) (based in Paris), very simple syntax!
+
+**Haskell:** [Yesod](http://www.yesodweb.com),
+
+**Google:** [Dart](http://dartlang.org/) just a (typed) client-side language
+
+
+# Better databases ?
+
+## NoSQL
+
+> - Better performances and scalability,
+> - Optimized for large sets of data, high workload,
+> - Fault tolerant,
+> - Use native rich data representation (e.g., [JSON]() or [XML]())
+> - RESTful API.
+
+**Examples:** 
+
+> - [MongoDB](http://www.mongodb.org/), written in C++
+> - [CouchDB](http://couchdb.apache.org/), written in Erlang 
+
+
+# Map/reduce
+
+> - Paradigm for distributed processing of large datasets
+> - Introduced by Google in 2004
+
+**Map:** Split the problem in subproblems and distribute across
+  workers (recursively).
+  
+**Reduce:** Aggregate answers from workers and form the response.
+
+
+These new paradigms are not immune to **injections**, but it is harder
+to treat them all on the same ground as we did for [SQL]() injections.
+
+
+# And privacy?
+
+**Security** may not be the first concern of browser makers. But
+    **privacy** is even more mistreated (and why should Google want to
+    protect it?)
+    
+
+Known privacy problems in [HTTP]():
+
+> - Third party cookies, ([HTTP](), Flash, ...)
+> - [Evercookies](http://samy.pl/evercookie/) (undeletable cookies by Samy!)
+> - Navigation tracing (via [CSS](), [HTTP]() headers, etc.)
