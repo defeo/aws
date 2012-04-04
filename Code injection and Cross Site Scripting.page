@@ -425,7 +425,7 @@ setTimeout(req, 5000);
 
 **Whitelists are better than blacklists**
 
-Javascript can be inserted in: [HTML](), [CSS](), [SVG](), ...
+Javascript can be inserted in: [HTML](), [CSS](), [SVG](Web graphics), ...
 
 In user generated content, permit only
 

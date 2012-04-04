@@ -172,7 +172,7 @@ paragraph appear and disappear.
 
 ## DOM events and SVG animation
 
-Recall that [SVG]() is a standard for vector drawing. The following
+Recall that [SVG](Web graphics) is a standard for vector drawing. The following
 code draws a rectangle like the one in the box below.
 
 ~~~ {.html}

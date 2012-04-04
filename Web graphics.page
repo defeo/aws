@@ -1,0 +1,102 @@
+Until not long ago, browsers used to be very poor at handling graphics
+and the largest part of web graphics was coded in ActionScript and run
+in Flash. Fortunately, modern browsers offer many solutions for native
+graphics.
+
+
+# SVG
+
+SVG is a declarative, [XML](XML)-based language for Scalable Vector
+Graphics. This means that a SVG program is a list of declarations of
+geometrical objects, rather than a sequence of pixel tracing
+instructions.
+
+SVG is directly embeddable in [HTML5](HTML) documents via the `<svg>`
+tag, or indirectly via the `<img>` tag. The following transcript shows an example of SVG code.
+
+~~~ {.html}
+<svg height="40%">
+  <rect x="10%" y="0%" width="5%" height="20%"/> 
+  <rect x="20%" y="10%" width="20%" height="5%" fill="red"/>
+  <circle cx="30%" cy="25%" r="5%" fill="blue"/>
+</svg>
+~~~
+
+And here's the result rendered by the browser:
+
+<svg height="40%">
+  <rect x="10%" y="0%" width="5%" height="20%"/> 
+  <rect x="20%" y="10%" width="20%" height="5%" fill="red"/>
+  <circle cx="30%" cy="25%" r="5%" fill="blue"/>
+</svg>
+
+## SMIL
+
+SMIL (Synchronized Multimedia Integration Language) is a markup
+language developed by the [W3C]() for describing animations, it can be
+used on top of SVG to animate vector graphics.
+
+The support for SMIL in browsers is still too experimental to use it
+in web animations, however it is expected that the situation will
+improve in the near future, as both Mozilla and Internet Explorer are
+working on integrating it.
+
+## WebGL
+
+WebGL is a [JavaScript]() API for rendering interactive 3d
+graphics. The website <http://www.chromeexperiments.com/webgl>
+contains many WebGL demos.
+
+# Canvas
+
+Canvas is an [HTML]() tag and a [JavaScript]() API for rendering 2D
+raster graphics. It was introduced by Safari and is now part of the
+[HTML5]() standard.
+
+Being based on raster, rather than vector, graphics, Canvas is more
+low-level and usually faster than SVG, but it also requires more
+programming. Because of this, Canvas is usually the API of choice for
+complex graphics such as web games.
+
+The game <http://browserquest.mozilla.org/> is developed using Canvas.
+
+
+# Libraries and other software
+
+Graphic programming with native code may quickly become a tedious
+task. A wide array of libraries and software greatly simplifies the
+task. Here's a small selection, please expand it!
+
+## Inkscape
+
+Inkscape <http://inkscape.org/> is an open source graphical SVG
+editor. It allows to manipulate SVG objects in a WYSIWYG environment
+and produces output in compliant SVG code, and similar formats. It is
+best for static SVG graphics to be included via `<img>` tags.
+
+## Raphaël JS
+
+Raphaël <http://raphaeljs.com/> is a [JavaScript]() library to create
+and animate cross-browser vector graphics. It uses by default the
+[DOM]() API and SVG, but it can also transparently fallback to VML (a
+langauge similar to SVG developed by Microsoft).
+
+It is best suited to create dynamic graphics such as games and
+animated pages. Below is an example of single player [JavaScript]()
+game coded using Raphaël.
+
+<iframe style="width: 80%; height: 600px" src="http://apollinaire.prism.uvsq.fr/~dfl/torus.html">
+<a href="http://apollinaire.prism.uvsq.fr/~dfl/torus.html">Go to the game</a>
+</iframe>
+
+
+## Processing.js
+
+Processing.js <http://processingjs.org/> is a [JavaScript]() library
+to render animations written in the
+[Processing](http://processing.org/) language directly into a
+`<canvas>` element.
+
+Its first goal is to allow on the fly rendering of Processing programs
+inside a browser, but it can also be used as a graphics programming
+library on top of a canvas.

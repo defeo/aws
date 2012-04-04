@@ -252,7 +252,7 @@ or like this (still common on french Windows systems)
 
 # Declarative drawing: SVG
 
-[SVG]() is a *declarative*, [XML]()-based language for Scalable Vector
+[SVG](Web graphics) is a *declarative*, [XML]()-based language for Scalable Vector
 Graphics.
 
 **XML-based:** Tags that look a lot like [HTML]() ones.

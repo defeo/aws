@@ -2,7 +2,7 @@
 title: Web Applications and Security
 ...
 
-The times when the web used to be a mere collection of "documents" are long gone. SGML and HTML frames are things of the past, and Flash may become soon. Nowadays, the web developer 2.0 speaks dozens of domain specific languages -[ECMAScript](), [HTML5](HTML), [CSS](), [SVG](), [XML](), [JSON](), [Perl](), [PHP](), [Python](), [SQL](), ...- and constantly preaches for [AJAX]().
+The times when the web used to be a mere collection of "documents" are long gone. SGML and HTML frames are things of the past, and Flash may become soon. Nowadays, the web developer 2.0 speaks dozens of domain specific languages -[ECMAScript](), [HTML5](HTML), [CSS](), [SVG](Web graphics), [XML](), [JSON](), [Perl](), [PHP](), [Python](), [SQL](), ...- and constantly preaches for [AJAX]().
 
 To succeed in this fast paced domain, the IT professional must possess many diverse skills. She must fully understand the way data are exchanged between the components of the application, she must know a large palette of languages and tools and constantly keep up to date, and finally she must understand what are the critical entry points of her application and how to secure them from external attackers.
 
@@ -10,7 +10,16 @@ This course aims at giving the bases of modern dynamic web programming, with a s
 
 This wiki is yours. Use it, peruse it, abuse it (but not too much, please... it is software in development and it is quite vulnerable to XSS attacks). Please read [How to use the wiki]()
 
-**IMPORTANT:** [Give ideas for next year's course](WAS course think thank)
+# News
+
+04/04: Added a page on [Web graphics](). Be sure to read it if you are developing a game with graphics!
+
+04/04: Added this news section to the front page. See [recursion](http://www.google.com/search?q=recursion&hl=en).
+
+04/04: The screencasts of all classes are finally online! They have all been transcoded to high quality H.264/MPEG-4 with AAC+.
+
+03/30: **IMPORTANT** [Give ideas for next year's course](WAS course think thank)
+
 
 # Practical information
 
