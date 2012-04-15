@@ -1,0 +1,302 @@
+This is a practice test: a close, if somewhat longer, model of the final written exam of the course [Web Applications and Security](/). Use it for your own training.
+
+The code snippets have been handwritten and seldom tested. They may contain typos, and some typos may entail subtle security holes. However be assured that no question relies on this kind of hole; rather, report to the author any typo that you think may be misleading.
+
+
+# Generic questions
+
+1. Is the the following [HTML]() code valid? Describe the fundamental errors, i.e. those that all modern revisions of [HTML]() (XHTML 1.0, XHTML 1.1, HTML 5) would identify as such.
+
+    ~~~ {.html}
+    <html>
+    <head>
+      <meta encoding='utf-8' />
+      <link rel='stylesheet' href="../css/style.css" />
+    </head>
+    <body>
+      <h1 id="hello" align=center>Bonjour
+      </h1>
+      <p id="p1">Ceci est <b><i>une liste</b></i></p>
+      <ul id="list">
+        <li>Un,   <br />
+        <li>Deux, <br />
+        <li>Trois.<br>
+      </ul>
+      <script src="javascript.js"></script>
+      <img id="hello" src="hello.jpeg"></img>
+    </body>
+    ~~~
+
+
+2. Rewrite the following fragment so that all the presentational features are enclosed in a separate [CSS]() declaration (either in an external file, or in a `<style>` tag). If you can't remember the name or the allowed values of a given [CSS]() property, you can write something similar. If in doubt on the intended visual effect, add a comment to your code explaining your solution.
+
+    ~~~ {.html}
+    <table>
+      <tr>
+        <td width='200px' height='100px' bgcolor='#ffb'>
+          <b>Links:</b><br />
+          <a href='#1'>link 1</a><br />
+          <a href='#2'>link 2</a><br />
+          <a href='#3'>link 3</a>
+        </td>
+	<td width='10px'></td>
+        <td rowspan='2'>
+	  <font face="serif">
+	  <h1><i>A title</i></h1>
+	  <hr /> <!-- Note: hr draws a horizontal rule -->
+	  <p align='justify'>Lorem Ipsum...</p>
+	  <br />
+	  <br />
+	  <p align='justify'>Sit amet...</p>
+	  </font>
+        </td>
+      </tr>
+      <tr><td></td></tr>
+    </table>
+    ~~~
+
+3. Here's a small excerpt of a web application with a two-step form. The first step asks for some generic information
+
+    ~~~ {.html}
+    <!-- excerpt from /step1.html -->
+    <form action="step2.php" method="get">
+    <input type="text" name="name" />
+    <input type="text" name="age" />
+    <input type="text" name="country" />
+    <input type="submit" value="OK" />
+    </form>
+    ~~~
+
+    The second step processes the input from the first step and asks the user to choose from a list of towns
+
+    ~~~ {.php}
+    <!-- excerpt from /step2.html -->
+    <form action="register.php" method="get">
+    <select name="town">
+    <?php
+      $country = check_country($_GET['country']);
+      $town_list = $towns[$country];
+      foreach ($town_list as $town)
+        echo '<option value="' . $town . '">' . $town . '</option>';
+    ?>
+    </select>
+    </input type="submit" value="OK" />
+    </form>
+    ~~~
+
+    Explain how [JavaScript]() (and, eventually, [AJAX]()) can be used to refactor the two steps in a single one. You can write your answer in English, but use some (pseudo)code to illustrate the main points.
+
+
+# Code analysis
+
+Identify the possible injection pathways in the following code, explain how they could be exploited and propose a way to fix them.
+
+**Excerpt from `index.php`**
+
+~~~ {.php}
+<?php
+  if (isset($_COOKIE['country'])
+    $country = $_COOKIE['country'];
+  else
+    $country = 'fr';
+
+  if (isset($_GET['page'])
+    $page = $_GET['page'];
+  else
+    $page = 'main';
+
+  include($page . '.php');
+?>
+~~~
+
+**Excerpt from `main.php`**
+
+~~~ {.html}
+<script src="scripts.js"></script>
+
+<!-- This widget lets the user choose its country -->
+<header>
+ Choose your country:
+ <select id="country" name="country" onchange="change_country()">
+   <option value="fr">France</option>
+   <option value="uk">UK</option>
+ </select>
+</header>
+
+<nav>
+<a href="?page=store1">Find a store</a>
+</nav>
+~~~
+
+**Excerpt from `scripts.js`**
+
+~~~ {.javascript}
+/* Changes the current country based on user choice */
+function change_country() {
+  /* Fetch the value from the dropdown menu */
+  var country = document.getElementById('country').value;
+  /* If the value has changed:
+       - store it in a cookie
+       - reload the page
+   */
+  if (country != getCookie('country')) {
+    setCookie('country', country);
+    window.location.reload();
+  }
+}
+~~~
+
+**Excerpt from `store1.php`**
+
+~~~ {.php}
+<!-- This form lets the user choose a town in its country -->
+<form action='?page=store2' method='post'>
+  <select name='town'>
+  <?php
+    $res = mysql_query("SELECT name FROM towns WHERE country='$country'") or die();
+    while ($row = mysql_fetch_assoc($result)) {
+      $town = $row['name'];
+      echo "<option value='$town'>$town</option>";
+    }
+  ?>
+  </select>
+  </input type='submit' value='Next' />
+</form>
+~~~
+
+**Excerpt from `store2.php`**
+
+~~~ {.php}
+<h1>Stores in
+<?php
+  echo htmlspecialchars($_POST['town']);
+?>
+</h1>
+
+<?php
+  /* This code generates a form that is the continuation of
+     store1.php and lets the user choose a store in its town
+   */
+  $town =  mysql_real_escape_string($_POST['town']);
+  echo "
+    <form action='?page=map' method='post'>
+      <input type='hidden' name='town' value='$town' />
+      <select name='town'>";
+  $res = mysql_query("SELECT name FROM stores WHERE town='$town'") or die();
+  while ($row = mysql_fetch_assoc($res)) {
+    $store = $row['name'];
+    echo "<option value='$store'>$store</option>";
+  }
+  echo "
+      </select>
+      </input type='submit' value='Go' />
+    </form>";
+?>
+~~~
+
+**Excerpt from `map.php`**
+
+~~~ {.php}
+<h1>Your store:
+<?php
+  echo htmlspecialchars($_POST['store']);
+?>
+in
+<?php
+  echo htmlspecialchars($_POST['town']);
+?>
+</h1>
+~~~
+
+
+# Web Application analysis
+
+Arsène Montalbano, president of the private investigation agency *Your matters matter*, is always concerned about the weak passwords his agents use to identify themselves on the web portal of the agency. After reading a book on cryptography, he decides to boost the security of the portal by adding a strong AES-based challenge-response identification mechanisms.
+
+He hires the company *Furry Services* LTD, specialist in web services and distant APIs and asks them to redesign the web portal by adding the following identification mechanism:
+
+1. Each agent has its own secret 256 bits AES key **`K`**, shared with the server, and a pocket calculator capable of encoding and decoding messages using this key.
+2. When the agent wants to be identified on the website, the server sends her a random challenge string **`C`**.
+3. The agent computes the encryption **`E = AES(K,C)`** and sends it to the server.
+4. The server verifies the encryption and grants the access only if it is correct.
+
+The agent may eventually have a doubt on the authenticity of the server she is talking to. In this case, only after the identification has succeeded, it can continue the protocol with an optional server verification phase:
+
+5. The agent generates a random challenge string **`D`** and sends it to the server.
+6. The server computes the encryption **`F = AES(K,D)`** and sends it to the agent.
+7. The agent verifies the encryption and is rassured of the authenticity of the server if she finds it is correct.
+
+Although not being a specialist in security, *Furry Services* accepts the juicy contract and after some months delivers the new interface. Here are the most important excerpts from the code.
+
+**Excerpt from `login.php`**
+
+~~~ {.html}
+<?php
+  $challenge = generate_random_string();
+?>
+<form action="verify.php" method="post">
+  Agent: <input type="text" name="id" /><br />
+  Challenge string: <?php echo $challenge ?><br />
+  <input type="hidden" name="challenge" value="<?php echo $challenge ?>" /><br />
+  Response: <input type="password" name="response" /><br />
+  <input type="submit" value="Login" />
+</form>
+~~~
+
+**Excerpt from `verify.php`**
+
+~~~ {.php}
+<?php
+  // We get the agent's id and her key
+  $agent = get_agent($_POST['id']);
+  $key = $keys[ $agent ];
+  // We get the challenge and the response given by the agent
+  $challenge = $_POST['challenge'];
+  $response = $_POST['response'];
+
+  // We verify that the agent has successfully encrypted the challenge
+  if ( AES($key, $challenge) == $response ) {
+    $_SESSION['logged-in'] = true;
+    // if the authentication is successful, we redirect to main.php
+    redirect('main.php');
+  } else {
+    // if the authentication is not successful, we redirect back to login.php
+    redirect('login.php');
+  }
+?>
+~~~
+
+**Excerpt from `main.php`**
+
+~~~ {.html}
+<form action="verify-server.php" method="post">
+  Verify server: <input type="text" name="challenge" /><br />
+  <input type="submit" value="Verify" />
+</form>
+~~~
+
+**Excerpt from `verify-server.php`**
+
+~~~ {.php}
+<?php
+  if ($_SESSION['logged-in']) {
+    $challenge = $_POST['challenge'];
+    $response = AES($_SESSION['key'], $challenge);
+    echo "Server response: $response";
+  }
+?>
+~~~
+
+Finally, thanks to their long standing experience in web APIs, *Furry Services* has configured the web server to send all the standard caching, security and interoperability HTTP headers with every response. In particular, it sends a cross-origin resource sharing header:
+
+~~~
+Access-Control-Allow-Origin: *
+~~~
+
+
+1. Does the application developed by *Furry Services* meet the specifications?
+2. Is it possible for an attacker with the power to wiretap [HTTP]() communications to get logged in? How?
+3. Is it possible for an attacker without the power to wiretap [HTTP]() communications to get logged in? How?
+4. Describe a way to fix the security holes.
+
+**Note:** These are questions about the security of web applications, not about cryptography. Any remarks on using HTTPS, on the quality of the cryptographic protocol, or on the possibility of stealing the pocket calculator are totally out of place.
