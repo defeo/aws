@@ -11,3 +11,7 @@ X-XSS-Protection: 0
 ~~~
 
 [HTTP]() header. Read here: <http://www.vbulletin.org/forum/archive/index.php/t-276212.html>
+
+# Links
+
+Quick introduction: [OWASP Appsec Tutorial Series: XSS](http://www.youtube.com/watch?v=_Z9RQSnf8-g)
