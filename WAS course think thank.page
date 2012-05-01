@@ -43,3 +43,9 @@ It is certainly doable to describe them in classroom, but would it be reasonable
 # Comparison of web servers (suggested by Yevgueny)
 
 Spend some classroom time commenting on the differences between Apache, Microsoft IIS, ngix, GWS, etc.
+
+# Adding a new 'Extra mile' section of security-oriented exercises to the tutorials (suggested by Andrei)
+
+I think it can be a good thing to have more exercises in which we can put into practice attacks and defense concepts related to web application security, regardless of whether or not they count in the final exam, just for curiosity and fun - and for those really interested in the field, like the students who chose M2 SeCReTS. 
+
+Guidelines could be added on how to setup a testing laboratory with VirtualBox or VMware, and a web application could for tests could be set up, like WebGoat or even our own project.
