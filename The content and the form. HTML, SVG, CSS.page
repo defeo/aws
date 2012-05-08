@@ -547,9 +547,9 @@ Boxes can **exit the flow** by being positioned explicitly, using the
 **`position`** CSS property:
 
 > - **static:** The default normal flow.
-> - **absolute:** X-Y coordinates from the point where it would have been normally laid out.
+> - **absolute:** X-Y coordinates from the top left (right) corner of the containing block.
 > - **fixed:**  X-Y coordinates from the top left (right) corner.
-> - **relative:** X-Y coordinates from the top left (right) corner of the containing block.
+> - **relative:** X-Y coordinates from the point where it would have been normally laid out.
 
 Boxes can also exit the flow by **floating** (**`float`** property).
 
