@@ -70,7 +70,7 @@ The code snippets have been handwritten and seldom tested. They may contain typo
     The second step processes the input from the first step and asks the user to choose from a list of towns
 
     ~~~ {.php}
-    <!-- excerpt from /step2.html -->
+    <!-- excerpt from /step2.php -->
     <form action="register.php" method="get">
     <select name="town">
     <?php
