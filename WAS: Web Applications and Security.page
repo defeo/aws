@@ -110,9 +110,12 @@ Practice test (04/17/2012)
 
 Here's some more interesting links I'm stumbling upon while preparing next year's course.
 
-- [Eloquent Javascript](http://eloquentjavascript.net/) and its [french translation](http://fr.eloquentjavascript.net/)
-- Manuel Kiessling's [The Node Beginner Book](http://www.nodebeginner.org/) and its [french translation](http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/)
-- Felix Geisendörfer's [Node.js Guide](http://nodeguide.com/)
+- [Eloquent Javascript](http://eloquentjavascript.net/) and its [french translation](http://fr.eloquentjavascript.net/);
+- Manuel Kiessling's [The Node Beginner Book](http://www.nodebeginner.org/) and its [french translation](http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/);
+- The [official Node.js manual and API](http://nodemanual.org/);
+- Felix Geisendörfer's [Node.js Guide](http://nodeguide.com/);
+- A short guide to [understand Connect middleware](http://project70.com/nodejs/understanding-connect-and-middleware/);
+- The [Express](http://expressjs.com/) framework for Node.js.
 
 # Bibliography
 
