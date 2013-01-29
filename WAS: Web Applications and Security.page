@@ -16,49 +16,47 @@ This wiki is yours. Use it, peruse it, abuse it (but not too much, please... it 
 
 **Instructor:** Luca De Feo <http://www.prism.uvsq.fr/~dfl>
 
-**Class:** Wednesdays 1:30pm - 3pm, amphi B
-**Tutorial (Group 1):** Tuesdays 9:45am - 1pm, ??
-**Tutorial (Group 2):** Wednesdays 3:15pm - 6:30pm, salle G204
+**Class:** Wednesdays 1:30pm - 3pm, amphi B  
+**Tutorial (Group 1):** Tuesdays 9:45am - 1pm, ??  
+**Tutorial (Group 2):** Wednesdays 3:15pm - 6:30pm, salle G204  
 
 # Classes
 
-Class 1 (01/25/2012)
+Class 1 (01/30/2013)
 :   [The World Wide Web, introduction to Javascript]().
-Class 2 (02/01/2012)
+Class 2 (02/06/2013)
 :   
-Class 3 (02/08/2012)
+Class 3 (02/13/2013)
 :   
-Class 4 (02/15/2012)
+Class 4 (02/20/2013)
 :   
-Class 5 (02/22/2012)
+Class 5 (02/27/2013)
 :   
-Class 6 (03/07/2012)
+Class 6 (03/06/2013)
 :   
-Class 7 (03/14/2012)
+Class 7 (03/20/2013)
 :   
-Class 8 (03/21/2012)
+Class 8 (03/27/2013)
 :   
-Class 9 (03/28/2012)
+Class 9 (04/03/2013)
 :   
 
 
 # Tutorials
 
-Tutorial 1 (01/31/2012)
+Tutorial 1 (02/05/2013)
 :   
-Tutorial 2 (02/07/2012)
+Tutorial 2 (02/12/2013)
 :   
-Tutorial 3 (02/14/2012)
+Tutorial 3 (02/19/2013)
 :   
-Tutorial 4 (02/21/2012)
+Tutorial 4 (02/26/2013)
 :   
-Tutorial 5 (03/06/2012)
+Tutorial 5 (03/05/2013)
 :   
-Tutorial 6 (03/13/2012)
+Tutorial 6 (03/19/2013)
 :   
-Tutorial 7 (03/27/2012)
-:   
-Practice test (04/17/2012)
+Tutorial 7 (03/26/2013)
 :   
 
 
@@ -72,6 +70,7 @@ Practice test (04/17/2012)
 
 # Links
 
+- [2011-2012 course](/WAS: Web Applications and Security 2011-2012).
 - The Node.js main site <http://www.nodejs.org/>, manual <http://www.nodemanual.org/> and API reference <http://www.nodejs.org/api>;
 - The [Node beginner guide](http://www.nodebeginner.org/) by Manuel Kiessling, and its [french translation](http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/) (all free).
 - Felix Geisendörfer's [Node.js Guide](http://nodeguide.com/);
