@@ -1,0 +1,214 @@
+---
+title: Web Applications and Security
+...
+
+The times when the web used to be a mere collection of "documents" are long gone. SGML and HTML frames are things of the past, and Flash may become soon. Nowadays, the web developer 2.0 speaks dozens of domain specific languages -[ECMAScript](), [HTML5](HTML), [CSS](), [SVG](Web graphics), [XML](), [JSON](), [Perl](), [PHP](), [Python](), [SQL](), ...- and constantly preaches for [AJAX]().
+
+To succeed in this fast paced domain, the IT professional must possess many diverse skills. She must fully understand the way data are exchanged between the components of the application, she must know a large palette of languages and tools and constantly keep up to date, and finally she must understand what are the critical entry points of her application and how to secure them from external attackers.
+
+This course aims at giving the bases of modern dynamic web programming, with a spin on attack techniques and security analysis.
+
+This wiki is yours. Use it, peruse it, abuse it (but not too much, please... it is software in development and it is quite vulnerable to XSS attacks). Please read [How to use the wiki]()
+
+# News
+
+**05/07:** The [subject and solution of the first session exam](/exam-12-05-09.pdf) are available.
+
+**05/07:** Added instructions on the [project submission and defense](Project presentations).
+
+**04/16:** Added a [Practice test](). Try it before the final exam!
+
+**04/04:** Added a page on [Web graphics](). Be sure to read it if you are developing a game with graphics!
+
+**04/04:** Added this news section to the front page. See [recursion](http://www.google.com/search?q=recursion&hl=en).
+
+**04/04:** The screencasts of all classes are finally online! They have all been transcoded to high quality H.264/MPEG-4 with AAC+.
+
+**03/30:** **IMPORTANT** [Give ideas for next year's course](WAS course think thank)
+
+
+# Practical information
+
+**Instructor:** Luca De Feo <http://www.prism.uvsq.fr/~dfl>
+
+**Class:** Wednesdays 1:30pm - 3pm, amphi H  
+**Tutorial (Group 1):** Tuesdays 9:45am - 1pm, salle G210  
+**Tutorial (Group 2):** Wednesdays 3:15pm - 6:30pm, salle G102  
+
+**[Project presentations]():**
+
+- Wednesday May 16, salle G105
+- Monday May 21, salle G002
+
+**Exams:**
+
+- First session: Wednesday May 9, 2pm - 4pm, amphi H. [Subject and solution](/exam-12-05-09.pdf).
+
+# Classes
+
+Class 1 (01/25/2012)
+:   [The World Wide Web, introduction to PHP](), [audio recording](/class20120125.ogg).
+Class 2 (02/01/2012)
+:   [The content and the form. HTML, SVG, CSS](), [screencast](/class20120201.mp4).
+Class 3 (02/08/2012)
+:   [Exchanging data. Forms, cookies, persistence](), [screencast](/class20120208.mp4).
+Class 4 (02/15/2012)
+:   [Client-side scripting. JavaScript and the DOM](), [screencast](/class20120215.mp4).
+Class 5 (02/22/2012)
+:   [Permanent storage. MySQL, PHP and code injections](), [screencast](/class20120222.mp4).
+Class 6 (03/07/2012)
+:   [Code injection and Cross Site Scripting](), [screencast](/class20120307.mp4).
+Class 7 (03/14/2012)
+:   [JavaScript Frameworks, AJAX and REST services](), [screencast](/class20120314.mp4).
+Class 8 (03/21/2012)
+:   [AJAX security, Same Origin Policy and CSRF](), [screencast](/class20120321.mp4).
+Class 9 (03/28/2012)
+:   [What's the future of the web](), [screencast](/class20120328.mp4).
+
+
+# Tutorials
+
+Tutorial 1 (01/31/2012)
+:   [First steps in PHP]().
+Tutorial 2 (02/07/2012)
+:   [HTML, CSS and dynamic layout]().
+Tutorial 3 (02/14/2012)
+:   [HTML forms and persistence]().
+Tutorial 4 (02/21/2012)
+:   [HTML forms and persistence](), [Javascript and DOM Level 2]().
+Tutorial 5 (03/06/2012)
+:   [Javascript and DOM Level 2](), [Permanent user management]().
+Tutorial 6 (03/13/2012)
+:   [Permanent user management]().
+Tutorial 7 (03/27/2012)
+:   Project work.
+Practice test (04/17/2012)
+:   [Practice test]()
+
+
+# Help topics
+
+- [How to use this wiki](/_category/Wikihelp)
+- [Installing software](/_category/Install)
+- [Troubleshooting](/_category/Troubleshooting)
+- [Other help](/_category/Help)
+
+
+# Links
+
+- The PHP main site <http://www.php.net/>, reference manual <http://www.php.net/manual/en/> and its French version <http://www.php.net/manual/fr/>;
+- The WWW Consortium <http://www.w3.org/>;
+- The W3 Schools <http://www.w3schools.com/> and their HTML5 tutorial <http://www.w3schools.com/html5/>;
+- The HTML validator <http://validator.w3.org/> and the CSS validator <http://jigsaw.w3.org/css-validator/>;
+- JQuery's documentation <http://docs.jquery.com/>;
+- Raphaël JavaScript graphics library <http://raphaeljs.com/>
+- The [Firefox](http://www.mozilla.org/firefox) and [Chrome](http://www.google.com/chrome) browsers;
+- Firefox add-ons <https://addons.mozilla.org/> and their [Web Development section](https://addons.mozilla.org/firefox/extensions/web-development/);
+- The OWASP project <http://www.owasp.org/> and their [WebGoat training application](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project).
+
+# More links
+
+Here's some more interesting links I'm stumbling upon while preparing next year's course.
+
+- [Eloquent Javascript](http://eloquentjavascript.net/) and its [french translation](http://fr.eloquentjavascript.net/);
+- Manuel Kiessling's [The Node Beginner Book](http://www.nodebeginner.org/) and its [french translation](http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/);
+- The [official Node.js manual and API](http://nodemanual.org/);
+- Felix Geisendörfer's [Node.js Guide](http://nodeguide.com/);
+- A short guide to [understand Connect middleware](http://project70.com/nodejs/understanding-connect-and-middleware/);
+- The [Express](http://expressjs.com/) framework for Node.js.
+
+# Bibliography
+
+The bibliography on web programming is overblown. The Science Library
+shelves crack under the weight of redundant and obsolescent literature
+on the subject.
+
+To deepen your understanding of [PHP](), [Javascript](), etc., you can
+basically take any book from the library and quickly read
+through. Avoid old books, though: check that the first edition (not
+the last) hasn't been written more than, say, five years ago.
+
+Here is a small selection of links and books that may be more useful
+than the average one.
+
+### Web application generics
+
+A. Hendrix, B. Brinzarea, C. Darie.  *AJAX et PHP*
+:   2ème édition. Dunod, 2009. ISBN 978-2-10-055278-8. Côte BU:
+    005.71aja HEN. Somewhat old text, but a complete reference on how
+    to program web apps, both on the client and the server side.
+
+
+### PHP
+
+M. Achour et al. *PHP Manual*.
+:   <http://www.php.net/manual>. The one and only. The best way to learn
+    the [PHP]() language.
+F.-X. Bois. *PHP5 et MySQL, Le guide complet*
+:   Micro Application Éditions, 2010. ISBN 978-2-300-031946. Côte BU:
+    005.71php BOI. Slightly more advanced manual, treating database
+    interaction and security.
+J.-M. Culot. OEM Eyrolles, 2004. *PHP5, Guide de prise en main*
+:   ISBN 2-212-11487-7. Côte BU: 005.71php CUL. Introductory manual for
+    the beginner.
+
+### HTML and CSS
+
+W3Schools. *HTML5 Tutorial*
+:   <http://www.w3schools.com/html5/>. Very good tutorial for beginners, with plenty of examples that you can try online.
+W3Schools. *CSS Tutorial*
+:   <http://www.w3schools.com/CSS/>. Very good tutorial for beginners, with plenty of examples that you can try online.
+W3Schools.
+:   <http://www.w3schools.com>. Plenty of other tutorials are available on the W3Schools website.
+L. van Lancker. *HTML5 et CSS3*
+:   Eni Éditions, 2011. ISBN: 978-2-7460-6242-9. Côte BU: 005.71htm VAN. Introductory manual, mainly dealing with the basics of [HTML]() and [CSS]() (it could have been written for HTML4 and CSS2, but better to keep the pace, right?)
+B. Lawson and R. Sharp. *Introduction à  HTML5*
+:   Pearson Education France, 2011. ISBN: 978-2-7440-2476-4. Côte BU: 005.71htm LAW. Intended for readers already familiar with HTML, who wish to learn the most salient new features in HTML5 and its scripting API.
+
+### Javascript
+
+Mozilla foundation. *Javascript 1.5 Guide and Reference*.
+:   <https://developer.mozilla.org/en/JavaScript/Guide>, <https://developer.mozilla.org/en/JavaScript/Guide>. The first place to look for help on [Javascript]().
+W3C. *The Document Object Model*.
+:   Level 2 (current) and Level 3 (upcoming) <http://www.w3.org/DOM/DOMTR>.
+Ivo Wetzel and Zhang Yi Jiang. *JavaScript Garden*.
+:   A guide to the more obscure features of [JavaScript]() <http://bonsaiden.github.com/JavaScript-Garden>.
+C. Porteneuve. *Bien développer pour le Web 2.0*.
+:   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Although the main focus of this book is [AJAX](), the first two chapters and the annexes make an excellent introduction to how to write elegant and compliant [Javascript]().
+Mozilla foundation. *Mozilla DOM resources*.
+:   The reference for the part of the DOM API supported by Firefox <https://developer.mozilla.org/en/Gecko_DOM_Reference>, and related documents <https://developer.mozilla.org/en/DOM>.
+T. Stubbs and G. Allain. *JQuery, Le guide complet*
+:   Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte BU: 005.71jsp ALL. For the programmer who already knows [Javascript]() and wishes to get the best out of the advanced features of [JQuery]().
+
+
+### AJAX
+
+C. Porteneuve. *Bien développer pour le Web 2.0*.
+:   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Excellent book to learn how to write modern and compliant [Javascript]() and [AJAX](), with an emphasis on best practices. Online examples are available from Eyrolles website. The first edition is very good too, although slightly outdated (2006).
+B. Catteau and N. Faugout. *AJAX, Le Guide Complet*
+:   4ème édtion. Micro Application Éditions, 2009. ISBN: 978-2-300-022029. Côte BU: 005.71aja CAT. Introductory text on [AJAX](), with some advanced chapters treating design patrons and best practices.
+
+
+### Security
+
+M. Zalewski. *Browser Security Handbook*.
+:   Google Inc 2009. <http://code.google.com/p/browsersec/wiki/Main>. Excellent review on browser security, Same Origin Policy and other experimental mechanisms.
+D. Seguy and P. Gamache. *Sécurité PHP5 et MySQL*.
+:   2ème édition. Eyrolles 2009. ISBN: 978-2-212-12554-2. Côte BU: 005.8 SEG. Introductory book on web security, specifically targeted to the languages of this course. Chapter 2 treats [XSS]() and [CRSF](). The following chapters focus more on the practical than the theoretical side and give tips to secure your [PHP]()+[MySQL]() application. Very useful for your project!
+OWASP. *OWASP development guide*
+:   <https://www.owasp.org/index.php/Category:OWASP_Guide_Project>. Very
+    complete guide from the OWASP foundation to securing web
+    applications.
+OWASP. *OWASP development guide*
+:   <https://www.owasp.org/>. Wiki of the OWASP foundation, packed of
+    excellent information on securing, testing and attaking web
+    applications.
+R. Cannings, H.Dwivedi and Z. Lackey. *Haking sur le Web 2.0*
+:   Pearson Education France, 2008. ISBN: 978-2-7440-2306-4. Côte BU:
+    005.8 CAN. Badly written, translated even worse, and essentially
+    an advertisement booklet for the authors' company. Nevertheless,
+    it is one of the few books on the security of web apps available
+    at the library. It is divided in four parts, each ending with a
+    case study. Part I is extremely interesting, so be sure to read
+    it. Part II talks about [CSRF](), so read at least the first
+    chapter and the case study.
