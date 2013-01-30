@@ -1,0 +1,931 @@
+---
+toc: no
+categories: Classes HTTP JavaScript
+...
+
+
+View this as a [slideshow](?export&format=Slidy)
+
+
+# Web Applications and Security
+
+**Instructor:** Luca De Feo <http://www.prism.uvsq.fr/~dfl>
+
+**Course wiki:** <http://swift.prism.uvsq.fr/>. Read it, use it, ask questions, contribute to it!
+
+**Language:** English is **the only** language of the web. Course material will be in English, please write in English on the wiki.
+
+**Course structure:** 9 lessons, 7 tutorials. First half web programming, second half security.
+
+**Final project:** Work in pairs. Dynamic web application (e.g. online multiplayer game) + short description (max. 5 pages).
+
+
+# Practical matters
+
+**Classes:** come with your laptop if you wish.
+
+**Tutorials:** (TDs) you will need a laptop. Coming with yours is (by far!) the preferred way.
+
+If you don't have one, you can borrow it from the UFR thanks to the *Cartable numérique* project.
+
+**Network connection:** you will need a working network connection. The best solution is to make the wifi networks *Eduroam* or *UVSQ* work on your laptop. Second best is a cable connection. **Always bring an ethernet** cable to the tutorials, just in case...
+
+
+
+# Read the wiki
+
+All the course material (classes, tutorials and more) will be on the wiki.
+
+To stay tuned, **add the ATOM feed** <http://swift.prism.uvsq/_feed> to your favorite aggregator. If you don't know what a feed aggregator is, search the web.
+
+**Use the wiki** to discuss your installation problems with others. To get started, read [How to use the wiki]().
+
+Once you've solved a problem **create a tutorial** on the wiki.
+
+
+
+# History of the World Wide Web (WWW)
+
+From the wonderful [Short history of the World Wide Web](http://www.w3.org/History.html)
+
+**1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the
+  World Wide Web
+
+> *"HyperText is a way to link and access information of various kinds
+   as a web of nodes in which the user can browse at will."*
+
+In three months they
+
+- Define Hypertext, based on Dynatext SGML (precursor to HTML);
+- Invent the [HTTP]() protocol;
+- Write the first web server,
+- and the first **web browser and editor** (called WorldWideWeb, then Nexus).
+
+# History of the World Wide Web (WWW)
+
+From the wonderful [Short history of the World Wide Web](http://www.w3.org/History.html)
+
+**1990** Tim Berners-Lee (MIT) and Robert Calliau (CERN) invent the
+  World Wide Web (and implement it in only three months)
+
+> *"HyperText is a way to link and access information of various kinds
+   as a web of nodes in which the user can browse at will."*
+
+![Image from the original proposal by Berners-Lee](http://www.w3.org/History/1989/Image2.gif)
+     
+------------
+
+**1993** ViolaWWW and Mosaic are the first popular graphical web browsers.
+
+**1994** Foundation of the World Wide Web Consortium ([W3C]()) by Berners-Lee.
+
+**1995** First release of the [Apache]() web server.
+
+**1995** Rasmus Ledorf creates [PHP]().
+
+**1995** Development of Netscape (predecessor of Mozilla) starts. [JavaScript]() is born.
+
+**1996** Macromedia releases Flash.
+
+**1997** Standardization of [JavaScript]() into [ECMAScript](). Documents become *dynamic*.
+
+------------
+
+![Description of the Web 1.0 dataflow model, by Jesse J Garret](/web1.0.png)
+
+------------
+
+**1998** Publication of the [XML]() standard.
+
+**1999** Java publicizes (coins?) the term *Web application*.
+
+> *"Java Servlet API 2.2 includes one new feature so significant it
+> may change the way the Web works. That feature: <span
+> style="color:red">Web applications</span>."*
+
+**2002** The [JSON]() data interchange format is published through <http://json.org>.
+
+**2004** Members of Apple, Mozilla and Opera leave the [W3C]() to
+  found the WHATWG. Work on HTML5 is started.
+
+**2005** Jesse James Garret coins the word [AJAX](), acronym for "Asynchronous Javascript and XML". Web applications abandon the push-pull design.
+
+**2007** The [W3C]() HTML working group agrees to adopt WHATWG's HTML5
+  proposal as base for the next [HTML]() standard.
+
+**2009** Ryan Dahl creates [Node.js]().
+
+**2012**
+  [Plan 2014](http://dev.w3.org/html5/decision-policy/html5-2014-plan.html)
+  promises HTML 5.0 recommendation for 2014.
+
+------------
+
+![Description of the AJAX dataflow model, by Jesse J Garret](/web2.0.png)
+
+
+
+# Understanding the HyperText Transfer Protocol
+
+[HTTP]() is a *text-based stateless request-response* protocol for
+serving web documents.
+
+<div class="figure">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="860"
+   height="190">
+  <defs>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+  </defs>
+  <g>
+    <image
+       xlink:href="/firefox.png"
+       x="0" y="30"
+       width="138" height="99" />
+    <image
+       xlink:href="/server.png"
+       x="600" y="20"
+       width="138" height="139" />
+    <image
+       xlink:href="/document.png"
+       x="750" y="10"
+       style="opacity:0.5"
+       width="44" height="60" />
+    <path
+       d="m 150,60 400,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)" />
+    <path
+       d="m 550,90 -400,0"
+       id="path4280"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend)" />
+    <text
+       x="25" y="160"
+       xml:space="preserve" >CLIENT</text>
+    <text
+       x="650" y="190"
+       xml:space="preserve" >SERVER</text>
+    <text
+       x="160" y="40"
+       style="font-family:monospace"
+       xml:space="preserve" >GET /index.html HTTP/1.1</text>
+    <text
+       x="220" y="120"
+       style="font-family:monospace"
+       xml:space="preserve" >HTTP/1.1 200 OK</text>
+    <text
+       x="220" y="170"
+       style="font-family:monospace"
+       xml:space="preserve" ><html>...</html></text>
+    <text
+       x="730" y="35"
+       style="font-size:smaller"
+       xml:space="preserve" >index.html</text>
+  </g>
+</svg>
+</div>
+
+**Request:** The client (browser) asks to read or modify a document (hypertext, image, ...)
+
+**Response:** The server sends a reply (not necessarily the document).
+
+**Text-based:** All communication is encoded in ASCII.
+
+**Stateless:** The server does not remember the client between two
+  consecutive requests.
+
+
+# The HTTP protocol
+
+Usually served on port 80. Try this with [Telnet]().
+
+**REQUEST**
+
+    GET / HTTP/1.1
+    Host: www.google.fr
+
+**RESPONSE**
+
+    HTTP/1.1 200 OK
+    Date: Tue, 24 Jan 2012 17:09:10 GMT
+    Expires: -1
+    Cache-Control: private, max-age=0
+    Content-Type: text/html; charset=ISO-8859-1
+    Set-Cookie: PREF=ID=4479751101deda66:FF=0:TM=1327424950:LM=1327424950:S=CDCjreHNXoofkoQk; expires=Thu, 23-Jan-2014 17:09:10 GMT; path=/; domain=.google.fr
+    Set-Cookie: NID=56=jkWXBR2FaxtIwRcpdJ-3nAJqgoJ2hDIqdo0Q7-ttgoCSX_5go3FrbRWBWg0em3oKnE88UcPz-4sjCwQNxb7iPcs7vu-kXQ3zKnSlXH97v-TAQgOQfNx2QqCM2XNPCUUl; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+    P3P: CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info."
+    Server: gws
+    X-XSS-Protection: 1; mode=block
+    X-Frame-Options: SAMEORIGIN
+    Transfer-Encoding: chunked
+
+    1000
+    <!doctype html>...
+
+
+
+# HTTP Request
+
+    POST /document.html HTTP/1.1
+    Host: www.example.com
+    User-Agent: Mosaic/2.1
+    Cookie: sessionid=aa03x;
+    Content-Length: 10
+    
+    1234567890
+    
+Request line:
+
+    POST /document.html HTTP/1.1
+
+Headers (only `Host` is required)
+
+    Host: www.example.com
+    User-Agent: Mosaic/2.1
+    Cookie: sessionid=aa03x;
+    Content-Length: 10
+
+One blank line (beware: `<CR><LF>`)
+
+Message body (Optional)
+
+    1234567890
+
+
+# The request line
+
+    POST /document.html HTTP/1.1
+
+### Method
+
+> - **HEAD** Request only headers, no content.
+> - **GET** Request page. No modification should happen on the server
+> - **POST** Submit data. A modification of the server can ensue.
+
+Other methods seldom used: `PUT`, `DELETE`, `TRACE`, `OPTIONS`,
+`CONNECT`, `PATCH`.
+
+### Resource
+
+Address of the web document.
+
+### Protocol
+
+Only two possibilities: `HTTP/1.0` or `HTTP/1.1`.
+
+
+
+# Request headers
+
+    Host: www.example.com
+    User-Agent: Mosaic/2.1
+    Cookie: sessionid=aa03x;
+    Content-Length: 10
+
+Used to send meta-information to the server.
+
+### Required
+
+> - **Host** The domain name of the server the request is being sent to.
+> - **Content-Length** Required only in POST and PUT requests. Specifies the length in bytes of the request body.
+
+### Most used
+
+> - **Accept-*** Type of content that the client can handle (type, charset, encoding, language)
+> - **Cookie** Used to implement [persistent storage](Persistent storage) on the client side.
+> - **Referer** Address of the page that originated the request.
+> - **User-Agent** Name of the client software.
+> - **Content-Type** Used to specify the content [MIME type]() (text, HTML, etc.) of the request body.
+
+Applications may define their own headers (usually prefixed with **X-**).
+
+
+
+# HTTP Response
+
+    HTTP/1.1 200 OK
+    Date: Tue, 24 Jan 2012 18:34:40 GMT
+    Server: Apache/2.2.21 (Debian)
+    Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+    Content-Length: 53
+    Content-Type: text/html
+    Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+    
+    <html><head></head><body><h1>Hello world!</h1></html>
+
+Status line
+
+    HTTP/1.1 200 OK
+
+Headers
+
+    Date: Tue, 24 Jan 2012 18:34:40 GMT
+    Server: Apache/2.2.21 (Debian)
+    Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+    Content-Length: 53
+    Content-Type: text/html
+    Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+
+One blank line (beware: `<CR><LF>`)
+
+Content (Optional)
+
+    <html><head></head><body><h1>Hello world!</h1></html>
+
+
+# The status line
+
+    HTTP/1.1 200 OK
+
+### Protocol + Status code + message
+
+Status codes describe the result of the request. Most common:
+
+> - **200 OK** Document was found and sent to the client.
+> - **301 MOVED PERMANENTLY** Permanent redirection (requires `Location` header).
+> - **302 FOUND**
+> - **303 SEE OTHER**
+> - **307 TEMPORARY REDIRECT** Various kinds of redirection (require `Location` header).
+> - **400 BAD REQUEST** The client issued a badly formed request.
+> - **403 FORBIDDEN** The document is not accessible.
+> - **404 NOT FOUND** The document is unknown to the server.
+> - **410 GONE** The document no longer exists.
+> - **418 I'M A TEAPOT** [1998 IETF April fools'](http://tools.ietf.org/html/rfc2324).
+> - **500 INTERNAL SERVER ERROR** Something nasty happened on the server.
+> - **503 SERVICE UNAVAILABLE** The server is temporary down.
+
+
+# Response Headers
+
+    Date: Tue, 24 Jan 2012 18:34:40 GMT
+    Server: Apache/2.2.21 (Debian)
+    Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+    Content-Length: 53
+    Content-Type: text/html
+    Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+
+Most used:
+
+> - **Date**, **Expires**, **Last-Modified** Used for caching purposes.
+> - **Content-Type** [MIME type]() of the response content.
+> - **Content-Length** Length in bytes of the response content. Not required (may be specified otherwise).
+> - **Location** Used for redirections.
+> - **Sever** Name of the server software.
+> - **Set-Cookie** Used to implement [persistent storage](Persistent storage) on the client side.
+
+
+# Web 1.0: Dynamic generation of content
+
+<div class="figure">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="900"
+   height="300">
+  <defs>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+  </defs>
+  <g>
+    <image
+       xlink:href="/server.png"
+       x="300" y="80"
+       width="138" height="139" />
+    <image
+       xlink:href="/php.png"
+       x="460" y="90"
+       width="95" height="51" />
+    <image
+       xlink:href="/server.png"
+       x="700" y="0"
+       style="opacity:0.5"
+       width="70" height="70" />
+    <image
+       xlink:href="/db.png"
+       x="700" y="80"
+       style="opacity:0.5"
+       width="60" height="60" />
+    <image
+       xlink:href="/document.png"
+       x="705" y="160"
+       style="opacity:0.3"
+       width="44" height="60" />
+    <image
+       xlink:href="/document.png"
+       x="120" y="210"
+       style="opacity:0.2"
+       width="66" height="90" />
+    <path
+       d="m 40,120 250,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)" />
+    <path
+       d="m 290,150 -250,0"
+       id="path4280"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)" />
+    <path
+       d="m 550,90 100,-30"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)" />
+    <path
+       d="m 560,115 90,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)" />
+    <path
+       d="m 550,140 100,30"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)" />
+    <text
+       x="0" y="100"
+       style="font-family:monospace"
+       xml:space="preserve" >GET /app HTTP/1.1</text>
+    <text
+       x="0" y="190"
+       style="font-family:monospace"
+       xml:space="preserve" >HTTP/1.1 200 OK</text>
+    <text
+       x="450" y="190"
+       xml:space="preserve" >Scripting</text>
+    <text
+       x="450" y="220"
+       xml:space="preserve" >engine</text>
+    <text
+       x="620" y="50"
+       style="font-size:smaller"
+       xml:space="preserve" >Authentication server</text>
+    <text
+       x="680" y="120"
+       style="font-size:smaller"
+       xml:space="preserve" >Database</text>
+    <text
+       x="660" y="210"
+       style="font-size:smaller"
+       xml:space="preserve" >XML template</text>
+    <text
+       x="60" y="250"
+       xml:space="preserve" >Generated HTML</text>
+    <text
+       x="100" y="290"
+       xml:space="preserve" >document</text>
+  </g>
+</svg>
+</div>
+
+- The **server** receives request for document (e.g. `/app`) and
+  passes it to a **scripting engine** (e.g. [PHP](), [Node.js](), a [CGI]() module,
+  ...);
+- The **scripting engine** interacts with **services** (e.g. a
+  [MySQL]() database, a Kerberos serves), **libraries** (e.g. an
+  [XML]() parsers), a **file-system**, ...
+- The **scripting engine** generates a web **document** (e.g. an
+  [HTML]() document) and returns it to the **server**;
+- The **server** serves the generated document to the **client**.
+
+
+# JavaScript (our scripting engine)
+
+[JavaScript]() is an *interpreted*, *dynamic*, *weakly typed*,
+*prototype-based* scripting language supporting *object oriented*,
+*functional* and *imperative* programming styles.
+
+**Interpreted:** code is distributed as source and interpreted on the fly.
+
+**Dynamically typed:** variables can change type during execution.
+
+**Weakly typed:** variables with different types can be combined
+  without explicit conversions.
+  
+**Prototype-based:** there is no distinction between classes and
+  objects: **everything is object**.
+  
+**Functional:** functions are *first class objects*.
+
+[JavaScript]() **is not Java**. It is much more similar to Python or Ruby.
+
+
+# JavaScript syntax
+
+~~~ {.javascript}
+if (x == 1) {
+    ...
+} else if (x == 2) {
+    ...
+} else {
+    ...
+}
+~~~
+
+
+~~~ {.javascript}
+switch (2+x) {
+    case 4:
+        ...
+        break;
+    case 5+1:
+        ...
+        break;
+    default:
+        ...
+}
+~~~
+
+--------
+
+~~~ {.javascript}
+for ( var i = 0 ; i < 10 ; i++ ) {
+    ...
+}
+~~~
+
+~~~ {.javascript}
+for ( var x in obj ) {
+    ...
+}
+~~~
+
+~~~ {.javascript}
+while (condition) {
+    ...
+}
+~~~
+
+
+~~~ {.javascript}
+do {
+    ...
+} while (condition);
+~~~
+
+
+~~~ {.javascript}
+try {
+    ...
+} catch (e) {
+    if (e instanceof SyntaxError) {
+        ...
+    } else {
+        ...
+    }
+} finally {
+    ...
+}
+~~~
+
+
+
+# Variables and predefined values
+
+**Variables must be declared !**
+
+~~~ {.javascript}
+var a = 0;
+a += 1;
+~~~
+
+Non-declared variables have **global scope**. Use them parsimoniously.
+
+**Variables are dynamically typed**
+
+~~~ {.javascript}
+var a = 1;
+a = 'something';
+~~~
+
+**Predefined variables**: `undefined`, `NaN`, `Infinity`.
+
+**Use of `undefined`**
+
+~~~ {.javascript}
+function (x, y) {
+    if (undefined === y)   // tests if the user has given y
+        ...
+}
+~~~
+
+
+# Some important operators
+
+**Weak comparison**
+
+~~~ {.javascript}
+var x = 2;
+x == '2';     // true
+~~~
+
+**Strong comparison** 
+
+~~~ {.javascript}
+var x = 2;
+x === '2';    // false
+~~~
+
+**Field membership** (to test if a property is defined in an object)
+
+~~~ {.javascript}
+if ('property' in obj) ...;
+if ('key' in myarray) ...;       // much less useful
+~~~
+
+
+# Arrays
+
+**Dynamic allocation**
+
+~~~ {.javascript}
+var myarray = ['one', 'two', 'three'];
+myarray[5] = 'five';
+myarray.length;                        // result is 6
+~~~
+
+**Associative arrays**
+
+~~~ {.javascript}
+var myarray = []
+myarray['six'] = 6;
+~~~
+
+
+**Array library methods** (only work on the non associative part)
+
+~~~ {.javascript}
+['one', 'two', 'three'].join('+')   // result is 'one+two+three'
+~~~
+
+
+# Functions
+
+**Simple syntax** (function arguments do not need the `var` keyword!!!)
+
+~~~ {.javascript}
+function incr(a) {
+    return a+1;
+}
+~~~
+
+**Functions are first class objects**
+
+~~~ {.javascript}
+function apply(f, x) {
+    return f(x);
+}
+
+apply(incr, 4);         // result is 5
+~~~
+
+**Anonymous functions**
+
+~~~ {.javascript}
+myFun = function () {
+    ...
+}
+~~~
+
+------
+
+**Nested functions**
+
+~~~ {.javascript}
+function counter() {
+    var c = 0;
+    return function(step) {
+        return c += step;
+    }
+}
+
+var cnt = counter();
+[cnt(1), cnt(2), cnt(1)]      // result is [1, 3, 4]
+~~~
+
+See <http://bonsaiden.github.com/JavaScript-Garden/#function>.
+
+
+# Variadic functions
+
+**Omitting arguments**
+
+~~~ {.javascript}
+function maybe(x, y) {
+    if (undefined === y) 
+        return x;
+    else
+        return x+y;
+}
+
+maybe(1);          // result is 1
+maybe(1, 2);       // result is 3
+~~~
+
+
+**Giving more arguments**
+
+~~~ {.javascript}
+function prepend(x) {
+    var res = []
+    for (a in arguments)            
+        res.push(x + arguments[a]);
+    
+    return res
+}
+
+prepend('pre-', 'a', 'bbb', 'c');
+// result is ['pre-a', 'pre-bbb', 'pre-c']
+~~~
+
+
+# Objects
+
+**Anonymous objects** (similar to associative arrays)
+
+~~~ {.javascript}
+var myObj = {
+    car: "Peugeot",
+    color: "blue"
+};
+
+'car' in myObj;              // true
+myObj.car == "Peugeot";      // true
+myObj['car'] == "Peugeot";   // true
+
+var prop = 'car';
+myObj[prop] == "Peugeot";    // true
+~~~
+
+Object contents can be **dynamically changed**
+
+~~~ {.javascript}
+var myObj = {};
+myObj.car = "Renault";
+~~~
+
+
+# Methods
+
+~~~ {.javascript}
+var myObj = {
+    day: "5",
+    month: "January",
+    year: "2012",
+    
+    english: enDate,
+    
+    french: function() {
+        return this.day   + " " +
+               this.month + " " +
+               this.year;
+    }
+}
+
+function enDate() {
+    return this.month + " "  +
+           this.day   + ", " +
+           this.year;
+}
+
+myObj.custom = function() {
+        return this.year  + "-" +
+               this.month + "-" +
+               this.day;
+}
+~~~
+
+
+# Object constructors
+
+Object constructors are just functions
+
+~~~ {.javascript}
+function Car(model, color, year) {
+    this.model = model;
+    this.color = color;
+    this.year = year;
+    
+    this.revision = function() {
+        return this.year + 5;
+    }
+}
+
+var mycar = new Car("Peugeot", "blue", 2010);
+mycar.revision();                             // result is 2015
+~~~
+
+
+# Prototypes
+
+Prototypes replace inheritance
+
+~~~ {.javascript}
+function A() { this.one = 1; }
+
+function B() { this.two = 2; }
+B.prototype = new A();
+
+var C = new B();
+C.one;                         // result is 1
+C.two;                         // result is 2
+~~~
+
+
+Prototypes enrich objects
+
+~~~ {.javascript}
+var foo = "bar";
+foo.sillyMethod;                    // undefined
+
+String.prototype.sillyMethod =
+    function() { return "silly"; }
+foo.sillyMethod();                  // result is "silly"
+~~~
+
+
+# Predefined JavaScript objects
+
+**`String`**, **`Array`**, **`Boolean`**, **`Number`**, **`Date`**: self-explanatory prototypes 
+
+**`Math`**: Math functions (exp, log, etc.)
+
+~~~ {.javascript}
+Math.PI;         // pi constant
+Math.sqrt(16);   // result is 4
+~~~
+
+**`RegExp`**: regular expressions (Perl-like syntax)
+
+~~~ {.javascript}
+var pattern = RegExp("sub", "i");
+pattern = /sub/i;                  // same as before
+
+pattern.test("Substring")          // result is true
+~~~
+
+
+# Stacks vs. Frameworks
+
+Old dynamic sites tend to use a layered solution (OS + web server +
+scripting engine + database) called *solution stack*.
+
+**LAMP:** **L**inux + **A**pache + **M**ySQL + **P**HP
+
+**WINS:** **W**indows + **I**IS + ASP.**N**ET + Microsoft **S**QL
+  Server
+
+Modern, highly dynamic, web applications tend to use more tightly
+integrated software targeted at web development, called *web
+frameworks*.
+
+**Examples:** **[Node.js]()** ([JavaScript]()), **Ruby on Rails**
+  (Ruby), **Django** (Python), **JEE** (Java), ...
+
+
+
+# For next week's tutorial
+
+- Install [Node.js]() (<http://nodejs.org>).
+
+- Set up a development environment supporting at least [HTML](),
+  [CSS]() and [Javascript](). This could be [Netbeans](), [Eclipse](),
+  [Emacs](), [Gedit](), [Geany](), [Notepad++]()...
+
+- Install at least two web browsers. Compulsory for this course are
+  [Firefox 18+](Firefox) and [Chrome 24+](Chrome).
+
+
+# The end
+
+Go back to the [front page](/).
