@@ -1,7 +1,3 @@
----
-title: Web Applications and Security
-...
-
 The times when the web used to be a mere collection of "documents" are long gone. SGML and HTML frames are things of the past, and Flash may become soon. Nowadays, the web developer 2.0 speaks dozens of domain specific languages -[ECMAScript](), [HTML5](HTML), [CSS](), [SVG](Web graphics), [XML](), [JSON](), [Perl](), [PHP](), [Python](), [SQL](), ...- and constantly preaches for [AJAX]().
 
 To succeed in this fast paced domain, the IT professional must possess many diverse skills. She must fully understand the way data are exchanged between the components of the application, she must know a large palette of languages and tools and constantly keep up to date, and finally she must understand what are the critical entry points of her application and how to secure them from external attackers.
@@ -47,23 +43,23 @@ This wiki is yours. Use it, peruse it, abuse it (but not too much, please... it 
 # Classes
 
 Class 1 (01/25/2012)
-:   [The World Wide Web, introduction to PHP](), [audio recording](/class20120125.ogg).
+:   [The World Wide Web, introduction to PHP](), [audio recording](/vids/class20120125.ogg).
 Class 2 (02/01/2012)
-:   [The content and the form. HTML, SVG, CSS](), [screencast](/class20120201.mp4).
+:   [The content and the form. HTML, SVG, CSS](), [screencast](/vids/class20120201.mp4).
 Class 3 (02/08/2012)
-:   [Exchanging data. Forms, cookies, persistence](), [screencast](/class20120208.mp4).
+:   [Exchanging data. Forms, cookies, persistence](), [screencast](/vids/class20120208.mp4).
 Class 4 (02/15/2012)
-:   [Client-side scripting. JavaScript and the DOM](), [screencast](/class20120215.mp4).
+:   [Client-side scripting. JavaScript and the DOM](), [screencast](/vids/class20120215.mp4).
 Class 5 (02/22/2012)
-:   [Permanent storage. MySQL, PHP and code injections](), [screencast](/class20120222.mp4).
+:   [Permanent storage. MySQL, PHP and code injections](), [screencast](/vids/class20120222.mp4).
 Class 6 (03/07/2012)
-:   [Code injection and Cross Site Scripting](), [screencast](/class20120307.mp4).
+:   [Code injection and Cross Site Scripting](), [screencast](/vids/class20120307.mp4).
 Class 7 (03/14/2012)
-:   [JavaScript Frameworks, AJAX and REST services](), [screencast](/class20120314.mp4).
+:   [JavaScript Frameworks, AJAX and REST services](), [screencast](/vids/class20120314.mp4).
 Class 8 (03/21/2012)
-:   [AJAX security, Same Origin Policy and CSRF](), [screencast](/class20120321.mp4).
+:   [AJAX security, Same Origin Policy and CSRF](), [screencast](/vids/class20120321.mp4).
 Class 9 (03/28/2012)
-:   [What's the future of the web](), [screencast](/class20120328.mp4).
+:   [What's the future of the web](), [screencast](/vids/class20120328.mp4).
 
 
 # Tutorials
