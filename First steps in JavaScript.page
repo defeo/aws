@@ -57,15 +57,15 @@ You can terminate the REPL by typing Ctrl-D, or by typing twice Ctrl-C. The othe
 
 2. Like in C, Java and many other languages, Node.js has a mechanism to pass around the parameters written on the command line. The array holding the parameters is called `process.argv`. Create a file named `echo.js` containing the following code
 
-   ~~~ {.javascript}
-   console.log(process.argv);
-   ~~~
+    ~~~ {.javascript}
+    console.log(process.argv);
+    ~~~
 
-   Execute the program as usual, and observe its output by giving some parameters on the command line, for example
+    Execute the program as usual, and observe its output by giving some parameters on the command line, for example
 
-   ~~~
-   node echo.js foo bar
-   ~~~
+    ~~~
+    node echo.js foo bar
+    ~~~
 
    
 
@@ -99,7 +99,7 @@ Javascript defines an object `Date` to manipulate all sorts of dates. The full d
 
     > Good morning/afternoon/evening! It is 10am on Tuesday 31 January and you are using Node.js.
 
-   The welcome sentence must print “morning”, “afternoon” or “evening”, depending on the time of the day.
+    The welcome sentence must print “morning”, “afternoon” or “evening”, depending on the time of the day.
 
 5. Modify the program so that it writes the sentence in English or French, depending on a parameter given on the command line.
 
