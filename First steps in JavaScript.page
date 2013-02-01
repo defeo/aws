@@ -1,0 +1,271 @@
+In this tutorial we will learn the basics of [JavaScript]() using the interpreter bundled in Node.js. You will need a working install of Node.js, if you haven't installed it yet, go to <http://www.nodejs.org/> and download the latest version.
+
+
+# Executing Node.js
+
+Open a terminal. If you use a Unix system (Linux, MacOS, etc.) you probably know how to open one. In Windows, you can use the *command prompt* (*invite de commande*, in french versions), or the more powerful *PowerShell* (included in all versions since Windows 7). Look for either one using the *search* feature of Windows.
+
+If Node.js is properly installed, you can execute it simply typing `node` at the command prompt. This will start the Read-Eval-Print-Loop (REPL), an interactive interpreter for [JavaScript](), much like Python's. A `>` sign is printed, meaning that Node.js is waiting for input. You can type any valid [JavaScript]() expression and the loop will evaluate it and print its value. For example
+
+~~~
+> 2 + 2;
+4
+> 'a' + 23 == [];
+false
+> 'swift.prism.uvsq.fr'.split('.');
+[ 'swift',
+  'prism',
+  'uvsq',
+  'fr' ]
+~~~
+
+Variable assignments are retained until the end of the session
+
+~~~
+> var x = 2
+undefined
+> x
+2
+~~~
+
+And you can even define and use function
+
+~~~
+> function test() {
+... return 1;
+... }
+undefined
+> test()
+1
+~~~
+
+You can terminate the REPL by typing Ctrl-D, or by typing twice Ctrl-C. The other way of running Node.js is by giving it a [JavaScript]() file to execute.
+
+1. In a folder of your choice (remember that you can go to a folder using the `cd` command, and you can list its command using the `ls`/`dir` command), create a file named `hello.js` with the following code
+
+    ~~~ {.javascript}
+    console.log('Hello world');
+    ~~~
+
+    You can execute this program by typing
+
+    ~~~
+    node hello.js
+    ~~~
+
+    in the shell.
+
+2. Like in C, Java and many other languages, Node.js has a mechanism to pass around the parameters written on the command line. The array holding the parameters is called `process.argv`. Create a file named `echo.js` containing the following code
+
+   ~~~ {.javascript}
+   console.log(process.argv);
+   ~~~
+
+   Execute the program as usual, and observe its output by giving some parameters on the command line, for example
+
+   ~~~
+   node echo.js foo bar
+   ~~~
+
+   
+
+# Dates
+
+Javascript defines an object `Date` to manipulate all sorts of dates. The full documentation is available on the [Mozilla Developer Network website](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date). Instead of reading it, we will use the REPL to explore the object.
+
+1. Create a new `Date` object by typing
+
+    ~~~
+    > var d = Date();
+    undefined
+    ~~~
+
+2. If you evaluate the variable `d`, you will see that it contains today's date, for example
+
+    ~~~
+    > d;
+    Fri Feb 01 2013 00:18:30 GMT+0100 (CET)
+    ~~~
+
+3. We can use REPL's autocompletion to see what methods the `Date` object has. Type
+
+    ~~~
+    > d.
+    ~~~
+
+    and hit the Tab key. This will show you all possible ways of completing the expression. Try out some methods, like `getDay()`, `getSeconds()`, etc.
+
+4. Create a script, named `date.js` that prints a message like
+
+    > Good morning/afternoon/evening! It is 10am on Tuesday 31 January and you are using Node.js.
+
+   The welcome sentence must print “morning”, “afternoon” or “evening”, depending on the time of the day.
+
+5. Modify the program so that it writes the sentence in English or French, depending on a parameter given on the command line.
+
+
+# Callbacks
+
+Some introduction to callbacks.
+
+
+# My first web browser
+
+The main purpose of Node.js is to write web applications; however, it can also be used for general purpose applications. Because Node.js is so centered around the web, its standard library is rich in networking features, and it will be an easy task to write a simplistic web browser using it.
+
+To visit a website, we need to know the name of the host server, the port to connect to, and the path to the resource. For example, in the address
+
+~~~
+http://swift.prism.uvsq.fr:80/a/document
+~~~
+
+the host is `swift.prism.uvsq.fr`, the port is 80, and the path is `/a/document`.
+
+Create a file named `browser.js`.
+
+1. Using a `RegExp` object ([documentation here](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp)), write a program that takes an address like the former on the command line and splits it into a host, a port and a path and prints them on its output. If the port is not given, it must default to 80. If the path is not given, it must default to `/`. Here is an example of execution
+
+    ~~~
+    $ node browser.js http://swift.prism.uvsq.fr/doc.html
+    swift.prism.uvsq.fr
+    80
+    /doc.html
+    ~~~
+
+Node.js is equipped with a powerful module system. Most of its functionality is written in separate modules, that can be loaded on demand. The special keyword `require` is used to load modules. We will need the `net` module to do TCP networking, so write the following line in your file
+
+~~~ {.javascript}
+var nt = require(net)
+~~~
+
+The `net` module is documented [here](http://nodejs.org/api/net.html). It knows nothing about HTTP, it only knows about TCP, so all it can do is to open a socket to connect to a port on a given host (fortunately, domain names are automatically resolved via DNS, so we do not have to look for IP adresses). 
+
+We will need only one function from the module: [`connect`](http://nodejs.org/api/net.html#net_net_connect_options_connectionlistener). It is used as follows
+
+~~~ {.javascript}
+var socket = nt.connect(options, callback);
+~~~
+
+where `options` is an object containing host and port information, for example
+
+~~~ {.javascript}
+{
+  host: 'www.google.com',
+  port: 80
+}
+~~~
+
+and `callback` is a function, to be called upon successful connection to the host.
+
+The `socket` object in the example above has thwo important methods. The first one is `.write(data)`, used to write data to the socket. The second one is `.end()`, used to close the socket and terminate connection.
+
+It is important that you do not write data to the socket until it is open, hence you should write
+
+~~~ {.javascript}
+var socket = nt.connect(options, function() {
+    socket.write('hello'); // this is called back after the socket is open
+});
+~~~
+
+rather than
+
+~~~ {.javascript}
+var socket = nt.connect(options);
+socket.write('hello'); // this is executed immediately
+~~~
+
+To receive data with `socket`, another callback must be configured in the following way
+
+~~~ {.javascript}
+socket.on('data', function (data) {
+    // do something with data
+});
+~~~
+
+this is an example of callback attached to the "data" *event*. The (anonymous) callback given as parameter is called only when the socket receives data from the other end. We will see that Node.js is *event-driven* and that most of its I/O is done via events and callbacks.
+
+2. Recall the minimal form of an [HTTP]() request
+
+    ~~~
+    GET /index.html HTTP/1.1
+    Host: www.google.fr
+    
+    ~~~
+
+    Complete `browser.js` so that it connects to the host given as parameter, gets the required path and prints the response to the `console`. Here's an example of HTTP session with Google, asking for a non-existing page (the output has been truncated)
+
+    ~~~
+    $ node browser http://www.google.fr/toto
+    GET /toto HTTP/1.1
+    Host: www.google.fr
+
+    
+    HTTP/1.1 404 Not Found
+    Content-Type: text/html; charset=UTF-8
+    X-Content-Type-Options: nosniff
+    Date: Fri, 01 Feb 2013 00:18:52 GMT
+    Server: sffe
+    Content-Length: 935
+    X-XSS-Protection: 1; mode=block
+    
+    <!DOCTYPE html>
+    <html lang=en>
+      <meta charset=utf-8>
+      <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
+      <title>Error 404 (Not Found)!!1</title>
+      ....
+    ~~~
+
+3. Modify `browser.js` so that any additional parameter on the command line is interpreted as an HTTP header to me sent to the server. For example
+
+    ~~~
+    node browser http://www.nodejs.org/ 'User-Agent: My Node Browser/1.0'
+    ~~~
+
+    should send the header `User-Agent` along with the request.
+
+In case you need help, here's the complete solution to this section
+
+
+<div style="max-height:6ex;overflow:hidden"
+onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.style.maxHeight='6ex'">
+
+~~~ {.javascript}
+var net = require('net');    // Click here to uncover
+
+if (process.argv.length > 2) {
+    var addr = new RegExp('http://([^/:]*)(?::([0-9]+))?(/.*)?', 'i');
+    var matches = addr.exec(process.argv[2]);
+    var host = matches[1];
+    var port = matches[2] || 80;
+    var path = matches[3] || '/';
+
+    if (host) {
+	var req = 'GET ' + path + ' HTTP/1.1\n';
+	req += 'Host: ' + host + '\n'
+	for (var i = 3 ; i < process.argv.length ; i++)
+	    req += process.argv[i] + '\n'
+	req += '\n';
+
+	console.log(req);
+
+	var socket = 
+	    net.connect({port: port,
+			 host: host},
+			function() {
+			    socket.write(req);
+			});
+	
+	socket.on('data', function(data) {
+	    console.log(data.toString());
+	    socket.end();
+	});
+    } else {
+	console.log('Usage: node browser http://host:port/path');
+    }
+} else {
+    console.log('Usage: node browser http://host:port/path');
+}
+~~~
+
+</div>
