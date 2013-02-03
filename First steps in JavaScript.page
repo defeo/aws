@@ -5,7 +5,7 @@ In this tutorial we will learn the basics of [JavaScript]() using the interprete
 
 Open a terminal. If you use a Unix system (Linux, MacOS, etc.) you probably know how to open one. In Windows, you can use the *command prompt* (*invite de commande*, in french versions), or the more powerful *PowerShell* (included in all versions since Windows 7). Look for either one using the *search* feature of Windows.
 
-If Node.js is properly installed, you can execute it simply typing `node` at the command prompt. This will start the Read-Eval-Print-Loop (REPL), an interactive interpreter for [JavaScript](), much like Python's. A `>` sign is printed, meaning that Node.js is waiting for input. You can type any valid [JavaScript]() expression and the loop will evaluate it and print its value. For example
+If Node.js is properly installed, you can execute it simply typing "`node`" at the command prompt. This will start the Read-Eval-Print-Loop (REPL), an interactive interpreter for [JavaScript](), much like Python's. A `>` sign is printed, meaning that Node.js is waiting for input. You can type any valid [JavaScript]() expression and the loop will evaluate it and print its value. For example
 
 ~~~
 > 2 + 2;
@@ -28,7 +28,7 @@ undefined
 2
 ~~~
 
-And you can even define and use function
+And you can even define and use functions
 
 ~~~
 > function test() {
@@ -41,7 +41,7 @@ undefined
 
 You can terminate the REPL by typing Ctrl-D, or by typing twice Ctrl-C. The other way of running Node.js is by giving it a [JavaScript]() file to execute.
 
-1. In a folder of your choice (remember that you can go to a folder using the `cd` command, and you can list its command using the `ls`/`dir` command), create a file named `hello.js` with the following code
+1. In a folder of your choice (remember that you can go to a folder using the `cd` command, and you can list its contents using the `ls`/`dir` command), create a file named `hello.js` with the following code
 
     ~~~ {.javascript}
     console.log('Hello world');
@@ -104,14 +104,81 @@ Javascript defines an object `Date` to manipulate all sorts of dates. The full d
 5. Modify the program so that it writes the sentence in English or French, depending on a parameter given on the command line.
 
 
+
 # Callbacks
 
-Some introduction to callbacks.
+A *callback* (*fonction de rappel*, in French) is a function (call it **A**) that is passed as parameter to another function (call it **B**), with the understanding that **B** will eventually *call back* **A** upon completion of some (probably long) task.
+
+Here is a simple example in [JavaScript]()
+
+~~~ {.javascript}
+function callback(out) {
+    out.log('Callback executed');
+}
+
+function worker(out, cb) {
+    for (var i = 0 ; i < 100000 ; i++) {
+        if (i % 10000 == 0) {
+            out.log('Counter: ' + i);
+        }
+    }
+    // Call the callback once we are done
+    cb(out);
+}
+~~~
+
+If we paste this code in the REPL, and run 
+
+~~~
+> worker(console, callback);
+Counter: 0
+Counter: 10000
+Counter: 20000
+Counter: 30000
+Counter: 40000
+Counter: 50000
+Counter: 60000
+Counter: 70000
+Counter: 80000
+Counter: 90000
+Callback executed
+~~~
+
+Using an anonymous function for the callback, we could have written
+
+~~~
+> worker(console, function(out) {
+... out.log('Anonymous callback executed');
+... } );
+Counter: 0
+Counter: 10000
+Counter: 20000
+Counter: 30000
+Counter: 40000
+Counter: 50000
+Counter: 60000
+Counter: 70000
+Counter: 80000
+Counter: 90000
+Anonymous callback executed
+~~~
+
+Callbacks are a popular idiom in most functional languages, where they serve the purpose of ordering asynchronous code, handling errors and I/O, and many other tasks. Even in non-functional languages, such as C/C++, it is not uncommon to encounter callbacks.
+
+[JavaScript]() being single-threaded, callbacks are used for simulating concurrency (e.g., sleep calls). Probably, the two most well known [JavaScript]() functions expecting a callback as parameter are [`setTimeout`](https://developer.mozilla.org/en/docs/DOM/window.setTimeout) and [`setInterval`](https://developer.mozilla.org/en/docs/DOM/window.setInterval).
+
+~~~ {.javascript}
+setTimeout(callback, ms);
+~~~
+
+expects `callback` to be a callback function, and `ms` to be an integer. This call waits `ms` milliseconds, then executes the callback `callback`. `setInterval` has the same arguments, but while `setTimeout` executes the callback only once, `setInterval` executed it every `ms` milliseconds.
+
+1. Testez les deux fonction.
 
 
 # My first web browser
 
-The main purpose of Node.js is to write web applications; however, it can also be used for general purpose applications. Because Node.js is so centered around the web, its standard library is rich in networking features, and it will be an easy task to write a simplistic web browser using it.
+The main purpose of Node.js is to write web applications; however, it can also be used for general purpose applications. Because Node.js is so centered around the web, its standard library is rich in networking features, and it is an easy task to write a simplistic web browser using it.
 
 To visit a website, we need to know the name of the host server, the port to connect to, and the path to the resource. For example, in the address
 
@@ -138,7 +205,7 @@ Node.js is equipped with a powerful module system. Most of its functionality is 
 var nt = require(net)
 ~~~
 
-The `net` module is documented [here](http://nodejs.org/api/net.html). It knows nothing about HTTP, it only knows about TCP, so all it can do is to open a socket to connect to a port on a given host (fortunately, domain names are automatically resolved via DNS, so we do not have to look for IP adresses). 
+The `net` module is documented [here](http://nodejs.org/api/net.html). It knows nothing about HTTP, it only knows about TCP, so all it can do is to open a socket and connect to a port on a given host (fortunately, domain names are automatically resolved via DNS, so we do not have to look for IP adresses). 
 
 We will need only one function from the module: [`connect`](http://nodejs.org/api/net.html#net_net_connect_options_connectionlistener). It is used as follows
 
@@ -157,9 +224,9 @@ where `options` is an object containing host and port information, for example
 
 and `callback` is a function, to be called upon successful connection to the host.
 
-The `socket` object in the example above has thwo important methods. The first one is `.write(data)`, used to write data to the socket. The second one is `.end()`, used to close the socket and terminate connection.
+The `socket` object in the example above has two important methods. The first one is `.write(data)`, used to write data to the socket. The second one is `.end()`, used to close the socket and terminate connection.
 
-It is important that you do not write data to the socket until it is open, hence you should write
+It is important that you do not write data to the socket until it is open. hence this code is correct:
 
 ~~~ {.javascript}
 var socket = nt.connect(options, function() {
@@ -167,7 +234,7 @@ var socket = nt.connect(options, function() {
 });
 ~~~
 
-rather than
+While this code is wrong, because the `write` method will probably be called before the socket has finished opening:
 
 ~~~ {.javascript}
 var socket = nt.connect(options);
@@ -216,13 +283,13 @@ this is an example of callback attached to the "data" *event*. The (anonymous) c
       ....
     ~~~
 
-3. Modify `browser.js` so that any additional parameter on the command line is interpreted as an HTTP header to me sent to the server. For example
+3. Modify `browser.js` so that any additional parameter on the command line is interpreted as an HTTP header to be sent to the server. For example
 
     ~~~
     node browser http://www.nodejs.org/ 'User-Agent: My Node Browser/1.0'
     ~~~
 
-    should send the header `User-Agent` along with the request.
+    should send the `User-Agent` header along with the request.
 
 In case you need help, here's the complete solution to this section
 
