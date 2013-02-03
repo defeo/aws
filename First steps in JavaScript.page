@@ -171,9 +171,42 @@ Callbacks are a popular idiom in most functional languages, where they serve the
 setTimeout(callback, ms);
 ~~~
 
-expects `callback` to be a callback function, and `ms` to be an integer. This call waits `ms` milliseconds, then executes the callback `callback`. `setInterval` has the same arguments, but while `setTimeout` executes the callback only once, `setInterval` executed it every `ms` milliseconds.
+expects `callback` to be a callback function, and `ms` to be an integer. This call waits `ms` milliseconds, then executes the callback `callback`. Optional arguments for the callback can be given after `ms`. `setInterval` has the same arguments, but while `setTimeout` executes the callback only once, `setInterval` executed it every `ms` milliseconds.  Here is an example using an anonymous callback
 
-1. Testez les deux fonction.
+~~~
+> setTimeout(function () { console.log('Delayed'); }, 3000);
+> console.log('Executed immediately');
+Executed immediately
+Delayed
+~~~
+
+The important thing to notice is that `setTimeout` and `setInterval` are *non-blocking*, meaning that after they are called the control steps immediately to the next instruction, without waiting for the timeout to expire.
+
+1. Experiment with `setTimeout` and `setInterval` in the REPL.
+
+2. `setTimeout` and `setInterval` both return an object. This object can be passed to, respectively, [`clearTimeout`](https://developer.mozilla.org/en/docs/DOM/window.clearTimeout) and [`clearInterval`](https://developer.mozilla.org/en/docs/DOM/window.clearInterval) in order to cancel the scheduled action. Experiment with `clearTimeout` and `clearInterval`.
+
+3. Without using `setInterval`, nor any kind of loop, make the REPL print out the current date every two seconds.
+
+There are a couple of possible solutions to this last point. Click below to see one that is, in my opinion, most elegant.
+
+<div style="max-height:6ex;overflow:hidden"
+onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.style.maxHeight='6ex'">
+
+~~~ {.javascript}
+// Click to uncover the solution
+
+var loop = function(cb) {
+    console.log(new Date());
+    setTimeout(cb, 2000, cb);
+}
+
+loop(loop);
+~~~
+
+</div>
+
+
 
 
 # My first web browser
