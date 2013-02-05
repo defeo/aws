@@ -104,10 +104,12 @@ than the average one.
 
 ### Web application generics
 
-### Javascript and AJAX
+### JavaScript and AJAX
 
+D. Crockford. *JavaScript. Gardez le meilleur !*.
+:   Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU: 005.13jaS CRO. Reference book on [JavaScript]() syntax.
 C. Porteneuve. *Bien développer pour le Web 2.0*.
-:   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Excellent book to learn how to write modern and compliant [Javascript]() and [AJAX](), with an emphasis on best practices. Online examples are available from Eyrolles website. The first edition is very good too, although slightly outdated (2006).
+:   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Excellent book to learn how to write modern and compliant [JavaScript]() and [AJAX](), with an emphasis on best practices. Online examples are available from Eyrolles website. The first edition is very good too, although slightly outdated (2006).
 Mozilla foundation. *Javascript 1.5 Guide and Reference*.
 :   <https://developer.mozilla.org/en/JavaScript/Guide>, <https://developer.mozilla.org/en/JavaScript/Guide>. The first place to look for help on [Javascript]().
 Ivo Wetzel and Zhang Yi Jiang. *JavaScript Garden*.
@@ -118,6 +120,8 @@ W3C. *The Document Object Model*.
 :   Level 2 (current) and Level 3 (upcoming) <http://www.w3.org/DOM/DOMTR>.
 Mozilla foundation. *Mozilla DOM resources*.
 :   The reference for the part of the DOM API supported by Firefox <https://developer.mozilla.org/en/Gecko_DOM_Reference>, and related documents <https://developer.mozilla.org/en/DOM>.
+A. MacCaw. *JavaScript Web Applications*.
+:   O'Reilly 2011. ISBN: 978-1-449-30351-8. Côte BU: 005.71jsp MAC. Advanced book discussing both client side and server side [JavaScript](). It focuses on development patterns (mostly MVC), control delegation and [JavaScript]() frameworks.
 T. Stubbs and G. Allain. *JQuery, Le guide complet*
 :   Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte BU: 005.71jsp ALL. For the programmer who already knows [Javascript]() and wishes to get the best out of the advanced features of [JQuery]().
 
