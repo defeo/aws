@@ -109,28 +109,42 @@ Javascript defines an object `Date` to manipulate all sorts of dates. The full d
 
 A *callback* (*fonction de rappel*, in French) is a function (call it **A**) that is passed as parameter to another function (call it **B**), with the understanding that **B** will eventually *call back* **A** upon completion of some (probably long) task.
 
-Here is a simple example in [JavaScript]()
+Here is a simple example in [JavaScript](). The function `worker` is an I/O intensive function. It takes two parameters: the first one, `logger`, is a function that is used to log information on the progress of the I/O ; the second one, `cb`, is a *callback* function to be called upon completion. Notice that the function `logger` is further passed to the *callback*, so that the callback can log debug information.
+
+Although `logger` is expected to be a function, the same as `cb`, an experienced programmer would usually say that `cb` is a *callback* function, but *logger* isn't. This is because *callbacks* are usually called at the end of the function, when all the serious work has been completed. Admittedly, this is a subtlety, and I won't be shocked if you say that `logger` is a callback.
 
 ~~~ {.javascript}
-function callback(out) {
-    out.log('Callback executed');
-}
-
-function worker(out, cb) {
+function worker(logger, cb) {
     for (var i = 0 ; i < 100000 ; i++) {
+        // Do some I/O intensive work
+        // ....
+
+        // Log every now and then.
         if (i % 10000 == 0) {
-            out.log('Counter: ' + i);
+            logger('Counter: ' + i);
         }
     }
+
     // Call the callback once we are done
-    cb(out);
+    cb(logger);
 }
 ~~~
 
-If we paste this code in the REPL, and run 
+To use worker, we need to define and pass a *callback* function. Here is a simple example, with a callback that simply prints some informtion.
+
+~~~ {.javascript}
+function callback(logger) {
+    logger('Callback executed');
+}
+
+// We execute worker by passing the standard console.log for logging
+// and the callback we just defined
+worker(console.log, callback);
+~~~
+
+The previous example prints the following output.
 
 ~~~
-> worker(console, callback);
 Counter: 0
 Counter: 10000
 Counter: 20000
@@ -144,23 +158,12 @@ Counter: 90000
 Callback executed
 ~~~
 
-Using an anonymous function for the callback, we could have written
+Using an anonymous function for the callback, we could have written the same code as
 
-~~~
-> worker(console, function(out) {
-... out.log('Anonymous callback executed');
-... } );
-Counter: 0
-Counter: 10000
-Counter: 20000
-Counter: 30000
-Counter: 40000
-Counter: 50000
-Counter: 60000
-Counter: 70000
-Counter: 80000
-Counter: 90000
-Anonymous callback executed
+~~~ {.javascript}
+worker(console.log, function(logger) {
+   logger('Anonymous callback executed');
+} );
 ~~~
 
 Callbacks are a popular idiom in most functional languages, where they serve the purpose of ordering asynchronous code, handling errors and I/O, and many other tasks. Even in non-functional languages, such as C/C++, it is not uncommon to encounter callbacks.
