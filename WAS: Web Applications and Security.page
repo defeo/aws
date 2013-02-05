@@ -110,6 +110,8 @@ D. Crockford. *JavaScript. Gardez le meilleur !*.
 :   Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU: 005.13jaS CRO. Reference book on [JavaScript]() syntax.
 C. Porteneuve. *Bien développer pour le Web 2.0*.
 :   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Excellent book to learn how to write modern and compliant [JavaScript]() and [AJAX](), with an emphasis on best practices. Online examples are available from Eyrolles website. The first edition is very good too, although slightly outdated (2006).
+N. C. Zakas. *Professional JavaScript for Web Developers*.
+:   3rd edition. John Wiley & Sons, 2012. ISBN: 978-1-118-02669-4. Côte BU: 005.71jas ZAK. Very complete book, treating only client side [JavaScript](). It contains a complete reference to [JavaScript]() and the [DOM](), plus extra material on modern features such as Canvases and Web Sockets.
 Mozilla foundation. *Javascript 1.5 Guide and Reference*.
 :   <https://developer.mozilla.org/en/JavaScript/Guide>, <https://developer.mozilla.org/en/JavaScript/Guide>. The first place to look for help on [Javascript]().
 Ivo Wetzel and Zhang Yi Jiang. *JavaScript Garden*.
