@@ -76,7 +76,7 @@ Javascript defines an object `Date` to manipulate all sorts of dates. The full d
 1. Create a new `Date` object by typing
 
     ~~~
-    > var d = Date();
+    > var d = new Date();
     undefined
     ~~~
 
