@@ -238,7 +238,7 @@ Create a file named `browser.js`.
 Node.js is equipped with a powerful module system. Most of its functionality is written in separate modules, that can be loaded on demand. The special keyword `require` is used to load modules. We will need the `net` module to do TCP networking, so write the following line in your file
 
 ~~~ {.javascript}
-var nt = require(net)
+var nt = require('net');
 ~~~
 
 The `net` module is documented [here](http://nodejs.org/api/net.html). It knows nothing about HTTP, it only knows about TCP, so all it can do is to open a socket and connect to a port on a given host (fortunately, domain names are automatically resolved via DNS, so we do not have to look for IP adresses). 
