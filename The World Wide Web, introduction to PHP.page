@@ -10,7 +10,7 @@ If your browser supports the ogg encoding, you can listen to the audio
 recording of this class by using the controls below:
 
 <audio controls="controls">
-  <source src="/class20120125.ogg" type="audio/ogg" />
+  <source src="/vids/class20120125.ogg" type="audio/ogg" />
 
   <p>Your browser does not support the audio tag. <a
   href="/class20120125.ogg">Download the file</a>.</p>
@@ -208,7 +208,7 @@ serving web documents.
     <text
        x="220" y="170"
        style="font-family:monospace"
-       xml:space="preserve" >&lt;html&gt;...&lt;/html&gt;</text>
+       xml:space="preserve" ><html>...</html></text>
     <text
        x="730" y="35"
        style="font-size:smaller"
