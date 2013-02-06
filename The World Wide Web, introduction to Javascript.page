@@ -758,7 +758,7 @@ maybe(1, 2);       // result is 3
 ~~~ {.javascript}
 function prepend(x) {
     var res = []
-    for (a in arguments)            
+    for (var a in arguments)            
         res.push(x + arguments[a]);
     
     return res
