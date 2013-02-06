@@ -615,39 +615,39 @@ problem
 </svg>
 <div style="max-width:60%;display:inline-block;">
 <label for="name">First name:</label>
-<input type="text" value="Alan" name="first" id="first" />
-<br \>
+<input type="text" value="Alan" name="first" id="first">
+<br>
 <label for="name">Last name:</label>
-<input type="text" value="Turing" name="last" id="last" />
-<br \>
+<input type="text" value="Turing" name="last" id="last">
+<br>
 Gender: <label for="male">Male</label>
-<input type="radio" name="sex" id="male" value="M" checked />
+<input type="radio" name="sex" id="male" value="M" checked>
 <label for="female">Female</label>
-<input type="radio" name="sex" id="female" value="F" />
-<br \>
+<input type="radio" name="sex" id="female" value="F">
+<br>
 <label for="email">e-mail:</label>
-<input type="email" value="alan@gchq.gov.uk" name="email" id="email" />
-<br \>
-<input type="button" value="Subscribe" onclick="document.getElementById('post-img').style.opacity=1;" />
+<input type="email" value="alan@gchq.gov.uk" name="email" id="email">
+<br>
+<input type="button" value="Subscribe" onclick="document.getElementById('post-img').style.opacity=1;">
 
 ~~~ {.html}
 <form method="POST"
       action="http://www.captcha.net/user">
   First name:
-  <input type="text" name="first" />
-  <br \>
+  <input type="text" name="first">
+  <br>
   Last name:
-  <input type="text" name="last" />
-  <br \>
+  <input type="text" name="last">
+  <br>
   Gender: Male
-  <input type="radio" name="sex" value="M" />
+  <input type="radio" name="sex" value="M">
   Female
-  <input type="radio" name="sex" value="F" />
-  <br \>
+  <input type="radio" name="sex" value="F">
+  <br>
   e-mail:
-  <input type="email" name="email" />
-  <br \>
-  <input type="submit" value="Subscribe" />
+  <input type="email" name="email">
+  <br>
+  <input type="submit" value="Subscribe">
 </form>
 ~~~
 
@@ -660,66 +660,66 @@ Gender: <label for="male">Male</label>
 The **`<input>`** tag represents almost all form controls. The choice
 is done by the **`type`** attribute.
 
-**Text fields:** <input type="text" placeholder="type something" />
+**Text fields:** <input type="text" placeholder="type something"></input>
 
 ~~~ {.html}
-<input type="text" />
+<input type="text">
 ~~~
 
-**Radio buttons:** <input type="radio" name="choice" value="1" /> A <input type="radio" name="choice" value="2" /> B
+**Radio buttons:** <input type="radio" name="choice" value="1">A</input> <input type="radio" name="choice" value="2">B</input>
 
 ~~~ {.html}
-<input type="radio" name="choice" value="choice-1" /> A
-<input type="radio" name="choice" value="choice-2" /> B
+<input type="radio" name="choice" value="choice-1">A</input>
+<input type="radio" name="choice" value="choice-2">B</input>
 ~~~
 
-**Checkbox:** <input type="checkbox" name="check" value="1" /> C <input type="checkbox" name="check" value="2" /> D
+**Checkbox:** <input type="checkbox" name="check" value="1">C</input> <input type="checkbox" name="check" value="2">D</input>
 
 ~~~ {.html}
-<input type="checkbox" name="check" value="check-1" />
-<input type="checkbox" name="check" value="check-2" />
+<input type="checkbox" name="check" value="check-1">C</input>
+<input type="checkbox" name="check" value="check-2">D</input>
 ~~~
 
-**Password:** <input type="password" value="strongpass" />
+**Password:** <input type="password" value="strongpass">
 
 ~~~ {.html}
-<input type="password" />
+<input type="password">
 ~~~
 
 
 ---------------
 
 
-**File:** <input type="file" />
+**File:** <input type="file">
 
 ~~~ {.html}
-<input type="file" />
+<input type="file">
 ~~~
 
-**Submit:** (more on this later) <input type="submit" value="Send data" />
+**Submit:** (more on this later) <input type="submit" value="Send data">
 
 ~~~ {.html}
-<input type="submit" value="Send data" />
-~~~
-
-
-**Button:** (mostly used with [Javascript]()) <input type="button" value="Click me!" />
-
-~~~ {.html}
-<input type="button" value="Click me!" />
+<input type="submit" value="Send data">
 ~~~
 
 
-**Image:** (submits the click coordinates) <input type="image" src="/like.svg" width="40" alt="Like!" />
+**Button:** (mostly used with [Javascript]()) <input type="button" value="Click me!">
 
 ~~~ {.html}
-<input type="image" src="like.svg" alt="Like!" />
+<input type="button" value="Click me!">
 ~~~
 
-**Email:** (since [HTML5](HTML), checks for @) <input type="email" />
+
+**Image:** (submits the click coordinates) <input type="image" src="/like.svg" width="40" alt="Like!">
 
 ~~~ {.html}
-<input type="email" />
+<input type="image" src="like.svg" alt="Like!">
+~~~
+
+**Email:** (since [HTML5](HTML), checks for @) <input type="email">
+
+~~~ {.html}
+<input type="email">
 ~~~
 
 
@@ -765,23 +765,23 @@ New (badly supported) form controls in [HTML5](HTML):
 
 ~~~ {.html}
 <form method="POST"
-      action="/script.php" >
-  <input type="text" name="key1" />
-  <input type="text" name="key2" />
+      action="/script" >
+  <input type="text" name="key1">
+  <input type="text" name="key2">
   <!-- More input controls... -->
-  <input type="submit" />
+  <input type="submit">
 </form>
 ~~~
 
 When the user clicks a **submit** control:
 
-- The browser sends a [HTTP]() request to **`/script.php`**, the HTTP
+- The browser sends a [HTTP]() request to **`/script`**, the HTTP
     method is either **GET** or **POST**, depending on the
     **`method`** attribute:
     
     - if the method is **GET**, the request is sent to
     
-            /script.php?key1=value1&key2=value2
+            /script?key1=value1&key2=value2
         
         where the values come from the user input.
         
@@ -809,16 +809,16 @@ errors in his input.
 <input type="text" required>
 ~~~
 
-**`pattern`** attribute: regexp match against a pattern <input class="validation" type="text" pattern="[0-9]{6}" />
+**`pattern`** attribute: regexp match against a pattern <input class="validation" type="text" pattern="[0-9]{6}">
 
 ~~~ {.html}
-<input type="text" pattern="[0-9]{6}" />
+<input type="text" pattern="[0-9]{6}">
 ~~~
 
-**`placeholder`** attribute: gives a suggestion to the user <input class="validation" type="text" placeholder="type something" />
+**`placeholder`** attribute: gives a suggestion to the user <input class="validation" type="text" placeholder="type something">
 
 ~~~ {.html}
-<input type="text" placeholder="type something" />
+<input type="text" placeholder="type something">
 ~~~
 
 **`novalidate`** attribute: deactivates all the previous validations.
