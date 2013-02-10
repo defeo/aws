@@ -109,37 +109,35 @@ Javascript defines an object `Date` to manipulate all sorts of dates. The full d
 
 A *callback* (*fonction de rappel*, in French) is a function (call it **A**) that is passed as parameter to another function (call it **B**), with the understanding that **B** will eventually *call back* **A** upon completion of some (probably long) task.
 
-Here is a simple example in [JavaScript](). The function `worker` is an I/O intensive function. It takes two parameters: the first one, `logger`, is a function that is used to log information on the progress of the I/O ; the second one, `cb`, is a *callback* function to be called upon completion. Notice that the function `logger` is further passed to the *callback*, so that the callback can log debug information.
-
-Although `logger` is expected to be a function, the same as `cb`, an experienced programmer would usually say that `cb` is a *callback* function, but *logger* isn't. This is because *callbacks* are usually called at the end of the function, when all the serious work has been completed. Admittedly, this is a subtlety, and I won't be shocked if you say that `logger` is a callback.
+Here is a simple example in [JavaScript](). The function `worker` is an I/O intensive function. Its only argument, `cb`, is a *callback* function to be called upon completion.
 
 ~~~ {.javascript}
-function worker(logger, cb) {
+function worker(cb) {
     for (var i = 0 ; i < 100000 ; i++) {
         // Do some I/O intensive work
         // ....
 
         // Log every now and then.
         if (i % 10000 == 0) {
-            logger('Counter: ' + i);
+            console.log('Counter: ' + i);
         }
     }
 
     // Call the callback once we are done
-    cb(logger);
+    cb();
 }
 ~~~
 
 To use worker, we need to define and pass a *callback* function. Here is a simple example, with a callback that simply prints some informtion.
 
 ~~~ {.javascript}
-function callback(logger) {
-    logger('Callback executed');
+function callback() {
+    console.log('Callback executed');
 }
 
 // We execute worker by passing the standard console.log for logging
 // and the callback we just defined
-worker(console.log, callback);
+worker(callback);
 ~~~
 
 The previous example prints the following output.
@@ -161,8 +159,8 @@ Callback executed
 Using an anonymous function for the callback, we could have written the same code as
 
 ~~~ {.javascript}
-worker(console.log, function(logger) {
-   logger('Anonymous callback executed');
+worker(console.log, function() {
+   console.log('Anonymous callback executed');
 } );
 ~~~
 
@@ -226,7 +224,7 @@ the host is `swift.prism.uvsq.fr`, the port is 80, and the path is `/a/document`
 
 Create a file named `browser.js`.
 
-1. Using a `RegExp` object ([documentation here](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp)), write a program that takes an address like the former on the command line and splits it into a host, a port and a path and prints them on its output. If the port is not given, it must default to 80. If the path is not given, it must default to `/`. Here is an example of execution
+1. Using a `RegExp` object ([documentation here](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp)), write a program that takes an address like the former on the command line and splits it into a host, a port and a path, and prints them on its output. If the port is not given, it must default to 80. If the path is not given, it must default to `/`. Here is an example of execution
 
     ~~~
     $ node browser.js http://swift.prism.uvsq.fr/doc.html
@@ -234,6 +232,18 @@ Create a file named `browser.js`.
     80
     /doc.html
     ~~~
+
+--------
+
+**Important note!** The tutorial that follows and the solution at the end of it fail with the following error
+
+~~~
+Error: connect ECONNREFUSED
+    at errnoException (net.js:614:11)
+    at Object.afterConnect [as oncomplete] (net.js:605:18)
+~~~
+
+in [Node.js]() 0.6.x. This is the version that comes by default with Ubuntu. Be sure to install the latest version (0.8.x) before continuing.
 
 Node.js is equipped with a powerful module system. Most of its functionality is written in separate modules, that can be loaded on demand. The special keyword `require` is used to load modules. We will need the `net` module to do TCP networking, so write the following line in your file
 
