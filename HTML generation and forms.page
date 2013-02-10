@@ -1,0 +1,53 @@
+**Note:** Some compatibility problems have been found with older versions of [Node.js]() (e.g., 0.6.x). It is recommended that you use the latest version of [Node.js]() (0.8.x).
+
+
+# My first web server
+
+Creating a simple web server is very easy in [Node.js](). Create a file named `my_server.js` containing the following code
+
+~~~ {.javascript}
+var http = require('http');
+
+function handler(req, res) {
+  console.log('Received request');
+  res.write('Hello world');
+  res.end();
+}
+
+// We cannot listen on port 80, unless we have root privileges
+http.createServer(handler).listen(12345);
+console.log('Server started on port 12345');
+~~~
+
+Launch the server above by typing
+
+~~~
+node my_server.js
+~~~
+
+in a terminal. The server is now running and waiting for connections on port 12345 on the localhost. Open your web browser and point it to <http://localhost:12345>. Observe the output in the browser and the terminal.
+
+1. The `req` parameter of `handler` has many interesting fields. Two of them are `req.method` and `req.url`. Modify `handler` so that it logs these two fields on the console. 
+
+2. Visit the following addresses and observe the output in the terminal:
+
+- <http://localhost:12345>;
+- <http://localhost:12345/>;
+- <http://localhost:12345/index.html>;
+- <http://localhost:12345/index.php>;
+- <http://localhost:12345/page?fruit=apple&color=red>.
+
+3. Another very interesting field is `req.headers`, an object containing all the headers sent by the client. Using a `for ... in` loop, print its contents to the console at every request.
+
+
+## Routing
+
+
+## HTML formatting
+
+
+# Templates with Mustache
+
+
+# Connect and Forms
+
