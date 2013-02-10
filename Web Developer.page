@@ -1,11 +1,13 @@
-Web Developer is a Firefox extension targeted to developers working on web applications.
+Web Developer is a Firefox and Chrome extension targeted to developers working on web applications.
 
-It is available for download here: <https://addons.mozilla.org/en-US/firefox/addon/web-developer/>.
+It is available for download here: 
 
+- <https://addons.mozilla.org/en-US/firefox/addon/web-developer/>.
+- <https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm?hl=en>
 
 # Web developer bar
 
-Once installed, Web Developer adds a bar to the top of Firefox. All the tools in Web Developer can be accessed through it. The bar can be toggled with `Shift Ctrl B`. All the items in the bar are also available in the context menu (right click).
+Once installed, Web Developer adds a bar to the top of the browser. All the tools in Web Developer can be accessed through it. The bar can be toggled with `Shift Ctrl B`. All the items in the bar are also available in the context menu (right click).
 
 
 # HTML and validation
