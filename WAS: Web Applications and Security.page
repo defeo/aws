@@ -25,9 +25,9 @@ This wiki is yours. Use it, peruse it, abuse it (but not too much, please... it 
 Class 1 (01/30/2013)
 :   [The World Wide Web, introduction to Javascript](). [[*screencast*]](/vids/class20130130.mp4)
 Class 2 (02/06/2013)
-:   [HTML, the language of the web]().
+:   [HTML, the language of the web]() [*no screencast this week, sorry!*].
 Class 3 (02/13/2013)
-:   
+:   [Cookies, persistence and permanent storage]().
 Class 4 (02/20/2013)
 :   
 Class 5 (02/27/2013)
@@ -47,7 +47,7 @@ Class 9 (04/03/2013)
 Tutorial 1 (02/05/2013)
 :   [First steps in JavaScript]().
 Tutorial 2 (02/12/2013)
-:   
+:   [HTML generation and forms]().
 Tutorial 3 (02/19/2013)
 :   
 Tutorial 4 (02/26/2013)
@@ -68,19 +68,14 @@ Tutorial 7 (03/26/2013)
 - [Other help](/_category/Help)
 
 
-# Links
+# Useful links
 
 - [2011-2012 course](/WAS: Web Applications and Security 2011-2012).
-- [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/), a guide to the more obscure features of [JavaScript]().
-- The Node.js main site <http://www.nodejs.org/>, manual <http://www.nodemanual.org/> and API reference <http://www.nodejs.org/api>;
-- The [Node beginner guide](http://www.nodebeginner.org/) by Manuel Kiessling, and its [french translation](http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/) (all free).
-- Felix Geisendörfer's [Node.js Guide](http://nodeguide.com/);
-- [Eloquent Javascript](http://eloquentjavascript.net/) and its [french translation](http://fr.eloquentjavascript.net/);
-- A short guide to [understand Connect middleware](http://project70.com/nodejs/understanding-connect-and-middleware/);
-- The [Express](http://expressjs.com/) framework for Node.js.
 - The WWW Consortium <http://www.w3.org/>;
 - The W3 Schools <http://www.w3schools.com/> and their HTML5 tutorial <http://www.w3schools.com/html5/>;
 - The HTML validator <http://validator.w3.org/> and the CSS validator <http://jigsaw.w3.org/css-validator/>;
+- The Node.js main site <http://www.nodejs.org/>, manual <http://www.nodemanual.org/> and API reference <http://www.nodejs.org/api>;
+- The [Express](http://expressjs.com/) framework for Node.js.
 - JQuery's documentation <http://docs.jquery.com/>;
 - Raphaël JavaScript graphics library <http://raphaeljs.com/>
 - The [Firefox](http://www.mozilla.org/firefox) and [Chrome](http://www.google.com/chrome) browsers;
@@ -102,30 +97,44 @@ the last) hasn't been written more than, say, five years ago.
 Here is a small selection of links and books that may be more useful
 than the average one.
 
-### Web application generics
-
 ### JavaScript and AJAX
 
+Mozilla Developer Network. *JavaScript Guide*.
+:   In English <https://developer.mozilla.org/en-US/docs/JavaScript/Guide> and French <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. The first place to look for help on [Javascript]().
+Marijn Haverbeke. *Eloquent Javascript*.
+:   In English <http://eloquentjavascript.net/> and French <http://fr.eloquentjavascript.net/>. Very nice introductory book on [JavaScript]().
 D. Crockford. *JavaScript. Gardez le meilleur !*.
 :   Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU: 005.13jaS CRO. Reference book on [JavaScript]() syntax.
+I. Wetzel and Z. Yi Jiang. *JavaScript Garden*.
+:   <http://bonsaiden.github.com/JavaScript-Garden/>. A guide to the more obscure features of [JavaScript]().
 C. Porteneuve. *Bien développer pour le Web 2.0*.
 :   2ème édition. Eyrolles, 2009. ISBN: 978-2-212-12391-3. Côte BU: 005.71aja POR. Excellent book to learn how to write modern and compliant [JavaScript]() and [AJAX](), with an emphasis on best practices. Online examples are available from Eyrolles website. The first edition is very good too, although slightly outdated (2006).
 N. C. Zakas. *Professional JavaScript for Web Developers*.
 :   3rd edition. John Wiley & Sons, 2012. ISBN: 978-1-118-02669-4. Côte BU: 005.71jas ZAK. Very complete book, treating only client side [JavaScript](). It contains a complete reference to [JavaScript]() and the [DOM](), plus extra material on modern features such as Canvases and Web Sockets.
-Mozilla foundation. *Javascript 1.5 Guide and Reference*.
-:   <https://developer.mozilla.org/en/JavaScript/Guide>, <https://developer.mozilla.org/en/JavaScript/Guide>. The first place to look for help on [Javascript]().
-Ivo Wetzel and Zhang Yi Jiang. *JavaScript Garden*.
-:   A guide to the more obscure features of [JavaScript]() <http://bonsaiden.github.com/JavaScript-Garden>.
 B. Catteau and N. Faugout. *AJAX, Le Guide Complet*
 :   4ème édtion. Micro Application Éditions, 2009. ISBN: 978-2-300-022029. Côte BU: 005.71aja CAT. Introductory text on [AJAX](), with some advanced chapters treating design patrons and best practices.
 W3C. *The Document Object Model*.
 :   Level 2 (current) and Level 3 (upcoming) <http://www.w3.org/DOM/DOMTR>.
 Mozilla foundation. *Mozilla DOM resources*.
 :   The reference for the part of the DOM API supported by Firefox <https://developer.mozilla.org/en/Gecko_DOM_Reference>, and related documents <https://developer.mozilla.org/en/DOM>.
-A. MacCaw. *JavaScript Web Applications*.
-:   O'Reilly 2011. ISBN: 978-1-449-30351-8. Côte BU: 005.71jsp MAC. Advanced book discussing both client side and server side [JavaScript](). It focuses on development patterns (mostly MVC), control delegation and [JavaScript]() frameworks.
 T. Stubbs and G. Allain. *JQuery, Le guide complet*
 :   Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte BU: 005.71jsp ALL. For the programmer who already knows [Javascript]() and wishes to get the best out of the advanced features of [JQuery]().
+
+
+### Node.js
+
+*The Node.js manual*.
+:   <http://www.nodemanual.org/>.
+*The Node.js API reference*.
+:   <http://www.nodejs.org/api>.
+M. Kiessling. *The Node beginner guide*.
+:   in English <http://www.nodebeginner.org/>  and French <http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/>.
+F. Geisendörfer. *Node.js Guide*
+:   <http://nodeguide.com/>.
+*Understandanding Connect and middleware*
+:   <http://project70.com/nodejs/understanding-connect-and-middleware/>
+A. MacCaw. *JavaScript Web Applications*.
+:   O'Reilly 2011. ISBN: 978-1-449-30351-8. Côte BU: 005.71jsp MAC. Advanced book discussing both client side and server side [JavaScript](). It focuses on development patterns (mostly MVC), control delegation and [JavaScript]() frameworks.
 
 
 ### HTML and CSS
@@ -147,7 +156,7 @@ B. Lawson and R. Sharp. *Introduction à  HTML5*
 M. Zalewski. *Browser Security Handbook*.
 :   Google Inc 2009. <http://code.google.com/p/browsersec/wiki/Main>. Excellent review on browser security, Same Origin Policy and other experimental mechanisms.
 D. Seguy and P. Gamache. *Sécurité PHP5 et MySQL*.
-:   2ème édition. Eyrolles 2009. ISBN: 978-2-212-12554-2. Côte BU: 005.8 SEG. Introductory book on web security, specifically targeted to the languages of this course. Chapter 2 treats [XSS]() and [CRSF](). The following chapters focus more on the practical than the theoretical side and give tips to secure your [PHP]()+[MySQL]() application. Very useful for your project!
+:   2ème édition. Eyrolles 2009. ISBN: 978-2-212-12554-2. Côte BU: 005.8 SEG. Introductory book on web security. Chapter 2 treats [XSS]() and [CRSF](). The following chapters focus more on the practical than the theoretical side and give tips to secure [PHP]()+[MySQL]() applications. Useful for your project!
 OWASP. *OWASP development guide*
 :   <https://www.owasp.org/index.php/Category:OWASP_Guide_Project>. Very
     complete guide from the OWASP foundation to securing web
