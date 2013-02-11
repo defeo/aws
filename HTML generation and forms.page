@@ -42,7 +42,7 @@ in a terminal. The server is now running and waiting for connections on port 123
 3. Another very interesting field is `req.headers`: an object containing all the headers sent by the client. Using a `for ... in` loop, print its contents to the console at every request.
 
 
-## Presenting [HTML]() to the client
+## Presenting HTML to the client
 
 1. Modify `handler` so that, instead of just sending 'Hello world' to the client, it sends a complete [HTML]() document.
 
@@ -219,4 +219,94 @@ http.createServer(function(req, res) {
 
 # Connect and Forms
 
+The [HTTP]() server created by the `http` module is very primitive. It doesn't even do the most basic tasks related to web programming, such as parsing query strings, parsing cookies, maintaining sessions, etc.
 
+The [`connect`](http://www.senchalabs.org/connect/) module adds to [Node.js]() some very useful tools called *middleware*. `connect` is an optional module and needs to be installed. In a terminal, descend in your project directory and run
+
+~~~
+node install connect
+~~~
+
+Middleware are simple tools filtering the request and the response object in a pipeline. For this tutorial, we will only need the [Query](http://www.senchalabs.org/connect/query.html) and [Body Parser](http://www.senchalabs.org/connect/bodyParser.html) middleware, which can be activated by running the server like this.
+
+~~~ {.javascript}
+var connect = require('connect');
+
+var handler = function (req, res) {
+  // here goes the usual handler code
+}
+
+var app = connect()
+  .use(connect.query())
+  .use(connect.bodyParser())
+  .use(handler)
+  .listen(12345);
+~~~
+
+Once these middleware are activated, GET parameters are automatically loaded go into the object `req.query`, POST  parameters are automatically loaded go into the object `req.body`.
+
+1. Modify `handler` so that it logs `req.method`, `req.url`, `req.query` and `req.body` to the console for any incoming request.
+
+Now we want our server to show different pages depending on what [URL]() was requested by the client. Thanks to the Query middleware, the variable `req._parsedUrl.pathname` contains the request [URL]() without the query string (i.e., the data following `?`).
+
+2.  Modify `handler` so that when the [URL]() is `/`, it responds with an [HTML]() form like the following
+
+    Name: <input type='text'/>, Town: <input type='text'/> <input type='submit'/>
+
+    The form *method* must be GET, and the form action must be `/hello`.
+
+3. Modify `handler` so that when the [URL]() is `/hello` it responds with a message like the following
+
+    > Hello \<name\> from \<town\>!
+
+    Where \<name\> and \<town\> are values to be taken from the query string. If these values are absent, an error message must be print.
+
+4. Modify the `/` and `/hello` paths to use a POST method instead of GET.
+
+We now get to a very useful tool for debugging: a *reflector*. This is similar in spirit to the previous exercise showing all the [HTTP]() headers to the client.
+
+5. Modify `handler` so that when the [URL]() is `/reflector`, it responds with two [HTML]() tables: one containing all the GET parameters, and one containing all the POST parameters. It is wise to use templates here. Test this path by using various forms and query strings.
+
+
+## Routing
+
+When applications become too complex, writing a big `switch` or `if` to map each path to its own script can become a big mess. *Routers* try to simplify things by offering a simple syntax and some parsing facilities.
+
+Install the module [`connect-route`](https://npmjs.org/package/connect-route) with the command
+
+~~~
+npm install connect-route
+~~~
+
+`connect-route` is yet another, very simple, middleware that runs in the `connect` pipeline. It is used like this:
+
+
+~~~ {.javascript}
+var connect = require('connect');
+var route = require('connect-route');
+
+var handler = function (router) {
+  router.get('/', function(req, res) {
+    // code for path / using get method
+  });
+
+  router.get('/hello', function(req, res) {
+    // code for path /hello using get method
+  });
+
+  router.post('/hello', function(req, res) {
+    // code for path /hello using post method
+  });
+}
+
+var app = connect()
+  .use(connect.query())
+  .use(connect.bodyParser())
+  .use(route(handler))
+  .listen(12345);
+~~~
+
+There are much more complex and powerful routers available for [Node.js](), but we won't discuss them here.
+
+
+1. Using the `connect-route` router, write a (small) interactive [gamebook](http://en.wikipedia.org/wiki/Gamebook) like the ones in <http://www.ffproject.com/download.htm>.
