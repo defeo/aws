@@ -1,4 +1,4 @@
-**Note:** Some compatibility problems have been found with older versions of [Node.js]() (e.g., 0.6.x). It is recommended that you use the latest version of [Node.js]() (0.8.x).
+**Note:** Some compatibility problems have occurred with older versions of [Node.js]() (e.g., 0.6.x). It is recommended that you use the latest version of [Node.js]() (0.8.x).
 
 
 # My first web server
@@ -27,27 +27,196 @@ node my_server.js
 
 in a terminal. The server is now running and waiting for connections on port 12345 on the localhost. Open your web browser and point it to <http://localhost:12345>. Observe the output in the browser and the terminal.
 
+## Printing debug information on the console
+
 1. The `req` parameter of `handler` has many interesting fields. Two of them are `req.method` and `req.url`. Modify `handler` so that it logs these two fields on the console. 
 
 2. Visit the following addresses and observe the output in the terminal:
 
-- <http://localhost:12345>;
-- <http://localhost:12345/>;
-- <http://localhost:12345/index.html>;
-- <http://localhost:12345/index.php>;
-- <http://localhost:12345/page?fruit=apple&color=red>.
+    - <http://localhost:12345>;
+    - <http://localhost:12345/>;
+    - <http://localhost:12345/index.html>;
+    - <http://localhost:12345/index.php>;
+    - <http://localhost:12345/page?fruit=apple&color=red>.
 
-3. Another very interesting field is `req.headers`, an object containing all the headers sent by the client. Using a `for ... in` loop, print its contents to the console at every request.
-
-
-## Routing
+3. Another very interesting field is `req.headers`: an object containing all the headers sent by the client. Using a `for ... in` loop, print its contents to the console at every request.
 
 
-## HTML formatting
+## Presenting [HTML]() to the client
+
+1. Modify `handler` so that, instead of just sending 'Hello world' to the client, it sends a complete [HTML]() document.
+
+2. Validate your [HTML]() document using the validator at <http://validator.w3.org>. In the browser, you will have to 'view the page source' (`Ctrl+U` in most browsers), copy the [HTML]() source code, and paste it into the [*Validate by Direct Input*](http://validator.w3.org/#validate_by_input) tab. Correct any errors until the validator is satisfied.
+
+It is very important that you produce valid [HTML]() code. To simplify the validation task, you can install the [Web Developer]() extension in Firefox or Chrome.
+
+3. Modify `handler` so that it sends to the user the list of the headers received in `req.headers`. The list must be formatted as an [HTML table](http://www.w3schools.com/html/html_tables.asp) using the `<table>`, `<tr>` and `<td>` tags. Here is an example of the expected output:
+
+<style>
+  #table { border-collapse: collapse }
+  #table td { border: solid thin black }
+</style>
+
+<table id='table'>
+<tr><td>host</td><td>localhost:12345</td></tr>
+<tr><td>connection</td><td>keep-alive</td></tr>
+<tr><td>cache-control</td><td>max-age=0</td></tr>
+<tr><td>accept</td><td>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</td></tr>
+<tr><td>user-agent</td><td>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.69 Safari/537.17</td></td>
+<tr><td>accept-encoding</td><td>gzip,deflate,sdch</td></tr>
+<tr><td>accept-language</td><td>en-US,en;q=0.8</td></tr>
+<tr><td>accept-charset</td><td>ISO-8859-1,utf-8;q=0.7,*;q=0.3</td></tr>
+</table>
+
+
+Do not forget to validate your [HTML]() code!
 
 
 # Templates with Mustache
 
+In large web applications it is very important to separate the *logic*, written in [JavaScript](), from the *presentation*, written in [HTML](). [*Template languages*](Template language) are small extensions of [HTMl]() specifically targeted toward text transformation. In this tutorial we choose to use [Mustache](http://mustache.github.com/) because of its simplicity, but you are free to use any other template language you like for your personal project.
+
+There are at least two good implementations of Mustache for [Node.js](). They are both optional modules, and have to be installed via a terminal using the `npm` program. Open a terminal, and,  in the same directory where you put all your Node scripts, type
+
+~~~
+npm install mustache
+~~~
+
+this will download the [`mustache`](https://npmjs.org/package/mustache) module and install it locally into your project directory. For this tutorial we are going to use the `mustache` module, but you may also want to try out [`mu2`](https://npmjs.org/package/mu2) for your project.
+
+Mustache is a logic-less template language, meaning that it contains no construct like if's and loops. Its main element is the double bracket
+
+~~~
+{{identifier}}
+~~~
+
+also called a *mustache* (because of the similarity between a bracket and a mustache). Mustaches are named labels, indicating to the Mustache compiler that a substitution must take place. A Mustache template is a file containing normal text, along with some mustaches. For example
+
+~~~
+This is normal text, and this is a mustache: {{my_value}}.
+~~~
+
+Mustache is object oriented. A Mustache compiler expects as input an object whose fields have the same names as the mustaches appearing in the template. It transforms the template by replacing each mustache by the value of the corresponding field.
+
+The method `render` in the module `mustache` is a very simple Mustache compiler.
+
+1. Create a file containing the following code
+
+    ~~~ {.javascript}
+    var mu = require('mustache');
+    
+    var template = "{{greeting}}! Your script is named {{script}} and this is a mustache template.";
+    console.log(mu.render(template, { greeting : process.argv[2],
+                                      script: process.argv[1] }));
+    ~~~
+
+    Run the script from a terminal by trying different arguments on the command line.
+
+Apart from ordinary mustaches, Mustache also supports *sections*. A section has the form
+
+~~~
+{{#identifier}}
+  some more text {{another_mustache}}.
+{{/identifier}}
+~~~
+
+A section is compiled as follows. If `identifier` is equivalent to `true`, the content of the section is parsed and compiled. If `identifier` is equivalent to `false`, the content of the section is ignored. *Inverted sections* have the syntax
+
+~~~
+{{^identifier}}
+  some more text {{another_mustache}}.
+{{/identifier}}
+~~~
+
+and behave the opposite way.
+
+2. Create a file containing the following code and test it
+
+    ~~~ {.javascript}
+    var mu = require('mustache');
+    
+    var template = "{{#a}} a is true {{/a}}, {{^a}} a is false {{/a}}";
+    console.log(mu.render(template, { a : true }));
+    console.log(mu.render(template, { a : false }));
+    ~~~
+
+Sections can also be used for looping. If `identifier` is a list, the section is executed once per element of the list, with the context of the section set to the current element of the list.
+
+3. Test the following code
+
+    ~~~ {.javascript}
+    var mu = require('mustache');
+    
+    var template = "{{#fruits}}fruit: {{fruit}}, color: {{color}}\n{{/fruits}}";
+    console.log(mu.render(template, { fruits : [
+        { fruit: 'apple', color: 'red' },
+        { fruit: 'banana', color: 'yellow' },
+        { fruit: 'mango', color: 'green' }
+    ] }));
+    ~~~
+
+For more constructs and features, read the [documentation of the `mustache` module](https://npmjs.org/package/mustache).
+
+
+Writing large templates in strings is not very comfortable. A better way of using templates is to put them in separate files, and read them at compile time. To read from files we need the `fs` module. Here is the same example as above, but with the template read from a file named `template.mu`.
+
+~~~ {.javascript}
+var mu = require('mustache');
+var fs = require('fs');
+
+var template = fs.readFileSync('template.mu', 'ascii');
+
+console.log(mu.render(template, { fruits : [
+    { fruit: 'apple', color: 'red' },
+    { fruit: 'banana', color: 'yellow' },
+    { fruit: 'mango', color: 'green' }
+] }));
+~~~
+
+
+4. Rewrite the server of the previous section so that the [HTML]() table and code is generated using a Mustache template.
+
+Here is a solution using the [`mu2`](https://npmjs.org/package/mu2) module, rather than `mustache` (the choice of the module only affects the [JavaScript]() code, not the Mustache template).
+
+
+<div style="max-height:6ex;overflow:hidden"
+onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.style.maxHeight='6ex'">
+
+~~~ {.javascript}
+var http = require('http');   // Click to uncover
+var mu = require('mu2');
+
+http.createServer(function(req, res) {
+    var head = [];
+    for (h in req.headers)
+        head.push({ name : h,
+                    value : req.headers[h] });
+
+    mu.compileAndRender( 'my_server.mu', {headers : head}).pipe(res);
+}).listen(12345);
+~~~
+
+~~~ {.html}
+<!-- Contents of my_server.mu -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTTP Header reflector</title>
+  </head>
+  <body>
+    <table border=1>
+    {{#headers}}
+      <tr><td>{{name}}</td><td>{{value}}</td></tr>
+    {{/headers}}
+    </table>
+  </body>
+</html>
+~~~
+
+</div>
+
+
 
 # Connect and Forms
+
 
