@@ -105,7 +105,7 @@ The method `render` in the module `mustache` is a very simple Mustache compiler.
     ~~~ {.javascript}
     var mu = require('mustache');
     
-    var template = "{{greeting}}! Your script is named {{script}} and this is a mustache template.";
+    var template = "{{greeting}}! Your script is named {{{script}}} and this is a mustache template.";
     console.log(mu.render(template, { greeting : process.argv[2],
                                       script: process.argv[1] }));
     ~~~
@@ -224,7 +224,7 @@ The [HTTP]() server created by the `http` module is very primitive. It doesn't e
 The [`connect`](http://www.senchalabs.org/connect/) module adds to [Node.js]() some very useful tools called *middleware*. `connect` is an optional module and needs to be installed. In a terminal, descend in your project directory and run
 
 ~~~
-node install connect
+npm install connect
 ~~~
 
 Middleware are simple tools filtering the request and the response object in a pipeline. For this tutorial, we will only need the [Query](http://www.senchalabs.org/connect/query.html) and [Body Parser](http://www.senchalabs.org/connect/bodyParser.html) middleware, which can be activated by running the server like this.
