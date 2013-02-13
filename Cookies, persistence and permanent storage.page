@@ -1,0 +1,605 @@
+---
+toc: no
+categories: Classes SQL HTTP Node.js
+...
+
+
+# Persistence
+
+<img src='http://imgs.xkcd.com/comics/server_attention_span.png' 
+    alt='' style='width:100%' />
+
+Comic from <http://xkcd.com/869>
+
+# Persistence 
+
+[HTTP]() is a *stateless* protocol: there is no native way for the
+server to remember a client's state between two successive requests.
+
+State can be simulated through data exchanges:
+
+**HTTP headers:** e.g., [HTTP]() authentication. Not common (hard to customize).
+
+**GET/POST persistence:** e.g., session ids. short term persistence.
+
+**Cookies:** short to long term **client-side**.
+
+**Sessions:** short term **server-side** (depends on the server+language)
+
+**Permanent storage:** long term **server-side**. filestore or database ([SQL]() or [NoSQL]()).
+
+
+
+
+# GET persistence
+
+Pass **session data** in GET parameters.
+
+**Example:**
+
+~~~
+http://www.mysite.com/first_connection
+~~~
+
+~~~
+http://www.mysite.com/login?session=0xaaf451f94q34qdfmmm1344342kkfsmskdr
+~~~
+
+~~~
+http://www.mysite.com/user_preferences?session=gj4340fjf44jfff3snvl2rmaltnqepajajdmmfrntma
+~~~
+
+**Advantages:**
+
+> - Easy to implement;
+> - Robust: browser aren't likely to block this.
+> - In theory, could use cryptographic method (encryption, signature) to **secure** data.
+
+**Disadvantages:**
+
+> - Every link to the web application must be dynamically modified to include the session data;
+> - Limited to small amounts of data.
+> - **Security concerns**: the data passed in the GET parameters is stored in server logs and browsing history (even if using HTTPS)
+
+**In practice:**
+
+> - Used for passing **session ids**.
+
+
+
+# POST persistence
+
+**`hidden`** is a special type of `<input>`
+
+~~~ {.html}
+<input type="hidden" name="user" value="toto" />
+<input type="hidden" name="pass" value="1234" />
+<input type="hidden" name="fullname" value="Toto van der Titi" />
+<input type="hidden" name="rights" value="administrator" />
+~~~
+
+Its value is not visible to the user and cannot be modified. It is
+sent at each form submit.
+
+**Advantages:**
+
+> - Robust: browser aren't likely to block this.
+
+**Disadvantages:**
+
+> - Only available within forms and AJAX.
+
+**In practice:**
+
+> - Used in multi-stage forms.
+> - Used as [CSRF]() countermeasure.
+
+
+# Cookie persistance
+
+[Cookies](Cookie) are key-value pairs *temporarily* set by the server on the
+local storage of the client.
+
+- The server asks the browser to store a cookie by sending a
+    **`Set-Cookie` header** in the response:
+
+    ~~~
+    HTTP/1.1 200 OK
+    ...
+    Set-Cookie: user=toto; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr
+    ~~~
+
+- Alternatively, browser side [JavaScript]() can set [Cookies](Cookie)
+  in the client.
+
+- If the browser is configured to accept [Cookies](Cookie), it stores the
+  cookie on the local filestore.
+  
+- From this moment on, the browser sends the [Cookie]() along with any
+    request **to the same domain**.
+
+    ~~~
+    GET /page.php HTTP/1.1
+    ...
+    Cookie: user=toto
+    ~~~
+    
+    
+
+# Structure of a Cookie
+
+~~~
+user=toto; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+~~~
+
+**Key-value pair**
+
+~~~
+user=toto
+~~~
+
+**Domain and path** send the cookie only to **domain** and only to
+  documents under **path**. The domain must be a subdomain of the
+  current server.
+
+~~~
+path=/; domain=.google.fr
+~~~
+
+**Expires** tells the browser when to delete the [Cookie]() (at the
+  latest). A cookie that declares no expiration expires when the
+  browser is shut down.
+
+~~~
+expires=Wed, 25-Jul-2012 17:09:10 GMT
+~~~
+
+**Secure / HttpOnly** secure [Cookies](Cookie) are only sent over
+  HTTPS, HttpOnly [Cookies](Cookie) are only sent over [HTTP]()
+  
+~~~
+HttpOnly
+~~~
+
+
+# Cookies in Node.js
+
+- Set cookies directly
+
+    ~~~ {.javascript}
+    function handler(req, res) {
+        res.writeHead('Set-Cookie', 'user=toto');
+        ...
+        res.end();
+    }
+    ~~~
+
+- Set/Get cookies using a module (e.g. [`cookies`](https://npmjs.org/package/cookies))
+
+    ~~~ {.javascript}
+    var cookies = require('cookies');
+    
+    function handler(req, res) {
+        var ck = new cookies(req, res);
+        ck.set('user', 'toto', { httpOnly : false });
+        var town = ck.get('town');
+        ...
+    }
+    ~~~
+
+- Read cookies in [`connect`](http://www.senchalabs.org/connect)
+
+    ~~~ {.javascript}
+    var connect = require('connect');
+    
+    function handler(req, res) {
+        var town = req.cookies.town;
+        ...
+    }
+    
+    connect().use(connect.cookieParser()).use(handler).listen(80);
+    ~~~
+
+
+# Cookie persistence
+
+
+**Advantages:**
+
+> - Requires no modification of the web page: cookies are automatically sent in the headers.
+> - Persistence can be long termed.
+
+**Disadvantages:**
+
+> - The client may refuse cookies.
+
+**In practice:**
+
+> - Used for passing **session ids**.
+> - Can use cryptographic methods (encryption, signature) to secure data (e.g. used in [`connect.cookieSession`](http://www.senchalabs.org/connect/cookieSession.html)).
+
+
+
+# Never trust client-side persistance !
+
+> - The client may refuse cookies.
+
+> - Hidden inputs can be easily modified using extensions (e.g. [Web Developer]()).
+
+> - GET, POST and Cookies can be modified by a malicious attacker.
+
+> - The client may be a robot.
+
+
+**Never ever** store secret information on the client (for example in
+  a [Cookie]()), unless it is cryptographically encrypted. For
+  example, this is the **dumbest cookie use ever**:
+  
+~~~
+Set-Cookie: password=mysecretpassword
+~~~
+
+~~~ {.javascript}
+var conn = require('connect')
+
+function handler(req, res) {
+    if (req.cookies.password == req.body.password)
+        transfer_money_to(req.body.account);
+    }
+}
+
+conn().use(conn.bodyParser()).use(conn.cookieParser())
+      .use(handler).listen(80);
+~~~
+
+
+
+# Server-side sessions
+
+Server-side **sessions** are similar to **user accounts**. They
+implement *temporary* server-side persistence.
+
+- When the client connects for the first time, a **session id** is
+  generated and exchanged with the client. This can be done using
+  **GET persistence** or **[cookies](Cookie)**.
+  
+- After the session is created, a temporary **key-value store** is set up
+  on the server. This can be a *reserved memory block*, a
+  *temporary file*, or a *database store*.
+  
+- At each following connection using the same session id, the contents
+  of the key-value store are restored and passed to the *handler*
+
+
+# Server-side sessions
+
+<img width="80%" src="/php-session.gif" alt="PHP session example" />
+
+
+# Example with `connect.session()`
+
+~~~ {.javascript}
+var conn = require('connect');
+
+function handler(req, res) {
+    if (req.url == '/login')
+        req.session.user = req.body.user;        // save username
+    else if (req.url == '/profile'
+             && req.session.user)
+        res.write('Hello ' + req.session.user);  // retrieve user name
+    ...
+}
+
+conn().use(conn.cookieParser()).use(conn.bodyParser())
+      .use(conn.session( { secret : '12345' } ));
+~~~
+
+- When the user visits `www.mysite.com/login`, the username is saved in **`req.session`**.
+
+- Later, when the user visits another page
+  (e.g. `www.mysiste.com/profile`), we check that the user is logged
+  in by check the values stored in **`req.session`**.
+  
+- We retrieve the user name saved in **`req.session.user`**.
+  
+
+# Server-side sessions
+
+**Advantages:**
+
+> - Transparent to the programmer.
+> - Optimized by the server.
+> - Lighter than user accounts.
+
+**Disadvantages:**
+
+> - Needs a temporary store (memory, filesystem, DB).
+> - Heavier than GET / POST / Cookies.
+> - Additional server load.
+
+**In Practice:**
+
+> - Often uses an external specialized service for key-value store
+    (e.g., Redis, Memcached, [SQL]() databases)
+
+
+
+# The sooner said, the better!
+
+**Do not store sensible data on the client**, do not use GET
+  parameters for transmitting them.
+
+**Make session ids hard to guess:** use random generators and large
+  keyspace.
+  
+**Encrypt critical session:** cookies that handle critical operations
+  should only travel over HTTPS.
+
+A hacker who can **steal a session [Cookie]()** may gain access to a
+user's private data
+
+**Make short-lived cookies:** session cookies, identification data,
+  etc. should expire quickly, and in no case should survive the
+  browser shut-down (unlike Facebook cookies!)
+  
+**Double check before doing critical operations:** e.g., ask the
+  password again before transferring money to an external bank
+  account!
+
+**AND ALWAYS SANITIZE YOUR DATA!**
+
+
+# Permanent store
+
+<img width="80%" src="/php-session.gif" alt="PHP session example" />
+
+- Just like sessions, but with permanent data
+- **Databases**: fast, decentralized, error recovery, concurrent access.
+
+
+# Accessing a database: SQL
+
+Most popular language: **S**tructured **Q**uery **L**anguage
+
+**Data is contained in tables**
+
+--- ----------- ---------- ----------- -----------
+id  first       last       profession  birth
+--- ----------- ---------- ----------- -----------
+1   Edgar       Poe        writer      1809-01-19
+
+2   Mark        Twain      writer      1835-11-30
+
+3   Mika        Salo       pilot       1966-11-30
+
+4   Jack        Kerouac    writer      1922-03-12
+
+5   Jonathan    Swift      writer      1667-11-30
+
+6   Michael     Schumacher pilot       1969-01-03
+
+...
+--- ----------- ---------- ----------- -----------
+
+
+
+# The SQL language
+
+**Keywords:** (capitalized by convention) `SELECT`, `CREATE`,
+  `UPDATE`, `FROM`, `WHERE`, ...
+
+**Identifiers:** first, last, profession, ...
+
+**Operators:** `<`, `>`, `=`, `<>`, `LIKE`, `+`, `*`, `AND`, `OR`, ...
+
+**Data Types:** text, numeric, dates, mixed, `NULL`, ...
+
+
+
+
+# Access queries
+
+**Queries** return tables (the ordering is not guaranteed)
+
+~~~ {.sql}
+SELECT first, last FROM People WHERE profession='pilot'
+~~~
+
+--- ----------- ----------
+id  first       last      
+--- ----------- ----------
+6   Michael     Schumacher
+
+3   Mika        Salo
+--- ----------- ----------
+
+~~~ {.sql}
+SELECT DISTINCT profession WHERE birth LIKE '%-11-30'
+~~~
+
+-------
+birth
+-------
+writer
+
+pilot
+-------
+
+
+# Joining many tables
+
+----------- -------
+profession  salary
+----------- -------
+pilot       1000K
+
+programmer  60K
+
+writer      50K
+
+professor   40K
+----------- -------
+
+~~~ {.sql}
+SELECT * FROM People p, Salaries s WHERE p.profession = s.profession
+~~~
+
+~~~ {.sql}
+SELECT * FROM People p INNER JOIN Salaries s ON p.profession = s.profession
+~~~
+
+~~~ {.sql}
+SELECT * FROM People INNER JOIN Salaries USING(profession)
+~~~
+
+--- ----------- ---------- ----------- ----------- -------
+id  first       last       profession  birth       salary
+--- ----------- ---------- ----------- ----------- -------
+1   Edgar       Poe        writer      1809-01-19  50K
+
+2   Mark        Twain      writer      1835-11-30  50K
+
+3   Mika        Salo       pilot       1966-11-30  1000K
+
+4   Jack        Kerouac    writer      1922-03-12  50K
+
+...
+--- ----------- ---------- ----------- ----------- -------
+
+
+
+# Modifying tables
+
+
+**Create a new line**
+
+~~~ {.sql}
+INSERT INTO People VALUES ('George', 'Washington', 'president', '1732-02-22')
+~~~
+
+**Delete a line**
+
+~~~ {.sql}
+DELETE FROM People WHERE profession = 'writer'
+~~~
+
+**Edit a line**
+
+~~~ {.sql}
+UPDATE Salaries SET salary = 100k WHERE profession = 'professor'
+~~~
+
+**Create a table**
+
+~~~ {.sql}
+CREATE TABLE Cars (
+    id int NOT NULL AUTO INCREMENT,
+    model varchar(255),
+    constructor varchar(255),
+    color varchar(255),
+    PRIMARY KEY (id)
+)
+~~~
+
+
+**Delete a table**
+
+~~~ {.sql}
+DROP TABLE Salaries
+~~~
+
+
+# SQL quotes and other stuff
+
+**Comments:** using double dash (`--`)
+
+~~~ {.sql}
+-- This is a comment
+~~~
+
+**Strings:** go in **simple** or **double** quotes
+
+~~~ {.sql}
+SELECT * FROM Cars WHERE color = 'blue' AND constructor = "Peugeot"
+~~~
+
+**Backquotes** can be used to include spaces in **identifiers** (MySQL only)
+
+~~~ {.sql}
+SELECT * FROM `French towns`
+~~~
+
+**Wildcards** can be used in `LIKE` expressions
+
+~~~ {.sql}
+SELECT * FROM `French towns` WHERE name LIKE '%les_bains'
+~~~
+
+> - **`%`** matches *any number* of characters
+> - **`_`** matches *exactly one* character
+
+
+# Resources
+
+**The complete MySQL reference**
+
+> <http://dev.mysql.com/doc/refman/5.0/en/>
+
+**The SQLite reference**
+
+> <http://www.sqlite.org/lang.html>
+
+**A quick and complete reference with examples**
+
+> <http://www.w3schools.com/sql/>
+
+
+# SQL in Node.js
+
+There are dozens of modules for the various SQL databases.
+
+- **MySQL:** [`mysql`](https://npmjs.org/package/mysql);
+- **SQLite:** [`sqlite3`](https://npmjs.org/package/sqlite3), [`node-sqlite-purejs`](https://npmjs.org/package/node-sqlite-purejs);
+- **Others** [`connect-sqlite3` (session store)](https://npmjs.org/package/connect-sqlite3), [`pg` (Postgres)](https://npmjs.org/package/pg), ...
+
+~~~ {.javascript}
+var sqlite3 = require('sqlite3');
+
+var db = new sqlite3.Database(':memory:');
+
+db.run("CREATE TABLE users (username VARCHAR(20) NOT NULL,"
+       + "password VARCHAR(20) NOT NULL,"
+       + "PRIMARY KEY (username))");
+
+db.run("SELECT * FROM users WHERE user='toto' AND pass='12345'", 
+       function (err, row) {
+         if (err)
+           console.log('ERROR');
+         else
+           console.log('Hello ' + row.user);
+       } );
+~~~
+
+
+
+# NoSQL
+
+**Advantages of [SQL]():**
+
+- Relational model, rich semantics.
+- Widely adopted.
+
+**Disadvantages:**
+
+- Hard to scale, slow performance.
+- Complex semantics, error prone.
+
+**NoSQL** databases adopt the opposite approach:
+
+- Targeted at huge quantities of data (e.g. Twitter, Facebook, Gmail, ...).
+- No relational model, only simple storage (e.g. key-value).
+
+
+**Popular NoSQL** databases: Couchbase, CouchDB, MongoDB, Memcached,
+Redis, Coherence, BigTable, InfinityDB, Mnesia,...
+
