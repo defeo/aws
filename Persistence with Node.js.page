@@ -182,3 +182,50 @@ cookies. How do you reset the counter to zero?
 
 # Permanent storage and user accounts
 
+Finally, we see how to permanently store information about the user. We will use sqlite as permanent storage. There are at least two modules to use sqlite in [Node.js](). The first one is [`node-sqlite-purejs`}(https://npmjs.org/package/node-sqlite-purejs), it can be installed like this
+
+~~~
+npm install node-sqlite-purejs
+~~~
+
+It is easier to install, so we are going to use it in this tutorial
+
+The second module is [`sqlite3`](https://github.com/developmentseed/node-sqlite3/wiki). It is faster and more complete than `node-sqlite-purejs`, but it has to be compiled before using it. In Linux, this should be as easy as 
+
+~~~
+npm install sqlite3
+~~~
+
+provided you have the necessary dependencies already installed (basically, python an gcc). In Windows or MacOS, compiling this module comes close to a nightmare, so better avoiding it for the moment.
+
+To open or create a new database using `node-sqlite-purejs`, use the `open` method. The following example opens a database in a file `db.sql`, then executes a callback once the file is open.
+
+~~~ {.javascript}
+var sql = require('node-sqlite-purejs');
+
+sql.open('db.sql', {}, function(err, db) {
+  if (err)
+    console.log('An error occurred: ' + err);
+  else
+    console.log('Database opened');
+});
+~~~
+
+To execute an [SQL]() command with `node-sqlite-purejs`, use the `exec` method of the database object. The result is given in a callback, as usual.
+
+~~~ {.javascript}
+var sql = require('node-sqlite-purejs');
+
+sql.open('db.sql', {}, function(err, db) {
+  if (!err) {
+    db.exec("SELECT * FROM users",
+            // this callback prints the whole result on the console
+            function(err, result) {
+              if (err) 
+                console.log('Error: ' + err);
+              else
+                console.log(result)
+  }
+});
+~~~
+
