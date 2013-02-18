@@ -309,4 +309,4 @@ var app = connect()
 There are much more complex and powerful routers available for [Node.js](), but we won't discuss them here.
 
 
-1. Using the `connect-route` router, write a (small) interactive [gamebook](http://en.wikipedia.org/wiki/Gamebook) like the ones in <http://www.ffproject.com/download.htm>.
+1. (Optional) Using the `connect-route` router, write a (small) interactive [gamebook](http://en.wikipedia.org/wiki/Gamebook) like the ones in <http://www.ffproject.com/download.htm>.
