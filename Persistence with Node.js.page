@@ -182,13 +182,11 @@ cookies. How do you reset the counter to zero?
 
 # Permanent storage and user accounts
 
-Finally, we see how to permanently store information about the user. We will use sqlite as permanent storage. There are at least two modules to use sqlite in [Node.js](). The first one is [`node-sqlite-purejs`}(https://npmjs.org/package/node-sqlite-purejs), it can be installed like this
+Finally, we see how to permanently store information about the user. We will use sqlite for the examples of this section. There are at least two modules providing an interface to sqlite in [Node.js](). The first one is [`node-sqlite-purejs`](https://npmjs.org/package/node-sqlite-purejs), it can be installed like this
 
 ~~~
 npm install node-sqlite-purejs
 ~~~
-
-It is easier to install, so we are going to use it in this tutorial
 
 The second module is [`sqlite3`](https://github.com/developmentseed/node-sqlite3/wiki). It is faster and more complete than `node-sqlite-purejs`, but it has to be compiled before using it. In Linux, this should be as easy as 
 
@@ -196,7 +194,17 @@ The second module is [`sqlite3`](https://github.com/developmentseed/node-sqlite3
 npm install sqlite3
 ~~~
 
-provided you have the necessary dependencies already installed (basically, python an gcc). In Windows or MacOS, compiling this module comes close to a nightmare, so better avoiding it for the moment.
+provided you have the necessary dependencies already installed (basically, python an gcc). In Windows or MacOS, compiling this module comes close to a nightmare, so better avoiding it for the moment. Because of this problems, all the examples will use `node-sqlite-purejs`.
+
+To explore the contents of a sqlite3 database file independently of [Node.js](), you can use the sqlite3 executable available [here](http://www.sqlite.org/download.html).
+
+Finally, if you have already installed a MySQL database on your computer, you can install the [`mysql`](https://npmjs.org/package/mysql) module
+
+~~~
+npm install mysql
+~~~
+
+and use it to connect to your database.
 
 To open or create a new database using `node-sqlite-purejs`, use the `open` method. The following example opens a database in a file `db.sql`, then executes a callback once the file is open.
 
@@ -216,16 +224,54 @@ To execute an [SQL]() command with `node-sqlite-purejs`, use the `exec` method o
 ~~~ {.javascript}
 var sql = require('node-sqlite-purejs');
 
-sql.open('db.sql', {}, function(err, db) {
-  if (!err) {
-    db.exec("SELECT * FROM users",
-            // this callback prints the whole result on the console
-            function(err, result) {
-              if (err) 
-                console.log('Error: ' + err);
-              else
-                console.log(result)
-  }
-});
+sql.open('db.sql', {},
+         function(err, db) {
+           if (!err) {
+             db.exec("SELECT * FROM users",
+                     // this callback prints the whole result on the console
+                     function(err, result) {
+                       if (err) 
+                         console.log('Error: ' + err);
+                       else
+                         console.log(result)
+                     } );
+           }
+         } );
 ~~~
+
+The corresponding action in `mysql` is achieved using the `createConnection` and the `query` methods.
+
+~~~ {.javascript}
+var sql = require('mysql');
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'foo',
+  password : 'bar',
+});
+
+connection.connect(
+  function(err) {
+    if (!err) {
+      connection.query("SELECT * FROM users",
+                       // this callback prints the whole result on the console
+                       function(err, result) {
+                         if (err) 
+                           console.log('Error: ' + err);
+                         else
+                           console.log(result)
+                       } );
+    }
+  } );
+~~~
+
+Now, we are going to implement a simplistic cookie based server-side session with permanent [SQL]() storage. We want to construct a simple server remembering the name and birth date of each visitor; the link with the visitors is made through a cookie containing a random session id. It is suggested that you use the `cookies` module, and the [SQL]() module of your choice.
+
+1. Using the `cookies` module, write a [Node.js]() script which, upon the first visit from a client, assigns a session cookie containing a random identifier. You can use the [`Math.random()`](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/random) function to generate a random number between 0 and 1.
+
+2. Using [Node.js](), or directly using your [SQL]() software, create a table with the following columns: a session id, a first name, a surname and a birthday.
+
+3. Modify your script so that when a new session identifier is generated, it is inserted in the [SQL]() table.
+
+4. Add an [HTML]() form to your script, with inputs for the name and birth date. When the form is submitted, its contents must be stored in the database.
 
