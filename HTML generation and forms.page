@@ -243,7 +243,7 @@ var app = connect()
   .listen(12345);
 ~~~
 
-Once these middleware are activated, GET parameters are automatically loaded go into the object `req.query`, POST  parameters are automatically loaded go into the object `req.body`.
+Once these middleware are activated, GET parameters are automatically loaded go into the object `req.query`, POST  parameters are automatically loaded into the object `req.body`.
 
 1. Modify `handler` so that it logs `req.method`, `req.url`, `req.query` and `req.body` to the console for any incoming request.
 
