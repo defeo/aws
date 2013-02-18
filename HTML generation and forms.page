@@ -243,11 +243,17 @@ var app = connect()
   .listen(12345);
 ~~~
 
-Once these middleware are activated, GET parameters are automatically loaded go into the object `req.query`, POST  parameters are automatically loaded into the object `req.body`.
+Once these middleware are activated, GET parameters are automatically loaded into the object `req.query`, POST  parameters are automatically loaded into the object `req.body`.
 
 1. Modify `handler` so that it logs `req.method`, `req.url`, `req.query` and `req.body` to the console for any incoming request.
 
-Now we want our server to show different pages depending on what [URL]() was requested by the client. Thanks to the Query middleware, the variable `req._parsedUrl.pathname` contains the request [URL]() without the query string (i.e., the data following `?`).
+## Paths
+
+Now we want our server to show different pages depending on what [URL]() was requested in the [HTTP] request. Recall that this information is available in the `req.url` object; however, `req.url` contains the whole *path*, including the *query string* (i.e., including the GET parameters following `?`).
+
+Fortunately, thanks to the Query middleware, the variable `req._parsedUrl.pathname` contains the request [URL]() without the *query string*. The underscore `_` indicates that the object `_parsedUrl` is not part of the public API, and might change in future versions of `connect`, but it will be just fine for this tutorial.
+
+Using a `if` or `switch` construct on `req._parsedUrl.pathname`, we can serve different pages to the client from the same `handler` function. In what follows we will use interchangeably the nouns [URL]() and *path* to talk about the page requested by the client.
 
 2.  Modify `handler` so that when the [URL]() is `/`, it responds with an [HTML]() form like the following
 
@@ -263,12 +269,30 @@ Now we want our server to show different pages depending on what [URL]() was req
 
 4. Modify the `/` and `/hello` paths to use a POST method instead of GET.
 
+
+## The reflector
+
 We now get to a very useful tool for debugging: a *reflector*. This is similar in spirit to the previous exercise showing all the [HTTP]() headers to the client.
 
 5. Modify `handler` so that when the [URL]() is `/reflector`, it responds with two [HTML]() tables: one containing all the GET parameters, and one containing all the POST parameters. It is wise to use templates here. Test this path by using various forms and query strings.
 
+6. Modify the path `/` so that it presents a form containing *at least* one **reset**,
+    one **button** and two **submit** controls like this:
 
-## Routing
+    ~~~ {.html}
+    <input type="button" name="b" value="Something" />
+    <input type="reset" name="r" value="Erase" />
+    <input type="submit" name="submit" value="Left" />
+    <input type="submit" name="submit" value="Right" />
+    ~~~
+
+    Test the form by submitting data to the `/reflector` path using both the
+    GET and the POST methods.
+ 
+7. Test the `<input type="image">` control.
+
+
+## Routing (Optional)
 
 When applications become too complex, writing a big `switch` or `if` to map each path to its own script can become a big mess. *Routers* try to simplify things by offering a simple syntax and some parsing facilities.
 
@@ -306,7 +330,16 @@ var app = connect()
   .listen(12345);
 ~~~
 
-There are much more complex and powerful routers available for [Node.js](), but we won't discuss them here.
+`connect-route` also supports a very simple form of wildcard expansion, using the colon `:` operator. In the following code
 
+~~~ {.javascript}
+var handler = function (router) {
+  router.get('/home/:blabla', function(req, res) {
+    console.log(req.params.blabla)
+  });
+};
+~~~
 
-1. (Optional) Using the `connect-route` router, write a (small) interactive [gamebook](http://en.wikipedia.org/wiki/Gamebook) like the ones in <http://www.ffproject.com/download.htm>.
+the object `req.params` is filled with a key `blabla` whose value corresponds to the part of the request path following `/home/`, and excluding the query parameters. There are much more complex and powerful routers available for [Node.js](), but we won't discuss them here.
+
+1. Using the `connect-route` router, write a (small) interactive [gamebook](http://en.wikipedia.org/wiki/Gamebook) like the ones in <http://www.ffproject.com/download.htm>.
