@@ -1,0 +1,184 @@
+# Client-side persistence
+
+By *persistence* we mean the ability of the server to identify a
+client across multiple [HTTP]() requests. In this section we are going
+to make a tour of the various persistence techniques at the disposal
+of the web developer; our prototype will be a simple page counting the
+number of times it has been visited by a given client.
+
+Throughout this tutorial, you will be writing scripts presenting their output as HTML pages. You are free to produce [HTML]() the way you like, but you are advised to use templates for complex tasks.
+
+
+## GET persistence
+
+Create a [Node.js]() script counting the number of visits using [GET persistence](http://swift.prism.uvsq.fr/Cookies,%20persistence%20and%20permanent%20storage). The output should be a simple web page looking like this:
+
+<div style="margin:0 4em 0 4em; padding: 1em; border:solid thin black; overflow:scroll; max-height:8em;">
+<p>Hello,</p>
+<p>You have visited this page X times</p>
+<p><a href="">visit this page again</a></p>
+</div>
+
+where X is the number of times the client has visited the page;
+clicking on the link points the user to the same page, with the
+counter incremented by one.
+
+**Suggestions:**
+
+- Use the `query()` middleware of `connect`.
+- Use a GET parameter, say `vcount` to count the number of visits. If
+  it is not set, the number of visits by the client will be assumed to
+  be zero.
+- Use the value of `vcount` to generate the link.
+- Be careful: when `vcount` is not set, its value will be `undefined`.
+
+
+Here's some thoughts on security:
+
+1. Modify your script so that after 1000 visits it prints "Dear
+customer, to thank you of your fidelity we offer you a 1000 euros!".
+
+2. Without modifying the script, and without clicking a thousand
+times, win the 1000 euros.
+
+
+Here's a solution using a Mustache template.
+
+<div style="max-height:6ex;overflow:hidden"
+onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.style.maxHeight='6ex'">
+
+~~~ {.javascript}
+var mu = require('mustache');   // Click to uncover
+var fs = require('fs');
+
+var template = fs.readFileSync('template.mu', 'ascii');
+
+function count(req, res) {
+    var count = +req.query.count || 0;
+    res.end(mu.render(template, { c : count,
+                                  c1 : count+1,
+                                  thousand : count >= 1000 }));
+}
+
+var app = connect()
+    .use(connect.query())
+    .use(count)
+    .listen(12345);
+~~~
+
+~~~ {.html}
+<!-- Contents of template.mu -->
+<html>
+  <head>
+    <title>Get counter</title>
+  </head>
+  <body>
+    {{^thousand}}
+      <p>You visited this page {{c}} times.</p>
+      <p><a href='?count={{c1}}'>Visit again.</a></p>
+    {{/thousand}}
+    {{#thousand}}
+      <p>Dear customer, to thank you of your fidelity we offer you a 1000 euros!</p>
+    {{/thousand}}
+  </body>
+<html>
+~~~
+
+</div>
+
+
+## POST persistence
+
+1. Write a [Node.js]() script achieving the same result as before
+using [POST persistence](http://swift.prism.uvsq.fr/Cookies,%20persistence%20and%20permanent%20storage).
+
+**Suggestions**:
+
+- Use the `bodyParser()` middleware of `connect`.
+- Use a web form and an `<input type="hidden"/>` tag.
+- Be careful: when a form input is not set, its value will be `undefined`.
+
+\ 
+
+2. Since POST data are harder (aren't they?) to hack than GET data,
+you can now offer 10000 euros to the thousandth visit.
+
+3. Install the [Web Developer]() extension for Firefox and explore the
+"Forms" menu (in particular the "Display Form Details" option). Win
+the 10000 euros without clicking a thousand times.
+
+
+## Cookie persistence
+
+Install the [`cookies`](https://npmjs.org/package/cookies) module by typing
+
+~~~
+npm install cookies
+~~~
+
+and read the [documentation](https://npmjs.org/package/cookies).
+
+1. Write a [Node.js]() script achieving the same result as
+before using [Cookie persistence](http://swift.prism.uvsq.fr/Cookies,%20persistence%20and%20permanent%20storage).
+
+**Suggestions:**
+
+- This time, you don't even need a link back to the same page:
+refreshing the page is enough to send the cookie back.
+- Be careful: when a cookie is not already set, its value will be `undefined`.
+  
+\ 
+
+2. Since cookies are *really* hard to hack (of course they are!),
+offer a million euros to the thousandth visit.
+
+3. By default cookies expire after the browser is closed. Modify your script so that the cookie lasts one hour.
+
+4. Using the [Web Developer]() "Cookies" menu, in particular the "View
+Cookie Information" function, win the million euros.
+
+
+
+# Server-side persistence
+
+In the previous section we have seen that client-side persistence
+cannot help against clients maliciously modifying session
+data. Server-side persistence works the opposite way: the session data
+is kept on the server in a temporary file, while only an ephemeral
+identification string, called the **session id** is exchanged with the
+client using the techniques seen above.
+
+**Warning:** while a client cannot directly modify its own session
+  data, it is still possible for her to cheat by guessing someone
+  else's session id! This is called [Session theft]().
+
+`connect` offers a transparent server-side [session middleware](http://www.senchalabs.org/connect/session.html) with cryptographic signing of cookies. It is used like this
+
+~~~ {.javascript}
+var connect = require('connect');
+
+function handler(req, res) {
+  if (req.session.username)
+    res.write('Hello ' + req.session.username);
+  else
+    res.write('Please login');
+}
+
+connect()
+  .use(connect.cookieParser())
+  .use(connect.session({ secret: 'cookie secret' }))
+  .use(handler)
+  .listen(12345)
+~~~
+
+By default it stores the session data in memory, however, the session store can be configured through the `store` parameter. The module [connect-sqlite3](https://npmjs.org/package/connect-sqlite3) offers a session store for `connect` based on sqlite3.
+
+1. Write a [Node.js]() script that counts the number of visits
+using `connect` sessions.
+2. Do you think you can win the million euros?
+3. Using [Web Developer](), examine how `connect` handles session
+cookies. How do you reset the counter to zero?
+
+
+# Permanent storage and user accounts
+
