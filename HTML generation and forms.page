@@ -135,9 +135,10 @@ and behave the opposite way.
     ~~~ {.javascript}
     var mu = require('mustache');
     
-    var template = "{{#a}} a is true {{/a}}, {{^a}} a is false {{/a}}";
-    console.log(mu.render(template, { a : true }));
-    console.log(mu.render(template, { a : false }));
+    var template = "{{#a}} here's a pound: # {{/a}}, {{^a}} here's a caret ^ {{/a}}";
+    console.log("First try (a=true): " + mu.render(template, { a : true }));
+    console.log("Second try (a=false): " + mu.render(template, { a : false }));
+    console.log("Third try (a=0): " + mu.render(template, { a : 0 }));
     ~~~
 
 Sections can also be used for looping. If `identifier` is a list, the section is executed once per element of the list, with the context of the section set to the current element of the list.
