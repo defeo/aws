@@ -1,0 +1,774 @@
+---
+categories: Classes CSS DOM JavaScript 
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+
+
+# HTML is for content, not visualization
+
+HTML tags instruct on what is the **meaning** (the **semantic**) of a
+piece of data. Not on how the data should be **presented**
+
+Example. The much debated `<i>` tag (which originally stands for *italic*)
+
+~~~
+<i>Some text</i>
+~~~
+
+is usually displayed like this
+
+> *Some text*
+
+However the [HTML5]() definition now says
+
+> The i element now represents a span of text in an alternate voice or
+  mood, or otherwise offset from the normal prose in a manner
+  indicating a different quality of text, such as a taxonomic
+  designation, a technical term, an idiomatic phrase from another
+  language, a thought, or a ship name in Western texts.
+
+
+# Never make assumptions on how a tag is presented in a browser
+
+Think of:
+
+> - Textual browsers;
+> - Visually impaired users;
+> - Users who read in foreign languages (which may not have the concept of *italic*);
+> - Third party websites that may reuse your content.
+
+So, who decides how things are presented?
+
+The answer is **Style sheets**.
+
+
+
+# Cascading Style Sheets
+
+CSS is a language for asserting presentational directives.
+
+**Cascading** means that multiple style sheets can be applied to a
+  document, the result being calculated according to some precise
+  precedence rules.
+  
+~~~ {.css}
+p.lead {
+  font-weight: bold;
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, sans-serif;
+  padding: 2pt;
+}
+
+p.lead:first-letter {
+  font-size: 200%;
+}
+
+p.lead em {
+  font-variant: small-caps;
+  font-style: normal;
+}
+~~~
+
+<div>
+<style scoped>
+p.lead {
+  font-weight: bold;
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, sans-serif;
+  padding: 2pt;
+}
+
+p.lead:first-letter {
+  font-size: 200%;
+}
+
+p.lead em {
+  font-variant: small-caps;
+  font-style: normal;
+}
+</style>
+
+<p class="lead">Lorem ispsum <em>dolor sit</em> amet</p>
+</div>
+
+
+# The general CSS syntax
+
+**CSS rule**
+
+~~~ {.css}
+selector {property: value; property:value; ...}
+~~~
+
+**Comments**
+
+~~~ {.css}
+/* This is the only way to make a comment in CSS
+   (i.e., // does not introduce a comment)       */
+~~~
+
+**At-rules**
+
+~~~ {.css}
+@import "otherstyle.css";    /* Reads in the style sheet */
+@media screen;               /* Only apply to screen presentation
+                                (e.g., not for printing) */
+~~~
+
+Current reference: <http://www.w3.org/TR/2011/REC-CSS2-20110607/>
+
+CSS3 draft is too big to fit in one module. See <http://www.w3.org/Style/CSS/>
+
+
+# CSS Selectors
+
+**Simple selectors (`tag` is always optional)**
+
+~~~ {.css}
+tag {...}                /* Apply to any <tag>                     */
+tag.class {...}          /* Apply to <tag>'s of class class        */
+#id {...}                /* Apply to the element identified by id  */
+tag:pseudoclass {...}    /* Selection of special content           */
+tag[att=val] {...}       /* Apply to <tag> only if it has attribute
+                            att equal to val                       */
+~~~
+
+**Selector combinators**
+
+~~~ {.css}
+selector, selector {...}  /* Apply to each selector                       */
+parent child {...}        /* Apply to child only when it is contained in
+                             parent                                       */
+parent > child {...}      /* Apply to child only when it is immediately
+                             contained in parent                          */
+sister ~ brother {...}    /* Apply to brother only when it follows sister */
+sister + brother {...}    /* Apply to brother only when it immediately
+                             follows sister                               */
+~~~
+
+Complete reference: <http://www.w3.org/TR/CSS2/selector.html>
+
+CSS3 draft: <http://www.w3.org/TR/2011/REC-css3-selectors-20110929>
+
+
+# Where goes the style?
+
+~~~ {.html}
+<html>
+  <head>
+    <title>...</title>
+    <!-- These apply to the whole document -->
+    <link rel='stylesheet' href='sheet.css' type='text/css' />
+    <style>
+      body {font-family: Arial;}
+    </style>
+  </head>
+  <body>
+    <div>
+      <!-- This only applies inside this div (since HTML5) -->
+      <style scoped>
+        p {color:blue;}
+      </style>
+      
+      <!-- This only affects this paragraph.
+           CSS syntax inside the style attribute
+           is limited -->
+      <p style="font-weight:bold">...</p>
+    </div>
+  </body>
+</html>
+~~~
+
+
+# The document and the style
+
+~~~ {.html}
+<style>
+  .lerouge {color:red;}
+  div.lerouge {background-color:yellow;}
+  #lenoir {color:black;}
+  div p {font-style:italic;}
+</style>
+...
+<p class="lerouge">First</p>
+<div class="lerouge">
+  <p id="lenoir">Second</p>
+  <p>Third</p>
+</div>
+~~~
+
+<div>
+<style scoped>
+  .lerouge {color:red;}
+  div.lerouge {background-color:yellow;}
+  #lenoir {color:black;}
+  /* I cheat to avoid HTML4 unscoped problems */
+  div.lerouge p {font-style:italic;}
+</style>
+<p class="lerouge">First</p>
+<div class="lerouge">
+  <p id="lenoir">Second</p>
+  <p>Third</p>
+</div>
+</div>
+
+
+# The box model
+
+Every element is seen by CSS as one of these three types of **boxes**:
+
+<div style="background-color: yellow">
+
+**Block:** A block looks like a rectangle. It takes the whole width of
+  the page and as much height as necessary.
+
+</div>
+
+**Inline:** <span style="background-color:yellow"> Inlines look like
+lines of text, which can wrap around the end of a line. They take just
+as much space as they need.</span>
+
+<div style="display:inline-block;width:60%;background-color:yellow">
+
+**Inline-block:** Inline blocks look like blocks in that they do not
+  wrap around line ends, but more inline blocks can live on the same
+  line and they take only as much space as they need.
+
+</div>
+
+<div style="display:inline-block;background-color:red;">
+
+I take little space
+
+</div>
+
+> - Blocks by default: **`<div>`**, `<hX>`, `<p>`, ...
+> - Inlines by default: **`<span>`**, `<a>`, `<em>`, `<img>`, just text, ...
+
+The default can be changed using the **`display`** CSS property.
+
+
+# The flow
+
+In the **normal flow**, boxes are laid out from **top to bottom** and
+from **left to right** (but the latter can be changed).
+
+Boxes can **exit the flow** by being positioned explicitly, using the
+**`position`** CSS property:
+
+> - **static:** The default normal flow.
+> - **absolute:** X-Y coordinates from the top left (right) corner of the containing block.
+> - **fixed:**  X-Y coordinates from the top left (right) corner.
+> - **relative:** X-Y coordinates from the point where it would have been normally laid out.
+
+Boxes can also exit the flow by **floating** (**`float`** property).
+
+
+# Let's practice the box model
+
+The **Document Inspector** lets us explore the components of the web
+page and the way they are laid out.
+
+**Firefox:** `Shift+Ctrl+I`.
+
+**Chrome:** `F12`.
+
+
+# Client-side scripting with JavaScript
+
+[JavaScript]() was first born as a scripting language inside the
+browser.
+
+> - React to user events (clicks, keystrokes, etc.).
+> - Dynamically modify page content and visualization ([DOM]()).
+> - Improve user interface.
+> - Asynchronously exchange data with the server ([AJAX]()).
+
+
+# JavaScript inside HTML
+
+**Inclusion of an external script file** (the preferred way)
+
+~~~ {.html}
+<script type="text/javascript" src="myscripts.js"></script>
+~~~
+
+**The `<script>` tag**
+
+~~~ {.html}
+<script type="text/javascript">
+    function foo() {
+        return 'bar';
+    }
+
+    alert(foo());
+</script>
+~~~
+
+**Javascript inside attributes**
+
+~~~ {.html}
+<a href="javascript:alert('Hi!')">...</a>
+
+<input type="button" onclick="foo()" value="Click me" />
+~~~
+
+
+# The life cycle of a web page
+
+- The **client** requests
+
+    ~~~
+    GET /a/page HTTP/1.1
+    ~~~
+
+    and the *favicon* too (if it has not been requested yet)
+    
+	~~~
+	GET /favicon.ico HTTP/1.1
+	~~~
+
+- The server responds with an [HTML]() document (and the *favicon*)
+
+    ~~~ {.html}
+	HTTP/1.1 200 OK
+	Content-Type: text/html
+	...
+	
+	<html>
+	  <head>
+	    <link rel="stylesheet" src="/css/mystyle.css" type="text/css" />
+		<script src="my_script.js" type="text/javascript" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"
+			    type="text/javascript" />
+		...
+	~~~
+
+------------
+
+- The client parses the document. It sends a request for
+
+    ~~~
+	GET /css/mystyle.css HTTP/1.1
+	~~~
+	
+- The server responds with a [CSS]() document
+
+	~~~ {.css}
+	HTTP/1.1 200 OK
+	Content-Type: text/css
+	...
+	
+	@import "second_style.css";
+	
+	body { color: black }
+	...
+	~~~
+	
+- The client parses the stylesheet. It sends a request for
+
+    ~~~
+	GET /css/second_style.css HTTP/1.1
+	~~~
+	
+- And the server responds...
+
+---------
+
+- The client continues parsing the [HTML]() document. It sends a request for
+
+    ~~~
+	GET /a/my_script.js HTTP/1.1
+	~~~
+
+- The server responds with a [JavaScript]() document.
+
+	~~~
+	HTTP/1.1 200 OK
+	Content-Type: text/javascript
+	...
+	
+	var toto = function () {
+	...
+	~~~
+
+- The client continues parsing the [HTML]() document. It sends a (HTTPS) request for
+
+    ~~~
+	GET /ajax/libs/jqueryui/1.8.18/jquery-ui.min.js HTTP/1.1
+	Host: ajax.googleapis.com
+	~~~
+ 
+- Google's servers respond with a [JavaScript]() document...
+
+----------
+
+- The client parses the [CSS]() and [JavaScript]() files. Applies
+  [CSS]() directives, executes [JavaScript]() code, eventually
+  requests more pages...
+  
+- ...until the user **clicks a link** (or a **submit button**). At
+  this point the browser leaves the page and a new cycle begins.
+
+
+**Remarks:**
+
+> - [HTML](), [CSS]() and [JavaScript]() are all **text** documents, from an [HTTP]() perspective.
+> - The only thing that differentiates them to the client is the **`Content-Type`** header.
+> - In [Node.js]() the server **does not automatically** serve [CSS]() and [JavaScript]() files on the local storage (nor any other file).
+> - It is up to you to configure *routes* and *static* middleware to properly respond to each request.
+
+
+
+# How do I follow all this?
+
+A simple tool for debugging web pages: the **browser console**!
+
+**Firefox:** type `Shift+Ctrl+K`.
+
+**[Firebug]() (Firefox extension):** type `F12`.
+
+**Chrome:** type `F12`.
+
+Features:
+
+> - Shows [HTTP]() requests,
+> - Shows [CSS]() and [JavaScript]() errors and warnings,
+> - Interactive JavaScript shell for quick testing,
+> - Logging facility.
+> - Multiline input (type `Shift+Enter`)
+
+
+# Debug information from JavaScript
+
+The old way: [**`alert`**](javascript:alert('Debug'))
+
+~~~ {.html}
+<a href="javascript:alert('Debug')">
+~~~
+
+Like in [Node.js](), the 
+[**`console`** object](javascript:console.log('Debug'))
+
+~~~ {.html}
+<a href="javascript:console.log('Debug')">
+~~~
+
+
+<script type="text/javascript">
+    myObj = {'one':1, 'two':2, 'three':3};
+</script>
+
+
+Compare the difference on objects: [Alert](javascript:alert(myObj)) vs
+[Console](javascript:console.log(myObj)).
+
+~~~ {.javascript}
+myObj = {'one':1, 'two':2, 'three':3};
+~~~
+
+
+The `console` object **is not a [JavaScript]() standard**, but it has
+a relatively standard interface across browser tools:
+Firefox, [Firebug](), Chrome (and [Node.js]()).
+
+
+
+
+# Pages become dynamic: the DOM API
+
+[DOM]() stands for **Document Object Model**.
+
+> - An **API** made of **([JavaScript]()) Objects**;
+> - Represents any element of an [HTML]() document with a corresponding object;
+> - Represents the tree structure of the document;
+> - Dispatches **events** (mouse, keyboard, etc.) to scripts.
+
+The current version: **DOM Level 3** (supported by most browsers)
+
+
+# The root objects
+
+**Window**: the browser's window (not a [DOM]() object, properly
+  speaking):.
+  
+~~~ {.javascript}
+window.innerHeight + " x " + window.innerWidth
+~~~
+
+<script>
+function size() {
+    document.getElementById('size').innerHTML = window.innerHeight + " x " + window.innerWidth;
+}
+window.addEventListener('load', size, false);
+window.addEventListener('resize', size, false);
+</script>
+
+Current height: **<span id='size'></span>**
+
+**Document**: the [HTML]() document
+
+~~~  {.javascript}
+document.referrer
+~~~
+
+You came to this page from: <script>document.write(document.referrer)</script>
+
+
+
+# DOM tree navigation methods
+
+<script>
+function L() {
+    document.getElementById('L').style.backgroundColor='red';
+}
+function pL() {
+    document.getElementById('L').previousSibling.style.backgroundColor='blue';
+}
+function x() {
+    document.getElementById('ilove').appendChild(document.createTextNode('!'));
+}
+function h() {
+    Array.map(document.getElementById('ilove').getElementsByTagName('span'),
+        function(x) { x.style.color='white';}
+    );
+}
+</script>
+
+**Direct access**: [`getElementById`](javascript:L()), `getElementsByName`.
+
+~~~ {.javascript}
+document.getElementById('L').style.backgroundColor = 'red';
+~~~
+
+**Traversing the tree**: `childNodes`, `firstChild`, `lastChild`,
+  `nextSibling`, [`previousSibling`](javascript:pL()), `parentNode`,
+  ...
+
+~~~ {.javascript}
+document.getElementById('L').previousSibling.style.backgroundColor = 'blue';
+~~~
+
+**Modifying the tree**: [`appendChild`](javascript:x()), `removeChild`, `insertBefore`, `replaceChild`, ...
+
+~~~ {.javascript}
+document.getElementById('ilove').appendChild(document.createTextNode('!'));
+~~~
+
+**Access by tag**: [`getElementsByTagName`](javascript:h()),
+
+~~~ {.javascript}
+Array.map(document.getElementById('ilove').getElementsByTagName('span'),
+          function(x) { x.style.color='white' } );
+~~~
+
+**Access by class** (since [HTML5](HTML)): `getElementsByClassName`.
+
+
+**Example** (click on the links above)**:**
+<div id="ilove" style="display:inline-block">
+<span>I </span><span id='L'>L</span>ove DOM
+</div>
+
+~~~ {.html}
+<div id="ilove"><span>I </span><span id='L'>L</span>ove DOM</div>
+~~~
+
+
+
+# DOM events
+
+**Inside HTML**: `onload`, `onclick`, `onmouseover`, `onkeypress`, `ondrag`, ...
+
+<div onmouseover="this.style.opacity='0.4'" onmouseout="this.style.opacity='1'">
+
+~~~ {.html}
+<!-- pass the mouse over this block -->
+<div id="mydiv" onmouseover="this.style.opacity='0.4'"
+                onmouseout="this.style.opacity='1'">
+~~~
+
+</div>
+
+
+**From [JavaScript]()**: cleaner separation from [HTML](), prefer this.
+
+~~~ {.javascript}
+document.getElementById('mydiv').onmouseover =
+    function(e) { this.style.opacity = '0.4'; };
+~~~
+
+
+**From [JavaScript]()**: even better, no conflict with third party scripts!
+
+~~~ {.javascript}
+function fade() {
+    this.style.opacity = '0.4';
+}
+
+document.getElementById('mydiv').addEventListener('mouseover', fade, false);
+~~~
+
+**Warning**, this doesn't work on old versions of MSIE.
+
+
+# More DOM
+
+**More reading**
+
+> - An accessible reference to the [DOM](): <http://www.w3schools.com/jsref/>.
+
+> - A more complete one: <https://developer.mozilla.org/en/Gecko_DOM_Reference>.
+
+> - The [W3C]() standards page: <http://www.w3.org/DOM/>
+
+> - More resources: <https://developer.mozilla.org/en/DOM>
+
+> - **In practice:** use [JQuery]() instead!
+
+
+**More tools (*DOM inspectors*)**
+
+In **Firefox**, from the console.
+
+In **[Firebug]()**, from the HTML navigation tab.
+
+In **Chrome**, inside the HTML inspector
+
+
+# JavaScript client frameworks
+
+**[JavaScript]() client frameworks** are libraries that extend [JavaScript]()
+  functionalities in the browser.
+  
+**Why?**
+
+> - Palliate **browser incompatibilities** (e.g. MSIE vs Firefox event handling);
+> - Simplify **frequent tasks** (e.g. access elements via [CSS]() selectors, parse [JSON]() data);
+> - **Enrich** [JavaScript]() **semantics** (e.g. add methods to [DOM]() prototypes);
+> - Improve the **User Interface** (e.g. make animations, add smart controls);
+
+# JQuery
+
+<script src="/js/jquery.min.js"></script>
+
+[JQuery]() is a very popular [JavaScript]() framework. It inherits
+concepts from [Prototype](http://prototypejs.org/) and
+[Script.aculo.us](http://script.aculo.us/).
+
+**Main features:**
+
+> - Cross-browser portability;
+> - [CSS]()-like syntax to access [DOM]() entities;
+> - Enriched [DOM]() elements;
+> - [AJAX]() framework;
+> - Very small core library (only 31k);
+> - Modular UI components;
+> - Plug-in architecture.
+
+
+**Documentation resources:** <http://docs.jquery.com/>.
+
+
+# JQuery CSS selectors
+
+Using the classic [DOM]() Level 2, elements can be selected using one of
+
+~~~ {.javascript}
+document.getElementById('identifier');
+document.getElementsByTag('p');
+document.getElementsByClassName('classname');
+~~~
+
+**Defects:**
+
+> - Results are DOM objects or DOM arrays, depending on the method;
+> - No uniform calling interface, methods depend on browsers.
+
+**[JQuery]()** has a unified interface to these methods, based on [CSS]() syntax
+
+<style>
+.alerted { background-color:yellow }
+</style>
+
+~~~ {.javascript}
+jQuery('#identifier');
+jQuery('p');
+jQuery('.classname');
+~~~
+
+**Example:** <input type="button" onclick="jQuery('p, li').toggleClass('alerted');" value="Click to highlight p's and li's" />
+
+~~~ {.javascript}
+jQuery('p, li').toggleClass('alerted');
+~~~
+
+
+# JQuery tips
+
+The global object `jQuery` has a much **shorter alias** `$`
+
+~~~ {.javascript}
+jQuery('p.header');
+$('p.header');
+~~~
+
+**Ordinary [DOM]() objects** can be passed to the selector
+
+~~~ {.javascript}
+$(document.forms[0]).css('display', 'none');
+~~~
+
+Setter methods **return the same object** for chaining
+
+~~~ {.javascript}
+$('#menu').css('color', 'red').css('visibility', 'visible');
+~~~
+
+Simple interface for (optimized) **delayed execution**
+
+~~~ {.javascript}
+// All these are equivalent
+$(document).ready(callback);
+$().ready(callback);          // not recommended
+$(callback);
+
+// And (better) serve the same purpose as this
+document.addEventListener('load', callback, true);
+~~~
+
+
+# JQuery UI
+
+A rich library of **user interface components**
+
+Here's just a small example: sortable elements (drag them)
+
+<script src="/js/jquery-ui.packed.js"></script>
+
+<div id='sortable'/>
+
+~~~ {.javascript}
+$('#sortable').sortable();
+~~~
+
+~~~ {.html}
+<div id='sortable'/>
+  ...
+</div>
+~~~
+
+~~~ {.html}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+~~~
+
+</div>
+
+<script>
+$('#sortable').sortable();
+</script>
+
+
+Find more UI controls on <http://jqueryui.com/>.
+
