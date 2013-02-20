@@ -411,6 +411,7 @@ browser.
 - ...until the user **clicks a link** (or a **submit button**). At
   this point the browser leaves the page and a new cycle begins.
 
+<div class="incremental">
 
 **Remarks:**
 
@@ -419,6 +420,7 @@ browser.
 > - In [Node.js]() the server **does not automatically** serve [CSS]() and [JavaScript]() files on the local storage (nor any other file).
 > - It is up to you to configure *routes* and *static* middleware to properly respond to each request.
 
+</div>
 
 
 # How do I follow all this?
