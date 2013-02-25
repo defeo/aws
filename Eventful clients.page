@@ -102,5 +102,263 @@ The result may look something like this
 # DOM navigation and events with JQuery
 
 
+In this section we will use [JQuery]() to access the [DOM]() and react to events. The full documentation is available at <http://api.jquery.com/>.
+
+[JQuery]() is a [JavaScript]() library that runs **in the browser**. To make it available in the browser we must point it to its source.
+
+1. Edit the [HTML]() document of the previous section by adding the following line to the `<head>`
+
+    ~~~ {.html}
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    ~~~
+
+    Alternatively, to keep working without internet connection, you can download the [JQuery]() sources from the link above and make it available to the client through the static directory.
+
+The [JQuery]() script defines a global name `$` used to access [DOM]() elements inside the page via a CSS-like syntax.
 
 
+## Via the browser console
+
+Open your browser's console (`Shift+Ctrl+K` in Firefox; `F12`, then click on 'Console' in Chrome) and experiment with it by selecting some elements of the page. Here's some examples:
+
+~~~ {.javascript}
+$('#msg1');         // access the element with id msg1
+$('.content');      // access all the elements with class content
+$('p');             // access all <p> elements
+~~~
+
+The [CSS]() attributes of each element can be read and modified using the `.css` method. For example, the following code colors the title in red
+
+~~~ {.javascript}
+$('h1').css('color', 'red');
+~~~
+
+2. Using the browser console
+
+    - Change the text color of the `<h1>` block.
+    - Change the font properties of all the paragraphs belonging to the class `content`.
+    - Center the footer paragraph and draw a line over it.
+    - Make the second paragraph disappear using the `visibility` property first, then the `display` property.
+    
+3. Blink! Using the functions `setTimeout` or `setInterval` make the date appear and disappear every second like <span id='blink' class>this</span>. 
+
+<script type='text/javascript'>
+  var b = document.getElementById('blink');
+  setInterval(function() {
+    b.style.visibility = b.style.visibility == 'hidden' ? 'visible' : 'hidden';
+  }, 1000);
+</script>
+
+
+## Reacting to events
+
+The browser console is a good tool for debugging, but for serious scripts it is better to write them in separate files.
+
+1. In your server's static directory create a file named `events.js` and link it from the [HTML]() document using a `<script>` tag like you did for [JQuery]().
+
+The [DOM]() defines many events to react to user actions. [JQuery]() offers a uniform interface to them. The method [`.on`](http://api.jquery.com/on/) is defined on any [JQuery]() object and takes two parameters: the name of the event and a callback function to call when the event is triggered. For example, every time a `<p>` element is clicked, the code
+
+~~~ {.javascript}
+$('p').on('click', function (evt) {
+  var par = $(this);         // this creates a JQuery object from 
+                             // the element that fired the event
+  console.log(par.text());
+});
+~~~
+
+logs to the browser console the text of the paragraph.
+
+Event handlers can be suppressed using the [`.off`](http://api.jquery.com/off/) method.
+
+**Important:** the method `.on` only applies to [DOM]() objects that already exist at the moment of calling. If the code above is put in a script in the `<head>` of the document, no `<p>` element will exist at the moment `.on` is called. The solution is to execute the event binding code in a `document.ready` callback, like shown in [class](The client side, CSS, DOM and JQuery).
+
+~~~ {.javascript}
+$( function () {               // this function is only called when all the 
+                               // document has been read.
+
+  $('p').on('click', function (evt) {
+    console.log( $(this).text() );
+  })
+} );
+~~~
+
+Another solution described in the [JQuery API](http://api.jquery.com/on/) is to use *delegated events*.
+
+2. Using `.on`, or any of the [specific methods](http://api.jquery.com/category/events/), make the `<h1>` react to double clicks (event `dblcick`) by doubling its font size.
+
+3. Make the date blink only when the mouse is over it (events `mouseover` and `mouseout`, or `mouseenter` and `mouseleave`).
+
+
+## An SVG animation
+
+[SVG](Web graphics) is a standard for vector drawing. The following
+code draws a rectangle like the one in the box below.
+
+~~~ {.html}
+<svg id='mysvg' width='100%' height='10'>
+<rect id='myrectangle' x='0' width='2%' height='8'/>
+</svg>
+~~~
+
+<svg
+  id='mysvg'
+  style='padding:1ex; border: solid thin black; margin-left:25%'
+  width='50%'
+  height='10'>
+<rect id='myrectangle' width='2%' height='8'/>
+</svg>
+
+<script type='text/javascript'>
+  var Slider = {
+    svg : document.getElementById('mysvg'),
+    rect : document.getElementById('myrectangle'),
+    hasFocus : false,
+    
+    move : function(e) {
+      if (this.hasFocus) {
+        if (e.keyCode == 39)
+          this.rect.setAttribute('x', Number(this.rect.getAttribute('x')) + 10);
+        else if (e.keyCode == 37)
+          this.rect.setAttribute('x', Number(this.rect.getAttribute('x')) - 10);
+      }
+    },
+    
+    init : function() {
+      document.addEventListener('keydown', function(e) { Slider.move(e) }, false);
+      this.svg.addEventListener('mouseover',
+                                function() {
+                                  Slider.rect.style.fill = 'red';
+                                  Slider.hasFocus = true },
+                                  false);
+      this.svg.addEventListener('mouseout',
+                                function() {
+                                  Slider.rect.style.fill = 'black';
+                                  Slider.hasFocus = false },
+                                  false);
+    }
+  }
+  
+  Slider.init();
+</script>
+
+If you put your mouse over the box, the rectangle turns red (be careful: in Chrome, the box is very tiny!); then you can use the left or right arrow to move
+the rectangle. You will implement a similar behavior. At any
+time, you can read the source code of this page to seek help (note, however, that this page uses pure [DOM](), no [JQuery]()).
+
+1. Write the following function (an event handler):
+    
+    ~~~ {.javascript}
+    function move(evt) { 
+      // this logs the code of the pressed key to the console
+      console.log(evt.which);
+    }
+    ~~~
+
+2. Register the function `move` as event handler for the [`keydown`](http://api.jquery.com/keydown/) event. 
+
+3. Open the console and see what the *key codes* for left and right
+arrow are.
+
+4. Modify the `move` function so that on a left arrow key the
+rectangle is moved to the left by 10. You can use the [`.attr`](http://api.jquery.com/attr/) method to modify the `x`
+attribute of the rectangle. If you need to convert a string to a number you can use the
+[`Number`](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number)
+object.
+
+5. Implement the behavior that colors the rectangle in red and deactivates the key action when the mouse is not over the box. You can use the `mouseover` and the `mouseout` events, but be careful: Chrome drove me mad on this one!
+
+
+
+# Advanced topic: Unobtrusive Javascript (Optional)
+
+In this exercise, we want to add a (not that) simple animation on
+[HTML]() text, making it look like if a human was typing it in a
+terminal. The final result should look like the animation in
+the box below when you click on the button (doesn't work in old
+versions of IE).
+
+<script type='text/javascript' src='js/incremental.js'></script>
+
+<input type='button' style='margin:2px 4em 2px 4em' onclick='Incremental.start()' value='Click to start the animation' />
+<div style="margin:0 4em 0 4em; padding: 1em; border:solid thin black; overflow:
+scroll; max-height:8em;">
+<p class='incremental' data-incremental-by-letter >Here's an example of animated text.</p>
+<p class='incremental' data-incremental-by-letter data-incremental-speed='10'>And here's 
+another example flowing faster.</p>
+</div>
+
+We will use pure [DOM]() syntax (no [JQuery]()) in the rest of this section, but you are free to use [JQuery]() if you wish. At any stage, you can read the source of the script above (no [JQuery](), though). Try to solve the exercise by your own as much as you can, though.
+
+To make the script more portable (and the exercise more difficult), we
+will adhere to the principles of
+[unobtrusive JavaScript](http://en.wikipedia.org/wiki/Unobtrusive_JavaScript),
+meaning that no [JavaScript]() is going to appear in the [HTML]() at
+all. The link between the [HTML]() sources and the script will be made
+through standard and customized [HTML]() attributes.
+
+To get an idea, use the document inspector to read the sources of this
+page and see how the animation is implemented.  If you except the
+attribute
+
+~~~
+onclick='Incremental.start()'
+~~~
+
+of the `input` tag (a minor concession), all the [Javascript]() is
+contained in a separate file called `incremental.js`. We have thus
+strictly adhered to the principles of unobtrusive [Javascript](). To
+tell the script to animate the paragraphs, they have been declared as
+follows:
+
+~~~ {.html}
+<p class='incremental' data-incremental-by-letter >Here's an example of animated text.</p>
+<p class='incremental' data-incremental-by-letter data-incremental-speed='10'>And here's 
+  another example flowing faster.</p>
+~~~
+
+The [JavaScript]() code looks for elements belonging to the
+`incremental` class and animates them (and only them). The other
+attributes `data-incremental-by-letter` and `data-incremental-speed`
+are user-defined attributes (a cool new feature of [HTML5](HTML)) that
+allow the user to configure the script behavior.
+
+Using this style of coding, the [HTML]() document is much smaller and
+human readable than if we had included the [Javascript]() code in
+it. A user that has deactivated [JavaScript]() will experience faster
+download and improved accessibility. This is the way to the future of
+web applications!
+
+Write a script implementing the above behavior. Here's some
+suggestions:
+
+- Implement all the logic in an object (we called it `Incremental`).
+- Write a method that gets the list of elements belonging to the
+  `incremental` class and hides them.
+- Write a method `prepare` that gets the next paragraph to uncover. If there is
+  one, it calls the method `show` below, if there is no
+  paragraph left it terminates.
+- Write a method `show` that shows the current paragraph character
+  by character. Use `setTimeout` to repeatedly call `show`. When the
+  paragraph is over, call back `prepare`.
+- Write a function `start` that starts the animation. Be careful to
+  only call this function after the document has been loaded, for
+  otherwise it won't be able to find nodes of the [DOM](). You can
+  register it to the `window.onload` event if you want it to be called
+  on startup just after the [DOM]() has been loaded.
+- You will certainly run into problems with the binding of the `this`
+  identifier. [Read this](http://bonsaiden.github.com/JavaScript-Garden/#function.this).
+- Access and modify the text of each paragraph using `firstChild.data`.
+- You can access custom attributes in the [HTML]() document using the
+  syntax `elt.dataset.myCustomAttribute`. Dashes get transformed to
+  CamelCase, as for the styling attributes.
+- The blinking cursor is better implemented in a separate object, but
+  you can use the `Incremental` object as a namespace for it. This is
+  a good practice to avoid name clashes.
+
+Once you're done, here's some ideas to improve this script. If you
+implement any of these, I'd be interested in reading your solution:
+
+- Make the script correctly work with tags that contain arbitrary
+  content (not just text).
+- Make the `start` function restart the script even when it is in the
+  middle of the animation.
