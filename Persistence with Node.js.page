@@ -244,10 +244,11 @@ The corresponding action in `mysql` is achieved using the `createConnection` and
 ~~~ {.javascript}
 var sql = require('mysql');
 
-var connection = mysql.createConnection({
+var connection = sql.createConnection({
   host     : 'localhost',
   user     : 'foo',
   password : 'bar',
+  database : 'my_db',
 });
 
 connection.connect(
