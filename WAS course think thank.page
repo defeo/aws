@@ -1,5 +1,6 @@
-This page is for suggesting and discussing ideas about the possible evolution of the WAS course. Feel free to comment (either in English or in French) on any of the following topics: 
+This page is for suggesting and discussing ideas about the WAS course and its possible evolution. Feel free to comment (either in English or in French) on any of the following topics: 
 
+- What you think of the teaching methodology, of the course in general.
 - Difficulties you've had and how to smoothen them.
 - Topics you would have liked to see in this course.
 - Topics that you think should be dropped from this course.
@@ -7,45 +8,14 @@ This page is for suggesting and discussing ideas about the possible evolution of
 
 Create a whole section for your idea, or comment on other people's section.
 
+# Write an easy to learn framework for Node.js (suggested by Luca)
 
-# Switch from PHP to Node.js  (suggested by Luca)
+Node.js itself is too minimalistic, and not meant for beginners. Even if `connect` helps a lot, it still lacks some important features (setting cookies, help for routing, templates) that must be imported using other modules. On the other hand `express` is too complex for beginners.
 
-PHP is a dying language (in my opinion), and this should confort us. The choice of PHP was motivated by the fact that it is a language often required by employers. During the course I felt, however, that students are mature enough to take up a language on their own and learn it quickly; hence it shouldn't be much of a problem dropping PHP for this course and let the students take care of learning it if they need it.
-
-I'm considering switching to Node.js <http://nodejs.org/> for server-side scripting. Here's the balance, in my opinion, for this shift:
-
-**Pros:**
-
-- Only one language to learn (JavaScript), instead of two.
-- More modern programming paradigm, closer to modern web programming.
-- Ease of creating event-driven applications, such as real-time games.
-- Event-driven programming is closer in spirit to the way web applications work.
-
-**Cons:**
-
-- Having the same language for server and client script may confuse some students (although I feel this shouldn't be a serious problem)
-- Most students are not familiar with event-driven programming, it may take too much time for them to learn it (remember we only have 7 tutorials).
-- It may be harder to configure than WAMP, XAMPP, and the like; it may be a nightmare to install it on the CS department laptopts.
-
-**Doubts:**
-
-- I want to keep SQL, because it is easier to show SQL injections. Does Node.js have a good and easy to install SQL library?
-- I'm confident that this won't be a problem, but just to be sure: are all the injection, XSS, CSRF attacks as easy to show as in PHP?
+Write a simplistic module extending `connect` and containing all the features needed in this course.
 
 
-# Study WebSockets both in Classes and Tutorials (suggested by Luca)
+# Write a book on Node.js  (suggested by Luca)
 
-WebSockets are now supported in all major browsers (MS supports them starting with IE9). They are THE solution for realtime server notification and allow to easily construct chats, games, etc.
+[Node.js]() is verly poorly documented, especially in French and for beginners. Write a complete book for a beginner's course in Web Applications 2.0.
 
-It is certainly doable to describe them in classroom, but would it be reasonable to spend some time on them in a tutorial?
-
-
-# Comparison of web servers (suggested by Yevgueny)
-
-Spend some classroom time commenting on the differences between Apache, Microsoft IIS, ngix, GWS, etc.
-
-# Adding a new 'Extra mile' section of security-oriented exercises to the tutorials (suggested by Andrei)
-
-I think it can be a good thing to have more exercises in which we can put into practice attacks and defense concepts related to web application security, regardless of whether or not they count in the final exam, just for curiosity and fun - and for those really interested in the field, like the students who chose M2 SeCReTS. 
-
-Guidelines could be added on how to setup a testing laboratory with VirtualBox or VMware, and a web application could for tests could be set up, like WebGoat or even our own project.
