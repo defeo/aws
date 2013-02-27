@@ -1,0 +1,112 @@
+The final project counts for the the *contrôle continu* mark. You are required to implement a simple multiuser web application in [Node.js](). You will be evaluated on the basis of your source code, a brief written document, and an oral presentation.
+
+
+# Constraints
+
+The project **MUST**:
+
+- Be written in [Node.js]().
+
+- Be **stateful**, i.e. recognize users from one visit to the other. This can be achieved through any combination of the following methods:
+    - cookies,
+    - sessions (memory based or cookie based),
+    - databases ([SQL]() or other systems).
+
+- Allow interaction among different users.
+
+- Be developed in pairs (delegations to this rule are possible in special circumstances).
+
+
+You are **warmly encouraged to**:
+
+- Use client side [JavaScript]() for animation, rendering and improve the user interface.
+
+- Use [AJAX]() and other asynchronous systems (Websockets, etc.).
+
+- Take into consideration security issues.
+
+
+The project **MAY**:
+
+- Use [Node.js]() optional modules and other sources written by others. Just clearly state what code you wrote and what code you borrowed.
+
+
+
+# Examples
+
+Here are some example projects you may get inspiration from. Feel free to edit this section by adding your own ideas (they will be validated by the instructor).
+
+
+## Text based multi-user interaction
+
+It is extremely easy (a few lines of code) to implement a simple irc style, non authenticated, static chat room in [Node.js]().
+
+Starting from this idea, improve by adding some of the following features:
+
+- Use [AJAX]() to improve polling for new messages,
+- User authentification,
+- User presence, status (talkative, busy, etc.),
+- Personal messaging,
+- Rich text (smileys, etc.),
+- Plugin-style client widget, integrable in external pages,
+- Interaction with external API's (google talk, facebook, etc.),
+- ...
+
+Related ideas:
+
+- Implement a forum (very boring, unless you have a revolutionary idea),
+- Implement a multi-user document editing app (much more exciting!).
+
+
+## Two-player games
+
+Implement a online chess game:
+
+- For a very easy start without client-side [JavaScript](), you may input moves in a form using textual representation (like "knight in B2").
+- Later on, you may improve the user interface with [JavaScript]() (why not use [Unobtrusive JavaScript](http://en.wikipedia.org/wiki/Unobtrusive_JavaScript)?) and [AJAX]().
+- You may pair users on a first come, first served schedule.
+- Later on, you may modify the code to identify users with database-based authentification and allow them to challenge other users, see games being played, etc.
+
+The same ideas apply to many other two-player, turn-based games:
+
+- Tic tac toe (*morpion*),
+- Naval battle,
+- Reversi,
+- Scrabble,
+- ...
+
+
+## Hardcore API integration
+
+The primary goal of this idea is to use external APIs (Google's, Facebook, etc.) to a great deal. Most of the work is done in the client rather than in the server.
+
+**Example:** Write a service for students of the Versailles area to organize hangouts:
+
+- Integrate with Google for maps.
+- Integrate Facebook to find friends and publish the hangout.
+- Why not to go mobile? Write a smartphone interface and integrate GPS positioning.
+
+
+## Crazy ideas: real time multi-player games
+
+Real time is a hard beast to master. Neverthless, see <http://browserquest.mozilla.org/> (implemented with [Node.js]())
+
+More reasonable options are:
+
+- two player pong,
+- two player Bomberman,
+- multiplayer tetris,
+- ...
+
+
+
+# Project summary
+
+Your source code must be accompained by a short (two pages at most) summary:
+
+- Written in French or English,
+- Encoded in an open format (open document, pdf, etc.),
+- Max 2000 words: one or two pages is the best,
+- Describe what your project does, how you organized your work, what programming techniques you employed, what ideas you conceived, what difficulties you faced.
+- Include a reflection on security.
+
