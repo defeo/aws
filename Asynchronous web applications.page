@@ -469,6 +469,30 @@ need not correspond to a file named `users` on the server.
 
 
 
+# So, how do I distinguish response types without file extensions?
+
+Using the **`Content-Type`** header!
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+...
+
+{ "fruit" : "apple",
+  ....
+~~~
+
+In [Node.js]()
+
+~~~ {.javascript}
+function handler(req, res) {
+  res.contentType('application/json');
+  ...
+}
+~~~
+
+
+
 # REST
 
 **REST** (Representational State Transfer) is a paradigm for distributed applications
@@ -505,30 +529,6 @@ services are now migrating to REST APIs.
 Most of these APIs offer an [XML]() and a [JSON]() interface.
 
 Check out the [Yahoo YQL Console](http://developer.yahoo.com/yql/console/)!
-
-
-
-# So, how do I distinguish response types without file extensions?
-
-Using the **`Content-Type`** header!
-
-~~~
-HTTP/1.1 200 OK
-Content-Type: application/json
-...
-
-{ "fruit" : "apple",
-  ....
-~~~
-
-In [Node.js]()
-
-~~~ {.javascript}
-function handler(req, res) {
-  res.contentType('application/json');
-  ...
-}
-~~~
 
 
 
