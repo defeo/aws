@@ -1,0 +1,554 @@
+---
+categories: Classes AJAX JavaScript 
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+
+# Synchronous applications
+
+What have we learned? **One action = one request**
+
+- The user requests a page
+
+    ~~~
+    GET /some_page HTTP/1.1
+    ...
+    ~~~
+
+- The server responds with [HTML]()
+
+- The user leaves the page by
+
+    - Clicking a **link**
+    - Clicking a **submit button**
+    - **Refreshing**
+    
+    ~~~
+    POST /some_other_page HTTP/1.1
+    ...
+    ~~~
+    
+- The server responds with more [HTML]()
+
+
+# And the state?
+
+
+> - [HTTP]() is **stateless**
+
+> - The server keeps the state
+    - inside its local storage (sessions, databases)
+    - in cookies 
+
+**One action = one request**
+
+**Side-effect:** the browser looses the state (except for cookies)
+  **at every new action**.
+
+Demonstration: <a href="http://www.google.fr">click here,</a> then come back.
+
+Time spent viewing this slideshow: <span id="date"></span>
+
+<script type="text/javascript">
+    var start = new Date();
+    setInterval(function () {
+      var d = new Date(new Date() - start);
+      $('#date').html(d.getUTCHours() + ":" + d.getUTCMinutes() + ":" + d.getUTCSeconds());
+    }, 1000);
+</script>
+
+
+# Synchronous navigation
+
+![Description of the Web 1.0 dataflow model, by Jesse J Garret](web1.0.png)
+
+# Synchronous navigation example
+
+
+<form method='GET' action='http://answers.yahoo.com/search/search_result'>
+**Ask [Yahoo](http://answers.yahoo.com/) about:**
+<input name='p' type='text' value='AJAX' />
+<input type='submit' value='Ask' />
+</form>
+
+~~~ {.html}
+<form method='GET' action='http://answers.yahoo.com/search/search_result'>
+  <input name='p' type='text' value='AJAX' />
+  <input type='submit' value='Ask' />
+</form>
+~~~
+
+# Asynchronous navigation
+
+![Description of the AJAX dataflow model, by Jesse J Garret](web2.0.png)
+
+# Asynchronous navigation example
+
+**Ask [Yahoo](http://answers.yahoo.com/) about:**
+<input id='query' type='text' value='AJAX' />
+<input id='yahoo' type='button' value='Ask' />
+
+<div style='width:80%;min-height:4em;margin:auto;border: solid thin black' id='answers'></div>
+
+<script type="text/javascript">
+function yahoo() {
+    $('#yahoo').add('#query').prop('disabled', true);
+    $('#answers').fadeOut('slow', function() { $(this).html(''); });
+    var query = $('#query').val();
+    $.ajax({
+        url : 'http://query.yahooapis.com/v1/public/yql',
+        dataType : 'json',
+        data : 'q=select%20*%20from%20answers.search%20where%20query%3D%22' +
+                query +
+                '%22&format=json&diagnostics=true&callback=',
+        success : function(data) {
+            if (data.query.results) {
+                var qs = data.query.results.Question;
+                var q = qs[Math.floor(Math.random() * qs.length)];
+                $('#answers').html('<p><b>Question:</b> ' + q.Content + '</p>' +
+                                   '<p><b>Best answer:</b> ' + q.ChosenAnswer + '</p>').fadeIn('slow');
+            } else {
+                $('#answers').html('<p>No results found.</p>').fadeIn('slow');
+            }
+        },
+        complete : function() {
+            $('#yahoo').add('#query').prop('disabled', false);
+        }
+    });
+}
+
+$('#query').keydown(function(e) { if (e.which == 13) yahoo(); });
+$('#yahoo').click(yahoo);
+</script>
+
+
+# Asynchronous navigation
+
+What is needed for asynchronous navigation? **Actions ≠ Requests**
+
+- The user requests a page
+
+    ~~~
+    GET /some_page HTTP/1.1
+    ...
+    ~~~
+
+- The server responds with [HTML]() and some client-side [JavaScript]()
+
+- The [JavaScript]() executes in the browser.
+
+    - it reacts to user actions (via [DOM]() **events**)
+    - it sends requests to the server (**new API** for this)
+
+- The user may **never** leave the page.
+
+
+# `XMLHttpRequest`
+
+Introduced by Microsoft in MSIE 5, now a [W3C]() standard.
+
+> - Sends **POST and GET** requests to a server;
+> - **Does not block the browser** while it awaits for the response;
+> - **Asynchronously executes callbacks** on the server response.
+
+**Creation**
+
+~~~ {.javascript}
+xhr = new XMLHttpRequest();
+~~~
+
+**Registration of the callback**
+
+~~~ {.javascript}
+xhr.onreadystatechange = callback;
+~~~
+
+**Preparation and delivery of the request**
+
+~~~ {.javascript}
+xhr.open("GET", "http://example.com/api/json/query?car=peugeot&color=bleu");
+xhr.send(null);
+~~~
+
+
+# Reacting to the response
+
+The callback function is called many times with a different `readyState` status:
+
+~~~ {.javascript}
+function callback() {
+    if (xhr.readyState == 4) {
+        console.log(xhr.responseText);
+    }
+}
+~~~
+
+> - **`readyState == 0`** before `open()` has been called;
+> - **`readyState == 1`** before the request is sent;
+> - **`readyState == 2`** after the request has been sent and the server has responded with the status code and the [HTTP]() headers;
+> - **`readyState == 3`** while the browser is downloading the body of the response, eventually more than once;
+> - **`readyState == 4`** when the download is complete.
+
+
+# JQuery AJAX interface
+
+In practice, `XMLHttpRequest` has many problems
+
+> - It isn't compatible among browsers;
+> - The interface is awkward;
+> - It lacks a lot of useful features, such as [JSON]() parsing.
+
+Use [JavaScript]() frameworks instead. Here's [JQuery]()'s interface.
+
+~~~ {.javascript}
+$.ajax({
+    url      :  'http://example.com/api/json/query',
+    type     :  'GET',
+    dataType :  'json',
+    data     :  'car=peugeot&color=bleu',
+    success  :  callback,
+});
+~~~
+
+> - The request is created and sent at once;
+> - Automatic [JSON]() / [XML]() / [JavaScript]() parsing;
+> - The callback is bound to the scope of the AJAX object.
+
+
+# Digging inside the example
+
+~~~ {.javascript}
+function yahoo() {
+    $('#yahoo').add('#query').prop('disabled', true);
+
+    var query = $('query').val();
+    $.ajax({
+        url : 'http://query.yahooapis.com/v1/public/yql',
+        dataType : 'json',
+        data : 'q=select%20*%20from%20answers.search%20where%20query%3D%22' +
+                query +
+                '%22&format=json&diagnostics=true&callback=',
+        success : function(data) {
+            var q = data.query.results.Question[0];
+            $('#answers').html('<p><b>Question:</b> ' + q.Content + '</p>' +
+                               '<p><b>Best answer:</b> ' + q.ChosenAnswer + '</p>');
+        },
+        complete : function() {
+            $('#yahoo').add('#query').prop('disabled', false);
+        }
+    });
+}
+
+$('#query').keydown(function(e) { if (e.which == 13) yahoo(); });
+$('#yahoo').click(yahoo);
+~~~
+
+> 0. We disable controls, to avoid sending multiple request;
+> 1. We connect to Yahoo API <http://query.yahooapis.com/v1/public/yql>;
+> 2. We expect a [JSON]() result, it will be automatically parsed;
+> 3. We use Yahoo's YQL language to perform the query (see <http://developer.yahoo.com/yql/console/>);
+> 4. We extract the first result from the [JSON]() answer and put it into the page;
+> 5. Finally, we activate the controls again.
+
+
+
+# What formats for an AJAX request?
+
+[AJAX]() stands for Asynchronous [JavaScript]() and [XML](). But each
+component is optional, especially [XML]()!
+
+## Text or Nothing
+
+For simple actions such as
+
+> - Autosaves (mail, documents, etc.)
+> - Progress
+
+~~~
+POST /api/save HTTP/1.1
+Host: mail.google.com
+...
+
+Dear Sir,
+
+It is my ple
+~~~
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: text/plain
+...
+
+23
+~~~
+
+---------------
+
+## XHTML
+
+For direct inclusion of [HTML]() fragments (e.g. blog posts, comments, ...)
+
+~~~
+GET /?post=23389 HTTP/1.1
+Host: www.wordpress.com
+...
+~~~
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: text/html
+...
+
+<article class='post' id='post23389'>
+<p>I've always thought...
+~~~
+
+Example of inclusion in the document:
+
+~~~ {.javascript}
+$.ajax({ success : function(data) {
+    $('#main').append(data);
+}});
+~~~
+
+**Problem:** Breaks the separation between **data**, **presentation**
+  and **logic**.
+
+
+---------------
+
+## XML
+
+For rich structured data (e.g. database queries, geodata, ...)
+
+~~~
+GET /v1/public/yql?q=SELECT * FROM geo.places WHERE text "Paris" HTTP/1.1
+Host: query.yahooapis.com
+...
+~~~
+
+(The request has been slightly modified to make it easier to read)
+
+~~~ {.xml}
+HTTP/1.1 200 OK
+Content-Type: application/xml
+...
+
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng"
+    yahoo:count="10" yahoo:created="2012-03-14T04:38:52Z" yahoo:lang="en-US">
+    ...
+    <results>
+        <place xmlns="http://where.yahooapis.com/v1/schema.rng"
+            xml:lang="en-US" yahoo:uri="http://where.yahooapis.com/v1/place/615702">
+            <woeid>615702</woeid>
+            <placeTypeName code="7">Town</placeTypeName>
+            <name>Paris</name>
+            <country code="FR" type="Country">France</country>
+            <admin1 code="" type="Region">Ile-de-France</admin1>
+            <admin2 code="FR-75" type="Department">Paris</admin2>
+            ...
+~~~
+
+---------------
+
+## XML
+
+**Parsing:**
+
+> - **XPath**: Query language to select nodes in an [XML]() document;
+> - **XSLT** (Extensible Stylesheet Language Transformations):
+    transformations of [XML]() documents.
+    
+**Advantages:**
+
+> - Powerful, robust;
+> - Supported by many web services.
+
+**Disadvantages:**
+
+> - Verbose, relatively slow;
+> - Non compliant implementations;
+> - Huge specification with risks of security holes.
+
+---------------
+
+## Javascript
+
+For dynamic execution of logic.
+
+~~~
+GET /api/car?user=toto HTTP/1.1
+Host: www.example.com
+...
+~~~
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/javascript
+...
+
+{ car   : 'peugeot',
+  color : 'blue'    }
+~~~
+
+Example of inclusion in the document:
+
+~~~ {.javascript}
+xhr.onreadystatechange = function() {
+    var res = eval(xhr.responseText);
+    ...
+}
+~~~
+
+**Serious problems:** 
+
+> - Breaks logic separation;
+> - High risk of [XSS]() vulnerabilities;
+
+
+---------------
+
+## JSON
+
+[JSON]() is a *lightweight* subset of [JavaScript]() datatypes
+(**numbers**, **strings**, **arrays** and **objects**)
+
+~~~
+GET /api/car?user=toto HTTP/1.1
+Host: www.example.com
+...
+~~~
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+...
+
+{ "car"   : "peugeot",
+  "color" : "blue"    }
+~~~
+
+**Advantages:**
+
+> - Much more compact than [XML](), easy and fast to parse;
+> - Supported by most browsers and [JavaScript]() frameworks;
+> - Can be evaluated as [JavaScript]() by `eval` (but don't do it!).
+
+
+**Disadvantages:**
+
+> - Less powerful than [XML]();
+> - Can lead to [XSS]() when evaluated as [JavaScript]().
+
+
+# Freed From Files
+
+[URL]()s **do not represent** file names
+
+~~~
+GET /app/admin/users HTTP/1.1
+~~~
+
+need not correspond to a file named `users` on the server.
+
+[URL]()s represent **resources**.
+
+[Node.js]() and [AJAX]() facilitate this:
+
+- [Node.js]() does not automatically map [URL]()s to files (unlike [PHP]()),
+
+- [Node.js]() can attach arbitrary functions to [URL]()s,
+
+- [AJAX]() can call functions on the server using [URL]()s.
+
+- Summarizing: **HTTP Request = Function call**
+
+
+
+# REST
+
+**REST** (Representational State Transfer) is a paradigm for distributed applications
+
+> - **Client-Server** (no peer-to-peer);
+> - **Stateless** (unlike CORBA, etc.);
+> - **Cacheable**;
+> - **Layered** (i.e., it is compatible with the use of **proxies**);
+> - **Uniform Interface** (e.g. GET, POST, PUT and DELETE verbs).
+
+**Exemples:**
+
+> - [HTTP]() (in practice, a **RESTful service** is one that works like [HTTP]());
+> - ATOM feeds.
+
+**Counter-example:** [SOAP]() (Simple Object Access Protocol).
+
+**Advantages:** Simplicity, Scalability.
+
+
+# REST APIs
+
+After a long period of predominance of [SOAP]() interfaces, most web
+services are now migrating to REST APIs.
+
+> - **Google APIs**: <http://code.google.com/more/>;
+> - **Open Street Maps**: <http://wiki.openstreetmap.org/wiki/API> (geodata, maps) ;
+> - **Amazon**: <http://aws.amazon.com/>;
+> - **The Weather Channel**: <http://www.weather.com/services/xmloap.html>;
+> - **Facebook**: <http://developers.facebook.com> (authentication, social graph);
+> - **Yahoo**: <http://developer.yahoo.com/>;
+> - ...
+
+Most of these APIs offer an [XML]() and a [JSON]() interface.
+
+Check out the [Yahoo YQL Console](http://developer.yahoo.com/yql/console/)!
+
+
+
+# So, how do I distinguish response types without file extensions?
+
+Using the **`Content-Type`** header!
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+...
+
+{ "fruit" : "apple",
+  ....
+~~~
+
+In [Node.js]()
+
+~~~ {.javascript}
+function handler(req, res) {
+  res.contentType('application/json');
+  ...
+}
+~~~
+
+
+
+# Bidirectional communication
+
+[AJAX]() is **unidirectional**:
+
+> - Client sends data in request
+> - Server sends data in response
+
+**Problems:** 
+
+> - The server cannot initiate a data transfer
+> - The server cannot call functions on the client
+
+**Simulating** bidirectional communication ([Comet](http://en.wikipedia.org/wiki/Comet_%28programming%29))
+
+> - Client polls for new events
+> - Server responds when an event is ready
+
+**Real**  bidirectional communication:
+
+> - WebSockets <http://www.websocket.org/>
