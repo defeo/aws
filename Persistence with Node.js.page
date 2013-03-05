@@ -198,7 +198,7 @@ npm install sqlite3
 
 provided you have the necessary dependencies already installed (basically, python an gcc). In Windows or MacOS, compiling this module comes close to a nightmare, so better avoiding it for the moment. Because of this problems, all the examples will use `node-sqlite-purejs`.
 
-To explore the contents of a sqlite3 database file independently of [Node.js](), you can use the sqlite3 executable available [here](http://www.sqlite.org/download.html).
+To explore the contents of a sqlite3 database file independently of [Node.js](), you can use the sqlite3 executable available [here](http://www.sqlite.org/download.html), or a graphical sqlite tool, such as [this Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/), or [this Windows program](http://sqliteadmin.orbmu2k.de/).
 
 Finally, if you have already installed a MySQL database on your computer, you can install the [`mysql`](https://npmjs.org/package/mysql) module
 
