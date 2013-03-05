@@ -8,14 +8,28 @@ This page is for suggesting and discussing ideas about the WAS course and its po
 
 Create a whole section for your idea, or comment on other people's section.
 
+
 # Write an easy to learn framework for Node.js (suggested by Luca)
 
 Node.js itself is too minimalistic, and not meant for beginners. Even if `connect` helps a lot, it still lacks some important features (setting cookies, help for routing, templates) that must be imported using other modules. On the other hand `express` is too complex for beginners.
 
-Write a simplistic module extending `connect` and containing all the features needed in this course.
+Write a simplistic module extending `connect` and containing all the features needed in this course. This is work in progress. See <https://github.com/defeo/was_framework>, or 
+
+~~~
+npm install was_framework
+~~~
+
 
 
 # Write a book on Node.js  (suggested by Luca)
 
 [Node.js]() is verly poorly documented, especially in French and for beginners. Write a complete book for a beginner's course in Web Applications 2.0.
+
+
+
+# Platform agnostic course (suggested by Luca)
+
+Here's a crazy idea. Make classes independent from the platform ([Node.js](), [PHP](), etc.), and leave to the students the choice of the platform they will use in tutorials. For the moment, Tutorials written for [Node.js]() and [PHP]() are already written. What about adding JEE Servlets?
+
+
 
