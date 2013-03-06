@@ -1,0 +1,509 @@
+---
+categories: Classes Frameworks SQL Injection XSS 
+toc: no
+...
+
+view this as a [slideshow](?export&format=Slidy)
+
+# Node.js module system
+
+Why a **module** system?
+
+> - To split large systems in smaller files,
+
+> - To write reusable and portable components,
+
+> - To easily publish code (using `npm`),
+
+The module manager: **`npm`**
+
+~~~
+npm install some_module
+~~~
+
+
+# Importing modules: `require`
+
+The [Node.js]() philosophy: 
+
+> modules are part of your application
+
+Modules are installed locally in the `node_modules` directory
+
+~~~
+$ ls node_modules/
+connect  cookies  express  mustache
+~~~
+
+Modules are imported with the **`require`** function
+
+~~~ {.javascript}
+// my_module is in the node_module directory
+var mod = require('my_module');
+mod.some_function();
+~~~
+
+Configure the search path for modules in `$NODE_PATH`.
+
+
+
+# Writing your own modules
+
+> - Functions are **not exported** by default.
+> - Use the **`exports`** object to define exported functions
+
+~~~ {.javascript}
+/*** Contents of some_module.js ***/
+
+// this function is only available inside some_module.js
+function my_private() {}
+
+// this function is available outside
+exports.my_public = function() {}
+~~~
+
+Importing local modules
+
+~~~ {.javascript}
+/*** Contents of some_other_file.js ***/
+
+// use ./ for a module in the same directory
+// .js extension is optional
+var mod = require('./some_module');
+mod.my_public();
+~~~
+
+
+# A complete Web App
+
+The components of a Web application:
+
+> - **Server logic:** some [JavaScript]() running via [Node.js]();
+
+> - **Data:** stored in a database, or in memory;
+
+> - **Views:** templates and static files for presenting the data;
+
+> - **Client logic:** the resulting web pages, with links, forms, and
+      maybe some [JavaScript]() running in the browser.
+      
+
+**Server frameworks:** Libraries to help you organise your code
+  ([Express](http://expressjs.com/),
+  [was_framework](https://npmjs.org/package/was_framework), ...)
+
+
+# The main logic (using Express)
+
+The main file, preparing all the resources
+
+~~~ {.javascript}
+// Dependencies
+var express = require('express');
+var mysql = require('mysql');
+var mod = require('./my_module');
+...
+
+// Create the server Application
+var app = express()
+  .use(express.query())
+  ...
+
+// Routes: Associate URLs to functions
+app.get('/', function(req, res) {
+  res.write('Welcome');
+});
+
+app.post('/login', mod.doLogin);
+
+app.get('/admin', mod.admin);
+
+...
+
+// Static routes: Associate URLs to files
+// (e.g., css and client-side js)
+app.use(express.static(__dirname + '/static'));
+
+// Open the database
+app.my_db = mysql.createConnection({...});
+app.my_db.connect(function(err) {
+  if (!err) {
+    // Start the server after the connection to the DB
+    // is estabilished
+    app.listen(80);
+  }
+});
+~~~
+
+
+# The user authentication module
+
+Database query
+
+~~~ {.javascript}
+exports.doLogin = function(req, res) {
+  // Prepare SQL query
+  var stmt = "SELECT * FROM users WHERE user='"
+           + req.body.user + "' AND password='"
+           + req.body.pwd + "'";
+  // Send query to database
+  req.app.my_db.query(stmt,
+    function(err, result) {
+      if (!err && result.length > 0) {
+        // Save username in the session 
+        req.session.user = result[0].user;
+        // A flag to remember the user has logged in
+        req.session.loggedin = true;
+    }
+  }
+}
+~~~
+
+------------
+
+Check that the user has already logged in
+
+~~~ {.javascript}
+exports.admin = function(req, res) {
+  // Check that the user is logged in
+  if (req.session.loggedin) {
+    // Render a template and send to the user
+    res.render('my_template.mu', { name : req.session.user });
+  } else {
+    res.end('Forbidden');
+  }
+}
+~~~
+
+
+Logging out
+
+~~~ {.javascript}
+exports.doLogout = function(req, res) {
+  req.session.loggedin = false;
+  ...
+}
+~~~
+
+
+# Views (templates)
+
+Some complex templates
+
+~~~ {.javascript}
+var mu = require('mustache');
+
+var head = fs.readFileSync('head.mu', 'ascii');
+...
+
+exports.home = function(req, res) {
+  res.write(mu.render(head, { title : 'Welcome!' }));
+  res.write(mu.render(main, { name : req.session.user }));
+  res.write(mu.render(foot, { copyright : 2012 }));
+  res.end();
+}
+~~~
+
+
+-------
+
+Or, equivalently in Express,
+
+~~~ {.javascript}
+exports.home = function(req, res) {
+  res.render('head.mu', { title : 'Welcome!' },
+    function(err, head) {
+	  res.write(
+	  res.render('main.mu', { name : req.session.user },
+	    function(err, main) {
+		  res.render('foot.mu', { copyright : 2012 },
+		    function(err, foot) {
+			  res.end(head + main + foot);
+			}
+		  );
+		}
+	  );
+	}
+  );
+}
+~~~
+
+Uses a lot of callbacks, but it is actually more comfortable once you
+get used to it.
+
+
+# Client logic
+
+Some forms
+
+~~~ {.html}
+<form action='/login' method='POST'>
+  <input type='text' name='user' />
+  <input type='password' name='pwd' />
+  <input type='submit' value='Login!' />
+</form>
+~~~
+
+
+Some [AJAX](), using [JQuery](),
+
+~~~ {.javascript}
+$.ajax({
+  url: '/logout',
+  success: function(data) {
+    // Redirect to the home page
+    document.location.href = '/';
+  }
+});
+~~~
+
+
+
+
+# Beware of the injection!
+
+![](http://1.bp.blogspot.com/-z3tve_nty_0/TeF3QP2mrVI/AAAAAAAAAQg/OV9f-k04nD4/s1600/2.jpg)
+
+
+# Never trust user data
+
+Take the previous example:
+
+~~~ {.javascript}
+var user = req.body.user;
+var pass = req.body.pass;
+var stmt = "SELECT * FROM users WHERE login='" +
+         + user + "' AND password='"
+	     + pass + "'";
+req.app.my_db.query(stmt, callback);
+~~~
+
+The user sends the following POST parameters (in `req.body`):
+
+~~~
+user=root
+pass=' OR '1'='1
+~~~
+
+The [SQL]() query contained in `stmt` is then
+
+~~~ {.sql}
+SELECT * FROM users WHERE login='root' AND password='' OR '1'='1'
+~~~
+
+This statement is always true
+
+Result: **the user is logged in as root!**
+
+
+
+# Countering SQL Injections
+
+The problem is made by some special characters: **`'`**,  **`"`**,  **`\`**, etc.
+
+**Solution:** escape them with  **`\'`**,  **`\"`**,  **`\\`**, etc.
+
+Using the [`mysql`](https://npmjs.org/package/mysql) module:
+
+~~~ {.javascript}
+var stmt = "SELECT * FROM users WHERE login='" +
+         + req.app.my_db.escape(user) 
+		 + "' AND password='"
+         + req.app.my_db.escape(pass) + "'";
+~~~
+
+Better: use **prepared statements** (like `printf` in C)
+
+~~~ {.javascript}
+req.app.my_db.query("SELECT * FROM users WHERE login=? AND password=?",
+		            user, pass, callback);
+~~~
+
+**Result:**
+
+~~~ {.sql}
+SELECT * FROM users WHERE login='root' AND password='\' OR \'1\'=\'1'
+~~~
+
+
+# Injections in [JavaScript]()
+
+**Script inclusion injection**
+
+~~~ {.javascript}
+var page = req.query.page;
+var my_mod = require(page);
+~~~
+
+The user could give the following parameters
+
+~~~
+?page=../../config.js
+~~~
+
+eventually loading unwanted code in the script. (This is much safer
+than in [PHP](), however)
+
+
+---------
+
+**File inclusion injection**
+
+~~~ {.javascript}
+var poem = req.query.poem;
+res.write('<pre class="poem">');
+res.write(fs.readFileSync('poems/' + poem));
+res.write('</pre>');
+~~~
+
+What happens when the user issues this request?
+
+    ?poem=../../../../etc/shadow
+
+
+**Countermeasure** 
+
+~~~ {.javascript}
+var poem_list = ['ronsard', 'verlaine', ...];
+if (poem_list.indexOf(poem) > 0)
+  res.write(fs.readFileSync('poems/' + poem));
+~~~
+
+---------
+
+
+**Dynamic evaluation injections**
+
+~~~ {.javascript}
+eval('my_function(' + req.query.arg + ')');
+var my_func = eval(req.query.func);
+myfunc();
+~~~
+
+**Shell code injection**
+
+~~~ {.javascript}
+var exec = require('child_process').exec;
+exec('ls -l ' + req.query.dir, callback);
+~~~
+
+All these techniques allow the user to **execute arbitrary code on the
+server**.
+
+**Countermeasure:** simply avoid them!
+
+
+# Injections in HTML: XSS
+
+Injections in the generated [HTML]() output is also called **Cross-Site
+Scripting** ([XSS]()).
+
+~~~ {.javascript}
+res.write('<body>');
+res.write('<h1>Hi, ' + req.cookies.user + '!</h1>');
+res.write('</body>');
+~~~
+
+The user may send the request
+
+~~~
+?user=<script src="http://hacker.org/attack.js"></script>
+~~~
+
+Which generates the [HTML]()
+
+~~~ {.html}
+<body>
+<h1>Hi, <script src="http://hacker.org/attack.js"></script>!</h1>
+</body>
+~~~
+
+This is generally not a threat for the server, but it is **a threat
+for the users!**
+
+
+---------
+
+
+**Countermeasure** 
+
+Replace **`<`**, **`>`**, **`&`**, ... with the *[HTML entities]()*
+**`<`**, **`>`**, **`&`**, ...
+
+~~~ {.javascript}
+function escapeHtml(unsafe) {  // using RegExp
+  return unsafe
+      .replace(/&/g, "&")
+      .replace(/</g, "<")
+      .replace(/>/g, ">")
+      .replace(/"/g, """)
+      .replace(/'/g, "'");
+}
+
+...
+res.write('<h1>Hi, ' + escapeHtml(req.cookies.user) + '!</h1>');
+~~~
+
+Generates
+
+~~~ {.html}
+<body>
+<h1>Hi, <script src="http://hacker.org/attack.js"></script>!</h1>
+</body>
+~~~
+
+
+
+# Templates and HTML injection
+
+
+Better: Mustache (and other template engines) **automatically** does [HTML]() escaping
+
+~~~ {.javascript}
+mu.render(template, { username : req.cookies.user });
+~~~
+
+~~~ {.html}
+<body>
+<h1>Hi, {{username}} !</h1>
+</body>
+~~~
+
+Generates
+
+~~~ {.html}
+<body>
+<h1>Hi, <script src="http://hacker.org/attack.js"></script>!</h1>
+</body>
+~~~
+
+
+To avoid automatic escaping, use a *triple mustache*
+
+~~~ {.html}
+<p>This is unescaped HTML: {{{safe}}}</p>
+~~~
+
+
+We will talk more about [XSS]() in the next lessons.
+
+
+
+# Final project
+
+Information on the final project:
+<http://swift.prism.uvsq.fr/Final project>
+
+> - Work in pairs,
+> - Write a web application in [Node.js]() (compulsory),
+> - Multi-user, concurrent,
+> - Project defense in May.
+
+**Examples:**
+
+> - Char room,
+> - Chess (two players or tournament),
+> - Real time game (tetris, bomberman, <http://browserquest.mozilla.org/>)
+> - ...
+
+Chose your partner and your topic and **talk to me** in the next tutorials.
