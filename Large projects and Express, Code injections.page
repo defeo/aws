@@ -213,7 +213,6 @@ Or, equivalently in Express,
 exports.home = function(req, res) {
   res.render('head.mu', { title : 'Welcome!' },
     function(err, head) {
-	  res.write(
 	  res.render('main.mu', { name : req.session.user },
 	    function(err, main) {
 		  res.render('foot.mu', { copyright : 2012 },
