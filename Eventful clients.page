@@ -150,7 +150,7 @@ $('h1').css('color', 'red');
 </script>
 
 
-## Reacting to events
+## Reacting to events (Optional)
 
 The browser console is a good tool for debugging, but for serious scripts it is better to write them in separate files.
 
