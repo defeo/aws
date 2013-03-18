@@ -150,7 +150,7 @@ $('h1').css('color', 'red');
 </script>
 
 
-## Reacting to events (Optional)
+## Reacting to events
 
 The browser console is a good tool for debugging, but for serious scripts it is better to write them in separate files.
 
@@ -189,7 +189,7 @@ Another solution described in the [JQuery API](http://api.jquery.com/on/) is to 
 3. Make the date blink only when the mouse is over it (events `mouseover` and `mouseout`, or `mouseenter` and `mouseleave`).
 
 
-## An SVG animation
+## An SVG animation (Optional)
 
 [SVG](Web graphics) is a standard for vector drawing. The following
 code draws a rectangle like the one in the box below.
