@@ -182,7 +182,7 @@ using `connect` sessions.
 cookies. How do you reset the counter to zero?
 
 
-# Permanent storage and user accounts
+# Permanent storage and user accounts (Optional)
 
 Finally, we see how to permanently store information about the user. We will use sqlite for the examples of this section. There are at least two modules providing an interface to sqlite in [Node.js](). The first one is [`node-sqlite-purejs`](https://npmjs.org/package/node-sqlite-purejs), it can be installed like this
 
