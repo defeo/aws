@@ -28,8 +28,8 @@ var fmwk = require('was_framework');
 // Options for the application 
 // (this is the biggest difference with connect)
 var opts = {
-  default_handler: handler;
-}
+  default_handler: handler
+};
 
 // Create and configure application
 var app = fmwk(opts);
@@ -56,8 +56,8 @@ var fmwk = require('was_framework');
 
 var opts = {
   // redirect all requests for / to /home
-  default_route: '/home';
-}
+  default_route: '/home'
+};
 
 var app = fmwk(opts);
 
