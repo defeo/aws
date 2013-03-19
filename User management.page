@@ -1,0 +1,392 @@
+In this tutorial we are going to create a medium-sized web application with database bound user management. The final product can be used as a skeleton for your own final project.
+
+We are going to start with a simple Web 1.0 application, where every handler generates [HTML]() code (using [Mustache]() templates), and where every request triggers a full page generation. No client-side [JavaScript]() will be needed at all. The optional questions will ask you to add some Web 2.0 features using [JQuery]() on the client side.
+
+
+# Choice of the framework
+
+In the past tutorials we have learned to use [`connect`](http://www.senchalabs.org/connect/), its middleware, and other modules. Despite its many features, `connect` is still too basic to provide an easy to use framework for a complex web application.
+
+We are going to use, instead, a framework written specifically for this course, bundling all the features we've learned to use in `connect` (precisely, `query`, `bodyParser`, `cookieParser`, `session` and `static`), plus other facilities. The framework is called [`was_framework`](https://npmjs.org/package/was_framework), and can be installed like this
+
+~~~
+npm install was_framework
+~~~
+
+You won't need to install any other module for this tutorial (and possibly even for your final project).
+
+**Note:** You can read more on the API of [`was_framework`](https://npmjs.org/package/was_framework) on its [home page](https://npmjs.org/package/was_framework). Set apart its database API, `was_framework` is a very small extension of [`express`](http://expressjs.com/), the most popular web framework for [Node.js](), which itself is an extension of `connect`. It is not difficult to learn and use [`express`](http://expressjs.com/) directly: you are encouraged to do so for your final project, as this gives you more control on your web applications. Once you understand how `express` works, it is very easy to write your own extensions similar to `was_framework`. You can check out the [source code](https://github.com/defeo/was_framework/tree/master/lib) of `was_framework` to get an idea of how easy it is.
+
+
+## Routing
+
+Web applications in `was_framework` are constructed similarly to `connect`:
+
+~~~ {.javascript}
+var fmwk = require('was_framework');
+
+// Options for the application 
+// (this is the biggest difference with connect)
+var opts = {
+  default_handler: handler;
+}
+
+// Create and configure application
+var app = fmwk(opts);
+
+function handler(req, res) {
+  // Handle requests here
+}
+
+// Start application on port 12345
+app.start(12345);
+~~~
+
+No need to `.use(connect.query())`, etc.: all the main middleware seen in the previous tutorials are already included.
+
+However, passing a `default_handler` is not the best way to use `was_framework`. `was_framework` is based on the paradigm
+
+> HTTP Request = Function call
+
+hence, it comes with a *function name based router* to help you map [URL]()s to [JavaScript]() functions with the least effort. Handlers are added to the special object **`f_routes`** of the application object. Here's how you would usually write a `was_framework` application.
+
+
+~~~ {.javascript}
+var fmwk = require('was_framework');
+
+var opts = {
+  // redirect all requests for / to /home
+  default_route: '/home';
+}
+
+var app = fmwk(opts);
+
+app.f_routes.home = function(req, res) {
+  // this function handles requests for /home
+};
+
+app.f_routes.fee = function(req, res) {
+  // this function handles requests for /fee
+};
+
+// You can even nest functions inside objects
+app.f_routes.foo = {
+  bar: function(req, res) {
+    // this function handles requests for /foo/bar
+  },
+  
+  baz: function(req, res) {
+    // this function handles requests for /foo/baz
+  }
+};
+
+app.start(12345);
+~~~
+
+Besides the function name based router, `was_framework` supports also the default router of the [`express`](http://expressjs.com/) module for finer control over [URL]()s and [HTTP]() methods. Read the [documentation](http://expressjs.com/guide.html) of [`express`](http://expressjs.com/) for more information.
+
+1. Using the function name based router, write a web application consisting of two pages: **`/login`** and **`/sign`**, each replying with a different message to the user (using `res.write` and `res.end`).
+
+
+## Mustache templates
+
+`was_framework` comes with built-in support for [Mustache]() templates. Mustache templates must be contained in a directory called **`templates`** inside your working directory, and must have filename ending in **`.mu`** or **`.mustache`**. Templates are compiled and sent to the client at once using the  **`.render`** method, after a call to **`.render`** there is no need to call **`.end`**. Here's an example, supposing you have a file named `home.mu` inside your `template` directory.
+
+~~~ {.javascript}
+app.f_routes.home = function(req, res) {
+  // Compile Mustache template and send to the user
+  res.render('about.mu', { title: 'My cool web app' });
+}
+~~~
+
+2. Modify your application so that the handlers for **`/login`** and **`/sign`** use [Mustache]() templates instead of `.write` and `.end`. Make the responses be valid [HTML]() pages containing a bit more than a few lines.
+
+A feature unique to `was_framework` is the method **`.multiRender`**, allowing to compile and send multiple templates. Here's an example using three templates, the compiled [HTML]() is concatenated and sent to the user.
+
+~~~ {.javascript}
+app.f_routes.home = function(req, res) {
+  res.multiRender(['head.mu', 'body.mu', 'foot.mu'], { title: 'My cool web app' });
+}
+~~~
+
+**Note:** a more powerful alternative to `.multiRender` are [*partials*](mustache.github.com/mustache.5.html). Unfortunately, [Mustache]() partials are not well supported yet in `express`.
+
+3. Take the common bits (Doctype declaration, [HTML]() headers, etc.) from the templates for **`/login`** and **`/sign`** and put them in separate template files. Use **`.multiRender`** to render the full [HTML]() pages.
+
+
+
+## Static files
+
+`was_framework` comes with built-in support for static files. If you create a directory **`static`** inside your working directory, any file contained in it will be available at the [URL]() **`/static/filename`**.
+
+4. Create a static [CSS]() stylesheet and link it to the pages `/login` and `/sign`.
+
+
+## Redirections and other HTTP codes
+
+[HTTP]() status code 302 is used for redirection. When the server sends a code 302 to the client, it also specifies a `Location:` response header, containing a [URL]() to redirect to. When the client receives a code 302, it generates a new **GET** request for the [URL]() specified by the server. `was_framework` has a facility for redirecting provided by the **`.redirect`** method.
+
+~~~ {.javascript}
+app.f_routes.rel_redirect = function(req, res) {
+  res.redirect('a/relative/url/');
+};
+
+app.f_routes.abs_redirect = function(req, res) {
+  res.redirect('/an/absoulte/url/');
+}
+
+app.f_routes.full_redirect = function(req, res) {
+  res.redirect('http://some.other.site/some/page');
+}
+~~~
+
+5. Add a handler for the **`/signin`** [URL](), redirecting to **`/sign`**.
+
+Other [HTTP]() codes can be sent to the client, along with an arbitrary message, using the **`.send`** method. For example, 500 is the code for *Internal Server Error*.
+
+~~~ {.javascript}
+app.f_routes.error = function(req, res) {
+  res.send(500, '<h1>An unexpected error occured.</h1>');
+}
+~~~
+
+6. Add a handler for **`/no_posts`**, sending a 404 (Not found) code whenever it receives a POST request.
+
+
+## Databases
+
+Finally, `was_framework` has builtin support for MySql and SQLite. The connection to the database is opened automatically before the server is started. Use an SQLite database like this (if `filename.db` does not exist, it is created automatically):
+
+~~~ {.javascript}
+var fmwk = require('was_framework');
+
+var opts = {
+  db: {
+    type: 'sqlite',
+    file: 'filename.db'
+  }
+}
+
+var app = fmwk(opts);
+
+app.start();   // by default, listen on port 8080
+~~~
+
+
+Use a MySql database like this:
+
+~~~ {.javascript}
+var fmwk = require('was_framework');
+
+var opts = {
+  db: {
+    type: 'mysql',
+    host: 'localhost',
+    user: 'root',
+    password: 'admin',
+    database: 'db'
+  }
+}
+
+var app = fmwk(opts);
+
+app.start();   // by default, listen on port 8080
+~~~
+
+Are also recognized all the options accepted by the modules [`node-sqlite-purejs`](https://npmjs.org/package/node-sqlite-purejs) and [`mysql`](https://npmjs.org/package/mysql).
+
+After a successfull connection, a **`db`** object is created inside the application. You can access it as **`app.db`** if you have a pointer to `app`, or as **`req.app.db`** from any `handler(req, res)`. 
+
+Independently of the driver, `was_framework` tries to provide an API as consistent as possible with that of the [`mysql` module](https://npmjs.org/package/mysql). To send an SQL query to the database, use the **`.query`** method of `db`.
+
+~~~ {.javascript}
+app.f_routes.create_table = function(req, res) {
+  req.app.db.query('CREATE TABLE test (a TEXT, b TEXT)', function(err) {
+    if (err) console.log(err);
+  });
+};
+
+app.f_routes.select = function(req, res) {
+  // Prepared statement (use ?)
+  req.app.db.query('SELECT * FROM test WHERE a=? AND b=?', 
+                   [req.query.a, req.query.b],
+                   function(err, results) {
+                     if (err) {
+                       console.log(err);
+                     } else {
+                       for (var i = 0; i < results.length; i++)
+                         console.log(results[i]);
+                     }
+  });
+}
+~~~
+
+Prepared queries help you avoid SQL injections. If you want to do the escaping manually, you can use the methods **`app.db.escape`** for values **`app.db.escapeId`** for column names.
+
+7. Using the database of your choice, write a function (not a handler associated to an [URL]()) that creates a table containing three text fields (`TEXT` in SQLite, `VARCHAR` in MySql): *user*, *password* and *email*. Make *login* and *email* `UNIQUE` and `NOT NULL`.
+
+The **`.start` method accepts as **third** argument a callback to be executed after the server has successfully started.
+
+~~~ {.javascript}
+var fmwk = require('was_framework');
+
+var opts = {
+  db: {
+    type: 'sqlite',
+    file: 'app.db'
+  }
+}
+
+var app = fmwk(opts);
+
+app.start(null, null, function(err) {
+  console.log('Server started');
+});
+~~~
+
+8. Using this callback, make the application create the table whenever it is invoked with a `--create-db` switch on the command line (reminder: use the [`process.argv`](http://nodejs.org/docs/v0.8.22/api/process.html#process_process_argv) array).
+
+
+
+# Playing for real
+
+We are now ready to construct the real web application. We want an application where new users can sign with an email and a password; already signed users can login, and logged in users see a personalized welcome message.
+
+The source code for `was_framework` contains a [demonstration application](https://github.com/defeo/was_framework/tree/master/demo) similar to this. Do not hesitate to read its source code to seek help.
+
+For simplicity, we are going to split the application in two modules: one for database management and one for web application logic. You can call these modules whatever you want, but here we will assume that they are called, respectively, **`app_db.js`** and **`app.js`**.
+
+
+## Database management
+
+We need a function to insert a new user, and one to check that a user-password pair is correct. Both functions do database access, thus they must expect a callback to be called upon completion. It is customary that these callbacks take the form `callback(err, result)`, where `err` is given a value in case an error happens, while `result` is given a value in case the function succeeds.
+
+The module `app_db.js` will be imported by `app.js`, thus all the functions to be exported must be bound to the **`exports`** object. Use the following skeleton:
+
+~~~ {.javascript}
+exports.login = function(db, user, pass, callback) {
+  db.query('SELECT * FROM users WHERE user=? and password=?',
+           [user, pass],
+           function(err, result) {
+             if (!err) {
+               // If the login is successful, the callback is called
+               // with the row returned from the SQL query.
+               callback(err, result.length == 1 ? result[0] : null);
+             }
+             callback(err);
+           });
+};
+
+exports.sign = function(db, user, pass, email, callback) {
+  // Insert user
+};
+~~~
+
+1. Complete the `sign` function. If the insertion is successfull, the callback must be passed an object containing the inserted values. Be careful that a username or an email should not appear twice in the table; if you have set the columns to be `UNIQUE`, the `.query` method will pass an error when you try to insert a username (or email) twice.
+
+Now we can start writing `app.js`. Start by importing the database module. For example:
+
+~~~ {.javascript}
+var app_db = require('./app_db.js');
+~~~
+
+So that now you have the two functions **`app_db.login`** and **`app_db.sign`** at your disposal.
+
+
+## Routes and pages
+
+The first thing to do is to decide what will be the structure of the web application: which *views* (i.e., *templates* or *pages*) are shown to the user, and which function calls (i.e. *routes*) are available to her.
+
+2. Create a web application with `was_framework` having (at least) the following routes:
+
+    - **`/sign`**: for signing a new user;
+    - **`/login`**: for logging in;
+    - **`/welcome`**: for greeting the user once it has logged in;
+    - **`/logout`**: for logging out.
+
+The web application will contain three *views* (or pages, in a Web 1.0 sense): one for signing, one for logging in and one for welcoming. We are going to construct these pages using [Mustache]() templates. Remember that, thanks to `.multiRender`, you can share common code among templates.
+
+3. Create templates for the *login* page. It must contain a form with two fields: a username and a password. To avoid making passwords visible in the [URL](), it is best to use a POST method. The target of the form can be whatever handler you want, in what follows we will suppose that the target is `/login` itself (i.e., you don't need to specify the `action` attribute).
+
+4. Create templates for the *sign* page. It must contain a form with three fields: a username, a password and a password confirmation. The same remarks as above apply.
+
+5. Create templates for the *welcome* page. It must contain a message personalized for the user, and a link to logout.
+
+
+## User authentication logic
+
+When the user logs in successfully, the information concerning her (username and email, here) must persist through [HTTP]() requests. The most comfortable method for this are server-side session, thus we will use the `req.session` object to store the information.
+
+We start by showing the code for the `/login` handler. For simplicity, we suppose that a single template `login.mu` is responsible for showing the whole login page.
+
+~~~ {.javascript}
+app.f_routes.login = function(req, res) {
+  var title = 'My app - Login';
+
+  if (req.session.loggedin) {
+    // If the user is already logged in, redirect to /welcome
+    res.redirect('/welcome');
+  } else if (req.method == 'POST') {
+    // If the user has sent a login form, try loggin in
+    app_db.login(req.app.db, req.body.user, req.body.pass,
+                 // Callback called after db query
+                 function(err, result) {
+                   if (err) {
+                     console.error(err);
+                     res.send(500, 'Internal Server Error');
+                   } else if (result) {
+                     // User has successfully logged in.
+                     // Populate session with user data.
+                     req.session.loggedin = result;
+                     // Go to /welcome
+                     app.f_routes.welcome(req, res);
+                   } else {
+                     // Login unsuccessful,
+                     // show again login page
+                     res.render('login.mu', {
+                       title: title,
+                       session: req.session
+                     });
+                   }
+                 });
+  } else {
+    // Show login page
+    res.render('login.mu', {
+      title: title,
+      session: req.session
+    });
+  }
+};
+~~~
+
+Observe that `/login` uses **`req.method`** to distinguish between a visit to the login page (e.g., arriving on the web site) and a submission of the login form. 
+
+Also observe the two subtly different ways of invoking the `/welcome` handler: one with `res.redirect('/welcome')`, another with `app.f_routes.welcome(req, res)`. The two seem to have the same effect to the user, but the first one generates one more request than the second one. Which one you use is a matter of taste.
+
+
+6. Write the `/welcome` handler. If the user is not logged in, it should redirect to `/login`.
+
+7. Write the `/logout` handler, setting `req.session.loggedin` to `null` (or `undefined` or `false`) and destroying the session (`req.session.destroy`, this is not strictly necessary, but can help avoiding bugs).
+
+8. Write the `/sign` handler. By default it sets the username equal to the email. It should check that the two passwords are the same, and that the username and email are not already in the database (the last check is made by SQL).
+
+
+## A touch of style
+
+9. Add a [CSS]() stylesheet common to all pages.
+
+
+
+# Tweaks and beyond (Optional)
+
+So, you have completed your first web application. Yet, it is still very primitive and not very comfortable to use. Here's some improvements you can try to implement, from the easiest to the hardest.
+
+**Pre-filled forms.** When you misspell your password you are shown again the login page, but all the form fields get erased. Passing a bit more of information to the template, you can pre-fill the username field with the last typed username in this case. Same goes for the sign page.
+
+**Error messages.** There are at least two different reasons why a sign operation could fail, but in both cases the user is shown the sign page again with no error message. Passing a bit more of information to the templates, you can help the user understand what the problem is.
+
+**Storing the username in a cookie.** You could store a cookie in the user's browser containing the username (but not the password, obviously!) so that the username field gets pre-filled even at the first visit to `/login`. `was_framework` provides the [`res.setCookie(key, val, opts)`](http://expressjs.com/api.html#res.cookie) function to set cookies.
+
+**Form validation.** All these validations on the server-side are strictly necessary, but the user experience can be greatly improved by validating forms before sending them. Use [JQuery]() to validate forms.
+
+**A bit of AJAX.** Add the option of changing one's username in the welcome page. For example, clicking on the username could transform the tag in an editable field; when the user edits the field an AJAX request is fired, checking if the new username is already in use, and the user gets notified (e.g., using different colors or icons) in real time of it. Clicking outside of the field definitively confirms the username change.
