@@ -99,6 +99,10 @@ More reasonable options are:
 - ...
 
 
+## Graphics
+
+Especially if you develop a game, you may be tempted to add nice graphics to your application. Graphic programming in the browser, though very rewarding, is a hard matter. Think about it twice before diving into it, and be sure to develop first a simple textual version of your application. The [Web graphics]() page contains some suggestions.
+
 
 # Project summary
 
