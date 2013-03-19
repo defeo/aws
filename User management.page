@@ -150,7 +150,7 @@ app.f_routes.error = function(req, res) {
 }
 ~~~
 
-6. Add a handler for **`/no_posts`**, sending a 404 (Not found) code whenever it receives a POST request.
+6. Add a handler for **`/no_posts`**, sending a 404 (Not found) code whenever it receives a POST request (recall that **`req.method`** contains the [HTTP]() method of the request).
 
 
 ## Databases
