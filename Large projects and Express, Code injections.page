@@ -427,16 +427,16 @@ for the users!**
 **Countermeasure** 
 
 Replace **`<`**, **`>`**, **`&`**, ... with the *[HTML entities]()*
-**`&lt;`**, **`&gt;`**, **`&amp;`**, ...
+**`<`**, **`>`**, **`&`**, ...
 
 ~~~ {.javascript}
 function escapeHtml(unsafe) {  // using RegExp
   return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&apos;");
+      .replace(/&/g, "&")
+      .replace(/</g, "<")
+      .replace(/>/g, ">")
+      .replace(/"/g, """)
+      .replace(/'/g, "'");
 }
 
 ...
@@ -447,7 +447,7 @@ Generates
 
 ~~~ {.html}
 <body>
-<h1>Hi, &lt;script src=&quot;http://hacker.org/attack.js&quot;?gt;&lt;/script&gt;!</h1>
+<h1>Hi, <script src="http://hacker.org/attack.js"?gt;</script>!</h1>
 </body>
 ~~~
 
@@ -472,7 +472,7 @@ Generates
 
 ~~~ {.html}
 <body>
-<h1>Hi, &lt;script src=&quot;http://hacker.org/attack.js&quot;?gt;&lt;/script&gt;!</h1>
+<h1>Hi, <script src="http://hacker.org/attack.js"?gt;</script>!</h1>
 </body>
 ~~~
 
@@ -505,4 +505,4 @@ Information on the final project:
 > - Real time game (tetris, bomberman, <http://browserquest.mozilla.org/>)
 > - ...
 
-Chose your partner and your topic and **talk to me** in the next tutorials.
+More info [here](Final project). Chose your partner and your topic and **talk to me** in the next tutorials.
