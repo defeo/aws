@@ -189,14 +189,14 @@ An attacker can inject code in every data normally coming from the browser:
 
 **Query strings (GET data)**
 
-~~~ {.html}
-http://www.example.org/index.php?page=<script>alert("injection");</script>
+~~~ 
+http://www.example.org/welcome?user=<script>alert("injection");</script>
 ~~~
 
 or using [URL escaping](URL)
 
 ~~~ {.html}
-http://www.example.org/index.php?page=%3Cscript%3Ealert%28%22injection%22%29;%3C%2Fscript%3E
+http://www.example.org/welcome?user=%3Cscript%3Ealert%28%22injection%22%29;%3C%2Fscript%3E
 ~~~
 
 **POST data** include hidden fields and Web 2.0 data (e.g. [JSON]())
@@ -206,15 +206,15 @@ http://www.example.org/index.php?page=%3Cscript%3Ealert%28%22injection%22%29;%3C
 **Cookies**
 
 ~~~
-GET /index.php HTTP/1.1
+GET /welcome HTTP/1.1
 Host: www.example.com
-Cookie: id=alert('injection');
+Cookie: user=alert('injection');
 ~~~
 
 **HTTP headers**
 
 ~~~
-GET /index.php HTTP/1.1
+GET /welcome HTTP/1.1
 Host: www.example.com
 User-Agent: Mozilla/5.0"><script>alert('injection');</script><p class="
 ~~~
@@ -409,7 +409,7 @@ setTimeout(req, 5000);
 ~~~
 
 ~~~ {.html}
-&amp;lt;script&amp;gt;alert(&amp;quot;XSS&amp;quot;);&amp;lt;/script&amp;gt;
+&lt;script&gt;alert(&quot;XSS&quot;);&lt;/script&gt;
 ~~~
 
 **Use filtering** (e.g., templates)
