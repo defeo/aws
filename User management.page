@@ -225,7 +225,7 @@ Prepared queries help you avoid SQL injections. If you want to do the escaping m
 
 7. Using the database of your choice, write a function (not a handler associated to an [URL]()) that creates a table containing three text fields (`TEXT` in SQLite, `VARCHAR` in MySql): *user*, *password* and *email*. Make *login* and *email* `UNIQUE` and `NOT NULL`.
 
-The **`.start` method accepts as **third** argument a callback to be executed after the server has successfully started.
+The **`.start`** method accepts as **third** argument a callback to be executed after the server has successfully started.
 
 ~~~ {.javascript}
 var fmwk = require('was_framework');
