@@ -1,0 +1,15 @@
+Many students want to see their application running on real web hosting platform before they really believe it.
+
+Unfortunately, most free web hosting services do not support [Node.js](). Most, but not all!
+
+## AppFog
+
+<https://www.appfog.com/> is an excellent hosting platform with support for the most popular web frameworks, including [Node.js](). Besides the usual frameworks, it also offers database services ranging from [MySql]() to Mongo.db. The free plan is definitely enough to host your project!
+
+It is very easy to set up a [Node.js]() in AppFog. Create an account, then read the documentation:
+
+- [Getting started](https://docs.appfog.com/getting-started/jumpstarts),
+- [Installing the uploader tool](https://docs.appfog.com/getting-started/af-cli),
+- [Node.js specific documentation](https://docs.appfog.com/languages/node).
+
+You can have a look at a demon application hosted on AppFog at <http://wasframework.hp.af.cm/>.
