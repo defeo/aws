@@ -252,7 +252,7 @@ app.start(null, null, function(err) {
 
 We are now ready to construct the real web application. We want an application where new users can sign with an email and a password; already signed users can login, and logged in users see a personalized welcome message.
 
-The source code for `was_framework` contains a [demonstration application](https://github.com/defeo/was_framework/tree/master/demo) similar to this. Do not hesitate to read its source code to seek help.
+The source code for `was_framework` contains a [demonstration application](https://github.com/defeo/was_framework/tree/master/demo) similar to this. You can see it running at <http://wasframework.hp.af.cm/>. Do not hesitate to read its source code to seek help.
 
 For simplicity, we are going to split the application in two modules: one for database management and one for web application logic. You can call these modules whatever you want, but here we will assume that they are called, respectively, **`app_db.js`** and **`app.js`**.
 
