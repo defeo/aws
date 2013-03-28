@@ -2,9 +2,15 @@ Many students want to see their application running on real web hosting platform
 
 Unfortunately, most free web hosting services do not support [Node.js](). Most, but not all!
 
-## AppFog
 
-<https://www.appfog.com/> is an excellent hosting platform with support for the most popular web frameworks, including [Node.js](). Besides the usual frameworks, it also offers database services ranging from [MySql]() to Mongo.db. The free plan is definitely enough to host your project!
+# Cloud9
+
+Could9 <https://c9.io/> is an excellent cloud IDE (yes, you've understood correctly: Integrated Development Environment... code in your browser, store in the cloud!) with native support for [Node.js]() and integration with Github. It's free plan includes unlimited public projects plus one private project. You can run applications right in the IDE, so you can test your project online at a public address. However, Cloud9 is only for development and testing. If you want your application to be constantly online, you have to look at a complete hosting solution like the ones below.
+
+
+# AppFog
+
+AppFog <https://www.appfog.com/> is an excellent hosting platform with support for the most popular web frameworks, including [Node.js](). Besides the usual frameworks, it also offers database services ranging from [MySql]() to Mongo.db. The free plan is definitely enough to host your project!
 
 It is very easy to set up a [Node.js]() in AppFog. Create an account, then read the documentation:
 
@@ -13,3 +19,8 @@ It is very easy to set up a [Node.js]() in AppFog. Create an account, then read 
 - [Node.js specific documentation](https://docs.appfog.com/languages/node).
 
 You can have a look at a demon application hosted on AppFog at <http://wasframework.hp.af.cm/>.
+
+
+# Heroku
+
+Heroku <http://www.heroku.com/> is a very popular hosting service for critical web applications, guaranteeing maximum uptime. It has no free plan, however.
