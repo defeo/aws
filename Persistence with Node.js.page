@@ -49,6 +49,7 @@ onclick="if(this.style.maxHeight!='none')this.style.maxHeight='none';else this.s
 
 ~~~ {.javascript}
 var mu = require('mustache');   // Click to uncover
+var connect = require('connect');
 var fs = require('fs');
 
 var template = fs.readFileSync('template.mu', 'ascii');
