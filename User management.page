@@ -272,8 +272,9 @@ exports.login = function(db, user, pass, callback) {
                // If the login is successful, the callback is called
                // with the row returned from the SQL query.
                callback(err, result.length == 1 ? result[0] : null);
+             } else {
+               callback(err);
              }
-             callback(err);
            });
 };
 
