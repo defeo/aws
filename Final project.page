@@ -104,7 +104,28 @@ More reasonable options are:
 Especially if you develop a game, you may be tempted to add nice graphics to your application. Graphic programming in the browser, though very rewarding, is a hard matter. Think about it twice before diving into it, and be sure to develop first a simple textual version of your application. The [Web graphics]() page contains some suggestions.
 
 
-# Project summary
+# Project submission
+
+Send the following items to the [instructor](http://www.prism.uvsq.fr/~dfl) by e-mail **before Sunday May 19, 20:00 CEST**. If you are late fixing a bug, the best choice is to send what you’ve done till the deadline, then try to fix the bug in time for the presentation.
+
+**Source code:**
+
+- All the source files: JavaScript, HTML, CSS, etc.
+- If you use a database, the sqllite file, or an SQL export (at least what is needed to run the project),
+- A readme file with instructions to install and run the project,
+- Any other file needed to successfully run the project,
+- No platform specific files, No compiled files, though a Unix shell script to help me install complicated projects will be appreciated.
+
+Alternatively, you can host your project on <https://npmjs.org> using the command
+  
+~~~
+npm publish
+~~~
+
+and then just send me the name of the project, so that I can install it by running `npm install`. Read the [documentation](https://npmjs.org/doc/) to learn how to write a `package.json` file for this purpose.
+
+
+**Project summary:**
 
 Your source code must be accompained by a short (two pages at most) summary:
 
@@ -113,4 +134,76 @@ Your source code must be accompained by a short (two pages at most) summary:
 - Max 2000 words: one or two pages is the best,
 - Describe what your project does, how you organized your work, what programming techniques you employed, what ideas you conceived, what difficulties you faced.
 - Include a reflection on security.
+
+
+## The defense
+
+Here's the schedule for the project defenses. Book a time slot by writing next to it:
+
+- Your names;
+- The title of your project;
+- If you have published your project online, a link to it.
+
+Should any conflicts arise, try to solve them on the [discussion page](/_discuss/Project presentation) first.
+
+
+### Tuesday May 22
+
+**13:30 - 13:55 ---** 
+
+**14:00 - 14:25 ---** 
+
+**14:30 - 14:55 ---** 
+
+**15:00 - 15:25 ---** 
+
+**15:30 - 15:55 ---** 
+
+**16:00 - 16:25 ---** 
+
+**16:30 - 16:55 ---** 
+
+**17:00 - 17:25 ---** 
+
+**17:30 - 17:55 ---** 
+
+
+### Wednesday May 22
+
+**13:30 - 13:55 ---** 
+
+**14:00 - 14:25 ---** 
+
+**14:30 - 14:55 ---** 
+
+**15:00 - 15:25 ---** 
+
+**15:30 - 15:55 ---** 
+
+**16:00 - 16:25 ---** 
+
+**16:30 - 16:55 ---** 
+
+**17:00 - 17:25 ---** 
+
+**17:30 - 17:55 ---** 
+
+
+
+### Thursay May 23
+
+
+**09:30 - 10:55 ---**
+
+**10:00 - 10:25 ---** 
+
+**10:30 - 10:55 ---**
+
+**11:00 - 11:25 ---**
+
+**11:30 - 11:55 ---**
+
+**12:00 - 12:25 ---**
+
+**12:30 - 12:55 ---**
 
