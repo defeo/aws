@@ -1,0 +1,40 @@
+The WebSocket specification --developed as part of the [HTML5](HTML) initiative-- introduced the WebSocket [JavaScript]() interface, which defines a full-duplex single socket connection over which messages can be sent between client and server. The WebSocket standard simplifies much of the complexity around bi-directional web communication and connection management.
+
+The official documentation is availbale at <http://www.websocket.org/>.
+
+# `socket.io`
+
+[`socket.io`](http://socket.io) is an implementation of the WebSocket protocol for [Node.js](). Besides implementing the WebSocket protocol, `socket.io` implements its own sub-protocol on top of it, its own client API and transport layers alternative to WebSocket for compatibility with older browsers (e.g., Flash socket protocol).
+
+The documentation for `socket.io` is available at <http://socket.io>.
+
+`socket.io` is natively available in [`was_framework`](https://npmjs.org/package/was_framework) 0.9.5, the example code below shows how to use it. 
+
+~~~ {.javascript}
+var fmwk = require('was_framework');
+
+var app = fmwk({
+    socket_io: true
+})
+
+app.f_routes.politesse = function(req, res) {
+    res.write('<script src="/socket.io/socket.io.js"></script>');
+    res.write('<script>');
+    res.write('  var socket = io.connect("http://localhost");');
+    res.write('  socket.on("merci", function (data) {');
+    res.write('    console.log(data);');
+    res.write('    socket.emit("de rien", { my: "Il n\'y a pas de quoi!" });');
+    res.write('  });');
+    res.write('</script>');
+    res.end();
+}
+
+app.io.sockets.on('connection', function(socket) {
+    socket.emit('merci', {greet: 'Merci beaucoup'});
+    socket.on('de rien', function(data) {
+        console.log(data);
+    });
+});
+
+app.start(12345)
+~~~
