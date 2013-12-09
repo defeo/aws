@@ -1,4 +1,4 @@
-class-boilerplate
+Class Boilerplate
 =================
 
-Boilerplate code for class material
+Boilerplate Jekyll code for class material.

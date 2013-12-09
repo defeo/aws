@@ -1,0 +1,5 @@
+baseurl: /class-boilerplate
+github_base: https://github.com/defeo/class-boilerplate/blob/gh-pages
+permalink: /:categories/:title
+
+markdown: kramdown

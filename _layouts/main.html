@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+
+    <style>
+      footer {
+        border-top: solid thin black;
+        font-size: smaller;
+       margin-top: 4ex;
+      }
+      body {
+        width: 85%;
+        min-width: 200px;
+        margin: auto;
+        padding-left: 20px;
+        counter-reset: section;
+      }
+      h1, h2, footer { margin-left: -20px }
+      h2:before {
+        counter-increment: section;
+        content: counter(section) ". ";
+      }
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      dt {
+        font-weight: bold;
+      }
+      ul.menu {
+        list-style-type: none;
+      }
+      .menu li {
+        display: inline-block;
+        border-right: solid thin;
+        padding: 0 1ex;
+      }
+      .menu li:last-child {
+        border-right: none;
+      }
+      table { border-collapse: collapse }
+      td { padding: 1ex; }
+      .centered {
+        display: block;
+        margin: auto;
+        text-align: center;
+      }
+      
+      @media print {
+        .dont-print { display: none }
+        body { font-size: 9pt }
+        a.print-link:after { content: " <" attr(href) ">" }
+        h1, h2, h3, h4 { page-break-after: avoid }
+	.force-page-break { page-break-after: always }
+      }
+    </style>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        config: ["MMLorHTML.js"],
+        jax: ["input/TeX","input/AsciiMath","output/HTML-CSS","output/NativeMML"],
+        extensions: ["MathMenu.js","MathZoom.js"],
+        TeX: {
+          extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+        }
+      });
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+    <link href="https://github.com/defeo{{ site.baseurl }}/commits/gh-pages.atom" rel="alternate" title="Recent Commits to {{ site.baseurl }}:gh-pages" type="application/atom+xml" />
+  </head>
+  <body>
+
+    <div class="container">
+
+      {{ content }}
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+	<p><a rel="license"
+	      href="http://creativecommons.org/licenses/by-sa/4.0/">
+	<img alt="Creative Commons Licence" style="border-width:0"
+	     src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png"/>
+	  </a> <a href="http://defeo.lu" class="print-link">Luca De
+	    Feo</a> {{ site.time | date:"%Y" }}, licensed
+	  under <a rel="license" class="print-link"
+		   href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA
+	    4.0</a>.</p>
+	
+	<p class="dont-print">Source code available
+	  on <a href="https://github.com/defeo{{ site.baseurl }}">GitHub</a>,
+	  static Website generated
+	  with <a href="http://jekyllrb.com/">Jekyll</a> and kindly
+	  hosted by <a href="http://pages.github.com/">GitHub</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
