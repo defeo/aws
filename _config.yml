@@ -1,7 +1,7 @@
-baseurl: /class-boilerplate
+baseurl: /aws
 github: https://github.com/defeo
-github_base: https://github.com/defeo/class-boilerplate
-github_blob: https://github.com/defeo/class-boilerplate/blob/master
+github_base: https://github.com/defeo/aws
+github_blob: https://github.com/defeo/aws/blob/gh-pages
 permalink: /:categories/:title
 
 markdown: kramdown
