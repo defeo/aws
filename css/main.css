@@ -1,10 +1,13 @@
+@import '/my-web-fonts/stix.css';
+
 footer {
     border-top: solid thin black;
     font-size: smaller;
     margin-top: 4ex;
 }
 body {
-    font-size: 14pt;
+    font-family: "stix", serif;
+    font-size: 16pt;
     text-align: justify;
     tab-size: 4;
     width: 85%;
