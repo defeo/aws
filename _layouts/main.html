@@ -3,85 +3,14 @@
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
 
-    <style>
-      footer {
-        border-top: solid thin black;
-        font-size: smaller;
-        margin-top: 4ex;
-      }
-      body {
-        font-size: 14pt;
-        text-align: justify;
-        tab-size: 4;
-        width: 85%;
-        min-width: 200px;
-        margin: auto;
-        padding-left: 20px;
-        counter-reset: section;
-      }
-      h1, h2, footer { margin-left: -20px }
-      h2:before {
-        counter-increment: section;
-        content: counter(section) ". ";
-      }
-      a {
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      dt {
-        font-weight: bold;
-      }
-      ul.menu {
-        list-style-type: none;
-      }
-      .menu li {
-        display: inline-block;
-        border-right: solid thin;
-        padding: 0 1ex;
-      }
-      .menu li:last-child {
-        border-right: none;
-      }
-      table { border-collapse: collapse }
-      td, th { padding: 1ex; }
-      .centered {
-        margin: auto;
-        text-align: center;
-      }
-      pre {
-        background-color: #eee;
-        border-radius: 4px;
-        border: solid thin #aaa;
-        padding-left: 2ex;
-      }
-      :not(pre)>code {
-        color: #d00;
-      }
-      
-      @media print {
-        .dont-print { display: none }
-        body { font-size: 9pt }
-        a.print-link:after { content: " <" attr(href) ">" }
-        h1, h2, h3, h4 { page-break-after: avoid }
-	.force-page-break { page-break-after: always }
-      }
-    </style>
+    {% if page.plugins contains 'highlight' %}
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+    {% endif %}
+
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        config: ["MMLorHTML.js"],
-        jax: ["input/TeX","input/AsciiMath","output/HTML-CSS","output/NativeMML"],
-        extensions: ["MathMenu.js","MathZoom.js"],
-        TeX: {
-          extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
-        }
-      });
-    </script>
 
     <link href="{{ site.github_base }}/commits/gh-pages.atom" rel="alternate" title="Recent Commits to {{ site.baseurl }}:gh-pages" type="application/atom+xml" />
   </head>
@@ -124,7 +53,30 @@
       </footer>
     </div>
 
+    {% if page.plugins contains 'mathjax' %}
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        config: ["MMLorHTML.js"],
+        jax: ["input/TeX","input/AsciiMath","output/HTML-CSS","output/NativeMML"],
+        extensions: ["MathMenu.js","MathZoom.js"],
+        TeX: {
+          extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+        }
+      });
+    </script>
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+    {% endif %}
+
+    {% if page.plugins contains 'highlight' %}
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+      hljs.configure({
+        tabReplace: '    '
+      });
+      hljs.initHighlightingOnLoad();
+    </script>
+    {% endif %}
+
     {% for s in page.scripts %}
     <script src="{{ s }}"></script>
     {% endfor %}
