@@ -5,3 +5,5 @@ github_blob: https://github.com/defeo/aws/blob/gh-pages
 permalink: /:categories/:title
 
 markdown: kramdown
+kramdown:
+  parse_block_html: true

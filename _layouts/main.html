@@ -6,11 +6,21 @@
     {% if page.plugins contains 'highlight' %}
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
     {% endif %}
-
+    
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
+
+    {% if page.plugins contains 'slideshow' %}
+    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides.css" disabled>
+    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides-customization.css" disabled>
+    <script>
+      // Hack for Firefox
+      var st = document.getElementsByClassName("slideshow-css");
+      Array.prototype.forEach.call(st, function(x) { x.disabled = true; });
+    </script>
+    {% endif %}
 
     <link href="{{ site.github_base }}/commits/gh-pages.atom" rel="alternate" title="Recent Commits to {{ site.baseurl }}:gh-pages" type="application/atom+xml" />
   </head>
@@ -25,6 +35,12 @@
       <li><a href="{{ site.baseurl }}/">Home</a></li>
       <li><a href="{{ site.github_blob }}/{{ page.path }}">Source</a></li>
       <li><a href="javascript:window.print()">Print</a></li>
+      {% if page.plugins contains 'slideshow' %}
+      <li><a href="javascript:Dz.play()">Start slideshow</a>
+	<script src="{{ site.baseurl }}/js/helpers.js"></script>
+	<script src="{{ site.baseurl }}/js/dz-slides.js"></script>
+      </li>
+      {% endif %}
     </ul>
 
     <div class="main">

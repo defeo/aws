@@ -1,4 +1,15 @@
-@import '/my-web-fonts/stix.css';
+@import "http://fonts.googleapis.com/css?family=Marcellus&subset=latin";
+@import "http://fonts.googleapis.com/css?family=Oxygen+Mono";
+
+html {
+    font-family: 'Marcellus', serif;
+    font-size: 18pt;
+    line-height: 1.3;
+}
+code {
+    font-family: 'Oxygen Mono', mono;
+    font-size: 0.9em ;
+}
 
 footer {
     border-top: solid thin black;
@@ -6,8 +17,6 @@ footer {
     margin-top: 4ex;
 }
 body {
-    font-family: "stix", serif;
-    font-size: 16pt;
     text-align: justify;
     tab-size: 4;
     width: 85%;
@@ -16,10 +25,15 @@ body {
     padding-left: 20px;
     counter-reset: section;
 }
+h1 { font-size: 2em }
 h1, h2, footer { margin-left: -20px }
 h2:before {
     counter-increment: section;
     content: counter(section) ". ";
+}
+h1 .subtitle {
+    font-size: 0.5em;
+    color: #999;
 }
 a {
     text-decoration: none;
@@ -56,6 +70,9 @@ pre {
 :not(pre)>code {
     color: #d00;
 }
+.cite { font-style: italic; }
+blockquote.cite > p:first-of-type:before { content: open-quote; }
+blockquote.cite > p:last-of-type:after { content: close-quote; }
 
 @media print {
     .dont-print { display: none }
