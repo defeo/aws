@@ -1253,3 +1253,19 @@ d'une page web et le box model.
 **Chrome:** `F12`.
 
 </section>
+<section>
+
+## Pour la semaine prochaine
+
+* Révisez vos bases de HTML et CSS. Les tutoriels des W3Schools
+  peuvent vous aider :
+  - <http://www.w3schools.com/html/html5_intro.asp>,
+  - <http://www.w3schools.com/css/css3_intro.asp>.
+* Créez-vous un compte sur Cloud9 <https://c9.io/>.
+* Vérifiez, si possible, que vous arrivez à vous servir d'internet et
+  à vous connecter sur Cloud9 depuis votre salle de TP (avec votre
+  ordinateur, ou un cartable numérique).
+
+C'est tout !
+
+</section>
