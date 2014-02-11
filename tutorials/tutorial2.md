@@ -18,8 +18,8 @@ Le seules références nécessaires pour ce TD sont
 
 - Le [cours](../classes/class2),
 - Mozilla Developer Network :
-  <https://developer.mozilla.org/fr/docs/CSS>,
-  <https://developer.mozilla.org/fr/docs/JavaScript>,
+  <https://developer.mozilla.org/docs/CSS>,
+  <https://developer.mozilla.org/docs/JavaScript>,
 - W3Schools : <http://www.w3schools.com/>.
 
 Le site de questions/réponses
@@ -94,7 +94,9 @@ n'est pas chargé.
    
 2. Liez un fichier JavaScript à la page HTML. Pour éviter les
    problèmes de chargement du DOM, mettez la balise `<script>` après
-   le `<div>`, vers la fin du `<body>`.
+   le `<div>`, vers la fin du `<body>`. Faites un affichage de
+   contrôle avec `console.log` et testez avec la console que votre
+   script est bien chargé.
 
 3. Dans le JavaScript récupérez l'élément correspondant au `<div>`
    grâce à `document.querySelector`. En vous servant de
@@ -143,11 +145,65 @@ n'est pas chargé.
 
 ## Gestion des évènements
 
-Il est maintenant temps de répondre aux clics de l'utilisateur.
+Il est maintenant temps de répondre aux clics. On veut que, lorsque
+l'utilisateur clique dans une colonne (peu importe la ligne), la
+fonction `play` soit appelée sur cette colonne.
 
-## Dernières touches
+On pourrait définir un gestionnaire d'évènements par `<td>`, mais ce
+ne serait ni élégant, ni efficace : 42 gestionnaires d'évènements,
+c'est très lourd, surtout pour un téléphone portable... Nous allons
+plutôt définir un unique gestionnaire pour tout le plateau, et
+utiliser l'objet de type `Event` pour savoir quelle case a généré
+l'évènement.
 
-Un jeu n'est pas tel s'il n'y a pas de gagnant.
+Mais comment faire pour savoir à quelle colonne appartient un `<td>`
+donné ? Parmi les nombreuses solutions à notre disposition (on
+pourrait, par exemple, naviguer le DOM pour compter combien `<td>`
+sœurs existent à gauche), l'API *data attributes* de HTML5 nous offre
+la plus élégante.
+
+1. Par la méthode `.addEventListener()`, définissez un gestionnaire
+   pour l'évènement `click` sur le plateau (sur la balise `<table>`,
+   par exemple). Pour l'instant, contentez vous de faire un
+   
+	   console.log(event.target)
+   
+   dans le gestionnaire (`event` étant l'objet évènement passé au
+   gestionnaire). Testez votre gestionnaire à l'aide de la console.
+
+2. Modifiez votre double boucle `for` en sorte que les balises `<td>`
+   contiennent un attribut `data-column` égal à la colonne dans
+   laquelle la balise se trouve. Vous avez deux façons de faire cela,
+   selon la façon dont vous avez précédemment codé votre boucle :
+   directement avec `.innerHTML` ou bien avec le champs `dataset`.
+   
+   ~~~
+   // exemple de méthode utilisant innerHTML
+   ma_ligne.innerHTML += '<td data-column="0"></td>';
+   ~~~
+   {:.javascript}
+   
+   ~~~
+   // exemple utilisant dataset
+   ma_ligne.appendChild(ma_case);
+   ma_case.dataset['column'] = 0;
+   ~~~
+   {:.javascript}
+   
+   Modifiez le gestionnaire pour qu'il affiche dans la console la
+   valeur de l'attribut `data-column`. Testez avec la console.
+
+3. Modifiez votre gestionnaire pour qu'il réponde aux clics en jouant
+   dans la colonne cliquée, ou bien en ne faisant rien lorsqu'on
+   clique ailleurs (vous pouvez utiliser l'existence de la donnée
+   `column` comme test pour savoir si on a bien cliqué sur une case).
+   
+
+## Touches finales
+
+Vous pouvez aborder les points suivants dans n'importe quel
+ordre. Suivez vos goûts ! (Pour le CC, il vous sera tout de même
+demandé d'avoir développé les points 1 et 2).
 
 1. Écrivez une fonction qui teste si un coup est gagnant (4 pions de
    la même couleur alignés verticalement, horizontalement ou
@@ -165,7 +221,27 @@ Un jeu n'est pas tel s'il n'y a pas de gagnant.
    `-webkit-animation` pour Chrome), faites *flasher* l'alignement de
    4 pions gagnant. Vous pouvez consulter ce
    [guide aux animations CSS.](https://developer.mozilla.org/fr/docs/CSS/Animations_CSS)
+   (aussi
+   [en anglais](https://developer.mozilla.org/docs/CSS/CSS_Animations)).
+
+4. Ajoutez des touches de style grâce à la propriété `box-shadow`.
 
 4. Encapsulez votre code dans un objet JavaScript, de sorte à pouvoir
    avoir plusieurs plateaux dans la même page.
 
+5. Testez votre application avec un téléphone portable et adaptez-la
+   aux petits écrans. Si vous n'avez de smartphone, vous pouvez
+   utiliser l'émulation de Chrome ou Firefox:
+   
+   - Dans Chrome, ouvrez les *dev tools*, puis tapez `ECHAP` ou
+	 cliquez sur l'icône *ouvrir console*. Sélectionnez l'onglet
+	 *Émulation/Emulation* (il peut être nécessaire d'activer
+	 l'émulation dans les options des *dev tools*). Une liste de
+	 téléphone portables à émuler vous est proposée.
+   - Dans Firefox tapez `Shfit+Ctrl+M`, puis sélectionnez la
+     résolution voulue.
+   
+   Il vous sera utile de consulter ce
+   [guide au développement sur mobile](https://developer.mozilla.org/docs/Web/Guide/Mobile),
+   et en particulier la partie sur
+   [l'utilisation de la balise `viewport`](https://developer.mozilla.org/docs/Mozilla/Mobile/Balise_meta_viewport?redirectlocale=en-US&redirectslug=Mobile%2FViewport_meta_tag)

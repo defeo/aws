@@ -46,7 +46,7 @@ TD 1 (11-12/02/2014)
 : [HTML, CSS et formulaires](tutorials/tutorial1)
 
 TD 2 (18-19/02/2014)
-: 
+: [JavaScript et le DOM](tutorials/tutorial2)
 
 TD 3 (04-05/03/2014)
 : 
