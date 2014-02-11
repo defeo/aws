@@ -63,7 +63,9 @@ Partez de ce squelette
    ouvert dans l'éditeur).
 
 4. Transformez ce fichier en votre CV. On va se désintéresser de
-   l'élégance et du style pour l'instant.
+   l'élégance et du style pour l'instant.  Aidez vous avec la
+   [référence de w3schools](http://www.w3schools.com/tags/default.asp)
+   pour l'utilisation des balises.
    
    - Éditez la balise `<title>`.
    
@@ -84,22 +86,19 @@ Partez de ce squelette
 	 - Créez les sous-sections suivantes : *Études*, *Diplômes*,
        *Hobbies*, chacune dans une balise `<article>`, avec son propre
        `id` ;
-	 - Démarrez chaque section avec un `<header>` contenant une balise
+	 - Démarrez chaque sous-section avec un `<header>` contenant une balise
        `<h1>` ;
-	 - Remplissez chaque section avec des entêtes (`<h2>`, etc.), des
-       paragraphes (`<p>`), des listes (`<ul>`, `<ol>`, `<dl>`), des
-       liens (`<a>`), etc.
-	 - Dans la section *Diplômes*, utilisez un tableau (`<table>`) ;
+	 - Remplissez chaque sous-section avec des entêtes (`<h2>`, etc.),
+       des paragraphes (`<p>`), des listes (`<ul>`, `<ol>`, `<dl>`),
+       des liens (`<a>`), etc.
+	 - Dans la sous-section *Diplômes*, utilisez un tableau
+       (`<table>`) ;
 	 - En haut de cette section, ajoutez une zone de navigation
        (`<nav>`), contenant une liste (`<ul>`) de liens (`<a>`) vers
        les sous-sections. Souvenez-vous que vous pouvez linker
        n'importe quel élément d'un document HTML avec l'URL `#id` (où
        `id` est l'identifiant de la balise).
-      
-   Aidez vous avec la
-   [référence de w3schools](http://www.w3schools.com/tags/default.asp)
-   pour l'utilisation des balises.
-   
+         
    N'oubliez pas de déclarer l'encodage à l'aide de la balise `<meta>`
    (l'encodage par défaut de Cloud9 est `utf-8`). Inclure des lettres
    avec accent dans votre texte vous permettra de vérifier que
