@@ -41,8 +41,8 @@ partie des posts)</small>
 
 - 8 cours : Mercredi 13h30 - 15h, amphi B,
 - 8 TPs sur machine :
-  - Groupe 1 : Mercredi 15h15 - 18h, salle G101,
-  - Groupe 2 : Mardi 9h45 - 13h, salle CENTRE.
+  - Groupe 1 : Mercredi 15h15 - 18h30, salle G101,
+  - Groupe 2 : Mardi 15h15 - 18h30, salle G103.
   
   Venez avec *votre ordinateur* ou un *cartable numérique*.
   **Apportez un cable ethernet !** Développement dans le cloud grâce à

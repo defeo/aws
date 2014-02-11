@@ -10,8 +10,8 @@ title: AWS – Applications web et sécurité
 **Chargé de cours et de TD :** Luca De Feo <http://defeo.lu/>.
 
 **Cours :** Mercredi 13h30 - 15h, amphi B,  
-**TDs, Groupe 1 :** Mercredi 15h15 - 18h, salle G101,  
-**TDs, Groupe 2 :** Mardi 9h45 - 13h, salle CENTRE.
+**TDs, Groupe 1 :** Mercredi 15h15 - 18h30, salle G101,  
+**TDs, Groupe 2 :** Mardi 15h15 - 18h30, salle G103.
 
 ## Cours
 
