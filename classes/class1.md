@@ -728,11 +728,11 @@ fait à travers l'attribut `type`.
 <input type="radio" name="choice" value="choice-2">B
 ~~~
 
-**Checkbox:** <input type="checkbox" name="check" value="1">C <input type="checkbox" name="check" value="2">D
+**Checkbox:** <input type="checkbox" name="check1" value="1">C <input type="checkbox" name="check2" value="2">D
 
 ~~~
-<input type="checkbox" name="check" value="check-1">C
-<input type="checkbox" name="check" value="check-2">D
+<input type="checkbox" name="check1" value="check-1">C
+<input type="checkbox" name="check2" value="check-2">D
 ~~~
 
 </section>
