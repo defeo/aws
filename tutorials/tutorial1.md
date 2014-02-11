@@ -105,7 +105,7 @@ Partez de ce squelette
    l'encodage est correctement déclaré.
 
 5. Validez votre document avec le validateur de W3C:
-   <http://validator.w3.org/>. Corrigez vos erreurs jusqu'à plus en
+   <http://validator.w3.org/>. Corrigez vos erreurs jusqu'à ne plus en
    avoir.
 
 
@@ -157,6 +157,10 @@ modifiez l'apparence de votre page comme suit :
 	`element.style`. Bien évidemment, ces modifications ne seront pas
 	sauvegardées dans la page, et elles ne survivront pas à un
 	rechargement.
+
+11. Validez le CSS de votre document avec le validateur du W3C :
+    <http://jigsaw.w3.org/css-validator/>. Corrigez vos erreures
+    jusqu'à ne plus en avoir.
 
 
 ## Formulaires
@@ -248,3 +252,5 @@ soit dans le corps d'une requête de type POST.
 	  <option>Fraise</option>
 	  <option>Melon</option>
 	</select>
+
+...et n'oubliez pas de valider, bien sûr !
