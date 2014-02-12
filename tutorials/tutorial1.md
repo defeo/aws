@@ -44,7 +44,7 @@ Partez de ce squelette
 </html>
 ~~~
 	
-1. Éditez le fichier. Ajoutez une entête et quelques paragraphe.
+1. Éditez le fichier. Ajoutez une entête et quelques paragraphes.
 
 3. Visualisez le résultat dans le browser.
    
