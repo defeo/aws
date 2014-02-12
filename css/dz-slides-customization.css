@@ -65,6 +65,8 @@ h2 {
 h3, h4, h5, h6, p, pre { margin: 10px 40px 10px 40px; }
 ul { margin: 20px 40px 20px 80px; }
 li > ul { margin: 5px 40px; }
+dl { margin: 20px 40px; }
+dd { margin-left: 40px; }
 blockquote { margin: 20px 40px; }
 
 /* Figures are displayed full-page, with the caption
