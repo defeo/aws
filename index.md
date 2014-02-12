@@ -19,7 +19,7 @@ Cours 1 (05/02/2014)
 : [Le WWW](classes/class1) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140205.mp4)]
 
 Cours 2 (12/02/2014)
-: 
+: [JavaScript et le DOM](classes/class2)
 
 Cours 3 (19/02/2014)
 : 
