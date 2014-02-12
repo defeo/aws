@@ -3,7 +3,10 @@
    <https://github.com/paulrouget/dzslides/>
 */
 
-html, .view body { background-color: black; counter-reset: slideidx; }
+html, .view body { 
+    background-color: black;
+    counter-reset: slideidx;
+}
 body, .view section { background-color: white; border-radius: 12px }
 /* A section is a slide. It's size is 800x600, and this will never change */
 section, .view head > title {
@@ -112,7 +115,10 @@ section {
 /* Before */
 section { left: -150%; }
 /* Now */
-section[aria-selected] { left: 0; }
+section[aria-selected] { 
+    left: 0;
+    cursor: url(../assets/laser.cur) 8 8, url(../assets/laser.png) 8 8, default;
+}
 /* After */
 section[aria-selected] ~ section { left: +150%; }
 
