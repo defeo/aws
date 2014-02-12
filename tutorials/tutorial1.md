@@ -148,7 +148,7 @@ modifiez l'apparence de votre page comme suit :
 9. Faites en sorte que les `<h1>` contenus dans les `<article>` aient
    la première lettre plus grande (pseudo-élément `:first-letter`).
 
-10. Ouvrez maintenant la page dans chrome, lancez la console (`F12`)
+10. Ouvrez maintenant la page dans chrome, lancez les *dev tools* (`F12`)
 	et sélectionnez l'onglet *Elements/Éléments*. Sélectionnez une
 	balise `<h1>` et observez les informations sur son style qui
 	s'affichent à droite. Dans l'onglet *Style*, éditez quelques
@@ -199,15 +199,15 @@ soit dans le corps d'une requête de type POST.
    pas) et faites une recherche. Observez comment l'URL varie quand
    vous changez le contenu du champs de texte.
 
-4. Ouvrez à nouveau la page avec Chrome, lancez la console (`F12`) et
-   sélectionnez l'onglet *Network*. Lancez une recherche et étudiez le
-   type de requête envoyé par le browser. Vous remarquerez que la
-   requête originale (la première) a donné lieu à beaucoup d'autres
-   requêtes.
+4. Ouvrez à nouveau la page avec Chrome, lancez les *dev tools*
+   (`F12`) et sélectionnez l'onglet *Network*. Lancez une recherche et
+   étudiez le type de requête envoyé par le browser. Vous remarquerez
+   que la requête originale (la première) a donné lieu à beaucoup
+   d'autres requêtes.
 
 5. Maintenant utilisez `method="POST"` dans la balise `<form>` et
    faites à nouveau une recherche. À part le fait que Google refuse la
-   requête, quelles différences constatez-vous dans la console de
+   requête, quelles différences constatez-vous dans les *dev tools* de
    Chrome ?
 
 6. Revenez à la méthode GET. Ajoutez l'attribut `required` au champs

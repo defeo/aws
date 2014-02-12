@@ -12,7 +12,10 @@ Puisque ce TD constitue une partie du projet sur lequel vous êtes
 évalués, il sera opportun de créer un nouvel espace de travail dans
 Cloud9 (si vous avez épuise le nombre d'espaces publiques à votre
 disposition, vous pouvez en effacer des anciens, par exemple
-`demo-project`).
+`demo-project`). Parmi les options pour le nouveau projet, choisissez
+*Projet public*, *Hosted* et *Custom*. Après avoir créé le projet,
+envoyez son URL par [mail](http://defeo.lu/) au professeur (vous
+pouvez vous servir du menu *Share* de C9).
 
 Le seules références nécessaires pour ce TD sont
 
