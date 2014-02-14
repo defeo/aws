@@ -5,3 +5,5 @@ github_blob: https://github.com/defeo/class-boilerplate/blob/master
 permalink: /:categories/:title
 
 markdown: kramdown
+kramdown:
+  parse_block_html: true
