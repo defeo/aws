@@ -22,7 +22,7 @@ var Dz = {
     },
 
     play: function() {
-	$$.forEach($$(".slideshow-css"), function(x) { x.disabled = false; });
+	$$(".slideshow-css").forEach(function(x) { x.disabled = false; });
 	this.setupParams();
 	this.onhashchange();
 	this.setupTouchEvents();
@@ -35,7 +35,7 @@ var Dz = {
     },
 
     pause: function() {
-	$$.forEach($$(".slideshow-css"), function(x) { x.disabled = true; });
+	$$(".slideshow-css").forEach(function(x) { x.disabled = true; });
 	window.onkeydown = null;
 	window.onresize = null;
 	window.onhashchange = null;
@@ -51,7 +51,7 @@ var Dz = {
 	});
 	// Specific params handling
 	if (!+this.params.autoplay)
-	    $$.forEach($$("video"), function(v){ v.controls = true });
+	    $$("video").forEach(function(v){ v.controls = true });
     },
 
     onkeydown: function(aEvent) {
@@ -329,7 +329,7 @@ var Dz = {
 	}
 	var incrementals = $$('.incremental');
 	if (this.step <= 0) {
-	    $$.forEach(incrementals, function(aNode) {
+	    incrementals.forEach(function(aNode) {
 		aNode.removeAttribute('active');
 	    });
 	    return;
@@ -339,7 +339,7 @@ var Dz = {
 	    next.setAttribute('aria-selected', true);
 	    next.parentNode.setAttribute('active', true);
 	    var found = false;
-	    $$.forEach(incrementals, function(aNode) {
+	    incrementals.forEach(function(aNode) {
 		if (aNode != next.parentNode)
 		    if (found)
 			aNode.removeAttribute('active');
