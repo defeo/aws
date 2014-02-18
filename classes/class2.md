@@ -1,7 +1,6 @@
 ---
 layout: slideshow
 title: JavaScript et le DOM
-ssubtitle: 
 ---
 
 <section>
@@ -24,7 +23,7 @@ combinées sans conversions explicites.
 **Basé sur les prototypes :** il n'y a pas de distinction entre
 classes et objets : **tout est objet**.
   
-**Fonctionnel:** les fonctions sont des *objecs de première classe*.
+**Fonctionnel:** les fonctions sont des *objets de première classe*.
 
 JavaScript **n'est pas Java**. Il est bien plus proche de Python ou
 Ruby.

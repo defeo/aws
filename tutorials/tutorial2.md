@@ -8,27 +8,56 @@ Dans ce TD nous allons créer une interface pour jouer à
 quelques composants basiques de CSS3 seront suffisants à créer une
 interface agréable et parfaitement fonctionnelle.
 
-Puisque ce TD constitue une partie du projet sur lequel vous êtes
-évalués, il sera opportun de créer un nouvel espace de travail dans
-Cloud9 (si vous avez épuise le nombre d'espaces publiques à votre
-disposition, vous pouvez en effacer des anciens, par exemple
-`demo-project`). Parmi les options pour le nouveau projet, choisissez
-*Projet public*, *Hosted* et *Custom*. Après avoir créé le projet,
-envoyez son URL par [mail](http://defeo.lu/) au professeur (vous
-pouvez vous servir du menu *Share* de C9).
-
 Le seules références nécessaires pour ce TD sont
 
 - Le [cours](../classes/class2),
 - Mozilla Developer Network :
-  <https://developer.mozilla.org/docs/CSS>,
-  <https://developer.mozilla.org/docs/JavaScript>,
+  - <https://developer.mozilla.org/docs/CSS>,
+  - <https://developer.mozilla.org/docs/JavaScript>,
 - W3Schools : <http://www.w3schools.com/>.
 
 Le site de questions/réponses
 [StackOverflow](http://stackoverflow.com/) est à utiliser avec
 précaution. Toutes les autres références sont dangereuses, et risquent
 de vous pénaliser si elles ne sont pas utilisées à bon escient.
+
+
+## Préparer son espace de travail
+
+Puisque ce TD constitue une partie du projet sur lequel vous êtes
+évalués, vous allez créer un nouvel espace de travail dans
+Cloud9. Suivez ces instructions.
+
+1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
+   from URL »* ;
+2. Dans la case *« Source URL »* écrivez
+   <https://github.com/defeo/aws-project.git> ;
+3. Laissez les autres paramètres tels quels (*« Open and
+   Discoverable »* et *« Custom »*) ;
+4. Cliquez sur create.
+
+Votre espace de travail va s'appeler *« aws-project »* ; vous pouvez
+maintenant y accéder. Vous y trouverez quelques fichiers préparés par
+le professeur, auxquels il ne faudra pas toucher.
+
+Pour prendre moins de risques, allez dans l'onglet *« Preferences »*
+(icône ![roue dentée](../assets/gear.png){: width="18" height="18"
+style="width:0.7em;height:0.7em"}) et, dans la section *« General »*
+cochez la case *« Enable Auto-Save »*.
+
+**Note :** Si vous aviez déjà commencé à travailler sur ce TD dans un
+autre espace de travail, plutôt qu'en créer un nouveau vous pouvez
+importer les contenus préparés par le professeur en tapant les
+commandes suivantes dans le terminal (en bas dans l'espace de travail,
+tapez `F6` s'il n'est pas déjà ouvert).
+
+~~~
+git clone --no-checkout https://github.com/defeo/aws-project.git
+mv aws/.git .
+rmdir aws
+git reset --hard
+~~~
+{:.bash}
 
 
 ## Le plateau en pur CSS3
