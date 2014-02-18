@@ -70,9 +70,13 @@ pre {
 :not(pre)>code {
     color: #d00;
 }
-.cite { font-style: italic; }
-blockquote.cite > p:first-of-type:before { content: open-quote; }
-blockquote.cite > p:last-of-type:after { content: close-quote; }
+/* Horrible hack, waiting for CSS3 text-decoration */
+a code, code a {
+    border-bottom: dashed thin blue;
+}
+a code:hover, code a:hover {
+    border-bottom: none;
+}
 
 @media print {
     .dont-print { display: none }
@@ -81,3 +85,7 @@ blockquote.cite > p:last-of-type:after { content: close-quote; }
     h1, h2, h3, h4 { page-break-after: avoid }
     .force-page-break { page-break-after: always }
 }
+
+.cite { font-style: italic; }
+blockquote.cite > p:first-of-type:before { content: open-quote; }
+blockquote.cite > p:last-of-type:after { content: close-quote; }
