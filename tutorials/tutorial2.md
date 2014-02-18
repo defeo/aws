@@ -53,8 +53,8 @@ tapez `F6` s'il n'est pas déjà ouvert).
 
 ~~~
 git clone --no-checkout https://github.com/defeo/aws-project.git
-mv aws/.git .
-rmdir aws
+mv aws-project/.git .
+rmdir aws-project
 git reset --hard
 ~~~
 {:.bash}

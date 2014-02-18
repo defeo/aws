@@ -79,8 +79,11 @@ Sujets d'examen :
 - [Première session 2013](http://was.defeo.lu/examen-13-5-13.pdf),
 - [Première session 2012](http://was.defeo.lu/exam-12-05-09.pdf).
 
+
 ## Liens
 
+- Mes [JSFiddles](http://jsfiddle.net/user/defeo/fiddles/), qui
+  démontrent comment exécuter les passages délicats de certains TDs.
 - Deux cours de [Polytechnique](http://www.polytechnique.fr) par mon collègue et ami [Dominique Rossin](http://www.lix.polytechnique.fr/~rossin/):
     - [Développement d'applications web](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WEB/),
     - [Développement d'applications pour téléphones et tablettes](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WMB/).
