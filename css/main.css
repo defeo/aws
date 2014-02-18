@@ -57,6 +57,13 @@ pre {
 :not(pre)>code {
     color: #d00;
 }
+/* Horrible hack, waiting for CSS3 text-decoration */
+a code, code a {
+    border-bottom: dashed thin blue;
+}
+a code:hover, code a:hover {
+    border-bottom: none;
+}
 
 @media print {
     .dont-print { display: none }
