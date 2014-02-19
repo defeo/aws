@@ -992,7 +992,7 @@ une seule page web et dont le code tient en quelques fichiers.
 
 ~~~
 <?php
-  require_once '/../vendor/autoload.php';    # Charge Silex
+  require_once 'vendor/autoload.php';    # Charge Silex
 
   $app = new Silex\Application();   # Crée l'application web
 

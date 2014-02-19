@@ -22,7 +22,7 @@ Cours 2 (12/02/2014)
 : [JavaScript et le DOM](classes/class2) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140212.mp4)]
 
 Cours 3 (19/02/2014)
-: [Scripts côté server](classes/class3)
+: [Scripts côté server](classes/class3) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140219.mp4)]
 
 Cours 4 (05/03/2014)
 : 
