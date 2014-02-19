@@ -427,7 +427,7 @@ facilitent la construction d'applications web.
 ## Programmer en PHP
 
 [PHP](http://www.php.net/) est un langage *interprété*, *dynamiquement
-typé*, *imperatif* et *orienté aux objets* avec une syntaxe inspirée
+typé*, *impératif* et *orienté aux objets* avec une syntaxe inspirée
 par Perl, C et d'autres languages similaires.
 
 ~~~
@@ -514,7 +514,7 @@ elles sont **initialisées a une valeur par défaut**.
 <?php
     $foo = 10;
     echo $foo;
-    $foo = " apples";
+    $foo .= " apples";
     echo $foo;            # Affiche "10 apples"
 ?>
 ~~~
@@ -901,7 +901,7 @@ chaque fichier sont disponibles pour tous les autres.
 	  echo parent::classvar;
 	}
   }
-  $SimpleClass::displayClass();   # Affiche "another value"
+  SimpleClass::displayClass();   # Affiche "another value"
   $x = new SimpleClass();
   $x->displayVar();               # Affiche "a default value"
 ?>

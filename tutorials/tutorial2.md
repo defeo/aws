@@ -14,7 +14,8 @@ Le seules références nécessaires pour ce TD sont
 - Mozilla Developer Network :
   - <https://developer.mozilla.org/docs/CSS>,
   - <https://developer.mozilla.org/docs/JavaScript>,
-- W3Schools : <http://www.w3schools.com/>.
+- W3Schools : <http://www.w3schools.com/>,
+- Les JSFiddles du prof : <http://jsfiddle.net/user/defeo/>.
 
 Le site de questions/réponses
 [StackOverflow](http://stackoverflow.com/) est à utiliser avec
