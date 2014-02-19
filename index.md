@@ -87,13 +87,14 @@ Sujets d'examen :
 - Deux cours de [Polytechnique](http://www.polytechnique.fr) par mon collègue et ami [Dominique Rossin](http://www.lix.polytechnique.fr/~rossin/):
     - [Développement d'applications web](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WEB/),
     - [Développement d'applications pour téléphones et tablettes](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WMB/).
-- Le consortium du WWW <http://www.w3.org/>;
-- Les W3 Schools <http://www.w3schools.com/> and leur tutoriel HTML5 <http://www.w3schools.com/html5/>;
-- Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>;
-- Le site de Node.js <http://www.nodejs.org/>, le manual <http://www.nodemanual.org/> et la API reference <http://www.nodejs.org/api>;
+- Les W3 Schools <http://www.w3schools.com/> and leur tutoriel HTML5 <http://www.w3schools.com/html5/>.
+- Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>.
+- Le consortium du WWW <http://www.w3.org/>.
+- Les pages des frameworks PHP Silex <http://silex.sensiolabs.org/> et Symfony <http://symfony.com/>.
+- Le site de Node.js <http://www.nodejs.org/>, le manual <http://www.nodemanual.org/> et la API reference <http://www.nodejs.org/api>.
 - Le framework [Express](http://expressjs.com/) pour Node.js.
-- La documentation de JQuery <http://docs.jquery.com/>;
-- La bibliothèque graphique JavaScript Raphaël <http://raphaeljs.com/>
+- Le [groupe français des utilisateurs de Node.js](https://plus.google.com/communities/113346206415381691435).
+- La documentation de JQuery <http://docs.jquery.com/>.
 - Le projet OWASP <http://www.owasp.org/> and leur [application d'entraînement WebGoat](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project).
 
 
@@ -188,6 +189,10 @@ BU: 005.71jsp ALL. Pour les programmeur déjà calé en Javascript.
 M. Achour et al. *PHP Manual*.
 : <http://www.php.net/manual>. LE manuel de PHP.
 
+*The Silex Book*.
+:   <http://silex.sensiolabs.org/documentation>. La doc officielle de
+	Silex (en anglais).
+
 F.-X. Bois. *PHP5 et MySQL, Le guide complet*
 :   Micro Application Éditions, 2010. ISBN 978-2-300-031946. Côte BU:
     005.71php BOI. Manuel un peu plus avancé, il parle aussi de
@@ -204,11 +209,14 @@ A. Hendrix, B. Brinzarea, C. Darie.  *AJAX et PHP*
 
 ### Node.js
 
-*The Node.js manual*.
-: <http://www.nodemanual.org/>.
+*NodeJitsu*.
+: <http://docs.nodejitsu.com/>, tutoriels communautaires.
+
+*Node school*.
+: <http://nodeschool.io/>, tutoriels interactifs.
 
 *The Node.js API reference*.
-: <http://www.nodejs.org/api>.
+: <http://www.nodejs.org/api>, le manuel de référence.
 
 M. Kiessling. *The Node beginner guide*.
 : en anglais <http://www.nodebeginner.org/> et français
@@ -225,6 +233,9 @@ A. MacCaw. *JavaScript Web Applications*.
 MAC. Livre avancé sur JavaScript côté client et côté
 serveur. Aborde les patrons de développement (surtout MVC),
 la délégation de contrôle, et les frameworks JavaScript.
+
+M. Nebra. *Des applications ultra-rapides avec Node.js*
+: [Cours sur OpenClassrooms](http://fr.openclassrooms.com/informatique/cours/des-applications-ultra-rapides-avec-node-js) (anciennement Site du zéro).
 
 ---
 
