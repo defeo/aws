@@ -1,6 +1,6 @@
 ---
 layout: tutorial
-title: JavaScript et le DOM
+title: Un simple jeu en JavaScript
 ---
 
 Dans ce TD nous allons créer une interface pour jouer à

@@ -22,7 +22,7 @@ Cours 2 (12/02/2014)
 : [JavaScript et le DOM](classes/class2) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140212.mp4)]
 
 Cours 3 (19/02/2014)
-: 
+: [Scripts côté server](classes/class3)
 
 Cours 4 (05/03/2014)
 : 
@@ -46,7 +46,7 @@ TD 1 (11-12/02/2014)
 : [HTML, CSS et formulaires](tutorials/tutorial1)
 
 TD 2 (18-19/02/2014)
-: [JavaScript et le DOM](tutorials/tutorial2)
+: [Un simple jeu en JavaScript](tutorials/tutorial2)
 
 TD 3 (04-05/03/2014)
 : 
