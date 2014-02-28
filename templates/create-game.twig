@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Create a new game</title>
+    <style>
+    form {
+	min-width: 100px;
+	max-width: 400px;
+	margin: auto;
+	border: solid thin #aaa;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px #bbb;
+	padding: 1em;
+    }
+    form h1 {
+	font-size: 1.3em;
+    }
+    select {
+	background-color: white;
+    }
+    option:active {
+	color: white;
+    }
+    </style>
+  </head>
+  <body>
+    <form action="play" method="get">
+      {% for i in [1, 2] %}
+      <h1>Player {{ i }}</h1>
+      <p>
+	<input type="text" name="name{{ i }}" placeholder="Player name" required>
+	<select name="color{{ i }}">
+	  {% for c in colors %}
+	  <option value="{{ c }}" style="background-color: {{ c }}">{{ c }}</option>
+	  {% endfor %}
+	</select>
+      </p>
+      {% endfor %}
+      <input type="submit" value="Play!"/>
+    </form>
+  </body>
+</html>

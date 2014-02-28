@@ -7,8 +7,9 @@ HTMLElement.prototype.append = function(tag) {
     return this.appendChild(document.createElement(tag));
 };
 
-function P4(id) {
+function P4(id, stats) {
     var div = $('#' + id);
+    var stats = $('#' + stats);
     var tab = div.append('table');
     var board = [Array(6), Array(6), Array(6), 
                  Array(6), Array(6), Array(6), Array(6)];
@@ -24,9 +25,13 @@ function P4(id) {
     }
 
     var p = div.append('p');
+    p.className = 'message';
 
     var turn = 0;
-    var players = ['player1', 'player2'];
+    var players = [{ name: div.dataset['player1'],
+		     color: 'player1'},
+		   { name: div.dataset['player2'],
+		     color: 'player2'}];
 
     this.check4 = function(row, col) {
         var color = board[col][row].className;
@@ -56,7 +61,7 @@ function P4(id) {
         var row = 0;
         while (row < 6 && board[col][row].className) row++;
         if (row < 6) {
-            board[col][row].className = players[turn];
+            board[col][row].className = players[turn].color;
             if (this.check4(row, col))
                 return turn;
             if (this.isFull())
@@ -81,16 +86,20 @@ function P4(id) {
             var col = parseInt(e.target.dataset['col']);
             var status = -1;
             if (col !== undefined && (status = this.play(col)) >= 0) {
-                p.innerHTML = status == 2 ? "It's a draw." : 
-                    players[status] + ' wins!'
+		if (status == 2) {
+                    p.append('span').innerHTML = "It's a draw.";
+		} else {
+                    p.append('span').innerHTML = players[status].name + ' wins!'
+		    var score = stats.$('[name=score' + (status + 1) + ']');
+		    score.value = parseInt(score.value) + 1;
+		    console.log(score.value);
+		}
                 this.playing = false;
             }
         } else {
-            p.innerHTML = '';
-            this.empty();
-            this.playing = true;
+	    stats.$('form').submit();
         }
     }).bind(this), false)
 }
 
-p4 = new P4('puissance4');
+p4 = new P4('puissance4', 'stats');

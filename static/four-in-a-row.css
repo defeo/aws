@@ -1,0 +1,59 @@
+#puissance4 table, #puissance4 td, #puissance4 tr {
+    padding: 0;
+    margin: auto;
+}
+#puissance4 table {
+    background-color: blue;
+}
+#puissance4 td {
+    width: 5em;
+    height: 5em;
+    border-radius: 5em;
+    border: solid thick blue;
+}
+#puissance4 td {
+    background-color: white;
+}
+#puissance4 .message {
+    position: relative;
+    top: -20em;
+    text-align: center;
+    pointer-events: none;
+}
+#puissance4 .message span {
+    background-color: blue;
+    opacity: 0.8;
+    padding: 0.5em;
+    color: white;
+    font-size: 300%;
+    font-weight: bold;
+}
+
+#main {
+    margin-right: calc(200px + 1em);
+}
+#stats {
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    border-left: solid thin #aaa;
+    box-shadow: -1px 0 1px #bbb;
+    padding-left: 1em;
+}
+.maillot {
+    display: inline-block;
+    width: 2em;
+    height: 1em;
+}
+.score {
+    display: inline;
+    width: 1em;
+    border: none;
+    background-color: inherit;
+    font-size: 110%;
+}
+#stats h1 {
+    font-size: 1.4em;
+}

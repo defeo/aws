@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Four in a row</title>
+    <link rel="stylesheet" href="../static/four-in-a-row.css">
+    <style>
+      #puissance4 td.player1, .player1 { background-color: {{ players[0].color }} }
+      #puissance4 td.player2, .player2 { background-color: {{ players[1].color }} }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="puissance4" 
+	   data-player1="{{ players[0].name }}" 
+	   data-player2="{{ players[1].name }}"></div>
+    </div>
+
+    <div id="stats"><form method="post">
+      {% for i in [1, 2] %}
+      <h1>{{ players[i-1].name }}</h1>
+      <p>
+	<span class="maillot player{{ i }}"></span>
+	<input type="text" class="score" size="0" name="score{{ i }}"
+	       value="{{ players[i-1].score }}" readonly />
+      </p>
+      {% endfor %}
+    </form></div>
+
+    <script src="../static/four-in-a-row.js"></script>
+  </body>
+</html>
