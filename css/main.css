@@ -49,6 +49,7 @@ td, th { padding: 1ex; }
     text-align: center;
 }
 pre {
+    clear: both;
     background-color: #eee;
     border-radius: 4px;
     border: solid thin #aaa;
