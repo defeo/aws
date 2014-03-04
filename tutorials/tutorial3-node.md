@@ -322,9 +322,10 @@ remplacement de variables, montré dans l'exemple précédent, et
 
 Saches, cependant, que le module Twig pour Node.js est encore en phase
 expérimentale. Vous êtes encouragés à explorer d'autres langages de
-templating populaires tels
+templating populaires : le plus proche de Twig est
+[Swig](http://paularmstrong.github.io/swig/), mais peut-être
+trouverez-vous votre bonheur avec
 [Hogan (Mustache)](http://twitter.github.io/hogan.js/),
-[Jinja](https://www.npmjs.org/package/jinja),
 [Nunjucks](https://www.npmjs.org/package/nunjucks),
 [Jade](https://github.com/visionmedia/jade), ...
 
