@@ -49,7 +49,11 @@ TD 2 (18-19/02/2014)
 : [Un simple jeu en JavaScript](tutorials/tutorial2)
 
 TD 3 (04-05/03/2014)
-: 
+: [Un simple jeu en JavaScript](tutorials/tutorial2)
+: Ma première application web
+
+  - [En PHP et Silex](tutorials/tutorial3-silex)
+  - [En Node.js et Express](tutorials/tutorial3-node)
 
 TD 4 (11-12/03/2014)
 : 
@@ -91,7 +95,9 @@ Sujets d'examen :
 - Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>.
 - Le consortium du WWW <http://www.w3.org/>.
 - Les pages des frameworks PHP Silex <http://silex.sensiolabs.org/> et Symfony <http://symfony.com/>.
-- Le site de Node.js <http://www.nodejs.org/>, le manual <http://www.nodemanual.org/> et la API reference <http://www.nodejs.org/api>.
+- Les livres de Sensiolabs sur Symfony : <http://books.sensiolabs.com/>.
+- La documentation du moteur de templating Twig : <http://twig.sensiolabs.org/>.
+- Le site de Node.js <http://www.nodejs.org/>, le manuel <http://www.nodemanual.org/> et la API reference <http://www.nodejs.org/api>.
 - Le framework [Express](http://expressjs.com/) pour Node.js.
 - Le [groupe français des utilisateurs de Node.js](https://plus.google.com/communities/113346206415381691435).
 - La documentation de JQuery <http://docs.jquery.com/>.
