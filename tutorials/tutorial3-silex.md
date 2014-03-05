@@ -160,7 +160,7 @@ $app->run();
    dans la barre d'adresse.
 
 4. Le *query string* non analysé est accessible grâce à la méthode
-   `$requte->getQueryString()`. Modifiez votre gestionnaire pour qu'il
+   `$requete->getQueryString()`. Modifiez votre gestionnaire pour qu'il
    affiche, en plus, le *query string* non analysé. Visitez maintenant
    l'URL
    

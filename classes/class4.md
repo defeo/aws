@@ -142,7 +142,7 @@ app.listen(80);   // Exécution
 ### Silex
 
 ~~~
-use Symfony/Component/HttpFoundation/Request;
+use Symfony\Component\HttpFoundation\Request;
 
 $app->get('/', function(Request $req) {
 	$req->query;      // Query string
@@ -171,7 +171,7 @@ app.get('/', function(req, res) {
 ## L'objet réponse (Silex)
 
 ~~~
-use Symfony/Component/HttpFoundation/Response;
+use Symfony\Component\HttpFoundation\Response;
 ~~~
 
 Écrire une réponse simple
@@ -563,7 +563,7 @@ app.get('/', function(req, res) {
 ## Échappement
 
 - La programmation web comporte le melange de plusieurs langages de
-  programmation : HTML, CSS, JavaScript, PHP, templates, ...
+  programmation : HTML, CSS, JavaScript, PHP, templates, SQL, ...
 - Chaque langange à ses caractères spéciaux. Par ex.: `<`, `>`, `&`,
   `'`, `"`
 
