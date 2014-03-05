@@ -25,7 +25,7 @@ Cours 3 (19/02/2014)
 : [Scripts côté server](classes/class3) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140219.mp4)]
 
 Cours 4 (05/03/2014)
-: 
+: [Frameworks web](classes/class4)
 
 Cours 5 (12/03/2014)
 : 
