@@ -180,24 +180,23 @@ $app->run();
    espaces, les ampersands (`&`), etc.
    
 5. Reprenez le formulaire du point précédent, en envoyant les données
-   dans le corps d'une requête de type POST (`method="POST"`). Au lieu
-   de transiter par le *query string*, les données passent maintenant
-   directement dans le corps de la requête. Utilisez l'onglet
-   *« Réseau »* des *dev tools* de Chrome ou Firefox (une version
-   récente) pour analyser la requête engendrée par le formulaire.
+   dans le corps d'une requête de type POST (`method="POST"`).
    
-6. Silex analyse automatiquement le corps de la requête et remplit le
-   tableau `$requete->request` avec son contenu. Quant au corps brut
-   de la requête, il est accessible via la méthode
-   `$requete->getContent()`.
+   **Rappel :** pour créer un gestionnaire de type POST en Silex, on
+   remplace `$app->get()` par `$app->post()`.
+   
+   Au lieu de transiter par le *query string*, les données passent
+   maintenant directement dans le corps de la requête. Ces données
+   sont analysées par Silex et insérées dans le tableau
+   `$requete->request`. Quant au corps brut de la requête, il est
+   accessible via la méthode `$requete->getContent()`.
    
    Créez un nouveau gestionnaire pour des requêtes de type POST à
    l'URL `/form_data`. Faites en sorte qu'il affiche le corps de la
    requête, un couple clé-valeur par ligne. Faites-lui afficher aussi
-   la requête brute. Testez avec le formulaire du point précédent.
-   
-   **Rappel :** pour créer un gestionnaire de type POST en Silex, on
-   remplace `$app->get()` par `$app->post()`.
+   la requête brute. Testez avec le formulaire du point
+   précédent. Comparez les affichages avec l'onglet *« Réseau »* des
+   *dev tools* de Chrome ou Firefox (une version récente).
 
 7. Deux autres tableaux compilés par Silex contiennent des données
    utiles :

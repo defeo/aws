@@ -159,24 +159,24 @@ app.listen(8080);
    espaces, les ampersands (`&`), etc.
    
 5. Reprenez le formulaire du point précédent, en envoyant les données
-   dans le corps d'une requête de type POST (`method="POST"`). Au lieu
-   de transiter par le *query string*, les données passent maintenant
-   directement dans le corps de la requête. Utilisez l'onglet
-   *« Réseau »* des *dev tools* de Chrome ou Firefox (une version
-   récente) pour analyser la requête engendrée par le formulaire.
-   
-6. Lorsqu'il est configuré avec le *middleware*
-   `express.bodyParser()`, Express analyse automatiquement le corps de
-   la requête et remplit l'objet `req.body` avec son contenu.
-   
-   Créez un nouveau gestionnaire pour des requêtes de type POST à
-   l'URL `/form_data`. Faites en sorte qu'il affiche le corps de la
-   requête, un couple clé-valeur par ligne. Testez avec le formulaire
-   du point précédent.
+   dans le corps d'une requête de type POST (`method="POST"`).
    
    **Note :** pour créer un gestionnaire de type POST en Express, on
    remplace `app.get()` par `app.post()`.
-
+   
+   Au lieu de transiter par le *query string*, les données passent
+   maintenant directement dans le corps de la requête.  Lorsqu'il est
+   configuré avec le *middleware* `express.bodyParser()`, Express
+   analyse automatiquement le corps de la requête et remplit l'objet
+   `req.body` avec son contenu.
+   
+   Créez un nouveau gestionnaire pour des requêtes de type POST à
+   l'URL `/form_data`. Faites en sorte qu'il affiche le corps de la
+   requête, un couple clé-valeur par ligne. Faites-lui afficher aussi
+   la requête brute. Testez avec le formulaire du point
+   précédent. Comparez les affichages avec l'onglet *« Réseau »* des
+   *dev tools* de Chrome ou Firefox (une version récente).
+   
 7. Deux autres tableaux compilés par Express contiennent des données
    utiles :
    
