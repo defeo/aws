@@ -23,8 +23,9 @@ subtitle: API HTTP, routage, templates
     </marker>
 	<image id="symfony-svg"	xlink:href="../assets/symfony.svg" width="151" height="168"/>
   </defs>
+
   <g class="code" style="font-size: 16px">
-	<text x="10" y="-250">
+	<text x="10" y="-240">
 	  <tspan dy="16">POST /url?a=b HTTP/1.1</tspan>
 	  <tspan x="10" dy="32">Host: www.myhost.com</tspan>
 	  <tspan x="10" dy="16">Accept-Language: "fr;en"</tspan>
@@ -33,7 +34,7 @@ subtitle: API HTTP, routage, templates
 	  <tspan x="10" dy="16" xml:space="preserve">  "nums": [1,2,3,4,5,6,7,8] }</tspan>
 	</text>
 
-	<text x="10" y="246">
+	<text x="10" y="236">
 	  <tspan xml:space="preserve">  "primes": [2,3,5,7] }</tspan>
 	  <tspan x="10" dy="-16">{ "status": "ok",</tspan>
 	  <tspan x="10" dy="-32">Content-Type: application/json</tspan>
@@ -44,59 +45,65 @@ subtitle: API HTTP, routage, templates
   </g>
   <use xlink:href="#symfony-svg" x="300" y="-80" />
   <g fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)">
-	<path d="m 300,-195 q 70,0 70,120" />
-	<path d="m 370,80 q 0,80 -70,100" />
+	<path d="m 300,-185 q 70,0 70,120" />
+	<path d="m 370,70 q 0,80 -70,100" />
   </g>
+  
   <g class="incremental" fill="none" stroke="red" stroke-dasharray="5,3" >
 	<g>
-	  <text x="0" y="-80" fill="red" stroke="none">Requête :</text>
-	  <path d="m 30,-100 0,-10 290,0 0,-139 -319,0 0,139 30,0" />
+	  <text x="470" y="-230" fill="red" stroke="none">Requête :</text>
+	  <path d="m 465,-235 -145,0" />
+	  <rect x="1" y="-249" width="320" height="149" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="-60" fill="red" stroke="none">query string</text>
-	  <path d="M 130,-65 Q 270,-150 115,-230 M 130,-230 100,-230" />
+	  <text x="490" y="-210" fill="red" stroke="none">query string</text>
+	  <path d="M 485,-215 Q 270,-210 120,-220 " />
+	  <rect x="100" y="-240" width="4.1ex" height="1em" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="-40" fill="red" stroke="none">entêtes</text>
-	  <path d="m 100,-45 Q 600,-140 295,-190" />
-	  <ellipse cx="150" cy="-190" rx="145" ry="30" />
+	  <text x="490" y="-190" fill="red" stroke="none">entêtes</text>
+	  <rect x="5" y="-207" width="307" height="55" />
+	  <path d="m 485,-195 -173,0" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="-20" fill="red" stroke="none">corps de la requête</text>
-	  <path d="M 200,-25 Q 230,-70 150,-115" />
-	  <ellipse cx="150" cy="-135" rx="145" ry="20" />
+	  <text x="490" y="-170" fill="red" stroke="none">corps de la requête</text>
+	  <rect x="5" y="-145" width="305" height="38" />
+	  <path d="m 485,-175 -175,50" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="0" fill="red" stroke="none">méthode, url, cookies, ...</text>
+	  <text x="490" y="-150" fill="red" stroke="none">méthode, url, cookies, ...</text>
 	</g>
+	
 	<g>
-	  <text x="0" y="40" fill="red" stroke="none">Réponse :</text>
-	  <path d="M 10,43 10,110 1,110 1,249 320,249 320,110 10,110" />
+	  <text x="470" y="180" fill="red" stroke="none">Réponse :</text>
+	  <rect x="1" y="100" width="320" height="149" />
+	  <path d="m 465,175 -145,0" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="60" fill="red" stroke="none">code d'état</text>
-	  <path d="M 120,55 Q 400,70 170,130" />
-	  <ellipse cx="135" cy="130" rx="35" ry="15" />
+	  <text x="490" y="200" fill="red" stroke="none">code d'état</text>
+	  <rect x="100" y="109" width="60" height="1em" />
+	  <path d="m 485,195 C 260,195 485,118 160,118" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="80" fill="red" stroke="none">corps de la réponse</text>
-	  <path d="M 190,75 Q 230,130 150,205" />
-	  <ellipse cx="150" cy="230" rx="145" ry="25" />
+	  <text x="490" y="220" fill="red" stroke="none">corps de la réponse</text>
+	  <rect x="5" y="200" width="250" height="45" />
+	  <path d="m 485,215 -230,0" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="20" y="100" fill="red" stroke="none">entêtes, cookies, ...</text>
+	  <text x="490" y="240" fill="red" stroke="none">entêtes, cookies, ...</text>
 	</g>
+	
 	<g>
-	  <text x="450" y="-100" fill="red" stroke="none">Application :</text>
-	  <path d="M 445,-105 420,-20" />
+	  <text x="470" y="-40" fill="red" stroke="none">Application :</text>
+	  <path d="M 465,-45 420,-20" />
 	  
-	  <text x="470" y="-80" fill="red" stroke="none" style="font-size:80%">
+	  <text x="490" y="-20" fill="red" stroke="none" style="font-size:80%">
 	    <tspan>router</tspan>
-	    <tspan x="470" dy="20">moteur de templates</tspan>
-	    <tspan x="470" dy="20">sessions</tspan>
-	    <tspan x="470" dy="20">interface BD</tspan>
-	    <tspan x="470" dy="20">middlewares</tspan>
-	    <tspan x="470" dy="20">...</tspan>
+	    <tspan x="490" dy="20">moteur de templates</tspan>
+	    <tspan x="490" dy="20">sessions</tspan>
+	    <tspan x="490" dy="20">interface BD</tspan>
+	    <tspan x="490" dy="20">middlewares</tspan>
+	    <tspan x="490" dy="20">...</tspan>
 	  </text>
 	</g>
   </g>
