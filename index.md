@@ -36,7 +36,7 @@ Cours 6 (19/03/2014)
 Cours 7 (02/04/2014)
 : 
 
-Cours 8 (09/04/2014)
+Cours 8 (16/04/2014)
 : 
 
 
@@ -56,7 +56,10 @@ TD 3 (04-05/03/2014)
   - [En Node.js et Express](tutorials/tutorial3-node)
 
 TD 4 (11-12/03/2014)
-: 
+: Ma première application web
+
+  - [En PHP et Silex](tutorials/tutorial3-silex)
+  - [En Node.js et Express](tutorials/tutorial3-node)
 
 TD 5 (18-19/03/2014)
 : 
@@ -64,11 +67,22 @@ TD 5 (18-19/03/2014)
 TD 6 (01-02/04/2014)
 : 
 
-TD 7 (08-09/04/2014)
+TD 7 (15-16/04/2014)
 : 
 
-TD 8 (15-16/04/2014)
+TD 8 (29-30/04/2014)
 : 
+
+## Modalités de contrôle
+
+17/03/2014
+: [Premier checkpoint](tutorials/cc1) (contrôle continu)
+
+01/05/2014
+: Deuxième checkpoint (contrôle continu)
+
+07/06/2014 ?
+: Examen
 
 
 ## Archives
