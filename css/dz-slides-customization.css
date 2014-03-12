@@ -38,6 +38,8 @@ section, .view head > title {
     top: 40%;
     margin: 0;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
 }
 .subtitle {
     display: block;
@@ -50,9 +52,12 @@ section, .view head > title {
     position: absolute;
     width: 100%;
     bottom: 10px;
-    line-height: 0.7;
+    line-height: 1.1;
 }
-#slides-license small { font-size: 50%; }
+#slides-license small {
+    display: inline-block;
+    font-size: 50%; 
+}
 #slides-license sup { vertical-align: 20%; }
 
 h1 {
@@ -68,6 +73,7 @@ h2 {
 h3, h4, h5, h6, p, pre { margin: 10px 40px 10px 40px; }
 ul { margin: 20px 40px 20px 80px; }
 li > ul { margin: 5px 40px; }
+li > * { margin-left: 0; }
 dl { margin: 20px 40px; }
 dd { margin-left: 40px; }
 blockquote { margin: 20px 40px; }
@@ -151,6 +157,9 @@ section[aria-selected] ~ section { left: +150%; }
     font-size: 120%;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.no-wrap {
+    white-space: nowrap;
 }
 #exit-slide h3 {
     margin-top: 200px;

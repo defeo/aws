@@ -18,6 +18,7 @@ subtitle: son histoire, ses langages
 - Pour ne pas perdre une mise à jour : le
   [flux ATOM](https://github.com/defeo/aws/commits/gh-pages.atom).
 - L'ancien site : <http://was.defeo.lu/> (plus de matériel disponible).
+{:.no-wrap}
 
 **Le blog :** <http://defeo.lu/blog/> <small>(En anglais, un peu vide
 pour l'instant. Si vous aimez ce cours, vous allez aimer au moins une
@@ -826,19 +827,19 @@ Nouveaux (et mal supportés) en HTML5 :
 </style>
 
 
-Attribut `required`: prévient si pas rempli <input class="validation" type="text" required>
+Attribut `required`: prévient si pas rempli <input class="validation" type="text" required size="10">
 
 ~~~
 <input type="text" required>
 ~~~
 
-Attribut `pattern`: compare l'entrée à une regexp <input class="validation" type="text" pattern="[0-9]{6}">
+Attribut `pattern`: compare l'entrée à une regexp <input class="validation" type="text" pattern="[0-9]{6}" size="10">
 
 ~~~
 <input type="text" pattern="[0-9]{6}">
 ~~~
 
-Attribut `placeholder`: donne une suggestion <input class="validation" type="text" placeholder="tapez quelque chose">
+Attribut `placeholder`: donne une suggestion <input class="validation" type="text" placeholder="tapez quelque chose" size="10">
 
 ~~~
 <input type="text" placeholder="tapez quelque chose">

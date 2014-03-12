@@ -89,6 +89,7 @@ HTML, images, etc.
 
 - Fichiers HTML sont assemblés à partir de plusieurs composants, 
 - Compilés avant d'être chargés sur le serveur
+{:.no-wrap}
 
 #### Un exemple moderne
 
@@ -105,6 +106,7 @@ HTML, images, etc.
 		xlink:href="../assets/document.png"
 		width="44" height="60" />
   </defs>
+  <g style="-webkit-transform:scale(0.7);-ms-transform:scale(0.7)">
   <g style="font-family:Mono">
 	<use xlink:href="#file" x="40" y="0" />
 	<text x="0" y="80">menu.html</text>
@@ -135,6 +137,7 @@ HTML, images, etc.
   <g style="fill:blue">
     <a xlink:href="http://daringfireball.net/projects/markdown/"><text x="170" y="138">Markdown</text></a>
 	<a xlink:href="http://jade-lang.com/"><text x="210" y="238">Jade</text></a>
+  </g>
   </g>
 </svg>
 
@@ -178,7 +181,7 @@ La création du document advient au moment de la requête
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
     </marker>
   </defs>
-  <g>
+  <g style="-webkit-transform:scale(0.7);-ms-transform:scale(0.7)">
     <image
        xlink:href="../assets/server.png"
        x="300" y="80"
@@ -305,7 +308,7 @@ Focalisées autour de *l'interaction* avec l'utilisateur
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
     </marker>
   </defs>
-  <g>
+  <g style="-webkit-transform:scale(0.7);-ms-transform:scale(0.7)">
     <image
        xlink:href="../assets/server.png"
        x="300" y="120"
