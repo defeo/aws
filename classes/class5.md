@@ -297,7 +297,7 @@ $app->get('/welcome',
 $app->get('/next', function(Application $app) {
   // On cherche dans la session
   $u = $app['session']->get('user');
-  if ($user) {
+  if ($u) {
     return 'Hello ' . $u;
   } else {
     // Si user n'est pas défini, or rédirige sur /welcome
