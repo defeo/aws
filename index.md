@@ -28,7 +28,7 @@ Cours 4 (05/03/2014)
 : [Frameworks web](classes/class4) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140305.mp4)]
 
 Cours 5 (12/03/2014)
-: [Persistance des données](classes/class5)
+: [Persistance des données](classes/class5) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140312.mp4)]
 
 Cours 6 (19/03/2014)
 : 
