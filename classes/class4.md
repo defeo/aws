@@ -219,7 +219,7 @@ return $app->json( array('a' => 'b') );
 Écrire une réponse simple
 
 ~~~
-res.end('Hello world');
+res.send('Hello world');
 ~~~
 
 Envoyer un *code d'état* et des entêtes
@@ -227,7 +227,6 @@ Envoyer un *code d'état* et des entêtes
 ~~~
 res.setHeader('Content-Type', 'text/plain');
 res.send(404, 'Not Found');
-res.end();
 ~~~
 
 Envoyer un fichier statique
