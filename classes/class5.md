@@ -494,6 +494,7 @@ Faire une requête
 ~~~
 $q = $app['db']->executeQuery('SELECT * FROM users');
 ~~~
+{:.php}
 
 Parcourir le résultat (en le copiant dans un tableau PHP)
 

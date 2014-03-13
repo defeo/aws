@@ -87,8 +87,9 @@ $app->run();
 ?>
 ~~~
 
-1. En suivant l'exemple de `exemple.php`, créez un gestionnaire pour
-   l'URL `/query_string` qui affiche le texte
+1. En suivant le modèle du premier gestionnaire de `exemple.php` (URL
+   `/`), créez un gestionnaire pour l'URL `/query_string` qui affiche
+   le texte
    
    ~~~
    Hello
@@ -157,7 +158,12 @@ $app->run();
    Modifiez le gestionnaire écrit au point précédent pour qu'il
    affiche le contenu de la *query string*, un couple clé-valeur par
    ligne. Testez votre gestionnaire en saisissant des *query strings*
-   dans la barre d'adresse.
+   dans la barre d'adresse, comme par exemple
+   
+   ~~~
+   http://...c9.io/reflector.php/query_string?user=toto&pwd=12345
+   ~~~
+   {:.http}
 
 4. Le *query string* non analysé est accessible grâce à la méthode
    `$requete->getQueryString()`. Modifiez votre gestionnaire pour qu'il
@@ -324,8 +330,9 @@ précédent est contenu dans les trois fichiers `puissance4.html`,
    
    </div>
    
-   Servez le formulaire à l'URL `/` ; il doit envoyer ses données à
-   l'URL `/play` (par GET ou POST, au choix).
+   Servez le formulaire à l'URL `/` par la méthode `sendFile` ; il
+   doit envoyer ses données à l'URL `/play` (par GET ou POST, au
+   choix).
 
 
 ### Templates Twig

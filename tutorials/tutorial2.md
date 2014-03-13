@@ -232,7 +232,7 @@ la plus élégante.
    `column` comme test pour savoir si on a bien cliqué sur une case).
    
 
-## Touches finales
+## Touches finales (optionnel)
 
 Vous pouvez aborder les points suivants dans n'importe quel
 ordre. Suivez vos goûts ! (Pour le CC, il vous sera tout de même

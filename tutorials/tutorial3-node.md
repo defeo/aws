@@ -136,7 +136,12 @@ app.listen(8080);
    Modifiez le gestionnaire écrit au point précédent pour qu'il
    affiche le contenu de la *query string*, un couple clé-valeur par
    ligne. Testez votre gestionnaire en saisissant des *query strings*
-   dans la barre d'adresse.
+   dans la barre d'adresse, comme par exemple
+   
+   ~~~
+   http://...c9.io/reflector.php/query_string?user=toto&pwd=12345
+   ~~~
+   {:.http}
 
 4. Le *query string* non analysé est accessible grâce à la propriété
    `req._parsedUrl.query`. Modifiez votre gestionnaire pour qu'il
