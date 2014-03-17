@@ -1,6 +1,7 @@
 ---
 layout: tutorial
 title: Un simple jeu en JavaScript
+styles: ["../css/cloud9.css"]
 ---
 
 Dans ce TD nous allons créer une interface pour jouer à
@@ -42,8 +43,7 @@ maintenant y accéder. Vous y trouverez quelques fichiers préparés par
 le professeur, auxquels il ne faudra pas toucher.
 
 Pour prendre moins de risques, allez dans l'onglet *« Preferences »*
-(icône ![roue dentée](../assets/gear.png){: width="18" height="18"
-style="width:0.7em;height:0.7em"}) et, dans la section *« General »*
+(icône <span class="c9-icon preferences"></span>) et, dans la section *« General »*
 cochez la case *« Enable Auto-Save »*.
 
 **Note :** Si vous aviez déjà commencé à travailler sur ce TD dans un
