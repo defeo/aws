@@ -315,6 +315,7 @@ $app->get('/next', function(Application $app) {
 // Configuration (utilise un cookie signé, non chiffré)
 app
   .use(express.query())
+  .use(express.cookieParser())
   .use(express.session( { secret : '12345' } ));
 
 app.get('/welcome', function (req, res) {
@@ -483,7 +484,7 @@ $app->register(new DoctrineServiceProvider(),
 
 Plus sur la configuration:
 
-- [Dans le manuel de Silex](http://silex.sensiolabs.org/doc/providers/doctrine.html>),
+- [Dans le manuel de Silex](http://silex.sensiolabs.org/doc/providers/doctrine.html),
 - [Dans le manuel de Doctrine](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html).
 
 </section>
