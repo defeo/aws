@@ -509,7 +509,7 @@ foreach ($results as $row) {
 ou (ligne par ligne)
 
 ~~~
-while ($row = $q->fetchAssoc()) {
+while ($row = $q->fetch()) {
   $row['name'];
 }
 ~~~
