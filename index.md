@@ -62,10 +62,16 @@ TD 4 (11-12/03/2014)
   - [En Node.js et Express](tutorials/tutorial3-node)
 
 TD 5 (18-19/03/2014)
-: 
+: Comptes utilisateur
+  
+  - [En PHP et Silex](tutorials/tutorial4-silex)
+  - [En Node.js et Express](tutorials/tutorial4-node)
 
 TD 6 (01-02/04/2014)
-: 
+: Comptes utilisateur
+  
+  - [En PHP et Silex](tutorials/tutorial4-silex)
+  - [En Node.js et Express](tutorials/tutorial4-node)
 
 TD 7 (15-16/04/2014)
 : 
