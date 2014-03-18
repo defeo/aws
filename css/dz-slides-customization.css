@@ -71,8 +71,8 @@ h2 {
     margin: 20px 10px 20px 80px; 
 }
 h3, h4, h5, h6, p, pre { margin: 10px 40px 10px 40px; }
-ul { margin: 20px 40px 20px 80px; }
-li > ul { margin: 5px 40px; }
+ul, ol, dl { margin: 20px 40px 20px 80px; }
+li > ul, li > ol, li > dl { margin: 5px 40px; }
 li > * { margin-left: 0; }
 dl { margin: 20px 40px; }
 dd { margin-left: 40px; }
