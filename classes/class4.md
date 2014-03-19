@@ -577,7 +577,7 @@ Considérez ce gestionnaire
 
 ~~~
 function(Request $req) {
-  return '<h1>' . $req->query->get('nom') . '<h1>';
+  return '<h1>' . $req->query->get('nom') . '</h1>';
 }
 ~~~
 
