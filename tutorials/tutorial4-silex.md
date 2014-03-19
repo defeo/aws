@@ -213,8 +213,8 @@ avec des fonctionnalités avancées de la DBAL.
    } catch (Doctrine\DBAL\DBALException $e) {
 	   // En cas d'erreur, afficher les informations dans le browser
 	   // et terminer (Beurk ! Pour debug uniquement)
-	   print_r( $e->errorInfo() );
-	   print_r( $e->errorCode() );
+	   print_r( $q->errorInfo() );
+	   print_r( $q->errorCode() );
 	   return;
    }
    ~~~
