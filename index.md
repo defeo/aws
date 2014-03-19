@@ -31,7 +31,7 @@ Cours 5 (12/03/2014)
 : [Persistance des données](classes/class5) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140312.mp4)]
 
 Cours 6 (19/03/2014)
-: 
+: [Applications asynchrones](classes/class6)
 
 Cours 7 (02/04/2014)
 : 

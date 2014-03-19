@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8" />
+<title>Referrer echoer</title>
+
+<p>Vous venez du <code>Referrer</code> : <a id="referrer"></a></p>
+
+<style>
+body {
+  margin: 50px;
+  font-size: 20px;
+}
+</style>
+
+<script>
+var a = document.getElementById('referrer');
+a.innerHTML = document.referrer;
+a.href = document.referrer;
+</script>
