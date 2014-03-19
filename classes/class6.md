@@ -296,7 +296,7 @@ Envoyer du JSON
 var data = { primes : [2, 3, 5, 7],
              even   : [2, 4, 6, 8] };
 xhr.setRequestHeader('Content-Type',
-	                 'application/json')
+	                 'application/json');
 xhr.send(JSON.stringify(data));
 ~~~
 
@@ -365,33 +365,35 @@ $.ajax({
 
 <pre><code>$('#yahoo').onsubmit = function(e) {
 <div id="xhr-input">  var query = $('#query').value;
-</div>  var xhr = new XMLHttpRequest();
-
-<div id="xhr-yql">  var yql = encodeURIComponent(
+</div><div class="xhr-yql">  var yql = encodeURIComponent(
     "SELECT * FROM answers.search WHERE query='"
     + query + "'");
 </div>
+  var xhr = new XMLHttpRequest();
 <div id="xhr-open">  xhr.open('GET', 'http://query.yahooapis.com/v1/public/yql'
-    + '?<span class="xhr-json">format=json</span>&diagnostics=true&callback=&q=' + yql);
+    + '?<span class="xhr-json">format=json</span>&diagnostics=true&callback=&q=' + <span class="xhr-yql">yql</span>);
 </div>
   xhr.onload = callback;
 <div class="xhr-json">  xhr.responseType = 'json';
 </div>  xhr.send();
-}
+<div id="xhr-prevent">  e.preventDefault();
+</div>}
 </code></pre>
 
 <style>
 html[data-incremental="1"] #xhr-input,
-html[data-incremental="2"] #xhr-yql,
-html[data-incremental="3"] #xhr-open,
-html[data-incremental="4"] .xhr-json
+html[data-incremental="2"] #xhr-open,
+html[data-incremental="3"] .xhr-yql,
+html[data-incremental="4"] .xhr-json,
+html[data-incremental="5"] #xhr-prevent
 { outline: solid thick red; }
 </style>
 
 - Récupération le contenu du champs de texte ;
-- Préparation d'une interrogation au format YQL de Yahoo ;
 - Préparation de la requête à <http://query.yahooapis.com/v1/public/yql> ;
-- On attend un résultat au format JSON.
+- Préparation d'une interrogation au format YQL de Yahoo ;
+- On attend un résultat au format JSON ;
+- On arrête la soumission du formulaire.
 {: .incremental}
 
 </section>
@@ -632,7 +634,7 @@ Content-Type: application/xml
 - **XSLT** (Extensible Stylesheet Language Transformations):
     transformations de documents XML.
     
-### Avantages / Disadvantages
+### Avantages / Désavantages
 
 - Puissant, robuste ;
 - Supporté par beaucoup de services web.
