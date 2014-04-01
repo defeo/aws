@@ -74,10 +74,17 @@ TD 6 (01-02/04/2014)
   - [En Node.js et Express](tutorials/tutorial4-node)
 
 TD 7 (15-16/04/2014)
-: 
+: Un jeu multi-utilisateurs
+  
+  - [En PHP et Silex](tutorials/tutorial5-silex)
+  - [En Node.js et Express](tutorials/tutorial5-node)
 
 TD 8 (29-30/04/2014)
-: 
+: Un jeu multi-utilisateurs
+  
+  - [En PHP et Silex](tutorials/tutorial5-silex)
+  - [En Node.js et Express](tutorials/tutorial5-node)
+
 
 ## Modalités de contrôle
 

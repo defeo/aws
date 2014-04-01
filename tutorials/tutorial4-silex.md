@@ -1,6 +1,7 @@
 ---
 layout: tutorial
 title: Comptes utilisateur
+subtitle: (PHP+Silex)
 styles: ["../css/cloud9.css"]
 ---
 
