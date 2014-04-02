@@ -307,7 +307,7 @@ failles XSS.
 - Changer l'apparence d'une page, la défigurer (recerchez
   [Stallowned](http://www.google.com/search?q=stallowned)).
 - Rédiriger et *phisher*.
-- Voles des cookies et des données privées !
+- Vols des cookies et des données privées !
 - Propager l'exploit XSS comme un ver.
 - **Controler le browser de la victime !!!**
 
