@@ -34,7 +34,7 @@ Cours 6 (19/03/2014)
 : [Applications asynchrones](classes/class6) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140319.mp4)]
 
 Cours 7 (02/04/2014)
-: 
+: [Injections de code](classes/class7)
 
 Cours 8 (16/04/2014)
 : 
