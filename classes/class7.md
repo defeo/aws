@@ -321,165 +321,130 @@ Elles nécessitent d'une part de *social engineering*.
 
 ## Injections de code
 
-<svg width="1000" height="500" transform="scale(0.8)">
-  <defs
-     id="defs4">
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend"
+<svg width="1000" height="500" transform="scale(0.8)"
+	viewBox="-282 54 1000 500"
+	style="-webkit-transform: scale(0.8);-webkit-transform-origin:0 0;
+	       -ms-transform: scale(0.8);-ms-transform-origin:0 0">
+  <defs>
+    <marker id="arrow" orient="auto"
        style="overflow:visible">
       <path
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
-         style="fill-rule:evenodd;stroke:#000;"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+		 fill="black" stroke="black"
+         marker-start="none" />
     </marker>
   </defs>
-  <g transform="translate(282.72338,-54.173922)">
-    <rect
-       style="fill:none;stroke:#000;stroke-width:0.6;stroke-dasharray:2.92992042, 0.97664014"
-       width="165.71237"
-       height="281.82312"
-       x="101.18707"
-       y="158.82298" />
-    <text x="120.39771" y="146.25534">
-        <tspan
-         x="120.39771"
-         y="146.25534">Server</tspan></text>
-    <text x="616.16119" y="462.61093"><tspan
-         x="616.16119"
-         y="462.61093">Client</tspan></text>
-    <text
-       x="558.67902"
-       y="117.28503"><tspan
-         x="558.67902"
-         y="117.28503">Attaquant</tspan></text>
-    <text
-       style="font-family:monospace;font-size:smaller"
-       x="282.06912"
-       y="224.10202"><tspan
-         x="282.06912"
-         y="224.10202">GET /app?userval=<tspan style="fill:#ff0000;">code</tspan></tspan></text>
-    <text
-       style="font-family:monospace;font-size:smaller"
-       x="282.66431"
-       y="366.67291"><tspan
-         x="282.66431"
-         y="366.67291">POST /app</tspan><tspan
-         x="282.66431"
-         y="386.67291">....</tspan><tspan
-         x="282.66431"
-         y="426.67291">userval=<tspan style="fill:#ff0000">code</tspan></tspan></text>
-    <text
-       style="font-family:monospace;font-size:smaller"
-       x="282.72018"
-       y="280.52457"><tspan
-         x="282.72018"
-         y="280.52457">GET /app</tspan><tspan
-         x="282.72018"
-         y="300.52457">...</tspan><tspan
-         x="282.72018"
-         y="320.52457">Cookie: userval=<tspan style="fill:#ff0000">code</tspan></tspan></text>
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 587.14111,142.36185 c 0,0 -46.11906,44.40322 -75.26205,55.41546 -17.58465,6.64471 -56.17691,4.95028 -56.17691,4.95028 l -218.64195,0" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 612.26865,145.21287 c 0,0 -0.90934,64.1013 -22.17718,83.47753 -21.61431,19.59093 -71.16389,23.1171 -108.06215,27.78481 -70.60874,8.93215 -233.51441,0 -233.51441,0" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 615.82691,433.43399 c 0,0 -72.38793,-16.81896 -108.04451,-34.14738 -24.30416,-11.81136 -46.22842,-45.56561 -72.14732,-47.74327 -70.13283,-5.89243 -185.9292,-4.78941 -185.9292,-4.78941" />
-    <text
-       style="font-family:monospace;font-size:90%"
-       x="115.46939"
-       y="224.77438">$req->query</text>
-    <text
-       style="font-family:monospace;font-size:90%"
-       x="103.90759"
-       y="335.86218">$req->request</text>
-    <text
-       style="font-family:monospace;font-size:90%"
-       x="90.29983"
-       y="262.17676">$req->cookies</text>
-    <rect
-       style="fill:none;stroke:#000;stroke-dasharray:2.92992042, 0.97664014"
-       width="156.95905"
-       height="155.05975"
-       x="-96.716225"
-       y="250.56323" />
-    <text
-       style="font-size:smaller"
-       x="-110.57119"
-       y="431.72263">Gestionnaires de requête</text>
-    <text
-       style="font-size:smaller"
-       x="-27.780369"
-       y="144.02188"><tspan
-         x="-27.780369"
-         y="144.02188">Database</tspan></text>
-    <path
-       style="fill:none;stroke:#000;stroke-width:0.6;"
-       d="m -187.55218,232.42253 c 0,7.96786 -10.04769,14.42709 -22.44214,14.42709 -12.39446,0 -22.44214,-6.45923 -22.44214,-14.42709 0,-7.96786 10.04768,-14.42709 22.44214,-14.42709 12.39445,0 22.44214,6.45923 22.44214,14.42709 z"
-       transform="translate(219.4877,-65.958513)" />
-    <path
-       transform="translate(219.07566,-29.036599)"
-       style="fill:none;stroke:#000;stroke-width:0.6;"
-       d="m -187.55218,232.42253 c 0,7.96786 -10.04769,14.42709 -22.44214,14.42709 -12.39446,0 -22.44214,-6.45923 -22.44214,-14.42709 0,-7.96786 10.04768,-14.42709 22.44214,-14.42709 12.39445,0 22.44214,6.45923 22.44214,14.42709 z" />
-    <path
-       style="fill:none;stroke:#000;stroke-width:0.6"
-       d="m -13.147253,166 0,36" />
-    <path
-       style="fill:none;stroke:#000;stroke-width:0.6"
-       d="m 31.9,166 0,36" />
-    <rect
-       style="fill:none;stroke:#000"
-       width="127.67582"
-       height="82.231422"
-       x="-222.28365"
-       y="126.78767" />
-    <rect
-       style="fill:#000;stroke:#000;"
-       width="111.96162"
-       height="65.96067"
-       x="-214.99567"
-       y="134.07567" />
-    <text
-       style="font-size:smaller;fill:#ffffff;font-family:monospace;"
-       x="-207.70767"
-       y="155.93962"><tspan
-         x="-207.70767"
-         y="155.93962">$ system_</tspan></text>
-    <text
-       style="font-size:smaller;font-family:Monospace;"
-       x="-55.309212"
-       y="310.202">$local</text>
-    <path
+  <g>
+	<g id="boxes" style="fill:none;stroke:#000;stroke-width:0.6">
+		<rect
+		   style="stroke-dasharray:3, 1"
+		   width="165"
+		   height="281"
+		   x="101"
+		   y="158" />
+		<rect
+		   style="stroke-dasharray:3, 1"
+		   width="156"
+		   height="155"
+		   x="-96"
+		   y="250" />
+		<rect
+		   width="127"
+		   height="82"
+		   x="-222"
+		   y="126" />
+		<rect
+		   style="fill:#000"
+		   width="111"
+		   height="65"
+		   x="-214"
+		   y="134" />
+	</g>
+
+	<g>
+		<text x="120" y="146">
+			Server</text>
+		<text x="616" y="462">Client</text>
+		<text
+		   x="558"
+		   y="117">Attaquant</text>
+	</g>
+
+	<g style="font-family:monospace;font-size:75%">
+		<text
+		   x="282"
+		   y="224">GET /app?userval=<tspan style="fill:#ff0000;">code</tspan></text>
+		<text
+		   x="282"
+		   y="366"><tspan
+			 x="282"
+			 y="366">POST /app</tspan><tspan
+			 x="282"
+			 y="386">....</tspan><tspan
+			 x="282"
+			 y="426">userval=<tspan style="fill:#ff0000">code</tspan></tspan></text>
+		<text
+		   x="282"
+		   y="280"><tspan
+			 x="282"
+			 y="280">GET /app</tspan><tspan
+			 x="282"
+			 y="300">...</tspan><tspan
+			 x="282"
+			 y="320">Cookie: userval=<tspan style="fill:#ff0000">code</tspan></tspan></text>
+		<text
+		   style="fill:#ffffff"
+		   x="-207"
+		   y="155">$ system_</text>
+		<text
+		   x="-55"
+		   y="310">$local</text>
+		<text x="124" y="209">$req->query</text>
+		<text x="117" y="260">$req->cookies</text>
+		<text x="117" y="350">$req->request</text>
+	</g>
+	
+	<g style="font-size:75%"> 
+		<text
+		   x="-110"
+		   y="431">Gestionnaires de requête</text>
+		<text
+		   x="-27"
+		   y="144">Database</text>
+	</g>
+	
+	<g style="fill:none;stroke:#000;marker-end:url(#arrow)" id="arrows">
+		<path
+		   d="m 587,142 c 0,0 -46,44 -75,55 -17,6 -56,4 -56,4 l -218,0" />
+		<path
+		   d="m 612,145 c 0,0 -0,64 -22,83 -21,19 -71,23 -108,27 -70,8 -232,0 -233,0" />
+		<path
+		   d="m 615,433 c 0,0 -72,-16 -108,-34 -24,-11 -46,-45 -72,-47 -70,-5 -184,-4 -185,-4" />
+		<path
+		   d="m 120,201 c 0,0 -19,4 -26,15 C 94,216 69,254 44,267 36,271 9,281 0,277 -17,268 -10,260 -9,219" />
+		<path
+		   d="m 110,346 c -39,0 -84,0 -123,5 -31,3 -54,17 -56,24 -8,20 29,19 46,19 83,0 196,11 205,13 49,9 26,58 77,59 178,4 140,2 338,3" />
+		<path d="m 629,130 24,287" />
+		<path
+		   d="m 25,220 c 0,0 10,0 -10,33 2,20 21,9 29,5 30,-12 41,-52 69,-69 15,-8 33,-12 50,-14 105,-13 216,33 319,5 31,-8 77,-45 85,-51"/>
+		<path d="m 116,268 c 0,0 -17,18 -35,26 -18,7 -53,9 -59,10" />
+		<path d="m -81,304 c 0,0 -41,-19 -55,-37 -11,-14 -18,-42 -21,-52" />
+	</g>
+	
+	<g style="fill:none;stroke:#000;stroke-width:0.6;" id="db-cilinder">
+		<path
+		   d="m 32,167 c 0,7 -10,14 -22,14 -12,0 -22,-6 -22,-14 0,-7 10,-14 22,-14 12,0 22,6 22,14 z" />
+		<path
+		   d="m 32,203 c 0,7 -10,14 -22,14 -12,0 -22,-6 -22,-14 0,-7 10,-14 22,-14 12,0 22,6 22,14 z" />
+		<path d="m -12,166 0,36" />
+		<path d="m 32,166 0,36" />
+	</g>
+	
+    <path id="frontier"
        style="fill:none;stroke:#000;stroke-dasharray:1, 2;stroke-dashoffset:0"
        transform="translate(60,-70) scale(1,1.3)"
-       d="m 261.58487,74.673922 c 0,0 101.43142,14.241518 151.50617,36.692898 52.99984,23.76287 96.65917,42.24561 111.26235,87.58951 17.94967,55.73498 25.10441,133.29615 8.28549,189.38271 -10.97445,36.59683 -29.23571,55.85018 -68.65123,75.75309 -44.30646,22.37259 -166.89352,39.06018 -166.89352,39.06018" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 124.68644,201.48955 c 0,0 -23.42052,4.87595 -30.01711,11.30623 C 95.438851,226.66746 69.05891,254.85015 44.335262,267.68877 36.24837,271.88817 9.0105298,281.88653 2.60863e-7,277.40609 -17.224554,268.84128 -9.7173178,219.10218 -9.7173178,219.10218" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 126.11738,346.41552 c -39.274163,0.60733 -84.558795,0.92095 -123.8092389,5.41406 -31.8503901,3.64601 -54.1035391,17.7565 -56.8627841,24.83137 -8.025936,20.57899 29.02049,19.47931 46.992433,19.59046 83.972727,0.51933 196.10141,11.85331 205.26659,13.55175 49.65735,9.20223 26.76604,58.14265 77.251,59.48533 178.08888,4.73641 140.6787,2.80521 318.82953,3.41254" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 629.69752,130.30509 24.85649,287.625" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 247.85188,146.9033 c 0,0 10.59461,0.65494 -10.77617,33.52586 2.57626,20.8974 21.82161,9.34694 29.93381,5.98676 30.24537,-12.52804 41.23105,-52.8444 69.44642,-69.44642 15.02561,-8.84112 33.00171,-12.1119 50.28879,-14.36823 105.68659,-13.794358 216.77251,33.68717 319.693,5.98676 31.99072,-8.610105 85.012,-51.486137 85.012,-51.486137"
-       transform="translate(-222.72338,74.173922)" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 338.85064,194.79738 c 0,0 -17.77898,18.6138 -35.92056,26.34175 -18.65457,7.94648 -59.86761,10.77617 -59.86761,10.77617"
-       transform="translate(-222.72338,74.173922)" />
-    <path
-       style="fill:none;stroke:#000;marker-end:url(#Arrow1Lend)"
-       d="m 141.28755,230.71795 c 0,0 -41.1046,-19.94561 -55.078199,-37.11792 -11.975641,-14.717 -21.552338,-52.68349 -21.552338,-52.68349"
-       transform="translate(-222.72338,74.173922)" />
+       d="m 261,74 c 0,0 101,14 151,36 52,23 96,42 111,87 17,55 25,133 8,189 -10,36 -29,55 -68,75 -44,22 -166,39 -166,39" />
   </g>
 </svg>
 
