@@ -17,9 +17,9 @@ N'envoyez pas de fichiers joints et/ou dans le corps du mail.
 ## Travail à réaliser
 
 Vous devez compléter le Jeu de Puissance 4 décrit aux TDs
-[« Un simple jeu en JavaScript »](tutorials/tutorial2) et « Ma
-première application web » ([en PHP](tutorials/tutorial3-silex) ou
-[Node.js](tutorials/tutorial3-node), vous êtes libres de choisir).
+[« Un simple jeu en JavaScript »](tutorial2) et « Ma
+première application web » ([en PHP](tutorial3-silex) ou
+[Node.js](tutorial3-node), vous êtes libres de choisir).
 
 Pas la peine de montrer toutes les étapes intermédiaires par
 lesquelles vous êtes passés, ni que vous avez suivi point par point le

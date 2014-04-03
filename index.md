@@ -79,7 +79,7 @@ TD 7 (15-16/04/2014)
   - [En PHP et Silex](tutorials/tutorial5-silex)
   - [En Node.js et Express](tutorials/tutorial5-node)
 
-TD 8 (29-30/04/2014)
+TD 8 (17/04/2014)
 : Un jeu multi-utilisateurs
   
   - [En PHP et Silex](tutorials/tutorial5-silex)
@@ -91,10 +91,10 @@ TD 8 (29-30/04/2014)
 17/03/2014
 : [Premier checkpoint](tutorials/cc1) (contrôle continu)
 
-01/05/2014
-: Deuxième checkpoint (contrôle continu)
+20/04/2014
+: [Deuxième checkpoint](tutorials/cc2) (contrôle continu)
 
-07/06/2014 ?
+07/06/2014
 : Examen
 
 
