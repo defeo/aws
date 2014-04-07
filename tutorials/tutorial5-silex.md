@@ -2,6 +2,8 @@
 layout: tutorial
 title: Un jeu multi-utilisateurs
 subtitle: (PHP+Silex)
+scripts: ['../js/snap.svg-min.js',
+          'http://coffeescript.org/extras/coffee-script.js']
 ---
 
 Dans ce TD nous allons transformer notre jeu de Puissance 4 en un jeu
@@ -146,7 +148,12 @@ Les choses se font intéressantes : nous allons permettre aux
 utilisateurs de se mettre d'accord pour jouer une partie de
 Puissance 4. La logique de cette partie est complexe, il est conseillé
 de lire et comprendre l'intégralité de la section avant d'attaquer les
-points individuels.
+points individuels. Pour vous aider dans la compréhension (on
+l'espère), on donne ici un diagramme interactif présentant l'ensemble
+des requêtes et réponses du protocole d'invitation.
+
+<div id="app-logic"></div>
+<script type="text/coffeescript" src="../assets/app-logic.coffee"></script>
 
 1. Avec SQL Buddy, créer une table `parties` avec les champs
    suivants :
