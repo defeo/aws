@@ -118,13 +118,13 @@ Sujets d'examen :
 - Deux cours de [Polytechnique](http://www.polytechnique.fr) par mon collègue et ami [Dominique Rossin](http://www.lix.polytechnique.fr/~rossin/):
     - [Développement d'applications web](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WEB/),
     - [Développement d'applications pour téléphones et tablettes](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WMB/).
-- Les W3 Schools <http://www.w3schools.com/> and leur tutoriel HTML5 <http://www.w3schools.com/html5/>.
+- Les W3 Schools <http://www.w3schools.com/> and leur tutoriel HTML5 <http://www.w3schools.com/html/html5_intro.asp>.
 - Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>.
 - Le consortium du WWW <http://www.w3.org/>.
 - Les pages des frameworks PHP Silex <http://silex.sensiolabs.org/> et Symfony <http://symfony.com/>.
 - Les livres de Sensiolabs sur Symfony : <http://books.sensiolabs.com/>.
 - La documentation du moteur de templating Twig : <http://twig.sensiolabs.org/>.
-- Le site de Node.js <http://www.nodejs.org/>, le manuel <http://www.nodemanual.org/> et la API reference <http://www.nodejs.org/api>.
+- Le site de Node.js <http://www.nodejs.org/>, les guides <http://docs.nodejitsu.com/> et la API reference <http://www.nodejs.org/api>.
 - Le framework [Express](http://expressjs.com/) pour Node.js.
 - Le [groupe français des utilisateurs de Node.js](https://plus.google.com/communities/113346206415381691435).
 - La documentation de JQuery <http://docs.jquery.com/>.

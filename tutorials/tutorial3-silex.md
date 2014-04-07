@@ -33,7 +33,7 @@ Avant de pouvoir commencer le développement, il nous faut installer
 Silex et ses composants. Assurez-vous d'avoir correctement créé votre
 espace de travail à partir de
 <https://github.com/defeo/aws-project.git>, comme décrit
-[au TD précédent](tutoriel2#prparer-son-espace-de-travail). Notamment
+[au TD précédent](tutorial2#prparer-son-espace-de-travail). Notamment
 la racine de votre espace de travail doit contenir les fichiers
 `composer.json` et `install.sh`.
 

@@ -451,7 +451,7 @@ PHP fournit deux modules pour l'accès aux bases MySQL :
 - [PDO](http://www.php.net/manual/book.pdo.php) (DBAL générique).
 
 Silex ajoute son propre DBAL par dessus PDO :
-[Doctrine](www.doctrine-project.org/projects/dbal.html).
+[Doctrine](http://www.doctrine-project.org/projects/dbal.html).
 
 ### Fonctionnalités
 

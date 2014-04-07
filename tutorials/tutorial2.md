@@ -277,4 +277,6 @@ demandé d'avoir développé les points 1 et 2).
    Il vous sera utile de consulter ce
    [guide au développement sur mobile](https://developer.mozilla.org/docs/Web/Guide/Mobile),
    et en particulier la partie sur
-   [l'utilisation de la balise `viewport`](https://developer.mozilla.org/docs/Mozilla/Mobile/Balise_meta_viewport?redirectlocale=en-US&redirectslug=Mobile%2FViewport_meta_tag)
+   [l'utilisation de la balise `viewport`](https://developer.mozilla.org/fr/docs/Mozilla/Mobile/Balise_meta_viewport)
+   (en
+   [anaglais](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag))

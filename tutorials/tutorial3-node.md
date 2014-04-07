@@ -31,7 +31,7 @@ Avant de pouvoir commencer le développement, il nous faut installer
 Express et ses composants. Assurez-vous d'avoir correctement créé votre
 espace de travail à partir de
 <https://github.com/defeo/aws-project.git>, comme décrit
-[au TD précédent](tutoriel2#prparer-son-espace-de-travail).
+[au TD précédent](tutorial2#prparer-son-espace-de-travail).
 
 Dans le terminal (en bas dans l'espace de travail, tapez `F6` s'il
 n'est pas déjà ouvert), tapez les commandes
