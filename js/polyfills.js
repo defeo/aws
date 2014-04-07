@@ -30,3 +30,67 @@ var $$ = (Document.prototype.$$ = Document.prototype.querySelectorAll).bind(docu
 Element.prototype.$ = Element.prototype.querySelector;
 Element.prototype.$$ = Element.prototype.querySelectorAll;
 NodeList.prototype.forEach = Array.prototype.forEach;
+
+// Append nodes, à la Jade
+Element.prototype.append = function(jade, ns) {
+    var format = /^([a-z]+)((?:\.[^ #.]+|#[^ #.]+)*)(?:\s(.*))?$/i;
+    var lines = jade.split('\n');
+    var match = format.exec(lines[0]);
+    if (!match)
+	throw "Invalid tag format: " + jade
+    var tag = match[1];
+    var classes = match[2].match(/\.[^#.]+/g) || [];
+    var id = match[2].match(/#[^#.]+/);
+    if (match[3]) 
+	lines[0] = match[3];
+    else 
+	lines.shift();
+    var html = lines.join('\n');
+
+    var elt;
+    if (ns !== undefined)
+	elt = document.createElementNS(ns, tag);
+    else
+	elt = document.createElement(tag);
+    for (var i = 0; i < classes.length; i++)
+	elt.classList.add(classes[i].substring(1));
+    if (id)
+	elt.id = id[0].substring(1);
+    if (html)
+	elt.innerHTML = html;
+
+    return this.appendChild(elt);
+}
+
+// Apply JSON-formatted CSS directives to the element,
+// or to its descendants
+Element.prototype.css = function(css) {
+    for (var select_or_prop in css) {
+	var val = css[select_or_prop];
+	if (typeof(val) == 'string') {
+	    this.style[select_or_prop] = val;
+	} else {
+	    this.$$(select_or_prop).forEach(function(e) {
+		for (var prop in val) {
+		    e.style[prop] = val[prop];
+		}
+	    });
+	}
+    }
+    return this;
+}
+
+// Event listeners a la jquery
+Element.prototype.on = function(evts, cb, bubble) {
+    var evts = evts.split(/\s+/);
+    for (var i = 0 ; i < evts.length ; i++)
+	this.addEventListener(evts[i], cb, bubble);
+    return this;
+}
+Element.prototype.once = function(evts, cb, bubble) {
+    var $this = this;
+    return this.on(evts, function (e) {
+	$this.removeEventListener(e.type, arguments.callee, bubble);
+	cb.call(this, e);
+    }, bubble);
+}
