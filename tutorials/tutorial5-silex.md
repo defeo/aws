@@ -204,6 +204,10 @@ des requêtes et réponses du protocole d'invitation.
      `joue` des deux utilisateurs à l'`id` de la nouvelle partie, et
      renvoie un message de succès (du texte simple suffit, par exemple
      l'id de la partie).
+	 
+	 Pour récupérer l'id de la dernière insertion dans la base de
+     données, Doctrine vous offre la fonction très pratique
+	 `app['db']->lastInsertId()`.
 
 3. Dans la page `/userlist`, ajoutez un lien sur chacun des logins (à
    l'exception du login de l'utilisateur courant) qui permet d'inviter
