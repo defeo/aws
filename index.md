@@ -37,7 +37,7 @@ Cours 7 (02/04/2014)
 : [Injections de code](classes/class7) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140402.mp4)]
 
 Cours 8 (16/04/2014)
-: 
+: [Attaques cross-domain](classes/class8) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140416.mp4)]
 
 
 ## TDs
