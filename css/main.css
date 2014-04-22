@@ -73,3 +73,15 @@ a code:hover, code a:hover {
     h1, h2, h3, h4 { page-break-after: avoid }
     .force-page-break { page-break-after: always }
 }
+
+/* Footnotes */
+.footnote:before { content: '[' }
+.footnote:after  { content: ']' }
+.footnote, .footnotes {
+    font-size: 80%;
+}
+.footnotes {
+    border-top: solid thin #888;
+    margin-left: -20px;
+    margin-top: 2em;
+}
