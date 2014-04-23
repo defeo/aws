@@ -44,6 +44,13 @@ ul.menu {
 }
 table { border-collapse: collapse }
 td, th { padding: 1ex; }
+table.pretty td:not(:first-child),
+table.pretty th:not(:first-child) {
+    border-left: solid thin black;
+}
+table.pretty th {
+    border-bottom: solid thin black;
+}
 .centered {
     margin: auto;
     text-align: center;
