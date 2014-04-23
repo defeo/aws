@@ -95,7 +95,7 @@ TD 8 (17/04/2014)
 : [Deuxième checkpoint](tutorials/cc2) (contrôle continu)
 
 07/06/2014
-: Examen
+: Examen ([Pré-sujet](tutorials/exam-template))
 
 
 ## Archives
