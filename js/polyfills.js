@@ -81,13 +81,13 @@ Element.prototype.css = function(css) {
 }
 
 // Event listeners a la jquery
-Element.prototype.on = function(evts, cb, bubble) {
+Window.prototype.on = Document.prototype.on = Element.prototype.on = function(evts, cb, bubble) {
     var evts = evts.split(/\s+/);
     for (var i = 0 ; i < evts.length ; i++)
 	this.addEventListener(evts[i], cb, bubble);
     return this;
 }
-Element.prototype.once = function(evts, cb, bubble) {
+Window.prototype.once = Document.prototype.once = Element.prototype.once = function(evts, cb, bubble) {
     var $this = this;
     return this.on(evts, function (e) {
 	$this.removeEventListener(e.type, arguments.callee, bubble);

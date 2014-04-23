@@ -58,6 +58,13 @@ ul.menu {
 }
 table { border-collapse: collapse }
 td, th { padding: 1ex; }
+table.pretty td:not(:first-child),
+table.pretty th:not(:first-child) {
+    border-left: solid thin black;
+}
+table.pretty th {
+    border-bottom: solid thin black;
+}
 .centered {
     margin: auto;
     text-align: center;
@@ -86,6 +93,18 @@ a code:hover, code a:hover {
     a.print-link:after { content: " <" attr(href) ">" }
     h1, h2, h3, h4 { page-break-after: avoid }
     .force-page-break { page-break-after: always }
+}
+
+/* Footnotes */
+.footnote:before { content: '[' }
+.footnote:after  { content: ']' }
+.footnote, .footnotes {
+    font-size: 80%;
+}
+.footnotes {
+    border-top: solid thin #888;
+    margin-left: -20px;
+    margin-top: 2em;
 }
 
 .cite { font-style: italic; }
