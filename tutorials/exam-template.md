@@ -120,8 +120,8 @@ Considérez l'extrait HTML suivant
    ~~~
    
    Écrivez des gestionnaires associés aux clics de ces boutons, qui
-   appellent réalisent les fonctionnalités décrites en commentaire, à
-   l'aide des fonctions écrites au points précédents.
+   réalisent les fonctionnalités décrites en commentaire, à
+   l'aide des fonctions écrites aux points précédents.
 
 
 ## Logique server et base de données
