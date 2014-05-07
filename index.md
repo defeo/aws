@@ -89,13 +89,13 @@ TD 8 (17/04/2014)
 ## Modalités de contrôle
 
 17/03/2014
-: [Premier checkpoint](tutorials/cc1) (contrôle continu)
+: [Premier checkpoint](other/cc1) (contrôle continu)
 
 20/04/2014
-: [Deuxième checkpoint](tutorials/cc2) (contrôle continu)
+: [Deuxième checkpoint](other/cc2) (contrôle continu)
 
 07/06/2014
-: Examen ([Pré-sujet](tutorials/exam-template))
+: Examen ([Pré-sujet](other/exam-template)) ([Sujet](other/exam-2014-1))
 
 
 ## Archives
