@@ -300,5 +300,3 @@ R. Cannings, H.Dwivedi and Z. Lackey. *Haking sur le Web 2.0*
 publicitaire pour la boîte des auteurs. Cependant, il est l'un des
 rares ouvrages sur la sécurité disponibles à la BU. Les parties I et
 II valent le détour.
-
-

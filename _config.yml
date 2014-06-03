@@ -1,7 +1,4 @@
-baseurl: /aws
-github: https://github.com/defeo
-github_base: https://github.com/defeo/aws
-github_blob: https://github.com/defeo/aws/blob/gh-pages
+branch: gh-pages
 permalink: /:categories/:title
 
 markdown: kramdown
