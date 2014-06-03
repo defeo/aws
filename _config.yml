@@ -1,7 +1,4 @@
-baseurl: /class-boilerplate
-github: https://github.com/defeo
-github_base: https://github.com/defeo/class-boilerplate
-github_blob: https://github.com/defeo/class-boilerplate/blob/master
+branch: master
 permalink: /:categories/:title
 
 markdown: kramdown
