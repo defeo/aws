@@ -94,8 +94,11 @@ TD 8 (17/04/2014)
 20/04/2014
 : [Deuxième checkpoint](other/cc2) (contrôle continu)
 
-07/06/2014
+07/05/2014
 : Examen ([Pré-sujet](other/exam-template)) ([Sujet](other/exam-2014-1))
+
+17/06/2014
+: Examen deuxième session ([Sujet](other/exam-2014-2))
 
 
 ## Archives

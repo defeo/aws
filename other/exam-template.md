@@ -240,9 +240,9 @@ résultat dans le corps du tableau `calendrier`.
 Concevez une simple application web qui représente une cagnotte
 virtuelle. Il n'y a pas de comptes d'utilisateurs. Les clients peuvent
 
-- ajouter une somme à la cagnotte,
+- ajouter une somme à la cagnotte ;
 - prélever une somme de la cagnotte, à condition qu'il y ait assez
-  d'argent
+  d'argent ;
 - suivre en temps réel l'évolution de la cagnotte.
 
 Décrivez les routes de l'application, la structure de la base de
@@ -296,7 +296,7 @@ avec ce code pour `template.twig`
 Considérez ce gestionnaire
 
 ~~~
-app->get('/url', function(Application $app) {
+app->post('/url', function(Application $app) {
 	$x = $app->request->get('param1');
 	$y = $app->request->get('param2');
 	if ($app['db']->execute('UPDATE table SET y=? WHERE x=?', array($y, $x)))
