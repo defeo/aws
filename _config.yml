@@ -1,6 +1,5 @@
-branch: master
+baseurl: /class-boilerplate
 permalink: /:categories/:title
 
-markdown: kramdown
 kramdown:
   parse_block_html: true
