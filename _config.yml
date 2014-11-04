@@ -1,6 +1,5 @@
-branch: gh-pages
+baseurl: /aws
 permalink: /:categories/:title
 
-markdown: kramdown
 kramdown:
   parse_block_html: true
