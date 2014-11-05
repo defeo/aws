@@ -10,7 +10,7 @@ automatically generated with [Jekyll](http://jekyllrb.com/) by
 [GitHub Pages](http://pages.github.com/). The source code is
 [available on GitHub]({{ site.github.repository_url }}) and you are
 free to copy it, modify it and share it under the terms of the
-[Creative Commons 4.0 BY-SA licence](http://creativecommons.org/licenses/by-sa/4.0/deed.en_GB).
+[Creative Commons 4.0 BY-SA license](http://creativecommons.org/licenses/by-sa/4.0/deed.en_GB).
 
 You are a student, a collaborator, or a casual visitor to this site
 and want to learn how to take advantage of the
@@ -76,7 +76,7 @@ site will be served at
 
 **Note:** the website will not be compiled when you first fork the
 repository. If you want your fork to be served on **github.io** before
-commiting any changes, you will have to
+commuting any changes, you will have to
 [create a local clone](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)
 of your fork, then
 [push](https://help.github.com/articles/pushing-to-a-remote/). This
@@ -127,7 +127,7 @@ If you already have Ruby `>1.9.3`, the install part should be as easy as
 gem install github-pages
 ~~~
 
-Note that you will need Ruby headers (`ruby-dev` pacakge on Ubuntu) in
+Note that you will need Ruby headers (`ruby-dev` package on Ubuntu) in
 order to compile C dependencies.
 
 Now you can `cd` into your local clone of the repository and launch
