@@ -15,7 +15,7 @@ free to copy it, modify it and share it under the terms of the
 You are a student, a collaborator, or a casual visitor to this site
 and want to learn how to take advantage of the
 [freedom offered to you by the CC license](https://creativecommons.org/about),
-this help page if for you!
+this help page is for you!
 
 
 ## Quickly editing pages for collaborators
