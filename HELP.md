@@ -76,7 +76,7 @@ site will be served at
 
 **Note:** the website will not be compiled when you first fork the
 repository. If you want your fork to be served on **github.io** before
-commuting any changes, you will have to
+committing any changes, you will have to
 [create a local clone](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)
 of your fork, then
 [push](https://help.github.com/articles/pushing-to-a-remote/). This
