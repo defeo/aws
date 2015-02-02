@@ -42,19 +42,20 @@ partie des posts)</small>
 
 - 8 cours : Mercredi 13h30 - 15h, amphi B,
 - 8 TPs sur machine :
-  - Groupe 1 : Mercredi 15h15 - 18h30, salle G101,
-  - Groupe 2 : Mardi 15h15 - 18h30, salle G103.
+  - Groupe 1 : Jeudi 9h45 - 13h, salle ALSACE,
+  - Groupe 2 : Mercredi 15h15 - 18h30, salle ALSACE,
+  - Groupe 3 : Lundi 13h30 - 16h45, salle G207.
   
   Venez avec *votre ordinateur* ou un *cartable numérique*.
   **Apportez un cable ethernet !** Développement dans le cloud grâce à
   l'IDE [Cloud9](https://c9.io).
 	  
 - Évaluation : 0.4 CC + 0.6 Ex (consulter scolarité)
-  - Contrôle continu : projet à développer en TD (jeu de
-	[Puissance 4](http://fr.wikipedia.org/wiki/Puissance_4))
-	- première remise de code vers mi-mars,
-	- deuxième remise début mai.
-  - Examen : en amphi, je réfléchis à une nouvelle modalité.
+  - Contrôle continu : projet à développer en TD
+  - Examen : en amphi.
+  
+  voir aussi le [site de l'an dernier](http://defeo.lu/aws-2014).
+
 {:.incremental}
 
 </section>
@@ -146,10 +147,7 @@ design push-pull.
 **2007** Le groupe de travail HTML du W3C accepte d'utiliser le draft
   de HTML5 du WHATWG's comme base pour son prochain standard HTML.
 
-**2012** Le
-[Plan 2014](http://dev.w3.org/html5/decision-policy/html5-2014-plan.html)
-prévoit que HTML 5.0 deviendra une recommandation avant la fin de
-cette année.
+**2014** HTML 5.0 devient une recommandation en octobre.
 
 </section>
 <section>
