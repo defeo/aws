@@ -16,28 +16,28 @@ title: AWS – Applications web et sécurité
 ## Cours
 
 Cours 1 (05/02/2014)
-: [Le WWW](classes/class1) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140205.mp4)]
+: [Le WWW](classes/class1) {% include vimeo.html id="118491664" %}
 
 Cours 2 (12/02/2014)
-: [JavaScript et le DOM](classes/class2) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140212.mp4)]
+: [JavaScript et le DOM](classes/class2) {% include vimeo.html id="88959210" %}
 
 Cours 3 (19/02/2014)
-: [Scripts côté server](classes/class3) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140219.mp4)]
+: [Scripts côté server](classes/class3) {% include vimeo.html id="88833838" %}
 
 Cours 4 (05/03/2014)
-: [Frameworks web](classes/class4) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140305.mp4)]
+: [Frameworks web](classes/class4) {% include vimeo.html id="88833837" %}
 
 Cours 5 (12/03/2014)
-: [Persistance des données](classes/class5) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140312.mp4)]
+: [Persistance des données](classes/class5) {% include vimeo.html id="88957419" %}
 
 Cours 6 (19/03/2014)
-: [Applications asynchrones](classes/class6) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140319.mp4)]
+: [Applications asynchrones](classes/class6) {% include vimeo.html id="89603834" %}
 
 Cours 7 (02/04/2014)
-: [Injections de code](classes/class7) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140402.mp4)]
+: [Injections de code](classes/class7) {% include vimeo.html id="90803354" %}
 
 Cours 8 (16/04/2014)
-: [Attaques cross-domain](classes/class8) [[screencast](http://proust.prism.uvsq.fr/~dfl/aws-vids/class-20140416.mp4)]
+: [Attaques cross-domain](classes/class8) {% include vimeo.html id="92474257" %}
 
 
 ## TDs
@@ -99,19 +99,6 @@ TD 8 (17/04/2014)
 
 17/06/2014
 : Examen deuxième session ([Sujet](other/exam-2014-2))
-
-
-## Archives
-
-Éditions précédentes de ce cours :
-
-- [2012-2013](http://was.defeo.lu/),
-- [2011-2012](http://was.defeo.lu/WAS:%20Web%20Applications%20and%20Security%202011-2012).
-
-Sujets d'examen :
-
-- [Première session 2013](http://was.defeo.lu/examen-13-5-13.pdf),
-- [Première session 2012](http://was.defeo.lu/exam-12-05-09.pdf).
 
 
 ## Liens
