@@ -1,5 +1,6 @@
 ---
-layout: index
+layout: main
+title: Class boilerplate
 ---
 
 # Class boilerplate

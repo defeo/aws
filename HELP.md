@@ -1,5 +1,6 @@
 ---
-layout: index
+layout: main
+title: Help for advanced users
 ---
 
 # How to use/edit this site

@@ -24,8 +24,13 @@ body {
     padding-left: 20px;
     counter-reset: section;
 }
-
-/* Titles */
+h1 {
+    font-size: 2em;
+    .subtitle {
+	font-size: 0.5em;
+	color: #999;
+    }
+}
 h1, h2, footer { margin-left: -20px }
 h2:before {
     counter-increment: section;
