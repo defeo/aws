@@ -120,6 +120,13 @@ a code, code a {
     margin-top: 2em;
 }
 
+// Citations
+.cite { font-style: italic; }
+blockquote.cite {
+    > p:first-of-type:before { content: open-quote; }
+    > p:last-of-type:after { content: close-quote; }
+}
+
 /* Print */
 @media print {
     .dont-print { display: none }
