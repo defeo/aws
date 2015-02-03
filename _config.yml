@@ -1,5 +1,5 @@
 baseurl: /class-boilerplate
-permalink: /:categories/:title
+permalink: pretty
 
 kramdown:
   parse_block_html: true
