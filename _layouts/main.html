@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% include defs.html %}
 <html>
   <head lang="en">
     <meta charset="utf-8">
@@ -8,22 +9,36 @@
     <link rel="stylesheet" href="{{ site.baseurl }}/css/highlight-default.css">
     {% endif %}
 
+    {% if page.plugins contains 'slideshow' %}
+    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides.css">
+    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides-customization.css">
+    {% if page.plugins.slideshow.width and page.plugins.slideshow.height %}
+    <style class="slideshow-css">
+      html.slideshow body {
+        width: {{ page.plugins.slideshow.width }}px;
+        height: {{ page.plugins.slideshow.height }}px;
+        margin-left: -{{ page.plugins.slideshow.width | divided_by: 2 }}px;
+        margin-top: -{{ page.plugins.slideshow.height | divided_by: 2 }}px;
+      }
+      html.slideshow.view section {
+        width: {{ page.plugins.slideshow.width }}px;
+        height: {{ page.plugins.slideshow.height }}px;
+        margin: -{{ page.plugins.slideshow.height | divided_by: 4 }}px -{{ page.plugins.slideshow.width | divided_by: 4 }}px;
+      }
+      html.slideshow.view section:after {
+        bottom: -{{ page.plugins.slideshow.height | divided_by: 8 }}px
+        right: -{{ page.plugins.slideshow.width | divided_by: 8 }}px
+      }
+    </style>
+    {% endif %}
+    {% endif %}
+
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
 
-    {% if page.plugins contains 'slideshow' %}
-    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides.css" disabled>
-    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides-customization.css" disabled>
-    <script>
-      // Hack for Firefox
-      var st = document.getElementsByClassName("slideshow-css");
-      Array.prototype.forEach.call(st, function(x) { x.disabled = true; });
-    </script>
-    {% endif %}
-
-    <link href="{{ site.github.zip_url | replace: 'zipball', 'commits' }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
+    <link href="{{ github_commits }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
 
     <script src="{{ site.baseurl }}/js/polyfills.js"></script>
   </head>
@@ -36,8 +51,8 @@
 
     <ul class="menu dont-print" id="top-menu">
       <li><a href="{{ site.baseurl }}/">Home</a></li>
-      <li><a href="{{ site.github.zip_url | replace: 'zipball', 'blob' }}/{{ page.path }}">Source</a></li>
-      <li><a href="{{ site.github.zip_url | replace: 'zipball', 'edit' }}/{{ page.path }}">Quick edit</a></li>
+      <li><a href="{{ github_blob }}/{{ page.path }}">Source</a></li>
+      <li><a href="{{ github_edit }}/{{ page.path }}">Quick edit</a></li>
       <li><a href="javascript:window.print()">Print</a></li>
       {% if page.plugins contains 'slideshow' %}
       <li><a href="javascript:Dz.play()">Start slideshow</a>
@@ -49,7 +64,11 @@
 
     <div class="main">
       <div class="container">
+	{% if page.plugins contains 'slideshow' %}
+	{% include slideshow.html %}
+	{% else %}
 	{{ content }}
+	{% endif %}
       </div>
 
       <footer class="footer">

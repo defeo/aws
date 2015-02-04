@@ -22,7 +22,7 @@ var Dz = {
     },
 
     play: function() {
-	$$(".slideshow-css").forEach(function(x) { x.disabled = false; });
+	$("html").classList.add("slideshow");
 	this.setupParams();
 	this.onhashchange();
 	this.setupTouchEvents();
@@ -35,7 +35,7 @@ var Dz = {
     },
 
     pause: function() {
-	$$(".slideshow-css").forEach(function(x) { x.disabled = true; });
+	$("html").classList.remove("slideshow");
 	window.onkeydown = null;
 	window.onresize = null;
 	window.onhashchange = null;

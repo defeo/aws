@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: main
 title: AWS – Applications web et sécurité
 ---
 
