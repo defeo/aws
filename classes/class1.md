@@ -291,16 +291,20 @@ Content-Length: 10
 
 <style>
 html[data-incremental="1"] #http-req-req {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 html[data-incremental="2"] #http-req-head {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 html[data-incremental="3"] #http-req-crlf {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 html[data-incremental="4"] #http-req-body {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 </style>
 
@@ -381,16 +385,20 @@ Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; dom
 
 <style>
 html[data-incremental="1"] #http-res-res {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 html[data-incremental="2"] #http-res-head {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 html[data-incremental="3"] #http-res-crlf {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 html[data-incremental="4"] #http-res-body {
-	outline: solid thick red;
+  outline: solid thick rgba(255,0,0,0.5);
+  outline-offset: -5px;
 }
 </style>
 
