@@ -17,28 +17,29 @@ title: AWS – Applications web et sécurité
 ## Cours
 
 Cours 1 (04/02/2015)
-: [Le WWW](classes/class1) {% include vimeo.html id="118491664" %}
+: **amphi**: [Le WWW](classes/class1).
+: **leçons**: [HTTP](lessons/HTTP), [HTML](lessons/HTML), [Formulaires](lessons/forms), [CSS](lessons/CSS).
 
 Cours 2 (11/02/2015)
-: [JavaScript et le DOM](classes/class2) {% include vimeo.html id="88959210" %}
+: 
 
 Cours 3 (18/02/2015)
-: [Scripts côté server](classes/class3) {% include vimeo.html id="88833838" %}
+: 
 
 Cours 4 (04/03/2015)
-: [Frameworks web](classes/class4) {% include vimeo.html id="88833837" %}
+: 
 
 Cours 5 (11/03/2015)
-: [Persistance des données](classes/class5) {% include vimeo.html id="88957419" %}
+: 
 
 Cours 6 (18/03/2015)
-: [Applications asynchrones](classes/class6) {% include vimeo.html id="89603834" %}
+: 
 
 Cours 7 (25/03/2015)
-: [Injections de code](classes/class7) {% include vimeo.html id="90803354" %}
+: 
 
 Cours 8 (01/04/2015)
-: [Attaques cross-domain](classes/class8) {% include vimeo.html id="92474257" %}
+: 
 
 
 ## TDs
@@ -47,44 +48,25 @@ TD 1 (09-12/02/2015)
 : [HTML, CSS et formulaires](tutorials/tutorial1)
 
 TD 2 (16-19/02/2015)
-: [Un simple jeu en JavaScript](tutorials/tutorial2)
+: 
 
 TD 3 (02-05/03/2015)
-: [Un simple jeu en JavaScript](tutorials/tutorial2)
-: Ma première application web
-
-  - [En PHP et Silex](tutorials/tutorial3-silex)
-  - [En Node.js et Express](tutorials/tutorial3-node)
+: 
 
 TD 4 (09-12/03/2015)
-: Ma première application web
-
-  - [En PHP et Silex](tutorials/tutorial3-silex)
-  - [En Node.js et Express](tutorials/tutorial3-node)
+: 
 
 TD 5 (16-19/03/2015)
-: Comptes utilisateur
-  
-  - [En PHP et Silex](tutorials/tutorial4-silex)
-  - [En Node.js et Express](tutorials/tutorial4-node)
+: 
 
 TD 6 (23-26/03/2015)
-: Comptes utilisateur
-  
-  - [En PHP et Silex](tutorials/tutorial4-silex)
-  - [En Node.js et Express](tutorials/tutorial4-node)
+: 
 
 TD 7 (30/03-02/04/2015)
-: Un jeu multi-utilisateurs
-  
-  - [En PHP et Silex](tutorials/tutorial5-silex)
-  - [En Node.js et Express](tutorials/tutorial5-node)
+: 
 
 TD 8 (13-16/04/2015)
-: Un jeu multi-utilisateurs
-  
-  - [En PHP et Silex](tutorials/tutorial5-silex)
-  - [En Node.js et Express](tutorials/tutorial5-node)
+: 
 
 
 ## Archives
