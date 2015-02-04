@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: JavaScript et le DOM
 ---
 

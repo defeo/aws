@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Applications asynchrones
 subtitle: AJAX, Server push, Websockets
 scripts: ['http://coffeescript.org/extras/coffee-script.js']

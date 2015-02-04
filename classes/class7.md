@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Injections de code
 subtitle: Injections SQL, Cross Site Scripting
 scripts: ['http://coffeescript.org/extras/coffee-script.js']

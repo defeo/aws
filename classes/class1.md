@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Le WWW
 subtitle: son histoire, ses langages
 ---

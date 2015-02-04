@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Attaques cross-domain
 subtitle: CSRF, SOP, Mash-ups, sécurité AJAX
 scripts: ['http://coffeescript.org/extras/coffee-script.js']

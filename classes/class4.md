@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Frameworks web
 subtitle: API HTTP, routage, templates
 ---

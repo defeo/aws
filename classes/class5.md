@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Persistance des données
 subtitle: Cookies, sessions, bases de données
 ---

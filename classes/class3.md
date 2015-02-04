@@ -1,5 +1,5 @@
 ---
-layout: slideshow
+layout: class
 title: Scripts côté server
 subtitle: PHP, Silex (Symfony), Node.js
 ---
