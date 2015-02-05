@@ -2,6 +2,10 @@
 layout: lesson
 title: HTML
 subtitle: HyperText Markup Language
+video:
+  url: https://www.dropbox.com/s/o46magzhhvl7qiv/cours1.webm?dl=1
+  start: 3775
+  end: 5024
 ---
 
 <section>
