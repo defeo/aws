@@ -33,6 +33,10 @@
     {% endif %}
     {% endif %}
 
+    {% if page.video %}
+    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/video-popup.css">
+    {% endif %}
+
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
@@ -58,6 +62,16 @@
       <li><a href="javascript:Dz.play()">Start slideshow</a>
 	<script src="{{ site.baseurl }}/js/dz-slides.js"></script>
       </li>
+      {% endif %}
+      {% if page.video %}
+      <li><a href="javascript:(function() {$('#video-popup').classList.toggle('hidden')})()">Video</a></li>
+      <div id="video-popup" class="hidden">
+	<a href="javascript:(function() {$('#video-popup').classList.toggle('hidden')})()"
+	   class="close">×</a>
+	<video controls preload="metadata">
+	  <source src="{{ page.video.url }}#t={{ page.video.start }}{% if page.video.end %},{{ page.video.end }}{% endif %}">
+	</video>
+      </div>
       {% endif %}
       <li><a href="{{ site.baseurl }}/HELP">Help</a></li>
     </ul>

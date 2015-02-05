@@ -1,0 +1,42 @@
+---
+---
+
+#video-popup {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    left: 15%;
+    top: 15%;
+    width: 70%;
+    height: 70%;
+    padding: 2ex;
+    background-color: rgba(0,0,0,0.3);
+
+    &.hidden {
+	display: none
+    }
+
+    video {
+	max-width: 100%;
+	max-height: 100%;
+    }
+
+    .close {
+	font-family: courier;
+	font-weight: bold;
+	color: red;
+	position: absolute;
+	height: 0;
+	right: 4px;
+	top: 0;
+	cursor: pointer;
+	text-shadow: 0 0 1px white;
+
+	&:hover {
+	    text-shadow: 0 0 3px white;
+	    text-decoration: none;
+	}
+    }
+}
