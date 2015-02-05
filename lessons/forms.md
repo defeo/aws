@@ -1,6 +1,8 @@
 ---
 layout: lesson
 title: Formulaires HTML
+video:
+  url: https://www.dropbox.com/s/bqs77djh1yfsdfe/forms.webm?dl=1
 ---
 
 <section>
@@ -115,7 +117,7 @@ fait à travers l'attribut `type`.
 **Champs de texte :** <input type="text" placeholder="tapez quelque chose">
 
 ~~~
-<input type="text">
+<input type="text" name="clef">
 ~~~
 
 **Boutons radio:** <input type="radio" name="choice" value="1">A <input type="radio" name="choice" value="2">B
@@ -138,19 +140,19 @@ fait à travers l'attribut `type`.
 **Password:** <input type="password" value="strongpass">
 
 ~~~
-<input type="password">
+<input type="password" name="mot_de_passe">
 ~~~
 
 **Fichier:** <input type="file">
 
 ~~~
-<input type="file">
+<input type="file" name="fichier">
 ~~~
 
 **Email:** (depuis HTML5, vérifie qu'il y a un @) <input type="email">
 
 ~~~
-<input type="email">
+<input type="email" name="courriel">
 ~~~
 
 </section>
@@ -187,7 +189,7 @@ pas encore bien supportés): **date**, **time**, **number**, **range**,
 **Text area:** <textarea> Du texte très long </textarea>
 
 ~~~
-<textarea>
+<textarea name="texte_long">
 Du texte très long
 </textarea>
 ~~~
@@ -201,7 +203,7 @@ Du texte très long
 </select>
 
 ~~~
-<select>
+<select name="liste">
   <option value="M">MySQL injection</option>
   <option value="X">XSS</option>
   <option value="C">CSRF</option>
