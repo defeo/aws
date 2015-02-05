@@ -19,6 +19,7 @@ title: AWS – Applications web et sécurité
 Cours 1 (04/02/2015)
 : **amphi**: [Le WWW](classes/class1).
 : **leçons**: [HTTP](lessons/HTTP), [HTML](lessons/HTML), [Formulaires](lessons/forms), [CSS](lessons/CSS).
+: **approfondissements**: [Le *box model*](lessons/boxmodel), [Flexbox](lessons/flexbox).
 
 Cours 2 (11/02/2015)
 : 
