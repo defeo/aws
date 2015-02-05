@@ -2,6 +2,8 @@
 layout: lesson
 title: CSS
 subtitle: Cascading StyleSheets
+video:
+  url: https://www.dropbox.com/s/lpfm8nermnjawgc/css.webm?dl=1
 ---
 
 <section>
@@ -94,14 +96,14 @@ p.lead em {
 <p class="lead">Lorem ispsum <em>dolor sit</em> amet</p>
 
 </section>
-<section class="compact">
+<section>
 
 ## La syntaxe CSS
 
 **Règles CSS**
 
 ~~~
-selector {property: value; property:value; ...}
+selector {property: value; property: value; ...}
 ~~~
 
 **Commentaires**
@@ -114,11 +116,9 @@ selector {property: value; property:value; ...}
 **At-rules**
 
 ~~~
-@import "unautrestyle.css";  /* Importe dans la feuille
-                                courante */
-@media screen;               /* S'applique seulement à un
-                                affichage sur écran (par ex.,
-								pas à l'impression) */
+@import "unautrestyle.css";  /* Importe dans la feuille courante */
+@media screen;               /* S'applique seulement à un affichage
+                                sur écran (par ex., pas à l'impression) */
 ~~~
 
 Référence actuelle: <http://www.w3.org/TR/2011/REC-CSS2-20110607/>
@@ -126,32 +126,30 @@ Référence actuelle: <http://www.w3.org/TR/2011/REC-CSS2-20110607/>
 Le draft CSS3 est trop grand pour tenir en un seul module. Voir <http://www.w3.org/Style/CSS/>
 
 </section>
-<section class="compact">
+<section>
 
 ## Sélecteurs CSS
 
 **Sélecteurs simples (`tag` est toujours optionnel)**
 
 ~~~
-tag {...}                /* Toute balise <tag>            */
-tag.class {...}          /* Tout <tag> de classe class    */
-#id {...}                /* La balise identifiée par id   */
-tag:pseudoclass {...}    /* Sélection de contenu spécial  */
-tag[att=val] {...}       /* Tout <tag> ayant attribut att
-                            égal à val                    */
+tag {...}                /* Toute balise <tag>                       */
+tag.class {...}          /* Tout <tag> de classe class               */
+#id {...}                /* La balise identifiée par id              */
+tag:pseudoclass {...}    /* Sélection de contenu spécial             */
+tag[att=val] {...}       /* Tout <tag> ayant attribut att égal à val */
 ~~~
 {:.css}
 
 **Combinateurs de sélecteurs**
 
 ~~~
-selector, selector {...} /* Chacun des selector                */
-parent child {...}       /* child s'il est un fils de parent   */
-parent > child {...}     /* child seulement s'il est un fils
-                            direct de parent                   */
-sister ~ brother {...}   /* brother seulement s'il suit sister */
+selector, selector {...} /* Chacun des selector                     */
+parent child {...}       /* child s'il est un fils de parent        */
+parent > child {...}     /* child seulement s'il est un fils direct */
+sister ~ brother {...}   /* brother seulement s'il suit sister      */
 sister + brother {...}   /* brother seulement s'il suit
-                            immediatement sister               */
+                            immediatement sister                    */
 ~~~
 
 Référence complète: <http://www.w3.org/TR/CSS2/selector.html>
