@@ -66,11 +66,13 @@
       {% if page.video %}
       <li><a href="javascript:(function() {$('#video-popup').classList.toggle('hidden')})()">Video</a></li>
       <div id="video-popup" class="hidden">
+	<div>
 	<a href="javascript:(function() {$('#video-popup').classList.toggle('hidden')})()"
-	   class="close">×</a>
+	   class="close">–</a>
 	<video controls preload="metadata">
 	  <source src="{{ page.video.url }}#t={{ page.video.start }}{% if page.video.end %},{{ page.video.end }}{% endif %}">
 	</video>
+	</div>
       </div>
       {% endif %}
       <li><a href="{{ site.baseurl }}/HELP">Help</a></li>
