@@ -1,6 +1,8 @@
 ---
 ---
 
+* { resize: none; } /* Chrome fix */
+
 #video-popup {
     position: fixed;
     width: 100%;
