@@ -3,7 +3,7 @@ layout: class
 title: Le WWW
 subtitle: son histoire, ses langages
 video:
-  url: https://www.dropbox.com/s/o46magzhhvl7qiv/cours1.webm?dl=1
+  url: https://www.dropbox.com/s/zhqfrbooj1g0fhj/class-2015-02-04.webm?dl=1
 ---
 
 <section>
