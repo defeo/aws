@@ -13,11 +13,11 @@ Cloud9, notre IDE.
 
 Dirigez votre browser sur <http://c9.io/>, créez un compte si ce n'est
 pas déjà fait, et connectez-vous à votre espace personnel. Si vous
-possédez déjà un compte [Github](http://github.com/) ou
+possédez déjà un compte [GitHub](http://github.com/) ou
 [Bitbucket](http://bitbucket.org), il est possible de l'utiliser pour
 une identification sur C9 sans besoin de créer de nouveau compte ;
 ceci a l'avantage ajouté de vous permettre d'importer vos projets
-Github et Bitbucket en un seul click.
+GitHub et Bitbucket en un seul click.
 
 Votre compte contient un projet nommé `demo-project`, ouvrez-le avec
 un click. Après un peu de temps de chargement, vous êtes dans un IDE
@@ -31,12 +31,13 @@ Linux en bas.
 ## HTML
 
 Partez de ce squelette
-	
+
 ~~~
 <!DOCTYPE html>
 <html>
   <head>
     <title>TD 1</title>
+    <meta charset="utf-8" />
   </head>
   <body>
     <!-- Votre contenu ici -->
@@ -52,7 +53,7 @@ Partez de ce squelette
    n'ont pas d'espace privé), tout le contenu est disponible
    *statiquement* à l'URL
    
-   > <https://c9.io/[nom-d'utilisateur]/demo-project/workspace>
+   > <https://preview.c9.io/[nom-d'utilisateur]/demo-project/>
    
    (remplacez votre nom d'utilisateur dans l'URL), et les pages HTML
    sont servies comme telles. Il vous suffit de naviguer vers la page
