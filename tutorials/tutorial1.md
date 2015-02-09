@@ -49,8 +49,7 @@ Partez de ce squelette
 
 3. Visualisez le résultat dans le browser.
    
-   Puisqu'il s'agit d'un projet public (les utilisateurs non payants
-   n'ont pas d'espace privé), tout le contenu est disponible
+   Puisqu'il s'agit d'un projet public, tout le contenu est disponible
    *statiquement* à l'URL
    
    > <https://preview.c9.io/[nom-d'utilisateur]/demo-project/>
@@ -63,12 +62,14 @@ Partez de ce squelette
    le bouton *Preview* (l'URL ouvert correspond au fichier couramment
    ouvert dans l'éditeur).
 
-4. Transformez ce fichier en votre CV. On va se désintéresser de
-   l'élégance et du style pour l'instant.  Aidez vous avec la
+4. Transformez ce fichier en votre CV. **On va se désintéresser de
+   l'élégance et du style pour l'instant**.  Aidez vous avec la
    [référence de w3schools](http://www.w3schools.com/tags/default.asp)
    pour l'utilisation des balises.
    
    - Éditez la balise `<title>`.
+   
+   - Donnez une entête à la page (`<h1>`).
    
    - Créez deux sections (`<section>`) : une pour vos données
      personnélles et une pour tout le reste. Donnez un `id` à chaque
@@ -76,9 +77,9 @@ Partez de ce squelette
    
    - Dans la première section :
 	 
-	 - Mettez une entête (`<h1>`) ;
-	 - Avec une liste de définitions (`<dl>`), listez vos données
-       personnelles ;
+	 - Mettez une entête (`<h2>`) ;
+	 - Avec une liste à puces (`<ul>`), ou une liste de définitions
+       (`<dl>`), listez vos données personnelles ;
 	 - Ajoutez une photo de vous (l'attribut `alt` est obligatoire
        pour la balise `<img>`), dans une balise `<figure>`.
 
@@ -87,23 +88,22 @@ Partez de ce squelette
 	 - Créez les sous-sections suivantes : *Études*, *Diplômes*,
        *Hobbies*, chacune dans une balise `<article>`, avec son propre
        `id` ;
-	 - Démarrez chaque sous-section avec un `<header>` contenant une balise
-       `<h1>` ;
-	 - Remplissez chaque sous-section avec des entêtes (`<h2>`, etc.),
+	 - Démarrez chaque sous-section par un titre (balise `<h2>`) ;
+	 - Remplissez chaque sous-section avec des entêtes (`<h3>`, etc.),
        des paragraphes (`<p>`), des listes (`<ul>`, `<ol>`, `<dl>`),
        des liens (`<a>`), etc.
 	 - Dans la sous-section *Diplômes*, utilisez un tableau
-       (`<table>`) ;
+       (`<table>`, `<tr>`, `<td>`) ;
 	 - En haut de cette section, ajoutez une zone de navigation
        (`<nav>`), contenant une liste (`<ul>`) de liens (`<a>`) vers
-       les sous-sections. Souvenez-vous que vous pouvez linker
+       les sous-sections. Souvenez-vous que vous pouvez *linker*
        n'importe quel élément d'un document HTML avec l'URL `#id` (où
        `id` est l'identifiant de la balise).
-         
-   N'oubliez pas de déclarer l'encodage à l'aide de la balise `<meta>`
-   (l'encodage par défaut de Cloud9 est `utf-8`). Inclure des lettres
-   avec accent dans votre texte vous permettra de vérifier que
-   l'encodage est correctement déclaré.
+
+	**Important :** évitez les balises de mise en forme, dépréciez
+	(par ex.: `<font>`, `<center>`, ...) ou hors place (par ex.:
+	`<h*>` pour faire autre chose que des titres, `<br>` pour faire
+	des listes, `<table>` pour faire de la mise en page, ...)
 
 5. Validez votre document avec le validateur de W3C:
    <http://validator.w3.org/>. Corrigez vos erreurs jusqu'à ne plus en
@@ -143,31 +143,31 @@ modifiez l'apparence de votre page comme suit :
    différent des lignes paires. Allez voir, ensuite, la pseudo-classe
    [`:nth-child`](http://www.w3schools.com/cssref/sel_nth-child.asp).
 
-8. Faites en sorte que les `<h1>` contenus dans les `<article>` soient
-   écrits plus petits que les autres `<h1>`.
+8. Faites en sorte que les `<h2>` contenus dans les `<article>` soient
+   écrits plus petit que les autres `<h2>`.
 
-9. Faites en sorte que les `<h1>` contenus dans les `<article>` aient
+9. Faites en sorte que les `<h2>` contenus dans les `<article>` aient
    la première lettre plus grande (pseudo-élément `:first-letter`).
 
-10. Ouvrez maintenant la page dans chrome, lancez les *dev tools* (`F12`)
-	et sélectionnez l'onglet *Elements/Éléments*. Sélectionnez une
-	balise `<h1>` et observez les informations sur son style qui
-	s'affichent à droite. Dans l'onglet *Style*, éditez quelques
-	propriétés (les propriétés éditables apparaissent vers le bas) et
-	ajoutez des nouvelles propriétés dans le groupe
-	`element.style`. Bien évidemment, ces modifications ne seront pas
-	sauvegardées dans la page, et elles ne survivront pas à un
-	rechargement.
+10. Ouvrez maintenant la page dans Chrome ou Firefox, lancez les
+*Outils du développeur* (`F12`) et sélectionnez l'onglet *Éléments*
+(Chrome) ou *Inspecteur* (Firefox). Sélectionnez une balise `<h2>` et
+observez les informations sur son style qui s'affichent à droite. Dans
+l'éditeur de style qui s'ouvre sur la droite, éditez quelques
+propriétés et ajoutez des nouvelles propriétés dans le groupe
+`element.style` (Chrome) ou `element` (Firefox). Bien évidemment, ces
+modifications ne seront pas sauvegardées dans la page, et elles ne
+survivront pas à un rechargement.
 
 11. Validez le CSS de votre document avec le validateur du W3C :
-    <http://jigsaw.w3.org/css-validator/>. Corrigez vos erreures
+    <http://jigsaw.w3.org/css-validator/>. Corrigez vos erreurs
     jusqu'à ne plus en avoir.
 
 
 ## Formulaires
 
 On va ajouter un formulaire de recherche très simpliste, s'appuyant
-sur google. L'URL utilisée par la recherche google varie selon
+sur Google. L'URL utilisée par la recherche Google varie selon
 l'interface, mais une URL standard aura à peu près cette forme
 
 ~~~
@@ -198,32 +198,32 @@ soit dans le corps d'une requête de type POST.
 
 3. Ouvrez la page dans un onglet du browser (la *Preview* ne marchera
    pas) et faites une recherche. Observez comment l'URL varie quand
-   vous changez le contenu du champs de texte.
+   vous changez le contenu du champ de texte.
 
-4. Ouvrez à nouveau la page avec Chrome, lancez les *dev tools*
-   (`F12`) et sélectionnez l'onglet *Network*. Lancez une recherche et
-   étudiez le type de requête envoyé par le browser. Vous remarquerez
-   que la requête originale (la première) a donné lieu à beaucoup
-   d'autres requêtes.
+4. Ouvrez à nouveau la page avec Chrome ou Firefox, lancez les *outils
+   du développeur* (`F12`) et sélectionnez l'onglet *Network*. Lancez
+   une recherche et étudiez le type de requête envoyé par le
+   browser. Vous remarquerez que la requête originale (la première) a
+   donné lieu à beaucoup d'autres requêtes.
 
 5. Maintenant utilisez `method="POST"` dans la balise `<form>` et
    faites à nouveau une recherche. À part le fait que Google refuse la
-   requête, quelles différences constatez-vous dans les *dev tools* de
-   Chrome ?
+   requête, quelles différences constatez-vous dans les *outils du
+   développeur* ?
 
-6. Revenez à la méthode GET. Ajoutez l'attribut `required` au champs
+6. Revenez à la méthode GET. Ajoutez l'attribut `required` au champ
    de texte et essayez de faire une recherche vide. Que
    constatez-vous ?
 
 6. Ajoutez un attribut `placeholder` au champs de texte.
 
-6. Avec l'attribut `pattern`, restreignez le champs de texte aux
+6. Avec l'attribut `pattern`, restreignez le champ de texte aux
    seules recherches contenant les mots HTML ou CSS (c'est l'occasion
    d'apprendre les
    [RegExp](http://www.w3schools.com/js/js_obj_regexp.asp), si vous ne
    savez pas encore vous en servir).
 
-6. La recherche google peut accepter plusieurs champs nommés `q` : ils
+6. La recherche Google peut accepter plusieurs champs nommés `q` : ils
    seront concaténés dans la recherche. Ajoutez un deuxième champs de
    texte au formulaire, pré-rempli avec le texte `site:w3schools.com`
    (utilisez l'attribut `value`).
