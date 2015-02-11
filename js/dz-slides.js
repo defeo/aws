@@ -380,4 +380,4 @@ var Dz = {
     }
 };
 
-window.addEventListener('load', function() { Dz.init(); }, false);
+Dz.init();
