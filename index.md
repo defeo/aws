@@ -22,7 +22,8 @@ Cours 1 (04/02/2015)
 : **approfondissements**: [Le *box model*](lessons/boxmodel), [Flexbox](lessons/flexbox).
 
 Cours 2 (11/02/2015)
-: 
+: **leçons**: [JavaScript](lessons/javascript), [Le DOM](lessons/dom).
+: **approfondissements**: [lessons/polyfill.md]().
 
 Cours 3 (18/02/2015)
 : 
