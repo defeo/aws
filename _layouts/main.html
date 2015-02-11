@@ -60,7 +60,6 @@
       <li><a href="javascript:window.print()">Print</a></li>
       {% if page.plugins contains 'slideshow' %}
       <li><a href="javascript:Dz.play()">Start slideshow</a>
-	<script src="{{ site.baseurl }}/js/dz-slides.js"></script>
       </li>
       {% endif %}
       {% if page.video %}
@@ -107,6 +106,10 @@
 	</div>
       </footer>
     </div>
+
+    {% if page.plugins contains 'slideshow' %}
+    <script async src="{{ site.baseurl }}/js/dz-slides.js"></script>
+    {% endif %}
 
     {% if page.plugins contains 'mathjax' %}
     <script type="text/x-mathjax-config">
