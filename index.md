@@ -12,7 +12,7 @@ title: AWS – Applications web et sécurité
 **Cours :** Mercredi 13h30 - 15h, amphi B,  
 **TDs, Groupe 1 :** Jeudi 9h45 - 13h, salle ALSACE,  
 **TDs, Groupe 2 :** Mercredi 15h15 - 18h30, salle ALSACE,  
-**TDs, Groupe 3 :** Lundi 13h30 - 16h45, salle G207.
+**TDs, Groupe 3 :** Lundi 13h30 - 16h45, salle ALSACE.
 
 ## Cours
 
