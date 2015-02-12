@@ -59,8 +59,8 @@ Partez de ce squelette
    que vous venez de créer pour voir le résultat.
    
    Vous pouvez obtenir le même résultat, directement dans l'IDE, avec
-   le bouton *Preview* (l'URL ouvert correspond au fichier couramment
-   ouvert dans l'éditeur).
+   le bouton *Preview* → *Live preview file* (l'URL ouvert correspond
+   au fichier couramment ouvert dans l'éditeur).
 
 4. Transformez ce fichier en votre CV. **On va se désintéresser de
    l'élégance et du style pour l'instant**.  Aidez vous avec la
