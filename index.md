@@ -23,7 +23,7 @@ Cours 1 (04/02/2015)
 
 Cours 2 (11/02/2015)
 : **leçons**: [JavaScript](lessons/javascript), [Le DOM](lessons/dom).
-: **approfondissements**: [lessons/polyfill.md]().
+: **approfondissements**: [Écrire son framework](lessons/polyfill).
 
 Cours 3 (18/02/2015)
 : 
