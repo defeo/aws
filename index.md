@@ -22,6 +22,7 @@ Cours 1 (04/02/2015)
 : **approfondissements**: [Le *box model*](lessons/boxmodel), [Flexbox](lessons/flexbox).
 
 Cours 2 (11/02/2015)
+: **amphi**: [Classe inversée (CSS)](classes/class2)
 : **leçons**: [JavaScript](lessons/javascript), [Le DOM](lessons/dom).
 : **approfondissements**: [Écrire son framework](lessons/polyfill).
 
