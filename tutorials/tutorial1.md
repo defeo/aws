@@ -229,9 +229,7 @@ soit dans le corps d'une requête de type POST.
    [RegExp](http://www.w3schools.com/js/js_obj_regexp.asp), si vous ne
    savez pas encore vous en servir).
 
-6. La recherche Google peut accepter plusieurs champs nommés `q` : ils
-   seront concaténés dans la recherche. Ajoutez un deuxième champs de
-   texte au formulaire, pré-rempli avec le texte `site:w3schools.com`
+6. Pré-remplissez le champs `q` avec le texte `site:w3schools.com`
    (utilisez l'attribut `value`).
 
 7. Changez ce dernier champs de `type="text"` à `type="hidden"`. Faites
