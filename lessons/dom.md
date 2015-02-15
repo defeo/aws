@@ -240,7 +240,11 @@ Voir <https://developer.mozilla.org/docs/Web/API/Event>
 
 ## Plus sur le DOM
 
-### Plus de lecture
+*Eloquent JavaScript* par Marijn Haverbeke, 2nd edition
+: <http://eloquentjavascript.net/>, avec exemples interactifs !
+
+*JavaScript Éloquent* par Marijn Haverbeke, 1e édition (en français)
+: <http://fr.eloquentjavascript.net/>,
 
 Le tutoriel de W3Schools
 : <http://www.w3schools.com/jsref/>.
@@ -251,13 +255,8 @@ La référence du DOM implanté par Firefox
 Plus de ressources, par le MDN
 : <https://developer.mozilla.org/DOM>
 
-### En pratique
-
-- Utilisez [JQuery](http://jquery.com) pour la production.
-
-### Plus d'outils (*DOM inspectors*)
-
-- Dans Firefox (`Shift+Ctrl+C`) et Chrome (`F12`) : **outils du développeur**.
+Plus d'outils (*DOM inspectors*)
+: Dans Firefox (`Shift+Ctrl+C`) et Chrome (`F12`) : **outils du développeur**.
 
 </section>
 <section>
