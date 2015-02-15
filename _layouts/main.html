@@ -37,6 +37,8 @@
     <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/video-popup.css">
     {% endif %}
 
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
@@ -63,11 +65,10 @@
       </li>
       {% endif %}
       {% if page.video %}
-      <li><a href="javascript:(function() {$('#video-popup').classList.toggle('hidden')})()">Video</a></li>
-      <div id="video-popup" class="hidden">
+      <li><a href="#video-popup">Video</a></li>
+      <div id="video-popup">
 	<div>
-	<a href="javascript:(function() {$('#video-popup').classList.toggle('hidden')})()"
-	   class="close">–</a>
+	<a href="#" class="close"><i class="fa fa-close"></i></a>
 	<video controls preload="metadata">
 	  <source src="{{ page.video.url }}#t={{ page.video.start }}{% if page.video.end %},{{ page.video.end }}{% endif %}">
 	</video>

@@ -17,14 +17,14 @@ title: AWS – Applications web et sécurité
 ## Cours
 
 Cours 1 (04/02/2015)
-: **amphi**: [Le WWW](classes/class1).
-: **leçons**: [HTTP](lessons/HTTP), [HTML](lessons/HTML), [Formulaires](lessons/forms), [CSS](lessons/CSS).
-: **approfondissements**: [Le *box model*](lessons/boxmodel), [Flexbox](lessons/flexbox).
+: **amphi**: {% include link.html href="classes/class1.md" %}.
+: **leçons**: {% include link.html href="lessons/HTTP.md" %}, {% include link.html href="lessons/HTML.md" %}, {% include link.html href="lessons/forms.md" %}, {% include link.html href="lessons/CSS.md" %}.
+: **approfondissements**: {% include link.html href="lessons/boxmodel.md" %}, {% include link.html href="lessons/flexbox.md" %}.
 
 Cours 2 (11/02/2015)
-: **amphi**: [Classe inversée (CSS)](classes/class2)
-: **leçons**: [JavaScript](lessons/javascript), [Le DOM](lessons/dom).
-: **approfondissements**: [Écrire son framework](lessons/polyfill).
+: **amphi**: {% include link.html href="classes/class2.md" %}.
+: **leçons**: {% include link.html href="lessons/javascript.md" %}, {% include link.html href="lessons/dom.md" %}.
+: **approfondissements**: {% include link.html href="lessons/polyfill.md" %}.
 
 Cours 3 (18/02/2015)
 : 
@@ -48,7 +48,7 @@ Cours 8 (01/04/2015)
 ## TDs
 
 TD 1 (09-12/02/2015)
-: [HTML, CSS et formulaires](tutorials/tutorial1)
+: {% include link.html href="tutorials/tutorial1.md" %}
 
 TD 2 (16-19/02/2015)
 : 

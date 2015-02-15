@@ -1,0 +1,1 @@
+{% for p in site.pages %}{% if p.path == include.href %}<a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>{% if p.video %}<a href="{{ site.baseurl }}{{ p.url }}#video-popup"><i class="fa fa-video-camera"></i></a>{% endif %}{% endif %}{% endfor %}

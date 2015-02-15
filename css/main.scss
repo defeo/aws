@@ -65,6 +65,7 @@ dt {
 }
 ul.menu {
     list-style-type: none;
+    margin-right: 150px;
 
     li {
 	display: inline-block;
@@ -133,6 +134,18 @@ a code, code a {
 blockquote.cite {
     > p:first-of-type:before { content: open-quote; }
     > p:last-of-type:after { content: close-quote; }
+}
+
+// Video link icons
+a .fa-video-camera {
+    font-size: 50%;
+    vertical-align: super;
+    margin-left: 2px;
+    
+    &:hover {
+	color: blue;
+	text-shadow: 2px 2px 4px #555;
+    }
 }
 
 /* Print */
