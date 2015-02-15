@@ -76,7 +76,7 @@ sont encore complexifiées.
 </section>
 <section>
 
-## {% include codepen.md pen='emGzWM' tab='css' alt='Démonstration de inline-block' %}
+{% include codepen.md pen='emGzWM' tab='css' alt='Démonstration de inline-block' %}
 
 </section>
 <section>
@@ -100,7 +100,7 @@ Uniquement utile pour insérer des figures dans un texte.
 </section>
 <section>
 
-## {% include codepen.md pen='dPVXRE' tab='css' alt='Démonstration de float' %}
+{% include codepen.md pen='dPVXRE' tab='css' alt='Démonstration de float' %}
 
 </section>
 <section>
@@ -127,6 +127,6 @@ Les coordonnées de positionnement sont spécifiées par les propriétés
 </section>
 <section>
 
-## {% include codepen.md pen='vEeKWY' tab='css' alt='Démonstration de position' %}
+{% include codepen.md pen='vEeKWY' tab='css' alt='Démonstration de position' %}
 
 </section>

@@ -71,6 +71,6 @@ title: Flexbox
 </section>
 <section>
 
-## {% include codepen.md pen='LEzZQo' tab='css' alt='Démonstration de Flexbox' %}
+{% include codepen.md pen='LEzZQo' tab='css' alt='Démonstration de Flexbox' %}
 
 </section>
