@@ -51,7 +51,7 @@ TD 1 (09-12/02/2015)
 : {% include link.html href="tutorials/tutorial1.md" %}
 
 TD 2 (16-19/02/2015)
-: 
+: {% include link.html href="tutorials/tutorial2.md" %}
 
 TD 3 (02-05/03/2015)
 : 

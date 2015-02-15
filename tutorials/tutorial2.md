@@ -6,29 +6,37 @@ styles: ["../css/cloud9.css"]
 
 Dans ce TD nous allons créer une interface pour jouer à
 [Puissance 4](http://fr.wikipedia.org/wiki/Puissance_4). JavaScript et
-quelques composants basiques de CSS3 seront suffisants à créer une
+quelques composants basiques de CSS3 seront suffisants pour créer une
 interface agréable et parfaitement fonctionnelle.
 
-Le seules références nécessaires pour ce TD sont
+Pour ce TD, on fera référence
 
-- Le [cours](../classes/class2),
-- Mozilla Developer Network :
+- Aux leçons {% include link.html href="lessons/CSS.md" %},
+  {% include link.html href="lessons/javascript.md" %},
+  {% include link.html href="lessons/dom.md" %}.
+- Au Mozilla Developer Network :
   - <https://developer.mozilla.org/docs/CSS>,
-  - <https://developer.mozilla.org/docs/JavaScript>,
-- W3Schools : <http://www.w3schools.com/>,
-- Les JSFiddles du prof : <http://jsfiddle.net/user/defeo/>.
+  - <https://developer.mozilla.org/docs/JavaScript>.
+- Aux tutoriels de W3Schools : <http://www.w3schools.com/>.
+- Aux CodePens du prof : <http://codepen.io/collection/AaMOJZ/>.
+
+On consultera enfin le livre
+[Eloquent JavaScript](http://eloquentjavascript.net/) pour une
+référence plus détaillée.
 
 Le site de questions/réponses
 [StackOverflow](http://stackoverflow.com/) est à utiliser avec
-précaution. Toutes les autres références sont dangereuses, et risquent
-de vous pénaliser si elles ne sont pas utilisées à bon escient.
+précaution. Toutes les autres références risquent de vous induire en
+erreur avec des exemples datés, non standard, ou non
+idiomatiques. Appliquez du jugement.
 
 
 ## Préparer son espace de travail
 
-Puisque ce TD constitue une partie du projet sur lequel vous êtes
-évalués, vous allez créer un nouvel espace de travail dans
-Cloud9. Suivez ces instructions.
+Vous allez créer un nouvel espace de travail Cloud9 pour ce
+travail. Plutôt que partir de zéro, vous allez *cloner* un espace de
+travail préconfiguré pour ce TD et les suivants. Suivez ces
+instructions.
 
 1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
    from URL »* ;
@@ -42,21 +50,20 @@ Votre espace de travail va s'appeler *« aws-project »* ; vous pouvez
 maintenant y accéder. Vous y trouverez quelques fichiers préparés par
 le professeur, auxquels il ne faudra pas toucher.
 
-Pour prendre moins de risques, allez dans l'onglet *« Preferences »*
-(icône <span class="c9-icon preferences"></span>) et, dans la section *« General »*
-cochez la case *« Enable Auto-Save »*.
+Pour prendre moins de risques, ouvrez l'onglet *« Preferences »*
+(`Ctrl+,`, ou menu *« Cloud9 → Preferences »*) et, dans la section
+*« Settings → File → Save »* cochez la case *« Enable Auto-Save »*.
 
-**Note :** Si vous aviez déjà commencé à travailler sur ce TD dans un
-autre espace de travail, plutôt qu'en créer un nouveau vous pouvez
-importer les contenus préparés par le professeur en tapant les
-commandes suivantes dans le terminal (en bas dans l'espace de travail,
-tapez `F6` s'il n'est pas déjà ouvert).
+**Note :** Si vous avez déjà créé un espace de travail, et que vous
+souhaitez continuer à travailler dans celui-ci, vous pouvez importer
+les contenus préparés par le professeur en tapant les commandes
+suivantes dans le terminal (en bas dans l'espace de travail, tapez
+`F6` s'il n'est pas déjà ouvert).
 
 ~~~
-git clone --no-checkout https://github.com/defeo/aws-project.git
-mv aws-project/.git .
-rmdir aws-project
-git reset --hard
+git init .
+git remote add -f origin https://github.com/defeo/aws-project.git
+git checkout master
 ~~~
 {:.bash}
 
@@ -64,9 +71,9 @@ git reset --hard
 ## Le plateau en pur CSS3
 
 Pour simplicité, nous allons commencer avec un plateau réduit, de
-taille 2×3. 
+taille 2×3.
 
-1. Créez un document HTML5 valide contenant un `<div>` contenant
+1. Créez un document HTML5 valide contenant un `<div>`, contenant un
    tableau (`<table>`) de 3 lignes sur 2 colonnes, avec toutes les
    cases vides. Donnez un identifiant unique au `<div>`.
 
@@ -99,7 +106,7 @@ taille 2×3.
 ## Unobtrusive JavaScript
 
 On est maintenant prêts à écrire la vraie application interactive. On
-pourrait faire un tableau 6×7 directement dans le code HTML, comme
+pourrait créer un tableau 6×7 directement dans le code HTML, comme
 dans la partie précédente, mais nous sommes trop paresseux pour taper
 tous ces `<td></td>` à la main. À la place, nous allons générer
 dynamiquement les éléments du tableau avec JavaScript. Ceci aura
@@ -127,9 +134,19 @@ n'est pas chargé.
    
 2. Liez un fichier JavaScript à la page HTML. Pour éviter les
    problèmes de chargement du DOM, mettez la balise `<script>` après
-   le `<div>`, vers la fin du `<body>`. Faites un affichage de
-   contrôle avec `console.log` et testez avec la console que votre
-   script est bien chargé.
+   le `<div>`, vers la fin du `<body>`, comme ceci :
+   
+   ~~~
+   <body>
+	   <div id="...">Activez JavaScript pour jouer.</div>
+	   
+	   <script src="..."></script>
+   </body>
+   ~~~
+   
+   Faites un affichage de contrôle avec `console.log` dans le
+   JavaScript, et testez avec la console (`Shift+Ctrl+K` sous Firefox,
+   `F12` sous Chrome) que votre script est bien chargé.
 
 3. Dans le JavaScript récupérez l'élément correspondant au `<div>`
    grâce à `document.querySelector`. En vous servant de
@@ -140,7 +157,11 @@ n'est pas chargé.
    
    remplacez le texte du div par un tableau 6×7. Pour une majeure
    flexibilité, vous pouvez faire en sorte que 6 et 7 soient des
-   constantes stockées dans des variables JavaScript.
+   constantes stockées dans des variables JavaScript. Vous pouvez vous
+   inspirer des exemples ci-dessous.
+   
+   {% include codepen.md pen="xbYawz" tab="js" height="250" %}
+   {% include codepen.md pen="myXGeZ" tab="js" height="250" %}
 
 4. Il serait pénible d'utiliser l'API du DOM pour parcourir le plateau
    à chaque fois que l'on veut modifier la partie ou en vérifier une
@@ -160,7 +181,7 @@ n'est pas chargé.
 	   var elt = document.querySelector('#mon-element');
 	   elt.className = 'joueur1';
    
-   Testez votre fonction à travers la console.
+   Testez votre fonction à l'aide de la console.
 
 6. Ajoutez une variable `turn` qui indique à qui est le tour de jouer,
    initialisée au joueur 1 (adoptez la même convention que vous avez
@@ -173,7 +194,7 @@ n'est pas chargé.
    - y joue un pion de la couleur indiquée par la variable `turn`,
    - passe le tour en changeant la valeur de `turn`.
    
-   Testez votre fonction à travers la console.
+   Testez votre fonction à l'aide de la console.
 
 
 ## Gestion des évènements
@@ -184,10 +205,15 @@ fonction `play` soit appelée sur cette colonne.
 
 On pourrait définir un gestionnaire d'évènements par `<td>`, mais ce
 ne serait ni élégant, ni efficace : 42 gestionnaires d'évènements,
-c'est très lourd, surtout pour un téléphone portable... Nous allons
+c'est très lourd, surtout pour un navigateur mobile... Nous allons
 plutôt définir un unique gestionnaire pour tout le plateau, et
 utiliser l'objet de type `Event` pour savoir quelle case a généré
-l'évènement.
+l'évènement. Il est ici crucial de comprendre la différence entre la
+propriété `.target` et la propriété `.currentTarget` vues dans la
+[leçon sur le DOM](../lessons/dom#lobjet-evenement). Étudiez aussi
+l'exemple ci-dessous.
+
+{% include codepen.md pen="WbMgrx" tab="js" height="350" %}
 
 Mais comment faire pour savoir à quelle colonne appartient un `<td>`
 donné ? Parmi les nombreuses solutions à notre disposition (on
@@ -208,7 +234,7 @@ la plus élégante.
    contiennent un attribut `data-column` égal à la colonne dans
    laquelle la balise se trouve. Vous avez deux façons de faire cela,
    selon la façon dont vous avez précédemment codé votre boucle :
-   directement avec `.innerHTML` ou bien avec le champs `dataset`.
+   directement avec `.innerHTML` ou bien avec la propriété `dataset`.
    
    ~~~
    // exemple de méthode utilisant innerHTML
@@ -232,23 +258,26 @@ la plus élégante.
    `column` comme test pour savoir si on a bien cliqué sur une case).
    
 
-## Touches finales (optionnel)
+## Touches finales
 
 Vous pouvez aborder les points suivants dans n'importe quel
-ordre. Suivez vos goûts ! (Pour le CC, il vous sera tout de même
-demandé d'avoir développé les points 1 et 2).
+ordre. Suivez vos goûts !
 
 1. Écrivez une fonction qui teste si un coup est gagnant (4 pions de
    la même couleur alignés verticalement, horizontalement ou
    diagonalement). Remarquez qu'il suffit de tester quatre directions
    autour de la dernière case jouée, et de s'éloigner d'au plus 3
-   cases en chaque direction.
+   cases en chaque direction. L'exemple ci-dessous peut vous servir
+   d'inspiration.
+   
+   {% include codepen.md pen="QwQVyK" tab="js" height="300" %}
 
-2. Modifiez votre application pur qu'à chaque nouveau coup elle teste
+2. Modifiez votre application pour qu'à chaque nouveau coup elle teste
    s'il s'agit d'un coup gagnant, ou à défaut si le plateau a été
-   complètement rempli (il s'agit d'une égalité dans ce cas). Lorsque
-   la partie est terminée, l'interface affiche le gagnant. Cliquer à
-   nouveau sur le plateau démarre alors une nouvelle partie.
+   complètement rempli (il s'agit d'une partie nulle dans ce
+   cas). Lorsque la partie est terminée, l'interface affiche le
+   gagnant. Cliquer à nouveau sur le plateau démarre alors une
+   nouvelle partie.
 
 3. En utilisant la propriété CSS `animation` (attention
    `-webkit-animation` pour Chrome), faites *flasher* l'alignement de
@@ -263,16 +292,8 @@ demandé d'avoir développé les points 1 et 2).
    avoir plusieurs plateaux dans la même page.
 
 5. Testez votre application avec un téléphone portable et adaptez-la
-   aux petits écrans. Si vous n'avez de smartphone, vous pouvez
-   utiliser l'émulation de Chrome ou Firefox:
-   
-   - Dans Chrome, ouvrez les *dev tools*, puis tapez `ECHAP` ou
-	 cliquez sur l'icône *ouvrir console*. Sélectionnez l'onglet
-	 *Émulation/Emulation* (il peut être nécessaire d'activer
-	 l'émulation dans les options des *dev tools*). Une liste de
-	 téléphone portables à émuler vous est proposée.
-   - Dans Firefox tapez `Shfit+Ctrl+M`, puis sélectionnez la
-     résolution voulue.
+   aux petits écrans. Si vous n'avez pas de smartphone, vous pouvez
+   utiliser l'émulation de Chrome ou Firefox (`Shfit+Ctrl+M`).
    
    Il vous sera utile de consulter ce
    [guide au développement sur mobile](https://developer.mozilla.org/docs/Web/Guide/Mobile),
