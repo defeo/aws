@@ -30,42 +30,11 @@ précaution. Toutes les autres références risquent de vous induire en
 erreur avec des exemples datés, non standard, ou non
 idiomatiques. Appliquez du jugement.
 
-
-## Préparer son espace de travail
-
-Vous allez créer un nouvel espace de travail Cloud9 pour ce
-travail. Plutôt que partir de zéro, vous allez *cloner* un espace de
-travail préconfiguré pour ce TD et les suivants. Suivez ces
-instructions.
-
-1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
-   from URL »* ;
-2. Dans la case *« Source URL »* écrivez
-   <https://github.com/defeo/aws-project.git> ;
-3. Laissez les autres paramètres tels quels (*« Open and
-   Discoverable »* et *« Custom »*) ;
-4. Cliquez sur create.
-
-Votre espace de travail va s'appeler *« aws-project »* ; vous pouvez
-maintenant y accéder. Vous y trouverez quelques fichiers préparés par
-le professeur, auxquels il ne faudra pas toucher.
-
-Pour prendre moins de risques, ouvrez l'onglet *« Preferences »*
-(`Ctrl+,`, ou menu *« Cloud9 → Preferences »*) et, dans la section
-*« Settings → File → Save »* cochez la case *« Enable Auto-Save »*.
-
-**Note :** Si vous avez déjà créé un espace de travail, et que vous
-souhaitez continuer à travailler dans celui-ci, vous pouvez importer
-les contenus préparés par le professeur en tapant les commandes
-suivantes dans le terminal (en bas dans l'espace de travail, tapez
-`F6` s'il n'est pas déjà ouvert).
-
-~~~
-git init .
-git remote add -f origin https://github.com/defeo/aws-project.git
-git checkout master
-~~~
-{:.bash}
+Pour ce TD, vous pouvez créer dans un nouvel espace de travail Cloud9,
+ou bien continuer dans celui que vous avez créé au TD précédent.  Pour
+prendre moins de risques, ouvrez l'onglet *« Preferences »* (`Ctrl+,`,
+ou menu *« Cloud9 → Preferences »*) et, dans la section *« Settings →
+File → Save »* cochez la case *« Enable Auto-Save »*.
 
 
 ## Le plateau en pur CSS3
@@ -258,7 +227,7 @@ la plus élégante.
    `column` comme test pour savoir si on a bien cliqué sur une case).
    
 
-## Touches finales
+## Touches finales (Optionnel)
 
 Vous pouvez aborder les points suivants dans n'importe quel
 ordre. Suivez vos goûts !
