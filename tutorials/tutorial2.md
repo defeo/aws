@@ -169,7 +169,7 @@ n'est pas chargé.
    deux dimensions qui pointe vers les cases (les `<td>`) du
    plateau. Modifiez la double boucle `for` de sorte à remplir un
    tableau à deux dimensions avec des pointeurs vers les
-   `HTMLTableCellElement` correspondants aux cases du plateau.
+   balises `td` du plateau.
 
 5. Écrivez une fonction `set(row, column, player)` qui prend en entrée
    des numéros de ligne et de colonne et un code représentant le
