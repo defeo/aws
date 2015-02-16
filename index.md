@@ -88,7 +88,7 @@ Sujets d'examen :
 
 ## Liens
 
-- Mes [JSFiddles](http://jsfiddle.net/user/defeo/fiddles/), qui
+- Mes [CodePens](http://codepen.io/collection/AaMOJZ/), qui
   démontrent comment exécuter les passages délicats de certains TDs.
 - Deux cours de [Polytechnique](http://www.polytechnique.fr) par mon collègue et ami [Dominique Rossin](http://www.lix.polytechnique.fr/~rossin/):
     - [Développement d'applications web](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WEB/),
@@ -156,12 +156,10 @@ français <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. La
 première référence pour JavaScript.
 
 Marijn Haverbeke. *Eloquent JavaScript*.
-: No Starch Press 2011. Côte BU : 005.71jaS HAV. Disponible en ligne
-en anglais <http://eloquentjavascript.net/> et en français
-<http://fr.eloquentjavascript.net/>. Bel ouvrage sur
-JavaScript. La très prometteuse seconde édition est en cours
-d'écriture, et est disponible en avant-première ici :
-<http://eloquentjavascript.net/2nd_edition/preview/>.
+: No Starch Press 2014. Disponible en ligne en anglais
+<http://eloquentjavascript.net/>. Bel ouvrage sur JavaScript et le
+DOM. La première édition est aussi disponible en français
+<http://fr.eloquentjavascript.net/>, et à la BU (côte 005.71jaS HAV).
 
 D. Crockford. *JavaScript. Gardez le meilleur !*.
 : Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU : 005.13jaS
