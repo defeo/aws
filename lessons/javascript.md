@@ -447,7 +447,7 @@ var mycar = new Car("Peugeot", "blue", 2010);
 mycar.revision();
 ~~~
 
-**Nouveau :** ES6 introduit les **classes** !
+**Nouveau :** ES6 introduit les [**classes**](advanced-js) !
 
 </section>
 <section>

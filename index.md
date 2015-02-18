@@ -24,7 +24,7 @@ Cours 1 (04/02/2015)
 Cours 2 (11/02/2015)
 : **amphi**: {% include link.html href="classes/class2.md" %}.
 : **leçons**: {% include link.html href="lessons/javascript.md" %}, {% include link.html href="lessons/dom.md" %}.
-: **approfondissements**: {% include link.html href="lessons/polyfill.md" %}.
+: **approfondissements**: {% include link.html href="lessons/advanced-js.md" %}, {% include link.html href="lessons/polyfill.md" %}.
 
 Cours 3 (18/02/2015)
 : **leçons**: {% include link.html href="lessons/php.md" %}, {% include link.html href="lessons/frameworks.md" %}.
