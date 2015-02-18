@@ -136,6 +136,18 @@ blockquote.cite {
     > p:last-of-type:after { content: close-quote; }
 }
 
+// Double column layout
+.two-cols {
+    display: flex;
+    margin: 1em 0;
+    & > * {
+	flex: 1 1 auto;
+	margin-top: 0;
+	margin-bottom: 0;
+	&:not(:first-child) { margin-left: 1em; }
+    }
+}
+
 // Video link icons
 a .fa-video-camera {
     font-size: 50%;
