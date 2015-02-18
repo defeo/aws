@@ -1,8 +1,10 @@
 ---
-layout: class
-title: Scripts côté server
-subtitle: PHP, Silex (Symfony), Node.js
+layout: lesson
+title: Frameworks Web
+subtitle: Applications web, API HTTP, Routage
 ---
+
+{% raw %}
 
 <section>
 
@@ -87,8 +89,8 @@ HTML, images, etc.
 
 ## Génération statique
 
-- Fichiers HTML sont assemblés à partir de plusieurs composants, 
-- Compilés avant d'être chargés sur le serveur
+- Les fichiers HTML sont assemblés à partir de plusieurs composants, 
+- Ils sont compilés avant d'être chargés sur le serveur
 {:.no-wrap}
 
 #### Un exemple moderne
@@ -141,11 +143,11 @@ HTML, images, etc.
   </g>
 </svg>
 
-- [Markdown](http://daringfireball.net/projects/markdown/): transformation Texte → HTML,
-- [Jade](http://jade-lang.com/) syntaxe simplifiée pour HTML,
-- [Perl](http://perl.org/) langage de programmation générique.
+- [Markdown](http://daringfireball.net/projects/markdown/) : transformation Texte → HTML,
+- [Jade](http://jade-lang.com/) : syntaxe simplifiée pour HTML,
+- [Perl](http://perl.org/) : langage de programmation générique.
 
-Ces transparents sont générés statiquement
+**Autre exemple :** Ces transparents sont générés statiquement
 ([Markdown](http://daringfireball.net/projects/markdown/) +
 [Jekyll](http://jekyllrb.com/)).
 
@@ -154,9 +156,9 @@ Ces transparents sont générés statiquement
 
 ## Web 1.0 : pages dynamiques
 
-La création du document advient au moment de la requête
+La création du document se fait au moment de la requête, à la volée.
 
-<svg style="margin:auto;display:block" width="630" height="210" transform="scale(0.7)">
+<svg style="margin:auto;display:block" width="720" height="270" transform="scale(0.8)">
   <defs>
     <marker
        refX="0"
@@ -181,7 +183,7 @@ La création du document advient au moment de la requête
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
     </marker>
   </defs>
-  <g style="-webkit-transform:scale(0.7);-ms-transform:scale(0.7)">
+  <g style="-webkit-transform:scale(0.8);-ms-transform:scale(0.8)">
     <image
        xlink:href="../assets/server.png"
        x="300" y="80"
@@ -270,7 +272,7 @@ La création du document advient au moment de la requête
   </g>
 </svg>
 
-Le serveur peut
+Le serveur peut :
 
 - Compiler le document à la volée (comme dans la génération statique),
 - Interagir avec d'autres serveurs (authentification, API, ...),
@@ -281,9 +283,9 @@ Le serveur peut
 
 ## Web 2.0 : Applications web
 
-Focalisées autour de *l'interaction* avec l'utilisateur
+Focalisées autour de *l'interaction* avec l'utilisateur.
 
-<svg style="margin:auto;display:block" width="630" height="210" transform="scale(0.7)">
+<svg style="margin:auto;display:block" width="720" height="250" transform="scale(0.8)">
   <defs>
     <marker
        refX="0"
@@ -308,7 +310,7 @@ Focalisées autour de *l'interaction* avec l'utilisateur
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
     </marker>
   </defs>
-  <g style="-webkit-transform:scale(0.7);-ms-transform:scale(0.7)">
+  <g style="-webkit-transform:scale(0.8);-ms-transform:scale(0.8)">
     <image
        xlink:href="../assets/server.png"
        x="300" y="120"
@@ -388,8 +390,8 @@ Focalisées autour de *l'interaction* avec l'utilisateur
 - Les URL ne correspondent plus à des fichiers sur le serveur,
 - Une URL indique une *ressource virtuelle*, une **action**,
 - Exécution de l'application web 
-  - par un serveur web (e.g. Apache+PHP, Tomcat+Java, ...),
-  - ou par son propre serveur (e.g. Node.js, ...).
+  - par un serveur web (par ex., Apache+PHP, Tomcat+Java, ...),
+  - ou par son propre serveur (par ex., Node.js, ...).
   
 
 </section>
@@ -413,685 +415,389 @@ facilitent la construction d'applications web.
 **Exemples**: [Symfony](http://symfony.com/) (PHP),
 **[Silex](http://silex.sensiolabs.org/) (PHP, basé sur Symfony)**,
 [Zend](http://www.zend.com/) (PHP), **[Node.js](http://nodejs.org/)
-(JavaScript)**, [Ruby on Rails](http://rubyonrails.org/) (Ruby),
+(JavaScript)**, [io.js](https://iojs.org/) (JavaScript),
+[Ruby on Rails](http://rubyonrails.org/) (Ruby),
 [Django](https://www.djangoproject.com/) (Python),
 [Flask](http://flask.pocoo.org/) (Python),
+[Tornado](http://www.tornadoweb.org/) (Python),
 [Java EE](http://www.oracle.com/technetwork/java/javaee/), ...
 
 </section>
 <section>
 
+## Frameworks étudiés dans ce cours
 
-# PHP
+### [Silex](http://silex.sensiolabs.org/) (PHP)
 
-</section>
-<section>
+*Micro-framework* dérivé de [Symfony](http://symfony.com/).
 
-## Programmer en PHP
+- **Modules :** API HTTP, Router, Sessions.
+- **Modules optionnels :** Moteur de templates
+  ([Twig](http://twig.sensiolabs.org/)), Abstraction de bases de
+  données ([Doctrine](http://www.doctrine-project.org/)), Protections
+  CSRF, Caching, Internationalisation, Mail, ...
 
-[PHP](http://www.php.net/) est un langage *interprété*, *dynamiquement
-typé*, *impératif* et *orienté aux objets* avec une syntaxe inspirée
-par Perl, C et d'autres languages similaires.
+### [Node.js](http://nodejs.org/) + [Express](http://expressjs.com/) (JavaScript)
 
-~~~
-<?php
-    echo "Hello World!";
-?>
-~~~
+*Micro-framework* web écrit en JavaScript (V8).
 
-PHP *est aussi un framework web* (assez basique):
-
-- API HTTP(S),
-- Moteur de templates (PHP est un langage de templating),
-- Sessions,
-- Abstraction de bases de données (SQL).
+- **Modules :** Server Web, API HTTP, Gestionnaire de paquets (`npm`).
+- **Modules optionnels** (développés par la communeauté, distribués
+  via `npm`) **:** Router, Middlewares, Sessions, Memcache, Moteurs de
+  templates, Abstraction de bases de données, Protections CSRF,
+  WebSockets, ...
 
 </section>
 <section>
 
-## Délimiteurs PHP 
-
-PHP est orienté au texte :
-
-- Seul le code entre les délimiteurs `<?php` et `?>` est exécuté.
-- Tout autre texte est affiché *verbatim*.
-
-~~~
-<?php
-    echo "Hello World!\n";
-?>
-Hello Again!
-~~~
-
-#### Sortie
-
-    Hello World!
-    Hello Again!
-
-### Nous NE NOUS SERVIRONS PAS de cela !
-{:.centered}
-
-</section>
-<section>
-
-## Commentaires
-
-Les commentaires s'écrivent comme en C
-
-~~~
-<?php
-    echo "Hello "; // Un commentaire
-    /*
-       Un commentaire
-	   sur plusieurs lignes
-    */
-?>
-~~~
-
-Ou comme en Perl
-
-~~~
-<?php
-    echo "World!"; # Encore un commentaire
-?>
-~~~
-
-</section>
-<section>
-
-## Variables
-
-Les noms de variables commencent toujours par dollar (`$`).
-
-~~~
-<?php
-    $a = 10;
-    echo $a;
-?>
-~~~
-
-Les variables n'ont **pas de type**, elles ne sont **pas déclarées**,
-elles sont **initialisées a une valeur par défaut**.
-
-~~~
-<?php
-    $foo = 10;
-    echo $foo;
-    $foo .= " apples";
-    echo $foo;            # Affiche "10 apples"
-?>
-~~~
-
-</section>
-<section>
-
-Les variables sont **converties automatiquement**, ou leur type peut
-être forcé par un **cast** (comme en C).
-
-~~~
-<?php
-  $foo = "10";
-  $foo += 2;                 # $foo vaut 12
-  $bar = $foo . " apples";   # $bar vaut "12 apples"
-  $fee = (boolean) $bar;     # $fee vaut TRUE
-?>
-~~~
-{:.compact}
-
-</section>
-<section>
-
-## Portée
-
-Les variables ont **portée locale**. Les fonctions introduisent une
-nouvelle **portée locale**.
-
-~~~
-<?php
-  $a = "Hello";
-   
-  function foo() {
-      echo $a;    # Cette variable est locale à foo
-  }
-    
-  foo();          # N'affiche rien et donne un
-                  # warning en PHP5
-?>
-~~~
-
-</section>
-<section>
-
-Une fonction peut déclarer explicitement ses variables `global`, pour
-les importer d'une portée externe.
-
-~~~
-<?php
-    $a = "Hello";
-    
-    function foo() {
-        global $a;
-        echo $a;       # Cette variable est globale
-    }
-    
-    foo();             # Affiche "Hello";
-?>
-~~~
-
-</section>
-<section>
-
-## Constantes
-
-Les constantes **ne sont pas précédées par un symbole `$`**. Elles
-peuvent être définies avec la fonction `define`
-
-~~~
-<?php
-    define("COLOR", "blue");
-    echo COLOR;                # Affiche "blue"
-?>
-~~~
-
-ou avec le mot clef `const`
-
-~~~
-<?php
-    const COLOR="blue";
-    echo COLOR;                # Affiche "blue"
-?>
-~~~
-
-</section>
-<section>
-
-Leur portée est toujours **globale**
-
-~~~
-<?php
-    const COLOR="blue";
-    
-    function foo() {
-        echo COLOR;
-    }
-    
-    foo();                # Affiche "blue"
-?>
-~~~
-
-</section>
-<section class="compact">
-
-## Chaînes de caractères (guillemets simples)
-
-~~~
-<?php
-  echo 'Bonjour, ';
-  # Il faut échapper les ' avec un backslash \
-  echo 'J\'apprends "PHP". ';
-  echo 'Les retours à la ligne
-sont permis
-   entre guillemets simples
-';
-  # On doit échapper les backslash avant le guillmet
-  echo 'Ceci est un backslash \\';
-  # Tous les autres sont pris tels quels
-  echo ' ceci \ aussi. ';
-  echo 'Même ceci : \n';
-?>
-~~~
-
-#### Sortie
-
-~~~
-Bonjour, J'apprends PHP. Les retours à la ligne
-sont permis
-   entre guillemets simples
-Ceci est un backslash \ ceci \ aussi. Même ceci : \n
-~~~
-
-</section>
-<section class="compact">
-
-## Chaînes de caractères (guillemets doubles)
-
-~~~
-<?php
-  # Il faut échapper les "
-  echo "V'là un \"backslash\": \\
-";
-  echo "Ceci est un retour à la ligne : \n";
-  $foo = 42;
-  echo '$foo est une variable';
-  # Les variables sont substituées
-  echo "\nLa réponse est : $foo \n";
-  # Les accolades évitent les ambiguïtés
-  echo "Votre {solde} est 2*${foo}00\n";
-?>
-~~~
-
-#### Sortie
-
-~~~
-V'là un "backslash": \
-Ceci est un retour à la ligne :
-$foo est une variable
-La réponse est : 42 
-Votre {solde} est 2*4200
-~~~
-
-</section>
-<section class="compact">
-
-## Chaînes de caractères (Heredoc)
-
-Syntaxe pour des chaînes complexes.  On commence par `<<<Identifier`
-et on termine par `Identifier`, avec `Identifier` n'importe quel nom
-valide.
-
-~~~
-<?php
-    echo <<<EOT
-'A thousand kisses buys my heart from me;
-And pay them at thy leisure, one by one.
-What is ten hundred touches unto thee?
-Are they not quickly told and quickly gone?
-Say, for non-payment that the debt should double,
-Is twenty hundred kisses such a trouble?
-
-EOT;
-?>
-~~~
-
-Mêmes propriétés qu'entre guillemets doubles, à l'exception de
-l'échappement de `"`.
-
-</section>
-<section>
-
-## Concaténation de chaînes
-
-Le point (`.`) est l'opérateur de **concaténation**.
-
-~~~
-<?php
-  $a = 'Hello' . " World";
-  $b = "$a!";
-  $c = (2 * 10) . " " . $b;
-  # $c vaut "20 Hello World!"
-?>
-~~~
-
-</section>
-<section >
-
-## Tableau associatifs
-
-En PHP les index des tableaux peuvent avoir tout type
-
-~~~
-<?php
-    $tab[0] = "Hello";
-    $tab["one"] = "World";
-    $tab[true] = "!";
-    echo "$tab[0] ${tab['one']} ${tab[true]}";
-	# Affiche "Hello world !"
-?>
-~~~
-
-</section>
-<section class="compact">
-
-Il sont construits par la fonction `array` et affichés avec la
-fonction `print_r`.
-
-~~~
-<?php
-    $tab = array(0 => 10,
-	             "nested" => array(6 => 5, 13 => 9, "a" => 42));
-    print_r($tab);
-?>
-~~~
-
-#### Sortie
-
-~~~ 
-Array
-(
-    [0] => 10
-    [nested] => Array
-        (
-            [6] => 5
-            [13] => 9
-            [a] => 42
-        )
-
-)
-~~~
-
-</section>
-<section class="compact">
-
-## Syntaxe impérative
-
-~~~
-<?php
-    if ($a > $b) {
-        echo "a is bigger than b";
-    } elseif ($a == $b) {
-        echo "a is equal to b";
-    } else {
-        echo "a is smaller than b";
-    }
-?>
-~~~
-
-~~~
-<?php
-    $i = 1;
-    while ($i <= 10) {
-        echo $i++;
-    }
-?>
-~~~
-
-</section>
-<section class="compact">
-
-~~~
-<?php
-    for ($i = 1; $i <= 10; $i++) {
-        echo $i;
-    }
-?>
-~~~
-
-~~~
-<?php
-    $arr = array(1, 2, 3, 4);
-    foreach ($arr as $value) {
-        echo $value * 2;
-    }
-?>
-~~~
-
-~~~
-<?php
-    $jours = array(
-        "Sunday" => "Lundi",
-        "Monday" => "Mardi",
-        "Tuesday" => "Mercredi"
-    );
-    foreach ($jours as $eng => $fr) {
-        echo "$eng se traduit par $fr.\n";
-    }
-?>
-~~~
-
-</section>
-<section class="compact">
-
-~~~
-<?php
-    function foo($a, $b, $c=true) {
-        if ($c)
-            return $a + $b;
-        else
-            return $a - $b;
-    }
-    
-    echo foo(1, 2) . " ";
-    echo foo(1, 2, false);
-?>
-~~~
-
-~~~
-<?php
-  $counter = 10;
-  $incr = function($i) use ($counter) {
-    $counter += $i;
-    echo $counter . ' ';
-  };
+### API HTTP : Application, requête, réponse
+
+<svg style="margin:auto;display:block" width="700" height="500"
+	viewBox="0 -250 700 500">
+  <defs>
+    <marker id="arrow" orient="auto"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+		 fill="black" stroke="black"
+         marker-start="none" />
+    </marker>
+	<image id="symfony-svg"	xlink:href="../assets/symfony.svg" width="151" height="168"/>
+  </defs>
+
+  <g class="code" style="font-size: 16px">
+	<text x="10" y="-240">
+	  <tspan dy="16">POST /url?a=b HTTP/1.1</tspan>
+	  <tspan x="10" dy="32">Host: www.myhost.com</tspan>
+	  <tspan x="10" dy="16">Accept-Language: "fr;en"</tspan>
+	  <tspan x="10" dy="16">Content-Type: application/json</tspan>
+	  <tspan x="10" dy="32">{ "func": "is_prime",</tspan>
+	  <tspan x="10" dy="16" xml:space="preserve">  "nums": [1,2,3,4,5,6,7,8] }</tspan>
+	</text>
+
+	<text x="10" y="236">
+	  <tspan xml:space="preserve">  "primes": [2,3,5,7] }</tspan>
+	  <tspan x="10" dy="-16">{ "status": "ok",</tspan>
+	  <tspan x="10" dy="-32">Content-Type: application/json</tspan>
+	  <tspan x="10" dy="-16">Content-Length: 40</tspan>
+	  <tspan x="10" dy="-16">Set-Cookie: sessid=0A5FD2</tspan>
+	  <tspan x="10" dy="-32">HTTP/1.1 200 OK</tspan>
+	</text>
+  </g>
+  <use xlink:href="#symfony-svg" x="300" y="-80" />
+  <g fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)">
+	<path d="m 300,-185 q 70,0 70,120" />
+	<path d="m 370,70 q 0,80 -70,100" />
+  </g>
   
-  $incr(1); $incr(2); $incr(3);
-  # Affiche 11 12 13
-?>
-~~~
+  <g class="incremental" fill="none" stroke="red" stroke-dasharray="5,3" >
+	<g>
+	  <text x="470" y="-230" fill="red" stroke="none">Requête :</text>
+	  <path d="m 465,-235 -145,0" />
+	  <rect x="1" y="-249" width="320" height="149" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="-210" fill="red" stroke="none">query string</text>
+	  <path d="M 485,-215 Q 270,-210 120,-220 " />
+	  <rect x="100" y="-240" width="4.1ex" height="1em" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="-190" fill="red" stroke="none">entêtes</text>
+	  <rect x="5" y="-207" width="307" height="55" />
+	  <path d="m 485,-195 -173,0" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="-170" fill="red" stroke="none">corps de la requête</text>
+	  <rect x="5" y="-145" width="305" height="38" />
+	  <path d="m 485,-175 -175,50" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="-150" fill="red" stroke="none">méthode, url, cookies, ...</text>
+	</g>
+	
+	<g>
+	  <text x="470" y="180" fill="red" stroke="none">Réponse :</text>
+	  <rect x="1" y="100" width="320" height="149" />
+	  <path d="m 465,175 -145,0" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="200" fill="red" stroke="none">code d'état</text>
+	  <rect x="100" y="109" width="60" height="1em" />
+	  <path d="m 485,195 C 260,195 485,118 160,118" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="220" fill="red" stroke="none">corps de la réponse</text>
+	  <rect x="5" y="200" width="250" height="45" />
+	  <path d="m 485,215 -230,0" />
+	</g>
+	<g style="font-size:80%">
+	  <text x="490" y="240" fill="red" stroke="none">entêtes, cookies, ...</text>
+	</g>
+	
+	<g>
+	  <text x="470" y="-40" fill="red" stroke="none">Application :</text>
+	  <path d="M 465,-45 420,-20" />
+	  
+	  <text x="490" y="-20" fill="red" stroke="none" style="font-size:80%">
+	    <tspan>router</tspan>
+	    <tspan x="490" dy="20">moteur de templates</tspan>
+	    <tspan x="490" dy="20">sessions</tspan>
+	    <tspan x="490" dy="20">interface BD</tspan>
+	    <tspan x="490" dy="20">middlewares</tspan>
+	    <tspan x="490" dy="20">...</tspan>
+	  </text>
+	</g>
+  </g>
+</svg>
 
 </section>
 <section class="compact">
 
+## L'application
+
+### Silex (PHP)
+
 ~~~
-<?php
-  # exécute of script1.php
-  include 'script1.php';
-  # comme avant, mais erreur si le fichier n'existe pas
-  require 'script1.php';
-  # exécute script2.php, seulement s'il ne l'a pas déjà été
-  include_once 'script2.php'; 
-  # comme avant, mais erreur si le fichier n'existe pas
-  require_once 'script2.php';
-?>
+require_once 'vendor/autoload.php';
+$app = new Silex\Application();
+
+$app->get();      // Le router
+$app->post();
+$app->match();
+
+$app->run();      // Exécution
 ~~~
 
-Toutes les inclusions sont textuelles : les variables globales de
-chaque fichier sont disponibles pour tous les autres.
+### Express (Node.js)
 
-### Lectures
+~~~
+var express = require('express');
+var app = express();
 
-- Le manuel de référence de PHP : <http://www.php.net/manual/>,
-- Plus de références [bibliographie du cours](../#php).
+app.get();        // Le router
+app.post();
+app.all();
+
+app.listen(80);   // Exécution
+~~~
+{:.javascript}
 
 </section>
 <section class="compact">
 
-## Syntaxe orientée aux objets
+## L'objet requête
 
-~~~
-<?php
-  class SimpleClass extends BasicClass
-  {
-    // Attribut d'instance
-	public $var = 'a default value';
-	// Attribut de classe
-	public static $classvar = 'another value';
-	// Méthode d'instance
-	public function displayVar() {
-	  echo $this->var;
-	}
-	// Méthode de classe
-	public static function displayClass() {
-	  echo parent::classvar;
-	}
-  }
-  SimpleClass::displayClass();   # Affiche "another value"
-  $x = new SimpleClass();
-  $x->displayVar();               # Affiche "a default value"
-?>
-~~~
-
-</section>
-<section class="compact">
-
-## Espaces de noms
-
-~~~
-<?php
-  # La déclaration du namespace doit aller au début du fichier
-  namespace Projets\Projet1;
-  class MaClasse {}
-  function mafonction {}
-  mafonction();
-?>
-~~~
-
-~~~
-<?php
-  include 'projet1.php';
-
-  $a = new Projets\Projet1\MaClasse();
-  Projets\Projet1\mafonction();
-
-  use Projets\Projet1 as P1;
-  $b = new P1\MaClasse();
-
-  use Projets\Projet1\MaClasse;
-  $c = new MaClasse();
-?>
-~~~
-
-</section>
-<section>
-
-## API HTTP
-
-PHP fournit quelques variables globales par défaut qui représentent la
-requête HTTP courante
-
-- `$_GET` paramètres de l'URL (*query string*),
-- `$_POST`, `$_FILES` contenu de la requête,
-- `$_SERVER` entêtes HTTP,
-- `$_COOKIE` cookies,
-- `$_SESSION` stockage volatile.
-
-### Nous n'allons PAS NOUS SERVIR de cela
-{:.centered}
-
-</section>
-<section>
-
-# Silex
-
-</section>
-<section>
-
-## Silex
-
-[Silex](http://silex.sensiolabs.org/) est un *micro-framework* web
-écrit en PHP. Il comporte
-
-- *Router*,
-- *Stockage volatile*: Sessions.
-
-Modules optionnels
-
-- *Moteur de templates* ([Twig](http://twig.sensiolabs.org/)),
-- *Abstraction de bases de données* ([Doctrine](http://www.doctrine-project.org/)),
-- *Mechanismes de sécurité*: injections, XSS, CSRF,
-- *Caching*, *Internationalisation*, *Mail*, ...
-
-
-Silex est basé sur [Symfony](http://symfony.com/), un framework full-stack.
-
-Silex est très adapté aux applications *single page*, qui présentent
-une seule page web et dont le code tient en quelques fichiers.
-
-**Documentation :** <http://silex.sensiolabs.org/documentation>
-
-</section>
-<section class="compact">
-
-## Hello world
-
-~~~
-<?php
-  require_once 'vendor/autoload.php';    # Charge Silex
-
-  $app = new Silex\Application();   # Crée l'application web
-
-  function hello() {
-	  return 'Hello World!';        # On ne fait pas de echo
-  }
-  $app->get('/', hello);   # Définit une action pour l'URL /
-
-  $app->run();                     # Lance l'application web
-?>
-~~~
-
-</section>
-<section>
-
-## Router
-
-Le router associe une fonction (*gestionnaire*) à chaque requête pour
-une URL.
-
-~~~
-$app->get('/url1', gest1);   # Requêtes GET
-
-$app->post('/url2/form', gest2);  # Requêtes POST
-
-# Avec une fonction anonyme et une URL parametrée
-$app->get('/url/{param}', function ($param) {
-  return 'Hello ' . $param;
-});
-~~~
-
-À une requête pour `/url/toto`, le dernier gestionnaire répond
-
-~~~
-Hello toto
-~~~
-
-</section>
-<section class="compact">
-
-## API HTTP
-
-Un gestionnaire lit une `Request` est écrit une `Response`
+### Silex
 
 ~~~
 use Symfony\Component\HttpFoundation\Request;
+
+$app->get('/', function(Request $req) {
+	$req->query;      // Query string
+	$req->request;    // corps de la requête
+	$req->headers;    // entêtes HTTP
+	$req->cookies;    // cookies
+});
+~~~
+
+### Express
+
+~~~
+var bodyParser = require("body-parser"), cookieParser = require("cookie-parser");
+app.use(bodyParser.urlencoded()).use(cookieParser()); // config
+
+app.get('/', function(req, res) {
+	req.query;        // query string
+	req.body;         // corps de la requête
+	req.headers;      // entêtes HTTP
+	req.cookies;      // cookies
+});
+~~~
+{:.javascript}
+
+</section>
+<section class="compact">
+
+## L'objet réponse (Silex)
+
+~~~
 use Symfony\Component\HttpFoundation\Response;
-
-$app->get('/form', function (Request $req) {
-    $nom = $req->query->get('name');
-    return new Response('Hello ' . $nom, 202);
-});
-
-$app->post('/form', function (Request $req) {
-    $nom = $req->request->get('name');
-    return new Response('Hello ' . $nom, 202);
-});
 ~~~
 
-À une requête pour `/form?name=toto` répond (avec code 202)
+Écrire une réponse simple
 
 ~~~
-Hello toto
+return 'Hello world';
 ~~~
 
-Même chose pour les données envoyées par POST.
+Envoyer un *code d'état* et des entêtes
+
+~~~
+return new Response(404, 'Not Found', headers);
+~~~
+
+Envoyer un fichier statique
+
+~~~
+return $app->sendFile('static-file.html');
+~~~
+
+Faire une rédirection
+
+~~~
+return $app->redirect('/other/path');
+~~~
+
+Envoyer des données au format JSON
+
+~~~
+return $app->json( array('a' => 'b') );
+~~~
+
+</section>
+<section class="compact">
+
+## L'objet réponse (Express)
+
+Écrire une réponse simple
+
+~~~
+res.send('Hello world');
+~~~
+
+Envoyer un *code d'état* et des entêtes
+
+~~~
+res.set('Content-Type', 'text/plain');
+res.status(404).send('Not Found');
+~~~
+
+Envoyer un fichier statique
+
+~~~
+res.sendFile('static-file.html');
+res.download('static-attachment.mp3');
+~~~
+
+Faire une rédirection
+
+~~~
+res.redirect('/other/path');
+~~~
+
+Envoyer des données au format JSON
+
+~~~
+res.json({ 'a' : 'b' });
+~~~
 
 </section>
 <section>
 
-# Node.js
+## Anatomie de l'application
+
+
+<svg style="margin:auto;display:block" width="1015" height="450"
+	viewBox="0 -225 1015 450">
+  <defs>
+    <marker id="arrow-start" orient="auto"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+		 fill="black" stroke="black"
+         marker-start="none" />
+    </marker>
+  </defs>
+
+  <use x="50" y="-140" xlink:href="#symfony-svg" />
+  <g stroke="black" fill="none"  marker-end="url(#arrow)" stroke-dasharray="5,2">
+    <path d="M 120,-200 120,-125" />
+	<path d="M 180,-60 Q 200,-20 345,-20" />
+	<g marker-start="url(#arrow-start)">
+	  <path d="M 700,0 700,120" />
+	  <path d="M 700,-55 700,-155" />
+    </g>
+	<path d="M 345,-10 Q 120,-10 120,145" />
+  </g>
+  <g class="code">
+    <text x="0" y="-205" fill="black">GET /path/toto/titi</text>
+	<text x="350" y="-40">
+	  <tspan>$app->get(<tspan fill="#800">'/path/{v1}/{v2}'</tspan>, </tspan>
+	  <tspan style="font-weight:bold">function</tspan><tspan>($v1, $v2) {</tspan>
+	  <tspan x="350" dy="25" xml:space="preserve">  ...</tspan>
+	  <tspan x="350" dy="25">}</tspan>
+	</text>
+	<text x="540" y="140">
+	  <tspan>&lt;h1&gt;Hello <tspan style="font-weight:bold">{{ user }}</tspan>!&lt;/h1&gt;</tspan>
+	</text>
+	<text x="460" y="-160">SELECT * FROM user WHERE id=$v1;</text>
+	<text x="0" y="170">
+	  <tspan>HTTP/1.1 200 OK</tspan>
+	  <tspan x="0" dy="40">&lt;h1&gt;Hello toto!&lt;/h1&gt;</tspan>
+	</text>
+  </g>
+  <g fill="red" stroke="red">
+    <text x="220" y="-30">Router</text>
+	<text x="840" y="20">Gestionnaire</text>
+    <text x="600" y="70">Template engine</text>
+	<text x="640" y="-100">Database</text>
+	<text x="100" y="60">Réponse</text>
+  </g>
+  <rect fill="none" stroke="red" stroke-width="2" x="340" y="-70" width="665" height="95" />
+</svg>
 
 </section>
 <section>
 
-## Node.js
+## Le router
 
-[Node.js](http://nodejs.org/) est un *micro-framework* web écrit en
-JavaScript. Son noyau ne comporte que
+Le *router* fait l'association : **méthode+URL → code à exécuter**
 
-- Server Web,
-- API HTTP,
-- Gestionnaire de paquets.
+~~~
+$app->get('/url', function() {...});
+~~~
 
-Il existe énormément de modules optionnels :
+Il peut aussi traduire une partie de l'URL en arguments de la fonction
 
-- *Router*, *Middlewares* :
-  ([Connect](http://www.senchalabs.org/connect/),
-  [Express](http://expressjs.com/)),
-- *Stockage volatile* : Sessions, Memcache, ...
-- *Moteurs de templates*,
-- *Abstraction de bases de données*
-- *Mechanismes de sécurité*,
-- *WebSockets*, ...
+~~~
+$app->get('/url/{a1}/{a2}', function($a1, $a2) {
+	...
+});
+~~~
 
+En Express
 
-**Docs :** <http://docs.nodejitsu.com/>, <http://nodejs.org/api/>.
+~~~
+app.get('/url/:a1/:a2', function(req, res) {
+	console.log(req.params.a1);
+});
+~~~
 
 </section>
+<section>
+
+## Lectures
+
+### Silex
+
+- La [doc officielle](http://silex.sensiolabs.org/documentation) (en anglais),
+- Le
+  [*Book* de Symfony](http://symfony.com/fr/doc/current/book/index.html)
+  (disponible aussi
+  [en anglais](http://symfony.com/doc/current/book/index.html)),
+- La [référence de Symfony](http://api.symfony.com/master/) (en
+  anglais),
+
+### Express
+
+- Les tutoriels de [NodeSchool](http://nodeschool.io/),
+- La [référence de Node.js](http://nodejs.org/api/),
+- Les [aides de NodeJitsu](http://docs.nodejitsu.com/),
+- La [doc de Express](http://expressjs.com/),
+- Eloquent JavaScript, [chapitre 20 sur Node.js](http://eloquentjavascript.net/20_node.html).
+
+</section>
+
+{% endraw %}

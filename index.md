@@ -27,10 +27,10 @@ Cours 2 (11/02/2015)
 : **approfondissements**: {% include link.html href="lessons/polyfill.md" %}.
 
 Cours 3 (18/02/2015)
-: 
+: **leçons**: {% include link.html href="lessons/php.md" %}, {% include link.html href="lessons/frameworks.md" %}.
 
 Cours 4 (04/03/2015)
-: 
+: **leçons**: {% include link.html href="lessons/templates.md" %}.
 
 Cours 5 (11/03/2015)
 : 
