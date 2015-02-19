@@ -71,9 +71,7 @@ Element.prototype.css = function(css) {
 	    this.style[select_or_prop] = val;
 	} else {
 	    this.$$(select_or_prop).forEach(function(e) {
-		for (var prop in val) {
-		    e.style[prop] = val[prop];
-		}
+		e.css(val);
 	    });
 	}
     }
