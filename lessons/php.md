@@ -2,6 +2,8 @@
 layout: lesson
 title: PHP
 subtitle: "PHP: Hypertext Preprocessor"
+video:
+  url: https://www.dropbox.com/s/sq3w41kzijggar1/php.webm?dl=1
 ---
 
 <section>
@@ -536,9 +538,11 @@ Les fonctions sont des *objets de première classe* en PHP
   };
   
   $incr(1); $incr(2); $incr(3);
+  echo "\n$counter";
 ~~~
 
 	11 12 13
+	10
 
 </div>
 
