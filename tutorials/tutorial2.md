@@ -127,10 +127,9 @@ n'est pas chargé.
    remplacez le texte du div par un tableau 6×7. Pour une majeure
    flexibilité, vous pouvez faire en sorte que 6 et 7 soient des
    constantes stockées dans des variables JavaScript. Vous pouvez vous
-   inspirer des exemples ci-dessous.
+   inspirer de l'exemple ci-dessous.
    
    {% include codepen.md pen="xbYawz" tab="js" height="250" %}
-   {% include codepen.md pen="myXGeZ" tab="js" height="250" %}
 
 4. Il serait pénible d'utiliser l'API du DOM pour parcourir le plateau
    à chaque fois que l'on veut modifier la partie ou en vérifier une
@@ -138,7 +137,9 @@ n'est pas chargé.
    deux dimensions qui pointe vers les cases (les `<td>`) du
    plateau. Modifiez la double boucle `for` de sorte à remplir un
    tableau à deux dimensions avec des pointeurs vers les
-   balises `td` du plateau.
+   balises `td` du plateau. Cet exemple pourrait vous aider.
+   
+   {% include codepen.md pen="myXGeZ" tab="js" height="250" %}
 
 5. Écrivez une fonction `set(row, column, player)` qui prend en entrée
    des numéros de ligne et de colonne et un code représentant le
