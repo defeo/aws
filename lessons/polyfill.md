@@ -87,14 +87,18 @@ par ces pages.
 
 En <100 lignes, on a :
 
-- Les alias décrits précédemment 
+- Les alias décrits précédemment.
 
 - Des méthodes `on` et `once`, pour attacher les évènements à la
   JQuery.
 
-- Un remplacement pour `innerHTML` inspiré par [Jade](http://jade-lang.com/).
+- Un remplacement pour `innerHTML` inspiré par
+  [Jade](http://jade-lang.com/) (voir
+  [le CodePen](http://codepen.io/defeo/pen/xbYawz)).
 
-- Une méthode pour modifier plusieurs propriétés CSS d'un coup.
+- Une méthode pour modifier plusieurs propriétés CSS d'un coup,
+  récursivement (voir
+  [le CodePen](http://codepen.io/defeo/pen/ogqdLM)).
 
 
 </section>
