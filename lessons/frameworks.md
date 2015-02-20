@@ -2,6 +2,8 @@
 layout: lesson
 title: Frameworks Web
 subtitle: Applications web, API HTTP, Routage
+video:
+  url: https://www.dropbox.com/s/kka6ttqaahbm5u9/frameworks.webm?dl=1
 ---
 
 {% raw %}
