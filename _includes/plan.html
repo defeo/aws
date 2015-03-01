@@ -1,0 +1,44 @@
+<div id="plan">
+  <h2>Plan <small>(<a href="javascript:un_check_all()">tout</a>)</small></h2>
+
+  {% for week in site.data.plan %}
+  <div class="week" id="semaine-{{ forloop.index }}" data-date="{{ week.date }}">
+    <input type="checkbox" id="semaine-{{ forloop.index }}-ck">
+    <h3><label for="semaine-{{ forloop.index }}-ck"><i class="fa fa-caret-right"></i>
+	Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</label></h3>
+    <div><dl>
+      {% for item in week.contents %}
+      {% for it in item %}
+      <dt>{{ it[0] }} :</dt>
+      {% for link in it[1] %}
+      {% if link.url %}
+      <dd>{% include link.html href=link.url %}
+	{% if link.comment %}({{ link.comment }}){% endif %}</dd>
+      {% else %}
+      <dd>{% include link.html href=link %}</dd>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% endfor %}
+    </dl></div>
+  </div>
+  {% endfor %}
+
+</div>
+<script>
+  function un_check_all() {
+    $this = $('#plan');
+    var chkd = $this.classList.toggle('checked');
+    $this.$$('input[type="checkbox"]').forEach(function (x) {
+      x.checked = chkd;
+    });
+  }
+  $$(".week").forEach(function (w) {
+    var delta = Date.now() - Date.parse(w.dataset['date']) - (new Date).getTimezoneOffset()*60*1000;
+    console.log(delta);
+    if (0 <= delta && delta < 7*24*60*60*1000) {
+      w.$('input[type="checkbox"]').checked = true;
+    }
+  });
+</script>
+  

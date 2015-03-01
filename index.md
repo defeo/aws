@@ -1,6 +1,7 @@
 ---
 layout: main
 title: AWS – Applications web et sécurité
+styles: css/index.css
 ---
 
 # AWS – Applications web et sécurité
@@ -14,63 +15,10 @@ title: AWS – Applications web et sécurité
 **TDs, Groupe 2 :** Mercredi 15h15 - 18h30, salle ALSACE,  
 **TDs, Groupe 3 :** Lundi 13h30 - 16h45, salle ALSACE.
 
-## Cours
 
-Cours 1 (04/02/2015)
-: **amphi**: {% include link.html href="classes/class1.md" %}.
-: **leçons**: {% include link.html href="lessons/HTTP.md" %}, {% include link.html href="lessons/HTML.md" %}, {% include link.html href="lessons/forms.md" %}, {% include link.html href="lessons/CSS.md" %}.
-: **approfondissements**: {% include link.html href="lessons/boxmodel.md" %}, {% include link.html href="lessons/flexbox.md" %}.
-
-Cours 2 (11/02/2015)
-: **amphi**: {% include link.html href="classes/class2.md" %}.
-: **leçons**: {% include link.html href="lessons/javascript.md" %}, {% include link.html href="lessons/dom.md" %}.
-: **approfondissements**: {% include link.html href="lessons/advanced-js.md" %}, {% include link.html href="lessons/polyfill.md" %}.
-
-Cours 3 (18/02/2015)
-: **amphi**: {% include link.html href="classes/class3.md" %}.
-: **leçons**: {% include link.html href="lessons/php.md" %}, {% include link.html href="lessons/frameworks.md" %}.
-
-Cours 4 (04/03/2015)
-: **leçons**: {% include link.html href="lessons/templates.md" %}.
-
-Cours 5 (11/03/2015)
-: 
-
-Cours 6 (18/03/2015)
-: 
-
-Cours 7 (25/03/2015)
-: 
-
-Cours 8 (01/04/2015)
-: 
-
-
-## TDs
-
-TD 1 (09-12/02/2015)
-: {% include link.html href="tutorials/tutorial1.md" %}
-
-TD 2 (16-19/02/2015)
-: {% include link.html href="tutorials/tutorial2.md" %}
-
-TD 3 (02-05/03/2015)
-: 
-
-TD 4 (09-12/03/2015)
-: 
-
-TD 5 (16-19/03/2015)
-: 
-
-TD 6 (23-26/03/2015)
-: 
-
-TD 7 (30/03-02/04/2015)
-: 
-
-TD 8 (13-16/04/2015)
-: 
+{::nomarkdown}
+{% include plan.html %}
+{:/}
 
 
 ## Archives

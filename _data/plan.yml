@@ -1,0 +1,51 @@
+- date: 2015-02-02
+  contents:
+    - Amphi: classes/class1.md
+    - Leçons:
+      - lessons/HTTP.md
+      - lessons/HTML.md
+      - lessons/forms.md
+      - lessons/CSS.md
+
+- date: 2015-02-09
+  contents:
+    - TD: tutorials/tutorial1.md
+    - Amphi: classes/class2.md
+    - Leçons:
+      - lessons/javascript.md
+      - lessons/dom.md
+    - Approfondissements:
+      - lessons/boxmodel.md
+      - lessons/flexbox.md
+
+- date: 2015-02-16
+  contents:
+    - TD: tutorials/tutorial2.md
+    - Amphi: classes/class3.md
+    - Leçons:
+      - lessons/php.md
+      - lessons/frameworks.md
+    - Approfondissements:
+      - lessons/advanced-js.md
+      - lessons/polyfill.md
+      
+- date: 2015-03-02
+  contents:
+    - TD:
+      - tutorials/tutorial2.md
+      - { url: tutorials/reflector-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
+    - Leçons:
+      - lessons/templates.md
+    - Approfondissements:
+      - lessons/oo-php.md
+
+- date: 2015-03-09
+
+- date: 2015-03-16
+
+- date: 2015-03-23
+
+- date: 2015-03-30
+
+- date: 2015-04-07
