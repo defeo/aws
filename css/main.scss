@@ -172,6 +172,10 @@ a .fa-video-camera {
     font-size: 50%;
     vertical-align: super;
     margin-left: 0.5ex;
+    &.new {
+	background-color: rgba(0,0,0,0.4);
+	box-shadow: 0 0 2px 2px rgba(0,0,0,0.4);
+    }
 }
 
 /* Print */

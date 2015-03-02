@@ -112,18 +112,26 @@
     {% endif %}
 
     <script>
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'http://api.muut.com/postcounts?path=/webdev-uvsq');
-      xhr.responseType = 'json';
-
-      xhr.onload = function(e) {
-        var n = this.response['/webdev-uvsq'].size;
-        console.log(n);
-        if (n) {
-          $('#forum-count').css({ display: 'inline' }).textContent = n;
+      (function () {
+        var oldn, xhr = new XMLHttpRequest();
+        xhr.onload = function(e) {
+          var n = this.response['/webdev-uvsq'].size;
+          if (n) {
+            var $cnt = $('#forum-count');
+            $cnt.css({ display: 'inline' }).textContent = n;
+            if (oldn !== undefined && n > oldn)
+              $cnt.classList.add('new');
+            oldn = n;
+          }
+          setTimeout(fetch, 30*1000);
+        };
+        var fetch = function() {
+          xhr.open('GET', 'http://api.muut.com/postcounts?path=/webdev-uvsq');
+          xhr.responseType = 'json';
+          xhr.send();
         }
-      };
-      xhr.send();
+        fetch();
+      })();
     </script>
     
     {% for s in page.scripts %}
