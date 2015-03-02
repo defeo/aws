@@ -1,0 +1,33 @@
+---
+---
+
+.muut {
+    font-size: 80%;
+}
+.m-wrap, .m-header {
+    max-width: 90%;
+    margin: 0;
+}
+.m-header {
+    background-color: transparent;
+    border-top: solid thin rgba(0,0,0,0.2);
+    padding-top: 1ex;
+}
+.m-tablet .m-subnavi {
+    background-color: transparent;
+}
+.m-tablet .m-subnavi .m-login {
+    color: rgba(0,0,0,0.6);
+}
+.m-navi a {
+    border-radius: 1.8em;
+}
+.m-navi {
+    .m-nav-feed, .m-nav-all { cursor: pointer; }
+}
+.m-search input {
+    border: solid thin rgba(0,0,0,0.2);
+}
+#moot-logo a::after {
+    content: " WebDev @UVSQ"
+}

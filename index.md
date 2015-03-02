@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: default
 title: AWS – Applications web et sécurité
 styles: css/index.css
 ---

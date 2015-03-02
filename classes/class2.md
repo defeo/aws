@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: default
 title: Autour de CSS
 subtitle: 11 Février 2015
 video:

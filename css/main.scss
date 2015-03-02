@@ -160,6 +160,20 @@ a .fa-video-camera {
     }
 }
 
+// Forum link styling
+#forum-count {
+    display: none;
+    font-style: normal;
+    font-family: 'Oxygen Mono', mono;
+    border-radius: 1ex;
+    padding: 0 0.8ex;
+    background-color: rgba(0,0,0,0.6);
+    color: rgba(255,255,255,0.9);
+    font-size: 50%;
+    vertical-align: super;
+    margin-left: 0.5ex;
+}
+
 /* Print */
 @media print {
     .dont-print { display: none }
