@@ -88,8 +88,9 @@ var app = express();
 // Configuration des middlewares
 app
 	.use(bodyP.urlencoded({ extended: false }))
-	.use(cookieP());
-
+	.use(cookieP())
+	.use(express.static('.'));
+	
 // Votre code va ici
 
 
@@ -152,7 +153,7 @@ app.listen(8080);
    dans la barre d'adresse, comme par exemple
    
    ~~~
-   http://...c9.io/query_string?user=toto&pwd=12345
+   http://<nom_du_projet>.c9.io/query_string?user=toto&pwd=12345
    ~~~
    {:.http}
 
@@ -175,6 +176,20 @@ app.listen(8080);
    *get* (attribut `method`). Testez le réflecteur à travers le
    formulaire ; testez notamment les caractères spéciaux, tels les
    espaces, les ampersands (`&`), etc.
+   
+   **Note :** vous pouvez visualiser le formulaire avec le bouton
+   *Preview*, mais vous pouvez aussi le visualiser à l'url
+   
+   ~~~
+   http://<nom_du_projet>.c9.io/<nom_du_formulaire>.html
+   ~~~
+   
+   ceci a été rendu possible par le *middleware*
+   `express.static`. Puisque le formulaire et votre application se
+   trouvent sur le même domaine `<nom_du_projet>.c9.io`, vous avez la
+   possiblité d'utiliser une url relative dans le champ `action`. Ceci
+   n'est pas possible si vous utilisez le bouton *Preview*, en effet
+   le formulaire est dans ce cas servi sur le domaine `preview.c9.io`.
    
 5. Reprenez le formulaire du point précédent, en envoyant les données
    dans le corps d'une requête de type POST (`method="POST"`).
