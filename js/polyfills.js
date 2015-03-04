@@ -33,7 +33,7 @@ NodeList.prototype.forEach = Array.prototype.forEach;
 
 // Append nodes, à la Jade
 Element.prototype.append = function(jade, ns) {
-    var format = /^([a-z]+)((?:\.[^ #.]+|#[^ #.]+)*)(?:\s(.*))?$/i;
+    var format = /^([a-z1-6]+)((?:\.[^ #.]+|#[^ #.]+)*)(?:\s(.*))?$/i;
     var lines = jade.split('\n');
     var match = format.exec(lines[0]);
     if (!match)
