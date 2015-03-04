@@ -37,6 +37,7 @@
       - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
     - Leçons:
       - lessons/templates.md
+      - lessons/etat.md
     - Approfondissements:
       - lessons/oo-php.md
 
