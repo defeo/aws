@@ -46,6 +46,7 @@ de votre espace de travail doit contenir le fichier `package.json`.
 > ~~~
 > git init .
 > git remote add -f origin https://github.com/defeo/aws-project.git
+> rm README.md
 > git checkout master
 > ~~~
 > {:.bash}
