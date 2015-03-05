@@ -3,6 +3,8 @@ layout: lesson
 title: Maintien d'état
 subtitle: Persistance côté client, Cookies, Storage API
 scripts: ['http://coffeescript.org/extras/coffee-script.js']
+video:
+  url: https://www.dropbox.com/s/jykcelfvjs62g4e/etat.webm?dl=1
 ---
 
 <section>
@@ -299,7 +301,7 @@ Plus d'informations : [page du MDN](https://developer.mozilla.org/DOM/Storage)
 
 - **Cookies :** *identifiants de session*, compatibilité,
 - **Storage API :** toutes applications, stockage de taille réduite,
-- **IndexedDB, WebSQL :** grandes quantités de données.
+- **IndexedDB :** grandes quantités de données.
 
 ### Avantages/Désavantages
 

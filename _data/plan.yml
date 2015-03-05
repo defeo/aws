@@ -35,6 +35,7 @@
       - tutorials/tutorial2.md
       - { url: tutorials/reflector-silex.md, comment: "version pour Silex" }
       - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
+    - Amphi: classes/class4.md
     - Leçons:
       - lessons/templates.md
       - lessons/etat.md
