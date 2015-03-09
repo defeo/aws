@@ -186,7 +186,7 @@ Cet exemple, exécuté par l'appel
 
 ~~~
 $app['twig']->render('boucle_for.html', array(
-	'num' => array(
+	'nombres' => array(
 		'One' => 'Un',
 		'Two' => 'Deux',
 		'Three' => 'Trois'

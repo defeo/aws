@@ -193,7 +193,7 @@ Voici maintenant un exemple de template utilisant la boucle `for`.
 Cet exemple, exécuté par l'appel
 
 ~~~
-res.render('boucle_for.html', { 'num' : [
+res.render('boucle_for.html', { 'nombres' : [
 	'One' => 'Un',
 	'Two' => 'Deux',
 	'Three' => 'Trois'
