@@ -278,7 +278,9 @@ compteur de visites.
 1. Créez un gestionnaire
    
    ~~~
-   $app->get('/{nom}/compteur', ...);
+   $app->get('/{nom}/compteur', function(Application $app, Request $req, $nom) {
+	   ...
+   });
    ~~~
    {:.php}
    
