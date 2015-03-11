@@ -22,41 +22,13 @@ avec les bases de données :
 
 - **DBAL (Database Abstraction Layer) :** accès à plusieurs systèmes
   de BD (par ex., MySQL, SQLite, ...)  avec une API unique.
-- **ORM (Object Relational Mapping) :** traduction entre objets du
-  langage du framework et entités de la BD.
+- **ORM (Object Relational Mapping) :** traduction entre *objets* dans
+  le langage du framework, et *entités* de la BD.
 
 </section>
 <section>
 
-## Rappels sur MySQL
-
-Lire une table
-
-~~~
-SELECT * FROM users WHERE id = 'toto';
-~~~
-
-Écrire dans une table
-
-~~~
-UPDATE users SET pwd = 'SHA1(12345)'
-WHERE id = 'toto';
-~~~
-
-### Resources
-
-La référence MySQL complète
-
-> <http://dev.mysql.com/doc/refman/5.0/en/>
-
-Un tutoriel rapide et complet, avec exemples
-
-> <http://www.w3schools.com/sql/>
-
-</section>
-<section>
-
-## Silex et MySQL
+## PHP, Silex et MySQL
 
 PHP fournit deux modules pour l'accès aux bases MySQL :
 
@@ -144,7 +116,7 @@ Plus de fonctions dans le
 
 ## MySQL pour Node.js
 
-Installer le module [mysql](https://github.com/felixge/node-mysql)
+Installer le module [mysql](https://www.npmjs.com/package/mysql)
 
 ~~~
 npm install mysql
@@ -157,11 +129,12 @@ var mysql = require('mysql');
 var db    = mysql.createConnection({
   host     : 'localhost',
   user     : 'toto',
-  password : '12345'
+  password : '12345',
+  database : 'ma_base'
 });
 ~~~
 
-Plus d'options : <https://github.com/felixge/node-mysql>
+Plus d'options : <https://www.npmjs.com/package/mysql>
 
 </section>
 <section>
@@ -188,10 +161,7 @@ résultat de la requête est passé à une **callback**.
 - **SQLite :** [`sqlite3`](https://npmjs.org/package/sqlite3) ;
 - **Postgres :** [`pg`](https://npmjs.org/package/pg) ;
 - **MongoDB :** [`mongoose`](http://mongoosejs.com/) ;
-- **Autres**
-  [`connect-sqlite3`](https://npmjs.org/package/connect-sqlite3)
-  (mécanisme de sessions), ...
-
+- ...
 
 </section>
 <section>
@@ -203,13 +173,12 @@ résultat de la requête est passé à une **callback**.
 
 ## Échappement SQL
 
-On a avec SQL le même problème déjà vu avec HTML
+On a avec SQL le même problème que dans la génération de HTML
 
 ~~~
 function (Application $app, Request $req) {
-  $app['db']->query(
-    'SELECT * FROM users WHERE id = \''
-    . $req->query->get('nom') . '\';' );
+ $app['db']->query(
+  'SELECT * FROM users WHERE id = \'' . $req->query->get('nom') . '\';' );
 }
 ~~~
 
@@ -233,25 +202,31 @@ Fonctions d'échappement:
 En Silex
 
 ~~~
-$app['db']->fetchAssoc(
-  "SELECT * FROM users WHERE id = ?",
-  array($req->query->get("nom")));
+$app['db']->fetchAssoc("SELECT * FROM users WHERE id = ?",
+                       array($req->query->get("nom")));
 ~~~
 
 ~~~
-$app['db']->fetchAssoc(
-  "SELECT * FROM users WHERE id = :name",
-  array(':name' => $req->query->get("nom")));
+$app['db']->fetchAssoc("SELECT * FROM users WHERE id = :name",
+                       array(':name' => $req->query->get("nom")));
 ~~~
 
 En Node.js avec `mysql`
 
 ~~~
-db.query('SELECT * FROM users WHERE id = ?',
-         [ req.query.nom ],
-		 function() {
-           ...
-         });
+db.query('SELECT * FROM users WHERE id = ?', [ req.query.nom ],
+		 function() { ... });
+~~~
+
+~~~
+db.query('SELECT * FROM users WHERE ?', { id: req.query.nom },
+		 function() { ... });
+~~~
+
+Tous donnent
+
+~~~
+SELECT * FROM users WHERE id='toto'
 ~~~
 
 </section>
@@ -259,14 +234,17 @@ db.query('SELECT * FROM users WHERE id = ?',
 
 ## Lectures
 
-#### DBAL pour PHP
+### DBAL pour PHP
 
+- [Configurer Doctrine dans Silex](http://silex.sensiolabs.org/doc/providers/doctrine.html),
 - [Manuel de mysqli](http://www.php.net/manual/book.mysqli.php),
 - [Manuel de PDO](http://www.php.net/manual/book.pdo.php),
 - [Manuel de Doctrine](http://docs.doctrine-project.org/projects/doctrine-dbal/) (en anglais).
 
-#### MySQL pour Node.js
+### MySQL pour Node.js
 
-- [Manuel de `mysql`](https://github.com/felixge/node-mysql) (en anglais).
+- [Manuel de `node-mysql`](https://www.npmjs.com/package/mysql) (en anglais).
+- Plein d'autres modules disponibles, voir [NPM](https://www.npmjs.com/).
+
 
 </section>

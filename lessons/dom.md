@@ -114,9 +114,9 @@ Accès direct (pour les vieux browsers)
 : `getElementsByClassName` (équivalent à `.class`).
 
 Traverser l'arbre
-: Fils : `childNodes`, `firstChild`, `lastChild`, ...
-: Sœurs : `nextSibling`, `previousSibling`,
-: Parent : `parentNode`.
+: Fils : `children`, `firstElementChild`, `lastElementChild`, ...
+: Sœurs : `nextElementSibling`, `previousElementSibling`,
+: Parent : `parentElement`.
 
 Modifier l'arbre
 : Créer : `document.createElement`, `cloneNode`,
