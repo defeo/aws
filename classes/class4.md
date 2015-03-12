@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Frameworks : Silex, Node"
-subtitle: 18 Février 2015
+subtitle: 18 Mars 2015
 video:
   url: https://www.dropbox.com/s/w896teyp2rc8ok4/class-2015-03-04.webm?dl=1
 ---
