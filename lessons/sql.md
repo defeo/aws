@@ -2,6 +2,8 @@
 layout: lesson
 title: Stockage Persistant
 subtitle: Interface avec bases de données SQL
+video:
+  url: https://www.dropbox.com/s/2od1jim9x9qzx8q/sql.webm?dl=1
 ---
 
 <section>
@@ -243,7 +245,7 @@ SELECT * FROM users WHERE id='toto'
 
 ### MySQL pour Node.js
 
-- [Manuel de `node-mysql`](https://www.npmjs.com/package/mysql) (en anglais).
+- [Manuel de `mysql`](https://www.npmjs.com/package/mysql) (en anglais).
 - Plein d'autres modules disponibles, voir [NPM](https://www.npmjs.com/).
 
 
