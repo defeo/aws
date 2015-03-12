@@ -2,6 +2,8 @@
 layout: lesson
 title: Sessions
 subtitle: Maintien d'état contrôlé par le serveur
+video:
+  url: https://www.dropbox.com/s/g327sfsbkoa95es/sessions.webm?dl=1
 ---
 
 <section>
@@ -58,8 +60,7 @@ réalisation d'un **stockage** clef-valeur **associé à un client** mais
     html[data-incremental="0"] #sessid-c {display: none}
     html[data-incremental="1"] #sessid-s,
     html[data-incremental="2"] #sessid-s,
-    html[data-incremental="3"] #sessid-s,
-    html[data-incremental="4"] #sessid-s {display: none}
+    html[data-incremental="3"] #sessid-s {display: none}
 	
 	@keyframes flash0-s { from { stroke: #eee } to { stroke: #000 } }
 	@keyframes flash1-s { from { stroke: #eee } to { stroke: #000 } }
@@ -71,11 +72,11 @@ réalisation d'un **stockage** clef-valeur **associé à un client** mais
 	@-webkit-keyframes flash1-f { from { fill: #eee } to { fill: #000 } }
 	html[data-incremental="1"] .flash-s, html[data-incremental="3"] .flash-s
 	{ animation: flash1-s 2s; -webkit-animation: flash1-s 2s; }
-	html[data-incremental="2"] .flash-s, html[data-incremental="4"] .flash-s
+	html[data-incremental="2"] .flash-s
 	{ animation: flash0-s 2s; -webkit-animation: flash0-s 2s; }
 	html[data-incremental="1"] .flash-f, html[data-incremental="3"] .flash-f
 	{ animation: flash1-f 2s; -webkit-animation: flash1-f 2s; }
-	html[data-incremental="2"] .flash-f, html[data-incremental="4"] .flash-f
+	html[data-incremental="2"] .flash-f
 	{ animation: flash0-f 2s; -webkit-animation: flash0-f 2s; }
   /* ]]> */
   </style>
@@ -115,8 +116,8 @@ réalisation d'un **stockage** clef-valeur **associé à un client** mais
     </g>
 	<rect class="flash-s" x="400" y="4" width="140" height="130"
 	   style="fill:none;stroke:#000000;stroke-width:4;stroke-dasharray:4 4"></rect>
+    <text x="403" y="25" style="font-weight: bold;font-size: 70%" class="flash-f">Sess a434ef</text>
 	<g style="font-size:70%" class="incremental flash-f">
-	   <text x="403" y="25" style="font-weight: bold">Sess a434ef</text>
 	   <text x="415" dy="55">user: toto</text>
 	   <text x="415" dy="85">loggedin: yes</text>
 	   <text x="415" dy="115">likes: oranges</text>
@@ -202,7 +203,7 @@ Plusieurs canaux possibles (toutes les techniques de [maintien d'état](etat))�
 
 - Limité à des données de petite taille.
 
-- Le serveur doit générer une **clef secrète aléatoire* et ne jamais
+- Le serveur doit générer une *clef secrète aléatoire* et ne jamais
   le divulguer.
 
 - En Express : [`cookie-session`](https://www.npmjs.com/package/cookie-session).
