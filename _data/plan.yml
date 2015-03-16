@@ -57,9 +57,27 @@
       - lessons/mustache.md
 
 - date: 2015-03-16
+  contents:
+    - TD:
+      - { url: tutorials/reflector-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
+      - { url: tutorials/templates-etat-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
+      - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
 
 - date: 2015-03-23
+  contents:
+    - TD:
+      - { url: tutorials/templates-etat-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
+      - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
 
 - date: 2015-03-30
+  contents:
+    - TD:
+      - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
+      - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
 
 - date: 2015-04-07
