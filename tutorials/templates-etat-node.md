@@ -89,6 +89,15 @@ dynamiques.
    gestionnaire pour l'URL `/signin`, et utilisez la méthode
    `res.sendFile()` pour servir le formulaire (la méthode prend un
    paramètre : le chemin du fichier à servir).
+   
+   **Note :** la methode `res.sendFile()` demande le chemin absolu
+   vers le fichier à servir. La façon la plus portable de donner ce
+   chemin est d'utiliser la variable globale `__dirname` prédéfinie
+   par Node.js, comme ceci
+   
+   ~~~
+   res.sendFile(__dirname + '/static/nom_du_fichier.html');
+   ~~~
 
 4. Créez une deuxième page html (complète et valide) contenant
    simplement le texte *« Bonjour ! »*. Servez cette page à l'url
