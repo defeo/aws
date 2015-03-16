@@ -329,6 +329,7 @@ gestionnaire peut demander à stocker un cookie avec le code suivant
 ~~~
 $res = new HTTP\Response();
 $res->headers->setCookie(new HTTP\Cookie('user', 'toto'));
+$res->setContent("<p>Contenu de la réponse</p> ....");
 return $res;
 ~~~
 
