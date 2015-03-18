@@ -63,8 +63,11 @@
       - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
       - { url: tutorials/templates-etat-silex.md, comment: "version pour Silex" }
       - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
-      - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
+    - Leçons:
+      - lessons/ajax.md
+      - lessons/json.md
+    - Approfondissements:
+      - lessons/session-fixation.md
 
 - date: 2015-03-23
   contents:

@@ -7,6 +7,6 @@
 
 ## TDs
 
-- Partie AJAX trop dure. Structurer l'application en sorte à garder une 
-  trace des exercises intermédiaires.
+- Utiliser le composer de Cloud9
 - Noter plus souvent?
+- Check out http://labs.securitycompass.com/exploit-me/
