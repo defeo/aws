@@ -3,3 +3,6 @@ permalink: /:categories/:title
 
 kramdown:
   parse_block_html: true
+
+collections:
+  - projects
