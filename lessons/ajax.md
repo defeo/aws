@@ -1,8 +1,10 @@
 ---
 layout: lesson
-title: Clients asynchrones
+title: Applications asynchrones
 subtitle: AJAX et XMLHttpRequest
 scripts: ['http://coffeescript.org/extras/coffee-script.js']
+video:
+  url: https://www.dropbox.com/s/sh1vo5v3c3ww10x/ajax.webm?dl=1
 ---
 
 <section>
@@ -228,7 +230,7 @@ Introduit par Microsoft dans IE5, maintenant un standard W3C.
 ~~~
 /***************  Cliquez !  ***************/
 mydiv.onclick = function() {
-  xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   xhr.open("GET", "../LICENCE.md");
   xhr.onload = function(event) {
     alert(xhr.response);
@@ -236,7 +238,7 @@ mydiv.onclick = function() {
   xhr.send();
 }
 ~~~
-{: #ajax-demo}
+{: #ajax-demo .javascript}
 
 <style scoped>
 #ajax-demo {
@@ -268,7 +270,7 @@ do (div = $('#ajax-demo')) ->
 ### Creation et préparation
 
 ~~~
-xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest();
 xhr.open("POST", "http://.../action?params");
 ~~~
 
@@ -351,8 +353,8 @@ xhr.onload = function() {
 
 ## Étude de cas : API StackOverflow
 
-<pre><code>$('#SO').onsubmit = function(e) {
-<div id="xhr-input">  var query = <span class="urlencode">encodeURIComponent</span>($('#query').value);
+<pre><code>document.querySelector('#SO').onsubmit = function(e) {
+<div id="xhr-input">  var query = <span class="urlencode">encodeURIComponent</span>(document.querySelector('#query').value);
 </div>  var xhr = new XMLHttpRequest();
 <div id="xhr-open">  xhr.open('GET', 'https://api.stackexchange.com/2.2/search/advanced'
     + '?q=' + query + '&site=stackoverflow');
@@ -389,10 +391,12 @@ html[data-incremental="5"] #xhr-prevent
   if (xhr.response && <span class="xhr-parse">xhr.response.<span class="xhr-api">items</span></span>) {
     var liste = <span class="xhr-parse">xhr.response.<span class="xhr-api">items</span></span>;
 <div id="xhr-list">    for (var i = 0; i < liste.length; i++) {
-      <span class="xhr-dom">$('#answers > ul').innerHTML</span> = '&lt;li&gt;' + <span class="xhr-parse">liste<span class="xhr-api">[i].title</span></span> + '&lt;/li&gt;';
+      <span class="xhr-dom">document.querySelector('#answers > ul').innerHTML</span> =
+        '&lt;li&gt;' + <span class="xhr-parse">liste<span class="xhr-api">[i].title</span></span> + '&lt;/li&gt;';
 	}
 </div>  } else {
-    <span class="xhr-dom">$('#answers').innerHTML</span> = '&lt;p&gt;Pas de résultats.&lt;/p&gt;';
+    <span class="xhr-dom">document.querySelector('#answers').innerHTML</span> =
+      '&lt;p&gt;Pas de résultats.&lt;/p&gt;';
   }
 }
 </code></pre>

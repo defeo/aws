@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: JSON et autres
-subtitle: Formats d'échange de données
+title: JSON
+subtitle: Formats d'échange de données en AJAX
 ---
 
 <section>
@@ -143,7 +143,6 @@ Content-Type: application/xml
 ### Avantages / Désavantages
 
 - Puissant, robuste ;
-- Supporté par beaucoup de services web.
 - Verbeux, relativement lent ;
 - Peux d'implantations complètes ;
 - Spécification énorme avec des risques de failles de securité.
@@ -182,7 +181,7 @@ xhr.onload = function() {
 ### Problèmes graves
 
 - Viole la séparation de la logique ;
-- Grande risuqe de failles XSS.
+- Grande risque de failles XSS.
 
 </div>
 </section>
