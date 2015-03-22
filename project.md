@@ -33,7 +33,6 @@ Vous devez respecter les contraintes suivantes :
 
 - *Frameworks :* {{ p.frameworks | join: ', ' }}
 - *Difficulté :* {% for i in (1..p.difficulty) %}<i class="fa fa-star"></i>{% endfor %}
-- *Note maximale :* {{ p.maximum }}
 - *Mots-clé :* {{ p.tags | join: ', ' }}
 {:.info}
 

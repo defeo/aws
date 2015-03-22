@@ -1,6 +1,5 @@
 ---
 title: Find my Friends
-maximum: 20
 difficulty: 4
 frameworks: Node
 tags: mobile, géolocalisation, multi-utilisateur
