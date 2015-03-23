@@ -91,9 +91,9 @@ exécutez n'importe quelle application Silex.
    - `pass` : type `varchar(255) NOT NULL`,
    - `couleur1` : type `varchar(255)`,
    - `couleur2` : type `varchar(255)`,
-   - `parties` : type `int`, non signé,
-   - `gagnees` : type `int`, non signé.
-   - `enligne` : type `int`, non signé.
+   - `parties` : type `int NOT NULL`, non signé,
+   - `gagnees` : type `int NOT NULL`, non signé.
+   - `enligne` : type `int NOT NULL`, non signé.
 
 2. Ajoutez deux utilisateurs à la table, avec les valeurs que vous
    voudrez.
@@ -219,10 +219,10 @@ avec des fonctionnalités avancées de la DBAL.
    
    ~~~
    // Préparer la requête
-   $q = $app['db']->prepare('INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)');
+   $q = $app['db']->prepare('INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?)');
    try {
 	   // Envoyer la requête
-	   $rows = $q->execute(array('toto', 1234, 'red', 'green', 0, 0));
+	   $rows = $q->execute(array('toto', 1234, 'red', 'green', 0, 0, 0));
    } catch (Doctrine\DBAL\DBALException $e) {
 	   // En cas d'erreur, afficher les informations dans le browser
 	   // et terminer (Beurk ! Pour debug uniquement)
