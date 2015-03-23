@@ -136,6 +136,12 @@ doc de Node.js sur les [modules](http://nodejs.org/api/modules.html)).
 
 ## Liste des utilisateurs
 
+Commencez par installer le module `mysql` avec la commande
+
+~~~
+npm install mysql
+~~~
+
 Cette vue est la plus simple : elle permet d'afficher la liste de tous
 les utilisateurs. On rappelle que, avant de pouvoir accéder à la base
 de données, il est nécessaire de configurer le module `mysql`. Le code
@@ -224,11 +230,12 @@ avec des fonctionnalités avancées de la DBAL.
    
    Si l'insertion réussit, le paramètre `result` contient des
    informations sur la requête (nombre de lignes insérés, etc., vous
-   pouvez l'examiner avec `console.log`) ; si l'insertion échoue, il
-   est `undefined`.
+   pouvez l'examiner avec `console.log`), et `err` vaut `false`. Si
+   l'insertion échoue, `err` contient un objet décrivant l'erreur,
+   alors que `result` est `undefined`.
    
    - Si l'insertion de l'utilisateur a réussi, rédirigez vers l'URL
-   `/userlist` (avec `app.redirect`). 
+   `/userlist` (avec `res.redirect`). 
    - Si l'insertion a raté, présentez à nouveau le formulaire, avec un
      message d'erreur. Ne faites pas de rédirection dans ce cas ; un
      template vous permettra d'afficher le message d'erreur seulement
