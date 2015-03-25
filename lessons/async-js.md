@@ -87,13 +87,80 @@ Difficile à coder
 
 ## Générateurs (ES6)
 
+Utilisation principale : répéter des évènements asynchrones.
+
+<div class="two-cols">
+
+~~~
+function* generateur() {
+	var cnt = 0;
+	while (true)
+		yield cnt++;
+}
+
+var g = generateur();
+for (var i = 0; i < 9; i++)
+	console.log( g.next() );
+~~~
+
+~~~
+{ value: 0, done: false }
+{ value: 1, done: false }
+{ value: 2, done: false }
+{ value: 3, done: false }
+{ value: 4, done: false }
+{ value: 5, done: false }
+{ value: 6, done: false }
+{ value: 7, done: false }
+{ value: 8, done: false }
+~~~
+
+</div>
+
+Mots clef :
+
+- `function*` : pour définir un générateur,
+- `yield` : équivalent asynchrone de `return`,
+- `yield*` : pour déléguer à un autre générateur.
+
 </section>
 <section>
 
 ## Promesses (ES6)
 
-https://www.promisejs.org/
-http://eloquentjavascript.net/17_http.html
+Utiles pour : *linéariser* et *synchroniser* les callbacks. Exemple de
+AJAX avec l'API fetch :
+
+~~~
+fetch('/api/donnees.json').then(
+	function (res) {
+		console.log('téléchargement réussi', res);
+	},
+	function (err) {
+		console.log('téléchargement échoué', err);
+	});
+~~~
+
+- `fetch('/api/donnees.json')` renvoie une *promesse*,
+- `.then(success, fail)` définit quoi faire après que la promesse a
+  terminé :
+  - `success` : exécuté si la promesse a réussi.
+  - `fail` : exécuté si la promesse a eu une erreur.
+- `new Promise()` pour créer une promesse définie par l'utilisateur.
+- `.catch()` : à la place de `.then` pour gérer uniquement les erreurs.
 
 </section>
 <section>
+
+## Lectures
+
+- [MDN sur les iterateurs](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/function*)
+- [MDN sur les générateurs](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Les_protocoles_iteration),
+- Promesses A+ : <https://www.promisejs.org/>,
+- Eloquent JavaScript,
+  [Chapitre 17](http://eloquentjavascript.net/17_http.html#promises)
+  sur les promesses,
+- [Article sur les promesses](http://www.html5rocks.com/en/tutorials/es6/promises/),
+- [Article sur l'API fetch](https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/).
+
+</section>

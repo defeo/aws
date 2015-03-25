@@ -104,7 +104,7 @@ html[data-incremental="4"] #evt-4
 </section>
 <section class="compact">
 
-## Exemple `EventSource` : seveur
+## Exemple de event stream : seveur
 
 ~~~
 app.get('/api/notifications', function(req, res) {
@@ -117,7 +117,7 @@ app.get('/api/notifications', function(req, res) {
   
   var count = 0;                                   // On envoie un message
   var timer = setInterval(function() {             // toutes les 2 secondes
-    res.write('event: Hello ' + count + '\n\n');
+    res.write('data: Hello ' + count + '\n\n');
     count++;
     if (count >= 10) {                             // Après 10 messages on
 	  res.end();                                   // ferme la connexion
