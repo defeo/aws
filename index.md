@@ -21,6 +21,11 @@ styles: css/index.css
 {:/}
 
 
+## Modalités d'évaluation
+
+Contrôle continu
+: {% include link.html href='project.md' %}
+
 ## Archives
 
 Éditions précédentes de ce cours :

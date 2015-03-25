@@ -77,6 +77,12 @@
       - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
       - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
       - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
+    - Leçons:
+      - lessons/sql-injection.md
+      - lessons/xss.md
+    - Approfondissements:
+      - lessons/server-push.md
+      - lessons/async-js.md
 
 - date: 2015-03-30
   contents:
@@ -84,4 +90,8 @@
       - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
       - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
 
-- date: 2015-04-07
+- date: 2015-04-13
+  contents:
+    - TD:
+      - { url: project.md }
+    - Amphi (séminaire):

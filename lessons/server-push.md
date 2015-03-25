@@ -1,5 +1,5 @@
 ---
-layout: class
+layout: lesson
 title: Communication bidirectionnelle
 subtitle: Server push et websockets
 ---
@@ -102,9 +102,38 @@ html[data-incremental="4"] #evt-4
 {:.incremental}
 
 </section>
+<section class="compact">
+
+## Exemple `EventSource` : seveur
+
+~~~
+app.get('/api/notifications', function(req, res) {
+  res.set({                                        // Configuration des entêtes
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });                                              // On envoye les entêtes
+  res.writeHead(200);
+  
+  var count = 0;                                   // On envoie un message
+  var timer = setInterval(function() {             // toutes les 2 secondes
+    res.write('event: Hello ' + count + '\n\n');
+    count++;
+    if (count >= 10) {                             // Après 10 messages on
+	  res.end();                                   // ferme la connexion
+	  clearInterval(timer);
+	}
+  }, 2000);
+});
+~~~
+
+- Facile en Node.js,
+- Nécessite configuration spécifique pour Apache+PHP.
+
+</section>
 <section>
 
-## `EventSource`
+## Exemple `EventSource` : client
 
 Le client est notifié des messages du server par des **évènements**
 
@@ -122,19 +151,21 @@ evt.addEventListener('toto', function(e) {
 });
 ~~~
 
-- **Pro :** Léger, Simple,
-- **Contre :** Unidirectionnel, Nécessite le support du server,
+- **Pour :** Léger, simple, relativement bien supporté,
+- **Contre :** Unidirectionnel, nécessite le support du serveur,
 - **Démo :** <http://server-sent-events-demo.herokuapp.com/>.
 
 </section>
-<section class="compact">
+<section>
 
 ## Web Sockets
 
-Protocole de communication **full-duplex**, compatible avec HTML
+Protocole de communication **full-duplex**, compatible avec HTTP.
 
 - Protocole applicatif **au dessus de TCP** : pas de overhead HTTP ;
 - Conçu pour utiliser le **même port** que HTTP (port 80 par défaut).
+
+<div class="two-cols">
 
 ~~~
 GET /app/socket HTTP/1.1
@@ -152,10 +183,12 @@ Connection: Upgrade
 ~~~
 {:.http}
 
+</div>
+
 1. Le client demande une connexion web socket,
 2. Le server répond avec `101 Switching Protocols`,
 3. Le server et le client établissent une connexion TCP de type Web
-   Socket.
+   (schema `ws://`) Socket.
 {:.incremental}
 
 </section>
@@ -166,19 +199,20 @@ Connection: Upgrade
 ### Avantages
 
 - Bidirectionnels,
-- Peu de overhead.
+- Peu de overhead,
+- Standardisés par l'IETF en 2011.
 
 ### Désavantages
 
 - Nécessitent de support dans le server,
-- Pas adaptés au modèle d'exécution Apache+PHP.
+- Pas adaptés au modèle d'exécution Apache+PHP,
+- API pas encore standardisée par le W3C.
 
-### En pratique
+### Bibliothèques
 
-Utiliser des bibliothèques qui **abstraient** du mécanisme utilisé
-(Web Sockets, Flash, ...).
-
-- Node.js : <http://socket.io/> (très simple à utiliser),
+- Node.js : module
+  [`websocket`](https://www.npmjs.com/package/websocket),
+  <http://socket.io/> (cross browser, très simple à utiliser),
 - PHP : <http://socketo.me/> (très difficile à configuer).
 
 </section>
@@ -186,7 +220,8 @@ Utiliser des bibliothèques qui **abstraient** du mécanisme utilisé
 
 ## Lectures
 
-- [Tutoriel MDN `EventSource`](https://developer.mozilla.org/docs/Server-sent_events/Using_server-sent_events)
+- [Tutoriel MDN `EventSource`](https://developer.mozilla.org/docs/Server-sent_events/Using_server-sent_events).
 - [Guides MDN Web Sockets](https://developer.mozilla.org/docs/WebSockets).
+- Exemple de [chat en Express+socket.io](http://socket.io/get-started/chat/).
 
 </section>
