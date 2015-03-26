@@ -1,6 +1,6 @@
 ---
 title: Labyrinthe 3D avec WebGL
-difficulty: 4
+difficulty: 3
 frameworks: Node, Silex
 tags: WebGL, 3D
 ---

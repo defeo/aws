@@ -1,6 +1,6 @@
 ---
 title: Mau mau
-difficulty: 3
+difficulty: 2
 frameworks: Node
 tags: multi-utilisateur, jeu
 ---
