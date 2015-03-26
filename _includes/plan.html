@@ -1,12 +1,21 @@
 <div id="plan">
-  <h2>Plan <small>(<a href="javascript:un_check_all()">tout</a>)</small></h2>
+  <style scoped>
+    #plan h2 small {
+	font-weight: normal;
+	font-size: 60%;
+    }
+    #plan h2 a:after { content: " montrer"; }
+    #plan.checked h2 a:after { content: " cacher"; }
+    #plan dt { font-weight: normal; }
+  </style>
+  <h2>Plan <small>(<a id="un_check" href="#">tout</a>)</small></h2>
 
   {% for week in site.data.plan %}
-  <div class="week" id="semaine-{{ forloop.index }}" data-date="{{ week.date }}">
-    <input type="checkbox" id="semaine-{{ forloop.index }}-ck">
-    <h3><label for="semaine-{{ forloop.index }}-ck"><i class="fa fa-caret-right"></i>
-	Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</label></h3>
-    <div><dl>
+  <div class="week collapsible collapsed" id="semaine-{{ forloop.index }}" data-date="{{ week.date }}">
+    <div class="always-on">
+      <h3>Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</h3>
+    </div>
+    <dl class="toggleable">
       {% for item in week.contents %}
       {% for it in item %}
       <dt>{{ it[0] }} :</dt>
@@ -20,25 +29,27 @@
       {% endfor %}
       {% endfor %}
       {% endfor %}
-    </dl></div>
+    </dl>
   </div>
   {% endfor %}
 
 </div>
 <script>
-  function un_check_all() {
+window.on('load', function() {
+  $('#un_check').on('click', function (e) {
     $this = $('#plan');
     var chkd = $this.classList.toggle('checked');
-    $this.$$('input[type="checkbox"]').forEach(function (x) {
-      x.checked = chkd;
+    $this.$$('.collapsible').forEach(function (x) {
+      chkd ? x.check() : x.uncheck();
     });
-  }
+    e.preventDefault();
+  });
   $$(".week").forEach(function (w) {
     var delta = Date.now() - Date.parse(w.dataset['date']) - (new Date).getTimezoneOffset()*60*1000;
     console.log(delta);
     if (0 <= delta && delta < 7*24*60*60*1000) {
-      w.$('input[type="checkbox"]').checked = true;
+      w.check();
     }
   });
+});
 </script>
-  

@@ -1,0 +1,46 @@
+---
+---
+
+.collapsible > {
+    .always-on {
+	position: relative;
+	cursor: pointer;
+	    
+	.toggler {
+	    transition: transform 0.3s linear, color 0.3s linear;
+	    color: #000;
+	    position: absolute;
+	    left: -1em; top: 0;
+	    transform: rotate(90deg);
+	}
+	&:hover {
+	    text-decoration: underline;
+	}
+    }
+    .toggleable {
+	background-color: #fbfbfb;
+	border-radius: 10px;
+	margin: 2px;
+	padding: 5px;
+	box-shadow: 0 0 2px 2px #f5f5f5;
+	overflow: hidden;
+	transition: height 1s ease, box-shadow 1s ease;
+    }
+}
+.collapsible.collapsed > {
+    .always-on {
+	.toggler {
+	    color: #ddd;
+	    transform: rotate(0);
+	}
+	&:hover .toggler {
+	    color: #555;
+	}
+    }
+    .toggleable {
+	transition: height 1s ease, box-shadow 1s ease, padding 0.9s step-end;
+	height: 0;
+	box-shadow: 0 0 2px 2px #fff;
+	padding: 0;
+    }
+}

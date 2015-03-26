@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Propositions de projet
+styles: css/collapsible.css
+scripts: js/collapsible.js
 ---
 
 <style>
@@ -43,6 +45,8 @@ d'hébergement avec support pour PHP, Node.js et MySQL.
 
 
 {% for p in site.projects %}
+<div class="collapsible collapsed" id="project-{{ forloop.index }}">
+<div class="always-on">
 ## {{ p.title }}
 
 
@@ -50,6 +54,9 @@ d'hébergement avec support pour PHP, Node.js et MySQL.
 - *Difficulté :* {% for i in (1..p.difficulty) %}<i class="fa fa-star"></i>{% endfor %}
 - *Mots-clé :* {{ p.tags | join: ', ' }}
 {:.info}
-
+</div>
+<div class="toggleable">
 {{ p.output }}
+</div>
+</div>
 {% endfor %}
