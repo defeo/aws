@@ -77,9 +77,9 @@
       - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
       - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
       - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
+    - Amphi: classes/class7.md
     - Leçons:
       - lessons/sql-injection.md
-      - lessons/xss.md
     - Approfondissements:
       - lessons/server-push.md
       - lessons/async-js.md
