@@ -80,6 +80,7 @@
     - Amphi: classes/class7.md
     - Leçons:
       - lessons/sql-injection.md
+      - lessons/xss.md
     - Approfondissements:
       - lessons/server-push.md
       - lessons/async-js.md
