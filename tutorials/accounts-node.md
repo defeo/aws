@@ -297,9 +297,9 @@ Ensuite la session sera disponible dans l'objet `req.session`.
 
 4. Ajoutez une route `/logout` permettant de se déconnecter. Pour
    cela, il suffit de mettre une valeur spéciale dans la session (par
-   exemple, les logins des joueurs à `null`). Lorsque les
-   gestionnaires détecteront cette valeur spéciale, il traiteront la
-   requête comme si le client ne s'était jamais identifié.
+   exemple, le login du joueur à `null`). Lorsque les gestionnaires
+   détecteront cette valeur spéciale, il traiteront la requête comme
+   si le client ne s'était jamais identifié.
 
 1. Ajoutez un lien vers `/logout` dans la vue `/userlist`.
 
