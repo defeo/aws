@@ -351,8 +351,8 @@ setTimeout(req, 5000);
 
 - Un tutoriel : <http://excess-xss.com/>,
 - Un autre
-  [tutoriel par Google](http://www.google.com/about/appsecurity/learning/xss/).
-
+  [tutoriel par Google](http://www.google.com/about/appsecurity/learning/xss/),
+- Code source des exemples : <https://github.com/defeo/aws-security>.
 
 ## Outils
 
