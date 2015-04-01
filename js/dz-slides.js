@@ -55,6 +55,12 @@ var Dz = {
     },
 
     onkeydown: function(aEvent) {
+	// Don't intercept typing in forms
+	// and designed components
+	if (['INPUT', 'TEXTAREA', 'SELECT'].indexOf(aEvent.target.tagName) >= 0
+	    || aEvent.target.classList.contains('dz-no-capture')) {
+	    return;
+	}
 	// Don't intercept keyboard shortcuts
 	if (aEvent.altKey
 	    || aEvent.ctrlKey
