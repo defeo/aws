@@ -104,17 +104,17 @@ BU: 005.71htm LAW. Destiné à ceux qui connaissent déjà HTML4.
 
 ### JavaScript et AJAX
 
-Mozilla Developer Network. *JavaScript Guide*.
-: En anglais
-<https://developer.mozilla.org/en-US/docs/JavaScript/Guide> et en
-français <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. La
-première référence pour JavaScript.
-
 Marijn Haverbeke. *Eloquent JavaScript*.
 : No Starch Press 2014. Disponible en ligne en anglais
 <http://eloquentjavascript.net/>. Bel ouvrage sur JavaScript et le
 DOM. La première édition est aussi disponible en français
 <http://fr.eloquentjavascript.net/>, et à la BU (côte 005.71jaS HAV).
+
+Mozilla Developer Network. *JavaScript Guide*.
+: En anglais
+<https://developer.mozilla.org/en-US/docs/JavaScript/Guide> et en
+français <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. La
+première référence pour JavaScript.
 
 D. Crockford. *JavaScript. Gardez le meilleur !*.
 : Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU : 005.13jaS
@@ -209,12 +209,11 @@ M. Zalewski. *Browser Security Handbook*.
 la sécurité des browsers, la Same Origin Policy et d'autres
 mécanismes expérimentaux.
 
-D. Seguy and P. Gamache. *Sécurité PHP5 et MySQL*.
-: 2ème édition. Eyrolles 2009. ISBN: 978-2-212-12554-2. Côte BU: 005.8
-SEG. Livre d'introduction sur la sécurité web. Le chapitre 2 traîte
-XSS et CRSF. Les chapitres suivants sont plutôt orientés vers la
-pratique et donnent des conseils pour sécuriser les applications
-PHP+MySQL.
+M. Zalewski. *The Tangled Web*.
+: No Starch Press 2011. ISBN
+978-1-593-27388-0. <http://lcamtuf.coredump.cx/tangled/>. Traité
+complet sur la sécurité des applications web. Dérivé de l'ouvrage
+précédent, mais plus complet et plus à jour.
 
 OWASP. *OWASP development guide*
 : <https://www.owasp.org/index.php/Category:OWASP_Guide_Project>.
@@ -222,7 +221,14 @@ Guide complet à la sécurité des applications web.
 	
 OWASP. *OWASP development guide*
 : <https://www.owasp.org/>.  Wiki de la fondation OWASP.
-	
+
+D. Seguy and P. Gamache. *Sécurité PHP5 et MySQL*.
+: 2ème édition. Eyrolles 2009. ISBN: 978-2-212-12554-2. Côte BU: 005.8
+SEG. Livre d'introduction sur la sécurité web. Le chapitre 2 traîte
+XSS et CRSF. Les chapitres suivants sont plutôt orientés vers la
+pratique et donnent des conseils pour sécuriser les applications
+PHP+MySQL.
+
 R. Cannings, H.Dwivedi and Z. Lackey. *Haking sur le Web 2.0*
 : Pearson Education France, 2008. ISBN: 978-2-7440-2306-4. Côte BU:
 005.8 CAN. Mal écrit et pis traduit, il s'agit d'un pamphlet

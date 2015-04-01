@@ -331,6 +331,7 @@ setTimeout(req, 5000);
 - Un autre
   [tutoriel par Google](http://www.google.com/about/appsecurity/learning/xss/),
 - Code source des exemples : <https://github.com/defeo/aws-security>.
+- The tangled web: <http://lcamtuf.coredump.cx/tangled/>,
 
 ## Outils
 
