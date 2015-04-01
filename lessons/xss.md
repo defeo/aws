@@ -2,6 +2,7 @@
 layout: lesson
 title: XSS
 subtitle: Cross Site Scripting
+scripts: ../js/mock-browser.js
 video:
   url: https://www.dropbox.com/s/192n55g6bxz03ez/xss.webm?dl=1
 ---
@@ -10,17 +11,6 @@ video:
 .cli  { box-shadow: 0 0 2px 2px blue; }
 .srv { box-shadow: 0 0 2px 2px yellow; }
 .att    { box-shadow: 0 0 2px 2px red; }
-.address {
-  border: solid thin black;
-  font-size: smaller;
-}
-.address, .window { width: 100% }
-html.slideshow .address,
-html.slideshow .window {
-  display: block;
-  margin: auto;
-  width: 90%;
-}
 </style>
 
 <section>
@@ -66,7 +56,7 @@ contrôle du <span class="srv">serveur</span> : afficher un popup
 suffit !
 
 </section>
-<section id="xss-simple-demo">
+<section>
 
 ## Exemple
 
@@ -79,34 +69,27 @@ return 'Bonjour ' + $req->query->get('user');
 {:.srv}
 
 > Clélie a l'habitude de visiter
-> <http://servane.org/?user=Clélie>
+> <http://servane.org/?user=Clélie>{:.mock-jump data-target="xss-simple-demo"}
 {:.cli}
 
-{::nomarkdown}
-<input type="text" class="address cli">
-<iframe class="window cli" src="" sandbox="allow-popups allow-scripts allow-same-origin"></iframe>
-{:/nomarkdown}
+<div id="xss-simple-demo" class="mock-browser cli content" data-callback="xssSimpleDemo"
+	data-sandbox="allow-popups allow-scripts allow-same-origin"></div>
+<script>
+function xssSimpleDemo(addr) {
+	return '../assets/xss.html?' + addr.split('user=')[1];
+}
+</script>
 
 <span class="att">Athanase</span> persuade Clélie à visiter une URL
 spécialement conçue :
 
 > Salut Clélie, j'ai trouvé une vidéo trop marante chez Servane :
 >
-> <http://servane.org/?user=&lt;script&gt;alert('XSS reussi !')&lt;/script&gt;>
+> <http://servane.org/?user=&lt;script&gt;alert('XSS reussi !')&lt;/script&gt;>{:.mock-jump data-target="xss-simple-demo"}
 {:.att}
 
-<script>
-$$('#xss-simple-demo a').forEach(function(x) { x.on('click', function(e) {
-  $('#xss-simple-demo .address').value = e.currentTarget.href;
-  $('#xss-simple-demo .address').dispatchEvent(new Event('change'));
-  e.preventDefault();
-})});
-$('#xss-simple-demo .address').on('change', function(e) {
-  $('#xss-simple-demo .window').src = '../assets/xss.html?' + e.target.value.split('user=')[1];
-});
-</script>
 </section>
-<section id="escape">
+<section>
 
 ## Se protéger de XSS
 
@@ -118,21 +101,15 @@ $('#xss-simple-demo .address').on('change', function(e) {
   templates (voir aussi la
   [leçon sur les templates](templates#chappement)).
 
-{::nomarkdown}
-<input type="text" class="address cli" value="http://servane.org/?user=<b>Cl%C3%A9lie</b>">
-<iframe class="window cli" src="../assets/xss.html?<b>Clélie</b>#escape" sandbox="allow-popups allow-scripts allow-same-origin"></iframe>
-{:/nomarkdown}
-
+<div class="mock-browser cli content" data-callback="escape"
+	data-src="http://servane.org/?user=<b>Cl%C3%A9lie</b>"
+	data-sandbox="allow-popups allow-scripts allow-same-origin"></div>
 <script>
-$$('#escape a').forEach(function(x) { x.on('click', function(e) {
-  $('#escape .address').value = e.currentTarget.href;
-  $('#escape .address').dispatchEvent(new Event('change'));
-  e.preventDefault();
-})});
-$('#escape .address').on('change', function(e) {
-  $('#escape .window').src = '../assets/xss.html?' + e.target.value.split('user=')[1] + "#escape";
-});
+function escape(addr) {
+	return '../assets/xss.html?' + addr.split('user=')[1] + "#escape";
+}
 </script>
+
 </section>
 <section>
 
@@ -216,7 +193,7 @@ placed on February 16, 2012. ...
 - URL des frames et iframes.
 
 </section>
-<section id="stored-xss-1">
+<section>
 
 ## Exemple : vol de session
 
@@ -237,17 +214,17 @@ placed on February 16, 2012. ...
 **Note :** ce script est complètement inoffensif si servi par
 Athanase : 
 
-{::nomarkdown}
-<input type="text" class="address cli" value="http://cdn.rawgit.com/defeo/aws-security/master/xss.html">
-<iframe class="window cli" src=""></iframe>
-{:/nomarkdown}
-
+<div class="mock-browser cli content" data-callback="storedXSS1"
+	data-src="http://cdn.rawgit.com/defeo/aws-security/master/xss.html">
+</div>
 <script>
-  sessionStorage[window.location.host + '.sessid'] = Math.random().toString().substr(2);
-  $('#stored-xss-1 .address').on('keydown', function(e) {
-    $('#stored-xss-1 .window').src = e.target.value;
-  });
+sessionStorage[window.location.host + '.sessid'] = Math.random().toString().substr(2);
+var storedXSS1Count = 0;
+function storedXSS1(addr) {
+	return storedXSS1Count++ ? addr : null;
+}
 </script>
+
 </section>
 <section id="stored-xss-2">
 
@@ -271,17 +248,18 @@ Athanase :
    `http://httpbin.org`{:.att}.
 {: start="2"}
 
-{::nomarkdown}
-<input type="text" class="address cli" value="http://blog.servane.org/">
-<iframe class="window cli" src="" height="200"></iframe>
-{:/nomarkdown}
 
+<div class="mock-browser cli content" data-callback="storedXSS2" data-height="200px"
+	data-src="http://blog.servane.org/">
+</div>
 <script>
-  sessionStorage[window.location.host + '.sessid'] = Math.random().toString().substr(2);
-  $('#stored-xss-2 .address').on('keydown', function(e) {
-    $('#stored-xss-2 .window').src = "../assets/permanent-xss.html";
-  });
+sessionStorage[window.location.host + '.sessid'] = Math.random().toString().substr(2);
+var storedXSS2Count = 0;
+function storedXSS2(addr) {
+	return storedXSS2Count++ ? "../assets/permanent-xss.html" : null;
+}
 </script>
+
 </section>
 <section>
 

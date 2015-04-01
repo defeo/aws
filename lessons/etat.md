@@ -154,7 +154,6 @@ $win = $bw.append 'div.window'
 $adr = $win.append 'div.address'
 $bdy = $win.append 'div.body'
 $src = ($bw.append 'pre.source.html').append 'code'
-$win.on 'keydown', (e) -> e.stopPropagation()
 
 $adr.textContent = 'http://.../'
 $bdy.append 'h3 Bonjour, présentez-vous'
