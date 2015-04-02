@@ -222,9 +222,7 @@ avec des fonctionnalités avancées de la DBAL.
    $q = $app['db']->prepare('INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?)');
    try {
 	   // Envoyer la requête
-	   $q->execute(array('toto', 1234, 'red', 'green', 0, 0, 0));
-	   $rows = $q->fetchAll();
-	   ...
+	   $rows = $q->execute(array('toto', 1234, 'red', 'green', 0, 0, 0));
    } catch (Doctrine\DBAL\DBALException $e) {
 	   // En cas d'erreur, afficher les informations dans le browser
 	   // et terminer (Beurk ! Pour debug uniquement)
