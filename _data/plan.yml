@@ -102,3 +102,4 @@
     - TD:
       - { url: project.md }
     - Amphi (séminaire):
+      - { url: classes/c+-seminar.md, comment: "Intervention par CANAL+" }
