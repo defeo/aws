@@ -11,6 +11,10 @@ subtitle: Intervention par CANAL+
 - [Pierre Guilleminot](https://github.com/jinroh)
 - [Alexandre Duros](https://github.com/alexduros)
 
+**Quand :** Le mercredi 15 avril 2015, à 13h30.
+
+**Où :** Amphi B, [UFR de Sciences, Université de Versailles](http://www.sciences.uvsq.fr/).
+
 ## Qui sommes-nous ? 
 
 Nous travaillons dans l'équipe innovation de CANAL+, et notre rôle est
