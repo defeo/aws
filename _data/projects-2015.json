@@ -1,0 +1,445 @@
+{
+    "students": [
+        {
+            "group": 0,
+            "nom": "TOFIGHI",
+            "prenom": "Ramtine"
+        },
+        {
+            "group": 0,
+            "nom": "MATHIEU-MAHIAS",
+            "prenom": "Axel"
+        },
+        {
+            "group": 1,
+            "nom": "HAMMOND",
+            "prenom": "Adrien"
+        },
+        {
+            "group": 1,
+            "nom": "GUIRAUD",
+            "prenom": "Ma\u00ebl"
+        },
+        {
+            "group": 1,
+            "nom": "FLAVIAN",
+            "prenom": "Alexandre"
+        },
+        {
+            "group": 2,
+            "nom": "XU",
+            "prenom": "Jing"
+        },
+        {
+            "group": 2,
+            "nom": "CHEN",
+            "prenom": "Wei"
+        },
+        {
+            "group": 3,
+            "nom": "EON",
+            "prenom": "Killian"
+        },
+        {
+            "group": 3,
+            "nom": "LASNE",
+            "prenom": "Olivier"
+        },
+        {
+            "group": 4,
+            "nom": "BENHAIEM",
+            "prenom": "Mika\u00ebl"
+        },
+        {
+            "group": 4,
+            "nom": "PARODI",
+            "prenom": "Fran\u00e7ois"
+        },
+        {
+            "group": 5,
+            "nom": "PARMENTIER",
+            "prenom": "Hugo"
+        },
+        {
+            "group": 5,
+            "nom": "\u00c9RAUSQUIN",
+            "prenom": "Maxime"
+        },
+        {
+            "group": 6,
+            "nom": "NOR",
+            "prenom": "Silvain"
+        },
+        {
+            "group": 6,
+            "nom": "MPANDA",
+            "prenom": "Odilon"
+        },
+        {
+            "group": 7,
+            "nom": "TEMATE",
+            "prenom": "Ga\u00ebtan"
+        },
+        {
+            "group": 7,
+            "nom": "RHAZZALI",
+            "prenom": "Salah Eddine"
+        },
+        {
+            "group": 7,
+            "nom": "NOULEHO",
+            "prenom": "stefi"
+        },
+        {
+            "group": 8,
+            "nom": "MAAZIZ",
+            "prenom": "Abderrahmane"
+        },
+        {
+            "group": 8,
+            "nom": "HEMERLAIN",
+            "prenom": "Lyna"
+        },
+        {
+            "group": 9,
+            "nom": "ELIBRAHIMI",
+            "prenom": "Ahmed"
+        },
+        {
+            "group": 9,
+            "nom": "OUZIA",
+            "prenom": "Rachida"
+        },
+        {
+            "group": 9,
+            "nom": "RAISSI",
+            "prenom": "Sara"
+        },
+        {
+            "group": 9,
+            "nom": "KEMMAR",
+            "prenom": "Im\u00e8ne"
+        },
+        {
+            "group": 10,
+            "nom": "BAUCHET",
+            "prenom": "Louis"
+        },
+        {
+            "group": 10,
+            "nom": "LASSAL",
+            "prenom": "Chabane"
+        },
+        {
+            "group": 10,
+            "nom": "SAVANE",
+            "prenom": "Mamadou"
+        },
+        {
+            "group": 11,
+            "nom": "KAYUMBA",
+            "prenom": "Innocent"
+        },
+        {
+            "group": 11,
+            "nom": "MEYER",
+            "prenom": "Mehdi"
+        },
+        {
+            "group": 11,
+            "nom": "DOGUIE",
+            "prenom": "Jean-Claude"
+        },
+        {
+            "group": 12,
+            "nom": "JARRAY",
+            "prenom": "Mohamed"
+        },
+        {
+            "group": 12,
+            "nom": "LOUDIYI-CHARRET",
+            "prenom": "Anouar"
+        },
+        {
+            "group": 13,
+            "nom": "EPINETTE",
+            "prenom": "Lucas"
+        },
+        {
+            "group": 13,
+            "nom": "CLEEFTON",
+            "prenom": "Belizaire"
+        },
+        {
+            "group": 13,
+            "nom": "ZHANG",
+            "prenom": "Nan"
+        },
+        {
+            "group": 14,
+            "nom": "JABALLI",
+            "prenom": "Wassim"
+        },
+        {
+            "group": 14,
+            "nom": "EL-HALAFI",
+            "prenom": "Hind"
+        },
+        {
+            "group": 14,
+            "nom": "CAMARA",
+            "prenom": "Abdellahi"
+        },
+        {
+            "group": 14,
+            "nom": "DIAW",
+            "prenom": "Abdel-Aziz"
+        },
+        {
+            "group": 15,
+            "nom": "KAROUI",
+            "prenom": "Mourad"
+        },
+        {
+            "group": 15,
+            "nom": "JEBABLI",
+            "prenom": "Bayrem"
+        },
+        {
+            "group": 15,
+            "nom": "BEN-FREDJ",
+            "prenom": "Majdi"
+        },
+        {
+            "group": 16,
+            "nom": "HANDOUCH",
+            "prenom": "Salima"
+        },
+        {
+            "group": 16,
+            "nom": "CHARIAT",
+            "prenom": "Estelle"
+        },
+        {
+            "group": 16,
+            "nom": "RICAUD",
+            "prenom": "\u00c9mile"
+        },
+        {
+            "group": 17,
+            "nom": "DOSNE",
+            "prenom": "Pierre"
+        },
+        {
+            "group": 17,
+            "nom": "FISSIER",
+            "prenom": "Florent"
+        },
+        {
+            "group": 18,
+            "nom": "TORKHANI",
+            "prenom": "Rami"
+        },
+        {
+            "group": 18,
+            "nom": "AGOUDJIL",
+            "prenom": "Nassim"
+        },
+        {
+            "group": 18,
+            "nom": "MOKHTARI",
+            "prenom": "Charafeddine"
+        },
+        {
+            "group": 19,
+            "nom": "YOUSFI",
+            "prenom": "niamat"
+        },
+        {
+            "group": 19,
+            "nom": "BOUTKHOURST",
+            "prenom": "Loubna"
+        },
+        {
+            "group": 19,
+            "nom": "REDA",
+            "prenom": "Hind"
+        },
+        {
+            "group": 20,
+            "nom": "FEDDAL",
+            "prenom": "Roumaissa"
+        },
+        {
+            "group": 20,
+            "nom": "LADJEL",
+            "prenom": "Riad"
+        },
+        {
+            "group": 20,
+            "nom": "BOUAKSA",
+            "prenom": "Saliha"
+        },
+        {
+            "group": 20,
+            "nom": "BOUKSA",
+            "prenom": "Khadija"
+        },
+        {
+            "group": 21,
+            "nom": "ZEMMOURI",
+            "prenom": "Im\u00e8ne"
+        },
+        {
+            "group": 22,
+            "nom": "BASRI",
+            "prenom": "Mohamed"
+        },
+        {
+            "group": 23,
+            "nom": "YOUNESS",
+            "prenom": "Abdelkarim"
+        },
+        {
+            "group": 23,
+            "nom": "CHARAF",
+            "prenom": "Abdelilah"
+        },
+        {
+            "group": 23,
+            "nom": "AIT EL MAHJOUB",
+            "prenom": "Youssef"
+        },
+        {
+            "group": 24,
+            "nom": "REKIK",
+            "prenom": "Wael"
+        },
+        {
+            "group": 24,
+            "nom": "GABAJI",
+            "prenom": "Safa"
+        },
+        {
+            "group": 25,
+            "nom": "AZAIEZ",
+            "prenom": "Souad"
+        },
+        {
+            "group": 25,
+            "nom": "AANITRA",
+            "prenom": "Sarah"
+        },
+        {
+            "group": 25,
+            "nom": "ZAMBRANO-SAMANIEGO",
+            "prenom": "Audrey-Estefania"
+        }
+    ],
+    "groups": {
+        "0": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "1": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "10": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "11": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "12": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "13": {
+            "framework": "Node.js",
+            "project": "Labyrinthe 3D"
+        },
+        "14": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "15": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "16": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "17": {
+            "framework": "Node.js",
+            "project": "Mau mau"
+        },
+        "18": {
+            "framework": "Node.js",
+            "project": "Mau mau"
+        },
+        "19": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "2": {
+            "framework": "Node.js",
+            "project": "Mau mau"
+        },
+        "20": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "21": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "22": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "23": {
+            "framework": "Node.js",
+            "project": "Calendrier"
+        },
+        "24": {
+            "framework": "Node.js",
+            "project": "Calendrier"
+        },
+        "25": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "3": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "4": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "5": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "6": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "7": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "8": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "9": {
+            "framework": null,
+            "project": "Calendrier"
+        }
+    }
+}
