@@ -334,6 +334,16 @@
             "group": 25,
             "nom": "ZAMBRANO-SAMANIEGO",
             "prenom": "Audrey-Estefania"
+        },
+        {
+            "group": 26,
+            "nom": "SARF",
+            "prenom": "Anas"
+        },
+        {
+            "group": 26,
+            "nom": "BELOUADOUDI",
+            "prenom": "Abdessamad"
         }
     ],
     "groups": {
@@ -408,6 +418,10 @@
         "25": {
             "framework": "Node.js",
             "project": "Find my friends"
+        },
+        "26": {
+            "framework": null,
+            "project": "Calendrier"
         },
         "3": {
             "framework": "Node.js",
