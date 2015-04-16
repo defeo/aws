@@ -291,7 +291,7 @@
             "prenom": "Im\u00e8ne"
         },
         {
-            "group": 22,
+            "group": 21,
             "nom": "BASRI",
             "prenom": "Mohamed"
         },
@@ -394,10 +394,6 @@
             "project": "Calendrier"
         },
         "21": {
-            "framework": null,
-            "project": "Calendrier"
-        },
-        "22": {
             "framework": null,
             "project": "Calendrier"
         },
