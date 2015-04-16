@@ -106,8 +106,9 @@ gestionnaires :
 - Route `/effacer` : permettant d'éliminer un évènement.
   - Si AJAX, renvoie un code de succès/erreur.
   - Si non-AJAX, redirige vers `/` après un ajout réussi.
-- Route `/liste` : permettant de télécharger la liste des
-  évènements. Uniquement si AJAX.
+- Route `/liste` : renvoyant la liste des événements au format JSON
+  (ou XML, ou autre), pour un traitement chez le client. Uniquement si
+  AJAX.
 
 Vous aurez en plus les routes statiques pour le téléchargement des
 contenus annexes : feuilles de style, scripts côté client, ...
