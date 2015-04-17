@@ -2,7 +2,7 @@
     "students": [
         {
             "group": 0,
-            "nom": "TOFIGHI",
+            "nom": "TOFIGHI-SHIRAZI",
             "prenom": "Ramtine"
         },
         {
@@ -77,7 +77,7 @@
         },
         {
             "group": 7,
-            "nom": "TEMATE",
+            "nom": "TEMATE-NDADEM",
             "prenom": "Ga\u00ebtan"
         },
         {
@@ -87,8 +87,8 @@
         },
         {
             "group": 7,
-            "nom": "NOULEHO",
-            "prenom": "stefi"
+            "nom": "NOULEHO-ILEMO",
+            "prenom": "Stefi"
         },
         {
             "group": 8,
@@ -97,7 +97,7 @@
         },
         {
             "group": 8,
-            "nom": "HEMERLAIN",
+            "nom": "HAMERLAIN",
             "prenom": "Lyna"
         },
         {
@@ -157,7 +157,7 @@
         },
         {
             "group": 12,
-            "nom": "LOUDIYI-CHARRET",
+            "nom": "LOUDIYI-CHARRAT",
             "prenom": "Anouar"
         },
         {
@@ -167,8 +167,8 @@
         },
         {
             "group": 13,
-            "nom": "CLEEFTON",
-            "prenom": "Belizaire"
+            "nom": "BELIZAIRE",
+            "prenom": "Cleefton"
         },
         {
             "group": 13,
