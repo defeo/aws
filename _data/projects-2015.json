@@ -146,7 +146,7 @@
             "prenom": "Mehdi"
         },
         {
-            "group": 11,
+            "group": 28,
             "nom": "DOGUIE",
             "prenom": "Jean-Claude"
         },
@@ -344,6 +344,26 @@
             "group": 26,
             "nom": "BELOUADOUDI",
             "prenom": "Abdessamad"
+        },
+        {
+            "group": 27,
+            "nom": "ZEMALI",
+            "prenom": "Medjahed Khalid El Walid"
+        },
+        {
+            "group": 27,
+            "nom": "MALTI",
+            "prenom": "Mehdi Arslane"
+        },
+        {
+            "group": 28,
+            "nom": "NDIOM",
+            "prenom": "Lamine"
+        },
+        {
+            "group": 28,
+            "nom": "AJDAIN",
+            "prenom": "Amal"
         }
     ],
     "groups": {
@@ -420,6 +440,14 @@
             "project": "Find my friends"
         },
         "26": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "27": {
+            "framework": null,
+            "project": "Labyrinthe 3D"
+        },
+        "28": {
             "framework": null,
             "project": "Calendrier"
         },
