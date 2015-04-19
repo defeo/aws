@@ -62,12 +62,16 @@ Pour notre intervention, nous proposons 2 types de ressources :
 
 - Une série de vidéos / docs pour découvrir ce qu'est React ;
 
-- Une page d'exemple qui fait tourner une application React, un
-*player* minimaliste que nous comptons ouvrir en open source, avec un
-*« core player »* que nous développons actuellement. Le *« core
-player »* en lui-même sort du scope de React, mais si le sujet vous
-intrigue ou vous intéresse, nous serons ravis de vous en parler au
-cours de notre intervention.
+- Des pages d'exemple qui font tourner une application React :
+
+  1. un *player* minimaliste que nous comptons ouvrir en open source,
+	avec un *« core player »* que nous développons actuellement. Le
+	*« core player »* en lui-même sort du scope de React, mais si le
+	sujet vous intrigue ou vous intéresse, nous serons ravis de vous
+	en parler au cours de notre intervention.
+
+  2. Des variations sur le thème de Puissance 4
+     [vu en TD](../tutorials/tutorial2).
 
 
 ### Vidéos
@@ -124,3 +128,9 @@ disposition des développeurs, afin qu'ils puissent utiliser celle-ci
 au sein de leurs applications web.
 
 - [Démo Player](http://ovh10.canallabs.fr/~jinroh/react-player/)
+
+Et voici le jeu de Puissance 4 codé durant le séminaire :
+
+- [Sans JSX](http://jsfiddle.net/defeo/pjcpdjye/),
+- [le même avec JSX](http://jsfiddle.net/defeo/cdLv5src/),
+- [le même, avec en plus la logique du jeu](https://gist.github.com/jinroh/7cd3a2040028d11e4d95).
