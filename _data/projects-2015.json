@@ -364,6 +364,16 @@
             "group": 28,
             "nom": "AJDAIN",
             "prenom": "Amal"
+        },
+        {
+            "group": 29,
+            "nom": "FALL",
+            "prenom": "Mohamet"
+        },
+        {
+            "group": 29,
+            "nom": "MONNET",
+            "prenom": "Adrient"
         }
     ],
     "groups": {
@@ -448,6 +458,10 @@
             "project": "Labyrinthe 3D"
         },
         "28": {
+            "framework": null,
+            "project": "Calendrier"
+        },
+        "29": {
             "framework": null,
             "project": "Calendrier"
         },
