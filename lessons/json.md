@@ -324,7 +324,7 @@ return $app->json(array( "voiture" => "peugeot",
 ~~~
 {:.php}
 
-**Express :** Transformer un objet PHP en réponse JSON
+**Express :** Transformer un objet JavaScript en réponse JSON
 
 ~~~
 res.json({ voiture: "peugeot",
