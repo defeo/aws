@@ -374,6 +374,11 @@
             "group": 29,
             "nom": "MONNET",
             "prenom": "Adrient"
+        },
+        {
+            "group": 30,
+            "nom": "CATRAYE",
+            "prenom": "Amen"
         }
     ],
     "groups": {
@@ -466,6 +471,10 @@
             "project": "Calendrier"
         },
         "3": {
+            "framework": "Node.js",
+            "project": "Find my friends"
+        },
+        "30": {
             "framework": "Node.js",
             "project": "Find my friends"
         },
