@@ -379,6 +379,11 @@
             "group": 30,
             "nom": "CATRAYE",
             "prenom": "Amen"
+        },
+        {
+            "group": 31,
+            "nom": "ABOU",
+            "prenom": "Genevi\u00e8ve"
         }
     ],
     "groups": {
@@ -477,6 +482,10 @@
         "30": {
             "framework": "Node.js",
             "project": "Find my friends"
+        },
+        "31": {
+            "framework": "Node.js",
+            "project": "Mau mau"
         },
         "4": {
             "framework": null,
