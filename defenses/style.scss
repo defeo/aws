@@ -1,0 +1,168 @@
+---
+---
+
+$slot-height: 2em;
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} { @content; }
+    @-moz-keyframes #{$animationName} { @content; }
+    @-o-keyframes #{$animationName} { @content; }
+    @keyframes #{$animationName} { @content; }
+}
+@mixin animation ($props) {
+    -webkit-animation: $props;
+    animation: $props;
+}
+
+/******** Slots component ********/
+.main {
+    display: flex;
+    flex-flow: row wrap;
+}
+.day {
+    flex: 1 1 25em;
+    margin: 0 4px;
+}
+.header {
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+    font-size: 120%;
+    font-weight: bold;
+    padding: 2px;
+}
+.slots {
+    position: relative;
+    height: 16 * $slot-height;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #fafafa, #fafafa $slot-height,
+					  #fdfdfd $slot-height, #fdfdfd 2*$slot-height);
+}
+
+
+/******** Typeahead component ********/
+.typeahead {
+    cursor: not-allowed;
+    position: absolute;
+    display: flex;
+    top: 0; left: 0;
+    width: 100%;
+    .container {
+	cursor: default;
+	flex: 0 1 40em;
+	margin: 10px auto;
+	background-color: white;
+	border: solid thin black;
+	border-radius: 5px;
+	box-shadow: 0 0 20px 5px #444;
+	padding: 1ex;
+    }
+    input {
+	width: 100%;
+	border: none;
+	border-bottom: solid thin #444;
+	font-size: 120%;
+	padding: 1ex;
+	box-sizing: border-box;
+	outline: none;
+    }
+}
+.li {
+    position: relative;
+    cursor: pointer;
+    border: dotted thin #aaa;
+    border-radius: 0.2em;
+    &:hover {
+	background: blue;
+	color: white;
+	border: solid thin #888;
+    }
+}
+
+/******** Slot component ********/
+.slot {
+    display: flex;
+    flex-flow: row nowrap;
+    position: absolute;
+    background-color: #fff;
+    height: $slot-height;
+    width: 100%;
+    border: dotted thin #aaa;
+    border-radius: $slot-height / 10;
+    box-sizing: border-box;
+    &:hover, &.selected {
+	border: solid thin #888;
+    }
+    .time {
+	padding: 0 1ex;
+	color: #aaa;
+    }
+    .info {
+	background-color: inherit;
+	overflow: hidden;
+    }
+}
+.taken {
+    cursor: not-allowed;
+    background-color: #fcc;
+}
+.editable {
+    cursor: pointer;
+}
+.taken.editable {
+    background-color: #ccf;
+}
+
+
+/******** Project component ********/
+@include keyframes(scroll) {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(calc(-100% + 1.2em)); }
+    100% { transform: translateY(0); }
+}
+.project {
+    background-color: inherit;
+}
+.description {
+    line-height: 1.2em;
+}
+.slot {
+    .buttons {
+	background-color: inherit;
+	position: absolute;
+	padding: 2px 0 0 2px;
+	bottom: 2px; right: 2px;
+	opacity: 0;
+	transition: opacity 0.5s;
+	z-index: 2;
+    }
+    &:hover, &.selected {
+	.buttons {
+	    opacity: 1;
+	}
+	.description {
+	    @include animation(scroll 3s linear infinite);
+	}
+    }
+}
+.li .buttons { text-align: right; }
+
+.icon {
+    display: inline-block;
+    color: transparent;
+    width: 1em; height: 1em;
+    margin: 0 1px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.c9 {
+    @extend .icon;
+    background-image: url("c9.png");
+}
+.run {
+    @extend .icon;
+    background-image: url("run.png");    
+}
+.github {
+    @extend .icon;
+    background-image: url("github.png");
+}

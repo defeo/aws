@@ -389,27 +389,33 @@
     "groups": {
         "0": {
             "framework": "Node.js",
-            "project": "Find my friends"
+            "project": "Find my friends",
+	    "workspace": "ramtine/fmf"
         },
         "1": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "adrienh/Calendrier"
         },
         "10": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "project_aws/aws-project"
         },
         "11": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "mehdime/Projet_Calendrier"
         },
         "12": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "mokaram/calendrier"
         },
         "13": {
             "framework": "Node.js",
-            "project": "Labyrinthe 3D"
+            "project": "Labyrinthe 3D",
+	    "workspace": "lucasep/labyrinthe"
         },
         "14": {
             "framework": "Node.js",
@@ -417,35 +423,44 @@
         },
         "15": {
             "framework": "Node.js",
-            "project": "Find my friends"
+            "project": "Find my friends",
+	    "workspace": "mbenfredj/findMyFriends"
         },
         "16": {
             "framework": "Node.js",
-            "project": "Find my friends"
+            "project": "Find my friends",
+	    "workspace": "ericaud16/FindMyFriend"
         },
         "17": {
             "framework": "Node.js",
-            "project": "Mau mau"
+            "project": "Mau mau",
+	    "workspace": "dosnep/projet"
         },
         "18": {
             "framework": "Node.js",
-            "project": "Mau mau"
+            "project": "Mau mau",
+	    "workspace": "nass_projet/aws-project"
         },
         "19": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "loubna12/aws-project"
         },
         "2": {
             "framework": "Node.js",
-            "project": "Mau mau"
+            "project": "Mau mau",
+	    "workspace": "xujing/maumau2"
         },
         "20": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "riiiad/Projet"
         },
         "21": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "kibadex/calendrier",
+	    "github": "kibadex/calendrier"
         },
         "23": {
             "framework": "Node.js",
@@ -453,31 +468,38 @@
         },
         "24": {
             "framework": "Node.js",
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "rekikwael/projet_node_js"
         },
         "25": {
             "framework": "Node.js",
-            "project": "Find my friends"
+            "project": "Find my friends",
+	    "workspace": "abbyz/aws-test"
         },
         "26": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "sarf/calendrier"
         },
         "27": {
             "framework": null,
-            "project": "Labyrinthe 3D"
+            "project": "Labyrinthe 3D",
+	    "workspace": "smalidou/project"
         },
         "28": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "puisssam/project"
         },
         "29": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "projectaws/aws-project"
         },
         "3": {
             "framework": "Node.js",
-            "project": "Find my friends"
+            "project": "Find my friends",
+	    "workspace": "killian_eon/find_my_friends"
         },
         "30": {
             "framework": "Node.js",
@@ -485,31 +507,40 @@
         },
         "31": {
             "framework": "Node.js",
-            "project": "Mau mau"
+            "project": "Mau mau",
+	    "workspace": "abgeneve/mau_mau"
         },
         "4": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "francois_parodi/calendrier",
+	    "github": "TestDePrimalite/Calendrier"
         },
         "5": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "cryptobscur/calep",
+	    "run": "https://deploiementcalep.herokuapp.com/"
         },
         "6": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "odilon_mpanda/aws-projet"
         },
         "7": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "gaetanstefi/test"
         },
         "8": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "lyna/aws-project6"
         },
         "9": {
             "framework": null,
-            "project": "Calendrier"
+            "project": "Calendrier",
+	    "workspace": "manoukem/ProjetCalender"
         }
     }
 }
