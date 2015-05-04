@@ -384,6 +384,11 @@
             "group": 31,
             "nom": "ABOU",
             "prenom": "Genevi\u00e8ve"
+        },
+        {
+            "group": 32,
+            "nom": "ATCHENE",
+            "prenom": "Amna"
         }
     ],
     "groups": {
@@ -509,6 +514,11 @@
             "framework": "Node.js",
             "project": "Mau mau",
 	    "workspace": "abgeneve/mau_mau"
+        },
+        "32": {
+            "framework": null,
+            "project": "Calendrier",
+	    "workspace": null
         },
         "4": {
             "framework": null,
