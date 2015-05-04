@@ -70,7 +70,7 @@ page affichée, elle devrait contenir le texte *« Hello
 world ! »*. Dans la barre d'adresse interne à C9 (ou dans un autre
 onglet), ajoutez `/toto` à la fin de l'URL, l'onglet devrait
 maintenant afficher *« Hello toto »*. N'hésitez pas à étudier le code
-de `exmple.js` et `exemple.twig` pour en comprendre le fonctionnement.
+de `exemple.js` et `exemple.twig` pour en comprendre le fonctionnement.
 
 
 ## Le réflecteur
