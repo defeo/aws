@@ -7,7 +7,8 @@ var Project = React.createClass({
 		description: 'DOE John (demo project)',
 		workspace: null,
 		github: null
-	    }
+	    },
+	    closeBtn: null,
 	};
     },
 
@@ -35,16 +36,20 @@ var Project = React.createClass({
 
 	    <div className="buttons" onClick={this.stopClick}>
 	    {c9 ? (
-		<a className="c9" href={"https://ide.c9.io/" + c9}>C9</a>
+		<a className="c9" href={"https://ide.c9.io/" + c9} target="_blank" title="Cloud9">C9</a>
 	    ) : null}
 	    
 	    {run ? (
-		<a className="run" href={run}>run</a>
+		<a className="run" href={run} target="_blank" title="Lancer">run</a>
 	    ) : null}
 	    
 	    {github ? (
-		<a className="github" href={"https://github.com/" + github}>GitHub</a>
+		<a className="github" href={"https://github.com/" + github} target="_blank" title="GitHub">GitHub</a>
 	    ) : null}
+	    
+	    {this.props.closeBtn ? (
+		<a className="close" onClick={this.props.closeBtn} title="Annuler">close</a>
+	    ) : null}	    
 	    </div>
 	    </div>
 	);
@@ -54,12 +59,27 @@ var Project = React.createClass({
 
 /******************************************************/
 var Slot = React.createClass({
+    getDefaultProps: function() {
+	return {
+	    time: null,
+	    project: null,
+	    booking: null,
+	    auth: null,
+	    selected: false,
+	    empty: null,
+	}
+    },
+    
     taken: function() {
 	return !!this.props.booking;
     },
 
     editable: function() {
 	return !this.props.booking || this.props.booking.uid == this.props.auth.uid;
+    },
+
+    mine: function() {
+	return this.taken() && this.editable();
     },
     
     handleClick: function() {
@@ -88,7 +108,8 @@ var Slot = React.createClass({
 	    </div>
 	    <div className="info">
 	    {this.props.project ? (
-		<Project gid={this.props.booking.gid} data={this.props.project} />
+		<Project gid={this.props.booking.gid} data={this.props.project}
+		closeBtn={this.mine() ? this.props.empty : null} />
 	    ) : null}
 	    </div>
 	    </div>
@@ -155,8 +176,8 @@ var Typeahead = React.createClass({
     render: function() {
 	var projects = this.getActive().map(function(p) {
 	    return (
-		<div className="li">
-		<Project gid={p.gid} data={p.data}
+		<div key={p.gid} className="li">
+		<Project  gid={p.gid} data={p.data}
 		onClick={this.elementClick.bind(this, p.gid)} />
 		</div>
 	    );
@@ -220,24 +241,29 @@ var Slots = React.createClass({
 	window.addEventListener('hashchange', this.handleHash);
     },
     
-    handleClick: function(id, taken, editable) {
+    select: function(id, taken, editable) {
 	if (editable) {
 	    this.setState({
 		selected: null,
 		showList: (function(gid) {
-		    console.log(gid);
-		    this.props.firebase.child("slots/" + id).update({
-			booking: (gid !== null ? {
-			    uid: this.state.auth.uid,
-			    gid: gid,
-			} : null)
-		    });
+		    if (gid !== null) {
+			this.props.firebase.child("slots/" + id).update({
+			    booking: {
+				uid: this.state.auth.uid,
+				gid: gid,
+			    }
+			});
+		    }
 		    this.setState({ showList: false });
 		}).bind(this)
 	    });
 	} else {
 	    this.setState({ selected: id });
 	}
+    },
+
+    empty: function(id) {
+	this.props.firebase.child("slots/" + id + "/booking").remove();
     },
 
     handleHash: function() {
@@ -251,7 +277,7 @@ var Slots = React.createClass({
 		selected={this.state.selected === i}
 		time={new Date(s.time)} booking={s.booking}
 		project={s.booking ? this.props.projects[s.booking.gid] : null}
-		onClick={this.handleClick.bind(this, i)} />
+		onClick={this.select.bind(this, i)} empty={this.empty.bind(this, i)} />
 	    );
 	}, this).sort(function(a, b) {
 	    return a.props.time - b.props.time;
@@ -294,4 +320,4 @@ var slots = React.createElement(Slots, {
     projects: window.groups,
 });
 
-React.render(slots, document.body);
+React.render(slots, document.getElementById('component'));

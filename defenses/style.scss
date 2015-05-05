@@ -1,6 +1,22 @@
 ---
 ---
 
+/******** Static HTML ********/
+@import "../css/main.css";
+body {
+    font-size: 12pt;
+    width: auto;
+    text-align: left;
+    padding: 8px;
+}
+footer {
+    max-width: 40em;
+    margin: auto;
+    text-align: center;
+    margin-top: 4em;
+}
+
+/******** React ********/
 $slot-height: 2em;
 @mixin keyframes($animationName) {
     @-webkit-keyframes #{$animationName} { @content; }
@@ -153,6 +169,10 @@ $slot-height: 2em;
     margin: 0 1px;
     background-size: contain;
     background-repeat: no-repeat;
+}
+.close {
+    @extend .icon;
+    background-image: url("cross.png");
 }
 .c9 {
     @extend .icon;

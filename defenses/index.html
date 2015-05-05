@@ -29,11 +29,20 @@
           groups[g].description = groups[g].students.map(function(s) {
 	      return s.nom + ' ' + s.prenom;
 	  }).join(', ') + ' (' + groups[g].project + ')';
-</script>
+    </script>
   </head>
   <body>
+    <div id="component"></div>
     <!--script src="../js/bower_components/react/JSXTransformer.js"></script>
     <script type="text/jsx" src="app.jsx"></script-->
     <script src="app.js"></script>
+    
+    <footer>
+      <p>Built
+	with <a href="https://facebook.github.io/react/">React.js</a>
+	and <a href="https://www.firebase.com/">Firebase</a>. Source
+	code
+	on <a href="https://github.com/defeo/aws/tree/gh-pages/defenses">Github <i class="github"></i></a>.</p>
+    </footer>
   </body>
 </html>
