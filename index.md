@@ -26,6 +26,7 @@ scripts: js/collapsible.js
 
 Contrôle continu
 : {% include link.html href='project.md' %}
+: [Planning des soutenances](defenses/)
 
 ## Archives
 
