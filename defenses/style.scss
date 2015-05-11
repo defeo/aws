@@ -60,12 +60,13 @@ $slot-height: 2em;
     cursor: not-allowed;
     position: absolute;
     display: flex;
+    justify-content: center;
     top: 0; left: 0;
     width: 100%;
     .container {
 	cursor: default;
 	flex: 0 1 40em;
-	margin: 10px auto;
+	margin: 10px 40px;
 	background-color: white;
 	border: solid thin black;
 	border-radius: 5px;
