@@ -75,7 +75,7 @@ var Slot = React.createClass({
     },
 
     editable: function() {
-	return !this.props.booking || this.props.booking.uid == this.props.auth.uid;
+	return !this.props.booking || this.props.booking.uid == (this.props.auth && this.props.auth.uid);
     },
 
     mine: function() {
@@ -249,7 +249,7 @@ var Slots = React.createClass({
 		    if (gid !== null) {
 			this.props.firebase.child("slots/" + id).update({
 			    booking: {
-				uid: this.state.auth.uid,
+				uid: this.state.auth && this.state.auth.uid,
 				gid: gid,
 			    }
 			});
