@@ -9,7 +9,7 @@
 	      href="http://creativecommons.org/licenses/by-sa/4.0/">
 	    <img alt="Creative Commons Licence" style="border-width:0"
 		 src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
-	  </a> <a href="http://defeo.lu">Luca De Feo</a>
+	  </a> {% if page.copyright %}{{ page.copyright | join: ", "  }}{% else %}<a href="http://defeo.lu">Luca De Feo</a> {% endif %}
 	  {{ site.time | date:"%Y" }},<br/> Distribué avec une licence
 	  <a rel="license"
 	     href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA

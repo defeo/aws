@@ -16,8 +16,7 @@ layout: main
 	  href="http://creativecommons.org/licenses/by-sa/4.0/">
 	<img alt="Creative Commons Licence" style="border-width:0"
 	     src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png"/>
-      </a> <a href="http://defeo.lu" class="print-link">Luca De
-	Feo</a> {{ site.time | date:"%Y" }}, licensed
+      </a> {% if page.copyright %}{{ page.copyright | join: ", "  }}{% else %}<a href="http://defeo.lu" class="print-link">Luca De Feo</a> {% endif %} {{ site.time | date:"%Y" }}, licensed
       under <a rel="license" class="print-link"
 	       href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA
 	4.0</a>.</p>
