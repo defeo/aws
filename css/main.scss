@@ -146,4 +146,6 @@ blockquote.cite {
     a.print-link:after { content: " <" attr(href) ">" }
     h1, h2, h3, h4 { page-break-after: avoid }
     .force-page-break { page-break-after: always }
+    pre { page-break-inside: avoid }
+    .allow-breaks { page-break-inside: auto }
 }
