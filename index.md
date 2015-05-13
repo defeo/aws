@@ -28,6 +28,9 @@ Contrôle continu
 : {% include link.html href='project.md' %}
 : [Planning des soutenances](defenses/)
 
+Examen (13/05/2014)
+: [Sujet](other/exam-2015-1)
+
 ## Archives
 
 Éditions précédentes de ce cours :
