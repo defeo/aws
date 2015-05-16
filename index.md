@@ -26,7 +26,7 @@ scripts: js/collapsible.js
 
 Contrôle continu
 : {% include link.html href='project.md' %}
-: [Planning des soutenances](defenses/)
+: [Planning des soutenances](defenses/) (salle G205)
 
 Examen (13/05/2014)
 : [Sujet](other/exam-2015-1)
