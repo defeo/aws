@@ -425,7 +425,7 @@
         "14": {
             "framework": "Node.js",
             "project": "Find my friends",
-	    "workspace": "jaballiwassim/FindMyFriend"
+	    "workspace": "jaballiwassim/aws_app"
         },
         "15": {
             "framework": "Node.js",
