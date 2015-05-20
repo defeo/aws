@@ -435,7 +435,7 @@
         "16": {
             "framework": "Node.js",
             "project": "Find my friends",
-	    "workspace": "ericaud16/FindMyFriend"
+	    "workspace": "http://find-myfriendaws.rhcloud.com/f/login"
         },
         "17": {
             "framework": "Node.js",
