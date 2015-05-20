@@ -531,7 +531,7 @@
             "framework": null,
             "project": "Calendrier",
 	    "workspace": "cryptobscur/calep",
-	    "run": "https://deploiementcalep.herokuapp.com/"
+	    "run": "https://productioncalep.herokuapp.com/"
         },
         "6": {
             "framework": null,
