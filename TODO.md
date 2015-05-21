@@ -8,12 +8,16 @@
   - CSP?
 - Tourner premières leçons : HTTP, HTML.
 - Tourner toutes les leçons optionnelles.
+- Faire une leçon sur les URL
 
 ## TDs
 
 - Utiliser le composer de Cloud9
 - Noter plus souvent?
 - Check out http://labs.securitycompass.com/exploit-me/
+- Twig + Node.js does not autoescape
+- ditch innerHTML? Create our own framework?
+- app.all gives bad habits
 
 ## Site
 
