@@ -215,9 +215,9 @@ mécanismes expérimentaux.
 
 M. Zalewski. *The Tangled Web*.
 : No Starch Press 2011. ISBN
-978-1-593-27388-0. <http://lcamtuf.coredump.cx/tangled/>. Traité
-complet sur la sécurité des applications web. Dérivé de l'ouvrage
-précédent, mais plus complet et plus à jour.
+978-1-593-27388-0. <http://lcamtuf.coredump.cx/tangled/>. Côte
+BU 005.8 ZAL. Traité complet sur la sécurité des applications
+web. Dérivé de l'ouvrage précédent, mais plus complet et plus à jour.
 
 OWASP. *OWASP development guide*
 : <https://www.owasp.org/index.php/Category:OWASP_Guide_Project>.
