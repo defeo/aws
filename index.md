@@ -28,8 +28,11 @@ Contrôle continu
 : {% include link.html href='project.md' %}
 : [Planning des soutenances](defenses/) (salle G205)
 
-Examen (13/05/2014)
+Examen (13/05/2015)
 : [Sujet](other/exam-2015-1)
+
+Examen deuxième session (17/06/2015)
+: [Sujet](other/exam-2015-2)
 
 ## Archives
 
