@@ -3,11 +3,12 @@
    <https://github.com/paulrouget/dzslides/>
 */
 
-var Dz = {
+var SlideShow = {
     remoteWindows: [],
     idx: -1,
     step: 0,
     html: null,
+    container: null,
     slides: null,
     progressBar : null,
     params: {
@@ -15,31 +16,34 @@ var Dz = {
     },
 
     init: function() {
-	document.body.className = "loaded";
-	this.slides = Array.prototype.slice.call($$("#slides > section"));
-	this.progressBar = $("#progress-bar");
-	this.html = document.body.parentNode;
+	this.container = $(ClassBP.page.addons.slideshow.container || "#content");
+	this.container.classList.add("slideshow-container");
+	this.slides = Array.prototype.slice.call(this.container.$$(":scope > section"));
+	this.progressBar = this.container.append("div#progress-bar");
+	this.html = $('html');
     },
 
     play: function() {
-	$("html").classList.add("slideshow");
+	this.html.classList.add("slideshow");
+	this.oldSize = this.container.css({
+	    width: (ClassBP.page.addons.slideshow.width || 800) + 'px',
+	    height: (ClassBP.page.addons.slideshow.height || 600) + 'px',
+	});
 	this.setupParams();
 	this.onhashchange();
 	this.setupTouchEvents();
 	this.onresize();
-	this.setupView();
 	window.onkeydown = this.onkeydown.bind(this);
 	window.onresize = this.onresize.bind(this);
 	window.onhashchange = this.onhashchange.bind(this);
-	window.onmessage = this.onmessage.bind(this);
     },
 
     pause: function() {
-	$("html").classList.remove("slideshow");
+	this.html.classList.remove("slideshow");
+	this.container.css(this.oldSize);
 	window.onkeydown = null;
 	window.onresize = null;
 	window.onhashchange = null;
-	window.onmessage = null;
 	this.unresize();
     },
 
@@ -47,7 +51,7 @@ var Dz = {
 	var p = window.location.search.substr(1).split('&');
 	p.forEach(function(e, i, a) {
 	    var keyVal = e.split('=');
-	    Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+	    SlideShow.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
 	});
 	// Specific params handling
 	if (!+this.params.autoplay)
@@ -56,7 +60,7 @@ var Dz = {
 
     onkeydown: function(aEvent) {
 	// Don't intercept typing in forms
-	// and designed components
+	// and designated components
 	if (['INPUT', 'TEXTAREA', 'SELECT'].indexOf(aEvent.target.tagName) >= 0
 	    || aEvent.target.classList.contains('dz-no-capture')) {
 	    return;
@@ -94,17 +98,9 @@ var Dz = {
 	    aEvent.preventDefault();
 	    this.toggleContent();
 	}
-	/*if (aEvent.keyCode == 70) { // f
-	    aEvent.preventDefault();
-	    this.goFullscreen();
-	}*/
 	if (aEvent.keyCode == 27) {
 	    aEvent.preventDefault();
 	    this.pause();
-	}
-	if (aEvent.keyCode == 79) { // o
-	    aEvent.preventDefault();
-	    this.toggleView();
 	}
     },
 
@@ -141,23 +137,13 @@ var Dz = {
 	}
     },
 
-    setupView: function() {
-	document.body.addEventListener("click", function ( e ) {
-	    if (!Dz.html.classList.contains("view")) return;
-	    if (!e.target || e.target.nodeName != "SECTION") return;
-
-	    Dz.html.classList.remove("view");
-	    Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
-	}, false);
-    },
-
     /* Adapt the size of the slides to the window */
     
     onresize: function() {
-	var db = document.body;
+	var db = this.container;
 	var sx = db.clientWidth / window.innerWidth;
 	var sy = db.clientHeight / window.innerHeight;
-	var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+	var transform = "translate(-50%, -50%) scale(" + (1/Math.max(sx, sy)) + ")";
 
 	db.style.MozTransform = transform;
 	db.style.WebkitTransform = transform;
@@ -167,46 +153,12 @@ var Dz = {
     },
     
     unresize: function() {
-	var db = document.body;
+	var db = this.container;
 	db.style.MozTransform = null;
 	db.style.WebkitTransform = null;
 	db.style.OTransform = null;
 	db.style.msTransform = null;
 	db.style.transform = null;
-    },
-
-    getNotes: function(aIdx) {
-	var s = $("section:nth-of-type(" + aIdx + ")");
-	var d = s.$("[role='note']");
-	return d ? d.innerHTML : "";
-    },
-
-    onmessage: function(aEvent) {
-	var argv = aEvent.data.split(" "), argc = argv.length;
-	argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
-	var win = aEvent.source;
-	if (argv[0] === "REGISTER" && argc === 1) {
-	    this.remoteWindows.push(win);
-	    this.postMsg(win, "REGISTERED", document.title, this.slides.length);
-	    this.postMsg(win, "CURSOR", this.idx + "." + this.step);
-	    return;
-	}
-	if (argv[0] === "BACK" && argc === 1)
-	    this.back();
-	if (argv[0] === "FORWARD" && argc === 1)
-	    this.forward();
-	if (argv[0] === "START" && argc === 1)
-	    this.goStart();
-	if (argv[0] === "END" && argc === 1)
-	    this.goEnd();
-	if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
-	    this.toggleContent();
-	if (argv[0] === "SET_CURSOR" && argc === 2)
-	    window.location.hash = "#" + argv[1];
-	if (argv[0] === "GET_CURSOR" && argc === 1)
-	    this.postMsg(win, "CURSOR", this.idx + "." + this.step);
-	if (argv[0] === "GET_NOTES" && argc === 1)
-	    this.postMsg(win, "NOTES", this.getNotes(this.idx));
     },
 
     toggleContent: function() {
@@ -239,7 +191,7 @@ var Dz = {
 	if (cursor.length == 2) {
 	    newidx = ~~cursor[1].split(".")[0];
 	    newstep = ~~cursor[1].split(".")[1];
-	    if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+	    if (newstep > SlideShow.slides[newidx - 1].$$('.incremental > *').length) {
 		newstep = 0;
 		newidx++;
 	    }
@@ -250,9 +202,6 @@ var Dz = {
 	}
 	if (newstep != this.step) {
 	    this.setIncremental(newstep);
-	}
-	for (var i = 0; i < this.remoteWindows.length; i++) {
-	    this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
 	}
     },
 
@@ -290,14 +239,6 @@ var Dz = {
 	this.setCursor(lastIdx, lastStep);
     },
 
-    toggleView: function() {
-	this.html.classList.toggle("view");
-
-	if (this.html.classList.contains("view")) {
-	    $("section[aria-selected]").scrollIntoView(true);
-	}
-    },
-
     setSlide: function(aIdx) {
 	this.idx = aIdx;
 	var old = $("section[aria-selected]");
@@ -312,9 +253,6 @@ var Dz = {
 	if (next) {
 	    this.html.setAttribute("data-slide", this.idx);
 	    next.setAttribute("aria-selected", "true");
-	    if (this.html.classList.contains("view")) {
-		next.scrollIntoView();
-	    }
 	    var video = next.$("video");
 	    if (video && !!+this.params.autoplay) {
 		video.play();
@@ -322,7 +260,6 @@ var Dz = {
 	} else {
 	    // That should not happen
 	    this.idx = -1;
-	    // console.warn("Slide doesn't exist.");
 	}
     },
 
@@ -360,14 +297,6 @@ var Dz = {
 	return next;
     },
 
-    goFullscreen: function() {
-	var html = $('html'),
-	requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
-	if (requestFullscreen) {
-	    requestFullscreen.apply(html);
-	}
-    },
-
     setProgress: function(aIdx, aStep) {
 	var slide = $("section:nth-of-type("+ aIdx +")");
 	if (!slide)
@@ -377,13 +306,6 @@ var Dz = {
 	stepSize = slideSize / steps;
 	this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
     },
-
-    postMsg: function(aWin, aMsg) { // [arg0, [arg1...]]
-	aMsg = [aMsg];
-	for (var i = 2; i < arguments.length; i++)
-	    aMsg.push(encodeURIComponent(arguments[i]));
-	aWin.postMessage(aMsg.join(" "), "*");
-    }
 };
 
-Dz.init();
+SlideShow.init();

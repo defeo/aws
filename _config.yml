@@ -3,3 +3,7 @@ permalink: pretty
 
 kramdown:
   parse_block_html: true
+
+collections:
+  addons:
+    output: true

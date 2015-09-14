@@ -5,42 +5,35 @@
     <meta charset="utf-8">
     <title>{{ page.title | strip_html }}</title>
 
-    {% if page.plugins contains 'highlight' %}
-    <link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css">
-    {% endif %}
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+    <link href="{{ github_commits }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
 
-    {% if page.plugins contains 'slideshow' %}
-    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides.css">
-    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/dz-slides-customization.css">
-    {% if page.plugins.slideshow.width and page.plugins.slideshow.height %}
-    <style class="slideshow-css">
-      html.slideshow body {
-        width: {{ page.plugins.slideshow.width }}px;
-        height: {{ page.plugins.slideshow.height }}px;
-        margin-left: -{{ page.plugins.slideshow.width | divided_by: 2 }}px;
-        margin-top: -{{ page.plugins.slideshow.height | divided_by: 2 }}px;
-      }
-      html.slideshow.view section {
-        width: {{ page.plugins.slideshow.width }}px;
-        height: {{ page.plugins.slideshow.height }}px;
-        margin: -{{ page.plugins.slideshow.height | divided_by: 4 }}px -{{ page.plugins.slideshow.width | divided_by: 4 }}px;
-      }
-      html.slideshow.view section:after {
-        bottom: -{{ page.plugins.slideshow.height | divided_by: 8 }}px
-        right: -{{ page.plugins.slideshow.width | divided_by: 8 }}px
-      }
-    </style>
+    <!-- Links (stylesheets, feeds, ...) added by add-ons -->
+    {% for d in site.collections.addons.docs %}
+    {% assign base = d.url | append: '/../' %}
+    {% for l in d.site.links %}
+    <link class="class-bp-addon-{{ d.name }}"
+	  rel="{% include utils/default.str val=l.rel default='stylesheet'  %}"
+	  href="{% include utils/joinpath.str root=site.baseurl base=base path=l.href %}"
+	  type="{% include utils/default.str val=l.type default='text/css' %}"
+	  title="{{ l.title }}">
+    {% endfor %}
+    {% if page.addons[d.name] %}
+    {% for l in d.page.links %}
+    <link class="class-bp-addon-{{ d.name }}"
+	  rel="{% include utils/default.str val=l.rel default='stylesheet'  %}"
+	  href="{% include utils/joinpath.str root=site.baseurl base=base path=l.href %}"
+	  type="{% include utils/default.str val=l.type default='text/css' %}"
+	  title="{{ l.title }}">
+    {% endfor %}
     {% endif %}
-    {% endif %}
-
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+    {% endfor %}
+    
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
-
-    <link href="{{ github_commits }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
-
-    <script src="{{ site.baseurl }}/js/polyfills.js"></script>
+    
+    <script src="{{ site.baseurl }}/assets/js/polyfills.js"></script>
   </head>
   <body>
 
@@ -51,23 +44,31 @@
 
     <ul class="menu dont-print" id="top-menu">
       <li><a href="{{ site.baseurl }}/">Home</a></li>
-      {% if page.plugins contains 'slideshow' %}
-      <li><a href="javascript:Dz.play()">Start slideshow</a>
-      </li>
-      {% endif %}
-      <li><a href="javascript:window.print()">Print</a></li>
       <li><a href="{{ github_blob }}/{{ page.path }}">Source</a></li>
       <li><a href="{{ site.baseurl }}/HELP">Help</a></li>
       <li><a href="{{ github_edit }}/{{ page.path }}">Quick edit</a></li>
+
+      <!-- Menu entries added by add-ons -->
+      {% for d in site.collections.addons.docs %}
+      {% assign base = d.url | append: '/../' %}
+      {% for m in d.site.menus %}
+      <li class="class-bp-addon-{{ d.name }}">
+	<a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">{{ m.title }}</a>
+      </li>
+      {% endfor %}
+      {% if page.addons[d.name] %}
+      {% for m in d.page.menus %}
+      <li class="class-bp-addon-{{ d.name }}">
+	<a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">{{ m.title }}</a>
+      </li>
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
     </ul>
 
     <div class="main">
-      <div class="container">
-	{% if page.plugins contains 'slideshow' %}
-	{% include slideshow.html %}
-	{% else %}
+      <div id="content" class="container">
 	{{ content }}
-	{% endif %}
       </div>
 
       <footer class="footer">
@@ -91,34 +92,36 @@
       </footer>
     </div>
 
-    {% if page.plugins contains 'slideshow' %}
-    <script async src="{{ site.baseurl }}/js/dz-slides.js"></script>
-    {% endif %}
-
-    {% if page.plugins contains 'mathjax' %}
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        config: ["MMLorHTML.js"],
-        jax: ["input/TeX","input/AsciiMath","output/HTML-CSS","output/NativeMML"],
-        extensions: ["MathMenu.js","MathZoom.js"],
-        TeX: {
-          extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    <!-- We pass down data from the YAML front matter as a JS object -->
+    <script type="text/javascript">
+      var ClassBP = {
+        "page": {
+          {% for p in page %}{% if p[0] != "contents" %}
+          "{{ p[0] }}": {{ p[1] | jsonify }},
+          {% endif %}{% endfor %}
         }
-      });
+      }
     </script>
-    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-    {% endif %}
 
-    {% if page.plugins contains 'highlight' %}
-    <script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script>
-    <script>
-      hljs.configure({
-        tabReplace: '    '
-      });
-      hljs.initHighlightingOnLoad();
-    </script>
+    <!-- Scripts added by add-ons -->
+    {% for d in site.collections.addons.docs %}
+    {% assign base = d.url | append: '/../' %}
+    {% for s in d.site.scripts %}
+    <script class="class-bp-addon-{{ d.name }}"
+	    src="{% include utils/joinpath.str root=site.baseurl base=base path=s.src %}"
+	    type="{% include utils/default.str val=s.type default='text/javascript' %}"
+	    {% if s.async %}async{% endif %}></script>
+    {% endfor %}
+    {% if page.addons[d.name] %}
+    {% for s in d.page.scripts %}
+    <script class="class-bp-addon-{{ d.name }}"
+	    src="{% include utils/joinpath.str root=site.baseurl base=base path=s.src %}"
+	    type="{% include utils/default.str val=s.type default='text/javascript' %}"
+	    {% if s.async %}async{% endif %}></script>
+    {% endfor %}
     {% endif %}
-
+    {% endfor %}
+    
     {% for s in page.scripts %}
     <script src="{{ s }}"></script>
     {% endfor %}

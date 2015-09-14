@@ -65,17 +65,19 @@ Element.prototype.append = function(jade, ns) {
 // Apply JSON-formatted CSS directives to the element,
 // or to its descendants
 Element.prototype.css = function(css) {
+    var old = {};
     for (var select_or_prop in css) {
 	var val = css[select_or_prop];
 	if (typeof(val) == 'string') {
+	    old[select_or_prop] = this.style[select_or_prop];
 	    this.style[select_or_prop] = val;
 	} else {
 	    this.$$(select_or_prop).forEach(function(e) {
-		e.css(val);
+		old[e] = e.css(val);
 	    });
 	}
     }
-    return this;
+    return old;
 }
 
 // Event listeners a la jquery
