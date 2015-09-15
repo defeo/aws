@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>{{ page.title | strip_html }}</title>
 
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/font-awesome.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
     <link href="{{ github_commits }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
 
@@ -43,23 +44,27 @@
 	   alt="Fork me on GitHub"></a>
 
     <ul class="menu dont-print" id="top-menu">
-      <li><a href="{{ site.baseurl }}/">Home</a></li>
-      <li><a href="{{ github_blob }}/{{ page.path }}">Source</a></li>
-      <li><a href="{{ site.baseurl }}/HELP">Help</a></li>
-      <li><a href="{{ github_edit }}/{{ page.path }}">Quick edit</a></li>
+      <li><a href="{{ site.baseurl }}/"><i class="icon fa fa-home"></i> Home</a></li>
+      <li><a href="{{ github_blob }}/{{ page.path }}"><i class="icon fa fa-code"></i> Source</a></li>
+      <li><a href="{{ site.baseurl }}/HELP"><i class="icon fa fa-question"></i> Help</a></li>
+      <li><a href="{{ github_edit }}/{{ page.path }}"><i class="icon fa fa-edit"></i> Quick edit</a></li>
 
       <!-- Menu entries added by add-ons -->
       {% for d in site.collections.addons.docs %}
       {% assign base = d.url | append: '/../' %}
       {% for m in d.site.menus %}
       <li class="class-bp-addon-{{ d.name }}">
-	<a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">{{ m.title }}</a>
+	<a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">
+	  {% if m.icon %}<i class="icon fa fa-{{ m.icon }}"></i>{% endif %}
+	  {{ m.title }}</a>
       </li>
       {% endfor %}
       {% if page.addons[d.name] %}
       {% for m in d.page.menus %}
       <li class="class-bp-addon-{{ d.name }}">
-	<a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">{{ m.title }}</a>
+	<a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">
+	  {% if m.icon %}<i class="icon fa fa-{{ m.icon }}"></i>{% endif %}
+	  {{ m.title }}</a>
       </li>
       {% endfor %}
       {% endif %}

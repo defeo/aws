@@ -15,6 +15,7 @@ page:
   menus:
     - title: Start slideshow
       href: "javascript:SlideShow.play()"
+      icon: tv
 ---
 
 {{ page.addons }}

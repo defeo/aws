@@ -4,6 +4,7 @@ page:
   menus:
     - title: "Print"
       href: "javascript:window.print()"
+      icon: print
 ---
 
 # Print link
