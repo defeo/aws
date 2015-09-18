@@ -1,14 +1,9 @@
 ---
 name: slideshow
-include: True
 page:
   links:
-    - class: slideshow-css
-      href: slides.css
-    - class: slideshow-css
-      href: slides-customization.css
-    - class: slideshow-css
-      href: slides-size.css
+    - href: slides.css
+    - href: slides-customization.css
   scripts:
     - src: slides.js
       async: True
