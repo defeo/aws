@@ -3,7 +3,13 @@
 <html>
   <head lang="en">
     <meta charset="utf-8">
-    <title>{{ page.title | strip_html }}</title>
+    <title>
+      {% if page.title == "Home" %}
+      {{ site.title }} – {{ site.tagline }}
+      {% else %}
+      {{ page.title }} – {{ site.title }}
+      {% endif %}
+    </title>
 
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/font-awesome.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
@@ -131,29 +137,7 @@
     </ul>
 
     <div class="main">
-      <div id="content" class="container">
-	{{ content }}
-      </div>
-
-      <footer class="footer">
-	<div class="container">
-	  <p><a rel="license"
-		href="http://creativecommons.org/licenses/by-sa/4.0/">
-	      <img alt="Creative Commons Licence" style="border-width:0"
-		   src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png"/>
-	    </a> <a href="http://defeo.lu" class="print-link">Luca De
-	      Feo</a> {{ site.time | date:"%Y" }}, licensed
-	    under <a rel="license" class="print-link"
-		     href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA
-	      4.0</a>.</p>
-
-	  <p class="dont-print">Source code available
-	    on <a href="{{ site.github.repository_url }}">GitHub</a>,
-	    static Website generated
-	    with <a href="http://jekyllrb.com/">Jekyll</a> and kindly
-	    hosted by <a href="http://pages.github.com/">GitHub</a>.</p>
-	</div>
-      </footer>
+      {{ content }}
     </div>
 
     <!-- We pass down data from the YAML front matter as a JS object -->

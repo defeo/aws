@@ -1,6 +1,5 @@
 ---
-layout: main
-title: Class boilerplate
+title: Home
 ---
 
 # Class boilerplate

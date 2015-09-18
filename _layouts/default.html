@@ -1,0 +1,26 @@
+---
+layout: main
+---
+
+<div id="content" class="container">
+  {{ content }}
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p><a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/4.0/">
+	<img alt="Creative Commons Licence" style="border-width:0"
+	     src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png"/>
+      </a> <a href="{{ site.author.url }}" class="print-link">{{ site.author.name }}</a> {{ site.time | date:"%Y" }}, licensed
+      under <a rel="license" class="print-link"
+	       href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA
+	4.0</a>.</p>
+
+    <p class="dont-print">Source code available
+      on <a href="{{ site.github.repository_url }}">GitHub</a>,
+      static Website generated
+      with <a href="http://jekyllrb.com/">Jekyll</a> and kindly
+      hosted by <a href="http://pages.github.com/">GitHub</a>.</p>
+  </div>
+</footer>

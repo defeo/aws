@@ -1,9 +1,25 @@
+# Settings
 baseurl: /class-boilerplate
 permalink: pretty
 
-kramdown:
-  parse_block_html: true
+# About
+title: Class boilerplate
+tagline: A Jekyll template for LMS
+author:
+  name: Luca De Feo
+  url: 'http://defeo.lu'
 
+# Collections
 collections:
   addons:
     output: true
+
+# Default values
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
+
+kramdown:
+  parse_block_html: true
