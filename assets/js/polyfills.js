@@ -1,3 +1,4 @@
+/** Micro-framework **/
 (function() {
     if (!Function.prototype.bind) {
 	Function.prototype.bind = function (oThis) {
@@ -94,3 +95,14 @@ Window.prototype.once = Document.prototype.once = Element.prototype.once = funct
 	cb.call(this, e);
     }, bubble);
 }
+
+/** Actions **/
+document.addEventListener('DOMContentLoaded', function() {
+    /* Make submenus click-activated */
+    $$('.submenus').forEach(function(m) {
+	m.parentNode.on('click', function(e) {
+	    e.currentTarget.classList.toggle('active');
+	    e.preventDefault();
+	});
+    });
+});
