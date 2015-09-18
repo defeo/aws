@@ -1,5 +1,10 @@
 ---
-layout: main
+name: about
+page:
+  menus:
+    - title: About
+      href: about.html
+      icon: question
 title: Help for advanced users
 ---
 
