@@ -140,7 +140,7 @@
     <script type="text/javascript">
       var ClassBP = {
         "page": {
-          {% for p in page %}{% if p[0] != "contents" %}
+          {% for p in page %}{% if p[0] != "content" %}
           "{{ p[0] }}": {{ p[1] | jsonify }},
           {% endif %}{% endfor %}
         }
