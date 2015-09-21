@@ -47,7 +47,8 @@ h2 {
 /* Menus and submenus */
 ul.menu {
     list-style-type: none;
-
+    margin-right: 150px;
+ 
     &>li {
 	display: inline-block;
 	border-right: solid thin;
