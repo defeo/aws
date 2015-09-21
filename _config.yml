@@ -5,10 +5,15 @@ permalink: pretty
 # About
 title: Class boilerplate
 tagline: A Jekyll template for LMS
-author:
-  name: Luca De Feo
-  url: 'http://defeo.lu'
-
+authors:
+  - name: Luca De Feo
+    url: 'http://defeo.lu'
+created: 2014
+license:
+  name: MIT license
+  shortname: MIT license
+  url: /LICENSE
+  
 # Collections
 collections:
   addons:
