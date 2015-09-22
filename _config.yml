@@ -19,12 +19,5 @@ collections:
   addons:
     output: true
 
-# Default values
-defaults:
-  - scope:
-      path: ''
-    values:
-      layout: default
-
 kramdown:
   parse_block_html: true
