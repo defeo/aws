@@ -103,6 +103,7 @@ pre {
     border-radius: 4px;
     border: solid thin #aaa;
     padding-left: 2ex;
+    overflow-x: auto;
 }
 :not(pre)>code {
     color: #d00;
