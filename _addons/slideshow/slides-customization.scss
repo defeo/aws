@@ -12,6 +12,7 @@ html.slideshow {
 	border-radius: 12px;
 	counter-reset: slideidx;
 	box-shadow: 0 0 0 100vmax black;
+	font-size: 16pt;
 
 	section {
 	    -moz-transition: left 400ms linear 0s;
@@ -53,7 +54,7 @@ html.slideshow {
 	h1 {
 	    margin: 1% 2% 1% 2%;
 	    text-align: center;
-	    font-size: 80px;
+	    font-size: 3em;
 	}
 	h2:before { content: ''; }
 	h2 {
