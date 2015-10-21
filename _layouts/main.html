@@ -54,6 +54,7 @@
       {% if site.prose %}
       {% if site.prose.proseurl %}
       {% assign cms_base = site.prose.proseurl %}
+      {% assign cms_qs = '' %}
       {% else %}
       {% capture cms_base %}http://prose.io/#{{ site.github.repository_nwo }}{% endcapture %}
       {% endif %}
@@ -87,7 +88,6 @@
 	    </a></li>
 	    {% else %}
 	    {% assign coll = site.collections[c.key] %}
-	    {% assign message = c.template | uri_escape %}
 	    <li><a href="{{ cms_base | strip_newlines }}/new/{{ github_branch }}/{{ coll.relative_directory }}{{ cms_qs | replace: '<name>',coll.name.one | replace: '<template>',c.template | uri_escape }}"
 		   target="_blank">
 		<i class="icon fa fa-{% include utils/default.str val=coll.icon default='file-text-o' %}"></i>
