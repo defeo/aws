@@ -13,6 +13,10 @@ license:
   name: MIT license
   shortname: MIT license
   url: /LICENSE
+forkme: yes
+
+create:
+  pages: yes
   
 # Collections
 collections:
@@ -21,3 +25,7 @@ collections:
 
 kramdown:
   parse_block_html: true
+
+sass:
+  sass_dir: assets/css
+  style: compressed

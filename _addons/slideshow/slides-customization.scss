@@ -103,14 +103,24 @@ html.slideshow {
 	.no-wrap {
 	    white-space: nowrap;
 	}
+    }
+}
 
-	/* Adjustments for two-column style */
-	.two-cols {
-	    margin: 1% 0;
-	    padding: 0 2%;
-	    & > * {
-		margin: 0 2%;
-	    }
-	}
+// Double column layout
+.two-cols {
+    display: flex;
+    margin: 1em 0;
+    & > * {
+	flex: 1 1 auto;
+	margin-top: 0;
+	margin-bottom: 0;
+	&:not(:first-child) { margin-left: 1em; }
+    }
+}
+html.slideshow .slideshow-container .two-cols {
+    margin: 1% 0;
+    padding: 0 2%;
+    & > * {
+	margin: 0 2%;
     }
 }

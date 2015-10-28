@@ -98,10 +98,24 @@ Window.prototype.once = Document.prototype.once = Element.prototype.once = funct
 
 /** Actions **/
 document.addEventListener('DOMContentLoaded', function() {
-    /* Make submenus click-activated */
-    $$('.submenus').forEach(function(m) {
-	m.parentNode.on('click', function(e) {
-	    e.currentTarget.classList.toggle('active');
+    /* Make toggles click-activated */
+    $$('.toggle').forEach(function(t) {
+	t.on('click', function(e) {
+	    var group = e.currentTarget.dataset['group'];
+	    if (group) {
+		$$(group + ' .toggle').forEach(function(toggle) {
+		    if (toggle != e.currentTarget) {
+			toggle.classList.remove('toggled');
+			$$(toggle.dataset['target']).forEach(function(target) {
+			    target.classList.remove('active');
+			});
+		    }
+		});
+	    }
+	    e.currentTarget.classList.toggle('toggled');
+	    $$(e.currentTarget.dataset['target']).forEach(function(target) {
+		target.classList.toggle('active');
+	    });
 	    e.preventDefault();
 	});
     });
