@@ -272,7 +272,7 @@ Les codes d'état décrivent le résultat de la requête. Les plus fréquents 
 - **301 MOVED PERMANENTLY** Rédirection permanente (nécessite `Location`).
 - **302 FOUND**
 - **303 SEE OTHER**
-- **307 TEMPORARY REDIRECT** Différents types de rédirection (nécessitent `Location`).
+- **307 TEMPORARY REDIRECT** Différents types de redirection (nécessitent `Location`).
 - **400 BAD REQUEST** Le client a envoyé une requête mal formatée.
 - **403 FORBIDDEN** Le document n'est pas accessible.
 - **404 NOT FOUND** Le document est inconnu au server.
@@ -298,7 +298,7 @@ Plus fréquentes :
 - **Date**, **Expires**, **Last-Modified** Gestion des caches.
 - **Content-Type** [MIME type]() du contenu de la réponse.
 - **Content-Length** Longueur en octets du contenu. Non obligatoire (peut être spécifié autrement).
-- **Location** Utilisé par les rédirections.
+- **Location** Utilisé par les redirections.
 - **Sever** Nom du logiciel du server.
 - **Set-Cookie** Utilisé pour la persistance côté client.
 

@@ -645,7 +645,7 @@ Envoyer un fichier statique
 return $app->sendFile('static-file.html');
 ~~~
 
-Faire une rédirection
+Faire une redirection
 
 ~~~
 return $app->redirect('/other/path');
@@ -682,7 +682,7 @@ res.sendFile('static-file.html');
 res.download('static-attachment.mp3');
 ~~~
 
-Faire une rédirection
+Faire une redirection
 
 ~~~
 res.redirect('/other/path');

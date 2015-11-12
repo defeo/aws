@@ -237,7 +237,7 @@ avec des fonctionnalités avancées de la DBAL.
    - Si l'insertion de l'utilisateur a réussi, rédirigez vers l'URL
    `/userlist` (avec `res.redirect`). 
    - Si l'insertion a raté, présentez à nouveau le formulaire, avec un
-     message d'erreur. Ne faites pas de rédirection dans ce cas ; un
+     message d'erreur. Ne faites pas de redirection dans ce cas ; un
      template vous permettra d'afficher le message d'erreur seulement
      si nécessaire.
    

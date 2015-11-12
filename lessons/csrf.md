@@ -256,7 +256,7 @@ xhr.open("GET", "http://api.server.com/getUserData?user=1000");
 
 ## CSRF dans la vraie vie
 
-**GMail 2007 rédirection de mail :** des filtres de mails arbitraires
+**GMail 2007 redirection de mail :** des filtres de mails arbitraires
 ont pu être configurés via CSRF
 
 - <http://www.gnucitizen.org/blog/google-gmail-e-mail-hijack-technique/>
