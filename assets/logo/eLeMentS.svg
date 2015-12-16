@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     viewBox="-4 -366 1889 732">
+  <style>
+    /* <![CDATA[ */
+    .molecule { stroke: #fa0; fill: #fa0 }
+    .name { fill: #005 }
+    text { font-family: Arial,sans-serif }
+    /* ]]> */
+  </style>
+  <path id="terpinene" class="molecule"
+	d="m 0,0 418,0 209,362 418,0 209,-362 -209,-362 -418,0 -209,362 m 836,0 418,0 209,362 m -209,-362 209,-362 M 418,0 m 28,0 195,-337.7511 M 1254,0 m -28,0 -194,-337.7511"
+	style="fill:none;stroke-width:10" />
+  <g id="LMS" class="name" font-size="500">
+    <text y="180"><!--
+		  --><tspan x="100">L</tspan><!--
+		  --><tspan x="836" text-anchor="middle">M</tspan><!--
+		  --><tspan x="1322">S</tspan><!--
+		  --></text>
+  </g>
+  <g id="eent" class="molecule" font-size="200">
+    <text y="180"><!--
+		  --><tspan x="0" y="-50">e</tspan><!--
+		  --><tspan x="636" y="180" text-anchor="end">e</tspan><!--
+		  --><tspan x="1036">e</tspan><!--
+		  --><tspan x="1230" y="-50">n</tspan><!--
+		  --><tspan x="1245" y="180">t</tspan><!--
+		  --></text>
+  </g>
+</svg>
