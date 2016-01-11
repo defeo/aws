@@ -3,7 +3,7 @@ layout: lesson
 title: Sessions
 subtitle: Maintien d'état contrôlé par le serveur
 video:
-  url: https://www.dropbox.com/s/g327sfsbkoa95es/sessions.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/sessions.webm
 ---
 
 <section>

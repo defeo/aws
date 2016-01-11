@@ -1,9 +1,6 @@
 ---
 layout: lesson
 title: Flexbox
-video:
-  url: https://www.dropbox.com/s/gccilan2sjja3zl/class-2015-02-18.webm?dl=1
-  end: 2050
 ---
 
 <section>

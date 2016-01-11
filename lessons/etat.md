@@ -4,7 +4,7 @@ title: Maintien d'état
 subtitle: Persistance côté client, Cookies, Storage API
 scripts: ['http://coffeescript.org/extras/coffee-script.js']
 video:
-  url: https://www.dropbox.com/s/jykcelfvjs62g4e/etat.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/etat.webm
 ---
 
 <section>

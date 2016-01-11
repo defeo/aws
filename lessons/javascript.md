@@ -3,7 +3,7 @@ layout: lesson
 title: JavaScript
 subtitle: Le langage
 video:
-  url: https://www.dropbox.com/s/oliqr1d9de3wz6m/javascript.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/javascript.webm
 ---
 
 <section>

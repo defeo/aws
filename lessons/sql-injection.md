@@ -2,7 +2,7 @@
 layout: lesson
 title: Injections SQL
 video:
-  url: https://www.dropbox.com/s/end76srcx8nb6wj/sql-injection.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/sql-injection.webm
 ---
 
 <section>
@@ -64,7 +64,7 @@ que root!**
 <section>
 
 <figure>
-<video src="https://www.dropbox.com/s/end76srcx8nb6wj/sql-injection.webm?dl=1" width="100%" controls></video>
+<video src=" https://sourcesup.renater.fr/aws-media/sql-injection.webm" width="100%" controls></video>
 </figure>
 
 </section>

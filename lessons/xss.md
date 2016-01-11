@@ -4,7 +4,7 @@ title: XSS
 subtitle: Cross Site Scripting
 scripts: ../js/mock-browser.js
 video:
-  url: https://www.dropbox.com/s/192n55g6bxz03ez/xss.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/xss.webm
 ---
 
 <style>

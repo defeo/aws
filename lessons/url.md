@@ -2,6 +2,8 @@
 layout: lesson
 title: URLs
 subtitle: Uniform Resource Locators
+video:
+  url: https://sourcesup.renater.fr/aws-media/url.webm
 ---
 
 <style>

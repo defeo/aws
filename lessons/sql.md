@@ -3,7 +3,7 @@ layout: lesson
 title: Stockage Persistant
 subtitle: Interface avec bases de données SQL
 video:
-  url: https://www.dropbox.com/s/2od1jim9x9qzx8q/sql.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/sql.webm
 ---
 
 <section>

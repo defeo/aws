@@ -2,10 +2,6 @@
 layout: lesson
 title: Presque comme JQuery
 subtitle: Écrire son framework JS en <100 lignes
-video:
-  url: https://www.dropbox.com/s/gccilan2sjja3zl/class-2015-02-18.webm?dl=1
-  start: 3415
-  end: 4340
 ---
 
 {% include defs.html %}

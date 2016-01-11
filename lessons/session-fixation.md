@@ -2,10 +2,6 @@
 layout: lesson
 title: Vol de session
 subtitle: Vol, prédiction, fixation
-video:
-  url: https://www.dropbox.com/s/1aa5upyeslzv0n3/class-2015-03-18.webm?dl=1
-  start: 3202
-  end: 4562
 ---
 
 <section class="compact">

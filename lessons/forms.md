@@ -2,7 +2,7 @@
 layout: lesson
 title: Formulaires HTML
 video:
-  url: https://www.dropbox.com/s/bqs77djh1yfsdfe/forms.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/forms.webm
 ---
 
 <section>

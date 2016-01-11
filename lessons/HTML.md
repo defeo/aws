@@ -3,9 +3,7 @@ layout: lesson
 title: HTML
 subtitle: HyperText Markup Language
 video:
-  url: https://www.dropbox.com/s/zhqfrbooj1g0fhj/class-2015-02-04.webm?dl=1
-  start: 3775
-  end: 5024
+  url: https://sourcesup.renater.fr/aws-media/html.webm
 ---
 
 <section>

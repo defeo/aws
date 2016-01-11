@@ -3,7 +3,7 @@ layout: lesson
 title: Le DOM
 subtitle: Document Object Model
 video:
-  url: https://www.dropbox.com/s/pryvnvcuvsagi9n/dom.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/dom.webm
 ---
 
 <section>

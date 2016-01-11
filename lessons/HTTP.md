@@ -3,9 +3,7 @@ layout: lesson
 title: HTTP
 subtitle: HyperText Transfer Protocol
 video:
-  url: https://www.dropbox.com/s/zhqfrbooj1g0fhj/class-2015-02-04.webm?dl=1
-  start: 2350
-  end: 3775
+  url: https://sourcesup.renater.fr/aws-media/HTTP.webm
 ---
 
 <section style="font-size: 90%">

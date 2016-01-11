@@ -4,7 +4,7 @@ title: Applications asynchrones
 subtitle: AJAX et XMLHttpRequest
 scripts: ['http://coffeescript.org/extras/coffee-script.js']
 video:
-  url: https://www.dropbox.com/s/sh1vo5v3c3ww10x/ajax.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/ajax.webm
 ---
 
 <section>

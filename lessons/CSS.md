@@ -3,7 +3,7 @@ layout: lesson
 title: CSS
 subtitle: Cascading StyleSheets
 video:
-  url: https://www.dropbox.com/s/lpfm8nermnjawgc/css.webm?dl=1
+  url: https://sourcesup.renater.fr/aws-media/css.webm
 ---
 
 <section>
