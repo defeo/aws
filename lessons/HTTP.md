@@ -88,7 +88,7 @@ HTTP (*Hypertext Transfer Protocol*) est un protocole *textuel, sans
 
 **Réponse :** Le server envoie une réponse (pas nécessairement le document).
 
-**Textuel :** Toutes les communications sont codées en ASCII.
+**Textuel :** Toutes les communications sont codées en ASCII (ce n'est plus le cas avec HTTP 2.0).
 
 **Sans état :** Le server ne se souvient pas du client entre deux requêtes.
 
@@ -97,7 +97,7 @@ HTTP (*Hypertext Transfer Protocol*) est un protocole *textuel, sans
 
 ## Le protocole HTTP
 
-Servi habituellement sur le port 80. Exemple de dialogue HTTP.
+Servi habituellement sur le port 80. Exemple de dialogue HTTP (avant 2.0).
 
 **REQUÊTE**
 
@@ -187,7 +187,7 @@ Adresse du document web.
 
 #### Protocole
 
-Deux possibilités: `HTTP/1.0` ou `HTTP/1.1`. (`HTTP/2.0` en cours?)
+Deux possibilités: `HTTP/1.0` ou `HTTP/1.1`.
 
 </section>
 <section class="compact">
@@ -299,11 +299,27 @@ Plus fréquentes :
 - **Content-Type** [MIME type]() du contenu de la réponse.
 - **Content-Length** Longueur en octets du contenu. Non obligatoire (peut être spécifié autrement).
 - **Location** Utilisé par les redirections.
-- **Sever** Nom du logiciel du server.
+- **Server** Nom du logiciel du server.
 - **Set-Cookie** Utilisé pour la persistance côté client.
 
 </section>
 <section>
+
+## Au delà de HTTP
+
+- **HTTPS :** HTTP + TLS, surcouche de authentification +
+  chiffrement.
+  
+  - Authenticité du serveur (et optionellement du client),
+  - Confidentialité de la communication.
+
+- **HTTP 2.0 :** Refonte du protocole focalisée sur
+  l'efficacité.
+  
+  - Basé sur SPDY (Google), API compatible avec HTTP 1.1,
+  - Protocole binaire, connexions multiplexées,
+  - En 2015, supporté par la majorité des navigateurs, mais encore peu
+    de sites.
 
 ## Références
 
