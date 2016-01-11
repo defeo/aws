@@ -58,7 +58,7 @@ Partez de ce squelette
    Puisqu'il s'agit d'un projet public, tout le contenu est disponible
    *statiquement* à l'URL
    
-   > <https://preview.c9.io/[nom-d'utilisateur]/demo-project/>
+   > <https://preview.c9users.io/[nom d'utilisateur]/demo-project/html/index.html>
    
    (remplacez votre nom d'utilisateur dans l'URL), et les pages HTML
    sont servies comme telles. Il vous suffit de naviguer vers la page
