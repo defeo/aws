@@ -5,4 +5,11 @@ kramdown:
   parse_block_html: true
 
 collections:
-  - projects
+  projects:
+  lessons: 
+    output: true
+    name: Leçons
+  tutorials:
+    name: TDs
+    output: true
+  

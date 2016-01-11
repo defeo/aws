@@ -16,17 +16,17 @@
       <h3>Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</h3>
     </div>
     <dl class="toggleable">
-      {% for item in week.contents %}
-      {% for it in item %}
-      <dt>{{ it[0] }} :</dt>
-      {% for link in it[1] %}
+      {% for coll in week.contents %}
+      {% assign collection = coll[0] %}
+      {% assign collection = site.collections[collection] %}
+      <dt>{{ collection.name }} :</dt>
+      {% for link in coll[1] %}
       {% if link.url %}
-      <dd>{% include link.html href=link.url %}
+      <dd>{% include link.html collection=collection href=link.url %}
 	{% if link.comment %}({{ link.comment }}){% endif %}</dd>
       {% else %}
-      <dd>{% include link.html href=link %}</dd>
+      <dd>{% include link.html collection=collection href=link %}</dd>
       {% endif %}
-      {% endfor %}
       {% endfor %}
       {% endfor %}
     </dl>

@@ -1,105 +1,28 @@
-- date: 2015-02-02
+- date: 2016-01-11
   contents:
-    - Amphi: classes/class1.md
-    - Leçons:
-      - lessons/HTTP.md
-      - lessons/HTML.md
-      - lessons/forms.md
-      - lessons/CSS.md
+    lessons:
+      - url.md
+      - HTTP.md
+      - HTML.md
+      - forms.md
+      - CSS.md
 
-- date: 2015-02-09
+- date: 2016-01-18
   contents:
-    - TD: tutorials/tutorial1.md
-    - Amphi: classes/class2.md
-    - Leçons:
-      - lessons/javascript.md
-      - lessons/dom.md
-    - Approfondissements:
-      - lessons/boxmodel.md
-      - lessons/flexbox.md
+    tutorials: tutorial1.md
+    lessons:
+      - javascript.md
+      - dom.md
 
-- date: 2015-02-16
+- date: 2016-01-25
   contents:
-    - TD: tutorials/tutorial2.md
-    - Amphi: classes/class3.md
-    - Leçons:
-      - lessons/php.md
-      - lessons/frameworks.md
-    - Approfondissements:
-      - lessons/advanced-js.md
-      - lessons/polyfill.md
-      
-- date: 2015-03-02
-  contents:
-    - TD:
-      - tutorials/tutorial2.md
-      - { url: tutorials/reflector-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
-    - Amphi: classes/class4.md
-    - Leçons:
-      - lessons/templates.md
-      - lessons/etat.md
-    - Approfondissements:
-      - lessons/oo-php.md
+    tutorials: tutorial2.md
+    lessons:
+      - php.md
+      - frameworks.md
 
-- date: 2015-03-09
-  contents:
-    - TD:
-      - { url: tutorials/reflector-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
-      - { url: tutorials/templates-etat-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
-    - Amphi: classes/class5.md
-    - Leçons:
-      - lessons/sessions.md
-      - lessons/sql.md
-    - Approfondissements:
-      - lessons/mustache.md
-
-- date: 2015-03-16
-  contents:
-    - TD:
-      - { url: tutorials/reflector-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/reflector-node.md, comment: "version pour Node.js" }
-      - { url: tutorials/templates-etat-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
-    - Amphi: classes/class6.md
-    - Leçons:
-      - lessons/ajax.md
-      - lessons/json.md
-    - Approfondissements:
-      - lessons/session-fixation.md
-
-- date: 2015-03-23
-  contents:
-    - TD:
-      - { url: tutorials/templates-etat-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/templates-etat-node.md, comment: "version pour Node.js" }
-      - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
-    - Amphi: classes/class7.md
-    - Leçons:
-      - lessons/sql-injection.md
-      - lessons/xss.md
-    - Approfondissements:
-      - lessons/server-push.md
-      - lessons/async-js.md
-
-- date: 2015-03-30
-  contents:
-    - TD:
-      - { url: tutorials/accounts-silex.md, comment: "version pour Silex" }
-      - { url: tutorials/accounts-node.md, comment: "version pour Node.js" }
-    - Amphi: classes/class8.md
-    - Approfondissements:
-      - lessons/cross-domain.md
-      - lessons/samy.md
-      - lessons/csp.md
-      - lessons/csrf.md
-
-- date: 2015-04-13
-  contents:
-    - TD:
-      - { url: project.md }
-    - Amphi (séminaire):
-      - { url: classes/c+-seminar.md, comment: "Intervention par CANAL+" }
+- date: 2016-02-01
+- date: 2016-02-08
+- date: 2016-02-15
+- date: 2016-03-07
+- date: 2016-03-21

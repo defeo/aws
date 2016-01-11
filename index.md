@@ -9,12 +9,10 @@ scripts: js/collapsible.js
 
 ## Informations pratiques
 
-**Chargé de cours et de TD :** Luca De Feo <http://defeo.lu/>.
+**Chargé de cours TD :** Luca De Feo <http://defeo.lu/>.  
+**Chargé de TD :** Sébastien Besnier.
 
-**Cours :** Mercredi 13h30 - 15h, amphi B,  
-**TDs, Groupe 1 :** Jeudi 9h45 - 13h, salle ALSACE,  
-**TDs, Groupe 2 :** Mercredi 15h15 - 18h30, salle ALSACE,  
-**TDs, Groupe 3 :** Lundi 13h30 - 16h45, salle ALSACE.
+**Cours + TD :** Lundi 13h45 - 18h30
 
 
 {::nomarkdown}
@@ -22,39 +20,17 @@ scripts: js/collapsible.js
 {:/}
 
 
-## Modalités d'évaluation
-
-Contrôle continu
-: {% include link.html href='project.md' %}
-: [Planning des soutenances](defenses/) (salle G205)
-
-Examen (13/05/2015)
-: [Sujet](other/exam-2015-1)
-
-Examen deuxième session (17/06/2015)
-: [Sujet](other/exam-2015-2)
-
 ## Archives
 
 Éditions précédentes de ce cours :
 
+- [2014-2015](http://defeo.lu/aws-2015)
 - [2013-2014](http://defeo.lu/aws-2014)
-
-Sujets d'examen :
-
-- [Premier checkpoint 2013-2014](other/cc1) (contrôle continu)
-- [Deuxième checkpoint 2013-2014](other/cc2) (contrôle continu)
-- Examen 2013-2014 ([Pré-sujet](other/exam-template)) ([Sujet](other/exam-2014-1))
-- Examen deuxième session 2013-2014 ([Sujet](other/exam-2014-2))
-
 
 ## Liens
 
 - Mes [CodePens](http://codepen.io/collection/AaMOJZ/), qui
   démontrent comment exécuter les passages délicats de certains TDs.
-- Deux cours de [Polytechnique](http://www.polytechnique.fr) par mon collègue et ami [Dominique Rossin](http://www.lix.polytechnique.fr/~rossin/):
-    - [Développement d'applications web](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WEB/),
-    - [Développement d'applications pour téléphones et tablettes](http://www.enseignement.polytechnique.fr/informatique/INF441/INF441-WMB/).
 - Les W3 Schools <http://www.w3schools.com/> et leur tutoriel HTML5 <http://www.w3schools.com/html/html5_intro.asp>.
 - Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>.
 - Le consortium du WWW <http://www.w3.org/>.
@@ -113,15 +89,15 @@ BU: 005.71htm LAW. Destiné à ceux qui connaissent déjà HTML4.
 
 Marijn Haverbeke. *Eloquent JavaScript*.
 : No Starch Press 2014. Disponible en ligne en anglais
-<http://eloquentjavascript.net/>. Bel ouvrage sur JavaScript et le
-DOM. La première édition est aussi disponible en français
-<http://fr.eloquentjavascript.net/>, et à la BU (côte 005.71jaS HAV).
+	<http://eloquentjavascript.net/>. Bel ouvrage sur JavaScript et le
+	DOM. La première édition est aussi disponible en français
+	<http://fr.eloquentjavascript.net/>, et à la BU (côte 005.71jaS HAV).
 
 Mozilla Developer Network. *JavaScript Guide*.
 : En anglais
-<https://developer.mozilla.org/en-US/docs/JavaScript/Guide> et en
-français <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. La
-première référence pour JavaScript.
+	<https://developer.mozilla.org/en-US/docs/JavaScript/Guide> et en
+	français <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. La
+	première référence pour JavaScript.
 
 D. Crockford. *JavaScript. Gardez le meilleur !*.
 : Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU : 005.13jaS
@@ -144,8 +120,8 @@ les technologies récentes comme les Canvas et les Web Sockets.
 
 Mozilla foundation. Mozilla DOM resources.
 : La référence sur la partie du DOM implantée dans Firefox
-<https://developer.mozilla.org/en/Gecko_DOM_Reference>, et 
-les ressources liées <https://developer.mozilla.org/en/DOM>.
+	<https://developer.mozilla.org/en/Gecko_DOM_Reference>, et 
+	les ressources liées <https://developer.mozilla.org/en/DOM>.
 
 T. Stubbs and G. Allain. *JQuery, Le guide complet*
 : Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte
@@ -189,7 +165,7 @@ A. Hendrix, B. Brinzarea, C. Darie.  *AJAX et PHP*
 
 M. Kiessling. *The Node beginner guide*.
 : en anglais <http://www.nodebeginner.org/> et français
-<http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/>.
+	<http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/>.
 
 F. Geisendörfer. *Node.js Guide*
 : <http://nodeguide.com/>.
@@ -212,9 +188,9 @@ M. Nebra. *Des applications ultra-rapides avec Node.js*
 
 M. Zalewski. *Browser Security Handbook*.
 : Google Inc 2009.
-<http://code.google.com/p/browsersec/wiki/Main>. Excellente traité sur
-la sécurité des browsers, la Same Origin Policy et d'autres
-mécanismes expérimentaux.
+	<http://code.google.com/p/browsersec/wiki/Main>. Excellente traité sur
+	la sécurité des browsers, la Same Origin Policy et d'autres
+	mécanismes expérimentaux.
 
 M. Zalewski. *The Tangled Web*.
 : No Starch Press 2011. ISBN
