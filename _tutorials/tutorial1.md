@@ -13,9 +13,7 @@ Cloud9, notre IDE.
 
 **Important :** vous devez avoir un **browser récent** pour pouvoir
 utiliser Cloud9, de préférence la **dernière version** de Firefox,
-Chrome ou Safari (par exemple, la version de Firefox des cartables
-numériques n'est pas assez récente, mais Chrome convient). Contrôlez
-votre version avant de commencer.
+Chrome ou Safari. Contrôlez votre version avant de commencer.
 
 Dirigez votre browser sur <http://c9.io/>, créez un compte si ce n'est
 pas déjà fait, et connectez-vous à votre espace personnel. Si vous

@@ -11,9 +11,9 @@ interface agréable et parfaitement fonctionnelle.
 
 Pour ce TD, on fera référence
 
-- Aux leçons {% include link.html href="lessons/CSS.md" %},
-  {% include link.html href="lessons/javascript.md" %},
-  {% include link.html href="lessons/dom.md" %}.
+- Aux leçons {% include link.html collection=site.collections.lessons href="CSS.md" %},
+  {% include link.html collection=site.collections.lessons href="javascript.md" %},
+  {% include link.html collection=site.collections.lessons href="dom.md" %}.
 - Au Mozilla Developer Network :
   - <https://developer.mozilla.org/docs/CSS>,
   - <https://developer.mozilla.org/docs/JavaScript>.
