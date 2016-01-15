@@ -57,7 +57,7 @@ git remote add -f origin https://github.com/defeo/aws-project.git
 rm README.md
 git checkout master
 ~~~
-{:.bash}
+
 
 ### Étape 2 : Installation
 
