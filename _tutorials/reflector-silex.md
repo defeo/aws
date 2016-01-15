@@ -23,9 +23,13 @@ Les références pour ce TD sont
 
 Vous allez créer un nouvel espace de travail Cloud9 pour ce
 TD. Plutôt que partir de zéro, vous allez *cloner* un espace de
-travail préconfiguré. Depuis le *dashboard*, suivez ces instructions.
+travail préconfiguré. 
 
-### Étape 1 : En créant un nouvel espace de travail
+Vous avez deux façons de le faire:
+
+### Étape 1 : En créant un nouvel espace de travail (recommandée dans un premier temps)
+
+Depuis le *dashboard*, suivez ces instructions.
 
 1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
    from URL »* ;
