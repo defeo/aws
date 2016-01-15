@@ -36,6 +36,10 @@ prendre moins de risques, ouvrez l'onglet *« Preferences »* (`Ctrl+,`,
 ou menu *« Cloud9 → Preferences »*) et, dans la section *« Settings →
 File → Save »* cochez la case *« Enable Auto-Save »*.
 
+Lors de la création d'un projet, il se peut que la page affiche un
+engrenage tournant sans s'arrêter, donnant l'impression que le projet n'est pas
+encore prêt. Il n'en est rien ! Vous pouvez revenir sur votre *dashboard* 
+(actualiser si besoin avec *F5*) et ouvrir votre nouveau projet.
 
 ## Le plateau en pur CSS3
 
