@@ -1,31 +1,71 @@
 # Settings
-baseurl: /class-boilerplate
+baseurl: ''
 permalink: pretty
 
 # About
-title: Class boilerplate
-tagline: A Jekyll template for LMS
+title: eLeMentS
+tagline: A Jekyll-based DIY Learning Management System
 authors:
-  - name: Luca De Feo
-    url: 'http://defeo.lu'
-created: 2014
+  - name: the eLeMentS team
+    url: 'https://elementsLMS.github.io/'
+created: 2016
 license:
   name: MIT license
   shortname: MIT license
   url: /LICENSE
-forkme: yes
 
-create:
-  pages: yes
-  
+# Display a log in the top bar
+#logo: assets/logo/eLeMentS.svg
+
+# Display a GitHub fork me logo in the lower right corner
+#forkme: yes
+
+# Default configuration for pages.
+# Can be used to activate addons on all pages.
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
+#      addons:
+#        mathjax: yes
+#        highlightjs: yes
+#        print-link: yes
+#        about: yes
+
+# New page / post / etc. menu
+#create:
+#  pages: yes
+#  collections:
+#    - key: posts
+#      template: Write something
+#    - key: tutorial
+#      template: Write a tutorial
+
 # Collections
 collections:
+  # Leave that addons collection like this
+  # if you want to use addons
   addons:
     output: true
+  # Other collections. See Jekyll docs.
+#  tutorials:
+#    name:
+#      one: tutorial
+#      many: tutorials
+#    icon: text-o
+#    output: true
 
+
+# Kramdown configuration (markdown parser)
 kramdown:
   parse_block_html: true
 
+# Prose.io configuration, if that's your style
+#prose: no
+
+# SASS configuration.
+# Better not touch this
 sass:
   sass_dir: assets/css
   style: compressed

@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Home
+addons:
+  style_goodies: yes
 ---
 
 # {{ site.title }}
@@ -14,5 +14,26 @@ from a static web host such as
 system enables all the features for which static hosting is not
 enough.
 
-{{ site.title }} is open source! Grab the source code at
-<{{ site.github.repository_url }}>.
+## Get started writing your own course now!
+
+Create a new file, say `article.md`, with the following content
+
+~~~
+---
+layout: article
+title: My first lesson!
+---
+
+I <3 eLeMentS!
+~~~
+
+Then run Jekyll and visit <http://localhost:4000/article/>.
+
+
+## What next?
+
+eLeMentS is a rich enviroment full of features. To learn more about
+it, head on to the
+[eLeMentS LMS website](http://elementsLMS.github.io/), and be sure to
+read the [Jekyll](http://jekyllrb.com/docs) and
+[Markdown](http://kramdown.gettalong.org/syntax.html) docs.
