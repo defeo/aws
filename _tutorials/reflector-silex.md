@@ -25,6 +25,8 @@ Vous allez créer un nouvel espace de travail Cloud9 pour ce
 TD. Plutôt que partir de zéro, vous allez *cloner* un espace de
 travail préconfiguré. Depuis le *dashboard*, suivez ces instructions.
 
+### Étape 1 : En créant un nouvel espace de travail
+
 1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
    from URL »* ;
 2. Dans la case *« Source URL »* écrivez
@@ -39,20 +41,25 @@ le professeur, auxquels il ne faudra pas toucher. Notamment la racine
 de votre espace de travail doit contenir les fichiers `composer.json`
 et `install.sh`.
 
+Passez à l'étape 2.
 
-> **Note :** Si vous souhaitez installer Silex dans un espace de
-> travail créé à la main, vous pouvez importer les contenus préparés
-> par le professeur en tapant les commandes suivantes dans le
-> *Terminal* (en bas dans l'espace de travail, tapez `Alt-T` s'il
-> n'est pas déjà ouvert).
+### Étape 1 : À partir d'un espace "vierge"
 
-> ~~~
-> git init .
-> git remote add -f origin https://github.com/defeo/aws-project.git
-> rm README.md
-> git checkout master
-> ~~~
-> {:.bash}
+Si vous souhaitez installer Silex dans un espace de
+travail créé à la main, vous pouvez importer les contenus préparés
+par le professeur en tapant les commandes suivantes dans le
+*Terminal* (en bas dans l'espace de travail, tapez `Alt-T` s'il
+n'est pas déjà ouvert).
+
+~~~
+git init .
+git remote add -f origin https://github.com/defeo/aws-project.git
+rm README.md
+git checkout master
+~~~
+{:.bash}
+
+### Étape 2 : Installation
 
 Pour installer Silex et ses composants, maintenant, tapez la commande
 
