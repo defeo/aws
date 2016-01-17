@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Langages de template, cookies, storage API
 subtitle: 11 Mars 2015
 video:

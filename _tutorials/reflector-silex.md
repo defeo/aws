@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: Le réflecteur
 subtitle: (PHP+Silex)
 ---

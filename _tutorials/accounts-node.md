@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: Comptes utilisateur, AJAX, Server push
 subtitle: (Node+Express)
 ---

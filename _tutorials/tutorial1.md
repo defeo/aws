@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: HTML, CSS et formulaires
 ---
 

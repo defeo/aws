@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Sessions, comptes utilisateurs, sécurité
 subtitle: 18 Mars 2015
 video:

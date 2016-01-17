@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: article
 title: Pré-sujet d'examen 2014
 ---
 

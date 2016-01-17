@@ -1,6 +1,6 @@
 ---
 layout: default
-title: AWS – Applications web et sécurité
+title: Home
 styles: css/collapsible.css
 scripts: js/collapsible.js
 ---

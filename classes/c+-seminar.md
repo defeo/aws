@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Interfaces utilisateur rapides avec React.js
 subtitle: Intervention par CANAL+
 ---

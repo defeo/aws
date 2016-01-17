@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: article
 title: Deuxième checkpoint
 ---
 

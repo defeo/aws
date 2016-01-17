@@ -30,8 +30,19 @@ defaults:
       layout: default
       addons:
         highlightjs: yes
-        about: yes
-
+  - scope:
+      path: lessons
+    values:
+      addons:
+        slideshow: { width: 1066, height: 600 }
+        style_goodies: yes
+  - scope:
+      path: tutorials
+    values:
+      layout: article
+      addons:
+        style_goodies: yes
+        
 # New page / post / etc. menu
 #create:
 #  pages: yes

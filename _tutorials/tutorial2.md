@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: Un simple jeu en JavaScript
 styles: ["../css/cloud9.css"]
 ---

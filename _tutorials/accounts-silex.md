@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: Comptes utilisateur et AJAX
 subtitle: (PHP+Silex)
 ---

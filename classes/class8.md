@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Sécurité web
 subtitle: 1 Avril 2015
 video:

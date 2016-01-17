@@ -1,5 +1,4 @@
 ---
-layout: default
 title: "Frameworks : Silex, Node"
 subtitle: 18 Mars 2015
 video:

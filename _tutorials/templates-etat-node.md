@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: Templates, données, état
 subtitle: (Node.js+Express)
 ---

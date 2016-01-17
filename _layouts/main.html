@@ -54,7 +54,7 @@
       <ul class="menu" id="top-menu">
 	<li><a href="{{ site.baseurl }}/forum">Forum<em id="forum-count" style="display:none"></em></a></li>
 	{% if page.video %}
-	<li><a href="#video-popup">Video</a></li>
+	<li><a href="#video-popup"><i class="fa fa-video-camera"></i> Video</a></li>
 	<div id="video-popup">
 	  <div>
 	    <a href="#" class="close"><i class="fa fa-close"></i></a>
@@ -162,7 +162,8 @@
           var n = this.response['/webdev-uvsq'].size;
           if (n) {
             var $cnt = $('#forum-count');
-            $cnt.css({ display: 'inline' }).textContent = n;
+            $cnt.css({ display: 'inline' });
+            $cnt.textContent = n;
             if (oldn !== undefined && n > oldn)
               $cnt.classList.add('new');
             oldn = n;

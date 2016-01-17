@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Autour de Flexbox et JavaScript
 subtitle: 18 Février 2015
 video:
