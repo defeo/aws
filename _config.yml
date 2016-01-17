@@ -1,10 +1,49 @@
+# Settings
 baseurl: /aws
 permalink: /:categories/:title
 
-kramdown:
-  parse_block_html: true
+# About
+title: AWS
+tagline: Applications Web et Sécurité
+authors:
+  - name: Luca De Feo
+    url: 'http://defeo.lu/'
+created: 2013
+license:
+  name: Creative Commons 4.0 Attribution-ShareAlike
+  shortname: CC-BY-SA 4.0
+  url: http://creativecommons.org/licenses/by-sa/4.0/
+  badge: http://i.creativecommons.org/l/by-sa/4.0/80x15.png
+
+# Display a log in the top bar
+#logo: assets/logo/eLeMentS.svg
+
+# Display a GitHub fork me logo in the lower right corner
+forkme: yes
+
+# Default configuration for pages.
+# Can be used to activate addons on all pages.
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
+      addons:
+        highlightjs: yes
+        about: yes
+
+# New page / post / etc. menu
+#create:
+#  pages: yes
+#  collections:
+#    - key: posts
+#      template: Write something
+#    - key: tutorial
+#      template: Write a tutorial
 
 collections:
+  addons:
+    output: true
   projects:
   lessons: 
     output: true
@@ -12,4 +51,16 @@ collections:
   tutorials:
     name: TDs
     output: true
-  
+
+# Kramdown configuration (markdown parser)
+kramdown:
+  parse_block_html: true
+
+# Prose.io configuration, if that's your style
+#prose: no
+
+# SASS configuration.
+# Better not touch this
+sass:
+  sass_dir: assets/css
+  style: compressed
