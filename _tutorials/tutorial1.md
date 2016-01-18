@@ -104,8 +104,8 @@ Partez de ce squelette
        n'importe quel élément d'un document HTML avec l'URL `#id` (où
        `id` est l'identifiant de la balise).
 
-	**Important :** évitez les balises de mise en forme, dépréciez
-	(par ex.: `<font>`, `<center>`, ...) ou hors place (par ex.:
+	**Important :** évitez les balises de mise en forme, dépréciées
+	(par ex.: `<font>`, `<center>`, ...), ou hors place (par ex.:
 	`<h*>` pour faire autre chose que des titres, `<br>` pour faire
 	des listes, `<table>` pour faire de la mise en page, ...)
 
