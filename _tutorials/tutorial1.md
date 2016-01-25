@@ -103,8 +103,8 @@ Partez de ce squelette
        n'importe quel élément d'un document HTML avec l'URL `#id` (où
        `id` est l'identifiant de la balise).
 
-	**Important :** évitez les balises de mise en forme, dépréciez
-	(par ex.: `<font>`, `<center>`, ...) ou hors place (par ex.:
+	**Important :** évitez les balises de mise en forme, dépréciées
+	(par ex.: `<font>`, `<center>`, ...), ou hors place (par ex.:
 	`<h*>` pour faire autre chose que des titres, `<br>` pour faire
 	des listes, `<table>` pour faire de la mise en page, ...)
 
@@ -223,7 +223,7 @@ soit dans le corps d'une requête de type POST.
 6. Avec l'attribut `pattern`, restreignez le champ de texte aux
    seules recherches contenant les mots HTML ou CSS (c'est l'occasion
    d'apprendre les
-   [RegExp](http://www.w3schools.com/js/js_obj_regexp.asp), si vous ne
+   [RegExp](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions), si vous ne
    savez pas encore vous en servir).
 
 6. Pré-remplissez le champs `q` avec le texte `site:w3schools.com`

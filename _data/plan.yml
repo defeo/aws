@@ -14,15 +14,16 @@
       - javascript.md
       - dom.md
 
-- date: 2016-01-25
+- date: 2016-02-01
   contents:
     tutorials: tutorial2.md
     lessons:
       - php.md
       - frameworks.md
 
-- date: 2016-02-01
 - date: 2016-02-08
 - date: 2016-02-15
+- date: 2016-02-22
 - date: 2016-03-07
-- date: 2016-03-21
+- date: 2016-04-04
+- date: 2016-04-11
