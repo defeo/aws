@@ -1,38 +1,20 @@
-/** Micro-framework **/
-(function() {
-    if (!Function.prototype.bind) {
-	Function.prototype.bind = function (oThis) {
+/*********************************************************************
+*** Micro-framework
 
-	    // closest thing possible to the ECMAScript 5 internal IsCallable
-	    // function
-	    if (typeof this !== "function")
-		throw new TypeError(
-		    "Function.prototype.bind - what is trying to be fBound is not callable"
-		);
-
-	    var aArgs = Array.prototype.slice.call(arguments, 1),
-	    fToBind = this,
-	    fNOP = function () {},
-	    fBound = function () {
-		return fToBind.apply( this instanceof fNOP ? this : oThis || window,
-				      aArgs.concat(Array.prototype.slice.call(arguments)));
-	    };
-
-	    fNOP.prototype = this.prototype;
-	    fBound.prototype = new fNOP();
-
-	    return fBound;
-	};
-    }
-})();
+We collect here some utility functions making up a lightweight
+framework, so we can avoid loading JQuery for basic tasks.
+*********************************************************************/
 
 var $ = (Document.prototype.$ = Document.prototype.querySelector).bind(document);
 var $$ = (Document.prototype.$$ = Document.prototype.querySelectorAll).bind(document);
 Element.prototype.$ = Element.prototype.querySelector;
 Element.prototype.$$ = Element.prototype.querySelectorAll;
 NodeList.prototype.forEach = Array.prototype.forEach;
+NodeList.prototype.map = Array.prototype.map;
+if (!Element.prototype.matches && Element.prototype.matchesSelector)
+    Element.prototype.matches = Element.prototype.matchesSelector;
 
-// Append nodes, à la Jade
+// Append nodes, a la Jade
 Element.prototype.append = function(jade, ns) {
     var format = /^([a-z1-6]+)((?:\.[^ #.]+|#[^ #.]+)*)(?:\s(.*))?$/i;
     var lines = jade.split('\n');
@@ -82,41 +64,70 @@ Element.prototype.css = function(css) {
 }
 
 // Event listeners a la jquery
-Window.prototype.on = Document.prototype.on = Element.prototype.on = function(evts, cb, bubble) {
-    var evts = evts.split(/\s+/);
-    for (var i = 0 ; i < evts.length ; i++)
-	this.addEventListener(evts[i], cb, bubble);
-    return this;
-}
-Window.prototype.once = Document.prototype.once = Element.prototype.once = function(evts, cb, bubble) {
-    var $this = this;
-    return this.on(evts, function (e) {
-	$this.removeEventListener(e.type, arguments.callee, bubble);
-	cb.call(this, e);
-    }, bubble);
-}
+Window.prototype.on = Document.prototype.on = Element.prototype.on =
+    function(evts, cb, selector, useCapture, once) {
+	var evts = evts.split(/\s+/);
+	var $this = this;
+	var handler = (!selector
+		       ? function(e) {
+			   cb.call(this, e);
+			   if (once)
+			       this.removeEventListener(e.type, handler, useCapture);
+		       }
+		       : function(e) {
+			   for (var target = e.target; target != this; target = target.parentNode) {
+			       if (target.matches(selector)) {
+				   cb.call(target, e);
+				   if (once)
+				       this.removeEventListener(e.type, handler, useCapture);
+				   break;
+			       }
+			   }
+		       }).bind(this);
+	for (var i = 0 ; i < evts.length ; i++)
+	    this.addEventListener(evts[i], handler, useCapture);
+	return this;
+    }
+Window.prototype.once = Document.prototype.once = Element.prototype.once =
+    function(evts, cb, selector, useCapture) {
+	return this.on(evts, cb, selector, useCapture, once);
+    }
 
-/** Actions **/
+// Location parsers
+Location.prototype.parsed_querystring = function() {
+    return this.search && this.search.substr(1).split('&').map(function (pair) {
+	return pair.match(/^([^=]*)=?(.*)?$/).slice(1);
+    }).reduce(function(qs, pair) {
+	qs[pair[0]] = pair[1] !== undefined ? pair[1] : true;
+	return qs;
+    }, {});
+};
+
+/*******************************************************************
+*** UI-related functions
+
+These functions power the default components in the eLeMents UI.
+********************************************************************/
 document.addEventListener('DOMContentLoaded', function() {
     /* Make toggles click-activated */
-    $$('.toggle').forEach(function(t) {
+    $$('.toggleables').forEach(function(t) {
 	t.on('click', function(e) {
-	    var group = e.currentTarget.dataset['group'];
+	    var group = this.dataset['group'];
 	    if (group) {
-		$$(group + ' .toggle').forEach(function(toggle) {
-		    if (toggle != e.currentTarget) {
+		$$(group + ' .toggle').forEach((function(toggle) {
+		    if (toggle != this) {
 			toggle.classList.remove('toggled');
 			$$(toggle.dataset['target']).forEach(function(target) {
 			    target.classList.remove('active');
 			});
 		    }
-		});
+		}).bind(this));
 	    }
-	    e.currentTarget.classList.toggle('toggled');
-	    $$(e.currentTarget.dataset['target']).forEach(function(target) {
+	    this.classList.toggle('toggled');
+	    $$(this.dataset['target']).forEach(function(target) {
 		target.classList.toggle('active');
 	    });
 	    e.preventDefault();
-	});
+	}, '.toggle');
     });
 });
