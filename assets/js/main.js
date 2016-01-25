@@ -95,7 +95,7 @@ Window.prototype.once = Document.prototype.once = Element.prototype.once =
 
 // Location parsers
 Location.prototype.parsed_querystring = function() {
-    return this.search && this.search.substr(1).split('&').map(function (pair) {
+    return this.search && decodeURI(this.search.substr(1)).split('&').map(function (pair) {
 	return pair.match(/^([^=]*)=?(.*)?$/).slice(1);
     }).reduce(function(qs, pair) {
 	qs[pair[0]] = pair[1] !== undefined ? pair[1] : true;
