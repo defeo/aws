@@ -3,8 +3,9 @@ layout: lesson
 title: Applications asynchrones
 subtitle: AJAX et XMLHttpRequest
 scripts: ['http://coffeescript.org/extras/coffee-script.js']
-video:
-  url: https://sourcesup.renater.fr/aws-media/ajax.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/ajax.webm
 ---
 
 <section>

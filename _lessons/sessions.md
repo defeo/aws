@@ -2,8 +2,9 @@
 layout: lesson
 title: Sessions
 subtitle: Maintien d'état contrôlé par le serveur
-video:
-  url: https://sourcesup.renater.fr/aws-media/sessions.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/sessions.webm
 ---
 
 <section>

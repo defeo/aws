@@ -1,8 +1,9 @@
 ---
 title: Le WWW
 subtitle: son histoire, ses langages
-video:
-  url: https://www.dropbox.com/s/zhqfrbooj1g0fhj/class-2015-02-04.webm?dl=1
+addons:
+  video:
+    url: https://www.dropbox.com/s/zhqfrbooj1g0fhj/class-2015-02-04.webm?dl=1
 ---
 
 <section>

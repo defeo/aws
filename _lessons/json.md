@@ -2,8 +2,9 @@
 layout: lesson
 title: JSON
 subtitle: Formats d'échange de données en AJAX
-video:
-  url: https://sourcesup.renater.fr/aws-media/json.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/json.webm
 ---
 
 <section>

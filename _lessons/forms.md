@@ -1,8 +1,9 @@
 ---
 layout: lesson
 title: Formulaires HTML
-video:
-  url: https://sourcesup.renater.fr/aws-media/forms.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/forms.webm
 ---
 
 <section>

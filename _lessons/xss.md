@@ -3,8 +3,9 @@ layout: lesson
 title: XSS
 subtitle: Cross Site Scripting
 scripts: ../js/mock-browser.js
-video:
-  url: https://sourcesup.renater.fr/aws-media/xss.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/xss.webm
 ---
 
 <style>

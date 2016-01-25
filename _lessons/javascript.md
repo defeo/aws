@@ -2,8 +2,9 @@
 layout: lesson
 title: JavaScript
 subtitle: Le langage
-video:
-  url: https://sourcesup.renater.fr/aws-media/javascript.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/javascript.webm
 ---
 
 <section>

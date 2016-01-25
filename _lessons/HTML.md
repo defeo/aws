@@ -2,8 +2,9 @@
 layout: lesson
 title: HTML
 subtitle: HyperText Markup Language
-video:
-  url: https://sourcesup.renater.fr/aws-media/html.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/html.webm
 ---
 
 <section>

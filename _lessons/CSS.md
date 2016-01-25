@@ -2,8 +2,9 @@
 layout: lesson
 title: CSS
 subtitle: Cascading StyleSheets
-video:
-  url: https://sourcesup.renater.fr/aws-media/css.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/css.webm
 ---
 
 <section>

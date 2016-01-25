@@ -1,8 +1,9 @@
 ---
 title: Autour de Flexbox et JavaScript
 subtitle: 18 Février 2015
-video:
-  url: https://www.dropbox.com/s/gccilan2sjja3zl/class-2015-02-18.webm?dl=1
+addons:
+  video:
+    url: https://www.dropbox.com/s/gccilan2sjja3zl/class-2015-02-18.webm?dl=1
 ---
 
 # Classe inversée du 18 février

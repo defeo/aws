@@ -3,8 +3,9 @@ layout: lesson
 title: Maintien d'état
 subtitle: Persistance côté client, Cookies, Storage API
 scripts: ['http://coffeescript.org/extras/coffee-script.js']
-video:
-  url: https://sourcesup.renater.fr/aws-media/etat.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/etat.webm
 ---
 
 <section>

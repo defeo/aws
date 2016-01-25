@@ -1,8 +1,9 @@
 ---
 title: Langages de template, cookies, storage API
 subtitle: 11 Mars 2015
-video:
-  url: https://www.dropbox.com/s/yxoftbkknch80sz/class-2015-03-11.webm?dl=1
+addons:
+  video:
+    url: https://www.dropbox.com/s/yxoftbkknch80sz/class-2015-03-11.webm?dl=1
 ---
 
 # Classe inversée du 11 mars

@@ -2,8 +2,9 @@
 layout: lesson
 title: HTTP
 subtitle: HyperText Transfer Protocol
-video:
-  url: https://sourcesup.renater.fr/aws-media/HTTP.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/HTTP.webm
 ---
 
 <section style="font-size: 90%">

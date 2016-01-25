@@ -1,23 +1,18 @@
 ---
 ---
 
-* { resize: none; } /* Chrome fix */
-
 #video-popup {
     display: none;
     position: fixed;
     width: 100%;
     height: 100vh;
-    top: 0;
-    left: 0;
-    pointer-events: none;
+    top: 0; left: 0;
     justify-content: center;
     align-items: center;
     outline-offset: -5px;
+    z-index: 1000;
     
-    &:target {
-	display: flex;
-    }
+    &:target { display: flex; }
     
     &>div {
 	pointer-events: auto;
@@ -26,8 +21,7 @@
 	flex-flow: column;
 	justify-content: center;
 	align-content: center;
-	width: 70%;
-	height: 70%;
+	width: 70%; height: 70%;
 	padding: 2ex;
 	background-color: rgba(240,240,240,0.6);
 	box-shadow: 0 0 10px black;
@@ -35,13 +29,9 @@
 	resize: both;
 	overflow: hidden;
 	
-	video {
-	    max-width: 100%;
-	    max-height: 100%;
-	}
+	video { max-width: 100%; max-height: 100%; }
 
 	.close {
-	    font-family: courier;
 	    color: red;
 	    position: absolute;
 	    height: 0;

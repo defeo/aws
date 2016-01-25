@@ -29,10 +29,6 @@
 	  title="{{ l.title }}">
     {% endfor %}{% endfor %}{% endfor %}
 
-    {% if page.video %}
-    <link class="slideshow-css" rel="stylesheet" href="{{ site.baseurl }}/css/video-popup.css">
-    {% endif %}
-    
     {% for s in page.styles %}
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
@@ -53,17 +49,6 @@
       
       <ul class="menu" id="top-menu">
 	<li><a href="{{ site.baseurl }}/forum">Forum<em id="forum-count" style="display:none"></em></a></li>
-	{% if page.video %}
-	<li><a href="#video-popup"><i class="fa fa-video-camera"></i> Video</a></li>
-	<div id="video-popup">
-	  <div>
-	    <a href="#" class="close"><i class="fa fa-close"></i></a>
-	    <video controls preload="metadata">
-	      <source src="{{ page.video.url }}#t={{ page.video.start }}{% if page.video.end %},{{ page.video.end }}{% endif %}">
-	    </video>
-	  </div>
-	</div>
-	{% endif %}
 	
 	<li><a href="{{ github_blob }}/{% include utils/rel_path.str %}" target="_blank">
 	    <i class="icon fa fa-code"></i>

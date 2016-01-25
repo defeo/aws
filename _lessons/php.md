@@ -2,8 +2,9 @@
 layout: lesson
 title: PHP
 subtitle: "PHP: Hypertext Preprocessor"
-video:
-  url: https://sourcesup.renater.fr/aws-media/php.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/php.webm
 ---
 
 <section>

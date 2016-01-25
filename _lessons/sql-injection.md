@@ -1,8 +1,9 @@
 ---
 layout: lesson
 title: Injections SQL
-video:
-  url: https://sourcesup.renater.fr/aws-media/sql-injection.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/sql-injection.webm
 ---
 
 <section>

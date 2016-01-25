@@ -1,8 +1,9 @@
 ---
 title: Autour de CSS
 subtitle: 11 Février 2015
-video:
-  url: https://www.dropbox.com/s/u2uhu1h747ne1na/class-2015-02-11.webm?dl=1
+addons:
+  video:
+    url: https://www.dropbox.com/s/u2uhu1h747ne1na/class-2015-02-11.webm?dl=1
 ---
 
 # Classe inversée du 11 février

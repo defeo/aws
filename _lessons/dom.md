@@ -2,8 +2,9 @@
 layout: lesson
 title: Le DOM
 subtitle: Document Object Model
-video:
-  url: https://sourcesup.renater.fr/aws-media/dom.webm
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/dom.webm
 ---
 
 <section>
