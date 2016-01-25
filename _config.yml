@@ -31,11 +31,11 @@ defaults:
       addons:
         highlightjs: yes
         clicker:
-          host: http://keats.prism.uvsq.fr
+          host: http://sage.prism.uvsq.fr/luca/clicker
           methods: 
             - title: " @UVSQ"
-              icon: graduation-cap,
-              path: /login/saml,
+              icon: graduation-cap
+              path: /login/saml
           messages:
             loginError: Veulliez vous connecter pour visualiser ce questionnaire.
             unknownError: "Une erreur s'est produite, veuillez réessayer."
