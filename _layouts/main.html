@@ -41,7 +41,7 @@
   </head>
   <body>
 
-    <nav id="topbar">
+    <nav id="topbar" class="toggleables">
       <div id="logo"><a href="{{ site.baseurl }}/">
 	{% if site.logo %}<img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.title }}">
 	{% else %}{{ site.title }}{% endif %}
@@ -127,13 +127,26 @@
 	{% assign docs = site.collections.addons.docs | where:'name',a[0] %}
 	{% for d in docs %}{% assign base = d.url | append: '/../' %}{% for m in d.menus %}
 	<li class="class-bp-addon-{{ d.name }}">
-	  <a href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">
+	  <a {% if m.submenus %}class="toggle"{% endif %}
+	     data-target="#top-menu .class-bp-addon-{{ d.name }} .submenu"
+	     data-group="#topbar .menu"
+	     href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">
 	    {% if m.icon %}<i class="icon fa fa-{{ m.icon }}"></i>{% endif %}
 	    {% if m.title %}<span class="title">{{ m.title }}</span>{% endif %}
 	  </a>
+	  {% if m.submenus %}
+	  <ul class="submenu">
+	  {% for sub in m.submenus %}
+	    <li><a href="{% include utils/joinpath.str root=site.baseurl base=base path=sub.href %}">
+		{% if sub.icon %}<i class="icon fa fa-{{ sub.icon }}"></i>{% endif %}
+		{% if sub.title %}<span class="title">{{ sub.title }}</span>{% endif %}
+	    </a></li>
+	    {% endfor %}
+	  </ul>
+	  {% endif %}
 	</li>
 	{% endfor %}{% endfor %}{% endfor %}
-      </ul>
+	</ul>
     </nav>
     
     <div class="main">
