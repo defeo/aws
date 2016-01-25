@@ -30,6 +30,17 @@ defaults:
       layout: default
       addons:
         highlightjs: yes
+        clicker:
+          host: http://keats.prism.uvsq.fr
+          methods: 
+            - title: " @UVSQ"
+              icon: graduation-cap,
+              path: /login/saml,
+          messages:
+            loginError: Veulliez vous connecter pour visualiser ce questionnaire.
+            unknownError: "Une erreur s'est produite, veuillez réessayer."
+            submitError: "Impossible d'envoyer le questionnaire, veuillez réessayer."
+            submit: "Envoyer réponse"
   - scope:
       path: lessons
     values:
