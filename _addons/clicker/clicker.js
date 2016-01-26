@@ -80,93 +80,97 @@ function Clicker(provider) {
 	window.localStorage.removeItem('clicker.token');
     }
 
-    this.loginMenu.on('clicker.login-change', (function (e) {
-	$$('.clicker-poll').forEach((function (poll) {
-	    poll.innerHTML = '';
-	    if (!this.user) {
-		poll.append("p.clicker-error " + messages.loginError);
-		return console.error('Not logged in');
+    this.injectPoll = function(id, node) {
+	node.innerHTML = '';
+	if (!this.user) {
+	    node.append("p.clicker-error " + messages.loginError);
+	    return console.error('Not logged in');
+	}
+	var url = '/answer/' + id;
+	this._authXHR(url, this.user.token, (function(data, xhr) {
+	    if (xhr.status != 200 && xhr.status != 403) {
+		node.append("p.clicker-error " + messages.unknownError);
+		return console.error(data);
 	    }
-	    var url = '/answer/' + poll.id.slice('clicker-'.length);
-	    this._authXHR(url, this.user.token, (function(data, xhr) {
-		if (xhr.status != 200 && xhr.status != 403) {
-		    poll.append("p.clicker-error " + messages.unknownError);
-		    return console.error(data);
-		}
-		console.log(data);
-		poll.append('h3.clicker-title ' + data.poll.title);
-		poll.append('p.clicker-question ' + data.poll.question);
-		var choices = poll.append('ul.clicker-choices');
-		data.poll.choices.forEach(makeChoice.bind(null, choices, data));
-		
-		function makeChoice(parent, data, answ) {
-		    var choice = parent.append('li' + (answ.correct ? '.clicker-correct' : ''));
-		    var input = choice
-			.append('input.clicker-choice#clicker-choice-' + answ._id);
-		    input.type = data.poll.multiChoice ? 'checkbox' : 'radio';
-		    input.name = poll.id;
-		    if (data.answers) {
-			input.disabled = true;
-			if (data.answers[0].answer.choices.indexOf(answ._id) >= 0)
-			    input.checked = true;
-		    }
-		    choice
-			.append('label ' + answ.answer)
-			.setAttribute('for', 'clicker-choice-' + answ._id);
-		}
-
-		var button = poll
-		    .append('button.clicker-submit ' + messages.submit)
-		    .once('click', (function(e) {
-			var answers = poll
-			    .$$('input.clicker-choice:checked')
-			    .map(function(input) {
-				return input.id.slice('clicker-choice-'.length);
-			    });
-			this._authXHR(url, this.user.token, function(data, xhr) {
-			    if (xhr.status == 200) {
-				console.log(data);
-				data.answers = [{ answer: { choices: answers } }];
-				choices.innerHTML = "";
-				data.poll.choices.forEach(makeChoice.bind(null, choices, data));
-				grade(poll, data.grade);
-			    } else {
-				console.log(xhr.response);
-				alert(messages.submitError);
-			    }
-			}, null, answers);
-		    }).bind(this));
-		var buttonMark = button.append('span.clicker-grade.fa.fa-arrow-right')
-
-		function grade(poll, grade) {
-		    poll.$$('input, button').forEach(function (x) { x.disabled = true });
-		    poll.classList.add('answered');
-		    poll.dataset['clickerGrade'] = JSON.stringify(grade);
-		    var mark = buttonMark.classList;
-		    mark.remove('fa-arrow-right');
-		    if (grade.on ? grade.ok == grade.on : grade.ok) {
-			mark.add('clicker-success');
-			mark.add('fa-check');
-		    } else {
-			mark.add('fa-close');
-		    }
-		}
-		
+	    console.log(data);
+	    node.append('h3.clicker-title ' + data.poll.title);
+	    node.append('p.clicker-question ' + data.poll.question);
+	    var choices = node.append('ul.clicker-choices');
+	    data.poll.choices.forEach(makeChoice.bind(null, choices, data));
+	    
+	    function makeChoice(parent, data, answ) {
+		var choice = parent.append('li' + (answ.correct ? '.clicker-correct' : ''));
+		var input = choice
+		    .append('input.clicker-choice#clicker-choice-' + answ._id);
+		input.type = data.poll.multiChoice ? 'checkbox' : 'radio';
+		input.name = 'clicker-' + id;
 		if (data.answers) {
-		    grade(poll, data.answers[0].grade);
-		} else if (!data.poll.multiChoice) {
-		    button.disabled = true;
-		    poll.once('change', function(e) {
-			button.disabled = false;
-		    });
+		    input.disabled = true;
+		    if (data.answers[0].answer.choices.indexOf(answ._id) >= 0)
+			input.checked = true;
 		}
-	    }).bind(this), function(err) {
-		poll.append("p.clicker-error " + messages.unknownError);
-		return console.error(err);
-	    });
+		choice
+		    .append('label ' + answ.answer)
+		    .setAttribute('for', 'clicker-choice-' + answ._id);
+	    }
+	    
+	    var button = node
+		.append('button.clicker-submit ' + messages.submit)
+		.once('click', (function(e) {
+		    var answers = node
+			.$$('input.clicker-choice:checked')
+			.map(function(input) {
+			    return input.id.slice('clicker-choice-'.length);
+			});
+		    this._authXHR(url, this.user.token, function(data, xhr) {
+			if (xhr.status == 200) {
+			    console.log(data);
+			    data.answers = [{ answer: { choices: answers } }];
+			    choices.innerHTML = "";
+			    data.poll.choices.forEach(makeChoice.bind(null, choices, data));
+			    grade(node, data.grade);
+			} else {
+			    console.log(xhr.response);
+			    alert(messages.submitError);
+			}
+		    }, null, answers);
+		}).bind(this));
+	    var buttonMark = button.append('span.clicker-grade.fa.fa-arrow-right')
+
+	    function grade(node, grade) {
+		node.$$('input, button').forEach(function (x) { x.disabled = true });
+		node.classList.add('answered');
+		node.dataset['clickerGrade'] = JSON.stringify(grade);
+		var mark = buttonMark.classList;
+		mark.remove('fa-arrow-right');
+		if (grade.on ? grade.ok == grade.on : grade.ok) {
+		    mark.add('clicker-success');
+		    mark.add('fa-check');
+		} else {
+		    mark.add('fa-close');
+		}
+	    }
+	    
+	    if (data.answers) {
+		grade(node, data.answers[0].grade);
+	    } else if (!data.poll.multiChoice) {
+		button.disabled = true;
+		node.once('change', function(e) {
+		    button.disabled = false;
+		});
+	    }
+	}).bind(this), function(err) {
+	    node.append("p.clicker-error " + messages.unknownError);
+	    return console.error(err);
+	});
+    };
+    
+    this.loginMenu.on('clicker.login-change', (function (e) {
+	$$('.clicker-poll').forEach((function(poll) {
+	    this.injectPoll(poll.id.slice('clicker-'.length), poll);
 	}).bind(this));
     }).bind(this));
-
+    
     var qs = window.location.parsed_querystring();
     if (qs.token !== undefined) {
 	window.localStorage['clicker.token'] = qs.token;

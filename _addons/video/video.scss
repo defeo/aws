@@ -27,7 +27,7 @@
 	box-shadow: 0 0 10px black;
 	border-radius: 4px;
 	resize: both;
-	overflow: hidden;
+	overflow: auto;
 	
 	video { max-width: 100%; max-height: 100%; }
 
@@ -38,6 +38,7 @@
 	    right: 0.2ex;
 	    top: 0;
 	    cursor: pointer;
+	    z-index: 1002;
 
 	    &:hover {
 		text-shadow: 0 0 3px red;
@@ -45,4 +46,17 @@
 	    }
 	}
     }
+}
+
+#quizzes-popup {
+    display: none;
+    z-index: 1001;
+    background-color: white;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; min-height: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+    
+    &.shown { display: block; }
 }

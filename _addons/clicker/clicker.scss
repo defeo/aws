@@ -10,16 +10,18 @@
 
     .clicker-grade {
 	padding-left: 10px;
-	color: red;
-	&.clicker-success { color: green }
+	&.fa-close { color: red }
+	&.fa-check { color: green }
     }
     
     &.answered {
-	input:checked ~ * { color: red; }
+	input:checked { outline: solid 3px #f00; }
 	.clicker-correct {
-	    margin-left: -5px;
-	    border-left: solid 5px #23aaff;
-	    input:checked ~ * { color: green; }
+	    input {
+		outline: solid 3px;
+		outline-color: #00f;
+	    }
+	    input:checked { outline-color: #0f0; }
 	}
     }
 }
