@@ -5,6 +5,8 @@ subtitle: Cascading StyleSheets
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/css.webm
+    quizzes:
+      - 56a7ab9487b68f1300ba90ae
 ---
 
 <section>

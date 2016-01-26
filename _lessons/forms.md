@@ -4,6 +4,8 @@ title: Formulaires HTML
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/forms.webm
+    quizzes:
+      - 56a7a8f187b68f1300ba90a8
 ---
 
 <section>

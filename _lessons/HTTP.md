@@ -5,6 +5,8 @@ subtitle: HyperText Transfer Protocol
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/HTTP.webm
+    quizzes:
+      - 56a7a34a87b68f1300ba909b
 ---
 
 <section style="font-size: 90%">

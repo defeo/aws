@@ -5,6 +5,8 @@ subtitle: HyperText Markup Language
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/html.webm
+    quizzes:
+      - 56a7a68087b68f1300ba90a3
 ---
 
 <section>
