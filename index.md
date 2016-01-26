@@ -9,10 +9,10 @@ scripts: js/collapsible.js
 
 ## Informations pratiques
 
-**Chargé de cours TD :** Luca De Feo <http://defeo.lu/>.  
-**Chargé de TD :** Sébastien Besnier.
+**Chargé de cours et de TD :** Luca De Feo <http://defeo.lu/>.  
 
-**Cours + TD :** Lundi 13h45 - 18h30
+**Cours :** Mardi 8h30--10h30  
+**TD :** Mercredi 8h30--12h45 (groupe A), 13h30--17h45
 
 
 {::nomarkdown}
