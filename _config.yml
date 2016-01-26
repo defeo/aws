@@ -29,6 +29,7 @@ defaults:
     values:
       layout: default
       addons:
+        muut: yes
         highlightjs: yes
         clicker:
           host: http://sage.prism.uvsq.fr/luca/clicker

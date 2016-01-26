@@ -253,24 +253,6 @@ footer.footer {
     }
 }
 
-// Forum link styling
-#forum-count {
-    display: none;
-    font-style: normal;
-    font-family: 'Oxygen Mono', mono;
-    border-radius: 1ex;
-    padding: 0 0.8ex;
-    background-color: rgba(0,0,0,0.6);
-    color: rgba(255,255,255,0.9);
-    font-size: 50%;
-    vertical-align: super;
-    margin-left: 0.5ex;
-    &.new {
-        background-color: rgba(0,0,0,0.4);
-        box-shadow: 0 0 2px 2px rgba(0,0,0,0.4);
-    }
-}
-
 html.slideshow {
     .title-slide > h1 {
         position: absolute;

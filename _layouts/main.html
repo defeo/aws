@@ -48,8 +48,6 @@
       </button>
       
       <ul class="menu" id="top-menu">
-	<li><a href="{{ site.baseurl }}/forum">Forum<em id="forum-count" style="display:none"></em></a></li>
-	
 	<li><a href="{{ github_blob }}/{% include utils/rel_path.str %}" target="_blank">
 	    <i class="icon fa fa-code"></i>
 	    <span class="title">Source</span>
@@ -153,30 +151,6 @@
       }
     </script>
 
-    <script>
-      (function () {
-        var oldn, xhr = new XMLHttpRequest();
-        xhr.onload = function(e) {
-          var n = this.response['/webdev-uvsq'].size;
-          if (n) {
-            var $cnt = $('#forum-count');
-            $cnt.css({ display: 'inline' });
-            $cnt.textContent = n;
-            if (oldn !== undefined && n > oldn)
-              $cnt.classList.add('new');
-            oldn = n;
-          }
-          setTimeout(fetch, 30*1000);
-        };
-        var fetch = function() {
-          xhr.open('GET', 'http://api.muut.com/postcounts?path=/webdev-uvsq');
-          xhr.responseType = 'json';
-          xhr.send();
-        }
-        fetch();
-      })();
-    </script>
-    
     <!-- Scripts added by add-ons -->
     {% for a in page.addons %}
     <!-- Add-on: {{ a[0] }} -->
