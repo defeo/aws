@@ -20,9 +20,9 @@
     ).bind(x)
     x.$('.always-on').on 'click', x.toggle.bind(x)
 
-hash = () -> if document.location.hash
-    ($$ ((document.location.hash.substr 1).split(',').map (x) -> "##{x}").join ',').forEach (x) ->
-        x.check()
+# hash = () -> if document.location.hash
+#     ($$ ((document.location.hash.substr 1).split(',').map (x) -> "##{x}").join ',').forEach (x) ->
+#         x.check?()
 
-window.on 'hashchange', hash
-document.on 'DOMContentLoaded', hash
+#window.on 'hashchange', hash
+#document.on 'DOMContentLoaded', hash

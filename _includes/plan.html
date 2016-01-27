@@ -1,19 +1,19 @@
 <div id="plan">
   <style scoped>
-    #plan h2 small {
+    #plan h4 small {
 	font-weight: normal;
 	font-size: 60%;
     }
-    #plan h2 a:after { content: " montrer"; }
-    #plan.checked h2 a:after { content: " cacher"; }
+    #plan h4 a:after { content: " montrer"; }
+    #plan.checked h4 a:after { content: " cacher"; }
     #plan dt { font-weight: normal; }
   </style>
-  <h2>Plan <small>(<a id="un_check" href="#">tout</a>)</small></h2>
+  <h4>Agenda <small>(<a id="un_check" href="#">tout</a>)</small></h4>
 
-  {% for week in site.data.plan %}
+  {% for week in include.plan %}
   <div class="week collapsible collapsed" id="semaine-{{ forloop.index }}" data-date="{{ week.date }}">
     <div class="always-on">
-      <h3>Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</h3>
+      <h4>Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</h4>
     </div>
     <dl class="toggleable">
       {% for coll in week.contents %}
