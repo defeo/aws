@@ -94,12 +94,15 @@ function Clicker(provider) {
 	    }
 	    console.log(data);
 	    node.append('h3.clicker-title ' + data.poll.title);
-	    node.append('p.clicker-question ' + data.poll.question);
+	    node.append('div.clicker-question ' + data.poll.question);
 	    var choices = node.append('ul.clicker-choices');
 	    data.poll.choices.forEach(makeChoice.bind(null, choices, data));
 	    
 	    function makeChoice(parent, data, answ) {
-		var choice = parent.append('li' + (answ.correct ? '.clicker-correct' : ''));
+		var choice = parent
+		    .append('li' + (answ.correct ? '.clicker-correct' : ''))
+		    .append('label')
+		    .append('div') 
 		var input = choice
 		    .append('input.clicker-choice#clicker-choice-' + answ._id);
 		input.type = data.poll.multiChoice ? 'checkbox' : 'radio';
@@ -109,9 +112,7 @@ function Clicker(provider) {
 		    if (data.answers[0].answer.choices.indexOf(answ._id) >= 0)
 			input.checked = true;
 		}
-		choice
-		    .append('label ' + answ.answer)
-		    .setAttribute('for', 'clicker-choice-' + answ._id);
+		choice.innerHTML += answ.answer;
 	    }
 	    
 	    var button = node

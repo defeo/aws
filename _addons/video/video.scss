@@ -59,4 +59,11 @@
     box-sizing: border-box;
     
     &.shown { display: block; }
+    label:hover > div { box-shadow: 0 0 2px 0 #aaa; }
+
+    label pre {
+	display: inline-block;
+	vertical-align: middle;
+    }
+    b { font-weight: bold; }
 }

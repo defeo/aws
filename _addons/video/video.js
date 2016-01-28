@@ -22,17 +22,18 @@
     window.location.hash = tmp;
 
     /* Append quizz popup */
-    var quizzes = popup.append('div#quizzes-popup');
-    quizzes.append('h2 Questions de compréhension');
-    meta.quizzes.forEach(function (q) {
-	clicker.injectPoll(q, quizzes.append('div.clicker-poll#clicker-' + q));
-    });
-
-    video.on('ended', function(e) {
-	quizzes.classList.add('shown');
-    });
-    close.on('click', function(e) {
-	quizzes.classList.remove('shown');
-    });
-    
+    if (meta.quizzes) {
+	var quizzes = popup.append('div#quizzes-popup');
+	quizzes.append('h2 Questions de compréhension');
+	meta.quizzes.forEach(function (q) {
+	    clicker.injectPoll(q, quizzes.append('div.clicker-poll#clicker-' + q));
+	});
+	
+	video.on('ended', function(e) {
+	    quizzes.classList.add('shown');
+	});
+	close.on('click', function(e) {
+	    quizzes.classList.remove('shown');
+	});
+    }
 })($('#content'), ClassBP.page.addons.video);
