@@ -216,6 +216,6 @@ v.vroom();
 VROOOOOOOOOOOOOOOOOOOM!
 ~~~
 
-Ce n'est pas encore supporté dans aucun browser.
+Ce n'est encore supporté dans aucun browser.
 
 </section>

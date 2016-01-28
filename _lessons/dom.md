@@ -5,6 +5,8 @@ subtitle: Document Object Model
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/dom.webm
+    quizzes:
+      - 56aa9c0c87b68f1300ba9106
 ---
 
 <section>

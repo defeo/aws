@@ -8,9 +8,6 @@ addons:
     quizzes:
       - 56a7ab9487b68f1300ba90ae
 ---
-<style>
-b { font-weight: bold }
-</style>
 
 <section>
 

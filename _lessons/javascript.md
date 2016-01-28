@@ -5,6 +5,8 @@ subtitle: Le langage
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/javascript.webm
+    quizzes:
+      - 56a9f03e87b68f1300ba90f1
 ---
 
 <section>
@@ -212,7 +214,7 @@ function bon(x, y) {
 ~~~
 function mauvais(x, y) {
 	if (undefined == y)
-		// s'exécute même si y vaut 0 ou ''
+		// s'exécute même si y vaut null
 		...
 }
 ~~~
