@@ -39,8 +39,8 @@ Partez de ce squelette
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TD 1</title>
     <meta charset="utf-8" />
+    <title>TD 1</title>
   </head>
   <body>
     <!-- Votre contenu ici -->
