@@ -189,7 +189,7 @@ l'URL d'une requête HTTP de type GET, comme c'est le cas pour Google ;
 soit dans le corps d'une requête de type POST.
 
 1. Ajoutez un formulaire (balise `<form>`) à votre page, avec les
-   attributs `method="GET"` et `action="https://www.google.com/search"`.
+   attributs `method="GET"` et `action="https://www.google.fr/search"`.
 
 2. Dans le formulaire, ajoutez un champ de texte et un bouton de type
    submit (balise `<input>` dans les deux cas), comme ceci
