@@ -5,6 +5,8 @@ subtitle: "PHP: Hypertext Preprocessor"
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/php.webm
+    quizzes:
+      - 56aeb50887b68f1300ba914b
 ---
 
 <section>
@@ -21,9 +23,7 @@ par Perl, C et d'autres languages similaires.
 ?>
 ~~~
 
-**Versions courantes :** 5.4–5.6.
-
-**Prochaine version :** 7.0 (prévue octobre 2015).
+**Versions courantes :** 5.6, 7.0.
 
 PHP est aussi un **framework web** (assez basique):
 

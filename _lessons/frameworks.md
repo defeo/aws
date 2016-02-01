@@ -5,6 +5,9 @@ subtitle: Applications web, API HTTP, Routage
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/frameworks.webm
+    quizzes:
+      - 56af3a5e87b68f1300ba9153
+      - 56af467287b68f1300ba915b
 ---
 
 {% raw %}
