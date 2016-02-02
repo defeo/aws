@@ -144,9 +144,9 @@
     <script type="text/javascript">
       var ClassBP = {
         "page": {
-          {% for p in page %}{% if p[0] != "content" %}
+          {% for p in page %}{% unless "content next previous" contains p[0] %}
           "{{ p[0] }}": {{ p[1] | jsonify }},
-          {% endif %}{% endfor %}
+          {% endunless %}{% endfor %}
         }
       }
     </script>

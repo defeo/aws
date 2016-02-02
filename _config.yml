@@ -48,6 +48,7 @@ collections:
   # if you want to use addons
   addons:
     output: true
+    permalink: /:collection/:path:output_ext
   # Other collections. See Jekyll docs.
 #  tutorials:
 #    name:

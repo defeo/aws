@@ -16,12 +16,12 @@
     */
     $exercise: "Exercise";
     
-    h2 { counter-reset: exercise; }
+    h2 { counter-reset: exercise }
     .exercise:before {
 	counter-increment: exercise;
 	content: $exercise " " counter(section) "." counter(exercise) " ";
     }
-
+    
     /**
       Centered style. Very simple style applicable to inlines and blocks.
     */
@@ -29,7 +29,7 @@
 	margin: auto;
 	text-align: center;
     }
-
+    
     /**
       Citations
     */
@@ -39,7 +39,7 @@
 	& > p:first-child::before { content: open-quote; }
 	& > p:last-child::after { content: close-quote; }
     }
-
+    
     /**
       Prettier tables: 
     */
