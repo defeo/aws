@@ -110,7 +110,7 @@ function Clicker(provider) {
 		if (data.answers) {
 		    input.disabled = true;
 		    if (data.answers[0].answer.choices.indexOf(answ._id) >= 0)
-			input.checked = true;
+			input.setAttribute('checked', true);
 		}
 		choice.innerHTML += answ.answer;
 	    }
