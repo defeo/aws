@@ -79,6 +79,7 @@ collections:
 # Kramdown configuration (markdown parser)
 kramdown:
   parse_block_html: true
+highlighter: null
 
 # Prose.io configuration, if that's your style
 #prose: no
