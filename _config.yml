@@ -67,6 +67,7 @@ defaults:
 collections:
   addons:
     output: true
+    permalink: /:collection/:path:output_ext
   projects:
   lessons: 
     output: true
