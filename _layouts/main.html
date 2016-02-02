@@ -20,7 +20,7 @@
     <!-- Links (stylesheets, feeds, ...) added by add-ons -->
     {% for a in page.addons %}
     <!-- Add-on: {{ a[0] }} -->
-    {% assign docs = site.collections.addons.docs | where:'name',a[0] %}
+    {% assign docs = site.addons | where:'name',a[0] %}
     {% for d in docs %}{% assign base = d.url | append: '/../' %}{% for l in d.links %}
     <link class="class-bp-addon-{{ d.name }}"
 	  rel="{% include utils/default.str val=l.rel default='stylesheet'  %}"
@@ -92,7 +92,7 @@
 		  <span class="title">New post</span>
 	      </a></li>
 	      {% else %}
-	      {% assign coll = site.collections[c.key] %}
+	      {% assign coll = site.collections | where:'label', c.key | first %}
 	      <li><a href="{{ cms_base | strip_newlines }}/new/{{ github_branch }}/{{ coll.relative_directory }}{{ cms_qs | replace: '<name>',coll.name.one | replace: '<template>',c.template | uri_escape }}"
 		     target="_blank">
 		  <i class="icon fa fa-{% include utils/default.str val=coll.icon default='file-text-o' %}"></i>
@@ -107,7 +107,7 @@
 	<!-- Menu entries added by add-ons -->
 	{% for a in page.addons %}
 	<!-- Add-on: {{ a[0] }} -->
-	{% assign docs = site.collections.addons.docs | where:'name',a[0] %}
+	{% assign docs = site.addons | where:'name',a[0] %}
 	{% for d in docs %}{% assign base = d.url | append: '/../' %}{% for m in d.menus %}
 	<li class="class-bp-addon-{{ d.name }}">
 	  <a {% if m.submenus %}class="toggle"{% endif %}
@@ -154,7 +154,7 @@
     <!-- Scripts added by add-ons -->
     {% for a in page.addons %}
     <!-- Add-on: {{ a[0] }} -->
-    {% assign docs = site.collections.addons.docs | where:'name',a[0] %}
+    {% assign docs = site.addons | where:'name',a[0] %}
     {% for d in docs %}{% assign base = d.url | append: '/../' %}{% for s in d.scripts %}
     <script class="class-bp-addon-{{ d.name }}"
 	    src="{% include utils/joinpath.str root=site.baseurl base=base path=s.src %}"
