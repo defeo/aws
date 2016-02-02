@@ -10,6 +10,17 @@ function Clicker(provider) {
     };
     for (m in provider.messages)
 	messages[m] = provider.messages[m];
+
+    var shuffle = function(n) {
+	var shuffle = Array(n).fill(0).map(function (x,i) { return i; });
+	for (var i = n - 1; i > 0; i--) {
+	    var j = Math.floor(Math.random() * (i + 1))
+	    var temp = shuffle[i];
+	    shuffle[i] = shuffle[j];
+	    shuffle[j] = temp;
+	}
+	return shuffle;
+    };
     
     const clicker = this;
     this.loginMenu = $('#top-menu .class-bp-addon-clicker');
@@ -96,7 +107,11 @@ function Clicker(provider) {
 	    node.append('h3.clicker-title ' + data.poll.title);
 	    node.append('div.clicker-question ' + data.poll.question);
 	    var choices = node.append('ul.clicker-choices');
-	    data.poll.choices.forEach(makeChoice.bind(null, choices, data));
+	    var shuf = shuffle(data.poll.choices.length);
+	    console.log(shuf);
+	    shuf.forEach(function (x) {
+		makeChoice(choices, data, data.poll.choices[x]);
+	    });
 	    
 	    function makeChoice(parent, data, answ) {
 		var choice = parent
@@ -128,7 +143,9 @@ function Clicker(provider) {
 			    console.log(data);
 			    data.answers = [{ answer: { choices: answers } }];
 			    choices.innerHTML = "";
-			    data.poll.choices.forEach(makeChoice.bind(null, choices, data));
+			    shuf.forEach(function (x) {
+				makeChoice(choices, data, data.poll.choices[x]);
+			    });
 			    grade(node, data.grade);
 			} else {
 			    console.log(xhr.response);
