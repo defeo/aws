@@ -18,7 +18,7 @@
     <dl class="toggleable">
       {% for coll in week.contents %}
       {% assign collection = coll[0] %}
-      {% assign collection = site.collections[collection] %}
+      {% assign collection = site.collections | where:'label', collection | first %}
       <dt>{{ collection.name }} :</dt>
       {% for link in coll[1] %}
       {% if link.url %}

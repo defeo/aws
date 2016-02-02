@@ -10,9 +10,10 @@ interface agréable et parfaitement fonctionnelle.
 
 Pour ce TD, on fera référence
 
-- Aux leçons {% include link.html collection=site.collections.lessons href="CSS.md" %},
-  {% include link.html collection=site.collections.lessons href="javascript.md" %},
-  {% include link.html collection=site.collections.lessons href="dom.md" %}.
+{% assign lessons = site.collections | where:'label','lessons' | first %}
+- Aux leçons {% include link.html collection=lessons href="CSS.md" %},
+  {% include link.html collection=lessons href="javascript.md" %},
+  {% include link.html collection=lessons href="dom.md" %}.
 - Au Mozilla Developer Network :
   - <https://developer.mozilla.org/docs/CSS>,
   - <https://developer.mozilla.org/docs/JavaScript>.

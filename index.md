@@ -49,9 +49,10 @@ td a { padding: 1ex 1em; background-color: #ddd; }
 ## Liste des leçons
 
 <div id="lessons">
+{% assign lessons = site.collections | where:'label','lessons' | first %}
 {% for l in site.lessons %}
 {% assign path = l.relative_path | split:"/" | last %}
-{% include link.html collection=site.collections.lessons href=path %}
+{% include link.html collection=lessons href=path %}
 {% endfor %}
 </div>
 
