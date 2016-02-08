@@ -44,7 +44,7 @@ encore prêt. Il n'en est rien ! Vous pouvez revenir sur votre *dashboard*
 ## Le plateau en pur CSS3
 
 Pour simplicité, nous allons commencer avec un plateau réduit, de
-taille 2×3.
+taille 3×2.
 
 1. Créez un document HTML5 valide contenant un `<div>`, contenant un
    tableau (`<table>`) de 3 lignes sur 2 colonnes, avec toutes les

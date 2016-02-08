@@ -6,14 +6,11 @@
   - cross-domain, CORS,
   - CSRF,
   - CSP?
-- Tourner premières leçons : HTTP, HTML.
 - Tourner toutes les leçons optionnelles.
-- Faire une leçon sur les URL
+- Leçon DOM mal comprise
 
 ## TDs
 
-- Utiliser le composer de Cloud9
-- Noter plus souvent?
 - Check out http://labs.securitycompass.com/exploit-me/
 - Twig + Node.js does not autoescape
 - ditch innerHTML? Create our own framework?
