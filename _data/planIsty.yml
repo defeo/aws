@@ -20,9 +20,40 @@
     lessons:
       - php.md
       - frameworks.md
+      - boxmodel.md
+      - flexbox.md
+      - advanced-js.md
 
 - date: 2016-02-08
+  contents:
+    tutorials:
+      - tutorial2.md
+      - url: reflector-silex.md
+        comment: version pour Silex
+      - url: reflector-node.md
+        comment: version pour Node
+    lessons:
+      - templates.md
+      - etat.md
+      - oo-php.md
+        
 - date: 2016-02-15
+  contents:
+    tutorials:
+      - url: reflector-silex.md
+        comment: version pour Silex
+      - url: reflector-node.md
+        comment: version pour Node
+      - url: templates-etat-silex.md
+        comment: version pour Silex
+      - url: templates-etat-node.md
+        comment: version pour Node
+    lessons:
+      - sessions.md
+      - sql.md
+      - mustache.md
+
+  
 - date: 2016-02-22
 - date: 2016-03-07
 - date: 2016-04-04

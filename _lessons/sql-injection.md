@@ -4,6 +4,8 @@ title: Injections SQL
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/sql-injection.webm
+    quizzes:
+      - 56b7edfd87b68f1300ba925a
 ---
 
 <section>

@@ -6,6 +6,9 @@ scripts: ['http://coffeescript.org/extras/coffee-script.js']
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/etat.webm
+    quizzes:
+      - 56b78de087b68f1300ba9200
+      - 56b7933687b68f1300ba9211
 ---
 
 <section>
@@ -135,7 +138,6 @@ Les données sensibles (mots de passe, etc.) ne doivent pas :
 #browser { display: flex; }
 #browser .window, #browser .source {
   border: solid thin black;
-  height: 7em;
 }
 #browser .window { flex: 0 1 19em; }
 #browser .source {
@@ -168,6 +170,7 @@ $src.textContent = '''
 hljs.highlightBlock $src
 
 ($bdy.$ 'button').on 'click', ->
+ $bw.style.height = $bw.offsetHeight + 'px'
  t = ($bdy.$ 'input').value
  $adr.textContent = "http://.../aujourdhui?nom=#{t}"
  $bdy.innerHTML = ""
