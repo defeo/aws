@@ -186,7 +186,7 @@ $app->run();
    dans la barre d'adresse, comme par exemple
    
    ~~~
-   http://...c9.io/reflector.php/query_string?user=toto&pwd=12345
+   http://...c9users.io/reflector.php/query_string?user=toto&pwd=12345
    ~~~
    {:.http}
 
