@@ -16,6 +16,9 @@
       <h4>Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</h4>
     </div>
     <dl class="toggleable">
+      {% if week.comment %}
+      {{ week.comment | markdownify }}
+      {% endif %}
       {% for coll in week.contents %}
       {% assign collection = coll[0] %}
       {% assign collection = site.collections | where:'label', collection | first %}

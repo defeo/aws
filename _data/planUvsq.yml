@@ -63,6 +63,7 @@
         comment: version pour Node
 
 - date: 2016-03-07
+  comment: '**ATTENTION :** TD groupe B le jeudi 13h30--17h45'
   contents:
     lessons:
       - csrf.md
