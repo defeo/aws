@@ -1,0 +1,24 @@
+---
+layout: article
+title: Résultats des questionnaires
+scripts: results.js
+---
+
+<div id="clicker-bar"></div>
+<div id="clicker-results"></div>
+
+<script>
+var quizzes = [
+  {% for l in site.lessons %}
+  {
+    lesson: {{ l.title | jsonify }},
+    url: "{{ site.baseurl }}{{ l.url }}",
+    quizzes: [
+      {% for q in l.addons.video.quizzes %}
+      "{{ q }}",
+      {% endfor %}
+    ]
+  },
+  {% endfor %}
+]
+</script>

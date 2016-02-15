@@ -25,3 +25,17 @@
 	}
     }
 }
+
+#clicker-results {
+    display: flex;
+    flex-flow: row wrap;
+    > .clicker-poll {
+	margin: 0 2rem;
+	flex: 0 0 18rem;
+	li { text-align: left };
+    }
+}
+#clicker-bar {
+    height: 1.5rem;
+    border: solid thin #444;
+}

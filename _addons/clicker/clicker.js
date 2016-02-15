@@ -29,6 +29,11 @@ function Clicker(provider) {
 	if (clicker.user) {
 	    this.$('.title').textContent = clicker.user.uid.match(/[^:]*:(.*)/)[1];
 	    this.$('.submenu')
+		.append('li')
+		.append('a <i class="fa fa-trophy"></i> <span class="title">Résultats</span>')
+		.href = '../'.repeat(ClassBP.page.url.split('/').length-2)
+		+ 'addons/clicker/results';
+	    this.$('.submenu')
 		.append('li <a href="#" class="logout"><i class="fa fa-sign-out"></i> <span class="title">Logout</span></a>');
 	} else {
 	    this.$('.title').textContent = 'Login';
