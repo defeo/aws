@@ -143,14 +143,7 @@ trouverez-vous votre bonheur avec
 [Jade](https://github.com/visionmedia/jade), ...
 
 **Important :** avant d'utiliser Twig (ou tout autre moteur de
-templating), il faut l'importer avec le mot clef `require`.
-
-~~~
-var twig = require('twig');
-~~~
-
-À ce moment, le moteur est chargé dans Express, mais pas encore
-configuré. Il faut dire à Express où se trouvent les fichiers de
+templating), il faut dire à Express où se trouvent les fichiers de
 templates. Par exemple, la configuration
 
 ~~~
@@ -158,21 +151,16 @@ app.set('views', 'templates');
 ~~~
 
 dit à Express de chercher les fichiers de templates dans le dossier
-`templates`. Seuls les fichiers avec extension `.twig` seront passés
-au moteur Twig. Si l'on souhaite ajouter, par exemple, les fichiers
-avec extension `.html` à la liste des fichiers traités par Twig, il
-faudra ajouter ces lignes de configuration.
-
-~~~
-app.set('view engine', 'html');
-app.engine('html', twig.__express);
-~~~
+`templates`. **Attenion :** seuls les fichiers avec extension `.twig`
+seront passés au moteur Twig**; pour configuer Express de façon plus
+flexible, lisez la doc de
+[`app.engine`](http://expressjs.com/en/4x/api.html#app.engine).
 
 Ensuite, en supposant que le template montré plus haut soit dans le
-fichier `templates/hello.html`, il serait exécuté ainsi
+fichier `templates/hello.twig`, il serait exécuté ainsi
 
 ~~~
-res.render('hello.html', { 'nom' : 'Toto' });
+res.render('hello.twig', { 'nom' : 'Toto' });
 ~~~
 
 ce qui produirait la sortie
@@ -201,7 +189,7 @@ Voici maintenant un exemple de template utilisant la boucle `for`.
 Cet exemple, exécuté par l'appel
 
 ~~~
-res.render('boucle_for.html', { 'nombres' : [
+res.render('boucle_for.twig', { 'nombres' : [
 	'One' => 'Un',
 	'Two' => 'Deux',
 	'Three' => 'Trois'

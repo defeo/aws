@@ -150,10 +150,10 @@ où le paramètre `'twig.path'` indique le dossier qui va contenir les
 fichiers de templates.
 
 Ensuite, en supposant que le template montré plus haut soit dans le
-fichier `templates/hello.html`, il serait exécuté ainsi
+fichier `templates/hello.twig`, il serait exécuté ainsi
 
 ~~~
-return $app['twig']->render('hello.html', array(
+return $app['twig']->render('hello.twig', array(
 	'nom' => 'Toto'
 ));
 ~~~
@@ -184,7 +184,7 @@ Voici maintenant un exemple de template utilisant la boucle `for`.
 Cet exemple, exécuté par l'appel
 
 ~~~
-$app['twig']->render('boucle_for.html', array(
+$app['twig']->render('boucle_for.twig', array(
 	'nombres' => array(
 		'One' => 'Un',
 		'Two' => 'Deux',
