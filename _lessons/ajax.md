@@ -6,6 +6,8 @@ scripts: ['http://coffeescript.org/extras/coffee-script.js']
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/ajax.webm
+    quizzes:
+      - 56c658b20a11591300f80feb
 ---
 
 <section>
@@ -376,7 +378,7 @@ html[data-incremental="5"] #xhr-prevent
 { outline: solid thick red; }
 </style>
 
-- Récupération le contenu du champs de texte ;
+- Récupération du contenu du champs de texte ;
 - Échappement des caractères spéciaux ;
 - Préparation de la requête à <https://api.stackexchange.com> ;
 - On attend un résultat au format JSON ;

@@ -6,6 +6,8 @@ scripts: ../js/mock-browser.js
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/xss.webm
+    quizzes:
+      - 56c1f9ba0a11591300f80f8d
 ---
 
 <style>
@@ -51,7 +53,7 @@ Dans la suite
 > Athanase est l'attaquant, qui cible Clélie.
 {:.att}
 
-Pour démontrer une attaque XSS, on se contente en général de démontrer
+Pour démontrer une faille XSS, on se contente en général de démontrer
 la possibilité d'exécuter du code JavaScript arbitraire, hors du
 contrôle du <span class="srv">serveur</span> : afficher un popup
 suffit !
@@ -81,7 +83,7 @@ function xssSimpleDemo(addr) {
 }
 </script>
 
-<span class="att">Athanase</span> persuade Clélie à visiter une URL
+<span class="att">Athanase</span> persuade Clélie de visiter une URL
 spécialement conçue :
 
 > Salut Clélie, j'ai trouvé une vidéo trop marante chez Servane :
@@ -204,7 +206,7 @@ placed on February 16, 2012. ...
    - `http://httpbin.org/`.
    {:.att}
    
-   Il sert le script suivant à <http://cdn.rawgit.com/defeo/aws-security/master/xss.js>
+   Il sert un script à l'adresse <http://cdn.rawgit.com/defeo/aws-security/master/xss.js>
    
    ~~~
    document.body.innerHTML +=
@@ -266,7 +268,7 @@ function storedXSS2(addr) {
 
 ## Pourquoi `<img>` ?
 
-La balise `<img>` est utilisé souvent pour envoyer des données de la
+La balise `<img>` est utilisée souvent pour envoyer des données de la
 victime à l'attaquant :
 
 ~~~
@@ -337,7 +339,7 @@ setTimeout(req, 5000);
 ## Outils
 
 - Proxy HTTP : [WireShark](https://www.wireshark.org/),
-- Proxy HTTP : [WebScarab](https://www.owasp.org/index.php/Category:OWASP_WebScarab_Project) (OWASP),
+- Proxy HTTP : [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) (OWASP),
 - Tests de pénetration : [Burp Scanner](http://portswigger.net/burp/scanner.html) (OWASP),
 - Plateforme d'entraînement :
   [WebGoat](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
