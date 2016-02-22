@@ -55,8 +55,48 @@
 
   
 - date: 2016-02-22
+  contents:
+    lessons:
+      - sql-injection.md
+      - ajax.md
+      - json.md
+    tutorials:
+      - url: templates-etat-silex.md
+        comment: version pour Silex
+      - url: templates-etat-node.md
+        comment: version pour Node
+      - url: accounts-silex.md
+        comment: version pour Silex
+      - url: accounts-node.md
+        comment: version pour Node
+        
 - date: 2016-03-07
+  contents:
+    lessons:
+      - xss.md
+      - session-fixation.md
+      - server-push.md
+    tutorials:
+      - url: accounts-silex.md
+        comment: version pour Silex
+      - url: accounts-node.md
+        comment: version pour Node
+
+
 - date: 2016-03-21
   comment: '**ATTENTION :** Cours + TD le mardi 8h--12h45'
+  contents:
+    lessons:
+      - csrf.md
+      - async-js.md
+      - cross-domain.md
+      - csp.md
+      - samy.md
+    tutorials:
+      - url: accounts-silex.md
+        comment: version pour Silex
+      - url: accounts-node.md
+        comment: version pour Node
+
 - date: 2016-03-28
   comment: '**ATTENTION :** Cours + TD le mardi 8h--12h45'
