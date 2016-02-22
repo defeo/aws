@@ -42,17 +42,9 @@ Des références optionnelles, si vous décidez d'utiliser un autre DBAL que Doc
 
 ## Préparer son espace de travail
 
-Vous pouvez continuer à travailler dans le même espace que les TDs
-précédents, ou en créer un nouveau, toujours en clonant
-<http://github.com/defeo/aws-project>. Dans le premier cas, mettez à
-jour votre espace de travail avec la commande
-
-~~~
-git pull
-~~~
-
-
-Commencez par démarrer le serveur MySQL en tapant la commande
+Comme d'habitude, on va partir d'un clone de
+<http://github.com/defeo/aws-project>.  Commencez par démarrer le
+serveur MySQL en tapant la commande
 
 ~~~
 mysql-ctl start
