@@ -77,7 +77,7 @@ $('#parent').on('click', function() {
 <form id="xhr-go">
 <fieldset style="border:none">
 <input id="xhr-page" type="text" style="width:90%" value="{{ site.baseurl }}{{ page.url }}" />
-<input type="submit" value="→" style="width:8%" />
+<input type="submit" value="→" style="width:6%" />
 </fieldset>
 </form>
 
@@ -86,7 +86,7 @@ $('#parent').on('click', function() {
 
 <script>
 $('#xhr-page').on('keydown', function (e) { e.stopPropagation(); });
-$('#xhr-go').on('submit', function() {
+$('#xhr-go').on('submit', function(e) {
     $('#xhr-go fieldset').disabled = true;
     xhr = new XMLHttpRequest();
     xhr.open('GET', $('#xhr-page').value);
@@ -101,7 +101,8 @@ $('#xhr-go').on('submit', function() {
 		$('#xhr-go fieldset').disabled = false;
 	}
 
-    xhr.send()
+	xhr.send()
+	e.preventDefault();
     return false;
 });
 </script>

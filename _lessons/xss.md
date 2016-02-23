@@ -76,7 +76,7 @@ return 'Bonjour ' + $req->query->get('user');
 {:.cli}
 
 <div id="xss-simple-demo" class="mock-browser cli content" data-callback="xssSimpleDemo"
-	data-sandbox="allow-popups allow-scripts allow-same-origin"></div>
+	data-sandbox="allow-popups allow-modals allow-scripts"></div>
 <script>
 function xssSimpleDemo(addr) {
 	return '../assets/xss.html?' + addr.split('user=')[1];
@@ -106,7 +106,7 @@ spécialement conçue :
 
 <div class="mock-browser cli content" data-callback="escape"
 	data-src="http://servane.org/?user=<b>Cl%C3%A9lie</b>"
-	data-sandbox="allow-popups allow-scripts allow-same-origin"></div>
+	data-sandbox="allow-popups allow-modals allow-scripts"></div>
 <script>
 function escape(addr) {
 	return '../assets/xss.html?' + addr.split('user=')[1] + "#escape";
@@ -224,7 +224,8 @@ Athanase :
 sessionStorage[window.location.host + '.sessid'] = Math.random().toString().substr(2);
 var storedXSS1Count = 0;
 function storedXSS1(addr) {
-	return storedXSS1Count++ ? addr : null;
+	return (storedXSS1Count++ &&
+		addr.match('^http://cdn.rawgit.com/defeo/aws-security/master/[^/]+$')) ? addr : null;
 }
 </script>
 

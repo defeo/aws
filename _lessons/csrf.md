@@ -334,7 +334,7 @@ X-Frame-Options: SAMEORIGIN
 - Empêche aux browsers d'inclure la page dans des frames cross-domain ;
 - Twitter s'en sert depuis 2009...
 
-<div id="sop" class="mock-browser content" data-src="https://twitter.com"></div>
+<div id="sop" data-sandbox="" class="mock-browser content" data-src="https://twitter.com"></div>
 
 
 </section>
