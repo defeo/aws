@@ -46,6 +46,11 @@ td a { padding: 1ex 1em; background-color: #ddd; }
 {:/}
 </div>
 
+## Modalités d'évaluation
+
+- **30%** [Questionnaires](addons/clicker/results);
+- **80%** [Projet final](project).
+
 ## Liste des leçons
 
 <div id="lessons">
