@@ -1,7 +1,7 @@
 ---
 title: Remote lightsaber
 difficulty: 4
-frameworks: Node
+frameworks: Node, Silex
 tags: [mobile, orientation, WebGL]
 publish: yes
 ---
