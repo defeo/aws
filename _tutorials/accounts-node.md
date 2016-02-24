@@ -101,6 +101,11 @@ configuration. À partir de maintenant, cette configuration sera
 disponible avec un clic droit sur le bouton *« Run »*, depuis
 n'importe quel fichier.
 
+Alternativement, Cloud9 supporte une
+[autre technique](https://docs.c9.io/docs/multiple-ports#section-how-to-run-phpmyadmin-at-the-same-time-as-your-nodejs-ruby-on-rails-or-other-application),
+à la mise en place assez simple, permettant de faire tourner un
+serveur Node en même temps qu'un serveur Apache.
+
 1. Connectez-vous à PHPMyAdmin. Dans le database `c9` (ou dans un
    nouveau database), créez une table nommée `users`. La table doit
    contenir les champs suivants :
