@@ -48,7 +48,7 @@ td a { padding: 1ex 1em; background-color: #ddd; }
 
 ## Modalités d'évaluation
 
-- **30%** [Questionnaires](addons/clicker/results);
+- **20%** [Questionnaires](addons/clicker/results);
 - **80%** [Projet final](project).
 
 ## Liste des leçons
