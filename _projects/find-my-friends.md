@@ -2,7 +2,7 @@
 title: Find my Friends
 difficulty: 3
 frameworks: Node
-tags: mobile, géolocalisation, multi-utilisateur
+tags: [mobile, géolocalisation, multi-utilisateur]
 ---
 
 Le but de ce projet est de développer une application similaire à

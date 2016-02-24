@@ -2,7 +2,7 @@
 title: Labyrinthe 3D avec WebGL
 difficulty: 3
 frameworks: Node, Silex
-tags: WebGL, 3D
+tags: [WebGL, 3D]
 ---
 
 Le but de ce projet est de développer un labyrinthe en 3D (vue en

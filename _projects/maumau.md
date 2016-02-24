@@ -2,7 +2,7 @@
 title: Mau mau
 difficulty: 2
 frameworks: Node
-tags: multi-utilisateur, jeu
+tags: [multi-utilisateur, jeu]
 ---
 
 Le but de ce projet est de réaliser un jeu de cartes en ligne
