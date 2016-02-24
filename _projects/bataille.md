@@ -41,6 +41,7 @@ Vous devez réaliser un jeu en ligne sur le modèle
   de parties gagnées/perdues, et autres informations éventuelles,
 - Un mécanisme pour se connecter,
 - Un mécanisme permettant de défier un adversaire,
+- Une interface permettant de placer ses navires sur la grille, 
 - Une interface permettant de jouer le jeu.
 
 L'interface du jeu doit être réalisée en JavaScript :
@@ -53,6 +54,7 @@ L'interface du jeu doit être réalisée en JavaScript :
 - Le joueur doit pouvoir sélectionner la case à frapper en cliquant
   dessus.
 - L'affichage montre clairement si la frappe a manqué/touché/coulé.
+- Lorsqu'un joueur a coulé tous les navires de son adversaire, le jeu déclare le joueur gagnant.
 
 ### Ressources
 
