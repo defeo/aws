@@ -45,6 +45,7 @@ Vous devez réaliser un jeu en ligne sur le modèle
 
 L'interface du jeu doit être réalisée en JavaScript :
 
+- Les navires sont disposés aléatoirement ;
 - Chauque joueur voit les deux grilles :
   - Sur sa propre grille toutes les informations sont affichées :
 	disposition des navires, navires touchés/coulés, cases frappées ;
@@ -53,6 +54,8 @@ L'interface du jeu doit être réalisée en JavaScript :
 - Le joueur doit pouvoir sélectionner la case à frapper en cliquant
   dessus.
 - L'affichage montre clairement si la frappe a manqué/touché/coulé.
+- Lorsqu'un joueur a coulé tous les navires de son adversaire, le jeu
+  déclare le joueur gagnant.
 
 ### Ressources
 
@@ -64,6 +67,9 @@ L'interface du jeu doit être réalisée en JavaScript :
 - Tous les points optionnels du
   [TD sur Puissance 4](tutorials/accounts-node#pour-aller-plus-loin-optionnel)
   sont aussi valables pour ce projet.
+
+- Créez une interface qui permet aux joueurs de placer leurs navires
+  avant le début de la partie.
 
 - Faites une version multi-joueurs du jeu : les joueurs sont séparés
   en deux équipes, qui essaient de collaborer pour vaincre les
