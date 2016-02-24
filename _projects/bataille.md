@@ -34,7 +34,7 @@ On rappelle le principe de la bataille navale.
 ### Description du projet
 
 Vous devez réaliser un jeu en ligne sur le modèle
-[vu en TD](../tutorials/accounts-node). Il doit comporter :
+[vu en TD](tutorials/accounts-node). Il doit comporter :
 
 - Une page permettant de s'enregistrer,
 - Une page présentant la liste des utilisateurs en ligne, leur nombre
@@ -56,13 +56,13 @@ L'interface du jeu doit être réalisée en JavaScript :
 
 ### Ressources
 
-- [Le TD sur Puissance 4 multi-utilisateurs](../tutorials/accounts-node),
+- [Le TD sur Puissance 4 multi-utilisateurs](tutorials/accounts-node),
 - [La page wikipedia du jeu de la bataille navale](https://fr.wikipedia.org/wiki/Bataille_navale_%28jeu%29).
 
 ### Parties optionnelles
 
 - Tous les points optionnels du
-  [TD sur Puissance 4](../tutorials/accounts-node#pour-aller-plus-loin-optionnel)
+  [TD sur Puissance 4](tutorials/accounts-node#pour-aller-plus-loin-optionnel)
   sont aussi valables pour ce projet.
 
 - Faites une version multi-joueurs du jeu : les joueurs sont séparés

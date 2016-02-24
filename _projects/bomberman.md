@@ -34,7 +34,7 @@ mieux que mille mots.
 ### Description du projet
 
 Vous devez réaliser un jeu de Bomberman en ligne sur le modèle
-[vu en TD](../tutorials/accounts-node). Il doit comporter :
+[vu en TD](tutorials/accounts-node). Il doit comporter :
 
 - Une page permettant de s'enregistrer,
 - Une page présentant la liste des utilisateurs en ligne, leur nombre
