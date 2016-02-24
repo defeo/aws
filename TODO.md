@@ -8,6 +8,8 @@
   - CSP?
 - Tourner toutes les leçons optionnelles.
 - Leçon DOM mal comprise
+- Google took down MZ's security guide
+- Talk about subresource integrity
 
 ## TDs
 
@@ -15,6 +17,8 @@
 - Twig + Node.js does not autoescape
 - ditch innerHTML? Create our own framework?
 - app.all gives bad habits
+- In Reflector: C9 does not install cookies anymore :(
+- twig → swig in Node.js
 
 ## Site
 

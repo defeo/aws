@@ -68,7 +68,7 @@ avec Cloud9, mais nous conseillons les hébergeurs gratuits suivants :
   shaders à la main...):
   
   - [Doc officielle de Three.js](http://threejs.org/docs/),
-  - [Un exemple parlant](http://keats.prism.uvsq.fr/webgl.html).
+  - [Un exemple parlant](https://codepen.io/defeo/pen/qbeJML/).
 
 - Pour la communication entre clients, vous avez le choix entre les
   deux technologies de communication bidirectionnelle :
