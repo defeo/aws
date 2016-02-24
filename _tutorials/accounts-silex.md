@@ -67,7 +67,7 @@ phpmyadmin-ctl install
 Elle sera accessible à l'adresse
 
 ~~~
-https://....c9.io/phpmyadmin
+https://....c9users.io/phpmyadmin
 ~~~
 {:.no-highlight}
 
