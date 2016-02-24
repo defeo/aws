@@ -77,6 +77,9 @@ des implications légales fâcheuses.
 - Utiliser une base de données No-SQL (par exemple MongoDB) à la place
   de MySQL.
 
+- Proposer un "éditeur de maps" pour construire des terrains de jeu
+  personnalisés.
+
 - Permettre de contrôler le personnage à la souris : clic gauche pour
   se déplacer, clic droit pour déposer une bombe. Quel parcours
   choisir lorsque le déplacement ne peut pas se faire en ligne droite ?
