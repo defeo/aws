@@ -500,7 +500,8 @@ d'approfondir votre connaissance des applications web.
 1. Dans `/signup`, demandez deux fois le mot de passe, et inscrivez le
    nouveau joueur seulement si les mots de passe coïncident.
 
-1. Une mesure de sécurité souvent appliquée consiste à ne jamais
+1. Implantez une gestion des mots de passe sécurisée:
+   une mesure de sécurité souvent appliquée consiste à ne jamais
    stocker les mots de passe en clair dans la base de données. À la
    place, on stocke le *haché* (par exemple le SHA1) de la
    concaténation du mot de passe et d'une *graine* aléatoire propre à
@@ -519,9 +520,12 @@ d'approfondir votre connaissance des applications web.
    de 150M de mots de passe de Adobe en 2013 :
    <http://zed0.co.uk/crossword/>.
    
-   Implantez (correctement) ce principe dans votre application. La
-   fonction de hachage SHA1 est disponible sous le nom `sha1()` en PHP
-   et sous le nom `SHA1()` en MySQL.
+   C'est en général une mauvaise idée de vouloir implanter ce système soi
+   même dans une application : il y a beaucoup de pièges dans lesquels il
+   est facile de tomber. Il vaut mieux utiliser les solutions déjà
+   faites, prévues par le langage ou le framework. Voir par exemple 
+   [la documentation de PHP sur le sujet](http://php.net/manual/fr/faq.passwords.php)
+   ou le module [bcrypt pour Node.js](https://www.npmjs.com/package/bcrypt)
 
 1. Dans la page d'accueil, faites en sorte que les identifiants des
    joueurs soient auto-complétés. Voir
