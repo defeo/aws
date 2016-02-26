@@ -74,6 +74,9 @@ des implications légales fâcheuses.
 - Ajouter des caractéristiques du jeu original, ou de votre crû : murs
   destructibles, *upgrades*, etc.
 
+- Utiliser l'API [canvas de HTML5](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)
+  pour afficher le jeu.
+
 - Utiliser une base de données No-SQL (par exemple MongoDB) à la place
   de MySQL.
 
