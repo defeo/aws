@@ -601,8 +601,10 @@ Bravo, vous avez réussi à écrire votre première application web
 totalement asynchrone. Pour une utilisation intensive de
 `EventSource`, il peut être intéressant d'utiliser des modules pour
 Node.js qui encapsulent la logique d'un *event source* et qui
-fournissent une API simplifiée, comme, par exemple
-[`express-eventsource`](https://www.npmjs.org/package/express-eventsource).
+fournissent une API simplifiée. Aucun module n'a atteint suffisamment
+de popularité sur NPM pour éclipser les autres, mais celui qui nous
+semble le plus intéressant est
+[sse-nodejs](https://www.npmjs.com/package/sse-nodejs).
 
 
 ## Commencer une partie
