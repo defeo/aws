@@ -19,7 +19,9 @@
         dest = cb src.value
         win.src = dest if dest
         e.preventDefault()
-    
+
+    mock.css
+        boxShadow : '0 0 1px 2px #aaa'
     address.css
         display : 'flex'
     src.css
