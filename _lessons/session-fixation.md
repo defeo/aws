@@ -42,7 +42,7 @@ app.get('/reset-pass', function(req, res) {
 
 ## Vol de session
 
-An attaquant connaissant l'identifiant de session peut :
+Un attaquant connaissant l'identifiant de session peut :
 
 - Agir comme l'utilisateur légitime,
 - Forcer l'utilisateur à se déconnecter,
@@ -59,7 +59,7 @@ Source : <https://www.owasp.org/index.php/Session_hijacking_attack>
 ## Comment connaître l'identifiant
 
 - **Écoute sur le canal →** *Utiliser HTTPS*.
-- **Identifiant facile à devnier →** *Utilser du aléa sûr, signer
+- **Identifiant facile à devnier →** *Utilser de l'aléa sûr, signer
    cryptographiquement les identifiants*.
 - **Fixation →** AAARGH !
 

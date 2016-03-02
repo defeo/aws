@@ -16,7 +16,6 @@ subtitle: Étude de cas
 
 
 #### Comment marche Samy
-{: style="margin-bottom: -20px"}
 
 1. MySpace permet une personnalisation limitée de la page de
    profile. Samy découvre qu'il peut inclure du JavaScript dans cette

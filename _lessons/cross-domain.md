@@ -44,7 +44,7 @@ Lire : <http://code.google.com/p/browsersec/wiki/Part2>.
 </div>
 
 <style>
-.highlight { background-color: yellow !important }
+body.highlight #content { background-color: yellow !important }
 </style>
 
 <script>
@@ -119,7 +119,7 @@ $('#xhr-go').on('submit', function(e) {
 
 Solution classique : **Proxies**
 
-Écrire un programme côté server qui transmet la requête au service
+Écrire un programme côté serveur qui transmet la requête au service
 web.
 
 
@@ -203,14 +203,14 @@ web.
 ...Pas très satisfaisant
 
 </section>
-<section class="compact">
+<section>
 
 ## Cross-Origin Resource Sharing
 
 CORS : [standardise en 2014 par le W3C](www.w3.org/TR/cors/) :
 
 1. Le `XMLHttpRequest` fait une requête GET cross-domain ;
-2. Le browser ajoute une entête HTTP `Origin` ;
+2. Le navigateur ajoute une entête HTTP `Origin` ;
 
 ~~~
 GET /api/query.php?car=peugeot HTTP/1.1
@@ -220,7 +220,7 @@ Origin: www.example.com
 ~~~
 {:.http}
 
-3. Le server réponds avec **`Acces-Control-Allow-Origin`**:
+3. Le serveur répond avec **`Acces-Control-Allow-Origin`**:
 {: start="3"}
 
 ~~~
@@ -237,19 +237,20 @@ Access-Control-Allow-Origin: www.example.com
 ~~~
 {:.http}
 
-4. Le browser renvoie la réponse à `XMLHttpRequest` seulement si
+4. Le navigateur transmet la réponse à `XMLHttpRequest` uniquement si
    l'origine est autorisée.
 {: start="4"}
 
 </section>
 <section class="compact">
 
-## Les requêtes POST ne sont pas *nilpotentes* !
+## Requêtes *preflighted*
 
-Par convention, les requêtes POST ont des effets non-réversibles → politique CORS adaptée
+Politique adaptée pour requêtes avec effets non-réversibles : POST,
+PUT, DELETE, ...
 
 1. `XMLHttpRequest` fait une requête POST cross-domain ;
-2. Le browser change le type de la requête en **OPTIONS** ;
+2. Le navigateur change le type de la requête en **OPTIONS** ;
 
 ~~~
 OPTIONS /api/query.php?car=peugeot HTTP/1.1
@@ -258,7 +259,7 @@ Origin: www.example.com
 Access-Control-Request-Method: POST
 ~~~
 
-3. Le server réponds avec **`Acces-Control-Allow-Origin`** :
+3. Le serveur répond avec **`Acces-Control-Allow-Origin`** :
 {: start="3"}
 
 ~~~
@@ -267,7 +268,7 @@ Access-Control-Allow-Origin: www.example.com
 Access-Control-Allow-Methods: POST, GET, OPTIONS 
 ~~~
 
-4. Si la requête est autorisée, le browser envoie la requête **POST** ;
+4. Si la requête est autorisée, le navigateur envoie la requête **POST** ;
 {: start="4"}
 
 ~~~
@@ -276,7 +277,7 @@ Host: api.webservice.com
 Origin: www.example.com
 ~~~
 
-5. La réponse est renvoyée à `XMLHttpRequest`.
+5. La réponse est transmise à `XMLHttpRequest`.
 {: start="5"}
 
 </section>
@@ -284,19 +285,21 @@ Origin: www.example.com
 
 ## CORS et sécurité 
 
-CORS est une protection **opt-out** : `www.hacker.com` **ne peut pas
-se connecter** à `www.mybank.com` **en se faisant passer pour un
-utilisateur**
+CORS est une protection *opt-out* :
 
-- Cohérent avec la SOP des frames et des fenêtres ;
+- Si `www.mybank.com` n'a pas activé CORS, il est protégé par défaut ;
+- `www.hacker.com` ne peut pas utiliser des requêtes AJAX pour mener
+  une attaque [CSRF](csrf) ;
+- Cohérent avec la SOP des frames et des fenêtres.
 
-`www.hacker.com` **peut obliger** `www.mybank.com` **à télécharger du
-contenu** de `www.hacker.com`
+Mais rien n'empêche à `www.hacker.com` d'activer CORS. Dans ce cas,
+`www.mybank.com` **peut télécharger du contenu** de `www.hacker.com` via
+AJAX :
 
-- Nécessite une faille XSS pour démarrer l'attaque ;
-- Pas plus dangereux que les balises `<script>`, `<iframe>`, `<img>`, ...
+- Nécessite une faille XSS pour que le téléchargement se fasse sans l'accord de `www.mybank.com` ;
+- Pas plus dangereux que l'injection de balises `<script>`, `<iframe>`, `<img>`, ...
 
-<svg width="550" height="260" style="margin:auto;display:block">
+<svg width="550" height="250" style="margin:auto;display:block">
   <defs
      id="defs4">
     <marker
@@ -372,7 +375,8 @@ l'injection de balises `<script>`.
 ### Same Origin Policy
 
 - [The tangled web](http://lcamtuf.coredump.cx/tangled/), Part II,
-- [SOP](https://developer.mozilla.org/docs/Web/JavaScript/Same_origin_policy_for_JavaScript),
+- [SOP](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy),
+  [SOP pour JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Same_origin_policy_for_JavaScript),
 - [Cross Origin Resource Sharing](https://developer.mozilla.org/docs/HTTP/Access_control_CORS).
 
 </section>

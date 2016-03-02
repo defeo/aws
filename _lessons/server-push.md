@@ -104,7 +104,7 @@ html[data-incremental="4"] #evt-4
 </section>
 <section class="compact">
 
-## Exemple de event stream : seveur
+## Exemple de event stream : serveur
 
 ~~~
 app.get('/api/notifications', function(req, res) {
@@ -112,7 +112,7 @@ app.get('/api/notifications', function(req, res) {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive'
-  });                                              // On envoye les entêtes
+  });                                              // On envoie les entêtes
   res.writeHead(200);
   
   var count = 0;                                   // On envoie un message
@@ -153,7 +153,7 @@ evt.addEventListener('toto', function(e) {
 
 - **Pour :** Léger, simple, relativement bien supporté,
 - **Contre :** Unidirectionnel, nécessite le support du serveur,
-- **Démo :** <http://server-sent-events-demo.herokuapp.com/>.
+- **Démo :** <http://www.w3schools.com/html/tryit.asp?filename=tryhtml5_sse>.
 
 </section>
 <section>
@@ -220,6 +220,7 @@ Connection: Upgrade
 
 ## Lectures
 
+- [Tutoriel de html5rocks `EventSource`](http://www.html5rocks.com/en/tutorials/eventsource/basics/).
 - [Tutoriel MDN `EventSource`](https://developer.mozilla.org/docs/Server-sent_events/Using_server-sent_events).
 - [Guides MDN Web Sockets](https://developer.mozilla.org/docs/WebSockets).
 - Exemple de [chat en Express+socket.io](http://socket.io/get-started/chat/).

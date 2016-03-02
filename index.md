@@ -68,22 +68,33 @@ td a { padding: 1ex 1em; background-color: #ddd; }
 - [2014-2015](http://defeo.lu/aws-2015)
 - [2013-2014](http://defeo.lu/aws-2014)
 
-## Liens
+## Liens utiles
+
+#### Pour les TDs
 
 - Mes [CodePens](http://codepen.io/collection/AaMOJZ/), qui
   démontrent comment exécuter les passages délicats de certains TDs.
-- Les W3 Schools <http://www.w3schools.com/> et leur tutoriel HTML5 <http://www.w3schools.com/html/html5_intro.asp>.
 - Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>.
-- Le consortium du WWW <http://www.w3.org/>.
+
+#### Documentation
+
 - Les pages des frameworks PHP Silex <http://silex.sensiolabs.org/> et Symfony <http://symfony.com/>.
 - Les livres de Sensiolabs sur Symfony : <http://books.sensiolabs.com/>.
 - La documentation du moteur de templating Twig : <http://twig.sensiolabs.org/>.
-- Le site de l'Association francophone des utilisateurs de Symfony <http://afsy.fr/>.
-- Le site de Node.js <http://www.nodejs.org/>, les guides <http://docs.nodejitsu.com/> et la API reference <http://www.nodejs.org/api>.
 - Le framework [Express](http://expressjs.com/) pour Node.js.
+
+#### Associations de développeurs
+
+- Le site de l'Association francophone des utilisateurs de Symfony <http://afsy.fr/>.
+- Les initiations gratuites de NodeSchool Paris <http://nodeschool.io/paris/>.
 - Le [groupe français des utilisateurs de Node.js](https://plus.google.com/communities/113346206415381691435).
-- La documentation de JQuery <http://docs.jquery.com/>.
-- Le projet OWASP <http://www.owasp.org/> and leur [application d'entraînement WebGoat](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project).
+
+#### Autres
+
+- Les ressources pédagogiques de B. Pesquet sur
+  [OpenClassrooms](https://openclassrooms.com/membres/bpesquet), et
+  [encore d'autres](http://www.bpesquet.fr/) : PHP, Silex, JavaScript,
+  ...
 
 
 ## Bibliographie
@@ -115,6 +126,14 @@ débutants. Exemples à essayer en ligne.
 W3Schools.
 : <http://www.w3schools.com>. D'autres tutoriels sont aussi
 disponibles sur le site de W3Schools.
+
+Mozilla Developer Network. *Ressources HTML*.
+: En anglais <https://developer.mozilla.org/en-US/docs/Web/HTML>, et
+en français <https://developer.mozilla.org/fr/docs/Web/HTML>
+
+Mozilla Developer Network. *Ressources CSS*.
+: En anglais <https://developer.mozilla.org/en-US/docs/Web/CSS>, et
+en français <https://developer.mozilla.org/fr/docs/Web/CSS>
 
 L. van Lancker. *HTML5 et CSS3*
 : Eni Éditions, 2011. ISBN: 978-2-7460-6242-9. Côte BU: 005.71htm
@@ -238,6 +257,9 @@ M. Zalewski. *The Tangled Web*.
 978-1-593-27388-0. <http://lcamtuf.coredump.cx/tangled/>. Côte
 BU 005.8 ZAL. Traité complet sur la sécurité des applications
 web. Dérivé de l'ouvrage précédent, mais plus complet et plus à jour.
+
+Mozilla Developer Network. *Sécurité Web*.
+: <https://developer.mozilla.org/en-US/docs/Web/Security>
 
 OWASP. *OWASP development guide*
 : <https://www.owasp.org/index.php/Category:OWASP_Guide_Project>.
