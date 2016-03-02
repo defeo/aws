@@ -54,6 +54,18 @@ simple, limitez vous à un jeu basique :
 Les joueurs peuvent contrôler leur personnage avec le clavier: flèches
 pour se déplacer, espace pour déposer une bombe.
 
+**Note :** Pour l'interface de jeux vous avez deux choix :
+
+- Une interface minimaliste, avec une grille de jeux représentée par
+  un tableau HTML ou similaire, et où les déplacements des personnages
+  se font de case en case. Ceci est assez similaire à ce qui a été vu
+  en cours pour le plateau de puissance 4.
+
+- Une interface plus fluide, utilisant la balise `<canvas>` pour
+  dessinner directement avec des primitives graphiques. Vous pouvez
+  suivre
+  [ce tutoriel](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial).
+
 **Note :** on vous rappelle que le jeu Bomberman est un copyright de
 Konami. Si vous avez droit de développer le jeu dans un but
 pédagogique, mettre votre application à disposition du public aurait
