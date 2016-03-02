@@ -2,7 +2,7 @@
 layout: lesson
 title: Mitigation d'attaques
 subtitle: Transport security, Sandboxing, Subresource integrity, CSP
-ContentSecurityPolicy: "child-src 'self'"
+ContentSecurityPolicy: "child-src 'self' ent.uvsq.fr"
 scripts:  ../js/mock-browser.js
 ---
 
