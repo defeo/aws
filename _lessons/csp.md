@@ -37,27 +37,6 @@ Strict-Transport-Security: max-age=3600
 </section>
 <section>
 
-## *Frame sandboxing*
-
-L'attribut `sandbox` permet de restreindre les capacité d'un
-[`<iframe>`](https://developer.mozilla.org/en/docs/Web/HTML/Element/iframe) :
-
-- Exécuter des scripts,
-- Afficher des popups,
-- Contrôler le curseur/l'interface,
-- Accéder à son origine,
-- Naviguer la fenêtre parent, ...
-
-~~~
-<iframe sandbox="" src="http://ent.uvsq.fr/">
-~~~
-
-<div id="sop" class="mock-browser content" data-sandbox=""
-     data-height="200px" data-src="http://ent.uvsq.fr/"></div>
-
-</section>
-<section>
-
 ## Subresource integrity
 
 **Objectif :** empêcher les fournisseurs (par ex., un CDN) et les
@@ -76,6 +55,27 @@ intermédiaires de remplacer des contenus (scripts, feuilles de style).
 ~~~
 
 Interdit le chargement de la ressource si le haché ne correspond pas.
+
+</section>
+<section>
+
+## *Frame sandboxing*
+
+L'attribut `sandbox` permet de restreindre les capacité d'un
+[`<iframe>`](https://developer.mozilla.org/en/docs/Web/HTML/Element/iframe) :
+
+- Exécuter des scripts,
+- Afficher des popups,
+- Contrôler le curseur/l'interface,
+- Accéder à son origine,
+- Naviguer la fenêtre parent, ...
+
+~~~
+<iframe sandbox="" src="http://ent.uvsq.fr/">
+~~~
+
+<div id="sop" class="mock-browser content" data-sandbox=""
+     data-height="200px" data-src="http://ent.uvsq.fr/"></div>
 
 </section>
 <section>
