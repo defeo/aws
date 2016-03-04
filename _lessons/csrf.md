@@ -3,6 +3,12 @@ layout: lesson
 title: CSRF et Clickjacking
 subtitle: Escalade de privilèges trans-domaine
 scripts:  ../js/mock-browser.js
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/csrf.webm
+    quizzes:
+      - 56d9eeec0a11591300f81152
+      - 56d9f14b0a11591300f8115c
 ---
 
 <style>
@@ -270,7 +276,7 @@ confirmation sans son consentement
 On ajoute une confirmation avant le transfert :
 <https://aws-security.herokuapp.com/?confirm>
 
-<input id="slider" type="range" min="0" max="1" step="0.01" value="0.01" />
+<input id="slider" type="range" min="0" max="1" step="0.01" value="0.02" />
 
 <div id="main">
 <iframe id="bank2"></iframe>
