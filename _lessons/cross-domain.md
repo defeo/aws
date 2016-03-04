@@ -3,6 +3,11 @@ layout: lesson
 title: AJAX cross-domain
 subtitle: Restrictions de sécurité liées au domaine
 scripts: ../js/mock-browser.js
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/cross-domain.webm
+    quizzes:
+      - 56d8f2a60a11591300f81147
 ---
 
 <section>

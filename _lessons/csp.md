@@ -1,9 +1,15 @@
 ---
 layout: lesson
-title: Mitigation d'attaques
+title: "Mitigation d'attaques"
 subtitle: Transport security, Sandboxing, Subresource integrity, CSP
 ContentSecurityPolicy: "child-src 'self' ent.uvsq.fr"
 scripts:  ../js/mock-browser.js
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/csp.webm
+    quizzes:
+      - 56d8eacc0a11591300f8110a
+      - 56d8ef7a0a11591300f81136
 ---
 
 <section>
