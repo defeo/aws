@@ -7,6 +7,7 @@ addons:
     url: https://sourcesup.renater.fr/aws-media/HTTP.webm
     quizzes:
       - 56a7a34a87b68f1300ba909b
+    playbackRate: 0.95
 ---
 
 <section style="font-size: 90%">

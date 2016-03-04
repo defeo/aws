@@ -8,6 +8,7 @@ addons:
     quizzes:
       - 56a6b6d387b68f1300ba9088
       - 56a6b6d387b68f1300ba9091
+    playbackRate: 0.95
 ---
 
 <style>

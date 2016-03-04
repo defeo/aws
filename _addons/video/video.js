@@ -9,6 +9,8 @@
     var video = popup.append('video')
     video.setAttribute('controls', true);
     video.setAttribute('preload', 'metadata');
+    if (meta.playbackRate)
+	video.defaultPlaybackRate = meta.playbackRate;
     var src = video.append('source');
     video.setAttribute('src', meta.url
 		       + (meta.start || meta.end ? + '#t=' + meta.start : '')
