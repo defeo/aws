@@ -16,7 +16,7 @@ addons:
 
 HTML est un *langage de balisage* (*markup language*), inspiré par
 SGML, pour l'écriture de documents Hypertexte **lisibles par un
-human** (!!!)
+humain** (!!!)
 
 ~~~
 <tag>
@@ -58,7 +58,7 @@ Les balises peuvent avoir des **attributs**, dans la balise ouvrante.
 
 ## Commentaires
 
-Les commentaires sont écris entre `<!--` et `-->`
+Les commentaires sont écrits entre `<!--` et `-->`
 
 ~~~
 <!-- Ceci est un commentaire, ce sera ignoré -->
@@ -129,7 +129,7 @@ premier niveau, ..., un titre de sixième niveau.
 
 `<a>`: Une *ancre*, c.-à-d. un lien vers d'autres contenus.
 
-`<img>`, `<audio>`, `<video>`, `<object>`, `<svg>`: Inclusion de medias.
+`<img>`, `<audio>`, `<video>`, `<object>`, `<svg>`: Inclusion de médias
 
 `<form>`, `<input>`, ...: Interaction avec l'utilisateur.
 
@@ -137,7 +137,7 @@ premier niveau, ..., un titre de sixième niveau.
 
 `<strong>`, `<em>`: Texte présente *différemment* (par ex., gras ou italique)
 
-`<div>`, `<span>`: Balises avec aucune signification (imporantes pour
+`<div>`, `<span>`: Balises avec aucune signification (importantes pour
 faire le lien avec style et scripts).
 
 Allez voir d'autres balises sur <http://www.w3schools.com/>.
