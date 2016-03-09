@@ -19,6 +19,7 @@
 - app.all gives bad habits
 - In Reflector: C9 does not install cookies anymore :(
 - twig → swig in Node.js
+- express-session has deprecations
 
 ## Site
 
