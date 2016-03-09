@@ -66,7 +66,7 @@ git checkout master
 
 Pour installer Silex et ses composants, maintenant, tapez la commande
 
-	./install.sh
+	make
 
 dans le terminal (en bas dans l'espace de travail, tapez `Alt-T` s'il
 n'est pas déjà ouvert). Cette commande va télécharger et installer les

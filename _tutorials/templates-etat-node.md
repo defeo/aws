@@ -5,15 +5,10 @@ subtitle: (Node.js+Express)
 
 Dans ce TD nous introduisons le moteur de templates Twig, et nous
 étudions quelques techniques de maintien d'état. Vous pouvez continuer
-à travailler dans le même espace de travail Cloud9, dans ce cas,
-rentrez la commande suivante dans le terminal :
-
-~~~
-git pull
-~~~
-
-Alternativement, vous pouvez créer un nouvel espace de travail en
-clonant <https://github.com/defeo/aws-project.git>.
+à travailler dans le même espace de travail Cloud9.  Alternativement,
+vous pouvez créer un nouvel espace de travail en clonant
+<https://github.com/defeo/aws-project.git> ; n'oubliez pas de lancer à
+nouveau la commande `npm install` dans ce cas.
 
 Les références pour ce TD sont
 
