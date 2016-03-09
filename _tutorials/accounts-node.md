@@ -611,7 +611,7 @@ semble le plus intéressant est
 
 Enfin nous arrivons à la partie de Puissance 4. Pour pouvoir
 rencontrer un adversaire, il va falloir définir un protocole
-d'invitation à faire une partie. Le même canal `EventSource` utilisez
+d'invitation à faire une partie. Le même canal `EventSource` utilisé
 dans la partie précédente va nous permettre d'échanger ces messages,
 l'entête `event:` va nous permettre de distinguer les mises à jour sur
 la liste des utilisateurs des autres messages.
