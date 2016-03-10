@@ -184,11 +184,11 @@ Voici maintenant un exemple de template utilisant la boucle `for`.
 Cet exemple, exécuté par l'appel
 
 ~~~
-res.render('boucle_for.twig', { 'nombres' : [
-	'One' => 'Un',
-	'Two' => 'Deux',
-	'Three' => 'Trois'
-] });
+res.render('boucle_for.twig', { 'nombres' : {
+	'One' : 'Un',
+	'Two' : 'Deux',
+	'Three' : 'Trois'
+} });
 ~~~
 
 produit le code
