@@ -1,5 +1,5 @@
 ---
-layout: empty
+layout: null
 ---
 {% comment %}
   This is a JSON export of all useful data in the `site` variable.
