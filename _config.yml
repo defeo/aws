@@ -57,7 +57,11 @@ defaults:
       layout: article
       addons:
         style_goodies: yes
-        
+  - scope:
+      path: defenses
+    values:
+      layout: null
+      
 # New page / post / etc. menu
 #create:
 #  pages: yes

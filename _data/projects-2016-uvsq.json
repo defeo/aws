@@ -1,0 +1,377 @@
+{
+    "students": [
+	{
+            "group": "-1",
+            "nom": "Ahmed Djama",
+            "prenom": "Mohamed"
+	},
+	{
+            "group": "-1",
+            "nom": "Armilat",
+            "prenom": "Asmaa"
+	},
+	{
+            "group": "-1",
+            "nom": "Azouaoui",
+            "prenom": "Melissa"
+	},
+	{
+            "group": "6",
+            "nom": "Azzabi",
+            "prenom": "Mehdi"
+	},
+	{
+            "group": "4",
+            "nom": "Bado",
+            "prenom": "Maturin"
+	},
+	{
+            "group": "3",
+            "nom": "Basskar",
+            "prenom": "Loubna"
+	},
+	{
+            "group": "-1",
+            "nom": "Belayachi",
+            "prenom": "Marouane"
+	},
+	{
+            "group": "0",
+            "nom": "Ben Ouirane",
+            "prenom": "Rahma"
+	},
+	{
+            "group": "-1",
+            "nom": "Benjelloun",
+            "prenom": "Mohammed"
+	},
+	{
+            "group": "3",
+            "nom": "Bentaleb",
+            "prenom": "Meriem"
+	},
+	{
+            "group": "-1",
+            "nom": "Berrada",
+            "prenom": "Meryem"
+	},
+	{
+            "group": "13",
+            "nom": "Billaudel",
+            "prenom": "Benoit"
+	},
+	{
+            "group": "8",
+            "nom": "Blondy",
+            "prenom": "Kenny"
+	},
+	{
+            "group": "6",
+            "nom": "Boubakri",
+            "prenom": "Monji"
+	},
+	{
+            "group": "8",
+            "nom": "Boutouchent",
+            "prenom": "Amir"
+	},
+	{
+            "group": "-1",
+            "nom": "Bouzebra",
+            "prenom": "Lotfi"
+	},
+	{
+            "group": "-1",
+            "nom": "Camara",
+            "prenom": "Abdellahi"
+	},
+	{
+            "group": "12",
+            "nom": "Canessane",
+            "prenom": "Stephane"
+	},
+	{
+            "group": "-1",
+            "nom": "Catraye",
+            "prenom": "Mahoutin Amen"
+	},
+	{
+            "group": "1",
+            "nom": "Chared",
+            "prenom": "Marouen"
+	},
+	{
+            "group": "12",
+            "nom": "Dong",
+            "prenom": "Jimmy"
+	},
+	{
+            "group": "2",
+            "nom": "Dos Reis",
+            "prenom": "Andre"
+	},
+	{
+            "group": "-1",
+            "nom": "Eddarif",
+            "prenom": "Oussama"
+	},
+	{
+            "group": "-1",
+            "nom": "El Fachtali",
+            "prenom": "Aiman"
+	},
+	{
+            "group": "3",
+            "nom": "El Wady",
+            "prenom": "Zineb"
+	},
+	{
+            "group": "1",
+            "nom": "Errajy",
+            "prenom": "Mohammed Amine"
+	},
+	{
+            "group": "11",
+            "nom": "Estrabaud",
+            "prenom": "Thomas"
+	},
+	{
+            "group": "0",
+            "nom": "Farnatchi",
+            "prenom": "Ghita"
+	},
+	{
+            "group": "-1",
+            "nom": "Fissier",
+            "prenom": "Florent"
+	},
+	{
+            "group": "7",
+            "nom": "Frota",
+            "prenom": "Nicolas"
+	},
+	{
+            "group": "10",
+            "nom": "Ghammam",
+            "prenom": "Riheb"
+	},
+	{
+            "group": "6",
+            "nom": "Guesmi",
+            "prenom": "Jassem"
+	},
+	{
+            "group": "-1",
+            "nom": "Haouch",
+            "prenom": "Lahcen"
+	},
+	{
+            "group": "-1",
+            "nom": "Houssein  Ahmed",
+            "prenom": "Mahdi"
+	},
+	{
+            "group": "9",
+            "nom": "Iddir",
+            "prenom": "Salma"
+	},
+	{
+            "group": "-1",
+            "nom": "Idouhammou",
+            "prenom": "Abderrahman"
+	},
+	{
+            "group": "4",
+            "nom": "Illy",
+            "prenom": "Poulmanogo"
+	},
+	{
+            "group": "-1",
+            "nom": "Joudelat",
+            "prenom": "David"
+	},
+	{
+            "group": "-1",
+            "nom": "Lekmiti",
+            "prenom": "Mohammed Elhadi"
+	},
+	{
+            "group": "13",
+            "nom": "Letiche",
+            "prenom": "Quentin"
+	},
+	{
+            "group": "-1",
+            "nom": "Luu",
+            "prenom": "Tien Duc"
+	},
+	{
+            "group": "-1",
+            "nom": "Maharzi",
+            "prenom": "Nour El Yakine"
+	},
+	{
+            "group": "-1",
+            "nom": "Maktite",
+            "prenom": "Kamal"
+	},
+	{
+            "group": "-1",
+            "nom": "Masloh",
+            "prenom": "Mohamed"
+	},
+	{
+            "group": "2",
+            "nom": "Migaou",
+            "prenom": "Idriss"
+	},
+	{
+            "group": "-1",
+            "nom": "Monnet",
+            "prenom": "Adrien"
+	},
+	{
+            "group": "2",
+            "nom": "Monteiro",
+            "prenom": "Alexandre"
+	},
+	{
+            "group": "13",
+            "nom": "Nguyen",
+            "prenom": "Cong-Minh"
+	},
+	{
+            "group": "7",
+            "nom": "Ouabderrazak",
+            "prenom": "Youssef"
+	},
+	{
+            "group": "1",
+            "nom": "Oufkir",
+            "prenom": "Mustapha"
+	},
+	{
+            "group": "8",
+            "nom": "Ouhabi",
+            "prenom": "Adel"
+	},
+	{
+            "group": "14",
+            "nom": "Rekik",
+            "prenom": "Wael"
+	},
+	{
+            "group": "5",
+            "nom": "Remchani",
+            "prenom": "Marwa"
+	},
+	{
+            "group": "10",
+            "nom": "Slimani",
+            "prenom": "Yacine Yahia"
+	},
+	{
+            "group": "5",
+            "nom": "Tahour",
+            "prenom": "Hamza"
+	},
+	{
+            "group": "7",
+            "nom": "Talmelkt",
+            "prenom": "Said"
+	},
+	{
+            "group": "11",
+            "nom": "Tappaz",
+            "prenom": "Nicolas"
+	},
+	{
+            "group": "9",
+            "nom": "Tigrine",
+            "prenom": "Karima"
+	},
+	{
+            "group": "-1",
+            "nom": "Yacoubi Khebiza",
+            "prenom": "Mohammed"
+	},
+	{
+            "group": "4",
+            "nom": "Yarbanga",
+            "prenom": "Wiendpayangde Emmanu"
+	},
+	{
+            "group": "9",
+            "nom": "Zakari Issoufou",
+            "prenom": "Mahamadou Saiboudine"
+	},
+	{
+            "group": "-1",
+            "nom": "Zinabi",
+            "prenom": "Yassine"
+	}
+    ],
+    "groups": {
+	"6": {
+            "framework": "Node.js",
+            "project": "Post-it"
+	},
+	"3": {
+            "framework": "Silex",
+            "project": "Post-it"
+	},
+	"4": {
+            "framework": "Node.js",
+            "project": "Light Saber"
+	},
+	"2": {
+            "framework": "Node.js",
+            "project": "Baraille Navale"
+	},
+	"7": {
+            "framework": null,
+            "project": "Post-it"
+	},
+	"9": {
+            "framework": "Node.js",
+            "project": "Post-it"
+	},
+	"13": {
+            "framework": "Node.js",
+            "project": "Bataille Navale"
+	},
+	"10": {
+            "framework": "Node.js",
+            "project": "Bataille Navale"
+	},
+	"11": {
+            "framework": "Node.js",
+            "project": "Post-it"
+	},
+	"0": {
+            "framework": "Silex",
+            "project": "Post-it"
+	},
+	"12": {
+            "framework": "Node.js",
+            "project": "Post-it"
+	},
+	"5": {
+            "framework": "Node.js",
+            "project": "Bataille Navale"
+	},
+	"14": {
+            "framework": null,
+            "project": "Post-it"
+	},
+	"1": {
+            "framework": "Node.js",
+            "project": "Bataille Navale"
+	},
+	"8": {
+            "framework": "Node.js",
+            "project": "Bomberman"
+	},
+	"-1": { "project": "Unknown"}
+    }
+}
