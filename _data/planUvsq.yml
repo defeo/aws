@@ -79,3 +79,6 @@
         comment: version pour Node
 
 - date: 2016-03-14
+  contents:
+    lessons:
+      - past-future.md
