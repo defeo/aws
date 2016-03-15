@@ -1,7 +1,7 @@
 {
     "students": [
 	{
-            "group": "-1",
+            "group": "18",
             "nom": "Ahmed Djama",
             "prenom": "Mohamed"
 	},
@@ -31,7 +31,7 @@
             "prenom": "Loubna"
 	},
 	{
-            "group": "-1",
+            "group": "18",
             "nom": "Belayachi",
             "prenom": "Marouane"
 	},
@@ -166,7 +166,7 @@
             "prenom": "Lahcen"
 	},
 	{
-            "group": "-1",
+            "group": "18",
             "nom": "Houssein  Ahmed",
             "prenom": "Mahdi"
 	},
@@ -375,6 +375,10 @@
 	"17": {
             "framework": "Node.js",
             "project": "Bataille Navale"
+	},
+	"18": {
+            "framework": null,
+            "project": "Post-it"
 	},
 	"1": {
             "framework": "Node.js",
