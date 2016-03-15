@@ -11,7 +11,7 @@
             "prenom": "Asmaa"
 	},
 	{
-            "group": "-1",
+            "group": "17",
             "nom": "Azouaoui",
             "prenom": "Melissa"
 	},
@@ -41,7 +41,7 @@
             "prenom": "Rahma"
 	},
 	{
-            "group": "-1",
+            "group": "16",
             "nom": "Benjelloun",
             "prenom": "Mohammed"
 	},
@@ -111,12 +111,12 @@
             "prenom": "Andre"
 	},
 	{
-            "group": "-1",
+            "group": "16",
             "nom": "Eddarif",
             "prenom": "Oussama"
 	},
 	{
-            "group": "-1",
+            "group": "16",
             "nom": "El Fachtali",
             "prenom": "Aiman"
 	},
@@ -161,7 +161,7 @@
             "prenom": "Jassem"
 	},
 	{
-            "group": "-1",
+            "group": "17",
             "nom": "Haouch",
             "prenom": "Lahcen"
 	},
@@ -186,7 +186,7 @@
             "prenom": "Poulmanogo"
 	},
 	{
-            "group": "-1",
+            "group": "17",
             "nom": "Joudelat",
             "prenom": "David"
 	},
@@ -306,7 +306,7 @@
             "prenom": "Mahamadou Saiboudine"
 	},
 	{
-            "group": "-1",
+            "group": "17",
             "nom": "Zinabi",
             "prenom": "Yassine"
 	}
@@ -367,6 +367,14 @@
 	"15": {
             "framework": null,
             "project": "Post-it"
+	},
+	"16": {
+            "framework": null,
+            "project": "Post-it"
+	},
+	"17": {
+            "framework": "Node.js",
+            "project": "Bataille Navale"
 	},
 	"1": {
             "framework": "Node.js",
