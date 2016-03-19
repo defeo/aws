@@ -85,6 +85,14 @@ var Slot = React.createClass({
     handleClick: function() {
 	return this.props.onClick(this.taken(), this.editable());
     },
+
+    setCalendear: function(start, increments) {
+	return this.props.firebase.update({
+	    slots: increments.map(function(i) {
+		return { time: new Date(start + i) }
+	    })
+	});
+    },
     
     render: function() {
 	var classes = classNames({
