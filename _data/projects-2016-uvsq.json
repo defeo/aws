@@ -201,7 +201,7 @@
             "prenom": "Quentin"
 	},
 	{
-            "group": "-1",
+            "group": "19",
             "nom": "Luu",
             "prenom": "Tien Duc"
 	},
@@ -211,7 +211,7 @@
             "prenom": "Nour El Yakine"
 	},
 	{
-            "group": "-1",
+            "group": "20",
             "nom": "Maktite",
             "prenom": "Kamal"
 	},
@@ -291,7 +291,7 @@
             "prenom": "Karima"
 	},
 	{
-            "group": "-1",
+            "group": "20",
             "nom": "Yacoubi Khebiza",
             "prenom": "Mohammed"
 	},
@@ -380,6 +380,10 @@
             "framework": null,
             "project": "Post-it"
 	},
+	"19": {
+            "framework": "Node.js",
+            "project": "Bataille Navale"
+	},
 	"1": {
             "framework": "Node.js",
             "project": "Bataille Navale"
@@ -387,6 +391,10 @@
 	"8": {
             "framework": "Node.js",
             "project": "Bomberman"
+	},
+	"20": {
+            "framework": null,
+            "project": "Post it"
 	},
 	"-1": { "project": "Unknown"}
     }
