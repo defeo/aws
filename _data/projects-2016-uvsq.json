@@ -216,7 +216,7 @@
             "prenom": "Kamal"
 	},
 	{
-            "group": "-1",
+            "group": "21",
             "nom": "Masloh",
             "prenom": "Mohamed"
 	},
@@ -393,6 +393,10 @@
             "project": "Bomberman"
 	},
 	"20": {
+            "framework": null,
+            "project": "Post it"
+	},
+	"21": {
             "framework": null,
             "project": "Post it"
 	}
