@@ -24,7 +24,7 @@
       "{{ g[0] }}" : { framework: "{{ g[1].framework }}", project: "{{ g[1].project }}", workspace: "{{ g[1].workspace }}", github: "{{ g[1].github }}", run: "{{ g[1].run }}", students: [] },
       {% endfor %}
       };
-      for (var s of students) groups[s.group].students.push(s);
+      for (var s of students) groups[s.group] && groups[s.group].students.push(s);
       for (var g in groups)
           groups[g].description = groups[g].students.map(function(s) {
 	      return s.nom + ' ' + s.prenom;

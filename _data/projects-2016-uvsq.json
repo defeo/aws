@@ -395,7 +395,6 @@
 	"20": {
             "framework": null,
             "project": "Post it"
-	},
-	"-1": { "project": "Unknown"}
+	}
     }
 }
