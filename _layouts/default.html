@@ -20,7 +20,7 @@ layout: main
       {% if site.created and diff < 0 %}{{ site.created }}-{% endif %}{{ year }}
 
       {% for a in site.authors %}
-      <a href="{{ a.url }}" class="print-link">{{ a.name }}</a>{% unless forloop.last %},{% endunless %}{% endfor %}{% if site.license %},
+      {% if a.url %}<a href="{{ a.url }}" class="print-link">{% endif %}{{ a.name }}{% if a.url %}</a>{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}{% if site.license %},
       licensed under the
       <a rel="license" class="print-link"
 	 href="{% include utils/joinpath.str root=site.baseurl base='' path=site.license.url %}">{{ site.license.name }}</a>{% endif %}.
