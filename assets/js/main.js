@@ -51,7 +51,7 @@ Element.prototype.css = function(css) {
     var old = {};
     for (var select_or_prop in css) {
 	var val = css[select_or_prop];
-	if (typeof(val) == 'string') {
+	if (typeof(val) == 'string' || typeof(val) == 'number') {
 	    old[select_or_prop] = this.style[select_or_prop];
 	    this.style[select_or_prop] = val;
 	} else {
