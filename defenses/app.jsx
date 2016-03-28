@@ -25,7 +25,7 @@ var Project = React.createClass({
 		url = url.map(function(s) {
 		    return s.replace(/[^a-z0-9-]/g, '-').replace(/^-+/, '');
 		});
-		return "https://" + url[1] + '-' + url[0] + ".c9.io/";
+		return "https://" + url[1] + '-' + url[0] + ".c9users.io/";
 	    })(c9.split("/"))
 	    : null);
 	var github = this.props.data.github;
