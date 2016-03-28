@@ -84,9 +84,21 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 	bezierCurve: false,
     });
 
-    var freeze = stats.get(period(new Date('2016-03-15')))
-	|| Array.from(stats.values()).pop();
-    var note = Math.min(Math.round((2 * freeze.total + 4 * freeze.correct)*10/28)/10, 6);
+    var freeze = timeline.reduce(function (stats, a) {
+	if (a.date <= new Date('2016-03-15T13:00:00')) {
+	    if (["56a7ab9487b68f1300ba90ae", "56a7a68087b68f1300ba90a3",
+		 "56a7a34a87b68f1300ba909b", "56a7a8f187b68f1300ba90a8",
+		 "56a6b6d387b68f1300ba9088", "56a6b6d387b68f1300ba9091"].indexOf(a.poll._id) == -1) {
+		stats.total++;
+		stats.correct += a.correct;
+	    }
+	} else {
+	    stats.outoftime++;
+	}
+	return stats;
+    }, { total: 0, correct: 0, outoftime: 0 });
+    console.log(freeze);
+    var note = Math.min(Math.round((2 * freeze.total + 4 * freeze.correct)*10/22)/10, 6);
     $('#clicker-grade').textContent = 'Note : ' + note + '/6';
     
 }, function(err) {
