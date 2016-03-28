@@ -1,17 +1,19 @@
 ---
 layout: article
-title: Résultats des questionnaires
+title: Statistiques
 scripts:
   - ../../assets/js/chart/Chart.min.js
-  - results.js
+  - stats.js
 ---
 
-<canvas id="clicker-bar" width="800" height="400"></canvas>
-<h3 id="clicker-grade"></h3>
-<div id="clicker-results"></div>
+<h2>Users</h2>
+<div id="stats-users"></div>
+
+<h2>Questions</h2>
+<div id="stats-questions"></div>
 
 <script>
-var quizzes = [
+var lessons = [
   {% for l in site.lessons %}
   {
     lesson: {{ l.title | jsonify }},

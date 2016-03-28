@@ -36,6 +36,22 @@
     }
 }
 #clicker-bar {
-    height: 1.5rem;
-    border: solid thin #444;
+    display: block;
+    margin: auto;
+}
+
+#stats-users {
+    ul {
+	padding: 0;
+	list-style-type: none;
+	text-align: justify;
+    }
+    li {
+	display: inline-block;
+	margin: 4px;
+	padding: 2px;
+	box-shadow: 0 0 2px 0 blue;
+/*	background-color: blue;
+	a { color: white; }*/
+    }
 }
