@@ -91,7 +91,7 @@
             "prenom": "Stephane"
 	},
 	{
-            "group": "-1",
+            "group": "22",
             "nom": "Catraye",
             "prenom": "Mahoutin Amen"
 	},
@@ -322,43 +322,53 @@
 	},
 	"4": {
             "framework": "Node.js",
-            "project": "Light Saber"
+            "project": "Light Saber",
+	    "github": "mccstan/remote-lightsaber.git"
 	},
 	"2": {
             "framework": "Node.js",
-            "project": "Baraille Navale"
+            "project": "Baraille Navale",
+	    "workspace": "andreuvsq/bataillenavale"
 	},
 	"7": {
             "framework": null,
-            "project": "Post-it"
+            "project": "Post-it",
+	    "github": "NicolasFonte/sticket-notes"
 	},
 	"9": {
             "framework": "Node.js",
-            "project": "Post-it"
+            "project": "Post-it",
+	    "workspace": "ufgjhkljkhghklj/projet"
 	},
 	"13": {
             "framework": "Node.js",
-            "project": "Bataille Navale"
+            "project": "Bataille Navale",
+	    "workspace": "bendito/battleships"
 	},
 	"10": {
             "framework": "Node.js",
-            "project": "Bataille Navale"
+            "project": "Bataille Navale",
+	    "workspace": "yacine_slimani/bataille_royale"
 	},
 	"11": {
             "framework": "Node.js",
-            "project": "Post-it"
+            "project": "Post-it",
+	    "workspace": "desepto/ajax"
 	},
 	"0": {
             "framework": "Silex",
-            "project": "Post-it"
+            "project": "Post-it",
+	    "workspace": "rahma1993/projet"
 	},
 	"12": {
             "framework": "Node.js",
-            "project": "Post-it"
+            "project": "Post-it",
+	    "workspace": "shouta15/projet_aws"
 	},
 	"5": {
             "framework": "Node.js",
-            "project": "Bataille Navale"
+            "project": "Bataille Navale",
+	    "workspace": "hamzatahour/tpapplication"
 	},
 	"14": {
             "framework": null,
@@ -386,11 +396,14 @@
 	},
 	"1": {
             "framework": "Node.js",
-            "project": "Bataille Navale"
+            "project": "Bataille Navale",
+	    "workspace": "mustapha/cloned"
 	},
 	"8": {
             "framework": "Node.js",
-            "project": "Bomberman"
+            "project": "Bomberman",
+	    "workspace": "uvsq21507627/bomberman",
+	    "github": "uvsq21505824/ProjerAWS_Bomb-a-o.git"
 	},
 	"20": {
             "framework": null,
@@ -399,6 +412,10 @@
 	"21": {
             "framework": null,
             "project": "Post it"
+	},
+	"22": {
+            "framework": null,
+            "project": "Light Saber",
 	}
     }
 }
