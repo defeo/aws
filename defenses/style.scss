@@ -164,7 +164,7 @@ $slot-height: 2em;
 
 .icon {
     display: inline-block;
-    color: transparent;
+    color: transparent !important;
     width: 1em; height: 1em;
     margin: 0 1px;
     background-size: contain;
