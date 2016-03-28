@@ -109,6 +109,19 @@ De l'excellente [Courte histoire du World Wide Web](http://www.w3.org/History.ht
 </section>
 <section>
 
+### Il n'y a pas que les navigateurs...
+
+|**2004**| Première version du serveur nginx (serveur haute performance, à évènements)
+|**2009**| Première version de Node.js, basée sur le moteur V8 de Chrome.
+|**2011**| Standardisation du protocole WebSocket.
+|**2012**| Google expérimente avec le protocole SPDY.
+|**2015**| Standardisation de HTTP/2.
+|        | Google annonce la fin de vie de SPDY.
+{:.pretty.content}
+
+</section>
+<section>
+
 ### Retour aux hostilités
 
 |**2002**| Apple *forke* KHTML et KJS, les moteurs du navigateur Konqueror. Le projet est nommé WebKit.
@@ -181,6 +194,111 @@ console.log(stats.map(other));
 
 
 **Source :** [StatCounter Global Stats - Browser Market Share](http://gs.statcounter.com/#browser-ww-quarterly-200803-201601).
+
+</section>
+<section>
+
+### Internet et les marchés financiers
+
+En 2000, les marchés financiers vivent une période d'*exubérance
+irrationnelle* pour le web :
+
+- **Get large or get lost :** beaucoup de start-ups technologiques se
+  lancent sur le marché sans réel *business plan*, dépensent des
+  fortunes pour agrandir leur clientèle.
+
+- Ajouter un **« e- »** dans le nom, ou refaire un site web peut faire
+  rebondir de 10× la valeur d'une action.
+
+- Beaucoup font faillite rapidement. Survivants notables : Google,
+  eBay, Amazon, ...
+
+<div class="two-cols" style="align-items: center">
+
+<div>
+<canvas id="nasdaq" width="600" height="280"></canvas>
+<script>
+var nasdaq = new Map([
+  {% for q in site.data.nasdaq reversed %}
+  [ new Date("{{ q.Date }}"), {{ q.Close }}],
+  {% endfor %}
+]);
+document.on('DOMContentLoaded', () => {
+new Chart($("#nasdaq").getContext("2d")).Line({
+  labels: Array.from(nasdaq.keys()).map(function (d) { return d.getMonth() ? '' : d.getUTCFullYear() }),
+  datasets: [
+	{ label: 'NASDAQ Composite',
+	data: Array.from(nasdaq.values()),
+	pointColor: 'transparent', pointStrokeColor: 'transparent', strokeColor: 'blue' },
+  ]
+}, {
+  animation: false,
+  datasetFill: false,
+  showTooltips: false,
+  bezierCurve: false,
+});
+});
+</script>
+</div>
+
+Indice **NASDAQ Composite** 1995--2015  
+(source : [Yahoo Finance](http://finance.yahoo.com/q/hp?s=^IXIC)).
+
+</div>
+
+</section>
+<section>
+
+### Inscriptions universitaires en Sciences et Ingénierie (États-Unis)
+
+<div class="two-cols content">
+<style scoped>
+.legend { list-style-type: none }
+.legend em { display: inline-block; width: 1em; height: 1em; }
+#cs { background-color: red}
+#eng { background-color: blue}
+#bio { background-color: green}
+#phys { background-color: yellow}
+</style>
+<canvas id="inscriptions" width="600" height="400"></canvas>
+
+- * *{:#cs} Math/Info
+- * *{:#eng} Ingénierie
+- * *{:#bio} Biologie
+- * *{:#phys} Physique
+{:.legend}
+
+</div>
+<script>
+document.on('DOMContentLoaded', () => {
+new Chart($("#inscriptions").getContext("2d")).Line({
+  labels: Array(20).fill(null).map(function (x,i) { return 1995+i }),
+  datasets: [
+	{ label: 'Total',
+	data: [23.5,25.3,25.7,23.3,24.8,23.9,23.9,23.1,22.1,22.9,21.3,21.5,21.5,23.8,25.1,27.0,28.8,28.8,32,35],
+	pointColor: 'transparent', pointStrokeColor: 'transparent', fillColor: '#eee' },
+    { label: 'Physique',
+	data: [2.3,2.1,2.1,1.8,1.9,1.8,1.9,2.0,2.0,2.3,2.8,2.3,2.4,2.4,2.5,2.7,2.8,2.5,2.4,2.5],
+	pointColor: 'yellow', strokeColor: 'yellow', fillColor: 'transparent' },
+    { label: 'Biologie',
+	data: [9.4,9.3,9.1,8.1,8.2,7.5,7.5,7.8,7.7,8.3,8.1,8.8,9.1,9.8,10.4,11.6,11.4,12.9,14.7,13.8],
+	pointColor: 'green', strokeColor: 'green', fillColor: 'transparent' },
+    { label: 'Ingénierie',
+	data: [8.1,9.6,9.7,8.2,9.0,8.7,9.1,9.5,9.3,9.6,8.4,8.0,7.5,9.3,9.7,10.3,12.0,10.3,11.2,13.8],
+	pointColor: 'blue', strokeColor: 'blue', fillColor: 'transparent' },
+    { label: 'Informatique',
+	data: [3.7,4.3,4.8,5.2,5.7,5.9,5.4,3.8,3.1,2.7,2.0,2.4,2.5,2.3,2.5,2.4,2.6,3.1,3.7,4.9],
+	pointColor: 'red', strokeColor: 'red', fillColor: 'transparent' },
+  ]
+}, {
+  animation: false,
+  scaleLabel: '<%=value%>%',
+  bezierCurve: false,
+});
+});
+</script>
+
+**Source :** National Science Foundation, [SEI 2012](http://www.nsf.gov/statistics/seind12/c2/c2s2.htm), [SEI 2016](http://www.nsf.gov/statistics/2016/nsb20161/).
 
 </section>
 <section>
@@ -263,53 +381,64 @@ console.log(stats.map(other));
 </section>
 <section>
 
-### Il n'y a pas que les navigateurs...
+## En quoi le web est-il révolutionnaire?
 
-|**2004**| Première version du serveur nginx (serveur haute performance, à évènements)
-|**2009**| Première version de Node.js, basée sur le moteur V8 de Chrome.
-|**2011**| Standardisation du protocole WebSocket.
-|**2012**| Google expérimente avec le protocole SPDY.
-|**2015**| Standardisation de HTTP/2.
-|        | Google annonce la fin de vie de SPDY.
+| | Personal computing | WWW
+|-
+| Exécution de code non-fiable  | ❌ | ✓
+| Portabilité | ❌ | ✓ (dans les bons cas...)
+| Assembleur | ✓ | en cours (WebAssembly)
+| Parallélisme | ✓ | en cours (WebWorkers)
+| Modèle de sécurité | Basé sur l'utilisateur | Basé sur les permissions
+| Marchés visés | Prestataires, tâches automatisables, secrétaires, ... | Intermédiaires, presse, divertissement, ...
+| *Business model* | Basé sur la propriété intellectuelle | Basé sur les services
 {:.pretty.content}
 
 </section>
 <section>
 
-## Ce qui reste des années XHTML
+### Évolutions à surveiller : le présent du web
 
-- Écrire du code valide, utiliser les validateurs <http://validator.w3.org>;
-- Séparer le **Contenu**, de la **Présentation**, de la **Logique**;
-- Développer de façon incrémentale, *dégrader gracieusement* (*unobtrusive javascript*, *adaptative layout*, ...)
+ES6
+: JavaScript fait peau neuve : syntaxe, promesses, classes, itérateurs/générateurs, modules, ...
 
-### Et lisez les **standards !!!**
+HTTPS partout (Let's encrypt)
+: Chiffrement généralisé sur le web.
 
-- <https://www.w3.org>;
-- <https://developer.mozilla.org>.
+WebRTC
+: Visio-conf peer-to-peer dans le navigateur.
 
-</section>
-<section>
+WebGL
+: Fraphisme 3D.
 
-## Le présent du web
+Ractive programming
+: React.js, React native, ...
 
-- ES6.
-- Let's encrypt : HTTPS partout.
-- WebRTC : visio-conf peer-to-peer dans le navigateur.
-- WebGL : graphique 3D.
-- WebAudio.
-- Ractive programming : React.js, React native, ...
+WebExtensions
+: Des extensions de navigateurs **portables**, implantées avec les
+  mêmes technologies que le web.
 
 </section>
 <section>
 
-## Le futur (proche) du web
+### Évolutions à surveiller : le futur (proche) du web
 
-- ES7, JavaScript modules.
-- WebAssembly : bytecode pour le web (successeur de asm.js).
-- Service workers, push notifications : multi-threading, applications offline.
-- WebVR : réalité virtuelle.
-- WebRTC : peer-to-peer généralisé ?
-- Convergence mobile-web ?
+WebAssembly
+: *Bytecode* pour le web (successeur de asm.js). Accélération de jeux
+  vidéos/traitement de données, *compiler target* pour d'autres
+  langages.
+  
+Service workers, push notifications
+: Multi-threading, applications offline.
+
+WebVR
+: Réalité virtuelle pour le navigateur.
+
+Encrypted Media Extensions
+: Exécution de code propriétaire (DRM) dans le navigateur.
+
+WebRTC
+: Peer-to-peer généralisé ?
 
 </section>
 <section>
@@ -318,29 +447,29 @@ console.log(stats.map(other));
 
 ### Protection de la vie privée
 
-- Vol de données (iCloud, Ashley Madison, Office of Personnel Management),
-- Collecte de données (<https://hal.inria.fr/hal-01120186/file/RR8686.pdf>),
+- Vol de données (iCloud, Ashley Madison, Office of Personnel Management) ;
+- Collecte de données, traçage ;
 - Surveillance généralisée (Apple vs FBI).
 
 ### Sécurité des systèmes
 
-- Sécurité du web : SOP, CSRF, mash-ups, ... 
-- Systèmes connectées : voiture intelligente (Chrysler/jeep), internet of things,
-- Authentification : cas de Oauth, authentification sans mot de passe (<https://fidoalliance.org/>).
+- Sécurité du web : SOP, CSRF, mash-ups, ... ;
+- Systèmes connectées : voiture intelligente (Chrysler/jeep), *internet of things* ;
+- Authentification : Oauth, authentification sans mot de passe (<https://fidoalliance.org/>).
 
-### Garder le Web *ouvert*
+### Qui finance le web ? – Garder le Web *ouvert*
 
-- Convergence web -- mobile, app-stores, signature du code, DRM,
-- Monopole des navigateurs,
-- Qui finance le web ?
+- Convergence web–mobile, app-stores,  signature du code, DRM ;
+- Positions de monopole, *zero rating*, *vendor lock-in* ;
+- Publicité, risques de sécurité, *ad-blockers*, *micro-payments* (<https://www.brave.com/>).
 
 </section>
 <section>
 
 ## Et mon rôle en tant que développeur web ?
 
-C'est dans votre **intérêt** qu'il y ait plusieurs navigateurs en
-compétition **équitable** :
+C'est dans votre **intérêt** qu'il y ait plusieurs
+navigateurs/téléphones/objets/... en compétition **équitable** :
 
 - Plus de R&D, distribution plus rapide,
 - Meilleure compatibilité.
@@ -349,7 +478,7 @@ C'est votre **devoir** de :
 
 - Développer de façon portable, suivre les standards ;
 - Tester sur plusieurs plates-formes ;
-- Distribuer votre code, lorsque cela fait du sens ;
+- Distribuer votre code source, lorsque cela fait du sens ;
 - Participer au développement des standards, commenter, faire du lobbying.
 
 **Souvenez-vous :** à chaque fois que vous vous appuyez sur une
@@ -377,6 +506,8 @@ technologie non-standard vous **choisissez un côté dans une guerre** !
 - Dan Kaminsky, [Defcon 23: Let’s End Clickjacking](http://dankaminsky.com/2015/08/09/defcon-23-lets-end-clickjacking/).
 - Tim Sweeney, [Epic's Tim Sweeney: Here's how to keep Windows an open platform](http://venturebeat.com/2016/03/10/epics-tim-sweeney-heres-how-to-keep-windows-an-open-platform/).
 - Sebastian Anthony, [Mozilla co-founder unveils Brave, a browser that blocks ads by default](http://arstechnica.com/business/2016/01/mozilla-co-founder-unveils-brave-a-web-browser-that-blocks-ads-by-default/).
+- Wikipedia, [Dot-com bubble](https://en.wikipedia.org/wiki/Dot-com_bubble).
+- Eric Elliot, [What is WebAssembly?](https://medium.com/javascript-scene/what-is-webassembly-the-dawn-of-a-new-era-61256ec5a8f6#.t8zvnw28t).
 
 </section>
 <section>

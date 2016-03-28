@@ -100,3 +100,11 @@
 
 - date: 2016-03-28
   comment: '**ATTENTION :** Cours + TD le mardi 8h--12h45'
+  contents:
+    tutorials:
+      - url: accounts-silex.md
+        comment: version pour Silex
+      - url: accounts-node.md
+        comment: version pour Node
+    lessons:
+      - past-future.md
