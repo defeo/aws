@@ -314,7 +314,8 @@
     "groups": {
 	"6": {
             "framework": "Node.js",
-            "project": "Post-it"
+            "project": "Post-it",
+	    "workspace": "mazzabi/post_it"
 	},
 	"3": {
             "framework": "Silex",
@@ -384,7 +385,8 @@
 	},
 	"17": {
             "framework": "Node.js",
-            "project": "Bataille Navale"
+            "project": "Bataille Navale",
+	    "workspace": "yassinez/test"
 	},
 	"18": {
             "framework": null,
