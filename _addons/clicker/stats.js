@@ -15,6 +15,7 @@ clicker._authXHR('/users', clicker.user.token, function(users, xhr) {
 	    a.css({ opacity: Math.max((month - staleness)/month, 0.1) });
 	}
     });
+    window.users = users;
 });
 
 lessons.forEach(function(l) {
