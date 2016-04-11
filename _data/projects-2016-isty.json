@@ -1,180 +1,232 @@
-{ "students":
-  [
-      {
-	  "group": "-1",
-	  "prenom": "Riaz",
-	  "nom": "ABDUL"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Amir",
-	  "nom": "AROUA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Jérémy",
-	  "nom": "AUBRY"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Hugo",
-	  "nom": "BERNET"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Anthony",
-	  "nom": "BRANCIFORTI-TANEFO"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Eloi",
-	  "nom": "CALLEJA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Guillaume",
-	  "nom": "CHARNAY"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Gabriel",
-	  "nom": "CHAUMETON"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Félicien",
-	  "nom": "DIVRY"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Fahed",
-	  "nom": "DORGAA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Filipe",
-	  "nom": "DUARTE"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Myriam",
-	  "nom": "DYANI"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Hamza",
-	  "nom": "HADDAD"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Anthony",
-	  "nom": "LAMOTTE"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Nicolas",
-	  "nom": "LE BOURHIS"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Kévin",
-	  "nom": "LE SAULNIER"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Jean-Baptiste",
-	  "nom": "LETONNELIER"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Loïc",
-	  "nom": "LESPORT"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Bérénice",
-	  "nom": "LUCHIER"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Cosmin",
-	  "nom": "MANDOC"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Théau",
-	  "nom": "MARTINOU"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Ioann",
-	  "nom": "MATOUB"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Sébastien",
-	  "nom": "MIGEOT"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Anis",
-	  "nom": "NAJJAR"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Destin Christel",
-	  "nom": "NIAMA NZINGA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Luc",
-	  "nom": "NOUGAYREDE"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Napo",
-	  "nom": "OUADJA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Jean-Pierre",
-	  "nom": "PHAM"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Romain",
-	  "nom": "PILLOT"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Ahmed",
-	  "nom": "REKIK"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Rakotonely",
-	  "prenom": "Gontran",
-	  "nom": "SORAYA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Quentin",
-	  "nom": "TRIBOULLOY"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Bruno",
-	  "nom": "TRINTA"
-      },
-      {
-	  "group": "-1",
-	  "prenom": "Koko Aldo",
-	  "nom": "TSAGUE KENFACK"
-      }
-  ],
-  "groups": {
-      "-1": {
-	  "project": "UNKNOWN"
-      }
-  }
+{
+    "groups": {
+        "-1": {
+            "project": "UNKNOWN"
+        },
+        "0": {
+            "framework": "Node.js",
+            "project": "Bomberman",
+            "workspace": "/dixit_z/alea_project"
+        },
+        "1": {
+            "framework": "Node.js",
+            "project": "Bomberman"
+        },
+        "10": {
+            "framework": "Node.js",
+            "project": "Postit"
+        },
+        "11": {
+            "framework": "Silex",
+            "project": "Postit"
+        },
+        "12": {
+            "framework": "Node.js",
+            "project": "Bataille navale"
+        },
+        "2": {
+            "framework": "Node.js",
+            "project": "Bomberman"
+        },
+        "3": {
+            "framework": "Node.js",
+            "project": "Bataille navale"
+        },
+        "4": {
+            "framework": "Node.js",
+            "project": "Bomberman"
+        },
+        "5": {
+            "framework": "Node.js",
+            "project": "Postit"
+        },
+        "6": {
+            "framework": "Node.js",
+            "project": "Bomberman"
+        },
+        "7": {
+            "framework": "Node.js",
+            "project": "Bataille navale"
+        },
+        "8": {
+            "framework": "Node.js",
+            "project": "Bataille navale"
+        },
+        "9": {
+            "framework": "Silex",
+            "project": "Postit"
+        }
+    },
+    "students": [
+        {
+            "group": "-1",
+            "nom": "ABDUL",
+            "prenom": "Riaz"
+        },
+        {
+            "group": "9",
+            "nom": "AROUA",
+            "prenom": "Amir"
+        },
+        {
+            "group": "2",
+            "nom": "AUBRY",
+            "prenom": "J\u00e9r\u00e9my"
+        },
+        {
+            "group": "5",
+            "nom": "BERNET",
+            "prenom": "Hugo"
+        },
+        {
+            "group": "8",
+            "nom": "BRANCIFORTI-TANEFO",
+            "prenom": "Anthony"
+        },
+        {
+            "group": "5",
+            "nom": "CALLEJA",
+            "prenom": "Eloi"
+        },
+        {
+            "group": "7",
+            "nom": "CHARNAY",
+            "prenom": "Guillaume"
+        },
+        {
+            "group": "2",
+            "nom": "CHAUMETON",
+            "prenom": "Gabriel"
+        },
+        {
+            "group": "7",
+            "nom": "DIVRY",
+            "prenom": "F\u00e9licien"
+        },
+        {
+            "group": "9",
+            "nom": "DORGAA",
+            "prenom": "Fahed"
+        },
+        {
+            "group": "0",
+            "nom": "DUARTE",
+            "prenom": "Filipe"
+        },
+        {
+            "group": "6",
+            "nom": "DYANI",
+            "prenom": "Myriam"
+        },
+        {
+            "group": "9",
+            "nom": "HADDAD",
+            "prenom": "Hamza"
+        },
+        {
+            "group": "1",
+            "nom": "LAMOTTE",
+            "prenom": "Anthony"
+        },
+        {
+            "group": "8",
+            "nom": "LE BOURHIS",
+            "prenom": "Nicolas"
+        },
+        {
+            "group": "1",
+            "nom": "LE SAULNIER",
+            "prenom": "K\u00e9vin"
+        },
+        {
+            "group": "-1",
+            "nom": "LETONNELIER",
+            "prenom": "Jean-Baptiste"
+        },
+        {
+            "group": "6",
+            "nom": "LESPORT",
+            "prenom": "Lo\u00efc"
+        },
+        {
+            "group": "4",
+            "nom": "LUCHIER",
+            "prenom": "B\u00e9r\u00e9nice"
+        },
+        {
+            "group": "7",
+            "nom": "MANDOC",
+            "prenom": "Cosmin"
+        },
+        {
+            "group": "-1",
+            "nom": "MARTINOU",
+            "prenom": "Th\u00e9au"
+        },
+        {
+            "group": "-1",
+            "nom": "MATOUB",
+            "prenom": "Ioann"
+        },
+        {
+            "group": "8",
+            "nom": "MIGEOT",
+            "prenom": "S\u00e9bastien"
+        },
+        {
+            "group": "-1",
+            "nom": "NAJJAR",
+            "prenom": "Anis"
+        },
+        {
+            "group": "11",
+            "nom": "NIAMA NZINGA",
+            "prenom": "Destin Christel"
+        },
+        {
+            "group": "3",
+            "nom": "NOUGAYREDE",
+            "prenom": "Luc"
+        },
+        {
+            "group": "10",
+            "nom": "OUADJA",
+            "prenom": "Napo"
+        },
+        {
+            "group": "3",
+            "nom": "PHAM",
+            "prenom": "Jean-Pierre"
+        },
+        {
+            "group": "4",
+            "nom": "PILLOT",
+            "prenom": "Romain"
+        },
+        {
+            "group": "-1",
+            "nom": "REKIK",
+            "prenom": "Ahmed"
+        },
+        {
+            "group": "12",
+            "nom": "SORAYA",
+            "prenom": "Gontran"
+        },
+        {
+            "group": "2",
+            "nom": "TRIBOULLOY",
+            "prenom": "Quentin"
+        },
+        {
+            "group": "0",
+            "nom": "TRINTA",
+            "prenom": "Bruno"
+        },
+        {
+            "group": "12",
+            "nom": "TSAGUE KENFACK",
+            "prenom": "Koko Aldo"
+        }
+    ]
 }
