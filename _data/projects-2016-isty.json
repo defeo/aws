@@ -6,7 +6,7 @@
         "0": {
             "framework": "Node.js",
             "project": "Bomberman",
-            "workspace": "/dixit_z/alea_project"
+            "workspace": "dixit_z/alea_project"
         },
         "1": {
             "framework": "Node.js",
