@@ -324,7 +324,7 @@ var Slots = React.createClass({
 
 /******************************************************/
 var slots = React.createElement(Slots, {
-    firebase: new Firebase('https://defeo-aws.firebaseio.com/defenses/2016-uvsq'),
+    firebase: new Firebase('https://defeo-aws.firebaseio.com/defenses/2016-isty'),
     projects: window.groups,
 });
 
