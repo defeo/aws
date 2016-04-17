@@ -102,7 +102,7 @@ var Slot = React.createClass({displayName: "Slot",
 	    editable: this.editable(),
 	});
 	var style = {
-	    top: (this.props.time.getHours() - 10 + this.props.time.getMinutes() / 60) * 4 + 'em'
+	    top: (this.props.time.getHours() - 9 + this.props.time.getMinutes() / 60) * 4 + 'em'
 	};
 	
 	return (
