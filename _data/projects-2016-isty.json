@@ -1,8 +1,5 @@
 {
     "groups": {
-        "-1": {
-            "project": "UNKNOWN"
-        },
         "0": {
             "framework": "Node.js",
             "project": "Bomberman",
@@ -58,11 +55,6 @@
         }
     },
     "students": [
-        {
-            "group": "-1",
-            "nom": "ABDUL",
-            "prenom": "Riaz"
-        },
         {
             "group": "9",
             "nom": "AROUA",
@@ -162,11 +154,6 @@
             "group": "-1",
             "nom": "MARTINOU",
             "prenom": "Th\u00e9au"
-        },
-        {
-            "group": "-1",
-            "nom": "MATOUB",
-            "prenom": "Ioann"
         },
         {
             "group": "8",
