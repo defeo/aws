@@ -7,7 +7,8 @@
         },
         "1": {
             "framework": "Node.js",
-            "project": "Bomberman"
+            "project": "Bomberman",
+	    "workspace": "anth78180/projet_bomberman"
         },
         "10": {
             "framework": "Node.js",
@@ -19,23 +20,28 @@
         },
         "12": {
             "framework": "Node.js",
-            "project": "Bataille navale"
+            "project": "Bataille navale",
+	    "workspace": "tkokoaldo/bataille-navale"
         },
         "2": {
             "framework": "Node.js",
-            "project": "Bomberman"
+            "project": "Bataille navale",
+	    "workspace": "whenone/bataille_navale_online"
         },
         "3": {
             "framework": "Node.js",
-            "project": "Bataille navale"
+            "project": "Bataille navale",
+	    "workspace": "lucnougayrede/bataille_navale_the_real"
         },
         "4": {
             "framework": "Node.js",
-            "project": "Bomberman"
+            "project": "Bomberman",
+	    "workspace": "bereniceluchier/bomberman"
         },
         "5": {
             "framework": "Node.js",
-            "project": "Postit"
+            "project": "Postit",
+	    "workspace": "hujjo/aws-project"
         },
         "6": {
             "framework": "Node.js",
@@ -43,15 +49,18 @@
         },
         "7": {
             "framework": "Node.js",
-            "project": "Bataille navale"
+            "project": "Bataille navale",
+	    "workspace": "felici1/bataille-navale-cloned-testfulljson"
         },
         "8": {
             "framework": "Node.js",
-            "project": "Bataille navale"
+            "project": "Bataille navale",
+	    "workspace": "nix29178/projet_bataille_navale"
         },
         "9": {
             "framework": "Silex",
-            "project": "Postit"
+            "project": "Postit",
+	    "workspace": "githamza/postit"
         }
     },
     "students": [
