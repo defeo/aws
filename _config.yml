@@ -27,7 +27,8 @@ defaults:
       path: ''
     values:
       layout: default
-#      addons:
+      addons:
+        favicon: yes
 #        mathjax: yes
 #        highlightjs: yes
 #        print-link: yes
