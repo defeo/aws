@@ -32,8 +32,8 @@ Then run Jekyll and visit <http://localhost:4000/article/>.
 
 ## What next?
 
-eLeMentS is a rich enviroment full of features. To learn more about
-it, head on to the
+{{ site.title }} is a rich environment full of features. To learn more
+about it, head on to the
 [eLeMentS LMS website](http://elementsLMS.github.io/), and be sure to
 read the [Jekyll](http://jekyllrb.com/docs) and
 [Markdown](http://kramdown.gettalong.org/syntax.html) docs.
