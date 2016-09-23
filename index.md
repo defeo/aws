@@ -21,7 +21,7 @@ Create a new file, say `article.md`, with the following content
 ~~~
 ---
 layout: article
-title: My first lesson!
+title: My first article!
 ---
 
 I <3 eLeMentS!

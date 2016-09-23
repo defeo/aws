@@ -40,7 +40,7 @@ defaults:
 #  collections:
 #    - key: posts
 #      template: Write something
-#    - key: tutorial
+#    - key: tutorials
 #      template: Write a tutorial
 
 # Collections
@@ -55,7 +55,7 @@ collections:
 #    name:
 #      one: tutorial
 #      many: tutorials
-#    icon: text-o
+#    icon: file-text-o
 #    output: true
 
 
