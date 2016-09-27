@@ -1,13 +1,21 @@
 ---
 name: highlightjs
 links:
-  - href: //yandex.st/highlightjs/8.0/styles/default.min.css
+  - href: //cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css
 scripts:
-  - src: //yandex.st/highlightjs/8.0/highlight.min.js
+  - src: //cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js
   - src: highlightjs.conf.js
+addons:
+  highlightjs: yes
 ---
 
 # Highlight.js
 
-This plugin adds [highlight.js](https://highlightjs.org/) support to
-pages.
+This plugin adds [highlight.js](https://highlightjs.org/) support for
+automatic syntax highlighting.
+
+~~~
+function(code) {
+	return highlight(code);
+}
+~~~

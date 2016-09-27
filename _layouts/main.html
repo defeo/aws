@@ -141,15 +141,16 @@
     {% endif %}
 
     <!-- We pass down data from the YAML front matter as a JS object -->
-    <script type="text/javascript">
-      var Elements = {
+    <script id="elements-data-json" type="application/json">
+      {
         "page": {
           {% for p in page %}{% unless "content next previous excerpt" contains p[0] %}
-          "{{ p[0] }}": {{ p[1] | jsonify }},
+          "{{ p[0] }}": {{ p[1] | jsonify }}{% unless forloop.last %},{% endunless %}
           {% endunless %}{% endfor %}
         }
       }
     </script>
+    <script>var eLeMentS = JSON.parse($('#elements-data-json').textContent);</script>
 
     <!-- Scripts added by add-ons -->
     {% for a in page.addons %}
