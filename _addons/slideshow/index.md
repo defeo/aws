@@ -12,6 +12,6 @@ menus:
     icon: tv
 ---
 
-{{ page.addons }}
+## Slideshow
 
-## Yo
+This addon adds a slide presentation widget to any page.

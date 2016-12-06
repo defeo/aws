@@ -16,7 +16,7 @@ var SlideShow = {
     },
 
     init: function() {
-	this.container = $(ClassBP.page.addons.slideshow.container || "#content");
+	this.container = $(eLeMentS.page.addons.slideshow.container || "#content");
 	this.container.classList.add("slideshow-container");
 	this.slides = Array.prototype.slice.call(this.container.$$(":scope > section"));
 	this.progressBar = this.container.append("div#progress-bar");
@@ -26,8 +26,8 @@ var SlideShow = {
     play: function() {
 	this.html.classList.add("slideshow");
 	this.oldSize = this.container.css({
-	    width: (ClassBP.page.addons.slideshow.width || 800) + 'px',
-	    height: (ClassBP.page.addons.slideshow.height || 600) + 'px',
+	    width: (eLeMentS.page.addons.slideshow.width || 800) + 'px',
+	    height: (eLeMentS.page.addons.slideshow.height || 600) + 'px',
 	});
 	this.setupParams();
 	this.onhashchange();

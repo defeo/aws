@@ -4,11 +4,11 @@
   <head lang="en">
     <meta charset="utf-8">
     <title>
-      {% if page.title == "Home" %}
+      {% unless page.title %}
       {{ site.title }} – {{ site.tagline }}
       {% else %}
       {{ page.title }} – {{ site.title }}
-      {% endif %}
+      {% endunless %}
     </title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
     <!-- Add-on: {{ a[0] }} -->
     {% assign docs = site.addons | where:'name',a[0] %}
     {% for d in docs %}{% assign base = d.url | append: '/../' %}{% for l in d.links %}
-    <link class="class-bp-addon-{{ d.name }}"
+    <link class="elements-addon-{{ d.name }}"
 	  rel="{% include utils/default.str val=l.rel default='stylesheet'  %}"
 	  href="{% include utils/joinpath.str root=site.baseurl base=base path=l.href %}"
 	  type="{% include utils/default.str val=l.type default='text/css' %}"
@@ -113,9 +113,9 @@
 	<!-- Add-on: {{ a[0] }} -->
 	{% assign docs = site.addons | where:'name',a[0] %}
 	{% for d in docs %}{% assign base = d.url | append: '/../' %}{% for m in d.menus %}
-	<li class="class-bp-addon-{{ d.name }}">
+	<li class="elements-addon-{{ d.name }}">
 	  <a {% if m.submenus %}class="toggle"{% endif %}
-	     data-target="#top-menu .class-bp-addon-{{ d.name }} .submenu"
+	     data-target="#top-menu .elements-addon-{{ d.name }} .submenu"
 	     data-group="#topbar .menu"
 	     href="{% include utils/joinpath.str root=site.baseurl base=base path=m.href %}">
 	    {% if m.icon %}<i class="icon fa fa-{{ m.icon }}"></i>{% endif %}
@@ -145,22 +145,23 @@
     {% endif %}
 
     <!-- We pass down data from the YAML front matter as a JS object -->
-    <script type="text/javascript">
-      var ClassBP = {
+    <script id="elements-data-json" type="application/json">
+      {
         "page": {
           {% for p in page %}{% unless "content next previous excerpt" contains p[0] %}
-          "{{ p[0] }}": {{ p[1] | jsonify }},
+          "{{ p[0] }}": {{ p[1] | jsonify }}{% unless forloop.last %},{% endunless %}
           {% endunless %}{% endfor %}
         }
       }
     </script>
+    <script>var eLeMentS = JSON.parse($('#elements-data-json').textContent);</script>
 
     <!-- Scripts added by add-ons -->
     {% for a in page.addons %}
     <!-- Add-on: {{ a[0] }} -->
     {% assign docs = site.addons | where:'name',a[0] %}
     {% for d in docs %}{% assign base = d.url | append: '/../' %}{% for s in d.scripts %}
-    <script class="class-bp-addon-{{ d.name }}"
+    <script class="elements-addon-{{ d.name }}"
 	    src="{% include utils/joinpath.str root=site.baseurl base=base path=s.src %}"
 	    type="{% include utils/default.str val=s.type default='text/javascript' %}"
 	    {% if s.async %}async{% endif %}></script>

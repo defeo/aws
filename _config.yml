@@ -32,6 +32,7 @@ defaults:
     values:
       layout: default
       addons:
+        favicon: yes
         muut: yes
         highlightjs: yes
         clicker:
@@ -68,7 +69,7 @@ defaults:
 #  collections:
 #    - key: posts
 #      template: Write something
-#    - key: tutorial
+#    - key: tutorials
 #      template: Write a tutorial
 
 collections:
