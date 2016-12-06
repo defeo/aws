@@ -27,7 +27,7 @@ title: My first article!
 I <3 eLeMentS!
 ~~~
 
-Then run Jekyll and visit <http://localhost:4000/article/>.
+Then run Jekyll and visit <{{ 'article' | absolute_url }}>.
 
 
 ## What next?

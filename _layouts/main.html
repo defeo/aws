@@ -13,8 +13,8 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/font-awesome.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+    <link rel="stylesheet" href="{{ '/assets/css/font-awesome.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link href="{{ github_commits }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
 
     <!-- Links (stylesheets, feeds, ...) added by add-ons -->
@@ -33,13 +33,13 @@
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
     
-    <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </head>
   <body>
 
     <nav id="topbar" class="toggleables">
-      <div id="logo"><a href="{{ site.baseurl }}/">
-	{% if site.logo %}<img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.title }}">
+      <div id="logo"><a href="{{ '/' | relative_url }}">
+	{% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
 	{% else %}{{ site.title }}{% endif %}
       </a></div>
 
