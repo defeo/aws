@@ -17,8 +17,8 @@
     <meta http-equiv="Content-Security-Policy" content="{{ page.ContentSecurityPolicy }}">
     {% endif %}
     
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/font-awesome.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+    <link rel="stylesheet" href="{{ '/assets/css/font-awesome.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link href="{{ github_commits }}.atom" rel="alternate" title="Recent Commits to {{ site.github.repository_name }}" type="application/atom+xml" />
 
     <!-- Links (stylesheets, feeds, ...) added by add-ons -->
@@ -37,13 +37,13 @@
     <link rel="stylesheet" href="{{ s }}"/>
     {% endfor %}
     
-    <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </head>
   <body>
 
     <nav id="topbar" class="toggleables">
-      <div id="logo"><a href="{{ site.baseurl }}/">
-	{% if site.logo %}<img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.title }}">
+      <div id="logo"><a href="{{ '/' | relative_url }}">
+	{% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
 	{% else %}{{ site.title }}{% endif %}
       </a></div>
 
@@ -146,6 +146,17 @@
 
     <!-- We pass down data from the YAML front matter as a JS object -->
     <script id="elements-data-json" type="application/json">
+      "page": {
+        "title": {{ page.title | jsonify }},
+        "layout": {{ page.layout | jsonify }},
+        "dir": {{ page.dir | jsonify }},
+        "name": {{ page.name | jsonify }},
+        "path": {{ page.path | jsonify }},
+        "url": {{ page.url | jsonify }},
+        "addons": {{ page.addons | jsonify }},
+      }
+    </script>
+    <!-- Fix-me https://github.com/jekyll/jekyll/issues/5636
       {
         "page": {
           {% for p in page %}{% unless "content next previous excerpt" contains p[0] %}
@@ -153,7 +164,7 @@
           {% endunless %}{% endfor %}
         }
       }
-    </script>
+    </script-->
     <script>var eLeMentS = JSON.parse($('#elements-data-json').textContent);</script>
 
     <!-- Scripts added by add-ons -->

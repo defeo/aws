@@ -11,7 +11,7 @@ title: About
 
 # About this website
 
-[{{ site.title }}]({{ site.baseurl }}) was created by
+[{{ site.title }}]({{ '/' | relative_url }}) was created by
 {{ site.authors | map: 'name' | array_to_sentence_string }}.
 {% if site.license %}Its contents are distributed under the
 [{{ site.license.name }}]({% include utils/joinpath.str root=site.baseurl base='' path=site.license.url %}){% endif %}.
@@ -143,7 +143,7 @@ and start coding right away.
 
 At some point, you will need to preview your work, but pushing to
 GitHub each time you want to preview is clumsy. Your best option is to
-[install Jekyll and the required dependencies](https://help.github.com/articles/using-jekyll-with-pages/#installing-jekyll)
+[install Jekyll and the required dependencies](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
 on your machine. It is recommended to install the
 [GitHub pages gem](https://github.com/github/pages-gem) which provides
 you with the exact same versions used by GitHub to compile your site.
@@ -152,7 +152,8 @@ If you already have Ruby `≥{{ site.github.versions.ruby }}`, the
 install part should be as easy as
 
 ~~~
-gem install github-pages
+gem install bundler
+bundle install
 ~~~
 
 Note that you will need Ruby headers (`ruby-dev` package on Ubuntu) in
@@ -162,11 +163,11 @@ Now you can `cd` into your local clone of the repository and launch
 the compilation by
 
 ~~~
-jekyll serve --baseurl ''
+bundle exec jekyll serve
 ~~~
 
 Your site will be generated in a `_site` sub-directory, and served
-live at <http://localhost:4000/>. Any changes to the sources will
+live at <{{ site.url }}>. Any changes to the sources will
 trigger an automatic recompilation!
 
 Have fun coding!

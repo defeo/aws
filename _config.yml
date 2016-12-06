@@ -1,5 +1,4 @@
 # Settings
-baseurl: /aws
 permalink: /:categories/:title
 
 # About
