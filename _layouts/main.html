@@ -142,6 +142,17 @@
 
     <!-- We pass down data from the YAML front matter as a JS object -->
     <script id="elements-data-json" type="application/json">
+      "page": {
+        "title": {{ page.title | jsonify }},
+        "layout": {{ page.layout | jsonify }},
+        "dir": {{ page.dir | jsonify }},
+        "name": {{ page.name | jsonify }},
+        "path": {{ page.path | jsonify }},
+        "url": {{ page.url | jsonify }},
+        "addons": {{ page.addons | jsonify }},
+      }
+    </script>
+    <!-- Fix-me https://github.com/jekyll/jekyll/issues/5636
       {
         "page": {
           {% for p in page %}{% unless "content next previous excerpt" contains p[0] %}
@@ -149,7 +160,7 @@
           {% endunless %}{% endfor %}
         }
       }
-    </script>
+    </script-->
     <script>var eLeMentS = JSON.parse($('#elements-data-json').textContent);</script>
 
     <!-- Scripts added by add-ons -->
