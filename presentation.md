@@ -82,4 +82,3 @@ Développement d'une application. Par ex. :
 - 80% Projet
 
 </section>
-<section>
