@@ -46,13 +46,13 @@ defaults:
             submitError: "Impossible d'envoyer le questionnaire, veuillez réessayer."
             submit: "Envoyer réponse"
   - scope:
-      path: lessons
+      path: '_lessons'
     values:
       addons:
         slideshow: { width: 1000, height: 562.5 }
         style_goodies: yes
   - scope:
-      path: tutorials
+      path: '_tutorials'
     values:
       layout: article
       addons:
