@@ -31,7 +31,7 @@ function Clicker(provider) {
 	    this.$('.submenu')
 		.append('li')
 		.append('a <i class="fa fa-trophy"></i> <span class="title">Résultats</span>')
-		.href = '../'.repeat(ClassBP.page.url.split('/').length-2)
+		.href = '../'.repeat(eLeMentS.page.url.split('/').length-2)
 		+ 'addons/clicker/results';
 	    this.$('.submenu')
 		.append('li <a href="#" class="logout"><i class="fa fa-sign-out"></i> <span class="title">Logout</span></a>');
@@ -212,4 +212,4 @@ function Clicker(provider) {
     }).bind(this));
 }
 
-var clicker = new Clicker(ClassBP.page.addons.clicker);
+var clicker = new Clicker(eLeMentS.page.addons.clicker);

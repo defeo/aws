@@ -40,4 +40,4 @@
 	    quizzes.classList.remove('shown');
 	});
     }
-})($('#content'), ClassBP.page.addons.video);
+})($('#content'), eLeMentS.page.addons.video);
