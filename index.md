@@ -18,6 +18,12 @@ td a { padding: 1ex 1em; background-color: #ddd; }
 
 # AWS – Applications web et sécurité
 
+ 
+
+### 7 Décembre 2016 : [Présentation du cours](presentation)
+
+ 
+
 |[Informations IATIC4](#info-isty) | [Informations M1 Info](#info-uvsq)
 
 <div class="info" id="info-isty">
