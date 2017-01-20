@@ -1,0 +1,67 @@
+- desc: Web statique
+  lessons:
+    - url.md
+    - HTTP.md
+    - HTML.md
+    - forms.md
+    - CSS.md
+    - boxmodel.md
+    - flexbox.md
+  tutorials: tutorial1.md
+
+- desc: Scripting côté client
+  lessons:
+    - javascript.md
+    - dom.md
+    - advanced-js.md
+  tutorials: tutorial2.md
+
+- desc: Scripting côté serveur
+  lessons:
+    - php.md
+    - etat.md
+  tutorials:
+    - url: reflector-silex.md
+      comment: version pour Silex
+    - url: reflector-node.md
+      comment: version pour Node
+
+- desc: Frameworks web
+  lessons:
+    - frameworks.md
+    - templates.md
+    - oo-php.md
+    - mustache.md
+  tutorials:
+    - url: templates-etat-silex.md
+      comment: version pour Silex
+    - url: templates-etat-node.md
+      comment: version pour Node
+
+- desc: Persistance et web 2.0
+  lessons:
+    - sessions.md
+    - sql.md
+    - ajax.md
+    - json.md
+    - async-js.md
+  tutorials:
+    - url: accounts-silex.md
+      comment: version pour Silex
+    - url: accounts-node.md
+      comment: version pour Node
+
+- desc: Securité
+  lessons:
+    - sql-injection.md
+    - xss.md
+    - cross-domain.md
+    - session-fixation.md
+    - server-push.md
+    - csrf.md
+    - csp.md
+    - samy.md
+
+- desc: Autre
+  lessons:
+    - past-future.md

@@ -1,15 +1,8 @@
 ---
 layout: default
 title: Home
-styles: css/collapsible.css
-scripts: js/collapsible.js
 ---
-<style scoped>
-.info { height: 0; overflow: hidden; margin-top: -10em; padding-top: 10em; }
-.info:target { height: auto; overflow: visible }
-table { text-align: center; margin: auto }
-td { padding: 0 1em; }
-td a { padding: 1ex 1em; background-color: #ddd; }
+<style>
 #lessons { text-align: justify; }
 #lessons p { display: inline-block; margin: 4px; background-color: #268bd2;
              padding: 0.5ex; border-radius: 1ex; }
@@ -18,54 +11,26 @@ td a { padding: 1ex 1em; background-color: #ddd; }
 
 # AWS – Applications web et sécurité
 
- 
+Cours de niveau Master sur la programmation web moderne, et
+introduction à la sécurité des applications web.
 
-### 7 Décembre 2016 : [Présentation du cours](presentation)
+**Almæ matres:** [![](http://www.uvsq.fr/images/ACCUEIL/favicon.png) Université de Versailles – 
+  ![](https://www.universite-paris-saclay.fr/profiles/saclay/themes/saclay_v2/favicon.ico) Paris Saclay](https://www.universite-paris-saclay.fr/fr/formation/master/m1-informatique-site-de-versailles#presentation-m1)
+  et
+  [![](http://www.isty.uvsq.fr/images/ISTY/favicon.png) ISTY](http://www.isty.uvsq.fr/institut-des-sciences-et-techniques-des-yvelines/langue-fr/cycle-ingenieur-informatique/presentation/cycle-ingenieur-informatique-231898.kjsp)
 
- 
+**Mots clés:** Web, HTML5, CSS, JavaScript, Node.js, PHP, Symfony,
+  Silex, Sécurité, HTTPS, Injection SQL, XSS, CSRF.
 
-|[Informations IATIC4](#info-isty) | [Informations M1 Info](#info-uvsq)
+## Contenus du cours
 
-<div class="info" id="info-isty">
-## Informations IATIC4
+{% include plan.html plan=site.data.plan %}
 
-**Chargé de cours :** Luca De Feo <http://defeo.lu/>.  
-**Chargé de TD :** Sébastien Besnier.
 
-**Cours + TD :** Lundi 13h45 - 18h30
-
-{::nomarkdown}
-{% include plan.html plan=site.data.planIsty %}
-{:/}
-</div>
-
-<div class="info" id="info-uvsq">
-## Informations M1 Info
-
-**Chargé de cours et de TD :** Luca De Feo <http://defeo.lu/>.
-
-**Cours :** Mardi 8h30--10h30  
-**TD :** Mercredi 8h30--12h45 (groupe A), 13h30--17h45 (groupe B)
-
-{::nomarkdown}
-{% include plan.html plan=site.data.planUvsq %}
-{:/}
-</div>
-
-## Modalités d'évaluation
+### Modalités d'évaluation
 
 - **30%** [Questionnaires](addons/clicker/results);
 - **80%** [Projet final](project).
-
-## Liste des leçons
-
-<div id="lessons">
-{% assign lessons = site.collections | where:'label','lessons' | first %}
-{% for l in site.lessons %}
-{% assign path = l.relative_path | split:"/" | last %}
-{% include link.html collection=lessons href=path %}
-{% endfor %}
-</div>
 
 ## Archives
 

@@ -1,58 +1,54 @@
-<div class="plan">
-  <style scoped>
-    .plan h4 small {
-	font-weight: normal;
-	font-size: 60%;
-    }
-    .plan h4 a:after { content: " montrer"; }
-    .plan.checked h4 a:after { content: " cacher"; }
-    .plan dt { font-weight: normal; }
-  </style>
-  <h4>Agenda <small>(<a class="un_check" href="#">tout</a>)</small></h4>
+<style>
+  #plan {
+  width: 100%;
+  }
+  #plan td {
+  width: 50%;
+  padding: 0 0.5ex;
+  }
+  #plan thead {
 
-  {% for week in include.plan %}
-  <div class="week collapsible collapsed" id="semaine-{{ forloop.index }}" data-date="{{ week.date }}">
-    <div class="always-on">
-      <h4>Semaine {{ forloop.index }} ({{ week.date | date: "%d/%m/%Y" }})</h4>
-    </div>
-    <dl class="toggleable">
-      {% if week.comment %}
-      {{ week.comment | markdownify }}
-      {% endif %}
-      {% for coll in week.contents %}
-      {% assign collection = coll[0] %}
-      {% assign collection = site.collections | where:'label', collection | first %}
-      <dt>{{ collection.name }} :</dt>
-      {% for link in coll[1] %}
-      {% if link.url %}
-      <dd>{% include link.html collection=collection href=link.url %}
-	{% if link.comment %}({{ link.comment }}){% endif %}</dd>
-      {% else %}
-      <dd>{% include link.html collection=collection href=link %}</dd>
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
-    </dl>
-  </div>
+  font-size: 120%;
+  font-weight: bold;
+  font-style: italic;
+  color: #999;
+  }
+  #plan tbody tr:first-child {
+  padding-top: 1ex;
+  font-weight: bold;
+  border-top: solid thin #eee;
+  }
+  #plan li {
+  list-style-type: none;
+  }
+</style>
+
+{% assign lessons = site.collections | where:'label', 'lessons' | first %}
+{% assign tds = site.collections | where:'label', 'tutorials' | first %}
+<table id="plan">
+  <thead>
+    <th>Leçons et Capsules vidéos</th>
+    <th>Travaux dirigés</th>
+  </thead>
+  {% for theme in include.plan %}
+  <tbody>
+    <tr><td>{{ theme.desc | markdownify }}</td></tr>
+    <tr><td>
+	<ul>{% for l in theme.lessons %}
+	  <li>{% include link.html collection=lessons href=l %}</li>
+	  {% endfor %}
+	</ul>
+      </td><td>
+	<ul>{% for t in theme.tutorials %}
+	  {% if t.url %}
+	  <li>{% include link.html collection=tds href=t.url %}
+	    {% if t.comment %}({{ t.comment }}){% endif %}</li>
+	  {% else %}
+	  <li>{% include link.html collection=tds href=t %}</li>
+	  {% endif %}
+	  {% endfor %}
+	</ul>
+    </td></tr>
+  </tbody>
   {% endfor %}
-
-<script>
-window.on('load', (function() {
-  console.log(this);
-  this.$('.un_check').on('click', (function (e) {
-    var chkd = this.classList.toggle('checked');
-    this.$$('.collapsible').forEach(function (x) {
-      chkd ? x.check() : x.uncheck();
-    });
-    e.preventDefault();
-  }).bind(this));
-  $$(".week").forEach(function (w) {
-    var delta = Date.now() - Date.parse(w.dataset['date']) - (new Date).getTimezoneOffset()*60*1000;
-    console.log(delta);
-    if (0 <= delta && delta < 7*24*60*60*1000) {
-      w.check();
-    }
-  });
-}).bind(document.scripts[document.scripts.length-1].parentElement));
-</script>
-</div>
+</table>

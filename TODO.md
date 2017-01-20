@@ -5,6 +5,7 @@
 - Tourner toutes les leçons optionnelles.
 - Leçon DOM mal comprise
 - Tutorial on the event queue: http://latentflip.com/loupe/
+- Tourner une leçon sur HTTPS
 
 ## TDs
 
