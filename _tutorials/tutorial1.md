@@ -48,7 +48,7 @@ Partez de ce squelette
 </html>
 ~~~
 	
-1. Éditez le fichier. Ajoutez une entête et quelques paragraphes.
+1. Éditez le fichier. Ajoutez un titre (`<h1>`) et quelques paragraphes.
 
 3. Visualisez le résultat dans le browser.
    
@@ -72,7 +72,7 @@ Partez de ce squelette
    
    - Éditez la balise `<title>`.
    
-   - Donnez une entête à la page (`<h1>`).
+   - Donnez une titre à la page (`<h1>`).
    
    - Créez deux sections (`<section>`) : une pour vos données
      personnélles et une pour tout le reste. Donnez un `id` à chaque
@@ -80,7 +80,7 @@ Partez de ce squelette
    
    - Dans la première section :
 	 
-	 - Mettez une entête (`<h2>`) ;
+	 - Mettez un titre (`<h2>`) ;
 	 - Avec une liste à puces (`<ul>`), ou une liste de définitions
        (`<dl>`), listez vos données personnelles ;
 	 - Ajoutez une photo de vous (l'attribut `alt` est obligatoire
@@ -174,7 +174,7 @@ sur Google. L'URL utilisée par la recherche Google varie selon
 l'interface, mais une URL standard aura à peu près cette forme
 
 ~~~
-https://www.google.com/search?q=ma+recherche&hl=fr
+https://www.google.fr/search?q=ma+recherche&hl=fr
 ~~~
 
 Le point d'interrogation `?` sépare l'adresse de la page de ses
