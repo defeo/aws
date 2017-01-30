@@ -125,10 +125,10 @@ n'est pas chargé.
    grâce à `document.querySelector`. En vous servant de
    
    - `document.createElement` pour créer des nouveaux nœuds,
-   - la propriété `.innerHTML` et/ou la méthode `.appendChild` pour ajouter des nœuds au DOM,
+   - la méthode `.appendChild` pour ajouter des nœuds au DOM,
    - deux boucles `for` imbriquées,
    
-   remplacez le texte du div par un tableau 6×7. Pour une majeure
+   remplacez le texte du div par un tableau 6×7.  Pour une majeure
    flexibilité, vous pouvez faire en sorte que 6 et 7 soient des
    constantes stockées dans des variables JavaScript. Vous pouvez vous
    inspirer de l'exemple ci-dessous.
@@ -206,22 +206,29 @@ la plus élégante.
 
 2. Modifiez votre double boucle `for` en sorte que les balises `<td>`
    contiennent un attribut `data-column` égal à la colonne dans
-   laquelle la balise se trouve. Vous avez deux façons de faire cela,
-   selon la façon dont vous avez précédemment codé votre boucle :
-   directement avec `.innerHTML` ou bien avec la propriété `dataset`.
-   
-   ~~~
-   // exemple de méthode utilisant innerHTML
-   ma_ligne.innerHTML += '<td data-column="0"></td>';
-   ~~~
-   {:.javascript}
+   laquelle la balise se trouve. Les attributs `data-*` ont une API
+   dédiée en Javascript: tous les objets du DOM ont un champ `dataset`
+   qui permet d'accéder en lecture et en écriture aux attributs
+   `data-*`. Par exemple, si `ma_case` représente une balise `<td>`,
+   le code suivant
    
    ~~~
    // exemple utilisant dataset
    ma_ligne.appendChild(ma_case);
-   ma_case.dataset['column'] = 0;
+   ma_case.dataset.column = 0;
    ~~~
    {:.javascript}
+   
+   insère une balise
+   
+   ~~~
+   <td data-column="0"></td>
+   ~~~
+   {:.html}
+   
+   dans le document. **Attention**, toutes les propriétés de `dataset`
+   sont automatiquement converties en chaînes de caractères par
+   JavaScript.
    
    Modifiez le gestionnaire pour qu'il affiche dans la console la
    valeur de l'attribut `data-column`. Testez avec la console.
