@@ -35,11 +35,11 @@ defaults:
         muut: yes
         highlightjs: yes
         clicker:
-          host: http://sage.prism.uvsq.fr/luca/clicker
+          host: 'https://clicker-uvsq.herokuapp.com'
           methods: 
-            - title: " @UVSQ"
-              icon: graduation-cap
-              path: /login/saml
+            - title: " GitHub"
+              icon: github
+              path: /login/github
           messages:
             loginError: Veulliez vous connecter pour visualiser ce questionnaire.
             unknownError: "Une erreur s'est produite, veuillez réessayer."

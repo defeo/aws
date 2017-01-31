@@ -6,7 +6,7 @@ addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/html.webm
     quizzes:
-      - 56a7a68087b68f1300ba90a3
+      - 58900075ba7ec5013560f7a7
     playbackRate: 0.95
 ---
 

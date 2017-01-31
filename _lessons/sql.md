@@ -5,9 +5,6 @@ subtitle: Interface avec bases de données SQL
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/sql.webm
-    quizzes:
-      - 56b7e6bb87b68f1300ba924d
-      - 56b7e9af87b68f1300ba9253
 ---
 
 <section>

@@ -6,9 +6,6 @@ scripts:  ../js/mock-browser.js
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/csrf.webm
-    quizzes:
-      - 56d9eeec0a11591300f81152
-      - 56d9f14b0a11591300f8115c
     playbackRate: 0.95
 ---
 

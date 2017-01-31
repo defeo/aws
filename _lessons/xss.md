@@ -6,8 +6,6 @@ scripts: ../js/mock-browser.js
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/xss.webm
-    quizzes:
-      - 56c1f9ba0a11591300f80f8d
 ---
 
 <style>

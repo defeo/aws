@@ -5,8 +5,6 @@ subtitle: Formats d'échange de données en AJAX
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/json.webm
-    quizzes: 
-      - 56c65de10a11591300f80ff9
 ---
 
 <section>

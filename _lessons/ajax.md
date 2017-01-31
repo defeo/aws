@@ -6,8 +6,6 @@ scripts: ['http://coffeescript.org/extras/coffee-script.js']
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/ajax.webm
-    quizzes:
-      - 56c658b20a11591300f80feb
 ---
 
 <section>

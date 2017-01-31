@@ -6,8 +6,6 @@ scripts: ../js/mock-browser.js
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/cross-domain.webm
-    quizzes:
-      - 56d8f2a60a11591300f81147
     playbackRate: 0.95
 ---
 
