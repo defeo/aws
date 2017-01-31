@@ -34,7 +34,7 @@
 	video.on('ended', function(e) {
 	    quizzes.classList.add('shown');
 	    (document.exitFullScreen || document.mozCancelFullScreen
-	     || document.webkitExitFullScreen || document.msExitFullScreen).call(document);
+	     || document.webkitExitFullscreen || document.msExitFullScreen).call(document);
 	});
 	close.on('click', function(e) {
 	    quizzes.classList.remove('shown');

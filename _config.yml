@@ -45,6 +45,8 @@ defaults:
             unknownError: "Une erreur s'est produite, veuillez réessayer."
             submitError: "Impossible d'envoyer le questionnaire, veuillez réessayer."
             submit: "Envoyer réponse"
+            submitted: "Réponse envoyée"
+            deadline: "Vous pouvez modifier votre réponse jusqu'au"
   - scope:
       path: '_lessons'
     values:

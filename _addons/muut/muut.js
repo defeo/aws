@@ -1,6 +1,6 @@
 (function () {
     var oldn, xhr = new XMLHttpRequest();
-    var badge = $('.class-bp-addon-muut .title').append('code');
+    var badge = $('.elements-addon-muut .title').append('code');
     badge.css({
 	display: 'none',
 	fontStyle: 'normal',

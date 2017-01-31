@@ -7,8 +7,10 @@ function Clicker(provider) {
 	unknownError: "Unknown error, please try again later.",
 	submitError: "Could not submit poll, please try again later.",
 	submit: "Send",
+	submitted: "Sent",
+	deadline: "You can modify your answer until ",
     };
-    for (m in provider.messages)
+    for (var m in provider.messages)
 	messages[m] = provider.messages[m];
 
     var shuffle = function(n) {
@@ -23,11 +25,11 @@ function Clicker(provider) {
     };
     
     const clicker = this;
-    this.loginMenu = $('#top-menu .class-bp-addon-clicker');
+    this.loginMenu = $('#top-menu .elements-addon-clicker');
     this.loginMenu.on('clicker.login-change', function(e) {
 	this.$('.submenu').innerHTML = '';
 	if (clicker.user) {
-	    this.$('.title').textContent = clicker.user.uid.match(/[^:]*:(.*)/)[1];
+	    this.$('.title').textContent = clicker.user.user.profile.name || clicker.user.user._id;
 	    this.$('.submenu')
 		.append('li')
 		.append('a <i class="fa fa-trophy"></i> <span class="title">Résultats</span>')
@@ -127,17 +129,20 @@ function Clicker(provider) {
 		    .append('input.clicker-choice#clicker-choice-' + answ._id);
 		input.type = data.poll.multiChoice ? 'checkbox' : 'radio';
 		input.name = 'clicker-' + id;
-		if (data.answers) {
+		if (data.answers.length
+		    && data.answers[data.answers.length-1].answer.choices.indexOf(answ._id) >= 0) {
+		    input.setAttribute('checked', true);
+		}
+		if (!data.poll.can.answer) {
 		    input.disabled = true;
-		    if (data.answers[0].answer.choices.indexOf(answ._id) >= 0)
-			input.setAttribute('checked', true);
 		}
 		choice.innerHTML += answ.answer;
 	    }
 	    
 	    var button = node
-		.append('button.clicker-submit ' + messages.submit)
-		.once('click', (function(e) {
+		.append('button.clicker-submit')
+		.on('click', (function(e) {
+		    button.disabled = true;
 		    var answers = node
 			.$$('input.clicker-choice:checked')
 			.map(function(input) {
@@ -146,7 +151,9 @@ function Clicker(provider) {
 		    this._authXHR(url, this.user.token, function(data, xhr) {
 			if (xhr.status == 200) {
 			    console.log(data);
-			    data.answers = [{ answer: { choices: answers } }];
+			    data.answers = data.result.answers.map(function(a) {
+				return { answer: a };
+			    });
 			    choices.innerHTML = "";
 			    shuf.forEach(function (x) {
 				makeChoice(choices, data, data.poll.choices[x]);
@@ -158,30 +165,49 @@ function Clicker(provider) {
 			}
 		    }, null, answers);
 		}).bind(this));
-	    var buttonMark = button.append('span.clicker-grade.fa.fa-arrow-right')
+	    var buttonText = button.append('span ' + messages.submit);
+	    var buttonMark = button.append('span.clicker-grade.fa').append('span.fa-arrow-right');
 
 	    function grade(node, grade) {
-		node.$$('input, button').forEach(function (x) { x.disabled = true });
-		node.classList.add('answered');
-		node.dataset['clickerGrade'] = JSON.stringify(grade);
-		var mark = buttonMark.classList;
-		mark.remove('fa-arrow-right');
-		if (grade.on ? grade.ok == grade.on : grade.ok) {
-		    mark.add('clicker-success');
-		    mark.add('fa-check');
+		buttonMark.className = '';
+		if (grade) {
+		    node.classList.add('graded');
+		    node.dataset['clickerGrade'] = JSON.stringify(grade);
+		    if (grade.on ? grade.ok == grade.on : grade.ok) {
+			buttonMark.className = 'fa-check';
+		    } else {
+			buttonMark.className = 'fa-close';
+		    }
 		} else {
-		    mark.add('fa-close');
+		    buttonText.textContent = messages.submitted;
 		}
 	    }
 	    
-	    if (data.answers) {
-		grade(node, data.answers[0].grade);
-	    } else if (!data.poll.multiChoice) {
-		button.disabled = true;
-		node.once('change', function(e) {
-		    button.disabled = false;
-		});
+	    if (data.answers.length) {
+		grade(node, data.answers[data.answers.length-1].grade);
 	    }
+
+	    if (data.answers.length || !data.poll.multiChoice || !data.poll.can.answer) {
+		button.disabled = true;
+	    }
+	    
+	    node.on('change', function(e) {
+		if(data.poll.can.answer) {
+		    button.disabled = false;
+		    buttonText.textContent = messages.submit;
+		    buttonMark.className = 'fa-arrow-right';
+		}
+	    });
+
+	    if (typeof(data.poll.can.answer) == 'string')
+		node
+		.append('div.clicker-deadline ' + messages.deadline + ' ')
+		.append('span ' + (new Date(data.poll.can.answer)).toLocaleString(false, {
+		    day: 'numeric',
+		    month: 'long',
+		    year: 'numeric',
+		    hour: 'numeric',
+		}));
 	}).bind(this), function(err) {
 	    node.append("p.clicker-error " + messages.unknownError);
 	    return console.error(err);

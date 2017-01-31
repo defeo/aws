@@ -15,12 +15,22 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 	    lesson.quizzes.forEach(function (quiz) {
 		var answer = time.find(function (a) { return a.poll._id == quiz });
 		if (answer !== undefined) {
-		    list
-			.append('li ' + answer.poll.title)
-			.append('i.clicker-grade.fa' + (answer.correct ? '.fa-check' : '.fa-close'));
+		    var q = list.append('li.answered ' + answer.poll.title);
+		    if (answer.grade)
+			q.append('i.clicker-grade.fa' + (answer.correct ? '.fa-check' : '.fa-close'));
 		} else {
 		    clicker._authXHR('/polls/' + quiz, clicker.user.token, function(poll) {
-			list.append('li ' + poll.title);
+			var q = list.append('li ' + poll.title);
+			if (poll.can.answer === false) {
+			    q.classList.add('past')
+			} else if (poll.can.answer !== true) {
+			    q.dataset.deadline = (new Date(poll.can.answer)).toLocaleString(false, {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric',
+				hour: 'numeric',
+			    });
+			}
 		    }, function (err) {
 			console.log(err);
 			list.append('li ' + quiz);
@@ -69,7 +79,7 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 	bezierCurve: false,
     });
 
-    $('#clicker-grade').textContent = 'Note : ' + gradeISTY(time) + '/6';
+    $('#clicker-grade').textContent = 'Note : ' + grade(time) + '/6';
     
 }, function(err) {
     console.log(err);

@@ -10,11 +10,11 @@
     
     .clicker-grade {
 	padding-left: 10px;
-	&.fa-close { color: red }
-	&.fa-check { color: green }
+	.fa-close { color: red }
+	.fa-check { color: green }
     }
     
-    &.answered {
+    &.graded {
 	input:checked { outline: solid 3px #f00; }
 	.clicker-correct {
 	    input {
@@ -24,6 +24,12 @@
 	    input:checked { outline-color: #0f0; }
 	}
     }
+
+    .clicker-deadline {
+	font-size: 80%;
+	margin-top: 2ex;
+	span { font-weight: bold; }
+    }
 }
 
 #clicker-results {
@@ -32,7 +38,19 @@
     > .clicker-poll {
 	margin: 0 2rem;
 	flex: 0 0 18rem;
-	li { text-align: left };
+	li {
+	    text-align: left;
+	    &.answered { font-weight: bold; }
+	    &.past { opacity: 0.5; }
+	    &[data-deadline]:after {
+		content: '(' attr(data-deadline) ')';
+		display: block;
+		font-size: 70%;
+		font-weight: bold;
+		color: #999;
+		white-space: nowrap;
+	    }
+	};
     }
 }
 #clicker-bar {
