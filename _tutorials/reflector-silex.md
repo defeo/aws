@@ -30,19 +30,18 @@ Vous avez deux façons de le faire:
 
 Depuis le *dashboard*, suivez ces instructions.
 
-1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
-   from URL »* ;
-2. Dans la case *« Source URL »* écrivez
+1. Cliquez sur le bouton *« Create new workspace »* ;
+2. Choisissez un nom pour votre espace de travail, et éventuellement
+   une description ;
+2. Dans la case *« Clone from Git or Mercurial URL »* écrivez
    <https://github.com/defeo/aws-project.git> ;
-3. Laissez les autres paramètres tels quels (*« Open and
-   Discoverable »* et *« Custom »*) ;
-4. Cliquez sur *« Create »*.
+3. Laissez les autres paramètres tels quels ;
+4. Cliquez sur *« Create workspace »*.
 
-Votre espace de travail va s'appeler *« aws-project »* ; vous pouvez
-maintenant y accéder. Vous y trouverez quelques fichiers préparés par
-le professeur, auxquels il ne faudra pas toucher. Notamment la racine
-de votre espace de travail doit contenir les fichiers `composer.json`
-et `install.sh`.
+Votre espace de travail s'ouvre. Vous y trouverez quelques fichiers
+préparés par le professeur, auxquels il ne faudra pas
+toucher. Notamment la racine de votre espace de travail doit contenir
+les fichiers `composer.json` et `install.sh`.
 
 Passez à l'étape 2.
 
@@ -79,10 +78,10 @@ Pour vérifier que Silex a été correctement installé, ouvrez le fichier
 `exemple.php` dans l'éditeur et cliquez sur le bouton *« Run »*. Dans
 le terminal s'affiche un lien. Cliquez et observez la page affichée,
 elle devrait contenir le texte *« Hello world ! »*. Dans la barre
-d'adresse interne à C9 (ou dans un autre onglet), ajoutez `/toto` à la
-fin de l'URL, l'onglet devrait maintenant afficher *« Hello
-toto »*. N'hésitez pas à étudier le code de `exmple.php` et
-`exemple.twig` pour en comprendre le fonctionnement.
+d'adresse, ajoutez `/toto` à la fin de l'URL, la page devrait
+maintenant afficher *« Hello toto »*. N'hésitez pas à étudier le code
+de `exmple.php` et `exemple.twig` pour en comprendre le
+fonctionnement.
 
 
 ## Le réflecteur
@@ -205,7 +204,7 @@ $app->run();
    [page Wikipedia](http://en.wikipedia.org/wiki/Percent-encoding).
 
 4. Dans un autre fichier, créez un formulaire HTML qui envoie ses
-   donnée à l'URL `/query_string` (attribut `action`) par la méthode
+   données à l'URL `/query_string` (attribut `action`) par la méthode
    *get* (attribut `method`). Testez le réflecteur à travers le
    formulaire ; testez notamment les caractères spéciaux, tels les
    espaces, les ampersands (`&`), etc.
@@ -250,8 +249,8 @@ $app->run();
    tableaux : les clés sont des chaînes de caractères, comme pour les
    autres tableaux ; les valeurs, par contre, sont des listes, en
    effet une entête HTTP peut prendre plusieurs valeurs. Pour que
-   l'affichage de `$requete->headers` soit intéressant, il sera
-   opportun d'afficher le premier élément de chaque liste de valeurs.
+   l'affichage de `$requete->headers` soit intéressant, il suffira
+   d'afficher le premier élément de chaque liste de valeurs.
 
 8. Mettez maintenant tous les composants ensemble. Créez un
    gestionnaire pour l'URL `/` qui répond à tous les types de requêtes

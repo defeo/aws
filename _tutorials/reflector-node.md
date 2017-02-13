@@ -19,36 +19,48 @@ Les références pour ce TD sont
 
 ## Préparer son espace de travail
 
-Vous allez créer un nouvel espace de travail Cloud9 pour ce TD. Plutôt
-que partir de zéro, vous allez *cloner* un espace de travail
-préconfiguré. Depuis le *Dashboard*, suivez ces instructions.
+Vous allez créer un nouvel espace de travail Cloud9 pour ce
+TD. Plutôt que partir de zéro, vous allez *cloner* un espace de
+travail préconfiguré. 
 
-1. Cliquez sur le bouton *« Create new workspace »*, puis *« Clone
-   from URL »* ;
-2. Dans la case *« Source URL »* écrivez
+Vous avez deux façons de le faire:
+
+### Étape 1 : En créant un nouvel espace de travail (recommandée dans un premier temps)
+
+Depuis le *dashboard*, suivez ces instructions.
+
+1. Cliquez sur le bouton *« Create new workspace »* ;
+2. Choisissez un nom pour votre espace de travail, et éventuellement
+   une description ;
+2. Dans la case *« Clone from Git or Mercurial URL »* écrivez
    <https://github.com/defeo/aws-project.git> ;
-3. Laissez les autres paramètres tels quels (*« Open and
-   Discoverable »* et *« Custom »*) ;
-4. Cliquez sur *« Create »*.
+3. Laissez les autres paramètres tels quels ;
+4. Cliquez sur *« Create workspace »*.
 
-Votre espace de travail va s'appeler *« aws-project »* ; vous pouvez
-maintenant y accéder. Vous y trouverez quelques fichiers préparés par
-le professeur, auxquels il ne faudra pas toucher. Notamment la racine
-de votre espace de travail doit contenir le fichier `package.json`.
+Votre espace de travail s'ouvre. Vous y trouverez quelques fichiers
+préparés par le professeur, auxquels il ne faudra pas
+toucher. Notamment la racine de votre espace de travail doit contenir
+le fichier `package.json`.
 
-> **Note :** Si vous souhaitez installer Express dans un espace de
-> travail créé à la main, vous pouvez importer les contenus préparés
-> par le professeur en tapant les commandes suivantes dans le
-> *Terminal* (en bas dans l'espace de travail, tapez `Alt-T` s'il
-> n'est pas déjà ouvert).
+Passez à l'étape 2.
 
-> ~~~
-> git init .
-> git remote add -f origin https://github.com/defeo/aws-project.git
-> rm README.md
-> git checkout master
-> ~~~
-> {:.bash}
+### Étape 1 : À partir d'un espace "vierge"
+
+Si vous souhaitez installer Express et ses composants dans un espace
+de travail créé à la main, vous pouvez importer les contenus préparés
+par le professeur en tapant les commandes suivantes dans le *Terminal*
+(en bas dans l'espace de travail, tapez `Alt-T` s'il n'est pas déjà
+ouvert).
+
+~~~
+git init .
+git remote add -f origin https://github.com/defeo/aws-project.git
+rm README.md
+git checkout master
+~~~
+{:.bash}
+
+### Étape 2 : Installation
 
 Pour installer Express et ses composants, maintenant, tapez la commande
 
@@ -66,10 +78,10 @@ Pour vérifier que Express a été correctement installé, ouvrez le
 fichier `exemple.js` dans l'éditeur et cliquez sur le bouton
 *« Run »*. Dans le terminal s'affiche un lien. Cliquez et observez la
 page affichée, elle devrait contenir le texte *« Hello
-world ! »*. Dans la barre d'adresse interne à C9 (ou dans un autre
-onglet), ajoutez `/toto` à la fin de l'URL, l'onglet devrait
-maintenant afficher *« Hello toto »*. N'hésitez pas à étudier le code
-de `exemple.js` et `exemple.twig` pour en comprendre le fonctionnement.
+world ! »*. Dans la barre d'adresse, ajoutez `/toto` à la fin de
+l'URL, la page devrait maintenant afficher *« Hello toto »*. N'hésitez
+pas à étudier le code de `exemple.js` et `exemple.twig` pour en
+comprendre le fonctionnement.
 
 
 ## Le réflecteur
@@ -97,8 +109,9 @@ app
 app.listen(8080);
 ~~~
 
-1. En suivant l'exemple de `exemple.js`, créez un gestionnaire pour
-   l'URL `/query_string` qui affiche le texte
+1. En suivant l'exemple du premier gestionnaire de `exemple.js` (URL
+   `/`), créez un gestionnaire pour l'URL `/query_string` qui affiche
+   le texte
    
    ~~~
    Hello
