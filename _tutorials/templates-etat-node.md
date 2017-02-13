@@ -131,10 +131,9 @@ blocks `if` et `for`.
 Sachez, cependant, que le module Twig pour Node.js est encore en phase
 expérimentale. Vous êtes encouragés à explorer d'autres langages de
 templating populaires : le plus proche de Twig est
-[Swig](http://paularmstrong.github.io/swig/), mais peut-être
+[Nunjucks](https://www.npmjs.org/package/nunjucks), mais peut-être
 trouverez-vous votre bonheur avec
 [Hogan (Mustache)](http://twitter.github.io/hogan.js/),
-[Nunjucks](https://www.npmjs.org/package/nunjucks),
 [Jade](https://github.com/visionmedia/jade), ...
 
 **Important :** avant d'utiliser Twig (ou tout autre moteur de
@@ -162,6 +161,14 @@ ce qui produirait la sortie
 
 ~~~
 <p>Hello Toto !</p>
+~~~
+
+**Important :** Pour se protéger des attaques XSS, il est aussi
+fortement recommandé d'activer l'échappement automatique des variables
+avec
+
+~~~
+app.set("twig options", { autoescape: true });
 ~~~
 
 1. Étudiez à nouveau le fichier `example.js` et comprenez comment il

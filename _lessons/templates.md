@@ -77,7 +77,7 @@ Quelques langages de templating
 - À la [Django](https://www.djangoproject.com/) (Python) :
   [Twig](http://twig.sensiolabs.org/) (PHP),
   [Jinja](http://jinja.pocoo.org/) (Python),
-  [Swig](http://paularmstrong.github.io/swig/) (Node.js).
+  [Nunjucks](https://mozilla.github.io/nunjucks/) (Node.js).
 - *Sans logique* : [Mustache](http://mustache.github.io/),
   [Handlebars](http://handlebarsjs.com/),
   [Hogan](http://twitter.github.io/hogan.js/).
