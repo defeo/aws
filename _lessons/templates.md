@@ -5,6 +5,10 @@ subtitle: Twig et ses compagnons
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/templates.webm
+    quizzes:
+      - 58a4d0ff6e24fc1857e290e0
+      - 58a4d0ff6e24fc1857e290ec
+      - 58a4d0ff6e24fc1857e290fb
 ---
 
 {% raw %}

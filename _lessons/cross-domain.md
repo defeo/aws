@@ -7,6 +7,8 @@ addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/cross-domain.webm
     playbackRate: 0.95
+    quizzes:
+      - 58a4d0ff6e24fc1857e29169
 ---
 
 <section>

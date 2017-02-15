@@ -5,6 +5,8 @@ subtitle: Maintien d'état contrôlé par le serveur
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/sessions.webm
+    quizzes:
+      - 58a4d0ff6e24fc1857e29107
 ---
 
 <section>

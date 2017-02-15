@@ -8,6 +8,9 @@ addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/csp.webm
     playbackRate: 0.95
+    quizzes:
+      - 58a4d1006e24fc1857e29198
+      - 58a4d1006e24fc1857e291a8
 ---
 
 <section>
