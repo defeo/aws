@@ -58,10 +58,29 @@ dynamiques.
    {:/}
    
    Tâchez de créer une page HTML complète et valide : avec
-   `<!Doctype>`, entêtes, `<body>`, etc.
+   `<!Doctype>`, entêtes, `<body>`, etc. Ne vous souciez pas des
+   attributs `method` et `action`, pour l'instant.
 
 2. Créez un fichier `index.php`, et initialisez-le avec le squelette
-   habituel de Silex.
+   habituel de Silex :
+   
+   ```php
+   <?php
+   require_once 'vendor/autoload.php';
+   use Silex\Application;
+   use Symfony\Component\HttpFoundation\Request;
+   
+   $app = new Application();
+   $app['debug'] = true;
+   
+   // Vos gestionnaires ici
+   
+   
+   $app->run();
+   ```
+   
+   (voir aussi le fichier
+   [`exemple.php`](https://github.com/defeo/aws-project/blob/master/example.php)).
 
 3. Créez un gestionnaire pour l'URL `/signin`. Afin de pouvoir accéder à
    l'objet

@@ -57,10 +57,31 @@ dynamiques.
    {:/}
    
    Tâchez de créer une page HTML complète et valide : avec
-   `<!Doctype>`, entêtes, `<body>`, etc.
+   `<!Doctype>`, entêtes, `<body>`, etc. Ne vous souciez pas des
+   attributs `method` et `action`, pour l'instant.
 
 2. Créez un fichier `app.js`, et initialisez-le avec le squelette
-   habituel de Express.
+   habituel de Express :
+   
+   ```js
+   var express = require('express');
+   var bodyP = require('body-parser');
+   var cookieP = require('cookie-parser');
+   
+   var app = express();
+   app
+	   .use(bodyP.urlencoded({ extended: false }))
+	   .use(cookieP());
+   var app = express();
+   
+   // Vos gestionnaires ici
+   
+   
+   app.listen(process.env.PORT);
+   ```
+   
+   (voir aussi le fichier
+   [`exemple.js`](https://github.com/defeo/aws-project/blob/master/example.js))).
 
 3. Créez un dossier `static` et déplacez-y le fichier
    `form.html`. Ajoutez à la configuration de `app.js` la ligne
@@ -137,15 +158,21 @@ trouverez-vous votre bonheur avec
 [Jade](https://github.com/visionmedia/jade), ...
 
 **Important :** avant d'utiliser Twig (ou tout autre moteur de
-templating), il faut dire à Express où se trouvent les fichiers de
-templates. Par exemple, la configuration
+templating), il faut le charger avec
+
+~~~
+var twig = require('twig');
+~~~
+
+et dire à Express où se trouvent les fichiers de templates. Par
+exemple, la configuration
 
 ~~~
 app.set('views', 'templates');
 ~~~
 
 dit à Express de chercher les fichiers de templates dans le dossier
-`templates`. **Attenion :** seuls les fichiers avec extension `.twig`
+`templates`. **Attention :** seuls les fichiers avec extension `.twig`
 seront passés au moteur Twig**; pour configuer Express de façon plus
 flexible, lisez la doc de
 [`app.engine`](http://expressjs.com/en/4x/api.html#app.engine).
