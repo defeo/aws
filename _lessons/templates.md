@@ -304,6 +304,9 @@ var twig = require('twig');
 app.set('views', 'templates');       // où trouver les templates
 app.set('view engine', 'html');      // à quelle extension
 app.engine('html', twig.__express);  // associer twig
+app.set('twig options', {
+    autoescape: true                 // échappement automatique
+});
 
 app.get('/', function(req, res) {
 	res.render('hello.html', { 'nom' : 'Toto' });
