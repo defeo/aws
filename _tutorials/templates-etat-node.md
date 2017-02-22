@@ -142,7 +142,7 @@ moins riche. Node dispose d'une pléthore de moteurs de templating ;
 pour s'en faire une idée, il suffit de regarder la
 [liste disponible sur le serveur de paquets de Node](https://www.npmjs.org/browse/keyword/template).
 
-Pour rester compatibles avec la partie du cours faites en PHP, ce TD
+Pour rester compatibles avec la partie du cours faite en PHP, ce TD
 va utiliser langage de templating Twig, voici un
 [tour rapide de sa syntaxe](http://twig.sensiolabs.org/doc/templates.html). Les
 seuls composants dont nous allons nous servir dans ce TD sont le
@@ -289,7 +289,7 @@ POST. Cette technique peut être melangée avec la précédente.
 
 1. Ajoutez dans `/hello` un formulaire contenant un champ de texte
    prérempli avec le nom de l'utilisateur, et un bouton de
-   soumussion. Le formulaire pointera vers l'url `/bye`.
+   soumission. Le formulaire pointera vers l'url `/bye`.
 
 1. Créez un gestionnaire pour les requêtes de type POST à l'url
    `/bye`. Affichez *« Au revoir, ... »* comme vous l'avez fait plus

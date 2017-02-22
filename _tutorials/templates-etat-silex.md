@@ -272,7 +272,7 @@ POST. Cette technique peut être melangée avec la précédente.
 
 1. Ajoutez dans `/hello` un formulaire contenant un champ de texte
    prérempli avec le nom de l'utilisateur, et un bouton de
-   soumussion. Le formulaire pointera vers l'url `/bye`.
+   soumission. Le formulaire pointera vers l'url `/bye`.
 
 1. Créez un gestionnaire pour les requêtes de type POST à l'url
    `/bye`. Affichez *« Au revoir, ... »* comme vous l'avez fait plus
