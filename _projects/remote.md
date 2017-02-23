@@ -3,7 +3,7 @@ title: Remote lightsaber
 difficulty: 4
 frameworks: Node, Silex
 tags: [mobile, orientation, WebGL]
-publish: yes
+publish: no
 ---
 
 Le but de ce projet est d'utiliser un smartphone comme télecommande

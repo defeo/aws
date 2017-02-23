@@ -3,7 +3,7 @@ title: Bomberman
 difficulty: 3
 frameworks: Node
 tags: [multi-utilisateur, temps réel, jeu]
-publish: yes
+publish: no
 ---
 
 Le but de ce projet est de développer un jeu à deux joueurs en temps

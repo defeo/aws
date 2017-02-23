@@ -3,7 +3,7 @@ title: Bataille navale
 difficulty: 2
 frameworks: Node
 tags: [multi-utilisateur, jeu]
-publish: yes
+publish: no
 ---
 
 Le but de ce projet est de réaliser un jeu de bataille navale en ligne

@@ -3,7 +3,7 @@ title: Post-it
 difficulty: 1
 frameworks: Node, Silex
 tags: ajax
-publish: yes
+publish: no
 ---
 
 Le but du projet est de créer une application de post-it sociale. Il
