@@ -7,7 +7,7 @@ Dans ce TD nous allons inclure le jeu de Puissance 4 que nous avons
 [développé précédemment](tutorial2) dans une application
 multi-utilisateurs, permettant de jouer des parties avec des
 adversaires distants. Nous allons nous servir de la base de données
-MySQL fournie par Cloud 9 pour le stockage des données côté server, et
+MySQL fournie par Cloud 9 pour le stockage des données côté serveur, et
 du système de sessions de Silex pour garder l'état de la connexion.
 
 Pour réaliser une interface fluide et *responsive*, l'utilisation de
@@ -51,7 +51,7 @@ mysql-ctl start
 ~~~
 {:.bash}
 
-Vous pouvez arrêter à tout moment le server MySQL avec
+Vous pouvez arrêter à tout moment le serveur MySQL avec
 
 ~~~
 mysql-ctl stop
@@ -66,9 +66,12 @@ mysql-ctl restart
 Si vous n'arrêtez pas le serveur à la fin de la session, il sera
 encore actif lors de votre prochaine connexion à l'espace de travail.
 
-L'interface d'administration de bases de données
-[PHPMyAdmin](http://www.phpmyadmin.net/) est également disponible dans
-Cloud9. Installez-la avec la commande
+
+Si vous êtes à l'aise avec la gestion d'une base MySQL par la ligne de
+commande, l'utilitaire `mysql` est déjà installé dans
+Cloud9. Alternativement, l'interface d'administration de bases de
+données [PHPMyAdmin](http://www.phpmyadmin.net/) est également
+disponible. Installez-la avec la commande
 
 ~~~
 phpmyadmin-ctl install
@@ -86,13 +89,20 @@ caractères), votre mot de passe est vide. Une base de données nommée
 `c9` a été automatiquement créé pour vous. Vous pouvez l'utiliser pour
 vos applications, ou vous pouvez créer d'autres bases de données.
 
-**Note:** PHPMyAdmin est exécuté par le même serveur apache qui
-exécute les applications PHP. Lorsque vous lancez une application
-Node.js, le serveur Apache est arrêté et PHPMyAdmin devient
-indisponible.
+Pour arrêter PHPMyAdmin, tapez
+
+~~~
+sudo service apache2 stop
+~~~
+
+**Note:** PHPMyAdmin est exécuté par le même serveur Apache qui
+exécute les applications PHP, et qui écoute sur le port 8080. Pour
+cette raison, vous ne pouvez faire tourner en même temps PHPMyAdmin et
+une application Node.js. Pensez donc à arrêter PHPMyAdmin avant de
+lancer vos applications Node.
 
 Pour lancer à nouveau PHPMyAdmin, arrêtez votre serveur Node.js, et
-lancez à nouveau le serveur Apache en exécutant n'importe quelle
+lancez à nouveau le serveur Apache, soit en exécutant n'importe quelle
 application PHP (par exemple, `example.php`). Pour faciliter le
 lancement de PHPMyAdmin, vous pouvez créer une *run configuration* :
 menu *« Run → Run configurations → New run configuration »*, puis
@@ -121,7 +131,7 @@ serveur Node en même temps qu'un serveur Apache.
    voudrez.
 
 Nous sommes maintenant prêts à étendre notre jeu de Puissace 4.
-Chacune des sections qui suivantes est consacrée à une page de
+Chacune des sections qui suivent est consacrée à une page de
 l'application (une *vue*, en jargon).
 
 Le point d'entrée de l'application va être un fichier `app.js`. Vous
@@ -148,8 +158,7 @@ C9.
 var mysql = require('mysql');
 var db    = mysql.createConnection({
   host     : process.env.IP,  // pas touche à ça : spécifique pour C9 !
-  user     : process.env.C9_USER.substr(0,16),  // laissez comme ça, ou mettez
-                                                // votre login à la place
+  user     : process.env.C9_USER.substr(0,16),  // laissez comme ça
   password : '',
   database : 'c9'  // mettez ici le nom de la base de données
 });
@@ -335,7 +344,6 @@ ou Chrome pour avoir plusieurs fenêtres avec des sessions
 différentes) ; vérifiez que la liste des utilisateurs correspond bien
 aux utilisateurs connectés.
 
-
 ## Mise à jour dynamique de la liste des utilisateurs
 
 Il est maintenant temps de faire entrer AJAX dans notre
@@ -411,13 +419,13 @@ le *server push*. Dans cette section nous allons voir comment
 remplacer les requêtes AJAX de la section précédente par cette API.
 
 On rappelle le fonctionnement de `EventSource`. Il s'agit d'une
-connexion persistante entre le client et le server, sur laquelle le
-server émet des données textuelles à tout moment. Dans la suite on va
+connexion persistante entre le client et le serveur, sur laquelle le
+serveur émet des données textuelles à tout moment. Dans la suite on va
 appeler *event source* le gestionnaire de la connexion du côté
 serveur ; il sera attaché à une URL par le router, comme un quelconque
 gestionnaire. L'API `EventSource` permet au client de déclencher un
 événement JavaScript à chaque fois que des nouvelles données sont
-envoyées par le server.
+envoyées par le serveur.
 
 Une réponse HTTP typique d'une *event source* ressemble à cela :
 
@@ -455,7 +463,7 @@ passant l'URL de l'*event source*.
 var evt = new EventSource('/api/notifications');
 ~~~
 
-Pour réagir aux messages du server, il suffit d'enregistrer un
+Pour réagir aux messages du serveur, il suffit d'enregistrer un
 gestionnaire d'événements. Il y a deux types d'événements : les
 messages anonymes, qui engendrent un événement de type `'message'`
 
@@ -477,7 +485,7 @@ evt.addEventListener('toto', function(e) {
 Dans les deux cas, le corps du message est disponible dans le champ
 `.data` de l'objet `Event`.
 
-Du côté server, cela ne prend que quelques lignes de Node.js pour
+Du côté serveur, cela ne prend que quelques lignes de Node.js pour
 créer une *event source*. Voici un exemple qui écrit l'heure courante
 toutes les secondes.
 
@@ -521,7 +529,7 @@ app.get('/my-event-source', function(req, res) {
    format JSON.
 
 2. Modifiez la page `/userlist` pour utiliser `EventSource` à la place
-   du *short polling*. Pour transformer les messages du server en des
+   du *short polling*. Pour transformer les messages du serveur en des
    données JavaScript, vous pouvez utiliser la fonction
    [`JSON.parse`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse).
 
@@ -530,7 +538,7 @@ app.get('/my-event-source', function(req, res) {
 
 À ce stade, notre application ne fait plus du *short polling* par le
 client, mais elle reste très inefficace : le polling a été déplacé
-dans le server, ce qui ne diminue que marginalement le surcoût de
+dans le serveur, ce qui ne diminue que marginalement le surcoût de
 communication.
 
 Heureusement, le noyau de Node.js est basé sur les événements. Ceci
@@ -828,12 +836,12 @@ d'approfondir votre connaissance des applications web.
 1. Implantez une gestion des mots de passe sécurisée:
    une mesure de sécurité souvent appliquée consiste à ne jamais
    stocker les mots de passe en clair dans la base de données. À la
-   place, on stocke le *haché* (par exemple le SHA1) de la
+   place, on stocke le *haché* (par exemple le SHA256) de la
    concaténation du mot de passe et d'une *graine* aléatoire propre à
    l'application.
    
-   Tout le calcul doit se faire côté server. En effet, premièrement la
-   graine ne doit être connue que par le server, deuxièmement, si
+   Tout le calcul doit se faire côté serveur. En effet, premièrement la
+   graine ne doit être connue que par le serveur, deuxièmement, si
    c'est le client qui fait le calcul, le haché devient effectivement
    le mot de passe à la place de l'original.
    
@@ -867,9 +875,9 @@ d'approfondir votre connaissance des applications web.
 
 1. L'API `EventSource` a l'avantage d'être simple à comprendre et à
    utiliser. Cependant, pour chaque échange asynchrone entre le client
-   et le server, il a fallu créer une *route montante* (pour les
-   envois client → server, via AJAX) et une *route descendante* (pour
-   les envois server → client, via *server push*).
+   et le serveur, il a fallu créer une *route montante* (pour les
+   envois client → serveur, via AJAX) et une *route descendante* (pour
+   les envois serveur → client, via *server push*).
    
    Les web sockets, grâce à leur canal bidirectionnel, permettent de
    simplifier la logique et peuvent rendre l'application plus rapide.
@@ -923,9 +931,8 @@ d'approfondir votre connaissance des applications web.
    est une excellente introduction à l'utilisation du pub/sub de Redis
    dans une application asynchrone.
 
-1. Pourquoi ne pas mettre votre travail en ligne ? Aussi bien
-   [OpenShift](https://www.openshift.com/) que
-   [Heroku](https://www.heroku.com/) offrent un plan d'hébergement
+1. Pourquoi ne pas mettre votre travail en ligne ? 
+   [Heroku](https://www.heroku.com/) offre un plan d'hébergement
    gratuit pour applications en Node.js (une liste plus longue
    d'hébergeurs supportant Node.js est disponible
    [ici](https://github.com/joyent/node/wiki/node-hosting)). C'est la

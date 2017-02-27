@@ -25,10 +25,12 @@ de sa difficulté.
 - Le projet doit faire l'objet d'une présentation orale.
 
 Il est conseillé d'héberger votre projet pour la démonstration
-finale. [Heroku](https://heroku.com) et
-[Openshift](https://openshift.com) sont deux plateformes gratuites
+finale. [Heroku](https://heroku.com) est une plateforme gratuite
 d'hébergement avec support pour PHP, Node.js et MySQL.
-
+[Now](https://zeit.co/now]) est une autre plateforme gratuite
+intéressante pour Node.js, mais, à moins d'utiliser SQLite, vous allez
+devoir trouver une solution complémentaire pour héberger votre base de
+données.
 
 {% for p in site.projects %}{% if p.publish %}
 <div class="collapsible collapsed" id="project-{{ forloop.index }}">

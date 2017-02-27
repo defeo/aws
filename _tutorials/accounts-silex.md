@@ -7,7 +7,7 @@ Dans ce TD nous allons inclure le jeu de Puissance 4 que nous avons
 [développé précédemment](tutorial2) dans une application complète,
 avec des comptes utilisateur et un suivi des parties. Nous allons nous
 servir de la base de données MySQL fournie par Cloud 9 pour le
-stockage des données côté server, et du système de sessions de Silex
+stockage des données côté serveur, et du système de sessions de Silex
 pour garder l'état de la connexion.
 
 Les références pour ce TD sont :
@@ -41,7 +41,7 @@ mysql-ctl start
 ~~~
 {:.bash}
 
-Vous pouvez arrêter à tout moment le server MySQL avec
+Vous pouvez arrêter à tout moment le serveur MySQL avec
 
 ~~~
 mysql-ctl stop
@@ -56,9 +56,11 @@ mysql-ctl restart
 Si vous n'arrêtez pas le serveur à la fin de la session, il sera
 encore actif lors de votre prochaine connexion à l'espace de travail.
 
-L'interface d'administration de bases de données
-[PHPMyAdmin](http://www.phpmyadmin.net/) est également disponible dans
-Cloud9. Installez-la avec la commande
+Si vous êtes à l'aise avec la gestion d'une base MySQL par la ligne de
+commande, l'utilitaire `mysql` est déjà installé dans
+Cloud9. Alternativement, l'interface d'administration de bases de
+données [PHPMyAdmin](http://www.phpmyadmin.net/) est également
+disponible. Installez-la avec la commande
 
 ~~~
 phpmyadmin-ctl install
@@ -97,7 +99,7 @@ exécutez n'importe quelle application Silex.
    voudrez.
 
 Nous sommes maintenant prêts à étendre notre jeu de Puissace 4.
-Chacune des sections qui suivantes est consacrée à une page de
+Chacune des sections qui suivent est consacrée à une page de
 l'application (une *vue*, en jargon).
 
 Le point d'entrée de l'application va être le fichier
@@ -116,12 +118,11 @@ suivant permet de configurer votre application avec les paramètres de C9.
 ~~~
 $app->register(new Silex\Provider\DoctrineServiceProvider(),
   array('db.options' => array(
-		'driver'   => 'pdo_mysql',
+        'driver'   => 'pdo_mysql',
         'host'     => getenv('IP'),  // pas touche à ça : spécifique pour C9 !
-		'user'     => substr(getenv('C9_USER'), 0, 16),  // laissez comme ça, ou mettez
-		                                                 // votre login à la place
-		'password' => '',
-		'dbname' => 'c9'  // mettez ici le nom de la base de données
+        'user'     => substr(getenv('C9_USER'), 0, 16),  // laissez comme ça
+        'password' => '',
+        'dbname' => 'c9'  // mettez ici le nom de la base de données
   )));
 ~~~
 
@@ -407,7 +408,7 @@ toutes les vues de l'application.
    gestionnaires détecteront cette valeur spéciale, il traiteront la
    requête comme si le client ne s'était jamais identifié.
    
-   Après une déconnexion réussi, le gestionnaire redirige sur `/`. Ce
+   Après une déconnexion réussie, le gestionnaire redirige sur `/`. Ce
    gestionnaire doit aussi remettre à 0 la colonne `enligne`
    correspondante aux joueurs dans la base de données.
 
@@ -503,12 +504,12 @@ d'approfondir votre connaissance des applications web.
 1. Implantez une gestion des mots de passe sécurisée:
    une mesure de sécurité souvent appliquée consiste à ne jamais
    stocker les mots de passe en clair dans la base de données. À la
-   place, on stocke le *haché* (par exemple le SHA1) de la
+   place, on stocke le *haché* (par exemple le SHA256) de la
    concaténation du mot de passe et d'une *graine* aléatoire propre à
    l'application.
    
-   Tout le calcul doit se faire côté server. En effet, premièrement la
-   graine ne doit être connue que par le server, deuxièmement, si
+   Tout le calcul doit se faire côté serveur. En effet, premièrement la
+   graine ne doit être connue que par le serveur, deuxièmement, si
    c'est le client qui fait le calcul, le haché devient effectivement
    le mot de passe à la place de l'original.
    
@@ -540,17 +541,17 @@ d'approfondir votre connaissance des applications web.
    inefficace comme méthode de *server push*. Malheureusement le
    modèle d'exécution de Apache+PHP est incompatible avec des
    connexions de longue durée : pendant qu'une connexion à un
-   gestionnaire reste ouverte, tout le server est bloqué et aucune
+   gestionnaire reste ouverte, tout le serveur est bloqué et aucune
    autre connexion ne peut être reçue.
    
-   Un server multi-threads permettrait d'éviter ce problème, mais les
+   Un serveur multi-threads permettrait d'éviter ce problème, mais les
    threads ont on surcoût important, ce qui rend difficile le passage
    à l'échelle.
    
    Node.js propose un modèle différent : plutôt que lancer un thread à
    chaque nouvelle connexion, une application Node.js est une boucle
    infinie qui répond à des évènements de type connexion ou
-   autre. Ceci permet d'avoir un server asynchrone avec capacité de
+   autre. Ceci permet d'avoir un serveur asynchrone avec capacité de
    *server push* sans besoin de multi-threading.
    
    La version de ce TD [pour Node.js](accounts-node) vous propose une
@@ -562,7 +563,7 @@ d'approfondir votre connaissance des applications web.
 
 1. Pourquoi ne pas mettre votre travail en ligne ? Tout hébergeur
    supportant PHP >=5.3 est capable de faire tourner Silex (je
-   conseille [OpenShift](https://www.openshift.com/)). C'est la
+   conseille [Heroku](https://heroku.com/)). C'est la
    vitrine idéale pour montrer votre travail à un futur employeur.
    
    N'oubliez pas de mettre le code source sur
