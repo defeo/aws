@@ -2,7 +2,7 @@
 layout: lesson
 title: "Maintien d'état"
 subtitle: Persistance côté client, Cookies, Storage API
-scripts: ['http://coffeescript.org/extras/coffee-script.js']
+scripts: "../assets/js/side-by-side-browser.js"
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/etat.webm
@@ -34,7 +34,7 @@ Le server se *souvient de l'état* du client entre deux requêtes
 
 </section>
 <section>
-<style scoped>
+<style>
 #xkcd {
   text-align: center;
   margin-top: 4em;
@@ -134,7 +134,7 @@ Les données sensibles (mots de passe, etc.) ne doivent pas :
 
 </section>
 <section>
-<style scoped>
+<style>
 #browser { display: flex; }
 #browser .window, #browser .source {
   border: solid thin black;
@@ -151,44 +151,6 @@ Les données sensibles (mots de passe, etc.) ne doivent pas :
 ## Exemple (méthode GET)
 
 <p id="browser"></p>
-<script type="text/coffeescript">
-$bw = $ '#browser'
-$win = $bw.append 'div.window'
-$adr = $win.append 'div.address'
-$bdy = $win.append 'div.body'
-$src = ($bw.append 'pre.source.html').append 'code'
-
-$adr.textContent = 'http://.../'
-$bdy.append 'h3 Bonjour, présentez-vous'
-$bdy.innerHTML += '<input type="text"><button>Entrer</button>'
-$src.textContent = '''
-    <form method="get" action="aujourdhui">
-      <h3>Bonjour, présentez-vous</h3>
-      <input type="text" name="nom">
-      <input type="submit" value="Entrer">
-    </form>'''
-hljs.highlightBlock $src
-
-($bdy.$ 'button').on 'click', ->
- $bw.style.height = $bw.offsetHeight + 'px'
- t = ($bdy.$ 'input').value
- $adr.textContent = "http://.../aujourdhui?nom=#{t}"
- $bdy.innerHTML = ""
- $bdy.append "p Bonjour #{t}, <a href='#'>à demain</a>"
- $src.textContent = """<p>Bonjour #{t},
-   <a href='demain?nom=#{t}'>à demain</a>
- </p>"""
- hljs.highlightBlock $src
-
- ($bdy.$ 'a').on 'click', (e) ->
-  $adr.textContent = "http://.../demain?nom=#{t}"
-  $bdy.innerHTML = ""
-  $bdy.append "p Bonjour #{t}"
-  $src.textContent = "<p>Bonjour #{t}</p>"
-  hljs.highlightBlock $src
-  e.preventDefault()
-  false
-</script>
 
 ~~~
 $app->get('/aujourdhui', function(Request $req){
