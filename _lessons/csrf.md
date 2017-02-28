@@ -2,7 +2,7 @@
 layout: lesson
 title: CSRF et Clickjacking
 subtitle: Escalade de privilèges trans-domaine
-scripts:  ../js/mock-browser.js
+scripts:  ../assets/js/mock-browser.js
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/csrf.webm

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Propositions de projet
-styles: css/collapsible.css
-scripts: js/collapsible.js
+styles: assets/css/collapsible.css
+scripts: assets/js/collapsible.js
 ---
 
 <style>

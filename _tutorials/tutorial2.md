@@ -1,6 +1,5 @@
 ---
 title: Un simple jeu en JavaScript
-styles: ["../css/cloud9.css"]
 ---
 
 Dans ce TD nous allons créer une interface pour jouer à
