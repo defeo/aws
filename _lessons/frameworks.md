@@ -144,13 +144,13 @@ HTML, images, etc.
 </g>
   <g style="fill:blue">
     <a xlink:href="http://daringfireball.net/projects/markdown/"><text x="170" y="138">Markdown</text></a>
-	<a xlink:href="http://jade-lang.com/"><text x="210" y="238">Jade</text></a>
+	<a xlink:href="https://pugjs.org/"><text x="210" y="238">Pug</text></a>
   </g>
   </g>
 </svg>
 
 - [Markdown](http://daringfireball.net/projects/markdown/) : transformation Texte → HTML,
-- [Jade](http://jade-lang.com/) : syntaxe simplifiée pour HTML,
+- [Pug](https://pugjs.org/) : syntaxe simplifiée pour HTML,
 - [Perl](http://perl.org/) : langage de programmation générique.
 
 **Autre exemple :** Ces transparents sont générés statiquement

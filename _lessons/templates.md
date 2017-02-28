@@ -87,7 +87,7 @@ Quelques langages de templating
   [Hogan](http://twitter.github.io/hogan.js/).
 - *Embedded* : [PHP](http://php.net/), [ASP](http://www.asp.net/), JSP, Eruby,
   [EJS](http://embeddedjs.com/).
-- *Toute une philosphie* : [Jade](http://jade-lang.com/).
+- *Toute une philosphie* : [Pug](https://pugjs.org/).
 
 </section>
 <section>

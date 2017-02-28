@@ -89,7 +89,7 @@ En <100 lignes, on a :
   JQuery.
 
 - Un remplacement pour `innerHTML` inspiré par
-  [Jade](http://jade-lang.com/) (voir
+  [Pug](https://pugjs.org/) (voir
   [le CodePen](http://codepen.io/defeo/pen/xbYawz)).
 
 - Une méthode pour modifier plusieurs propriétés CSS d'un coup,

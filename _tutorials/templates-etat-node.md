@@ -16,12 +16,11 @@ Les références pour ce TD sont
 - Le [manuel de JavaScript](https://developer.mozilla.org/docs/Web/JavaScript),
 - La [référence de Node.js](http://nodejs.org/api/),
 - Les [aides de NodeJitsu](http://docs.nodejitsu.com/),
-- Le [guide de Express](http://expressjs.com/guide.html),
-- La [référence de Express](http://expressjs.com/3x/api.html),
+- Le [guide de Express](http://expressjs.com/guide/routing.html),
+- La [référence de Express](http://expressjs.com/4x/api.html),
 - Ce
-  [tutoriel sur Twig](http://symfony.com/fr/doc/current/book/templating.html),
-- La [documentation de Twig](http://twig.sensiolabs.org/documentation)
-  (en anglais uniquement).
+  [tutoriel sur Twig](http://symfony.com/doc/current/book/templating.html),
+- La [documentation de Twig](http://twig.sensiolabs.org/documentation).
 
 
 ## Contenu statique et templates
@@ -72,7 +71,6 @@ dynamiques.
    app
 	   .use(bodyP.urlencoded({ extended: false }))
 	   .use(cookieP());
-   var app = express();
    
    // Vos gestionnaires ici
    
@@ -155,7 +153,7 @@ templating populaires : le plus proche de Twig est
 [Nunjucks](https://www.npmjs.org/package/nunjucks), mais peut-être
 trouverez-vous votre bonheur avec
 [Hogan (Mustache)](http://twitter.github.io/hogan.js/),
-[Jade](https://github.com/visionmedia/jade), ...
+[Pug](https://pugjs.org/), ...
 
 **Important :** avant d'utiliser Twig (ou tout autre moteur de
 templating), il faut le charger avec

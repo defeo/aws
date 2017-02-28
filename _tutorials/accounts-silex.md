@@ -33,7 +33,7 @@ Des références optionnelles, si vous décidez d'utiliser un autre DBAL que Doc
 ## Préparer son espace de travail
 
 Comme d'habitude, on va partir d'un clone de
-<http://github.com/defeo/aws-project>.  Commencez par démarrer le
+<https://github.com/defeo/aws-project>.  Commencez par démarrer le
 serveur MySQL en tapant la commande
 
 ~~~
@@ -140,7 +140,7 @@ Ensuite le DBAL sera accessible via l'objet `$app['db']`.
    utilisez une couleur par défaut. Le résultat pourrait ressembler à
    cela.
    
-   | Joueur | Parties | Gagnées | Colueur préférée |
+   | Joueur | Parties | Gagnées | Couleur préférée |
    |--
    | Kasparov | 10 | 3 | <span class="r"></span> |
    | Karpov | 100 | 99 | <span class="g"></span> |

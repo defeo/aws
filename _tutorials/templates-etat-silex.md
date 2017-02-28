@@ -13,16 +13,13 @@ nouveau la commande `make` dans ce cas.
 Les références pour ce TD sont
 
 - Le [manuel de PHP](http://www.php.net/manual/),
-- Le [manuel de Silex](http://silex.sensiolabs.org/documentation) (en anglais uniquement),
+- Le [manuel de Silex](http://silex.sensiolabs.org/documentation),
 - Le
-  [*Book* de Symfony](http://symfony.com/fr/doc/current/book/index.html)
-  (disponible aussi
-  [en anglais](http://symfony.com/doc/current/book/index.html)),
-- La [référence de Symfony](http://api.symfony.com/master/) (en anglais uniquement),
+  [*Book* de Symfony](http://symfony.com/doc/current/book/index.html),
+- La [référence de Symfony](http://api.symfony.com/master/),
 - Ce
-  [tutoriel sur Twig](http://symfony.com/fr/doc/current/book/templating.html),
-- La [documentation de Twig](http://twig.sensiolabs.org/documentation)
-  (en anglais uniquement).
+  [tutoriel sur Twig](http://symfony.com/doc/current/book/templating.html),
+- La [documentation de Twig](http://twig.sensiolabs.org/documentation).
 
 
 ## Contenu statique et templates

@@ -20,17 +20,17 @@ acceptées aux fins de validation du contrôle continu. Les projets ne
 sont pas tous du même niveau : pour chacun on indique une estimation
 de sa difficulté.
 
-- Les projets sont à développer en groupe, idéalement en trinôme.
+- Les projets sont à développer en groupe, idéalement binôme.
 
 - Le projet doit faire l'objet d'une présentation orale.
 
 Il est conseillé d'héberger votre projet pour la démonstration
 finale. [Heroku](https://heroku.com) est une plateforme gratuite
 d'hébergement avec support pour PHP, Node.js et MySQL.
-[Now](https://zeit.co/now]) est une autre plateforme gratuite
-intéressante pour Node.js, mais, à moins d'utiliser SQLite, vous allez
-devoir trouver une solution complémentaire pour héberger votre base de
-données.
+[Now](https://zeit.co/now]) et [Gomix](https://gomix.com/) sont deux
+autre plateformes gratuites intéressantes pour Node.js, mais, à moins
+d'utiliser SQLite, vous allez devoir trouver une solution
+complémentaire pour héberger votre base de données.
 
 {% for p in site.projects %}{% if p.publish %}
 <div class="collapsible collapsed" id="project-{{ forloop.index }}">
