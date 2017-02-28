@@ -78,7 +78,7 @@ très lourd dès qu'il y a beaucoup de joueurs).
 	été vu en cours pour le plateau de puissance 4.
 
   - Une interface plus fluide, utilisant la balise `<canvas>` pour
-	dessinner directement avec des primitives graphiques. Vous pouvez
+	dessiner directement avec des primitives graphiques. Vous pouvez
 	suivre
 	[ce tutoriel](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial).
 
