@@ -1,7 +1,7 @@
 ---
 layout: lesson
 title: Communication bidirectionnelle
-subtitle: Server push et websockets
+subtitle: Server push et WebSockets
 ---
 
 <section>
@@ -11,10 +11,10 @@ subtitle: Server push et websockets
 ### Problème : AJAX est **unidirectionnel**
 
 1. Le client envoie des données dans la requête,
-2. Le server répond avec des données.
+2. Le serveur répond avec des données.
 
-- Le server ne peut pas initier un transfert de données ;
-- Le server ne peut pas appeler des fonctions (déclencher des
+- Le serveur ne peut pas initier un transfert de données ;
+- Le serveur ne peut pas appeler des fonctions (déclencher des
   évènements) chez le client.
 
 **Simuler** une communication bidirectionnelle
@@ -31,7 +31,7 @@ subtitle: Server push et websockets
 
 ## *Polling*
 
-Utile pour : notifications, compatibilité avec vieux browsers
+Utile pour : notifications, compatibilité avec vieux navigateurs
 
 ### *Short polling*
 
@@ -42,9 +42,9 @@ Utile pour : notifications, compatibilité avec vieux browsers
 
 ### *Long polling*, *Streaming*
 
-1. Le client ouvre une connexion HTTP avec le server,
-2. Le server envoie les entêtes mais ne ferme pas la connexion,
-3. Lorsque des notifications arrivent, le server les envoie dans la
+1. Le client ouvre une connexion HTTP avec le serveur,
+2. Le serveur envoie les entêtes mais ne ferme pas la connexion,
+3. Lorsque des notifications arrivent, le serveur les envoie dans la
    connexion ;
 4. (*long polling*) Le server ferme la connexion.
 
@@ -55,8 +55,8 @@ Utile pour : notifications, compatibilité avec vieux browsers
 
 ### Avantages
 
-- Compatible avec les vieux browsers,
-- Ne demande pas de support spécifique chez le server.
+- Compatible avec les vieux navigateurs,
+- Ne demande pas de support spécifique chez le serveur.
 
 ### Désavantages
 
@@ -69,7 +69,7 @@ Utile pour : notifications, compatibilité avec vieux browsers
 
 ## Event stream
 
-Format de streaming **unidirectionnel Server → Client** : la connexion
+Format de streaming **unidirectionnel Serveur → Client** : la connexion
 reste ouverte
 
 <pre class="http"><code>HTTP/1.1 200 OK
@@ -101,6 +101,8 @@ html[data-incremental="4"] #evt-4
 4. On est libres de choisir le format des données.
 {:.incremental}
 
+Plus de détails : <https://hpbn.co/server-sent-events-sse/>.
+
 </section>
 <section class="compact">
 
@@ -127,7 +129,10 @@ app.get('/api/notifications', function(req, res) {
 });
 ~~~
 
-- Facile en Node.js,
+- Facile en Node.js, plusieurs
+  [paquets disponibles](https://www.npmjs.com/browse/keyword/server-sent-events)
+  (notamment,
+  [`sse-writer`](https://www.npmjs.com/package/sse-writer)).
 - Nécessite configuration spécifique pour Apache+PHP.
 
 </section>
@@ -186,10 +191,51 @@ Connection: Upgrade
 </div>
 
 1. Le client demande une connexion web socket,
-2. Le server répond avec `101 Switching Protocols`,
-3. Le server et le client établissent une connexion TCP de type Web
-   (schema `ws://`) Socket.
+2. Le serveur répond avec `101 Switching Protocols`,
+3. Le serveur et le client établissent une connexion TCP de type Web Socket
+   (schema `ws://` ou `wss://`).
 {:.incremental}
+
+</section>
+<section>
+
+## Exemple WebSocket : serveur
+
+Exemple avec le paquet Node [`ws`](https://www.npmjs.com/package/ws):
+
+```
+var WebSocket = require('ws');
+
+var server = new WebSocket.Server({ port: 8080 });
+
+server.on('connection', function connection(ws) {
+  ws.on('message', function(message) {
+    console.log('received:', message);
+  });
+
+  ws.send('something');
+});
+```
+
+</section>
+<section>
+
+## Exemple WebSocket : client (navigateur)
+
+Exemple avec
+l'[API standardisée par le W3C](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket):
+
+```
+var ws = new WebSocket('ws://localhost:8080');
+
+ws.addEventListener('open', function(e) {
+  ws.addEventListener('message', function(e) {
+    console.log('received:', e.data);
+  });
+	
+  ws.send('something else');
+});
+```
 
 </section>
 <section>
@@ -200,20 +246,23 @@ Connection: Upgrade
 
 - Bidirectionnels,
 - Peu de overhead,
-- Standardisés par l'IETF en 2011.
+- Standardisés par l'IETF en 2011 (et *Candidate Recommendation* du W3C),
+- Disponibles dans tous les navigateurs modernes.
 
 ### Désavantages
 
-- Nécessitent de support dans le server,
-- Pas adaptés au modèle d'exécution Apache+PHP,
-- API pas encore standardisée par le W3C.
+- Nécessitent de support dans le serveur,
+- Difficiles à configurer avec Apache+PHP.
+
 
 ### Bibliothèques
 
-- Node.js : module
-  [`websocket`](https://www.npmjs.com/package/websocket),
-  <http://socket.io/> (cross browser, très simple à utiliser),
-- PHP : <http://socketo.me/> (très difficile à configuer).
+- Paquets Node.js : [`ws`](https://www.npmjs.com/package/ws),
+  [`μws`](https://www.npmjs.com/package/uws),
+  [`engine.io`](https://www.npmjs.com/package/engine.io),
+  [`primus`](https://www.npmjs.com/package/primus), ...
+- Bibliothèque compatible Node.js : <http://socket.io/>;
+- PHP : <http://socketo.me/>.
 
 </section>
 <section>
@@ -222,6 +271,8 @@ Connection: Upgrade
 
 - [Tutoriel de html5rocks `EventSource`](http://www.html5rocks.com/en/tutorials/eventsource/basics/).
 - [Tutoriel MDN `EventSource`](https://developer.mozilla.org/docs/Server-sent_events/Using_server-sent_events).
+- [Détail du protocole SSE](https://hpbn.co/server-sent-events-sse/)
+  par [*Ilya Grigorik*](https://www.igvita.com/).
 - [Guides MDN Web Sockets](https://developer.mozilla.org/docs/WebSockets).
 - Exemple de [chat en Express+socket.io](http://socket.io/get-started/chat/).
 

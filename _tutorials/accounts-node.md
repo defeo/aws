@@ -14,10 +14,14 @@ Pour réaliser une interface fluide et *responsive*, l'utilisation de
 AJAX s'impose. Mais, dans une application web de ce type, il n'est pas
 suffisant d'avoir des requêtes asynchrones : il est aussi nécessaire
 d'avoir des événements asynchrones **générés par le serveur**. Nous
-allons utiliser l'API `EventSource` pour réaliser ce *server
-push*. Allez voir la [version pour Silex](accounts-silex) pour un
-exemple d'application simulant le *server push* avec du *short
-polling*.
+allons utiliser deux techniques pour cela :
+
+- L'API `EventSource`, qui permet une communication uni-directionnelle
+  du serveur vers le navigateur (allez voir la
+  [version pour Silex](accounts-silex) pour un exemple d'application
+  simulant le *server push* avec du *short polling*);
+- Les Web Sockets, qui fournissent un canal bi-directionnel entre les
+  deux.
 
 Les références pour ce TD sont :
 
@@ -33,11 +37,9 @@ Les références pour ce TD sont :
   [tutoriel sur l'utilisation de `EventSource` avec Node.js](http://tomkersten.com/articles/server-sent-events-with-node/),
 - Ce
   [tutoriel sur l'utilisation de `EventEmitter`](http://www.sitepoint.com/nodejs-events-and-eventemitter/).
-
-Des références optionnelles, si vous décidez d'utiliser un autre DBAL que Doctrine :
-
-- La [doc du module `PDO`](http://php.net/manual/en/book.pdo.php),
-- La [doc du module `mysqli`](http://php.net/manual/en/book.mysqli.php).
+- La documentation du [paquet `ws`](https://github.com/websockets/ws) pour les Web Sockets.
+- Ce
+  [tutoriel MDN sur l'utilisation des Web Sockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications).
 
 
 ## Préparer son espace de travail
@@ -278,7 +280,11 @@ utiliser les sessions il faut configurer l'application avec
 ~~~
 var session = require('express-session');
 
-app.use(session({ secret: '12345' }))
+app.use(session({
+    secret: '12345',
+    resave: false,
+    saveUninitialized: false,
+}));
 ~~~
 
 Ensuite la session sera disponible dans l'objet `req.session`.
@@ -328,15 +334,27 @@ une liste des utilisateurs connectés. Cette information sera ensuite
 transmise aux clients via AJAX.
 
 1. Dans votre application, créez une variable globale (en dehors de
-   tout gestionnaire) `connectes`. Cette variable va contenir la liste
-   des utilisateurs connectés.
+   tout gestionnaire) `connectes`, de type `Map` :
+   
+   ```
+   var connectes = new Map();
+   ```
+   
+   Le type `Map` implante un dictionnaire (ou *table de hachage*),
+   [lisez la doc MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)).
 
-2. Modifiez le gestionnaire de `/userlist` pour qu'il affiche
-   uniquement les utilisateurs connectés.
-
-3. Modifiez les gestionnaires de `/` et `/logout` pour qu'ils mettent
+2. Modifiez les gestionnaires de `/` et `/logout` pour qu'ils mettent
    à jour la variable `connectes` lorsque un utilisateur se connecte
-   ou se déconnecte.
+   ou se déconnecte.  Utilisez les logins des utilisateurs comme
+   clefs, et des objets contenant l'heure de connexion comme valeurs :
+   
+   ```
+   connectes.set('toto', { time: new Date() });
+   connectes.delete('toto');
+   ```
+
+3. Modifiez le gestionnaire de `/userlist` pour qu'il affiche
+   uniquement les utilisateurs connectés.
 
 Testez votre application avec plusieurs browsers (au moins deux, il
 est aussi possible d'utiliser le mode *navigation privée* de Firefox
@@ -427,7 +445,7 @@ gestionnaire. L'API `EventSource` permet au client de déclencher un
 événement JavaScript à chaque fois que des nouvelles données sont
 envoyées par le serveur.
 
-Une réponse HTTP typique d'une *event source* ressemble à cela :
+Une réponse HTTP typique d'une *event source* simple ressemble à cela :
 
 ~~~
 HTTP/1.1 200 OK
@@ -437,23 +455,17 @@ X-Powered-By: Express
 transfer-encoding: chunked
 Connection: keep-alive
 
-data: Un message anonyme
+data: Un message 
 
-event: toto
-data: Un message de type 'toto'
+data: Un deuxième message
 
-id: 2
-event: toto
-data: Un message avec un identifiant
+data: Un message plus long
 data: sur plusieurs lignes
 ~~~
 
 On voit que les messages sont précédés par le mot clef `data:` et
-terminés par un double retour à la ligne. Les messages peuvent
-optionnellement être précédés par un champs `event:` et/ou un champs
-`id:`, permettant respectivement d'assigner un *nom* et un
-*identifiant* au message (ce n'est pas très différent des concepts de
-*classe* et *id* en CSS, respectivement).
+terminés par un double retour à la ligne (voir
+[le cours](../lessons/server-push) pour plus de possibilités).
 
 Du côté client, c'est très simple d'initialiser une connexion de ce
 type : il suffit de créer un objet de type `EventSource` en lui
@@ -464,8 +476,7 @@ var evt = new EventSource('/api/notifications');
 ~~~
 
 Pour réagir aux messages du serveur, il suffit d'enregistrer un
-gestionnaire d'événements. Il y a deux types d'événements : les
-messages anonymes, qui engendrent un événement de type `'message'`
+gestionnaire d'événements, comme ceci :
 
 ~~~
 evt.addEventListener('message', function(e) {
@@ -473,17 +484,8 @@ evt.addEventListener('message', function(e) {
 });
 ~~~
 
-et les messages avec nom, qui engendrent un événement du même type que
-le nom du message
-
-~~~
-evt.addEventListener('toto', function(e) {
-  console.log(e.data);
-});
-~~~
-
-Dans les deux cas, le corps du message est disponible dans le champ
-`.data` de l'objet `Event`.
+Le corps du message est disponible dans le champ `.data` de l'objet de
+type `Event`.
 
 Du côté serveur, cela ne prend que quelques lignes de Node.js pour
 créer une *event source*. Voici un exemple qui écrit l'heure courante
@@ -505,7 +507,6 @@ app.get('/my-event-source', function(req, res) {
   var timer = setInterval(function() {
     var date = Date();
 	console.log(date);
-    res.write('event: date\n');
 	res.write('data: ' + date + '\n\n');
   }, 1000);
   
@@ -606,198 +607,231 @@ app.get('/logger/:id', function(req, res) {
    événement de login ou de logout.
 
 Bravo, vous avez réussi à écrire votre première application web
-totalement asynchrone. Pour une utilisation intensive de
-`EventSource`, il peut être intéressant d'utiliser des modules pour
-Node.js qui encapsulent la logique d'un *event source* et qui
-fournissent une API simplifiée. Aucun module n'a atteint suffisamment
-de popularité sur NPM pour éclipser les autres, mais celui qui nous
-semble le plus intéressant est
-[sse-nodejs](https://www.npmjs.com/package/sse-nodejs).
+totalement asynchrone.  Ceci a été rendu possible par la technologie
+`EventSource`, très simple à mettre en place, mais pas encore
+supportée par tous les navigateurs (notamment les navigateurs
+Microsoft). Dans la suite nous allons passer à une technologie
+beaucoup plus populaire pour réaliser une communication complètement
+asynchrone régie par les évènements.
 
+## Jouer une partie avec les Web Sockets
 
-## Commencer une partie
+Enfin nous arrivons à la partie de Puissance 4 à proprement parler.
+Pour mettre en place la communication entre le serveur et les clients,
+on pourrait continuer à utiliser du AJAX en conjonction avec
+`EventSource`, comme nous l'avons fait jusqu'ici, mais ceci se révèle
+souvent peu élégant et difficile à coder. À la place nous allons
+utiliser la technologie des Web Sockets, qui, grâce à son canal
+bi-directionnel, nous permet de maîtriser aisément des applications
+parallèles complexes.
 
-Enfin nous arrivons à la partie de Puissance 4. Pour pouvoir
-rencontrer un adversaire, il va falloir définir un protocole
-d'invitation à faire une partie. Le même canal `EventSource` utilisé
-dans la partie précédente va nous permettre d'échanger ces messages,
-l'entête `event:` va nous permettre de distinguer les mises à jour sur
-la liste des utilisateurs des autres messages.
+Nous commençons par définir le protocole par lequel les joueurs vont
+s'inviter à participer à une partie.  Chaque joueur se trouvera dans
+l'un de ces quatre états :
 
-Le protocole d'invitation va se dérouler comme suit :
+- **LIBRE :** le jouer n'est occupé dans aucune partie ni invitation ;
+- **EN ATTENTE :** le joueur a invité un autre joueur à rejoindre une partie ;
+- **INVITÉ :** le joueur a été invité à rejoindre une partie ;
+- **EN JEU :** le joueur participe à une partie.
 
-1. Le joueur 1 clique sur l'adversaire qu'il souhaite défier. Une
-   requête est envoyée à l'url `/api/challenge/...`.
+Les joueurs peuvent s'envoyer les *signaux* suivants :
 
-2. Le joueur 2 est notifié de l'invitation par le
-   `EventSource`. L'interface lui propose d'accepter ou de décliner
-   l'invitation. Le choix de l'utilisateur est envoyé à l'url
-   `/api/respond/...`.
+- ***invite :*** un joueur **LIBRE** invite un autre joueur
+  **LIBRE** ; le premier devient **EN ATTENTE**, le deuxième devient
+  **INVITÉ** ;
+- ***accepte :*** un joueur **INVITÉ** accepte l'invitation du joueur
+  **EN ATTENTE** ; les deux deviennent **EN JEU** ;
+- ***refuse :*** un joueur **INVITÉ** refuse l'invitation du joueur
+  **EN ATTENTE** ; les deux deviennent **LIBRE** ;
+- ***quitte :*** un joueur **EN JEU** quitte la partie ; les deux
+  joueurs deviennent **LIBRE**.
 
-3. Si le joueur 2 a refusé la partie, le joueur 1 est notifié par le
-   `EventSource`, et tout revient comme avant l'invitation.
+Voici un tableau qui résume ces messages.
 
-   Sinon, le joueur 1 et le joueur 2 sont notifiés du début de la
-   partie par le `EventSource`, un identifiant de la partie leur est
-   transmis par ce canal. L'interface JavaScript charge le plateau de
-   jeu et la partie commence.
+| message | expéditeur (avant) | destinataire (avant) | expéditeur (après) | destinataire (après)
+|--
+| *invite* | LIBRE | LIBRE | EN ATTENTE | INVITÉ
+| *accepte* | EN ATTENTE | INVITÉ | EN JEU | EN JEU
+| *refuse* | EN ATTENTE | INVITÉ | LIBRE | LIBRE
+| *quitte* | EN JEU | EN JEU | LIBRE | LIBRE
+{:.pretty}
 
-Nous donnons maintenant dans les détails de l'application.
+Toute autre interaction est interdite et donnera lieu à une erreur.
+Nous sommes ici confrontés à un problème classique de programmation
+concurrente : comment éviter les *race conditions*, c'est à dire les
+cas où des messages envoyés à des intervalles très courts se
+chevauchent ? Par exemple, que se passe-t-il si deux joueurs
+s'invitent mutuellement en même temps ? Qui devient **INVITÉ**, qui
+**EN ATTENTE** ?
 
-1. À chaque objet utilisateur de la liste `connectes`, ajoutez
+Ces problèmes de programmation concurrente sont notamment difficiles à
+résoudre, mais nous avons ici un serveur Node.js qui s'exécute dans un
+seul *thread*, sans aucun parallélisme.  Par conséquent, nous allons
+garder tout l'état de l'application dans le serveur ; à chaque fois
+que l'état interne du serveur change, celui-ci notifiera les clients
+concernés en leur transmettant l'intégralité de leur état.  Si cette
+technique n'est pas aussi économe en bande passante qu'on pourrait
+l'espérer, elle a l'avantage d'être simple à coder et de minimiser les
+risques de *race conditions*.
+
+Passons à la mise en œuvre. Pour pouvoir utiliser les Web Socket dans
+Node.js, vous devez installer un module adapté. Nous allons utiliser
+le module `ws`, tapez dans une console
+
+```bash
+npm install ws
+```
+
+Maintenant, pour intégrer le serveur des Web Sockets avec Express et
+`express-session`, modifiez votre application ainsi :
+
+```javascript
+var http = require('http');
+var ws = require('ws');
+var express = require('express');
+var session = require('express-session');
+// etc...
+
+var app = express();
+var sess_storage = session({ 
+    secret: "12345",
+    resave: false,
+    saveUninitialized: false,
+});
+app.use(sess_storage);
+
+// Ici le reste de votre configuration Express, et vos routes
+// ...
+
+// On attache le serveur Web Socket au même serveur qu'Express
+var server = http.createServer(app);
+var wsserver = new ws.Server({ 
+	server: server,
+	// Ceci permet d'importer la session dans le serveur WS, qui
+	// la mettra à disposition dans wsconn.upgradeReq.session, voir
+	// https://github.com/websockets/ws/blob/master/examples/express-session-parse/index.js
+    verifyClient: function(info, callback) {
+        sess_storage(info.req, {}, callback);
+    },
+});
+
+// On définit la logique de la partie Web Socket
+wsserver.on('connection', function(wsconn) {
+    console.log('WS connection by', wsconn.upgradeReq.session);
+    wsconn.send('Hello world!');
+	wsconn.on('message', function(data) {
+		console.log(data);
+	});
+	// ...
+});
+
+// On lance le serveur HTTP/Web Socket
+server.listen(process.env.PORT);
+```
+
+Du côté client, l'utilisation dans le navigateur est très simple :
+
+```
+var ws = new WebSocket('wss://' + window.location)
+
+ws.addEventListener('open', function(e) {
+	ws.send('Hi world!');
+	ws.addEventListener('message', function(e) {
+		console.log(e.data);
+	});
+});
+```
+
+**Note :** le schéma `wss:` indique les Web Sockets chiffrés par TLS ;
+utilisez ce schéma en conjonction avec HTTPS dans Cloud 9. Si vous
+développez en local, vous n'aurez pas de serveur HTTPS, vous
+utiliserez, alors, le schéma `ws://`.
+
+On commence par le serveur.
+
+1. Modifiez le gestionnaire de `/` pour qu'il stocke dans le
+   dictionnaire `connectes`, à côté de l'heure de connexion, le
+   *statut* de l'utilisateur (`'LIBRE'` par défaut), son *adversaire
+   courant* (`null` par défaut), et les autres informations utiles
+   (couleurs, scores, ...).
+
+2. Codez la logique du gestionnaire `.on('message', ...)` du serveur
+   Web Socket. Il s'attend à recevoir quatre types de messages :
+   `'invite'`, `'accepte'`, `'refuse'`, `'quitte'`. Vous coderez ces
+   messages au format JSON (utilisez `JSON.stringify` et
+   `JSON.parse`) ; seul le message `invite` est accompagné de
+   l'identifiant de l'utilisateur à inviter.
    
-   - un champ `emitter` qui va contenir un pointeur vers un
-	 `EventEmitter`, servant à notifier l'utilisateur.
+   Référez-vous au tableau plus haut pour décider en quelles occasion
+   les messages sont acceptés ou rejetés. Par exemple les message
+   `'invite'` n'est accepté que lorsque l'utilisateur qui envoie le
+   message et l'utilisateur invité sont tous les deux `'LIBRE'`. Leurs
+   statuts sont alors modifiés, respectivement, en `'EN ATTENTE'` et
+   `'INVITE'`.
    
-   - un champ `partie` qui va pointer vers un objet partie si le jouer
-	 participe à une partie, ou `null` si le jouer n'est occupé dans
-	 aucune partie.
- 
-   Dans le gestionnaire `/`, remplissez le champ emitter avec un
-   nouveau `EventEmitter` créé pour cette session. Dans le
-   gestionnaire `/logout` détruisez l'objet pointé par
-   `emitter`. **Rappel :** le mot clef `del` sert à détruire des
-   objets en JavaScript.
+   Mettez à jour les champs `adversaire` dans le dictionnaire
+   `connectes` en conséquence : en cas d'*invitation*, le champ
+   `adversaire` de chaque joueur pointe sur l'autre ; en cas de
+   *refus* ou d'abandon les deux valent `null`.
+   
+3. Pour chacun de ces messages, après l'avoir traité, notifiez les
+   deux utilisateurs avec un message contenant l'intégralité de son
+   état : état, couleurs, scores, adversaire, ...
 
-2. Créer un gestionnaire pour `/api/challenge` qui permet à
-   l'utilisateur connecté d'inviter un adversaire à jouer une
-   partie. Dans la suite on va appeler ces deux utilisateurs le
-   *challenger* et le *challengé*.
-   
-   Le gestionnaire connaît le login du *challenger* par la session
-   courante. Pour le *challengé*, il doit prendre en paramètre son
-   login. Vous avez trois possibilités pour passer ce paramètre au
-   gestionnaire :
-   
-   - À travers l'URL, en utilisant une route dynamique :
-   
-	 ~~~
-     app.get('/api/challenge/:login', function() {...});
-	 ~~~
-	 
-   - À travers un paramètre dans le *query string*, par exemple
-     `/api/challenge?login=...`,
-	 
-   - À travers le corps d'une requête POST (probablement le moins
-     pratique).
-   
-   Lorsqu'il est exécuté, le gestionnaire vérifie les champs `partie`
-   des deux joueurs.
-   
-   - Si l'un des deux est déjà invité ou en train de jouer une partie,
-     le gestionnaire renvoie une erreur `412 Precondition Failed`. On
-     rappelle que pour envoyer un code d'erreur arbitraire on fait
-	 
-	 ~~~
-	 res.send(412, 'Message d'erreur');
-	 ~~~
-	 
-   - Si les deux utilisateurs sont libres, le gestionnaire assigne un
-     nouvel objet aux champs `partie` des deux joueurs. L'objet doit
-     tenir trace de l'état de la partie (invité, accepté, refusé,
-     etc.), des deux participants et du déroulement de la partie
-     (plateau de jeu).
-	 
-	 Il notifie ensuite le *challengé* en émettant un évènement sur
-     son `emitter`, décrivant l'invitation (nom du *challenger*)
-	 
-	 Enfin le gestionnaire renvoie un message de succès (du texte
-     simple suffit, par exemple un id de la partie).
+On passe maintenant au client.
 
-3. Dans la page `/userlist`, ajoutez un lien sur chacun des logins (à
-   l'exception du login de l'utilisateur courant) qui permet d'inviter
-   le joueur à jouer. Le lien doit être affiché en bleu si
-   l'utilisateur est disponible, en rouge et pas clicable si
-   l'utilisateur est occupé dans une autre partie.
-   
-   Lorsque le lien est cliqué, vous devez déclencher une requête AJAX
-   vers l'URL `/api/challenge...`, qui permet de défier le joueur
-   cliqué. Pour intercepter un clic sur un lien, et éviter que le
-   navigateur suive le lien, il faut utiliser le gestionnaire de
-   l'événement `click`, et utiliser `.preventDefault()`, comme ceci
-   
-   ~~~
-   a.addEventListener('click', function(e) {
-     // Envoyer la requête AJAX
-	 ...
-	 e.preventDefault();
-   });
-   ~~~
-   
-   Prévoyez une zone d'affichage pour notifier que l'invitation a été
-   envoyée. Mettez cette zone à jour après l'envoi de la requête AJAX.
+4. Modifiez l'affichage de `/userlist` en ajoutant à côté de chaque
+   joueur connecté un bouton *"inviter"*. Ouvrez une connexion Web
+   Socket vers le serveur au chargement de la page.
 
-4. Modifiez le *event source* `/api/userlist` pour qu'il envoie un
-   événement de type `invitation`, lorsque une invitation a été
-   notifiée sur son `emitter`.
+5. Attachez un gestionnaire JavaScript aux clics des boutons, qui va
+   envoyer un message de type `'invite'` pour le joueur choisi.
 
-5. Modifiez la page `/userlist` pour qu'elle notifie l'utilisateur
-   lorsqu'il a été invité à une partie et pour qu'elle lui propose
-   d'accepter ou de refuser. Le choix de l'utilisateur est envoyé par
-   une requête AJAX à l'URL `/api/respond`. Pour éviter des conflits,
-   il peut être utile de passer en paramètre le login de l'adversaire
-   ou l'id de la partie.
+6. Codez le gestionnaire `.addEventListener('message', ...)` du Web
+   Socket : à chaque fois qu'une mise à jour de l'état est reçue sur
+   la connexion, l'interface utilisateur est mise à jour :
    
-6. Écrivez le gestionnaire de `/api/respond`. Il doit
-   
-   - Modifier l'état de la partie ou bien mettre les champs `partie`
-	 des joueurs concernés à `null`, selon le choix du *challengé*.
-   - Émettre un évènement de *refus* ou de *début partie* sur les
-     `emitter` des deux joueurs, selon le choix du *challengé*.
-   - Renvoyer un code de succès ou d'erreur.
-
-7. Modifiez le *event source* `/api/userlist` pour qu'il transmette
-   les évènements de refus ou de début partie qui lui ont été notifiés
-   par le `emitter`.
-   
-   Pour une meilleure gestion des conflits, vous pouvez passer un id
-   de la partie dans l'évènement début de partie.
-
-8. Modifiez la page `/userlist` :
-   
-   - Lorsque elle reçoit un événement de refus, elle affiche un
-	 message de notification et vient à l'état initial.
-   - Lorsque elle reçoit un événement de début partie, elle cache la
-     liste des utilisateurs et charge le plateau de jeu de
-     puissance 4.
-
-Vérifiez que votre application se comporte comme attendu : les
-utilisateur sont bien notifiés des invitations, acceptations, refus,
-l'état des tables reste cohérent, aucun utilisateur reste bloqué dans
-un état inconsistant.
+   - Si le joueur est `'LIBRE'`, on affiche la liste des joueurs
+	 connectés, avec les boutons pour les invitations ;
+   - Si `'EN ATTENTE'`, tous les boutons d'invitation sont désactivés,
+	 et un message est affiché ;
+   - Si `'INVITE'`, tous les boutons d'invitation sont désactivés, et
+     un message demandant si l'utilisateur accepte l'invitation ou pas
+     est affiché ; en fonction du choix de l'utilisateur, un message
+     de type `accepte` ou `refuse` est envoyé au serveur ;
+   - Si `'EN JEU'` la liste des joueurs est cachés, et l'interface de
+     jeu de Puissance 4 est dévoilée.
 
 
-## Jouer une série de parties
+## La partie
 
 Nous arrivons à dernière partie de notre application : le jeu. Les
 indications vont devenir plus sommaires pour vous permettre d'explorer
-en détail AJAX et le *server push*.
+en détail les Web Sockets.
 
 1. Modifiez le plateau de jeu pour qu'il affiche les noms des deux
    joueurs participant à la partie, et qu'il utilise leurs couleurs
-   préférées pour représenter les pions. Ces informations se trouvent
-   dans la session et dans les variables globales.
+   préférées pour représenter les pions.
    
    En plus, la page doit afficher à quel joueur c'est le tour de
-   jouer. Normalement, c'est le joueur *challengé* qui commence.
+   jouer. Normalement, c'est le joueur invité qui commence.
 
 2. Modifiez votre jeu de Puissance 4. Lorsque le joueur clique sur une
    case, elle exécute l'une de ces deux actions :
    
-   - Si c'est le tour du joueur et le coup est valide, une requête
-     AJAX est envoyée à l'URL `/api/play`, avec le détails sur le coup
-     joué. Lorsque la requête retourne avec succès, le plateau est mis
-     à jour et le tour passe à l'adversaire.
-   - Sinon, elle affiche un message d'erreur.
+   - Si c'est le tour du joueur et le coup est valide, un message est
+     envoyée sur le Web Socket, avec les coordonnées du coup joué. Le
+     serveur répond avec l'état du plateau mis à jour, l'interface est
+     mise à jour en conséquence, et le tour passe à l'adversaire.
+   - Sinon, elle affiche un message d'erreur (pas besoin de contacter
+     le serveur).
 
-3. Créez le gestionnaire de l'URL `/api/play`. Si le coup joué n'est
-   pas valide, il renvoie un code d'erreur. Sinon
+3. Codez la logique du serveur qui répond à ce message :
    
-   - Il met à jour la représentation du plateau sur le serveur ;
-   - Il met à jour le tour ;
-   - Il émet un événement sur le `emitter` de l'adversaire ;
-   - Il renvoie un code de succès avec une représentation JSON du
-     plateau.
+   - Elle met à jour la représentation du plateau sur le serveur ;
+   - Elle met à jour le tour ;
+   - Elle envoie un message aux deux clients contenant le nouvel état
+     du plateau.
 
 4. Les vérifications de fin de partie ne peuvent pas être la
    responsabilité de l'un ou de l'autre joueur. Ce doit être le
@@ -805,22 +839,21 @@ en détail AJAX et le *server push*.
    notifie les joueurs en conséquence.
    
    Récrivez la logique qui teste la fin de la partie du côté
-   serveur. Lorsque une partie est terminée, mettez à jour les champs
-   `parties` et `gagnees` des utilisateurs.
+   serveur.
 
-5. Lorsque une partie est terminée, donnez à chacun des joueurs la
-   possibilité d'arrêter ou de faire une nouvelle partie.
-   
-   Lorsque on démarre une nouvelle partie, c'est le joueur qui n'a pas
-   commencé la partie précédente qui démarre.
-   
-   Lorsque on arrête, les champs `partie` des deux joueurs sont mis à
-   `null`.
+5. Donnez aux joueurs la possibilité d'abandonner une partie. Dans ce
+   cas, un message de type `quitte` est envoyé au serveur, et
+   l'adversaire gagne la partie.
+
+5. Lorsque une partie est terminée (par victoire, match nul, ou
+   abandon) mettre à jour les champs `parties` et `gagnees` des
+   utilisateurs, remettre leur état à `'LIBRE'`, et mettre à jour
+   l'affichage.
 
 Vérifiez que la logique de l'application fonctionne correctement :
 chaque utilisateur peut jouer uniquement à son tour, aucun utilisateur
 peut se trouver dans un état inconsistant, l'état des plateaux
-affichés au joueurs correspond à l'état du plateau dans la base de
+affichés aux joueurs correspond à l'état du plateau dans la base de
 données.
 
 
@@ -870,19 +903,11 @@ d'approfondir votre connaissance des applications web.
    photos, etc.
 
 1. Gérez correctement le fait qu'un utilisateur est allé hors ligne
-  (événement `close` de `req`). Notifiez ses adversaires lorsqu'il est
-  devenu hors ligne.
+  (événement `close` des Web Sockets). Essayez de rétablir une
+  connexion, ou notifiez son adversaire si cela ne réussit pas.
 
-1. L'API `EventSource` a l'avantage d'être simple à comprendre et à
-   utiliser. Cependant, pour chaque échange asynchrone entre le client
-   et le serveur, il a fallu créer une *route montante* (pour les
-   envois client → serveur, via AJAX) et une *route descendante* (pour
-   les envois serveur → client, via *server push*).
-   
-   Les web sockets, grâce à leur canal bidirectionnel, permettent de
-   simplifier la logique et peuvent rendre l'application plus rapide.
-   Récrivez la partie `/play` de votre application à l'aide d'une
-   bibliothèque de web sockets, telle <http://socket.io/>.
+1. Enrichissez les types de signaux : permettez à un joueur d'inviter
+   plusieurs autres joueurs, d'annuler une invitation, etc.
 
 1. Permettez à un utilisateur de jouer plusieurs parties en même temps
    contre des adversaires différents.

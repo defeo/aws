@@ -214,6 +214,10 @@ la délégation de contrôle, et les frameworks JavaScript.
 M. Nebra. *Des applications ultra-rapides avec Node.js*
 : [Cours sur OpenClassrooms](http://fr.openclassrooms.com/informatique/cours/des-applications-ultra-rapides-avec-node-js) (anciennement Site du zéro).
 
+[Ilya Grigorik](https://www.igvita.com/). *High performance Browser Networking*.
+: O'Reilly 2013. <https://hpbn.co/>. Texte avancé sur les techniques
+de communication à bande large disponibles dans le navigateur.
+
 ---
 
 ### Sécurité
