@@ -352,9 +352,9 @@ transmise aux clients via AJAX.
    On rappelle qu'on peut éliminer une clef d'un objet JavaScript
    avec le mot clef `delete` :
    
-   ```
+   ```javascript
    delete connectes['toto'];
-   // ou aussi : delete conectes.toto
+   // ou aussi : delete connectes.toto
    ```
 
 3. Modifiez le gestionnaire de `/userlist` pour qu'il affiche
