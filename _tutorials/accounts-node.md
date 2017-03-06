@@ -341,7 +341,7 @@ transmise aux clients via AJAX.
    ```
    
    Le type `Map` implante un dictionnaire (ou *table de hachage*),
-   [lisez la doc MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)).
+   [lisez la doc MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
 
 2. Modifiez les gestionnaires de `/` et `/logout` pour qu'ils mettent
    à jour la variable `connectes` lorsque un utilisateur se connecte
@@ -522,7 +522,7 @@ app.get('/my-event-source', function(req, res) {
    source*. Toutes les 2 secondes, il écrit sur sa sortie la liste des
    utilisateurs au format JSON.
    
-   **Note :** Vous ne pouvez plus utiliser `app.json` pour écrire les
+   **Note :** Vous ne pouvez plus utiliser `res.json` pour écrire les
    données, car cela fermerait la connexion. À la place, vous pouvez
    utiliser la fonction
    [`JSON.stringify()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
@@ -626,8 +626,8 @@ bi-directionnel, nous permet de maîtriser aisément des applications
 parallèles complexes.
 
 Nous commençons par définir le protocole par lequel les joueurs vont
-s'inviter à participer à une partie.  Chaque joueur se trouvera dans
-l'un de ces quatre états :
+s'inviter à participer à une partie.  Chaque joueur aura l'un de ces
+quatre statuts :
 
 - **LIBRE :** le jouer n'est occupé dans aucune partie ni invitation ;
 - **EN ATTENTE :** le joueur a invité un autre joueur à rejoindre une partie ;
@@ -732,7 +732,7 @@ server.listen(process.env.PORT);
 Du côté client, l'utilisation dans le navigateur est très simple :
 
 ```
-var ws = new WebSocket('wss://' + window.location)
+var ws = new WebSocket('wss://' + window.location.host)
 
 ws.addEventListener('open', function(e) {
 	ws.send('Hi world!');
@@ -776,7 +776,7 @@ On commence par le serveur.
    
 3. Pour chacun de ces messages, après l'avoir traité, notifiez les
    deux utilisateurs avec un message contenant l'intégralité de son
-   état : état, couleurs, scores, adversaire, ...
+   état : statut, couleurs, scores, adversaire, ...
 
 On passe maintenant au client.
 
@@ -847,7 +847,7 @@ en détail les Web Sockets.
 
 5. Lorsque une partie est terminée (par victoire, match nul, ou
    abandon) mettre à jour les champs `parties` et `gagnees` des
-   utilisateurs, remettre leur état à `'LIBRE'`, et mettre à jour
+   utilisateurs, remettre leur statut à `'LIBRE'`, et mettre à jour
    l'affichage.
 
 Vérifiez que la logique de l'application fonctionne correctement :
