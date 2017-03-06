@@ -424,17 +424,19 @@ toutes les vues de l'application.
    ~~~
    $app->get('/api/fruits', function(Application $app) {
      $data = array('fruits' => array('banana', 'apple'),
-                   'how_many' => 2);
+                   'how_many' => 2,
+                   'random_stuff' => rand());
      return $app->json($data);
    });
    ~~~
    
-   renvoie la réponse JSON
+   renvoie une réponse JSON similaire à
    
    ~~~
    {
      "fruits": ["banana", "apple"],
-     "how_many": 2
+     "how_many": 2,
+     "random_stuff": 42
    }
    ~~~
    

@@ -388,18 +388,20 @@ dynamiquement la liste des utilisateurs.
    ~~~
    app.get('/api/fruits', function(req, res) {
      var data = { fruits: ['banana', 'apple'],
-                  how_many: 2
+                  how_many: 2,
+                  random_stuff: Math.random()
                 };
      res.json(data);
    });
    ~~~
    
-   renvoie la réponse JSON
+   renvoie une réponse JSON similaire à
    
    ~~~
    {
      "fruits": ["banana", "apple"],
-     "how_many": 2
+     "how_many": 2,
+     "random_stuff": 0.5873763888835787
    }
    ~~~
    
