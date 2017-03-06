@@ -248,7 +248,11 @@ $app->get('/next', function(Application $app) {
 var express = require('express'),
     session = require('express-session');
 
-app.use(session( { secret : '12345' } ));
+app.use(session( {
+  secret : '12345',
+  resave: false,
+  saveUninitialized: false,
+} ));
 
 app.get('/welcome', function (req, res) {
   // On stocke dans la session
