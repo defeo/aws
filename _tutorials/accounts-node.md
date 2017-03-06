@@ -334,27 +334,38 @@ une liste des utilisateurs connectés. Cette information sera ensuite
 transmise aux clients via AJAX.
 
 1. Dans votre application, créez une variable globale (en dehors de
-   tout gestionnaire) `connectes`, de type `Map` :
+   tout gestionnaire) `connectes`, de type *objet* :
    
    ```
-   var connectes = new Map();
+   var connectes = {};
    ```
    
-   Le type `Map` implante un dictionnaire (ou *table de hachage*),
-   [lisez la doc MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
-
 2. Modifiez les gestionnaires de `/` et `/logout` pour qu'ils mettent
    à jour la variable `connectes` lorsque un utilisateur se connecte
    ou se déconnecte.  Utilisez les logins des utilisateurs comme
    clefs, et des objets contenant l'heure de connexion comme valeurs :
    
    ```
-   connectes.set('toto', { time: new Date() });
-   connectes.delete('toto');
+   connectes['toto'] = { time: new Date() });
+   ```
+   
+   On rappelle qu'on peut éliminer une clef d'un objet JavaScript
+   avec le mot clef `delete` :
+   
+   ```
+   delete connectes['toto'];
+   // ou aussi : delete conectes.toto
    ```
 
 3. Modifiez le gestionnaire de `/userlist` pour qu'il affiche
    uniquement les utilisateurs connectés.
+   
+   On rappelle qu'on peut tester la présence d'une clef dans un objet
+   JavaScript avec le mot clef `in` :
+   
+   ```
+   'toto' in connectes
+   ```
 
 Testez votre application avec plusieurs browsers (au moins deux, il
 est aussi possible d'utiliser le mode *navigation privée* de Firefox
