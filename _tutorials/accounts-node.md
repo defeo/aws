@@ -420,8 +420,8 @@ dynamiquement la liste des utilisateurs.
    ~~~
    xhr.responseType = 'json';
    xhr.onload = function() {
-     for (f in xhr.response.fruits) {
-       console.log(f);
+     for (var i = 0; i < xhr.response.fruits.length; i++) {
+       console.log(xhr.response.fruits[i]);
      }
    }
    ~~~
