@@ -80,11 +80,17 @@ que root!**
 - Compromission de la base de données (effacer/modifier les données).
 
 
-![](http://imgs.xkcd.com/comics/exploits_of_a_mom.png)
+![](http://imgs.xkcd.com/comics/exploits_of_a_mom.png) <small style="display:inline-block;transform:rotate(-90deg);transform-origin:top left"><https://xkcd.com></small>
 {:.centered style="max-width:100%"}
 
 Et voici une
 [liste de attaques par injection SQL documentées](http://en.wikipedia.org/wiki/SQL_injection#Examples).
+
+**Note :** bien que réaliste, l'attaque suggérée par XKCD est
+improbable : aussi bien PHP que Node.js
+[interdisent](https://dev.mysql.com/doc/apis-php/en/apis-php-mysqli.quickstart.multiple-statement.html)
+[par défaut](https://github.com/mysqljs/mysql#multiple-statement-queries)
+les *statements* multiples.
 
 </section>
 <section>
