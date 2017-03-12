@@ -117,6 +117,7 @@ De l'excellente [Courte histoire du World Wide Web](http://www.w3.org/History.ht
 |**2012**| Google expérimente avec le protocole SPDY.
 |**2015**| Standardisation de HTTP/2.
 |        | Google annonce la fin de vie de SPDY.
+|**2016**| Lancement de Let's encrypt, première autorité de certification TLS gratuite.
 {:.pretty.content}
 
 </section>
@@ -193,7 +194,7 @@ console.log(stats.map(other));
 </script>
 
 
-**Source :** [StatCounter Global Stats - Browser Market Share](http://gs.statcounter.com/#browser-ww-quarterly-200803-201601).
+**Source :** [StatCounter Global Stats - Browser Market Share](http://gs.statcounter.com/browser-market-share/desktop/worldwide/#quarterly-200901-201701).
 
 </section>
 <section>
@@ -241,7 +242,7 @@ new Chart($("#nasdaq").getContext("2d")).Line({
 </script>
 </div>
 
-Indice **NASDAQ Composite** 1995--2015  
+Indice **NASDAQ Composite** 1995--2017  
 (source : [Yahoo Finance](http://finance.yahoo.com/q/hp?s=^IXIC)).
 
 </div>
@@ -309,10 +310,9 @@ new Chart($("#inscriptions").getContext("2d")).Line({
 |**2007**| Apple met en vente l'iPhone 1.
 |**2008**| Le premier smartphone Android (HTC Dream) est mis en vente.
 |**2010**| Microsoft lance Windows Phone.
-|**2012**| Google porte Chrome pour Android.
-|        | Mozilla lance Firefox OS.
 |**2014**| Microsoft achète Nokia Mobile.
-|**2016**| Mozilla arrête le développement de Firefox OS.
+|        | Google lance le programme Android One, cible les marchés émergents.
+|**2016**| Le nombre d'utilisateurs de smartphones atteint 2 milliards.
 {:.pretty.content}
 
 </section>
@@ -376,7 +376,7 @@ console.log(stats.map(other));
 });
 </script>
 
-**Source :** [StatCounter Global Stats - Mobile Browser Market Share](http://gs.statcounter.com/#mobile_browser-ww-quarterly-200901-201601).
+**Source :** [StatCounter Global Stats - Mobile Browser Market Share](http://gs.statcounter.com/browser-market-share/mobile/worldwide/#quarterly-200901-201701).
 
 </section>
 <section>
@@ -399,20 +399,20 @@ console.log(stats.map(other));
 
 ### Évolutions à surveiller : le présent du web
 
-ES6
+ES6, ES7
 : JavaScript fait peau neuve : syntaxe, promesses, classes, itérateurs/générateurs, modules, ...
-
-HTTPS partout (Let's encrypt)
-: Chiffrement généralisé sur le web.
 
 WebRTC
 : Visio-conf peer-to-peer dans le navigateur.
 
 WebGL
-: Fraphisme 3D.
+: Graphisme 3D.
 
-Ractive programming
-: React.js, React native, ...
+Service workers, push notifications
+: Background scripts, applications offline.
+
+Reactive user interfaces
+: Meteor, React.js, React native, ...
 
 WebExtensions
 : Des extensions de navigateurs **portables**, implantées avec les
@@ -428,17 +428,14 @@ WebAssembly
   vidéos/traitement de données, *compiler target* pour d'autres
   langages.
   
-Service workers, push notifications
-: Multi-threading, applications offline.
-
 WebVR
 : Réalité virtuelle pour le navigateur.
 
 Encrypted Media Extensions
 : Exécution de code propriétaire (DRM) dans le navigateur.
 
-WebRTC
-: Peer-to-peer généralisé ?
+WebTorrent
+: Streaming peer-to-peer basé sur WebRTC
 
 </section>
 <section>
@@ -447,9 +444,9 @@ WebRTC
 
 ### Protection de la vie privée
 
-- Vol de données (iCloud, Ashley Madison, Office of Personnel Management) ;
+- Vol de données (iCloud, Ashley Madison, Yahoo, ...) ;
 - Collecte de données, traçage ;
-- Surveillance généralisée (Apple vs FBI).
+- Surveillance généralisée (Snowden, Apple vs FBI, ...).
 
 ### Sécurité des systèmes
 
