@@ -183,8 +183,10 @@ avec des fonctionnalités avancées de la DBAL.
    
    Lorsque la requête est de type POST, récupérez les valeurs du
    formulaire et insérez une nouvelle ligne dans la table `users`,
-   seulement si le login et le mot de passe ne sont pas vides (les
-   colonnes `parties` et `gagnees` doivent démarrer à zéro).
+   seulement si le login et le mot de passe ne sont pas vides (un
+   champ vide dans un formulaire est traduit en la chaîne vide `''`
+   par PHP). Les colonnes `parties` et `gagnees` doivent démarrer à
+   zéro.
    
    Pour réaliser une insertion avec Doctrine, le plus simple est
    d'utiliser la méthode `executeUpdate`.

@@ -222,8 +222,10 @@ avec des fonctionnalités avancées de la DBAL.
    
    Lorsque la requête est de type POST, récupérez les valeurs du
    formulaire et insérez une nouvelle ligne dans la table `users`,
-   seulement si le login et le mot de passe ne sont pas vides (les
-   colonnes `parties` et `gagnees` doivent démarrer à zéro).
+   seulement si le login et le mot de passe ne sont pas vides (un
+   champ vide dans un formulaire est traduit en la chaîne vide `''`
+   par Node). Les colonnes `parties` et `gagnees` doivent démarrer à
+   zéro.
    
    Pour réaliser une insertion on utilise la méthode `query` comme
    pour toute autre requête
@@ -591,6 +593,7 @@ an_emitter.on('pinged', function() {
 app.get('/ping', function(req, res) {
   // On émet un événement 'pinged'
   an_emitter.emit('pinged');
+  res.send('Ping envoyé');
 });
 
 // On ajoute un gestionnaire de plus pour
