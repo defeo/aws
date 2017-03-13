@@ -318,6 +318,51 @@ new Chart($("#inscriptions").getContext("2d")).Line({
 </section>
 <section>
 
+### Mobile vs Desktop
+
+<div class="two-cols content">
+<style scoped>
+.legend { list-style-type: none }
+.legend em { display: inline-block; width: 1em; height: 1em; }
+#mobile { background-color: blue}
+#desktop { background-color: red}
+#tablet { background-color: green}
+</style>
+<canvas id="mobile-vs-desktop-canvas" width="700" height="400"></canvas>
+
+- * *{:#desktop} Desktop
+- * *{:#mobile} Mobile
+- * *{:#tablet} Tablet
+{:.legend}
+
+</div>
+<script>
+document.on('DOMContentLoaded', () => {
+var stats = [
+  {% for q in site.data.statcounter-mobile-vs-desktop %}
+  { {% for b in q %}"{{ b[0] }}": "{{ b[1] }}", {% endfor %} },
+  {% endfor %}
+];
+var myNewChart = new Chart($("#mobile-vs-desktop-canvas").getContext("2d")).Line({
+  labels: stats.map((q) => q.Date.replace('-', ' q')),
+  datasets: [
+    { label: 'Desktop', data: stats.map((q) => q.Desktop), pointColor: 'red', strokeColor: 'red' },
+    { label: 'Mobile', data: stats.map((q) => q.Mobile), pointColor: 'blue', strokeColor: 'blue' },
+    { label: 'Tablet', data: stats.map((q) => q.Tablet), pointColor: 'green', strokeColor: 'green' },
+  ]
+}, {
+  datasetFill: false,
+  animation: false,
+  scaleLabel: '<%=value%>%',
+});
+});
+</script>
+
+**Source :** [StatCounter Global Stats - Desktop vs Mobile vs Tablet Market Share Worldwide](http://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide/#quarterly-200901-201701).
+
+</section>
+<section>
+
 ### Navigateurs mobiles
 
 <div class="two-cols content">
