@@ -722,12 +722,19 @@ app.use(sess_storage);
 // On attache le serveur Web Socket au même serveur qu'Express
 var server = http.createServer(app);
 var wsserver = new ws.Server({ 
-	server: server,
-	// Ceci permet d'importer la session dans le serveur WS, qui
-	// la mettra à disposition dans wsconn.upgradeReq.session, voir
-	// https://github.com/websockets/ws/blob/master/examples/express-session-parse/index.js
-    verifyClient: function(info, callback) {
-        sess_storage(info.req, {}, callback);
+    server: server,
+    // Ceci permet d'importer la session dans le serveur WS, qui
+    // la mettra à disposition dans wsconn.upgradeReq.session, voir
+    // https://github.com/websockets/ws/blob/master/examples/express-session-parse/index.js
+    verifyClient: function(info, next) {
+        sess_storage(info.req, {}, function(err) {
+            if (err) {
+                next(err, 500, "Error: " + err);
+            } else {
+                // Passer false pour refuser la connexion WS
+                next(true);
+            }
+        });
     },
 });
 
