@@ -1,0 +1,245 @@
+groups:
+  0:
+    framework: Node.js
+    project: Doodle calendar
+
+  1:
+    framework: Node.js
+    project: Doodle Calendar
+    
+  2:
+    framework: Node.js
+    project: Doodle Calendar
+    
+  3:
+    framework: Node.js
+    project: Curiosity
+    
+  4:
+    framework: Node.js
+    project: Doodle Calendar
+    
+  5:
+    framework: Node.js + Ionic
+    project: Doodle Calendar
+    
+  6:
+    framework: Node.js
+    project: WiiPong
+    
+  7:
+    framework: Node.js
+    project: Dario Battle
+    
+  8:
+    framework: Node.js
+    project: Doodle Calendar
+    
+  9:
+    framework: Node.js
+    project: Curiosity
+    
+  10:
+    framework: Node.js
+    project: Curiosity
+    
+  11:
+    framework: Silex
+    project: Curiosity
+    
+  12:
+    framework: Node.js
+    project: Curiosity
+    
+  13:
+    framework: Node.js
+    project: Doodle Calendar
+    
+  14:
+    framework: Silex
+    project: Doodle Calendar
+    
+  15:
+    framework: Node.js
+    project: Curiosity
+    
+  16:
+    framework: Node.js
+    project: Doodle Calendar
+    
+  17:
+    framework:
+    project:
+    
+students:
+  - nom: SENE
+    prenom: Mouhamed Fadel
+    group: 0
+
+  - nom: RUGGIERO
+    prenom: Nicolas
+    group: 1
+
+  - nom: OUADJA
+    prenom: Napo
+    group: 2
+
+  - nom: BERNET
+    prenom: Hugo
+    group: 2
+
+  - nom: MARTINET
+    prenom: Cédric
+    group: 3
+
+  - nom: ROUIBAA
+    prenom: Doha
+    group: 3
+
+  - nom: FEUKWA
+    prenom: Jean Marcel
+    group: 4
+
+  - nom: NILETTI DE SILVA
+    prenom: Sachan
+    group: 4
+
+  - nom: KRIAA
+    prenom: Sirine
+    group: 5
+
+  - nom: BAROUDI
+    prenom: Wacel
+    group: 5
+
+  - nom: MALESIC
+    prenom: Justin
+    group: 6
+
+  - nom: FRERY
+    prenom: Corentin
+    group: 6
+
+  - nom: SARRATO
+    prenom: Maxime
+    group: 7
+
+  - nom: POIROT
+    prenom: Sébastien
+    group: 7
+
+  - nom: AUDIBERT
+    prenom: Florence
+    group: 8
+
+  - nom: LE ROY
+    prenom: Steven
+    group: 8
+
+  - nom: KHAN
+    prenom: Nicolas
+    group: 9
+
+  - nom: LEROY
+    prenom: Nicolas
+    group: 9
+
+  - nom: LECOMTE
+    prenom: Grégory
+    group: 10
+
+  - nom: ALMEIDA
+    prenom: Raphaël
+    group: 10
+
+  - nom: FARHAT
+    prenom: Skander
+    group: 11
+
+  - nom: PÈRE
+    prenom: Mathieu
+    group: 11
+
+  - nom: ECH-CHARHAL
+    prenom: Kaoutar
+    group: 12
+
+  - nom: ZITOUNI
+    prenom: Younès
+    group: 12
+
+  - nom: BRETTE
+    prenom: Mathieu
+    group: 13
+
+  - nom: MOREL
+    prenom: Bastien
+    group: 13
+
+  - nom: LOWAO MANGA
+    prenom: Randy
+    group: 14
+
+  - nom: ROUX
+    prenom: Maxime
+    group: 14
+
+  - nom: MANZANILLA
+    prenom: Francis
+    group: 15
+
+  - nom: RENAULT
+    prenom: Gauthier
+    group: 15
+
+  - nom: MORIN
+    prenom: Alexandre
+    group: 16
+
+  - nom: TRELLU
+    prenom: Julien
+    group: 16
+
+  - nom: ADDAD
+    prenom: Alaa
+    group: -1
+
+  - nom: BLE
+    prenom: Kossa Marine
+    group: -1
+
+  - nom: BOURDELAS
+    prenom: Pablo
+    group: -1
+
+  - nom: BRAUD
+    prenom: Mathias
+    group: -1
+
+  - nom: GALLO
+    prenom: Nicolas
+    group: -1
+
+  - nom: KASMI
+    prenom: Amine
+    group: -1
+
+  - nom: LETONNELIER
+    prenom: Baptiste
+    group: -1
+
+  - nom: MARTINOU
+    prenom: Théau
+    group: -1
+
+  - nom: NIAMA NZINGA
+    prenom: Destin Christel
+    group: -1
+
+  - nom: RYCKAERT
+    prenom: Guillaume
+    group: -1
+
+  - nom: TERRADE
+    prenom: Alexandre
+    group: -1
