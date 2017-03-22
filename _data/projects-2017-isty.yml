@@ -67,9 +67,9 @@ groups:
     framework: Node.js
     project: Doodle Calendar
     
-  17:
+  -1:
     framework:
-    project:
+    project: INCONNU
     
 students:
   - nom: SENE

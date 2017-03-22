@@ -15,12 +15,12 @@
     <script src="../js/bower_components/react/react.js"></script-->
     <script>
       var students = [
-      {% for s in site.data.projects-2016-isty.students %}
+      {% for s in site.data.projects-2017-isty.students %}
       { group: "{{ s.group }}", nom: "{{ s.nom }}", prenom: "{{ s.prenom }}" },
       {% endfor %}
       ];
       var groups = {
-      {% for g in site.data.projects-2016-isty.groups %}
+      {% for g in site.data.projects-2017-isty.groups %}
       "{{ g[0] }}" : { framework: "{{ g[1].framework }}", project: "{{ g[1].project }}", workspace: "{{ g[1].workspace }}", github: "{{ g[1].github }}", run: "{{ g[1].run }}", students: [] },
       {% endfor %}
       };
