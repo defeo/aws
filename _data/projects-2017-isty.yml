@@ -66,7 +66,11 @@ groups:
   16:
     framework: Node.js
     project: Doodle Calendar
-    
+
+  17:
+    framework: Node.js
+    project: Doodle Calendar
+  
   -1:
     framework:
     project: INCONNU
@@ -202,7 +206,7 @@ students:
 
   - nom: ADDAD
     prenom: Alaa
-    group: -1
+    group: 17
 
   - nom: BLE
     prenom: Kossa Marine
@@ -218,7 +222,7 @@ students:
 
   - nom: GALLO
     prenom: Nicolas
-    group: -1
+    group: 17
 
   - nom: KASMI
     prenom: Amine
