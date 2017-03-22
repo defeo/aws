@@ -729,7 +729,7 @@ var wsserver = new ws.Server({
     verifyClient: function(info, next) {
         sess_storage(info.req, {}, function(err) {
             if (err) {
-                next(err, 500, "Error: " + err);
+                next(false, 500, "Error: " + err);
             } else {
                 // Passer false pour refuser la connexion WS
                 next(true);
