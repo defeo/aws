@@ -71,6 +71,10 @@ groups:
     framework: Node.js
     project: Doodle Calendar
   
+  18:
+    framework: Node.js
+    project: Doodle Calendar
+
   -1:
     framework:
     project: INCONNU
@@ -218,7 +222,7 @@ students:
 
   - nom: BRAUD
     prenom: Mathias
-    group: -1
+    group: 18
 
   - nom: GALLO
     prenom: Nicolas
