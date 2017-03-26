@@ -1,0 +1,165 @@
+groups:
+  -1:
+    project: INCONNU
+    framework: ''
+
+  0:
+    project: Doodle Calendar
+    framework: Node.js
+
+  1:
+    project: Curiosity
+    framework: Node.js
+
+  2:
+    project: WiiPong
+    framework: Node.js
+
+  3:
+    project: Doodle Calendar
+    framework: Silex
+
+students:
+  - nom: ABAKAR
+    prenom: Mahamat Moussa
+    group: -1
+
+  - nom: AMRI
+    prenom: Hind
+    group: -1
+
+  - nom: AURELLE
+    prenom: Marie
+    group: -1
+
+  - nom: BASSKAR
+    prenom: Loubna
+    group: -1
+
+  - nom: BEN DEBBA
+    prenom: Jihene
+    group: -1
+
+  - nom: BENSBAA
+    prenom: El Mehdi
+    group: -1
+
+  - nom: BOREDON
+    prenom: Anthony
+    group: -1
+
+  - nom: CARPENTIER
+    prenom: Robin
+    group: -1
+
+  - nom: CHING
+    prenom: Kahnvud
+    group: -1
+
+  - nom: CISSE
+    prenom: Hamidou Abdoul Jalil
+    group: 1
+
+  - nom: CREPIN
+    prenom: Baptiste
+    group: -1
+
+  - nom: DJILANI
+    prenom: Amira
+    group: -1
+
+  - nom: FAGEOT
+    prenom: Pierre
+    group: -1
+
+  - nom: FILALI
+    prenom: Yacine
+    group: 3
+
+  - nom: FISSIER
+    prenom: Florent
+    group: -1
+
+  - nom: FOFANA
+    prenom: Bintou
+    group: -1
+
+  - nom: FOSTIER
+    prenom: Nicolas
+    group: -1
+
+  - nom: HAYANI SOUJAA
+    prenom: Youssef
+    group: -1
+
+  - nom: HOUDJEDJE
+    prenom: Ilyes
+    group: 0
+
+  - nom: KARAGA
+    prenom: Mohamed
+    group: 2
+
+  - nom: KEBIRI
+    prenom: Fatma
+    group: -1
+
+  - nom: KINI
+    prenom: Jonathan
+    group: -1
+
+  - nom: KOTO TAMOU LAFIA
+    prenom: Mafouze
+    group: 1
+
+  - nom: LIU
+    prenom: Bin
+    group: -1
+
+  - nom: LOUIBA
+    prenom: Siham
+    group: -1
+
+  - nom: MEGHRABI
+    prenom: Salah Eddine
+    group: -1
+
+  - nom: MOUCHIR AWAD
+    prenom: Bachira
+    group: -1
+
+  - nom: OMAR ISMAIL
+    prenom: Fardoussa
+    group: -1
+
+  - nom: OUEDRAOGO
+    prenom: Boubacar
+    group: 2
+
+  - nom: PAVIER
+    prenom: Theo
+    group: -1
+
+  - nom: QUERHAMMER
+    prenom: Nicolas
+    group: -1
+
+  - nom: RABARIJAONA
+    prenom: Erick Heritiana
+    group: -1
+
+  - nom: SAINTIL DIT LAGUERRE
+    prenom: Donfred
+    group: -1
+
+  - nom: SORE
+    prenom: Abdoulaye
+    group: -1
+
+  - nom: TAPSOBA
+    prenom: Aubain
+    group: 1
+
+  - nom: TRECA
+    prenom: Maxime
+    group: -1

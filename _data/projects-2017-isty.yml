@@ -75,6 +75,14 @@ groups:
     framework: Node.js
     project: Doodle Calendar
 
+  19:
+    framework: Node.js
+    project: Dario Battle
+
+  20:
+    framework: Node.js
+    project: Doodle Calendar
+
   -1:
     framework:
     project: INCONNU
@@ -218,7 +226,7 @@ students:
 
   - nom: BOURDELAS
     prenom: Pablo
-    group: -1
+    group: 19
 
   - nom: BRAUD
     prenom: Mathias
@@ -230,7 +238,7 @@ students:
 
   - nom: KASMI
     prenom: Amine
-    group: -1
+    group: 20
 
   - nom: LETONNELIER
     prenom: Baptiste
@@ -246,7 +254,7 @@ students:
 
   - nom: RYCKAERT
     prenom: Guillaume
-    group: -1
+    group: 19
 
   - nom: TERRADE
     prenom: Alexandre
