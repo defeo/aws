@@ -39,6 +39,10 @@ groups:
     project: Doodle Calendar
     framework: Node.js
 
+  9:
+    project: Curiosity
+    framework: Node.js
+
 students:
   - nom: ABAKAR
     prenom: Mahamat Moussa
@@ -82,7 +86,7 @@ students:
 
   - nom: CREPIN
     prenom: Baptiste
-    group: -1
+    group: 9
 
   - nom: DJILANI
     prenom: Amira
@@ -162,7 +166,7 @@ students:
 
   - nom: QUERHAMMER
     prenom: Nicolas
-    group: -1
+    group: 9
 
   - nom: RABARIJAONA
     prenom: Erick Heritiana

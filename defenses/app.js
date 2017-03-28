@@ -85,14 +85,6 @@ var Slot = React.createClass({displayName: "Slot",
     handleClick: function() {
 	return this.props.onClick(this.taken(), this.editable());
     },
-
-    setCalendear: function(start, increments) {
-	return this.props.firebase.update({
-	    slots: increments.map(function(i) {
-		return { time: new Date(start + i) }
-	    })
-	});
-    },
     
     render: function() {
 	var classes = classNames({
@@ -102,7 +94,7 @@ var Slot = React.createClass({displayName: "Slot",
 	    editable: this.editable(),
 	});
 	var style = {
-	    top: (this.props.time.getHours() - 9 + this.props.time.getMinutes() / 60) * 4 + 'em'
+	    top: (this.props.time.getHours() - 8 + this.props.time.getMinutes() / 60) * 4 + 'em'
 	};
 	
 	return (
@@ -221,6 +213,14 @@ var Slots = React.createClass({displayName: "Slots",
 	    firebase: null,
 	    projects: {},
 	};
+    },
+
+    setCalendar: function(start, increments) {
+	return this.props.firebase.update({
+	    slots: increments.map(function(i) {
+		return { time: new Date(start + i) }
+	    })
+	});
     },
     
     componentDidMount: function() {
