@@ -43,6 +43,14 @@ groups:
     project: Curiosity
     framework: Node.js
 
+  10:
+    project: Doodle Calendar
+    framework: Node.js
+
+  11:
+    project: Doodle Calendar
+    framework: Node.js
+
 students:
   - nom: ABAKAR
     prenom: Mahamat Moussa
@@ -50,7 +58,7 @@ students:
 
   - nom: AMRI
     prenom: Hind
-    group: -1
+    group: 11
 
   - nom: AURELLE
     prenom: Marie
@@ -126,7 +134,7 @@ students:
 
   - nom: KEBIRI
     prenom: Fatma
-    group: -1
+    group: 10
 
   - nom: KINI
     prenom: Jonathan
@@ -142,7 +150,7 @@ students:
 
   - nom: LOUIBA
     prenom: Siham
-    group: -1
+    group: 10
 
   - nom: MEGHRABI
     prenom: Salah Eddine
@@ -150,7 +158,7 @@ students:
 
   - nom: MOUCHIR AWAD
     prenom: Bachira
-    group: -1
+    group: 11
 
   - nom: OMAR ISMAIL
     prenom: Fardoussa
