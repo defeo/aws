@@ -2,14 +2,17 @@ groups:
   0:
     framework: Node.js
     project: Doodle calendar
+    workspace: phadel/projet_aws
 
   1:
     framework: Node.js
     project: Doodle Calendar
+    workspace: zpxxx/projet-rendu
     
   2:
     framework: Node.js
     project: Doodle Calendar
+    workspace: hujjo/aws-project
     
   3:
     framework: Node.js
@@ -18,70 +21,89 @@ groups:
   4:
     framework: Node.js
     project: Doodle Calendar
+    workspace: sachande/projetdoocal
     
   5:
     framework: Node.js + Ionic
     project: Doodle Calendar
+    run: 'https://strawberry-crisp-38302.herokuapp.com/'
+    github: sirineKr/Project-node-BK
     
   6:
     framework: Node.js
     project: WiiPong
+    workspace: negorigin/wiipong
     
   7:
     framework: Node.js
     project: Dario Battle
+    workspace: maximesrt/dario-project
     
   8:
     framework: Node.js
     project: Doodle Calendar
+    workspace: flaud/projet
     
   9:
     framework: Node.js
     project: Curiosity
+    workspace: nleroy/projet
     
   10:
     framework: Node.js
     project: Curiosity
+    workspace: raphh/projet3
     
   11:
     framework: Silex
     project: Curiosity
+    workspace: floq/web-projet
     
   12:
     framework: Node.js
     project: Curiosity
+    workspace: kaoutar/curiosity
     
   13:
     framework: Node.js
     project: Doodle Calendar
+    workspace: bonjourbonjour/projet
     
   14:
     framework: Silex
     project: Doodle Calendar
+    workspace: lowaorandyiatic4web/doodle-calendar
     
   15:
     framework: Node.js
     project: Curiosity
+    workspace: manzafrancis/projet_curiosity
     
   16:
     framework: Node.js
     project: Doodle Calendar
+    workspace: julien_trellu/projet_doodle
 
   17:
     framework: Node.js
     project: Doodle Calendar
+    workspace: louy15/doodle
   
   18:
     framework: Node.js
     project: Doodle Calendar
+    workspace: mattiverson/aws
 
   19:
     framework: Node.js
     project: Dario Battle
+    github: 94810/dario-arena
+    run: 'http://dario-arena.herokuapp.com/'
 
   20:
     framework: Node.js
     project: Doodle Calendar
+    workspace: owwew/calendrier
     
 students:
   - nom: SENE
