@@ -17,6 +17,7 @@ groups:
   3:
     framework: Node.js
     project: Curiosity
+    github: Cederic101/projet-aws
     
   4:
     framework: Node.js
