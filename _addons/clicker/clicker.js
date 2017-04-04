@@ -31,6 +31,8 @@ function Clicker(provider) {
 	if (clicker.user) {
 	    this.$('.title').textContent = clicker.user.user.profile.name || clicker.user.user._id;
 	    this.$('.submenu')
+		.append('li <a href="#" class="rename-profile"><i class="fa fa-user"></i> <span class="title">Éditer nom</span></a>');
+	    this.$('.submenu')
 		.append('li')
 		.append('a <i class="fa fa-trophy"></i> <span class="title">Résultats</span>')
 		.href = '../'.repeat(eLeMentS.page.url.split('/').length-2)
@@ -55,6 +57,23 @@ function Clicker(provider) {
 	e.preventDefault();
 	window.location.reload();
     }, '.logout');
+    this.loginMenu.on('click', function(e) {
+	var nom = prompt('Éditer nom', clicker.user.user.profile.name);
+	clicker._authXHR('/profile', clicker.user.token, function(data, xhr) {
+	    if (xhr.status == 200) {
+		clicker.user.user.profile = data;
+		window.sessionStorage['clicker.user'] = JSON.stringify(clicker.user);
+		clicker.loginMenu.dispatchEvent(new Event('clicker.login-change'));
+	    } else {
+		console.log(xhr.status, data);
+	    }
+	}, function(e) {
+	    console.log(e);
+	}, {
+	    name: nom
+	});
+	e.preventDefault();
+    }, '.rename-profile');
 
     this._authXHR = function(path, token, next, onerr, data) {
 	var xhr = new XMLHttpRequest();
@@ -75,7 +94,7 @@ function Clicker(provider) {
 	var token, user = JSON.parse(window.sessionStorage.getItem('clicker.user'));
 	if (user !== null && user.expires > Date.now()) {
 	    this.user = user;
-	    next(null, this.user)
+	    next(null, this.user);
 	} else if (token = window.localStorage.getItem('clicker.token')) {
 	    this._authXHR('/token', token, (function(data, xhr) {
 		if (xhr.status == 200) {

@@ -10,8 +10,11 @@ function timeline(answers) {
 	};
 	if (ret.grade) {
 	    ret.correct = answ.grade.on !== undefined
-	    ? (answ.grade.ok == answ.grade.on)
-	    : answ.grade.ok;
+		? (answ.grade.ok == answ.grade.on)
+		: answ.grade.ok;
+	    ret.score = answ.grade.on !== undefined
+		? 2 * answ.grade.ok / answ.grade.on - 1
+		: Number(answ.grade.ok);
 	}
 	return ret;
     });
@@ -23,10 +26,11 @@ function timeline(answers) {
 
 function grade(timeline, deadline) {
     var answered = timeline.length;
-    var correct = timeline.filter(function(a) { return a.correct; }).length;
-    var total = quizzes.reduce(function (c, l) { return c + l.quizzes.lenght }, 0)
-    console.log(total, answered, correct);
-    return Math.min(Math.round((2 * freeze.total + 4 * freeze.correct)*10/total)/10, 6);
+    var score = timeline.reduce(function(sum, a) { return sum + a.score; }, 0);
+    var total = quizzes.reduce(function (c, l) { return c + l.quizzes.length }, 0)
+
+    console.log(total, answered, score);
+    return Math.round((2 * answered + 4 * score)/total * 10)/10;
 }
 
 function gradeAll(users) {

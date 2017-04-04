@@ -5,12 +5,12 @@ clicker._authXHR('/users', clicker.user.token, function(users, xhr) {
     var udiv = $('#stats-users').append('ul');
     var month = 1000*60*60*24*30;
     var now = new Date();
-    users.forEach(function (u) { u.lastSeen = new Date(u.lastSeen); });
+    users.forEach(function (u) { u.lastSeen = new Date(u.profile.lastSeen); });
     users.sort(function(a,b) { return b.lastSeen - a.lastSeen; });
     users.forEach(function(u) {
-	if (u._id.substr(0,5) == 'saml:') {
+	if (u._id.startsWith('github:')) {
 	    var staleness = Math.max(now - u.lastSeen, 0);
-	    var a = udiv.append('li').append('a ' + u._id.substr(5));
+	    var a = udiv.append('li').append('a ' + u.profile.name);
 	    a.href = "results?" + u._id;
 	    a.css({ opacity: Math.max((month - staleness)/month, 0.1) });
 	}

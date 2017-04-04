@@ -9,7 +9,7 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
     var div = $('#clicker-results');
     quizzes.forEach(function (lesson) {
 	if (lesson.quizzes.length) {
-	    var res = div.append('div.clicker-poll');
+	    var res = div.append('div.clicker-poll-block');
 	    res.append('h3').append('a ' + lesson.lesson).href = lesson.url;
 	    var list = res.append('ul');
 	    lesson.quizzes.forEach(function (quiz) {
@@ -49,13 +49,14 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
     var end = period(time[time.length-1].date);
     var stats = new Map();
     for (var i = start; i <= end; i += p)
-	stats.set(i, { total: 0, correct: 0 });
+	stats.set(i, { total: 0, correct: 0, score: 0 });
     time.forEach(function (a) {
 	var start = period(a.date);
 	for (var i = start; i <= end; i += p) {
 	    var b = stats.get(i);
 	    b.total++;
 	    b.correct += a.correct;
+	    b.score += a.score;
 	}
     });
     new Chart(bar.getContext("2d")).Line({
@@ -66,6 +67,9 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 	    { label: 'Réponses', data: Array.from(stats.values()).map(function (b) {
 		return b.total;
 	    }), fillColor: 'red', pointColor: 'red' },
+	    { label: 'Score', data: Array.from(stats.values()).map(function (b) {
+		return Math.round(b.score*100)/100;
+	    }), fillColor: 'yellow', pointColor: 'yellow' },
 	    { label: 'Correctes', data: Array.from(stats.values()).map(function (b) {
 		return b.correct;
 	    }), fillColor: 'green', pointColor: 'green' },
@@ -79,7 +83,11 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 	bezierCurve: false,
     });
 
-    $('#clicker-grade').textContent = 'Note : ' + grade(time) + '/6';
+    $('#clicker-grade').textContent = 'Note : ' + grade(time) + '/6 ';
+    var help = $('#clicker-grade')
+	.append('a <i class="fa fa-question-circle"></i>');
+    help.href = 'https://github.com/defeo/aws/blob/gh-pages/_addons/clicker/grading.js#L27-L34';
+    help.target = '_blank';
     
 }, function(err) {
     console.log(err);
