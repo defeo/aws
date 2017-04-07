@@ -34,7 +34,8 @@ groups:
     framework: Node.js
     project: WiiPong
     workspace: negorigin/wiipong
-    
+    run: 'https://wiipong.herokuapp.com/'
+
   7:
     framework: Node.js
     project: Dario Battle
@@ -54,7 +55,8 @@ groups:
     framework: Node.js
     project: Curiosity
     workspace: raphh/projet3
-    
+    run: 'http://curiosityalmlec.herokuapp.com/'
+
   11:
     framework: Silex
     project: Curiosity
