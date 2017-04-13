@@ -94,7 +94,7 @@ var Slot = React.createClass({displayName: "Slot",
 	    editable: this.editable(),
 	});
 	var style = {
-	    top: (this.props.time.getHours() - 8 + this.props.time.getMinutes() / 60) * 4 + 'em'
+	    top: (this.props.time.getHours() - 13 + this.props.time.getMinutes() / 60) * 4 + 'em'
 	};
 	
 	return (
@@ -216,11 +216,11 @@ var Slots = React.createClass({displayName: "Slots",
     },
 
     setCalendar: function(start, increments) {
-	return this.props.firebase.update({
-	    slots: increments.map(function(i) {
+	var slots = increments.map(function(i) {
 		return { time: new Date(start + i) }
-	    })
 	});
+	console.log(slots);
+	return this.props.firebase.update({ slots: slots });
     },
     
     componentDidMount: function() {
@@ -324,7 +324,7 @@ var Slots = React.createClass({displayName: "Slots",
 
 /******************************************************/
 var slots = React.createElement(Slots, {
-    firebase: new Firebase('https://defeo-aws.firebaseio.com/defenses/2017-isty'),
+    firebase: new Firebase('https://defeo-aws.firebaseio.com/defenses/2017-uvsq'),
     projects: window.groups,
 });
 

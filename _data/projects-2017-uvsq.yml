@@ -1,8 +1,4 @@
 groups:
-  -1:
-    project: INCONNU
-    framework: ''
-
   0:
     project: Doodle Calendar
     framework: Node.js
@@ -51,6 +47,22 @@ groups:
     project: Doodle Calendar
     framework: Node.js
 
+  12:
+    project: Curiosity
+    framework: Node.js
+
+  13:
+    project: WiiPong
+    framework: Node.js
+
+  14:
+    project: Doodle Calendar
+    framework: Node.js
+
+  15:
+    project: Doodle Calendar
+    framework: Silex
+
   16:
     project: Curiosity
     framework: Node.js
@@ -78,7 +90,7 @@ students:
 
   - nom: BEN DEBBA
     prenom: Jihene
-    group: -1
+    group: 15
 
   - nom: BENSBAA
     prenom: El Mehdi
@@ -106,7 +118,7 @@ students:
 
   - nom: DJILANI
     prenom: Amira
-    group: -1
+    group: 15
 
   - nom: FAGEOT
     prenom: Pierre
@@ -123,10 +135,6 @@ students:
   - nom: FOFANA
     prenom: Bintou
     group: 7
-
-  - nom: FOSTIER
-    prenom: Nicolas
-    group: -1
 
   - nom: HAYANI SOUJAA
     prenom: Youssef
@@ -154,7 +162,7 @@ students:
 
   - nom: LIU
     prenom: Bin
-    group: -1
+    group: 13
 
   - nom: LOUIBA
     prenom: Siham
@@ -166,7 +174,7 @@ students:
 
   - nom: MOUCHIR AWAD
     prenom: Bachira
-    group: 11
+    group: 14
 
   - nom: OMAR ISMAIL
     prenom: Fardoussa
@@ -178,7 +186,7 @@ students:
 
   - nom: PAVIER
     prenom: Theo
-    group: -1
+    group: 12
 
   - nom: QUERHAMMER
     prenom: Nicolas
@@ -202,4 +210,4 @@ students:
 
   - nom: TRECA
     prenom: Maxime
-    group: -1
+    group: 12

@@ -48,7 +48,7 @@ $slot-height: 2em;
 }
 .slots {
     position: relative;
-    height: 20 * $slot-height;
+    height: 12 * $slot-height;
     width: 100%;
     background: repeating-linear-gradient(to bottom, #fafafa, #fafafa $slot-height,
 					  #fdfdfd $slot-height, #fdfdfd 2*$slot-height);
