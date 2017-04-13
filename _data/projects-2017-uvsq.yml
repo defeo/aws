@@ -55,10 +55,14 @@ groups:
     project: Curiosity
     framework: Node.js
 
+  17:
+    project: Doodle Calendar
+    framework: Node.js
+
 students:
   - nom: ABAKAR
     prenom: Mahamat Moussa
-    group: -1
+    group: 17
 
   - nom: AMRI
     prenom: Hind
@@ -186,7 +190,7 @@ students:
 
   - nom: SAINTIL DIT LAGUERRE
     prenom: Donfred
-    group: -1
+    group: 17
 
   - nom: SORE
     prenom: Abdoulaye
