@@ -51,6 +51,10 @@ groups:
     project: Doodle Calendar
     framework: Node.js
 
+  16:
+    project: Curiosity
+    framework: Node.js
+
 students:
   - nom: ABAKAR
     prenom: Mahamat Moussa
@@ -138,7 +142,7 @@ students:
 
   - nom: KINI
     prenom: Jonathan
-    group: -1
+    group: 16
 
   - nom: KOTO TAMOU LAFIA
     prenom: Mafouze
@@ -186,7 +190,7 @@ students:
 
   - nom: SORE
     prenom: Abdoulaye
-    group: -1
+    group: 16
 
   - nom: TAPSOBA
     prenom: Aubain
