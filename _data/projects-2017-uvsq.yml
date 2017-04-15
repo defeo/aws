@@ -2,34 +2,42 @@ groups:
   0:
     project: Doodle Calendar
     framework: Node.js
+    workspace: ilyeshoudjedje/doodle_project
 
   1:
     project: Curiosity
     framework: Node.js
+    workspace: lildja/curiosity
 
   2:
     project: WiiPong
     framework: Node.js
+    workspace: boubacar7/projet
 
   3:
     project: Doodle Calendar
     framework: Silex
+    workspace: yacinee/projet22
 
   4:
     project: WiiPong
     framework: Node.js
+    workspace: hibike/wiipong
 
   5:
     project: Curiosity
     framework: Node.js
+    workspace: rossmall/curiosity
 
   6:
     project: Doodle Calendar
     framework: Node.js
+    workspace: superanto200/doodle
 
   7:
     project: Doodle Calendar
     framework: Silex
+    workspace: projetuvsq/doodle_calendar
 
   8:
     project: Doodle Calendar
@@ -39,10 +47,12 @@ groups:
   9:
     project: Curiosity
     framework: Node.js
+    workspace: cravaterouge/curiosity-aws
 
   10:
     project: Doodle Calendar
     framework: Node.js
+    workspace: kebirifatma/my-doodle
 
   11:
     project: Doodle Calendar
@@ -51,6 +61,7 @@ groups:
   12:
     project: Curiosity
     framework: Node.js
+    workspace: choufleur78/curiosity
 
   13:
     project: WiiPong
@@ -63,14 +74,17 @@ groups:
   15:
     project: Doodle Calendar
     framework: Silex
+    workspace: jihenee/doodle_test
 
   16:
     project: Curiosity
     framework: Node.js
+    workspace: boubacar7/projet
 
   17:
     project: Doodle Calendar
     framework: Node.js
+    workspace: fredydev/fdoodle
 
 students:
   - nom: ABAKAR
