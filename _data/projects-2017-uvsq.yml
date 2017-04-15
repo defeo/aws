@@ -79,7 +79,7 @@ groups:
   16:
     project: Curiosity
     framework: Node.js
-    workspace: boubacar7/projet
+    workspace: jonathankini/projet_curiosity
 
   17:
     project: Doodle Calendar
