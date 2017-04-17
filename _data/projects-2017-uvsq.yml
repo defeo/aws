@@ -66,6 +66,7 @@ groups:
   13:
     project: WiiPong
     framework: Node.js
+    workspace: suoqingqiu2011/p_p
 
   14:
     project: Doodle Calendar
