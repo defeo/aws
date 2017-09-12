@@ -59,7 +59,7 @@ Source : <https://www.owasp.org/index.php/Session_hijacking_attack>
 ## Comment connaître l'identifiant
 
 - **Écoute sur le canal →** *Utiliser HTTPS*.
-- **Identifiant facile à devnier →** *Utilser de l'aléa sûr, signer
+- **Identifiant facile à deviner →** *Utiliser de l'aléa sûr, signer
    cryptographiquement les identifiants*.
 - **Fixation →** AAARGH !
 
