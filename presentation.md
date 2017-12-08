@@ -15,8 +15,8 @@ addons:
 |-
 | Exécution de code non-fiable  | ❌ | ✓
 | Portabilité | ❌ | ✓ (dans les bons cas...)
-| Assembleur | ✓ | en cours (WebAssembly)
-| Parallélisme | ✓ | en cours (WebWorkers)
+| Assembleur | ✓ | ✓ (WebAssembly)
+| Parallélisme | ✓ | ✓ (WebWorkers)
 | Modèle de sécurité | Basé sur l'utilisateur | Basé sur les permissions
 | Marchés visés | Prestataires, tâches automatisables, secrétaires, ... | Intermédiaires, presse, divertissement, ...
 | *Business model* | Basé sur la propriété intellectuelle | Basé sur les services
@@ -34,6 +34,8 @@ addons:
 | Juil. 2016 | **DNC hack** | vol de mails du parti Démocrate US
 | Sept. 2016 | **Yahoo! breach** | vol de mots de passes et données
 | Oct. 2016 | **Dyn attacks** | DDOS (Mirai botnet)
+| Mai. 2017 | **WannaCry** | ransowmare
+| Sept. 2017 | **Equifax breach** | vol de données
 | ...
 {:.pretty.content}
 
