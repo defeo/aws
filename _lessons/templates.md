@@ -2,6 +2,7 @@
 layout: lesson
 title: Langages de templates
 subtitle: Twig et ses compagnons
+excerpt: ""
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/templates.webm

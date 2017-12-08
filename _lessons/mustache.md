@@ -2,6 +2,7 @@
 layout: lesson
 title: Templates sans logique
 subtitle: Mustache et dérivés
+excerpt: ""
 ---
 
 {% raw %}

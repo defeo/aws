@@ -2,6 +2,7 @@
 layout: lesson
 title: Frameworks Web
 subtitle: Applications web, API HTTP, Routage
+excerpt: ""
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/frameworks.webm
