@@ -29,7 +29,6 @@ defaults:
       addons:
         favicon: yes
 #        mathjax: yes
-#        highlightjs: yes
 #        print-link: yes
 #        about: yes
 
