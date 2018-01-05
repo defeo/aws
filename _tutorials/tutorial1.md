@@ -51,7 +51,7 @@ sur *"Start a new project"*, puis *"Create a website"*.
    
    > [https://[nom-du-projet].glitch.me/](about:invalid)
    
-   (remplacez votre nom d'utilisateur dans l'URL), et les pages HTML
+   (remplacez le nom du projet dans l'URL), et les pages HTML
    sont servies comme telles.  Pour ouvrir ce lien dans un nouvel
    onglet, cliquez sur le bouton *"Show"*.
 
