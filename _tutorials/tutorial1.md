@@ -2,72 +2,62 @@
 title: HTML, CSS et formulaires
 ---
 
-## L'IDE Cloud9
+## L'IDE Glitch
 
 Dans ce cours nous allons utiliser un environnement de développement
 (IDE) *dans le cloud*. Même si ce TD pourrait être développé
 entièrement en local (il suffit d'un browser et d'un éditeur de
 texte), nous allons en profiter pour nous familiariser d'avance avec
-Cloud9, notre IDE.
+Glitch, notre IDE.
 
-**Important :** vous devez avoir un **browser récent** pour pouvoir
-utiliser Cloud9, de préférence la **dernière version** de Firefox,
+**Important :** vous devez avoir un **navigateur récent** pour pouvoir
+utiliser Glitch, de préférence la **dernière version** de Firefox,
 Chrome ou Safari. Contrôlez votre version avant de commencer.
 
-Dirigez votre browser sur <http://c9.io/>, créez un compte si ce n'est
-pas déjà fait, et connectez-vous à votre espace personnel. Si vous
-possédez déjà un compte [GitHub](http://github.com/) ou
-[Bitbucket](http://bitbucket.org), il est possible de l'utiliser pour
-une identification sur C9 sans besoin de créer de nouveau compte ;
-ceci a l'avantage ajouté de vous permettre d'importer vos projets
-GitHub et Bitbucket en un seul click.
+Dirigez votre browser sur <https://glitch.com/>, créez un compte si ce
+n'est pas déjà fait, et connectez-vous à votre espace personnel. Si
+vous possédez déjà un compte [GitHub](https://github.com/), vous
+pourrez importer et exporter vos projets vers celui-ci.
 
-Votre compte contient un projet nommé `demo-project`, ouvrez-le avec
-un click. Après un peu de temps de chargement, vous êtes dans un IDE
-comme Eclipse ou Netbeans : navigation des fichiers à gauche, éditeur
-de fichiers au milieu, et (mieux que Eclipse ou Netbeans !) terminal
-Linux en bas.
-
-1. Commencez par créer un nouveau fichier HTML dans la racine du
-   projet.
+Pour votre premier projet, *rémixez*
+<https://glitch.com/~defeo-lu-aws-get-started> en cliquant sur le
+bouton "Remix". Vous pouvez également créer un nouveau projet: cliquez
+sur *"Start a new project"*, puis *"Create a website"*.
 
 ## HTML
 
-Partez de ce squelette
+1. Ouvrez le fichier `index.html`, ou, si votre projet n'en contient
+   pas, créez-en un avec ce squelette:
 
-~~~
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>TD 1</title>
-  </head>
-  <body>
-    <!-- Votre contenu ici -->
-  </body>
-</html>
-~~~
+   ~~~
+   <!DOCTYPE html>
+   <html>
+	 <head>
+	   <meta charset="utf-8" />
+	   <title>TD 1</title>
+	 </head>
+	 <body>
+	   <!-- Votre contenu ici -->
+	 </body>
+   </html>
+   ~~~
 	
 1. Éditez le fichier. Ajoutez un titre (`<h1>`) et quelques paragraphes.
 
-3. Visualisez le résultat dans le browser.
+3. Visualisez le résultat dans le navigateur.
    
    Puisqu'il s'agit d'un projet public, tout le contenu est disponible
    *statiquement* à l'URL
    
-   > <https://preview.c9users.io/[nom d'utilisateur]/demo-project/html/index.html>
+   > [https://[nom-du-projet].glitch.me/](about:invalid)
    
    (remplacez votre nom d'utilisateur dans l'URL), et les pages HTML
-   sont servies comme telles. Il vous suffit de naviguer vers la page
-   que vous venez de créer pour voir le résultat.
-   
-   Vous pouvez obtenir le même résultat, directement dans l'IDE, avec
-   le bouton *Preview* → *Live preview file* (l'URL ouvert correspond
-   au fichier couramment ouvert dans l'éditeur).
+   sont servies comme telles.  Pour ouvrir ce lien dans un nouvel
+   onglet, cliquez sur le bouton *"Show"*.
 
 4. Transformez ce fichier en votre CV. **On va se désintéresser de
    l'élégance et du style pour l'instant**.  Aidez vous avec la
-   [référence de w3schools](http://www.w3schools.com/tags/default.asp)
+   [référence de w3schools](https://www.w3schools.com/tags/default.asp)
    pour l'utilisation des balises.
    
    - Éditez la balise `<title>`.
@@ -109,7 +99,7 @@ Partez de ce squelette
 	des listes, `<table>` pour faire de la mise en page, ...)
 
 5. Validez votre document avec le validateur de W3C:
-   <http://validator.w3.org/>. Corrigez vos erreurs jusqu'à ne plus en
+   <https://validator.w3.org/>. Corrigez vos erreurs jusqu'à ne plus en
    avoir.
 
 
@@ -117,7 +107,7 @@ Partez de ce squelette
 
 Créez maintenant un fichier CSS et liez-le à votre CV avec la balise
 `<link>`. En vous aidant avec la
-[référence CSS de W3Schools](http://www.w3schools.com/css/),
+[référence CSS de W3Schools](https://www.w3schools.com/css/),
 modifiez l'apparence de votre page comme suit :
 
 1. Délimitez les entêtes des sous-sections par une ligne horizontale
@@ -128,11 +118,11 @@ modifiez l'apparence de votre page comme suit :
    police.
 
 3. Bougez votre photo à droite de la page (voir le
-   [positionnement](http://www.w3schools.com/css/css_positioning.asp)).
+   [positionnement](https://www.w3schools.com/css/css_positioning.asp)).
 
 4. Faites disparaître les ronds/carrés/autres à gauche des listes de
    la zone de navigation (voir les
-   [listes](http://www.w3schools.com/css/css_list.asp)).
+   [listes](https://www.w3schools.com/css/css_list.asp)).
 
 5. Les liens de la zone de navigation doivent être en noir, et devenir
    rouges lorsque la souris passe dessus (voir les pseudoclasses
@@ -144,7 +134,7 @@ modifiez l'apparence de votre page comme suit :
 7. En ajoutant des attributs `class` dans le document HTML, faites en
    sorte que les lignes impaires du tableau de diplômes aient un fond
    différent des lignes paires. Allez voir, ensuite, la pseudo-classe
-   [`:nth-child`](http://www.w3schools.com/cssref/sel_nth-child.asp).
+   [`:nth-child`](https://www.w3schools.com/cssref/sel_nth-child.asp).
 
 8. Faites en sorte que les `<h2>` contenus dans les `<article>` soient
    écrits plus petit que les autres `<h2>`.
@@ -163,7 +153,7 @@ modifications ne seront pas sauvegardées dans la page, et elles ne
 survivront pas à un rechargement.
 
 11. Validez le CSS de votre document avec le validateur du W3C :
-    <http://jigsaw.w3.org/css-validator/>. Corrigez vos erreurs
+    <https://jigsaw.w3.org/css-validator/>. Corrigez vos erreurs
     jusqu'à ne plus en avoir.
 
 
@@ -199,14 +189,14 @@ soit dans le corps d'une requête de type POST.
    Le champ de texte doit avoir l'attribut `name="q"`. Le texte
    affiché par le bouton peut être contrôlé avec l'attribut `value`.
 
-3. Ouvrez la page dans un onglet du browser (la *Preview* ne marchera
+3. Ouvrez la page dans un onglet du navigateur (la *Preview* ne marchera
    pas) et faites une recherche. Observez comment l'URL varie quand
    vous changez le contenu du champ de texte.
 
 4. Ouvrez à nouveau la page avec Chrome ou Firefox, lancez les *outils
    du développeur* (`F12`) et sélectionnez l'onglet *Network*. Lancez
    une recherche et étudiez le type de requête envoyé par le
-   browser. Vous remarquerez que la requête originale (la première) a
+   navigateur. Vous remarquerez que la requête originale (la première) a
    donné lieu à beaucoup d'autres requêtes.
 
 5. Maintenant utilisez `method="POST"` dans la balise `<form>` et

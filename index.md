@@ -14,13 +14,13 @@ title: Home
 Cours de niveau Master sur la programmation web moderne, et
 introduction à la sécurité des applications web.
 
-**Almæ matres:** [![](http://www.uvsq.fr/images/ACCUEIL/favicon.png) Université de Versailles – 
+**Almæ matres:** [![](http://www.uvsq.fr/jsp/images/favicon.png) Université de Versailles – 
   ![](https://www.universite-paris-saclay.fr/profiles/saclay/themes/saclay_v2/favicon.ico) Paris Saclay](https://www.universite-paris-saclay.fr/fr/formation/master/m1-informatique-site-de-versailles#presentation-m1)
   et
   [![](http://www.isty.uvsq.fr/images/ISTY/favicon.png) ISTY](http://www.isty.uvsq.fr/institut-des-sciences-et-techniques-des-yvelines/langue-fr/cycle-ingenieur-informatique/presentation/cycle-ingenieur-informatique-231898.kjsp)
 
-**Mots clés:** Web, HTML5, CSS, JavaScript, Node.js, PHP, Symfony,
-  Silex, Sécurité, HTTPS, Injection SQL, XSS, CSRF.
+**Mots clés:** Web, HTML5, CSS, JavaScript, Node.js,
+  Sécurité, HTTPS, Injection SQL, XSS, CSRF.
 
 ## Contenus du cours
 
@@ -38,6 +38,7 @@ introduction à la sécurité des applications web.
 
 Éditions précédentes de ce cours :
 
+- [2016-2017](http://defeo.lu/aws-2017)
 - [2015-2016](http://defeo.lu/aws-2016)
 - [2014-2015](http://defeo.lu/aws-2015)
 - [2013-2014](http://defeo.lu/aws-2014)
@@ -52,14 +53,10 @@ introduction à la sécurité des applications web.
 
 #### Documentation
 
-- Les pages des frameworks PHP Silex <http://silex.sensiolabs.org/> et Symfony <http://symfony.com/>.
-- Les livres de Sensiolabs sur Symfony : <http://books.sensiolabs.com/>.
-- La documentation du moteur de templating Twig : <http://twig.sensiolabs.org/>.
 - Le framework [Express](http://expressjs.com/) pour Node.js.
 
 #### Associations de développeurs
 
-- Le site de l'Association francophone des utilisateurs de Symfony <http://afsy.fr/>.
 - Les initiations gratuites de NodeSchool Paris <http://nodeschool.io/paris/>.
 - Le [groupe français des utilisateurs de Node.js](https://plus.google.com/communities/113346206415381691435).
 
@@ -67,8 +64,7 @@ introduction à la sécurité des applications web.
 
 - Les ressources pédagogiques de B. Pesquet sur
   [OpenClassrooms](https://openclassrooms.com/membres/bpesquet), et
-  [encore d'autres](http://www.bpesquet.fr/) : PHP, Silex, JavaScript,
-  ...
+  [encore d'autres](http://www.bpesquet.fr/)
 
 
 ## Bibliographie
@@ -127,6 +123,10 @@ Marijn Haverbeke. *Eloquent JavaScript*.
 	DOM. La première édition est aussi disponible en français
 	<http://fr.eloquentjavascript.net/>, et à la BU (côte 005.71jaS HAV).
 
+Baptiste Pesquet. *The JavaScript Way*.
+: LeanPub 2017. <https://leanpub.com/thejsway>. Sources disponibles en
+  CC 4.0 sur <https://github.com/bpesquet/thejsway>.
+
 Mozilla Developer Network. *JavaScript Guide*.
 : En anglais
 	<https://developer.mozilla.org/en-US/docs/JavaScript/Guide> et en
@@ -160,29 +160,6 @@ Mozilla foundation. Mozilla DOM resources.
 T. Stubbs and G. Allain. *JQuery, Le guide complet*
 : Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte
 BU: 005.71jsp ALL. Pour les programmeur déjà calé en Javascript.
-
----
-
-### PHP
-
-M. Achour et al. *PHP Manual*.
-: <http://www.php.net/manual>. LE manuel de PHP.
-
-*The Silex Book*.
-:   <http://silex.sensiolabs.org/documentation>. La doc officielle de
-	Silex (en anglais).
-
-F.-X. Bois. *PHP5 et MySQL, Le guide complet*
-:   Micro Application Éditions, 2010. ISBN 978-2-300-031946. Côte BU:
-    005.71php BOI. Manuel un peu plus avancé, il parle aussi de
-    sécurité.
-
-J.-M. Culot. OEM Eyrolles, 2004. *PHP5, Guide de prise en main*
-:   ISBN 2-212-11487-7. Côte BU: 005.71php CUL. Manuel pour débutants
-
-A. Hendrix, B. Brinzarea, C. Darie.  *AJAX et PHP*
-:   2ème édition. Dunod, 2009. ISBN 978-2-10-055278-8. Côte BU:
-    005.71aja HEN. Un peu vieux, mais complet.
 
 ---
 

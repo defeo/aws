@@ -65,9 +65,9 @@ addons:
 #### Pseudo-protocoles
 
 - `javascript` : evaluateur JavaScript (ex. : [`javascript:alert('hello')`](javascript:alert('hello'))>,
-- `data` :  inclusion de documents (ex. : [`data:text/plain;base64,SGVsbG8hCg==`](data:text/plain;base64,SGVsbG8hCg==))
+- `data` :  inclusion de documents (ex. : [`data:text/plain;base64,SGVsbG8hCg==`](data:text/plain;base64,SGVsbG8hCg==){:title="Par mesure de sécurité ce lien n'est pas cliquable. Copiez-collez dans la barre d'adresse."})
 - `about`, `chrome` : configuration du navigateur,
-- `view-source` : exploration du code source (ex. : [`view-source:`](view-source:))
+- `view-source` : exploration du code source (ex. : [`view-source:`](view-source:){:title="Par mesure de sécurité ce lien n'est pas cliquable. Copiez-collez dans la barre d'adresse."})
 
 </section>
 <section id="authority">
@@ -79,7 +79,8 @@ addons:
 
 - Nom d'utilisateur,
 - Mot de passe (mécanisme d'authentification dépendant du protocole),
-- Hôte : nom de domaine + numéro de port (port par défaut : `80`).
+- Hôte : nom de domaine + numéro de port  
+  (ports par défaut : `http` → `80`, `https` → `443`).
 {:.incremental}
 
 ### Sécurité
@@ -89,7 +90,7 @@ sur l'autorité :
 
 - [Same Origin Policy](../cross-domain) (JavaScript, requêtes AJAX) :
   contrôle d'égalité stricte, incluant le schéma ;
-- [Cookies](../etat#cookies) : limités au domaine et sous-domanes.
+- [Cookies](../etat#cookies) : limités au domaine et sous-domaines.
 - ...
 
 </section>

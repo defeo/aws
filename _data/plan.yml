@@ -18,25 +18,25 @@
 
 - desc: Scripting côté serveur
   lessons:
-    - php.md
+#    - php.md
     - etat.md
   tutorials:
-    - url: reflector-silex.md
-      comment: version pour Silex
-    - url: reflector-node.md
-      comment: version pour Node
+#    - url: reflector-silex.md
+#      comment: version pour Silex
+#    - url: reflector-node.md
+#      comment: version pour Node
 
 - desc: Frameworks web
   lessons:
     - frameworks.md
     - templates.md
-    - oo-php.md
+#    - oo-php.md
     - mustache.md
   tutorials:
-    - url: templates-etat-silex.md
-      comment: version pour Silex
-    - url: templates-etat-node.md
-      comment: version pour Node
+#    - url: templates-etat-silex.md
+#      comment: version pour Silex
+#    - url: templates-etat-node.md
+#      comment: version pour Node
 
 - desc: Persistance et web 2.0
   lessons:
@@ -46,10 +46,10 @@
     - json.md
     - async-js.md
   tutorials:
-    - url: accounts-silex.md
-      comment: version pour Silex
-    - url: accounts-node.md
-      comment: version pour Node
+#    - url: accounts-silex.md
+#      comment: version pour Silex
+#    - url: accounts-node.md
+#      comment: version pour Node
 
 - desc: Securité
   lessons:

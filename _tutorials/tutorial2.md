@@ -3,7 +3,7 @@ title: Un simple jeu en JavaScript
 ---
 
 Dans ce TD nous allons créer une interface pour jouer à
-[Puissance 4](http://fr.wikipedia.org/wiki/Puissance_4). JavaScript et
+[Puissance 4](https://fr.wikipedia.org/wiki/Puissance_4). JavaScript et
 quelques composants basiques de CSS3 seront suffisants pour créer une
 interface agréable et parfaitement fonctionnelle.
 
@@ -16,29 +16,20 @@ Pour ce TD, on fera référence
 - Au Mozilla Developer Network :
   - <https://developer.mozilla.org/docs/CSS>,
   - <https://developer.mozilla.org/docs/JavaScript>.
-- Aux tutoriels de W3Schools : <http://www.w3schools.com/>.
-- Aux CodePens du prof : <http://codepen.io/collection/AaMOJZ/>.
+- Aux tutoriels de W3Schools : <https://www.w3schools.com/>.
+- Aux CodePens du prof : <https://codepen.io/collection/AaMOJZ/>.
 
 On consultera enfin le livre
-[Eloquent JavaScript](http://eloquentjavascript.net/) pour une
+[Eloquent JavaScript](https://eloquentjavascript.net/) pour une
 référence plus détaillée.
 
 Le site de questions/réponses
-[StackOverflow](http://stackoverflow.com/) est à utiliser avec
+[StackOverflow](https://stackoverflow.com/) est à utiliser avec
 précaution. Toutes les autres références risquent de vous induire en
 erreur avec des exemples datés, non standard, ou non
 idiomatiques. Appliquez du jugement.
 
-Pour ce TD, vous pouvez créer dans un nouvel espace de travail Cloud9,
-ou bien continuer dans celui que vous avez créé au TD précédent.  Pour
-prendre moins de risques, ouvrez l'onglet *« Preferences »* (`Ctrl+,`,
-ou menu *« Cloud9 → Preferences »*) et, dans la section *« Settings →
-File → Save »* cochez la case *« Enable Auto-Save »*.
-
-Lors de la création d'un projet, il se peut que la page affiche un
-engrenage tournant sans s'arrêter, donnant l'impression que le projet n'est pas
-encore prêt. Il n'en est rien ! Vous pouvez revenir sur votre *dashboard* 
-(actualiser si besoin avec *F5*) et ouvrir votre nouveau projet.
+Pour ce TD, créez un nouveau projet dans Glitch.
 
 ## Le plateau en pur CSS3
 
@@ -87,7 +78,7 @@ du tableau n'étant pas le dernier.
 
 En faisant cela nous allons nous conformer à un principe très
 populaire dans le développement web moderne : celui du
-[*Unobtrusive JavaScript*](http://en.wikipedia.org/wiki/Unobtrusive_JavaScript)
+[*Unobtrusive JavaScript*](https://en.wikipedia.org/wiki/Unobtrusive_JavaScript)
 (JavaScript discret). Ce paradigme dit que la page HTML doit pouvoir
 marcher même en l'absence de JavaScript, les éléments dynamiques étant
 ajoutés seulement une fois que le JavaScript est chargé.
