@@ -2,12 +2,6 @@
 layout: default
 title: Home
 ---
-<style>
-#lessons { text-align: justify; }
-#lessons p { display: inline-block; margin: 4px; background-color: #268bd2;
-             padding: 0.5ex; border-radius: 1ex; }
-#lessons a { color: white; }
-</style>
 
 # AWS – Applications web et sécurité
 
