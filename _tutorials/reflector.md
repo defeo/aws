@@ -1,6 +1,5 @@
 ---
 title: The reflector
-subtitle: (Node.js+Express)
 ---
 
 This tutorial presents a classic exercise: the *reflector*. A
