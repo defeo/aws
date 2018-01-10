@@ -90,7 +90,9 @@ n'est pas chargé.
 1. Effacez le `<table>` du document HTML. Remplacez le `<div>` par un
    simple
    
-	   <div id="...">Activez JavaScript pour jouer.</div>
+   ~~~html
+   <div id="...">Activez JavaScript pour jouer.</div>
+   ~~~
    
    (mettez l'identifiant que vous avez choisi auparavant à la place
    des `...`).
@@ -99,7 +101,7 @@ n'est pas chargé.
    problèmes de chargement du DOM, mettez la balise `<script>` après
    le `<div>`, vers la fin du `<body>`, comme ceci :
    
-   ~~~
+   ~~~html
    <body>
 	   <div id="...">Activez JavaScript pour jouer.</div>
 	   
@@ -142,8 +144,10 @@ n'est pas chargé.
    élément du DOM à la classe `joueur1` il suffit d'utiliser
    l'attribut `.className`. Par exemple
    
-	   var elt = document.querySelector('#mon-element');
-	   elt.className = 'joueur1';
+   ```js
+   var elt = document.querySelector('#mon-element');
+   elt.className = 'joueur1';
+   ```
    
    Testez votre fonction à l'aide de la console.
 
@@ -189,7 +193,9 @@ la plus élégante.
    pour l'évènement `click` sur le plateau (sur la balise `<table>`,
    par exemple). Pour l'instant, contentez vous de faire un
    
-	   console.log(event.target)
+   ```js
+   console.log(event.target)
+   ```
    
    dans le gestionnaire (`event` étant l'objet évènement passé au
    gestionnaire). Testez votre gestionnaire à l'aide de la console.
@@ -202,19 +208,17 @@ la plus élégante.
    `data-*`. Par exemple, si `ma_case` représente une balise `<td>`,
    le code suivant
    
-   ~~~
+   ~~~js
    // exemple utilisant dataset
    ma_ligne.appendChild(ma_case);
    ma_case.dataset.column = 0;
    ~~~
-   {:.javascript}
    
    insère une balise
    
-   ~~~
+   ~~~html
    <td data-column="0"></td>
    ~~~
-   {:.html}
    
    dans le document. **Attention**, toutes les propriétés de `dataset`
    sont automatiquement converties en chaînes de caractères par
