@@ -35,7 +35,6 @@ defaults:
       addons:
         favicon: yes
         muut: yes
-        highlightjs: yes
         clicker:
           host: 'https://clicker-uvsq.herokuapp.com'
           methods: 
@@ -65,7 +64,7 @@ defaults:
       path: defenses
     values:
       layout: null
-      
+
 # New page / post / etc. menu
 #create:
 #  pages: yes
