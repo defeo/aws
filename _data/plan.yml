@@ -20,11 +20,7 @@
   lessons:
 #    - php.md
     - etat.md
-  tutorials:
-#    - url: reflector-silex.md
-#      comment: version pour Silex
-#    - url: reflector-node.md
-#      comment: version pour Node
+  tutorials: reflector.md
 
 - desc: Frameworks web
   lessons:
