@@ -18,7 +18,7 @@ HTML est un *langage de balisage* (*markup language*), inspiré par
 SGML, pour l'écriture de documents Hypertexte **lisibles par un
 humain** (!!!)
 
-~~~
+~~~html
 <tag>
   Mon contenu <tag>plus de contenu</tag>
 </tag>
@@ -40,7 +40,7 @@ Les **Balises** (**tags**) délimitent du contenu textuel :
 
 Les balises peuvent avoir des **attributs**, dans la balise ouvrante.
 
-~~~
+~~~html
 <tag attribut1="valeur 1"
      attribut2='valeur 2'
      attribut3=valeur3>
@@ -60,7 +60,7 @@ Les balises peuvent avoir des **attributs**, dans la balise ouvrante.
 
 Les commentaires sont écrits entre `<!--` et `-->`
 
-~~~
+~~~html
 <!-- Ceci est un commentaire, ce sera ignoré -->
 <tag>Ceci sera interprété par le browser</tag>
 ~~~
@@ -140,7 +140,7 @@ premier niveau, ..., un titre de sixième niveau.
 `<div>`, `<span>`: Balises avec aucune signification (importantes pour
 faire le lien avec style et scripts).
 
-Allez voir d'autres balises sur <http://www.w3schools.com/>.
+Allez voir d'autres balises sur <https://www.w3schools.com/>.
 
 </section>
 <section>
@@ -182,10 +182,10 @@ outils de **validation**.
 
 **Servez-vous en :**
 
-- <http://validator.w3.org/>
-- <http://jigsaw.w3.org/css-validator/>
-- <http://validator.w3.org/mobile/>
-- <http://validator.w3.org/checklink>
+- <https://validator.w3.org/>
+- <https://jigsaw.w3.org/css-validator/>
+- <https://validator.w3.org/mobile/>
+- <https://validator.w3.org/checklink>
 
 </section>
 <section>
@@ -207,7 +207,7 @@ vos documents. Un document HTML5 proprement déclaré commence comme ceci
 Ou comme ceci (avec l'encodage XHTML)
 
 ~~~
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="https://www.w3.org/1999/xhtml">
     <head>...</head>
     <body>...</body>
 </html>
@@ -221,7 +221,7 @@ Ou comme ceci (avec l'encodage XHTML)
 
 **Bien**
 
-~~~
+~~~html
 <p>
   <strong>Gras <em>et même italique</em></strong>
 </p>
@@ -229,13 +229,13 @@ Ou comme ceci (avec l'encodage XHTML)
 
 **MAL!!!!!!!**
 
-~~~
+~~~html
 <p>
   <strong>Gras <em>et même italique</strong></em>
 </p>
 ~~~
 
-~~~
+~~~html
 <p>
   <strong>Gras <em>et même italique</em></strong>
 ~~~
@@ -247,7 +247,7 @@ Ou comme ceci (avec l'encodage XHTML)
 
 Par exemple (préférez l'encodage Unicode)
 
-~~~
+~~~html
 <head>
   <meta charset="utf-8" />
   ...
@@ -256,7 +256,7 @@ Par exemple (préférez l'encodage Unicode)
 
 ou comme ceci (encore commun dans les versions françaises de Windows)
 
-~~~
+~~~html
 <head>
   <meta charset="iso-8859-1" />
   ...
@@ -269,7 +269,7 @@ ou comme ceci (encore commun dans les versions françaises de Windows)
 ## Références
 
 - [Liste des balises HTML sur MDN](https://developer.mozilla.org/docs/Web/HTML/Element).
-- [Référence W3Schools](http://www.w3schools.com/tags/default.asp) (en anglais).
-- Le validateur officiel du W3C: <http://validator.w3.org/>
+- [Référence W3Schools](https://www.w3schools.com/tags/default.asp) (en anglais).
+- Le validateur officiel du W3C: <https://validator.w3.org/>
 
 </section>

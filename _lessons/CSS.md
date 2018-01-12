@@ -18,7 +18,7 @@ Les balises HTML renseignent sur la **signification** (la
 
 Exemple : la balise controversée `<i>` (à l'origine, *italique*)
 
-~~~
+~~~html
 <i>Some text</i>
 ~~~
 
@@ -62,7 +62,7 @@ CSS est un langage pour l'expression de directives d'affichage.
 s'appliquer à un document, le résultat est calculé d'après des règles
 de precedence *en cascade*.
   
-~~~
+~~~css
 p.lead {
   font-weight: bold;
   font-family: "Gill Sans MT", GillSans, sans-serif;
@@ -105,28 +105,28 @@ p.lead em {
 
 **Règles CSS**
 
-~~~
+~~~css
 selector {property: value; property: value; ...}
 ~~~
 
 **Commentaires**
 
-~~~
+~~~css
 /* Ceci est la seul façon de faire des commentaires en CSS
    (en effet, // n'introduit pas un commentaire)       */
 ~~~
 
 **At-rules**
 
-~~~
+~~~css
 @import "unautrestyle.css";  /* Importe dans la feuille courante */
 @media screen;               /* S'applique seulement à un affichage
                                 sur écran (par ex., pas à l'impression) */
 ~~~
 
-Référence actuelle: <http://www.w3.org/TR/2011/REC-CSS2-20110607/>
+Référence actuelle: <https://www.w3.org/TR/2011/REC-CSS2-20110607/>
 
-Le draft CSS3 est trop grand pour tenir en un seul module. Voir <http://www.w3.org/Style/CSS/>
+Le draft CSS3 est trop grand pour tenir en un seul module. Voir <https://www.w3.org/Style/CSS/>
 
 </section>
 <section>
@@ -135,7 +135,7 @@ Le draft CSS3 est trop grand pour tenir en un seul module. Voir <http://www.w3.o
 
 **Sélecteurs simples (`tag` est toujours optionnel)**
 
-~~~
+~~~css
 tag {...}                /* Toute balise <tag>                       */
 tag.class {...}          /* Tout <tag> de classe class               */
 #id {...}                /* La balise identifiée par id              */
@@ -146,7 +146,7 @@ tag[att=val] {...}       /* Tout <tag> ayant attribut att égal à val */
 
 **Combinateurs de sélecteurs**
 
-~~~
+~~~css
 selector, selector {...} /* Chacun des selector                     */
 parent child {...}       /* child s'il est un fils de parent        */
 parent > child {...}     /* child seulement s'il est un fils direct */
@@ -155,9 +155,9 @@ sister + brother {...}   /* brother seulement s'il suit
                             immediatement sister                    */
 ~~~
 
-Référence complète: <http://www.w3.org/TR/CSS2/selector.html>
+Référence complète: <https://www.w3.org/TR/CSS2/selector.html>
 
-Draft CSS3: <http://www.w3.org/TR/2011/REC-css3-selectors-20110929>
+Draft CSS3: <https://www.w3.org/TR/2011/REC-css3-selectors-20110929>
 
 </section>
 <section class="compact">
@@ -192,7 +192,7 @@ Draft CSS3: <http://www.w3.org/TR/2011/REC-css3-selectors-20110929>
 
 ## Le document et le style
 
-~~~
+~~~html
 <style>
   .lerouge {color:red;}
   div.lerouge {background-color:yellow;}
@@ -269,8 +269,8 @@ Laissez faire cela aux experts : utilisez un *frontend framework*.
 
 ### Exemples
 
-- Bootstrap <http://getbootstrap.com/> (Twitter)
-- Pure CSS <http://purecss.io/> (Yahoo)
+- Bootstrap <https://getbootstrap.com/> (Twitter)
+- Pure CSS <https://purecss.io/> (Yahoo)
 - ...
 
 </section>
@@ -279,7 +279,7 @@ Laissez faire cela aux experts : utilisez un *frontend framework*.
 ## Références
 
 - [Liste des propriétés CSS sur MDN](https://developer.mozilla.org/docs/Web/CSS/Reference).
-- [Référence W3Schools](http://www.w3schools.com/cssref/default.asp) (en anglais).
-- Le [validateur officiel de CSS](http://jigsaw.w3.org/css-validator/).
+- [Référence W3Schools](https://www.w3schools.com/cssref/default.asp) (en anglais).
+- Le [validateur officiel de CSS](https://jigsaw.w3.org/css-validator/).
 
 </section>

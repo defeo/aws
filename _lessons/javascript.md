@@ -36,9 +36,10 @@ Ruby.
 
 ### Versions (Standard ECMAScript)
 
-- **ECMA 5.1 (JavaScript 1.8.x)** – Implanté par la majorité des browsers.
-- **ECMA 6 (ES6, JavaScript ?)** – La future version, voir la 
-  [table de compatibilité](http://kangax.github.io/compat-table/es6/).
+- **ECMA 5.1 (JavaScript 1.8.x, 2009)** – Implanté par la majorité des browsers.
+- **ECMA 6,7,... (ES2015, ES2016, ...)** – Versions en développement
+  (*révisions annuelles*), voir la [table de
+  compatibilité](https://kangax.github.io/compat-table/es6/).
 
 
 </section>
@@ -50,7 +51,7 @@ Ruby.
 
 [Tester](javascript:alert('Hello world!')) (marche seulement dans un browser)
 
-~~~
+~~~js
 alert('Hello world!');
 ~~~
 
@@ -61,12 +62,12 @@ alert('Hello world!');
 [Tester](javascript:console.log('Hello world!')) (Firefox :
 `Shift+Ctrl+K`, Chrome : `F12`)
 
-~~~
+~~~js
 console.log('Hello world!');
 ~~~
 
 Marche aussi hors du browser, par ex., dans
-[Node.js](http://nodejs.org/).
+[Node.js](https://nodejs.org/).
 
 </section>
 <section class="compact">
@@ -75,7 +76,7 @@ Marche aussi hors du browser, par ex., dans
 
 ### Conditionnels
 
-~~~
+~~~js
 if (x == 1) {
     ...
 } else if (x == 2) {
@@ -86,7 +87,7 @@ if (x == 1) {
 ~~~
 
 
-~~~
+~~~js
 switch (2+x) {
 case 4:
     ...
@@ -104,25 +105,25 @@ default:
 
 ### Boucles
 
-~~~
+~~~js
 for ( var i = 0 ; i < 10 ; i++ ) {
     ...
 }
 ~~~
 
-~~~
+~~~js
 for ( var x in obj ) {
     ...
 }
 ~~~
 
-~~~
+~~~js
 while (condition) {
     ...
 }
 ~~~
 
-~~~
+~~~js
 do {
     ...
 } while (condition);
@@ -130,7 +131,7 @@ do {
 
 Nouveau en ES6 (différent de `for ... in`)
 
-~~~
+~~~js
 for ( var x of array ) {
 	...
 }
@@ -141,7 +142,7 @@ for ( var x of array ) {
 
 ### Exceptions
 
-~~~
+~~~js
 try {
     ...
 } catch (e) {
@@ -165,21 +166,21 @@ d'un type spécifique.
 
 ### Les variables doivent être déclarées !
 
-~~~
+~~~js
 var a = 0;
 a += 1;
 ~~~
 
 - Les variables sont typées dynamiquement
   
-  ~~~
+  ~~~js
   var a = 1;
   a = 'quelque chose';
   ~~~
 
 - Les variables **non déclarées** ont **portée globale**.
   
-  ~~~
+  ~~~js
   function setA() { a = 1; }
   setA();
   console.log(a);  // affiche 1
@@ -201,7 +202,7 @@ a += 1;
 
 #### Utilisation de `undefined`
 
-~~~
+~~~js
 function bon(x, y) {
 	// teste si l'utilisateur a passé
 	// une valeur pour y 
@@ -211,7 +212,7 @@ function bon(x, y) {
 ~~~
 
 
-~~~
+~~~js
 function mauvais(x, y) {
 	if (undefined == y)
 		// s'exécute même si y vaut null
@@ -227,14 +228,14 @@ function mauvais(x, y) {
 
 **Comparaison faible**
 
-~~~
+~~~js
 var x = 2;
 x == '2';     // true
 ~~~
 
 **Comparison forte** 
 
-~~~
+~~~js
 var x = 2;
 x === '2';    // false
 ~~~
@@ -242,7 +243,7 @@ x === '2';    // false
 **Existence d'attribut** (teste si une propriété est définie dans un
 object)
 
-~~~
+~~~js
 if ('property' in obj) ...;
 ~~~
 
@@ -253,7 +254,7 @@ if ('property' in obj) ...;
 
 ### Allocation dynamique
 
-~~~
+~~~js
 var myarray = ['un', 'deux', 'trois'];
 myarray[5] = 'cinq';
 myarray.length;                        // donne 6
@@ -261,12 +262,12 @@ myarray.length;                        // donne 6
 
 ### Méthodes prédéfinies
 
-~~~
+~~~js
 // donne 'un+deux+trois'
 ['un', 'deux', 'trois'].join('+')
 ~~~
 
-~~~
+~~~js
 // donne -1
 ['un', 'deux', 'trois'].indexOf('quatre')
 ~~~
@@ -285,7 +286,7 @@ Autres méthodes :
 
 (les arguments n'ont pas besoin du mot clef `var`/`let`)
 
-~~~
+~~~js
 function incr(a) {
     return a+1;
 }
@@ -293,7 +294,7 @@ function incr(a) {
 
 ### Les fonctions sont des objets de première classe
 
-~~~
+~~~js
 function apply(f, x) {
     return f(x);
 }
@@ -306,7 +307,7 @@ apply(incr, 4);          // donne 5
 
 ### Fonctions anonymes
 
-~~~
+~~~js
 myFun = function () {
     ...
 }
@@ -314,7 +315,7 @@ myFun = function () {
 
 ### Fonctions imbriquées (et clôture)
 
-~~~
+~~~js
 function counter() {
     var c = 0;
     return function(step) {
@@ -328,7 +329,7 @@ var cnt = counter();
 
 ### Flèches <small>(nouveau en ES6)</small>
 
-~~~
+~~~js
 var f = (a, b) => a + b;    // équivalent à function f(a,b) { return a+b; }
 
 [1, 2, 3].map( (x) => {
@@ -336,7 +337,6 @@ var f = (a, b) => a + b;    // équivalent à function f(a,b) { return a+b; }
 	return tmp + 2;
 });                         // donne [3, 4, 5]
 ~~~
-{:.javascript}
 
 </section>
 <section class="compact">
@@ -345,7 +345,7 @@ var f = (a, b) => a + b;    // équivalent à function f(a,b) { return a+b; }
 
 ### Omettre des arguments
 
-~~~
+~~~js
 function maybe(x, y) {
     if (undefined === y) 
         return x;
@@ -359,7 +359,7 @@ maybe(1, 2);       // donne 3
 
 ### Arguments par défaut <small>(nouveau en ES6)</small>
 
-~~~
+~~~js
 function val(x=0) {
 	return x;
 }
@@ -377,7 +377,7 @@ val(1);              // donne 1
 
 (similaires aux tableaux associatifs)
 
-~~~
+~~~js
 var myObj = {
     car: "Peugeot",
     color: "blue"
@@ -390,11 +390,10 @@ myObj['car'] == "Peugeot";   // true
 var prop = 'car';
 myObj[prop] == "Peugeot";    // true
 ~~~
-{:.javascript}
 
 Les contenus d'un objet peuvent **changer dynamiquement**
 
-~~~
+~~~js
 var myObj = {};
 myObj.car = "Renault";
 ~~~
@@ -404,7 +403,7 @@ myObj.car = "Renault";
 
 ## Méthodes
 
-~~~
+~~~js
 var myObj = {
   jour: "5",
   mois: "Janvier",
@@ -433,7 +432,7 @@ myObj.custom = function() {
 
 Les constructeurs sont des simples fonctions
 
-~~~
+~~~js
 function Car(model, color, year) {
     this.model = model;
     this.color = color;
@@ -461,14 +460,14 @@ mycar.revision();
 
 `Math`: Fonctions mathématiques (exp, log, etc.)
 
-~~~
+~~~js
 Math.PI;         // la constante pi
 Math.sqrt(16);   // donne 4
 ~~~
 
 `RegExp`: expressions régulières (syntaxe à la Perl)
 
-~~~
+~~~js
 var pattern = RegExp("sub", "i");
 
 // pareil que la ligne du dessus
@@ -484,7 +483,7 @@ pattern.test("Substring")
 ## Lectures
 
 *Eloquent JavaScript* par Marijn Haverbeke, 2nd edition
-: <http://eloquentjavascript.net/>, avec exemples interactifs !
+: <https://eloquentjavascript.net/>, avec exemples interactifs !
 
 
 *JavaScript Éloquent* par Marijn Haverbeke, 1e édition (en français)
@@ -494,7 +493,7 @@ Le guide du MDN
 : <https://developer.mozilla.org/docs/JavaScript/Guide>,
 
 Les tutoriels de W3Schools
-: <http://www.w3schools.com/js/>,
+: <https://www.w3schools.com/js/>,
 
 Plus de références dans la [page du cours](..).
 

@@ -75,7 +75,7 @@ Gender: <label for="male">Male</label>
 <input type="button" value="Subscribe" onclick="document.querySelector('#post-img > g').style.opacity=1;">
 </div>
 
-~~~
+~~~html
 <form method="POST"
       action="http://www.captcha.net/user">
   First name:
@@ -102,11 +102,18 @@ Gender: <label for="male">Male</label>
   display: inline-block;
   vertical-align: top;
 }
-#post-form, #post-source {
-	font-size: 12pt;
-	margin: 0;
+#post-form {
+  width: 300px;
 }
-# post-form { width: 300px; }
+#post-source {
+  width: 380px
+}
+#post-form, #post-source {
+  font-size: 15px;
+}
+#post-form *, #post-source * {
+  margin: 0;
+}
 </style>
  
 </section>
@@ -119,20 +126,20 @@ fait à travers l'attribut `type`.
 
 **Champs de texte :** <input type="text" placeholder="tapez quelque chose">
 
-~~~
+~~~html
 <input type="text" name="clef">
 ~~~
 
 **Boutons radio:** <input type="radio" name="choice" value="1">A <input type="radio" name="choice" value="2">B
 
-~~~
+~~~html
 <input type="radio" name="choice" value="choice-1">A
 <input type="radio" name="choice" value="choice-2">B
 ~~~
 
 **Checkbox:** <input type="checkbox" name="check1" value="1">C <input type="checkbox" name="check2" value="2">D
 
-~~~
+~~~html
 <input type="checkbox" name="check1" value="check-1">C
 <input type="checkbox" name="check2" value="check-2">D
 ~~~
@@ -142,19 +149,19 @@ fait à travers l'attribut `type`.
 
 **Password:** <input type="password" value="strongpass">
 
-~~~
+~~~html
 <input type="password" name="mot_de_passe">
 ~~~
 
 **Fichier:** <input type="file">
 
-~~~
+~~~html
 <input type="file" name="fichier">
 ~~~
 
 **Email:** (depuis HTML5, vérifie qu'il y a un @) <input type="email">
 
-~~~
+~~~html
 <input type="email" name="courriel">
 ~~~
 
@@ -164,25 +171,24 @@ fait à travers l'attribut `type`.
 
 **Submit:** pour envoyer une requête <input type="submit" value="Send data">
 
-~~~
+~~~html
 <input type="submit" value="Send data">
 ~~~
 
 **Button:** pour interaction avec les scripts <input type="button" value="Click me!">
 
-~~~
+~~~html
 <input type="button" value="Click me!">
 ~~~
 
 **Image:** envoie les coordonnées du click <input type="image" src="../assets/like.svg" width="40" alt="Like!">
 
-~~~
+~~~html
 <input type="image" src="like.svg" alt="Like!">
 ~~~
 
-D'autres nouveaux types sont définis dans HTML5 (pour la plus part,
-pas encore bien supportés): **date**, **time**, **number**, **range**,
-**color**, **tel**, **url**, ...
+D'autres types sont définis dans HTML5 : **date**, **time**,
+**number**, **range**, **color**, **tel**, **url**, ...
 
 </section>
 <section>
@@ -191,7 +197,7 @@ pas encore bien supportés): **date**, **time**, **number**, **range**,
 
 **Text area:** <textarea> Du texte très long </textarea>
 
-~~~
+~~~html
 <textarea name="texte_long">
 Du texte très long
 </textarea>
@@ -205,7 +211,7 @@ Du texte très long
   <option value="C">CSRF</option>
 </select>
 
-~~~
+~~~html
 <select name="liste">
   <option value="M">MySQL injection</option>
   <option value="X">XSS</option>
@@ -214,8 +220,7 @@ Du texte très long
 ~~~
 
 
-Nouveaux (et mal supportés) en HTML5 :
-`<datalist>`, `<keygen>` et `<output>`.
+Nouveaux en HTML5 : `<datalist>`, `<keygen>` et `<output>`.
 
 </section>
 <section>
@@ -230,19 +235,19 @@ Nouveaux (et mal supportés) en HTML5 :
 
 Attribut `required`: prévient si pas rempli <input class="validation" type="text" required size="10">
 
-~~~
+~~~html
 <input type="text" required>
 ~~~
 
 Attribut `pattern`: compare l'entrée à une regexp <input class="validation" type="text" pattern="[0-9]{6}" size="10">
 
-~~~
+~~~html
 <input type="text" pattern="[0-9]{6}">
 ~~~
 
 Attribut `placeholder`: donne une suggestion <input class="validation" type="text" placeholder="tapez quelque chose" size="10">
 
-~~~
+~~~html
 <input type="text" placeholder="tapez quelque chose">
 ~~~
 
@@ -259,6 +264,6 @@ Des validations plus compliquées doivent être faites en Javascript.
 ## Références
 
 - [Le guide MDN des formulaires](https://developer.mozilla.org/fr/docs/Web/Guide/HTML/Formulaires).
-- [La référence W3Schools](http://www.w3schools.com/html/html_forms.asp) (en anglais).
+- [La référence W3Schools](https://www.w3schools.com/html/html_forms.asp) (en anglais).
 
 </section>

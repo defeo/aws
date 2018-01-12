@@ -103,29 +103,33 @@ Servi habituellement sur le port 80. Exemple de dialogue HTTP (avant 2.0).
 
 **REQUÊTE**
 
-    GET / HTTP/1.1
-    Host: www.google.fr
+```http
+GET / HTTP/1.1
+Host: www.google.fr
+```
 
 </section>
 <section>
 
 **RÉPONSE**
 
-    HTTP/1.1 200 OK
-    Date: Tue, 24 Jan 2012 17:09:10 GMT
-    Expires: -1
-    Cache-Control: private, max-age=0
-    Content-Type: text/html; charset=ISO-8859-1
-    Set-Cookie: PREF=ID=4479751101deda66:FF=0:TM=1327424950:LM=1327424950:S=CDCjreHNXoofkoQk; expires=Thu, 23-Jan-2014 17:09:10 GMT; path=/; domain=.google.fr
-    Set-Cookie: NID=56=jkWXBR2FaxtIwRcpdJ-3nAJqgoJ2hDIqdo0Q7-ttgoCSX_5go3FrbRWBWg0em3oKnE88UcPz-4sjCwQNxb7iPcs7vu-kXQ3zKnSlXH97v-TAQgOQfNx2QqCM2XNPCUUl; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
-    P3P: CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info."
-    Server: gws
-    X-XSS-Protection: 1; mode=block
-    X-Frame-Options: SAMEORIGIN
-    Transfer-Encoding: chunked
+```http
+HTTP/1.1 200 OK
+Date: Tue, 24 Jan 2012 17:09:10 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Set-Cookie: PREF=ID=4479751101deda66:FF=0:TM=1327424950:LM=1327424950:S=CDCjreHNXoofkoQk; expires=Thu, 23-Jan-2014 17:09:10 GMT; path=/; domain=.google.fr
+Set-Cookie: NID=56=jkWXBR2FaxtIwRcpdJ-3nAJqgoJ2hDIqdo0Q7-ttgoCSX_5go3FrbRWBWg0em3oKnE88UcPz-4sjCwQNxb7iPcs7vu-kXQ3zKnSlXH97v-TAQgOQfNx2QqCM2XNPCUUl; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+P3P: CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info."
+Server: gws
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Transfer-Encoding: chunked
 
-    1000
-    <!doctype html>...
+1000
+<!doctype html>...
+```
 
 </section>
 <section>
@@ -172,7 +176,9 @@ html[data-incremental="4"] #http-req-body {
 
 ### La ligne d'action
 
-    POST /document.html HTTP/1.1
+```http
+POST /document.html HTTP/1.1
+```
 
 #### Méthode
 
@@ -196,10 +202,12 @@ Deux possibilités: `HTTP/1.0` ou `HTTP/1.1`.
 
 ### Entêtes des requêtes
 
-    Host: www.example.com
-    User-Agent: Mosaic/2.1
-    Cookie: sessionid=aa03x;
-    Content-Length: 10
+```
+Host: www.example.com
+User-Agent: Mosaic/2.1
+Cookie: sessionid=aa03x;
+Content-Length: 10
+```
 
 Servent à envoyer des meta-données au server.
 
@@ -264,7 +272,9 @@ html[data-incremental="4"] #http-res-body {
 
 ### La *status line*
 
-    HTTP/1.1 200 OK
+```http
+HTTP/1.1 200 OK
+```
 
 #### Protocole + code d'état + message
 
@@ -279,7 +289,7 @@ Les codes d'état décrivent le résultat de la requête. Les plus fréquents 
 - **403 FORBIDDEN** Le document n'est pas accessible.
 - **404 NOT FOUND** Le document est inconnu au server.
 - **410 GONE** Le document n'existe plus.
-- **418 I'M A TEAPOT** [Poison d'avril IETF 1998](http://tools.ietf.org/html/rfc2324).
+- **418 I'M A TEAPOT** [Poison d'avril IETF 1998](https://tools.ietf.org/html/rfc2324).
 - **500 INTERNAL SERVER ERROR** Erreur sur le server.
 - **503 SERVICE UNAVAILABLE** Le server est momentanément indisponible.
 
@@ -288,12 +298,14 @@ Les codes d'état décrivent le résultat de la requête. Les plus fréquents 
 
 ### Entêtes de la réponse
 
-    Date: Tue, 24 Jan 2012 18:34:40 GMT
-    Server: Apache/2.2.21 (Debian)
-    Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
-    Content-Length: 53
-    Content-Type: text/html
-    Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+```
+Date: Tue, 24 Jan 2012 18:34:40 GMT
+Server: Apache/2.2.21 (Debian)
+Last-Modified: Fri, 10 Dec 2010 14:10:25 GMT
+Content-Length: 53
+Content-Type: text/html
+Set-Cookie: sessionid=jkWXBR; expires=Wed, 25-Jul-2012 17:09:10 GMT; path=/; domain=.google.fr; HttpOnly
+```
 
 Plus fréquentes :
 
@@ -320,12 +332,12 @@ Plus fréquentes :
   
   - Basé sur SPDY (Google), API compatible avec HTTP 1.1,
   - Protocole binaire, connexions multiplexées,
-  - En 2015, supporté par la majorité des navigateurs, mais encore peu
-    de sites.
+  - En 2017, supporté par la majorité des navigateurs, mais encore une
+    minorité de sites.
 
 ## Références
 
-- [La page Wikipedia](http://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol).
+- [La page Wikipedia](https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol).
 - Le
   [guide HTTP de MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP). Très
   complet, mais en anglais.

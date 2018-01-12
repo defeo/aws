@@ -36,7 +36,7 @@ addons:
 
 La fenêtre du browser
 
-~~~
+~~~js
 window.innerHeight + " x " + window.innerWidth
 ~~~
 
@@ -54,7 +54,7 @@ Taille courante : **<span id='size'></span>**
 
 Le document HTML
 
-~~~ 
+~~~js
 document.referrer
 ~~~
 
@@ -72,13 +72,13 @@ pre { cursor: pointer; }
 
 `querySelector` renvoie la première balise correspondante au sélecteur CSS
 
-~~~
+~~~js
 document.querySelector('.start + span')
 	.style.backgroundColor = 'red';
 ~~~
 {: onclick="document.querySelector('.start + span').style.backgroundColor = 'red'"}
 
-~~~
+~~~js
 document.querySelector('#ilove').querySelector('span')
 	.style.backgroundColor = 'blue';
 ~~~
@@ -86,7 +86,7 @@ document.querySelector('#ilove').querySelector('span')
 
 `querySelectorAll` renvoie la liste des balises
 
-~~~
+~~~js
 var nodes = document.querySelectorAll('#ilove span');
 for (var i = 0 ; i < nodes.length ; i++)
 	nodes[i].style.color = 'white';
@@ -99,7 +99,7 @@ for (var i = 0 ; i < nodes.length ; i++)
 <span class="start">I </span><span id='L'>L</span>ove DOM
 </h3>
 
-~~~
+~~~html
 <div id="ilove">
 <span class="start">I </span><span id='L'>L</span>ove DOM
 </div>
@@ -129,30 +129,28 @@ Modifier l'arbre
 
 #### Agir directement sur le HTML : `.innerHTML`, `.outerHTML`
 
-~~~
+~~~js
 node.innerHTML += "<p>Modifier le <em>HTML</em></p>";
 ~~~
-{:.javascript}
 
 </section>
 <section class="compact">
 
 ## Accès aux attributs
 
-~~~
+~~~html
 <div class="ma-classe" data-ma-donnee="1" title="hello">
 ~~~
-{:.html}
 
 #### Attributs quelconques : `getAttribute`, `setAttribute`
 
-~~~
+~~~js
 element.setAttribute('title', 'hi');
 ~~~
 
 ### Accès à la classe : `className`, `classList`
 
-~~~
+~~~js
 element.className = "classe1";
 element.classList.add("classe2");
 element.classList.remove("classe1");
@@ -160,13 +158,13 @@ element.classList.remove("classe1");
 
 #### Accès au style : `style`
 
-~~~
+~~~js
 element.style.color = 'white'
 ~~~
 
 #### API dataset
 
-~~~
+~~~js
 element.dataset['ma-donnee'] = 2;
 ~~~
 
@@ -182,7 +180,7 @@ element.dataset['ma-donnee'] = 2;
 
 <div onmouseover="this.style.opacity='0.4'" onmouseout="this.style.opacity='1'">
 
-~~~
+~~~html
 <!-- passer la souris sur ce bloc -->
 <div id="mydiv" onmouseover="this.style.opacity='0.4'"
                 onmouseout="this.style.opacity='1'">
@@ -192,7 +190,7 @@ element.dataset['ma-donnee'] = 2;
 
 **De JavaScript**: meilleure séparation du HTML, à préférer.
 
-~~~
+~~~js
 document.querySelector('#mydiv').onmouseover = function(e) {
 	this.style.opacity = '0.4';
 };
@@ -200,7 +198,7 @@ document.querySelector('#mydiv').onmouseover = function(e) {
 
 **De JavaScript**: encore mieux, pas de conflicts avec d'autres scripts !
 
-~~~
+~~~js
 function fade() {
     this.style.opacity = '0.4';
 }
@@ -213,7 +211,7 @@ document.querySelector('#mydiv').addEventListener('mouseover', fade);
 
 ## L'objet evenement
 
-~~~
+~~~js
 element.onclick = function (event) {
 	console.log(event);
 }
@@ -244,13 +242,13 @@ Voir <https://developer.mozilla.org/docs/Web/API/Event>
 ## Plus sur le DOM
 
 *Eloquent JavaScript* par Marijn Haverbeke, 2nd edition
-: <http://eloquentjavascript.net/>, avec exemples interactifs !
+: <https://eloquentjavascript.net/>, avec exemples interactifs !
 
 *JavaScript Éloquent* par Marijn Haverbeke, 1e édition (en français)
 : <http://fr.eloquentjavascript.net/>,
 
 Le tutoriel de W3Schools
-: <http://www.w3schools.com/jsref/>.
+: <https://www.w3schools.com/jsref/>.
 
 La référence du DOM implanté par Firefox
 : <https://developer.mozilla.org/docs/DOM/DOM_Reference>.
@@ -288,7 +286,7 @@ Ils deviennent indispensables *en production*, lorsqu'un site doit
 
 JQuery est un framework JavaScript très populaire. Il hérite de
 concepts provenants de [Prototype](http://prototypejs.org/) et
-[Script.aculo.us](http://script.aculo.us/).
+[Script.aculo.us](https://script.aculo.us/).
 
 #### Caractéristiques principales
 
@@ -296,12 +294,12 @@ concepts provenants de [Prototype](http://prototypejs.org/) et
 - Sélecteurs à la `querySelector` ;
 - Éléments DOM enrichis ;
 - Framework AJAX ;
-- Noyau très compact (seulement 31k);
+- Noyau très compact (seulement ~30k);
 - Composants UI modulaires (JQuery UI) ;
 - Architecture à plug-ins.
 
-**Documentation :** <http://docs.jquery.com/>,
+**Documentation :** <https://docs.jquery.com/>,
 
-**JQquery UI :**  <http://jqueryui.com/>.
+**JQuery UI :**  <https://jqueryui.com/>.
 
 </section>

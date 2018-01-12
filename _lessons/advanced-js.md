@@ -12,7 +12,7 @@ Dans une méthode `this` se réfère à l'objet courant
 
 <div class="two-cols">
 
-~~~
+~~~js
 var myobj = {
   mymethod: function(a, b) {
     console.log(this, a, b);
@@ -32,7 +32,7 @@ browser)
 
 <div class="two-cols">
 
-~~~
+~~~js
 var myfunc = myobj.mymethod
 myfunc(1, 2)
 ~~~
@@ -47,13 +47,12 @@ Window → http://defeo.lu/aws/lessons/advanced-js 1 2
 
 <div class="two-cols">
 
-~~~
+~~~js
 var myfunc2 = myfunc.bind(myobj);
 myfunc2(1, 2);
 myfunc.call(myobj, 1, 2);
 myfunc.apply(myobj, [1, 2]);
 ~~~
-{:.javascript}
 
 ~~~
 Object { mymethod: myobj.mymethod() } 1 2
@@ -75,13 +74,11 @@ les fonctions anonymes.
 
 <div class="two-cols">
 
-~~~
+~~~js
 function Personne() {
   this.age = 0;
   // Viellit toutes les secondes 
-  setInterval(function() {
-    this.age += 1;
-  }, 1000)
+  setInterval(function() { this.age += 1; }, 1000)
 }
 p = new Personne();
 setInterval(function () { console.log(p); }, 1000)
@@ -99,13 +96,11 @@ Object { age: 0 }
 
 <div class="two-cols">
 
-~~~
+~~~js
 function Personne() {
   var self = this;
   self.age = 0;
-  setInterval(function() {
-    self.age++;
-  }, 1000);
+  setInterval(function() { self.age++; }, 1000);
 }
 setInterval(function () { console.log(p); }, 1000)
 ~~~
@@ -128,7 +123,7 @@ cet usage.
 
 <div class="two-cols">
 
-~~~
+~~~js
 function Personne() {
   this.age = 0;
   // Viellit toutes les secondes 
@@ -139,7 +134,6 @@ function Personne() {
 p = new Personne();
 setInterval(function () { console.log(p); }, 1000)
 ~~~
-{:.javascript}
 
 ~~~
 Object { age: 1 }
@@ -162,7 +156,7 @@ Voir aussi
 
 Les prototypes remplacent l'héritage
 
-~~~
+~~~js
 function A() { this.one = 1; }
 
 function B() { this.two = 2; }
@@ -175,7 +169,7 @@ C.two;                         // donne 2
 
 Les prototypes enrichissent les objets
 
-~~~
+~~~js
 var foo = "bar";
 foo.methodeBete;                    // undefined
 
@@ -193,7 +187,7 @@ foo.methodeBete();                  // donne "bête"
 ES6 introduit les classes. Il s'agit de *sucre syntaxique* autour des
 objets et leurs prototypes.
 
-~~~
+~~~js
 class Voiture {
 	constructor(vitesse) {
 		this.vitesse = vitesse;
@@ -215,7 +209,5 @@ v.vroom();
 ~~~
 VROOOOOOOOOOOOOOOOOOOM!
 ~~~
-
-Ce n'est encore supporté dans aucun browser.
 
 </section>
