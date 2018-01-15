@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: Frameworks Web
-subtitle: Applications web, API HTTP, Routage
+title: Web Frameworks
+subtitle: Web apps, HTTP API, Routing
 excerpt: ""
 addons:
   video:
@@ -15,10 +15,10 @@ addons:
 
 <section>
 
-## Avant les pages dynamiques
+## Before dynamic pages 
 
-Le premiers servers web se limitaient à servir des fichiers statiques:
-HTML, images, etc.
+The earlier web servers just used to serve static files: HTML, images,
+etc.
 
 <svg style="margin:auto;display:block"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -89,18 +89,18 @@ HTML, images, etc.
   </g>
 </svg>
 
-- L'URL correspond à un chemin dans le système de fichiers du serveur.
+- URLs correspond to a path in the server's file system.
 
 </section>
 <section>
 
-## Génération statique
+## Static Generation
 
-- Les fichiers HTML sont assemblés à partir de plusieurs composants, 
-- Ils sont compilés avant d'être chargés sur le serveur
+- HTML files are assembled from various components,
+- They are compiled together before being installed on the server.
 {:.no-wrap}
 
-#### Un exemple moderne
+#### A modern example
 
 <svg style="margin:auto;display:block" width="504" height="200" transform="scale(0.7)" >
   <defs>
@@ -124,9 +124,9 @@ HTML, images, etc.
 	<text x="0" y="180">content.md</text>
 
 	<use xlink:href="#file" x="40" y="200" />
-	<text x="0" y="280">footer.jade</text>
+	<text x="0" y="280">footer.pug</text>
 
-	<a xlink:href="http://perl.org">
+	<a xlink:href="https://perl.org">
 		<image xlink:href="../assets/perl.png" x="370" y="105" width="135" height="51" />
 	</a>
 
@@ -144,26 +144,27 @@ HTML, images, etc.
 	<path d="m 510,130 100,0" />
 </g>
   <g style="fill:blue">
-    <a xlink:href="http://daringfireball.net/projects/markdown/"><text x="170" y="138">Markdown</text></a>
+    <a xlink:href="https://daringfireball.net/projects/markdown/"><text x="170" y="138">Markdown</text></a>
 	<a xlink:href="https://pugjs.org/"><text x="210" y="238">Pug</text></a>
   </g>
   </g>
 </svg>
 
-- [Markdown](http://daringfireball.net/projects/markdown/) : transformation Texte → HTML,
-- [Pug](https://pugjs.org/) : syntaxe simplifiée pour HTML,
-- [Perl](http://perl.org/) : langage de programmation générique.
+- [Markdown](https://daringfireball.net/projects/markdown/): Text → HTML transformation,
+- [Pug](https://pugjs.org/): simplified syntax for HTML,
+- [Perl](https://perl.org/): generic programming language.
 
-**Autre exemple :** Ces transparents sont générés statiquement
-([Markdown](http://daringfireball.net/projects/markdown/) +
-[Jekyll](http://jekyllrb.com/)).
+**Another example:** These slides are statically generated
+([Markdown](https://daringfireball.net/projects/markdown/) +
+[Jekyll](https://jekyllrb.com/)).
 
 </section>
 <section>
 
-## Web 1.0 : pages dynamiques
+## Web 1.0: dynamic pages
 
-La création du document se fait au moment de la requête, à la volée.
+Document creation happens at the moment the HTTP request is received,
+on the fly.
 
 <svg style="margin:auto;display:block" width="720" height="270" transform="scale(0.8)">
   <defs>
@@ -257,40 +258,41 @@ La création du document se fait au moment de la requête, à la volée.
        xml:space="preserve" >app.php</text>
     <text
        x="450" y="250"
-       xml:space="preserve" >Moteur de</text>
-    <text
-       x="450" y="280"
        xml:space="preserve" >Scripting</text>
     <text
+       x="450" y="280"
+       xml:space="preserve" >engine</text>
+    <text
        x="620" y="110"
-       xml:space="preserve" >Server d'authentification</text>
+       xml:space="preserve" >Authentication server</text>
     <text
        x="680" y="180"
        xml:space="preserve" >Database</text>
     <text
        x="660" y="270"
-       xml:space="preserve" >template XML</text>
+       xml:space="preserve" >XML template</text>
     <text
        x="60" y="250"
-       xml:space="preserve" >document HTML</text>
+       xml:space="preserve" >Generated HTML</text>
     <text
        x="100" y="290"
-       xml:space="preserve" >généré</text>
+       xml:space="preserve" >document</text>
   </g>
 </svg>
 
-Le serveur peut :
+The server can:
 
-- Compiler le document à la volée (comme dans la génération statique),
-- Interagir avec d'autres serveurs (authentification, API, ...),
-- Interroger des bases de données.
+- Compile the document on the fly (like in static generation),
+- Interact with other servers (authentication, API),
+- Query databases,
+- ...
 
 </section>
 <section>
 
-## Web 2.0 : Applications web
+## Web 2.0: Web applications
 
-Focalisées autour de *l'interaction* avec l'utilisateur.
+Centered around *user interaction*.
 
 <svg style="margin:auto;display:block" width="720" height="250" transform="scale(0.8)">
   <defs>
@@ -371,93 +373,89 @@ Focalisées autour de *l'interaction* avec l'utilisateur.
        style="font-family:monospace"
        xml:space="preserve" >HTTP/1.1 200 OK</text>
     <text
-       x="440" y="80"
-       xml:space="preserve" >Application</text>
-    <text
-       x="480" y="110"
+       x="480" y="80"
        xml:space="preserve" >Web</text>
     <text
+       x="440" y="110"
+       xml:space="preserve" >Application</text>
+    <text
        x="620" y="110"
-       xml:space="preserve" >Server d'authentification</text>
+       xml:space="preserve" >Authentication Server</text>
     <text
        x="680" y="180"
        xml:space="preserve" >Database</text>
     <text
        x="660" y="270"
-       xml:space="preserve" >template XML</text>
+       xml:space="preserve" >XML template</text>
     <text
        x="60" y="250"
-       xml:space="preserve" >document JSON</text>
+       xml:space="preserve" >Generated JSON</text>
     <text
        x="100" y="290"
-       xml:space="preserve" >généré</text>
+       xml:space="preserve" >document</text>
   </g>
 </svg>
 
-- Les URL ne correspondent plus à des fichiers sur le serveur,
-- Une URL indique une *ressource virtuelle*, une **action**,
-- Exécution de l'application web 
-  - par un serveur web (par ex., Apache+PHP, Tomcat+Java, ...),
-  - ou par son propre serveur (par ex., Node.js, ...).
-  
+- URLs no more correspond to files on the server,
+- A URL points to a *virtual resource*, signifies an **action**,
+- Web app execution done by
+  - a web server (e.g., Apache+PHP, Tomcat+Java, ...),
+  - its own server (e.g., Node.js, ...).
 
 </section>
 <section>
 
-## Frameworks Web
+## Web frameworks
 
-Un *framework web* est une bibliothèque et une collection d'outils qui
-facilitent la construction d'applications web.
+A *web framework* is a library and a toolkit, helping to build web
+applications.
 
-### Quelques composants classiques d'un framework
+### Some typical framework components
 
-- *API HTTP(S)* : parsing/écriture de requêtes/réponses HTTP,
-- *Router* : définit la correspondance **URL → Code à exécuter**,
-- *Moteur de templates*: génération **Modèles → Pages HTML**,
-- *Stockage volatile*: persistance, sessions, memcache,
-- *Abstraction de bases de données*,
-- *Mechanismes de sécurité*: injections, XSS, CSRF,
+- *HTTP(S) API*: parsing/writing of HTTP request/responses,
+- *Router*: defines a correspondence **URL → Code to run**,
+- *Template engine*: **Templates → HTML pages** generation,
+- *Volatile storage*: persistence, sessions, memcache,
+- *Database abstraction*,
+- *Security mechanisms*: injections, XSS, CSRF,
 - *Caching*, *Internationalisation*, ...
 
-**Exemples**: [Symfony](http://symfony.com/) (PHP),
-**[Silex](http://silex.sensiolabs.org/) (PHP, basé sur Symfony)**,
-[Zend](http://www.zend.com/) (PHP), **[Node.js](http://nodejs.org/)
-(JavaScript)**, [io.js](https://iojs.org/) (JavaScript),
-[Ruby on Rails](http://rubyonrails.org/) (Ruby),
+**Examples**: [Symfony](https://symfony.com/) (PHP),
+[Zend](https://www.zend.com/) (PHP), **[Node.js](https://nodejs.org/)
+(JavaScript)**, [Ruby on Rails](http://rubyonrails.org/) (Ruby),
 [Django](https://www.djangoproject.com/) (Python),
 [Flask](http://flask.pocoo.org/) (Python),
-[Tornado](http://www.tornadoweb.org/) (Python),
-[Java EE](http://www.oracle.com/technetwork/java/javaee/), ...
+[Tornado](http://www.tornadoweb.org/) (Python), [Java
+EE](https://www.oracle.com/technetwork/java/javaee/), ...
 
 </section>
 <section>
 
-## Frameworks étudiés dans ce cours
+## Framework used in this course
 
-### [Silex](http://silex.sensiolabs.org/) (PHP)
+### [Node.js](https://nodejs.org/) ...
 
-*Micro-framework* dérivé de [Symfony](http://symfony.com/).
+*Event-driven web server* based on Chrome's **JavaScript** engine (*V8
+engine*, written in C++)
 
-- **Modules :** API HTTP, Router, Sessions.
-- **Modules optionnels :** Moteur de templates
-  ([Twig](http://twig.sensiolabs.org/)), Abstraction de bases de
-  données ([Doctrine](http://www.doctrine-project.org/)), Protections
-  CSRF, Caching, Internationalisation, Mail, ...
+- **Modules:** Web server, HTTP API, Packet manager (`npm`).
+- **Optional modules**(developed by the community, distributed via
+  `npm`)**:** Web/REST frameworks, Sessions, Memcache, Templates
+  engines, Database abstraction, WebSockets, ...
+  
+### ... + [Express](https://expressjs.com/)
 
-### [Node.js](http://nodejs.org/) + [Express](http://expressjs.com/) (JavaScript)
+Web *Micro-framework* for Node.js (written en **JavaScript**)
 
-*Micro-framework* web écrit en JavaScript (V8).
-
-- **Modules :** Server Web, API HTTP, Gestionnaire de paquets (`npm`).
-- **Modules optionnels** (développés par la communeauté, distribués
-  via `npm`) **:** Router, Middlewares, Sessions, Memcache, Moteurs de
-  templates, Abstraction de bases de données, Protections CSRF,
-  WebSockets, ...
+- **Base components:** Request/Response HTTP API, URL router,
+  Query string parser, Static file server, ...
+- **Optional components** (installed via `npm`)**:** Request body
+  parser, Cookie parser, Middlewares, CSRF protections, ...
 
 </section>
 <section>
 
-### API HTTP : Application, requête, réponse
+### HTTP API: Application, request, response
 
 <svg style="margin:auto;display:block" width="700" height="500"
 	viewBox="0 -250 700 500">
@@ -470,7 +468,7 @@ facilitent la construction d'applications web.
 		 fill="black" stroke="black"
          marker-start="none" />
     </marker>
-	<image id="symfony-svg"	xlink:href="../assets/symfony.svg" width="151" height="168"/>
+	<image id="symfony-svg"	xlink:href="../assets/node.svg" width="180" height="180"/>
   </defs>
 
   <g class="code" style="font-size: 16px">
@@ -483,7 +481,7 @@ facilitent la construction d'applications web.
 	  <tspan x="10" dy="16" xml:space="preserve">  "nums": [1,2,3,4,5,6,7,8] }</tspan>
 	</text>
 
-	<text x="10" y="236">
+	<text x="10" y="206">
 	  <tspan xml:space="preserve">  "primes": [2,3,5,7] }</tspan>
 	  <tspan x="10" dy="-16">{ "status": "ok",</tspan>
 	  <tspan x="10" dy="-32">Content-Type: application/json</tspan>
@@ -492,7 +490,7 @@ facilitent la construction d'applications web.
 	  <tspan x="10" dy="-32">HTTP/1.1 200 OK</tspan>
 	</text>
   </g>
-  <use xlink:href="#symfony-svg" x="300" y="-80" />
+  <use xlink:href="#symfony-svg" x="290" y="-100" />
   <g fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)">
 	<path d="m 300,-185 q 70,0 70,120" />
 	<path d="m 370,70 q 0,80 -70,100" />
@@ -500,57 +498,59 @@ facilitent la construction d'applications web.
   
   <g class="incremental" fill="none" stroke="red" stroke-dasharray="5,3" >
 	<g>
-	  <text x="470" y="-230" fill="red" stroke="none">Requête :</text>
+	  <text x="470" y="-230" fill="red" stroke="none">Request:</text>
 	  <path d="m 465,-235 -145,0" />
 	  <rect x="1" y="-249" width="320" height="149" />
 	</g>
 	<g style="font-size:80%">
 	  <text x="490" y="-210" fill="red" stroke="none">query string</text>
-	  <path d="M 485,-215 Q 270,-210 120,-220 " />
-	  <rect x="100" y="-240" width="4.1ex" height="1em" />
+	  <path d="M 485,-215 Q 270,-210 110,-220 " />
+	  <rect x="79" y="-239" width="4.1ex" height="1em" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="490" y="-190" fill="red" stroke="none">entêtes</text>
+	  <text x="490" y="-190" fill="red" stroke="none">headers</text>
 	  <rect x="5" y="-207" width="307" height="55" />
 	  <path d="m 485,-195 -173,0" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="490" y="-170" fill="red" stroke="none">corps de la requête</text>
+	  <text x="490" y="-170" fill="red" stroke="none">request body</text>
 	  <rect x="5" y="-145" width="305" height="38" />
 	  <path d="m 485,-175 -175,50" />
 	</g>
 	<g style="font-size:80%">
-	  <text x="490" y="-150" fill="red" stroke="none">méthode, url, cookies, ...</text>
+	  <text x="490" y="-150" fill="red" stroke="none">method, url, cookies, ...</text>
 	</g>
 	
-	<g>
-	  <text x="470" y="180" fill="red" stroke="none">Réponse :</text>
-	  <rect x="1" y="100" width="320" height="149" />
-	  <path d="m 465,175 -145,0" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="200" fill="red" stroke="none">code d'état</text>
-	  <rect x="100" y="109" width="60" height="1em" />
-	  <path d="m 485,195 C 260,195 485,118 160,118" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="220" fill="red" stroke="none">corps de la réponse</text>
-	  <rect x="5" y="200" width="250" height="45" />
-	  <path d="m 485,215 -230,0" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="240" fill="red" stroke="none">entêtes, cookies, ...</text>
+	<g transform="translate(0 -30)">
+	  <g>
+		<text x="470" y="180" fill="red" stroke="none">Response:</text>
+		<rect x="1" y="100" width="320" height="149" />
+		<path d="m 465,175 -145,0" />
+	  </g>
+	  <g style="font-size:80%">
+		<text x="490" y="200" fill="red" stroke="none">status code</text>
+		<rect x="75" y="109" width="70" height="1em" />
+		<path d="m 485,195 C 260,195 485,118 145,118" />
+	  </g>
+	  <g style="font-size:80%">
+		<text x="490" y="220" fill="red" stroke="none">response body</text>
+		<rect x="5" y="200" width="250" height="45" />
+		<path d="m 485,215 -230,0" />
+	  </g>
+	  <g style="font-size:80%">
+		<text x="490" y="240" fill="red" stroke="none">headers, cookies, ...</text>
+	  </g>
 	</g>
 	
-	<g>
-	  <text x="470" y="-40" fill="red" stroke="none">Application :</text>
+	<g transform="translate(30)">
+	  <text x="470" y="-40" fill="red" stroke="none">Application:</text>
 	  <path d="M 465,-45 420,-20" />
 	  
 	  <text x="490" y="-20" fill="red" stroke="none" style="font-size:80%">
 	    <tspan>router</tspan>
-	    <tspan x="490" dy="20">moteur de templates</tspan>
+	    <tspan x="490" dy="20">template engine</tspan>
 	    <tspan x="490" dy="20">sessions</tspan>
-	    <tspan x="490" dy="20">interface BD</tspan>
+	    <tspan x="490" dy="20">DB interface</tspan>
 	    <tspan x="490" dy="20">middlewares</tspan>
 	    <tspan x="490" dy="20">...</tspan>
 	  </text>
@@ -559,153 +559,105 @@ facilitent la construction d'applications web.
 </svg>
 
 </section>
-<section class="compact">
+<section>
 
-## L'application
+## The web application in Express
 
-### Silex (PHP)
+1. Load the `express` module
+   
+   ```js
+   var express = require('express');
+   ```
 
-~~~
-require_once 'vendor/autoload.php';
-$app = new Silex\Application();
+2. Create the web application object
+   
+   ```js
+   var app = express();
+   ```
 
-$app->get();      // Le router
-$app->post();
-$app->match();
+3. Define the *handlers* for the requests (*Routing*)
+   
+   ```js
+   app.get('/', ...);
+   app.post('/form', ...);
+   app.all('/old', ...);
+   ```
 
-$app->run();      // Exécution
-~~~
+4. Let the application listen for connections (on port 80)
+   
+   ```js
+   app.listen(80);
+   ```
 
-### Express (Node.js)
-
-~~~
-var express = require('express');
-var app = express();
-
-app.get();        // Le router
-app.post();
-app.all();
-
-app.listen(80);   // Exécution
-~~~
-{:.javascript}
+5. That's all folks!
 
 </section>
 <section class="compact">
 
-## L'objet requête
+## Anatomy of a handler
 
-### Silex
+### The request object
 
-~~~
-use Symfony\Component\HttpFoundation\Request;
+~~~js
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
 
-$app->get('/', function(Request $req) {
-	$req->query;      // Query string
-	$req->request;    // corps de la requête
-	$req->headers;    // entêtes HTTP
-	$req->cookies;    // cookies
-});
-~~~
-
-### Express
-
-~~~
-var bodyParser = require("body-parser"), cookieParser = require("cookie-parser");
-app.use(bodyParser.urlencoded()).use(cookieParser()); // config
+// Configure the application
+app
+	.use(bodyParser.urlencoded({ extended: false }))
+	.use(cookieParser());
 
 app.get('/', function(req, res) {
 	req.query;        // query string
-	req.body;         // corps de la requête
-	req.headers;      // entêtes HTTP
+	req.body;         // request body
+	req.headers;      // HTTP headers
 	req.cookies;      // cookies
 });
 ~~~
-{:.javascript}
 
 </section>
 <section class="compact">
 
-## L'objet réponse (Silex)
+### The response object
 
-~~~
-use Symfony\Component\HttpFoundation\Response;
-~~~
+Send a simple answer
 
-Écrire une réponse simple
-
-~~~
-return 'Hello world';
-~~~
-
-Envoyer un *code d'état* et des entêtes
-
-~~~
-return new Response(404, 'Not Found', headers);
-~~~
-
-Envoyer un fichier statique
-
-~~~
-return $app->sendFile('static-file.html');
-~~~
-
-Faire une redirection
-
-~~~
-return $app->redirect('/other/path');
-~~~
-
-Envoyer des données au format JSON
-
-~~~
-return $app->json( array('a' => 'b') );
-~~~
-
-</section>
-<section class="compact">
-
-## L'objet réponse (Express)
-
-Écrire une réponse simple
-
-~~~
+~~~js
 res.send('Hello world');
 ~~~
 
-Envoyer un *code d'état* et des entêtes
+Send a *status code* and some headers
 
-~~~
+~~~js
 res.set('Content-Type', 'text/plain');
 res.status(404).send('Not Found');
 ~~~
 
-Envoyer un fichier statique
+Send a static file
 
-~~~
+~~~js
 res.sendFile('static-file.html');
 res.download('static-attachment.mp3');
 ~~~
 
-Faire une redirection
+Redirect to another page
 
-~~~
+~~~js
 res.redirect('/other/path');
 ~~~
 
-Envoyer des données au format JSON
+Send JSON data
 
-~~~
+~~~js
 res.json({ 'a' : 'b' });
 ~~~
 
 </section>
 <section>
 
-## Anatomie de l'application
+## Anatomy of the application
 
-
-<svg style="margin:auto;display:block" width="1015" height="450"
+<svg style="margin:auto;display:block" width="950" height="450"
 	viewBox="0 -225 1015 450">
   <defs>
     <marker id="arrow-start" orient="auto"
@@ -747,10 +699,10 @@ res.json({ 'a' : 'b' });
   </g>
   <g fill="red" stroke="red">
     <text x="220" y="-30">Router</text>
-	<text x="840" y="20">Gestionnaire</text>
+	<text x="840" y="20">Handler</text>
     <text x="600" y="70">Template engine</text>
 	<text x="640" y="-100">Database</text>
-	<text x="100" y="60">Réponse</text>
+	<text x="100" y="60">Response</text>
   </g>
   <rect fill="none" stroke="red" stroke-width="2" x="340" y="-70" width="665" height="95" />
 </svg>
@@ -758,52 +710,33 @@ res.json({ 'a' : 'b' });
 </section>
 <section>
 
-## Le router
+## The router
 
-Le *router* fait l'association : **méthode+URL → code à exécuter**
+The *router* associates: **method+URL → code to run**
 
-~~~
-$app->get('/url', function() {...});
-~~~
-
-Il peut aussi traduire une partie de l'URL en arguments de la fonction
-
-~~~
-$app->get('/url/{a1}/{a2}', function($a1, $a2) {
-	...
-});
+~~~js
+app.get('/url', function(req, res) {...});
 ~~~
 
-En Express
+It can also translate part of the URL into arguments to the *callback*
 
-~~~
+~~~js
 app.get('/url/:a1/:a2', function(req, res) {
 	console.log(req.params.a1);
+	console.log(req.params.a2);
 });
 ~~~
 
 </section>
 <section>
 
-## Lectures
+## References
 
-### Silex
-
-- La [doc officielle](http://silex.sensiolabs.org/documentation) (en anglais),
-- Le
-  [*Book* de Symfony](http://symfony.com/fr/doc/current/book/index.html)
-  (disponible aussi
-  [en anglais](http://symfony.com/doc/current/book/index.html)),
-- La [référence de Symfony](http://api.symfony.com/master/) (en
-  anglais),
-
-### Express
-
-- Les tutoriels de [NodeSchool](http://nodeschool.io/),
-- La [référence de Node.js](http://nodejs.org/api/),
-- Les [aides de NodeJitsu](http://docs.nodejitsu.com/),
-- La [doc de Express](http://expressjs.com/),
-- Eloquent JavaScript, [chapitre 20 sur Node.js](http://eloquentjavascript.net/20_node.html).
+- The [NodeSchool](https://nodeschool.io/) tutorials,
+- The [Node.js reference](https://nodejs.org/api/),
+- The [NodeJitsu help pages](https://docs.nodejitsu.com/),
+- The [Express docs](https://expressjs.com/),
+- Eloquent JavaScript, [chapter 20 on Node.js](https://eloquentjavascript.net/20_node.html).
 
 </section>
 
