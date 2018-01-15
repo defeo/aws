@@ -1,7 +1,6 @@
 - desc: Web statique
   lessons:
     - url.md
-    - HTTP.md
     - HTML.md
     - forms.md
     - CSS.md
@@ -16,17 +15,18 @@
     - advanced-js.md
   tutorials: tutorial2.md
 
-- desc: Scripting côté serveur
+- desc: HTTP et génération sur le serveur
   lessons:
-#    - php.md
-    - etat.md
+    - HTTP.md
+    - frameworks.md
+    - https.md
   tutorials: reflector.md
 
-- desc: Frameworks web
+- desc: Utilisation des frameworks web
   lessons:
-    - frameworks.md
+    - etat.md
     - templates.md
-#    - oo-php.md
+    - sessions.md
     - mustache.md
   tutorials:
 #    - url: templates-etat-silex.md
@@ -34,10 +34,10 @@
 #    - url: templates-etat-node.md
 #      comment: version pour Node
 
-- desc: Persistance et web 2.0
+- desc: Bases de données et Web 2.0
   lessons:
-    - sessions.md
     - sql.md
+    - orm.md
     - ajax.md
     - json.md
     - async-js.md

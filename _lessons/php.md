@@ -5,8 +5,6 @@ subtitle: "PHP: Hypertext Preprocessor"
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/php.webm
-    quizzes:
-      - 58900075ba7ec5013560f7cd
 ---
 
 <section>
