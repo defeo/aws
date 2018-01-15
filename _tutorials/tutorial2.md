@@ -132,7 +132,7 @@ n'est pas chargé.
    propriété. Il est plus pratique d'avoir un tableau JavaScript à
    deux dimensions qui pointe vers les cases (les `<td>`) du
    plateau. Modifiez la double boucle `for` de sorte à remplir un
-   tableau à deux dimensions avec des pointeurs vers les
+   tableau à deux dimensions avec les 
    balises `td` du plateau. Cet exemple pourrait vous aider.
    
    {% include codepen.md pen="myXGeZ" tab="js" height="250" %}
