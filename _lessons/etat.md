@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: "Maintien d'état"
-subtitle: Persistance côté client, Cookies, Storage API
+title: "Keeping the state"
+subtitle: Clients keeping state, Cookies, Storage API
 scripts: "../assets/js/side-by-side-browser.js"
 addons:
   video:
@@ -13,23 +13,23 @@ addons:
 
 <section>
 
-## Persistance
+## Persistence
 
-HTTP est un protocole **sans état**.
+HTTP is a **stateless** protocol.
 
-- Les entêtes `Cookie` / `Set-Cookie`, introduites par Netscape en
-  1996, sont le premier mécanisme de maintien d'état pour le Web.
-- Ce mécanisme reste encore aujourd'hui le plus utilisé.
+- The `Cookie` / `Set-Cookie` headers, introduced by  Netscape in
+  1996, were the Web's first mechanism for keeping the state.
+- That same mechanism is still today the most used one.
 
-### Exemples d'état
+### Examples
 
-Le server se *souvient de l'état* du client entre deux requêtes
-(proches ou distantes dans le temps)
+A server *keeps the state* of the client between two HTTP requests
+(close or far apart in time)
 
-- Remplissage de fourmulaires en plusieurs étapes ;
-- Navigation avec authentification (webmail, réseau social, ...) ;
-- Profil utilisateur ;
-- Données *dans le cloud* ;
+- Filling forms in many steps;
+- Browsing with authentication (webmail, social network, ...);
+- User profiles;
+- Data *in the cloud*;
 - ...
 
 </section>
@@ -42,7 +42,7 @@ Le server se *souvient de l'état* du client entre deux requêtes
 #xkcd img { width: 100%; }
 </style>
 
-## Maintenir l'état, c'est dur...
+## Keeping the state is hard...
 
 ![](http://imgs.xkcd.com/comics/server_attention_span.png)
 <http://xkcd.com/869>
@@ -51,86 +51,82 @@ Le server se *souvient de l'état* du client entre deux requêtes
 </section>
 <section>
 
-## Simuler l'état
+## Simulating state
 
-HTTP n'a pas de mécanisme natif pour maintenir l'état, mais il peut le
-simuler :
+HTTP does not have any native mechanism for keeping state, however it
+can simulate it:
 
+HTTP headers
+: HTTP Authentication. (Rare in applications, mostly used in REST APIs).
 
-Entêtes HTTP
-: Authentification HTTP. (Pas courant, difficile à personnaliser).
-
-Persistance GET/POST
-: Identifiants de session, protections CSRF, ...
+GET/POST persistence
+: Session identifiers, CSRF protections, ...
 
 Cookies, Storage API, IndexedDB
-: Persistance assurée par le **client**.
+: **Client-kept** state.
 
-Stockage volatile côté server
-: Persistance de **courte durée** : *sessions* (dépendant du framework),
-*key-value stores* (Memcached, Redis, ...).
+Volatile storage on the server
+: **Short-termed** persistence: *sessions* (provided by the web
+framework), *key-value stores* (Memcached, Redis, ...).
 
-Stockage persistant côté server
-: Persistance de **longue durée** : système de fichiers, bases de
-données (SQL, NoSQL, ...).
+Persistent storage on the server
+: **Long-termed** persistence: file system, databases (SQL, NoSQL,
+  ...).
 
 </section>
 <section>
 
-## Persistance GET/POST
+## GET/POST persistence
 
-Passer l'état dans les *paramètres* de la requête
+Passing the state via the request *parameters*
 
-### Exemples
+### Examples
 
-Par la *query string*
+Via the *query string*
   
 ~~~
-http://.../profile?user=toto
+http://.../profile?user=foo
 ~~~
-{:.bash}
 
-Par l'URL (utilisation du *router*)
+Via the URL (provided by the framework *router*)
  
 ~~~
-http://.../users/toto/profile
+http://.../users/foo/profile
 ~~~
-{:.bash}
 
-Par le corps de la requête (de type POST)
+Via the request body (POST requests)
  
-~~~
+~~~http
 POST /profile HTTP/1.1
 ...
 
-user=toto
+user=foo
 ~~~
-{:.bash}
 
 </section>
 <section>
 
-## Persistance GET/POST
+## GET/POST persistence
 
-### Avantages
+### Advantages
 
-- Facile à implanter ;
-- Robuste : les browsers ne risquent pas de le bloquer ;
-- *Linkability*, *Searchability* : les données sont lisibles dans
-  l'URL.
+- Easy to deploy;
+- Robust: browsers are unlikely to break it;
+- *Linkability*, *Searchability*: data are integrated in the URL.
 
-### Désavantages
+### Disadvantages
 
-- Les liens statiques doivent être générés dynamiquement (facilité par
-  les templates) ;
-- Limité à des données de petite taille.
+- Static links must be replaced by dynamical ones (template engines
+  can help)
+- Limited to small data.
 
-### Problèmes potentiels de sécurité
+### Potential security problems
 
-Les données sensibles (mots de passe, etc.) ne doivent pas :
+Sensitive data (passwords, etc.) must not:
 
-- **persister** dans ce canaux.
-- **transiter** par l'URL (risques liés au copier-coller, aux caches des proxies, ...).
+- **persist** in these channels.
+- **transit** through the URL (risks tied to copy-pasting, proxy
+  caching, ...).
 
 </section>
 <section>
@@ -148,90 +144,101 @@ Les données sensibles (mots de passe, etc.) ne doivent pas :
 #browser .body { padding: 1ex;
 </style>
 
-## Exemple (méthode GET)
+## Example (GET method)
+
+```html
+<form method="get" action="today">
+  <h3>Hello, please introduce yourself</h3>
+  <input type="text" name="name">
+  <input type="submit" value="Enter">
+</form>
+```
+{: #today style="display:none"}
+
+```html
+<p>Hello #name,
+  <a href='tomorrow?name=#name'>see you tomorrow</a>
+</p>
+```
+{: #tomorrow style="display:none"}
+
+```html
+<p>Hello #name</p>
+```
+{: #then style="display:none"}
 
 <p id="browser"></p>
 
-~~~
-$app->get('/aujourdhui', function(Request $req){
-    $n = $req->query->get("nom");
-    return "<p>Bonjour $n, <a href='demain?nom=$n'>à demain</a></p>";
+~~~js
+app.get('/today', function(req, res) {
+    n = req.query.name;
+    res.send(`<p>Hello ${n}, <a href='tomorrow?name=${n}'>see you tomorrow</a></p>`);
 });
 ~~~
-{:.php}
 
-~~~
-$app->get('/demain', function(Request $req){
-    $n = $req->query->get("nom");
-    return "<p>Bonjour $n</p>";
+~~~js
+app.get('/tomorrow', function(req, res) {
+    n = req.query.name;
+    res.send(`<p>Hello ${n}</p>`);
 });
 ~~~
-{:.php}
 
 </section>
 <section>
 
 ## Cookies
 
-*clef-valeur* stockés *temporairement* par le *client* **pour
-le compte d'un site** (domaine).
+*Key-value* pairs *temporarily* stored by the *client* **for a
+website** (a domain name)
 
-- Le server fait la demande avec une entête `Set-Cookie`
+- The server asks to store a cookie by sending a `Set-Cookie` header
   
-  ~~~
+  ~~~http
   HTTP/1.1 200 OK
   ...
-  Set-Cookie: user=toto
-  ~~~
-  {:.bash}
-
-- JavaScript peut aussi demander au browser de stocker un cookie
-  (dépassé par la Storage API)
-  
-  ~~~
-  document.cookie = 'user=toto';
+  Set-Cookie: user=foo
   ~~~
 
-- Le browser envoye le cookie dans toute requête **pour le même
-  domaine**
+- Client-side JavaScript can also instruct the browser to store a
+  cookie (this usage is superseded by the Storage API)
   
+  ~~~js
+  document.cookie = 'user=foo';
   ~~~
+
+- The browser sends the cookie in **every** request **for the same
+  domain name**
+  
+  ~~~http
   GET /app HTTP/1.1
   ...
-  Cookie: user=toto
+  Cookie: user=foo
   ~~~
 
-- Les cookies sont stockés et envoyés jusqu'à expiration.
+- Cookies are stored and sent with every request until **expiration**.
 
 </section>
-<section class="compact">
+<section>
 
-## Cookies et frameworks
+## Cookies and frameworks
 
-En Silex
+#### In Node.js 
 
-~~~
-use Symfony\Component\HttpFoundation as HTTP;
+- Install the `cookie-parser` package with `npm`,
+- Add it as an Express middleware.
 
-function handler(HTTP\Request $req) {
-  $req->cookies->get('user');                                 // lire les cookies
-  $res = new HTTP\Response();
-  $res->headers->setCookie(new HTTP\Cookie('user', 'toto'));  // écrire un cookie
-  $res->headers->clearCookie('user');                         // effacer un cookie
-}
-~~~
-
-En Node.js
-
-~~~
+~~~js
+var express = require('express');
 var cookieParser = require('cookie-parser');
-app.use(cookieParser());
 
-function handler(req, res) {
-  req.cookies.user;                 // lire les cookies
-  res.cookie('user', 'toto');       // écrire un cookie
-  res.clearCookie('user');          // effacer un cookie
-}
+var app = express();
+app.use(cookieParser());                  // add Express middleware
+
+app.get(..., function(req, res) {
+  req.cookies.user;                       // read cookies
+  res.cookie('user', 'foo');              // write a cookie
+  res.clearCookie('user');                // delete a cookie
+});
 ~~~
 
 </section>
@@ -239,45 +246,44 @@ function handler(req, res) {
 
 ## Storage API
 
-- Stockage clef-valeur, introduit avec HTML5,
-- API entièrement côté client (JavaScript),
-- Dépasse les limitations des cookies sur la taille des données,
-- Garanties sur la durée du stockage.
-- Deux interfaces, attachées au **domaine** :
-  - `sessionStorage` : jusqu'à la fermeture du browser,
-  - `localStorage` : persistant.
+- Key-value store, introduced in HTML5,
+- Completely client-side API (accessed via JavaScript),
+- Surpasses the cookies limitations on data size,
+- Better guarantees on storage duration (still controlled by the
+  client, though),
+- Two interfaces, bound to the **domain name**:
+  - `sessionStorage`: lasts until the browser is closed,
+  - `localStorage`: persistent.
 
-~~~
+~~~js
 if (sessionStorage['user'] === undefined) {
-  sessionStorage['user'] = 'toto';
+  sessionStorage['user'] = 'foo';
 }
 delete sessionStorage['user'];
 ~~~
 
-
-Plus d'informations : [page du MDN](https://developer.mozilla.org/DOM/Storage).
+More information: [MDN on storage](https://developer.mozilla.org/DOM/Storage).
 
 </section>
 <section>
 
-## Stockage par le client
+## Client-kept storage
 
-### Utilisations
+### Uses
 
-- **Cookies :** *identifiants de session*, compatibilité,
-- **Storage API :** toutes applications, stockage de taille réduite,
-- **IndexedDB :** grandes quantités de données.
+- **Cookies:** *session identifiers*, compatibility,
+- **Storage API:** any application, limited storage,
+- **IndexedDB:** large data.
 
-### Avantages/Désavantages
+### Advantages/Disadvantages
 
-- Léger pour le serveur, adapté à un site statique.
-- Le client peut refuser le stockage.
+- Light on the server, good for static websites.
+- The client can refuse to store.
 
-### Problèmes de sécurité potentiels
+### Potential security problems
 
-- Vol de cookies : compromission de session,
-- Ne jamais stocker un *mot de passe maître* chez le client, seulement
-  des *mots de passe éphémères* (*identifiants de session*).
-
+- Cookie theft: session hijacking.
+- Never store a *master password* on the client, only *ephemeral
+  passwords* should be stored (*session identifiers*).
 
 </section>

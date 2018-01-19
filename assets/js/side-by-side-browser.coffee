@@ -5,35 +5,29 @@ $bw = $ '#browser'
 $win = $bw.append 'div.window'
 $adr = $win.append 'div.address'
 $bdy = $win.append 'div.body'
-$src = ($bw.append 'pre.source.html').append 'code'
+$src = ($bw.append 'pre.source.highlight')
 
 $adr.textContent = 'http://.../'
-$bdy.append 'h3 Bonjour, présentez-vous'
-$bdy.innerHTML += '<input type="text"><button>Entrer</button>'
-$src.textContent = '''
-    <form method="get" action="aujourdhui">
-      <h3>Bonjour, présentez-vous</h3>
-      <input type="text" name="nom">
-      <input type="submit" value="Entrer">
-    </form>'''
-hljs.highlightBlock $src
+$bdy.append 'h3 Hello, please introduce yourself'
+$bdy.innerHTML += '<input type="text"><button>Enter</button>'
+$src.innerHTML = ($ '#today pre').innerHTML
 
 ($bdy.$ 'button').on 'click', ->
   $bw.style.height = $bw.offsetHeight + 'px'
   t = ($bdy.$ 'input').value
-  $adr.textContent = "http://.../aujourdhui?nom=#{t}"
+  $adr.textContent = "http://.../today?name=#{t}"
   $bdy.innerHTML = ""
-  $bdy.append "p Bonjour #{t}, <a href='#'>à demain</a>"
-  $src.textContent = """<p>Bonjour #{t},
-    <a href='demain?nom=#{t}'>à demain</a>
-  </p>"""
-  hljs.highlightBlock $src
+  $src.innerHTML = ($ '#tomorrow pre').innerHTML
+  ($src.$ 'code').childNodes.forEach (n) ->
+          n.textContent = n.textContent.replace '#name', t
+  $bdy.innerHTML = $src.textContent
 
   ($bdy.$ 'a').on 'click', (e) ->
-    $adr.textContent = "http://.../demain?nom=#{t}"
+    $adr.textContent = "http://.../tomorrow?name=#{t}"
     $bdy.innerHTML = ""
-    $bdy.append "p Bonjour #{t}"
-    $src.textContent = "<p>Bonjour #{t}</p>"
-    hljs.highlightBlock $src
+    $src.innerHTML = ($ '#then pre').innerHTML
+    ($src.$ 'code').childNodes.forEach (n) ->
+            n.textContent = n.textContent.replace '#name', t
+    $bdy.innerHTML = $src.textContent
     e.preventDefault()
     false
