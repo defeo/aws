@@ -56,7 +56,7 @@ html.slideshow {
 	    text-align: center;
 	    font-size: 3em;
 	}
-	h2:before { content: ''; }
+	h2:before { content: '' !important; }
 	h2 {
 	    font-size: 2em;
 	    margin: 2% 1% 2% 8%;
