@@ -111,41 +111,41 @@ etc.
          transform="matrix(-0.8,0,0,-0.8,-10,0)"
          style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none" />
     </marker>
-	<image id="file"
-		xlink:href="../assets/document.png"
-		width="44" height="60" />
+    <image id="file"
+        xlink:href="../assets/document.png"
+        width="44" height="60" />
   </defs>
   <g style="-webkit-transform:scale(0.7);-ms-transform:scale(0.7)">
   <g style="font-family:Mono">
-	<use xlink:href="#file" x="40" y="0" />
-	<text x="0" y="80">menu.html</text>
+    <use xlink:href="#file" x="40" y="0" />
+    <text x="0" y="80">menu.html</text>
 
-	<use xlink:href="#file" x="40" y="100" />
-	<text x="0" y="180">content.md</text>
+    <use xlink:href="#file" x="40" y="100" />
+    <text x="0" y="180">content.md</text>
 
-	<use xlink:href="#file" x="40" y="200" />
-	<text x="0" y="280">footer.pug</text>
+    <use xlink:href="#file" x="40" y="200" />
+    <text x="0" y="280">footer.pug</text>
 
-	<a xlink:href="https://perl.org">
-		<image xlink:href="../assets/perl.png" x="370" y="105" width="135" height="51" />
-	</a>
+    <a xlink:href="https://perl.org">
+        <image xlink:href="../assets/perl.png" x="370" y="105" width="135" height="51" />
+    </a>
 
-	<use xlink:href="#file" x="620" y="100" />
-	<text x="580" y="180">index.html</text>
+    <use xlink:href="#file" x="620" y="100" />
+    <text x="580" y="180">index.html</text>
   </g>
   <g style="stroke:black;stroke-width:2;marker-end:url(#arrow)">
     <path d="m 100,30 260,80" />
     <path d="m 100,130 60,0" />
     <path d="m 100,230 100,0" />
 
-	<path d="m 300,130 60,0" />
-	<path d="m 260,230 100,-80" />
+    <path d="m 300,130 60,0" />
+    <path d="m 260,230 100,-80" />
 
-	<path d="m 510,130 100,0" />
+    <path d="m 510,130 100,0" />
 </g>
   <g style="fill:blue">
     <a xlink:href="https://daringfireball.net/projects/markdown/"><text x="170" y="138">Markdown</text></a>
-	<a xlink:href="https://pugjs.org/"><text x="210" y="238">Pug</text></a>
+    <a xlink:href="https://pugjs.org/"><text x="210" y="238">Pug</text></a>
   </g>
   </g>
 </svg>
@@ -439,7 +439,7 @@ EE](https://www.oracle.com/technetwork/java/javaee/), ...
 engine*, written in C++)
 
 - **Modules:** Web server, HTTP API, Packet manager (`npm`).
-- **Optional modules**(developed by the community, distributed via
+- **Optional modules** (developed by the community, distributed via
   `npm`)**:** Web/REST frameworks, Sessions, Memcache, Templates
   engines, Database abstraction, WebSockets, ...
   
@@ -458,103 +458,101 @@ Web *Micro-framework* for Node.js (written en **JavaScript**)
 ### HTTP API: Application, request, response
 
 <svg style="margin:auto;display:block" width="700" height="500"
-	viewBox="0 -250 700 500">
+    viewBox="0 -250 700 500">
   <defs>
     <marker id="arrow" orient="auto"
        style="overflow:visible">
       <path
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
          transform="matrix(-0.8,0,0,-0.8,-10,0)"
-		 fill="black" stroke="black"
+         fill="black" stroke="black"
          marker-start="none" />
     </marker>
-	<image id="symfony-svg"	xlink:href="../assets/node.svg" width="180" height="180"/>
+    <image id="symfony-svg"    xlink:href="../assets/node.svg" width="180" height="180"/>
   </defs>
 
   <g class="code" style="font-size: 16px">
-	<text x="10" y="-240">
-	  <tspan dy="16">POST /url?a=b HTTP/1.1</tspan>
-	  <tspan x="10" dy="32">Host: www.myhost.com</tspan>
-	  <tspan x="10" dy="16">Accept-Language: "fr;en"</tspan>
-	  <tspan x="10" dy="16">Content-Type: application/json</tspan>
-	  <tspan x="10" dy="32">{ "func": "is_prime",</tspan>
-	  <tspan x="10" dy="16" xml:space="preserve">  "nums": [1,2,3,4,5,6,7,8] }</tspan>
-	</text>
+    <text x="10" y="-240">
+      <tspan dy="16">POST /url?a=b HTTP/1.1</tspan>
+      <tspan x="10" dy="32">Host: www.myhost.com</tspan>
+      <tspan x="10" dy="16">Accept-Language: "fr;en"</tspan>
+      <tspan x="10" dy="16">Content-Type: application/json</tspan>
+      <tspan x="10" dy="32">{ "func": "is_prime",</tspan>
+      <tspan x="10" dy="16" xml:space="preserve">  "nums": [1,2,3,4,5,6,7,8] }</tspan>
+    </text>
 
-	<text x="10" y="206">
-	  <tspan xml:space="preserve">  "primes": [2,3,5,7] }</tspan>
-	  <tspan x="10" dy="-16">{ "status": "ok",</tspan>
-	  <tspan x="10" dy="-32">Content-Type: application/json</tspan>
-	  <tspan x="10" dy="-16">Content-Length: 40</tspan>
-	  <tspan x="10" dy="-16">Set-Cookie: sessid=0A5FD2</tspan>
-	  <tspan x="10" dy="-32">HTTP/1.1 200 OK</tspan>
-	</text>
+    <text x="10" y="206">
+      <tspan xml:space="preserve">  "primes": [2,3,5,7] }</tspan>
+      <tspan x="10" dy="-16">{ "status": "ok",</tspan>
+      <tspan x="10" dy="-32">Content-Type: application/json</tspan>
+      <tspan x="10" dy="-16">Content-Length: 40</tspan>
+      <tspan x="10" dy="-16">Set-Cookie: sessid=0A5FD2</tspan>
+      <tspan x="10" dy="-32">HTTP/1.1 200 OK</tspan>
+    </text>
   </g>
   <use xlink:href="#symfony-svg" x="290" y="-100" />
   <g fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)">
-	<path d="m 300,-185 q 70,0 70,120" />
-	<path d="m 370,70 q 0,80 -70,100" />
+    <path d="m 300,-185 q 70,0 70,120" />
+    <path d="m 370,70 q 0,80 -70,100" />
   </g>
   
   <g class="incremental" fill="none" stroke="red" stroke-dasharray="5,3" >
-	<g>
-	  <text x="470" y="-230" fill="red" stroke="none">Request:</text>
-	  <path d="m 465,-235 -145,0" />
-	  <rect x="1" y="-249" width="320" height="149" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="-210" fill="red" stroke="none">query string</text>
-	  <path d="M 485,-215 Q 270,-210 110,-220 " />
-	  <rect x="79" y="-239" width="4.1ex" height="1em" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="-190" fill="red" stroke="none">headers</text>
-	  <rect x="5" y="-207" width="307" height="55" />
-	  <path d="m 485,-195 -173,0" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="-170" fill="red" stroke="none">request body</text>
-	  <rect x="5" y="-145" width="305" height="38" />
-	  <path d="m 485,-175 -175,50" />
-	</g>
-	<g style="font-size:80%">
-	  <text x="490" y="-150" fill="red" stroke="none">method, url, cookies, ...</text>
-	</g>
-	
-	<g transform="translate(0 -30)">
-	  <g>
-		<text x="470" y="180" fill="red" stroke="none">Response:</text>
-		<rect x="1" y="100" width="320" height="149" />
-		<path d="m 465,175 -145,0" />
-	  </g>
-	  <g style="font-size:80%">
-		<text x="490" y="200" fill="red" stroke="none">status code</text>
-		<rect x="75" y="109" width="70" height="1em" />
-		<path d="m 485,195 C 260,195 485,118 145,118" />
-	  </g>
-	  <g style="font-size:80%">
-		<text x="490" y="220" fill="red" stroke="none">response body</text>
-		<rect x="5" y="200" width="250" height="45" />
-		<path d="m 485,215 -230,0" />
-	  </g>
-	  <g style="font-size:80%">
-		<text x="490" y="240" fill="red" stroke="none">headers, cookies, ...</text>
-	  </g>
-	</g>
-	
-	<g transform="translate(30)">
-	  <text x="470" y="-40" fill="red" stroke="none">Application:</text>
-	  <path d="M 465,-45 420,-20" />
-	  
-	  <text x="490" y="-20" fill="red" stroke="none" style="font-size:80%">
-	    <tspan>router</tspan>
-	    <tspan x="490" dy="20">template engine</tspan>
-	    <tspan x="490" dy="20">sessions</tspan>
-	    <tspan x="490" dy="20">DB interface</tspan>
-	    <tspan x="490" dy="20">middlewares</tspan>
-	    <tspan x="490" dy="20">...</tspan>
-	  </text>
-	</g>
+    <g>
+      <text x="470" y="-230" fill="red" stroke="none">Request:</text>
+      <path d="m 465,-235 -145,0" />
+      <rect x="1" y="-249" width="320" height="149" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="-210" fill="red" stroke="none">query string</text>
+      <path d="M 485,-215 Q 270,-210 110,-220 " />
+      <rect x="79" y="-239" width="4.1ex" height="1em" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="-190" fill="red" stroke="none">headers</text>
+      <rect x="5" y="-207" width="307" height="55" />
+      <path d="m 485,-195 -173,0" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="-170" fill="red" stroke="none">request body</text>
+      <rect x="5" y="-145" width="305" height="38" />
+      <path d="m 485,-175 -175,50" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="-150" fill="red" stroke="none">method, url, cookies, ...</text>
+    </g>
+    
+    <g>
+      <text x="470" y="150" fill="red" stroke="none">Response:</text>
+      <rect x="1" y="70" width="320" height="149" />
+      <path d="m 465,145 -145,-30" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="170" fill="red" stroke="none">status code</text>
+      <rect x="75" y="79" width="70" height="1em" />
+      <path d="m 485,165 C 260,165 485,88 145,88" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="190" fill="red" stroke="none">response body</text>
+      <rect x="5" y="170" width="250" height="45" />
+      <path d="m 485,185 -230,0" />
+    </g>
+    <g style="font-size:80%">
+      <text x="490" y="210" fill="red" stroke="none">headers, cookies, ...</text>
+    </g>
+
+    <g>
+      <text x="500" y="-40" fill="red" stroke="none">Application:</text>
+      <path d="M 495,-45 450,-20" />
+
+      <text x="520" y="-20" fill="red" stroke="none" style="font-size:80%">
+        <tspan>router</tspan>
+        <tspan x="520" dy="20">template engine</tspan>
+        <tspan x="520" dy="20">sessions</tspan>
+        <tspan x="520" dy="20">DB interface</tspan>
+        <tspan x="520" dy="20">middlewares</tspan>
+        <tspan x="520" dy="20">...</tspan>
+      </text>
+    </g>
   </g>
 </svg>
 
@@ -592,9 +590,32 @@ Web *Micro-framework* for Node.js (written en **JavaScript**)
 5. That's all folks!
 
 </section>
-<section class="compact">
+<section>
 
 ## Anatomy of a handler
+
+### The router
+
+The *router* associates: **method+URL → code to run**
+
+~~~js
+app.get('/url', function(req, res) {
+    ...
+});
+~~~
+
+It can also translate part of the URL into arguments to the *callback*
+
+~~~js
+app.get('/url/:a1/:a2', function(req, res) {
+    console.log(req.params.a1);
+    console.log(req.params.a2);
+    ...
+});
+~~~
+
+</section>
+<section>
 
 ### The request object
 
@@ -604,19 +625,19 @@ var cookieParser = require("cookie-parser");
 
 // Configure the application
 app
-	.use(bodyParser.urlencoded({ extended: false }))
-	.use(cookieParser());
+    .use(bodyParser.urlencoded({ extended: false }))
+    .use(cookieParser());
 
 app.get('/', function(req, res) {
-	req.query;        // query string
-	req.body;         // request body
-	req.headers;      // HTTP headers
-	req.cookies;      // cookies
+    req.query;                    // query string
+    req.body;                     // request body
+    req.headers;                  // HTTP headers
+    req.cookies;                  // cookies
 });
 ~~~
 
 </section>
-<section class="compact">
+<section>
 
 ### The response object
 
@@ -655,77 +676,78 @@ res.json({ 'a' : 'b' });
 </section>
 <section>
 
+## Hello world
+
+```js
+var express = require('express');
+
+var app = express();
+
+app.get('/hello', function(req, res) {
+    if (req.query.name) {
+        res.send(`<h1>Hello, ${req.query.name}</h1>`);
+    } else {
+        res.send('<h1>Hello world!</h1>');
+    }
+});
+
+app.listen(80);
+```
+
+</section>
+<section>
+
 ## Anatomy of the application
 
 <svg style="margin:auto;display:block" width="950" height="450"
-	viewBox="0 -225 1015 450">
+    viewBox="0 -225 1015 450">
   <defs>
     <marker id="arrow-start" orient="auto"
        style="overflow:visible">
       <path
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
          transform="matrix(0.8,0,0,0.8,10,0)"
-		 fill="black" stroke="black"
+         fill="black" stroke="black"
          marker-start="none" />
     </marker>
   </defs>
 
-  <use x="50" y="-140" xlink:href="#symfony-svg" />
+  <use x="30" y="-170" xlink:href="#symfony-svg" />
   <g stroke="black" fill="none"  marker-end="url(#arrow)" stroke-dasharray="5,2">
     <path d="M 120,-200 120,-125" />
-	<path d="M 180,-60 Q 200,-20 345,-20" />
-	<g marker-start="url(#arrow-start)">
-	  <path d="M 700,0 700,120" />
-	  <path d="M 700,-55 700,-155" />
+    <path d="M 180,-60 Q 200,-20 345,-20" />
+    <g marker-start="url(#arrow-start)">
+      <path d="M 700,0 700,120" />
+      <path d="M 700,-55 700,-155" />
     </g>
-	<path d="M 345,-10 Q 120,-10 120,145" />
+    <path d="M 345,-10 Q 120,-10 120,145" />
   </g>
   <g class="code">
-    <text x="0" y="-205" fill="black">GET /path/toto/titi</text>
-	<text x="350" y="-40">
-	  <tspan>$app->get(<tspan fill="#800">'/path/{v1}/{v2}'</tspan>, </tspan>
-	  <tspan style="font-weight:bold">function</tspan><tspan>($v1, $v2) {</tspan>
-	  <tspan x="350" dy="25" xml:space="preserve">  ...</tspan>
-	  <tspan x="350" dy="25">}</tspan>
-	</text>
-	<text x="540" y="140">
-	  <tspan>&lt;h1&gt;Hello <tspan style="font-weight:bold">{{ user }}</tspan>!&lt;/h1&gt;</tspan>
-	</text>
-	<text x="460" y="-160">SELECT * FROM user WHERE id=$v1;</text>
-	<text x="0" y="170">
-	  <tspan>HTTP/1.1 200 OK</tspan>
-	  <tspan x="0" dy="40">&lt;h1&gt;Hello toto!&lt;/h1&gt;</tspan>
-	</text>
+    <text x="0" y="-205" fill="black">GET /path/foo/bar</text>
+    <text x="350" y="-40">
+      <tspan>app.get(<tspan fill="#800">'/path/:v1/:v2'</tspan>, </tspan>
+      <tspan style="font-weight:bold">function</tspan><tspan>(req, res) {</tspan>
+      <tspan x="350" dy="25" xml:space="preserve">  ...</tspan>
+      <tspan x="350" dy="25">}</tspan>
+    </text>
+    <text x="540" y="140">
+      <tspan>&lt;h1&gt;Hello <tspan style="font-weight:bold">{{ user }}</tspan>!&lt;/h1&gt;</tspan>
+    </text>
+    <text x="460" y="-160">SELECT * FROM user WHERE id=${req.params.v1};</text>
+    <text x="0" y="170">
+      <tspan>HTTP/1.1 200 OK</tspan>
+      <tspan x="0" dy="40">&lt;h1&gt;Hello foo!&lt;/h1&gt;</tspan>
+    </text>
   </g>
   <g fill="red" stroke="red">
     <text x="220" y="-30">Router</text>
-	<text x="840" y="20">Handler</text>
+    <text x="840" y="20">Handler</text>
     <text x="600" y="70">Template engine</text>
-	<text x="640" y="-100">Database</text>
-	<text x="100" y="60">Response</text>
+    <text x="640" y="-100">Database</text>
+    <text x="100" y="60">Response</text>
   </g>
   <rect fill="none" stroke="red" stroke-width="2" x="340" y="-70" width="665" height="95" />
 </svg>
-
-</section>
-<section>
-
-## The router
-
-The *router* associates: **method+URL → code to run**
-
-~~~js
-app.get('/url', function(req, res) {...});
-~~~
-
-It can also translate part of the URL into arguments to the *callback*
-
-~~~js
-app.get('/url/:a1/:a2', function(req, res) {
-	console.log(req.params.a1);
-	console.log(req.params.a2);
-});
-~~~
 
 </section>
 <section>
