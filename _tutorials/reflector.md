@@ -119,8 +119,10 @@ have to do is to add the following line to the configuration of your
 Express application.
 
 ```js
-app.use(express.static('<name-of-the-folder>'));
+app.use('/s', express.static('<name-of-the-folder>'));
 ```
+
+The static files will be then accessible via the URL `/s/<name-of-thefile>`.
 
 1. Create a static file named, e.g., `static/form.html`. Add to it an
    HTML form that sends all its data to the `/query_string` URL (use
