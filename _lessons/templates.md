@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: Langages de templates
-subtitle: Twig et ses compagnons
+title: Template languages
+subtitle: Django and friends
 excerpt: ""
 addons:
   video:
@@ -10,105 +10,172 @@ addons:
       - 58a4d0ff6e24fc1857e290e0
       - 58a4d0ff6e24fc1857e290ec
       - 58a4d0ff6e24fc1857e290fb
+scripts: 'https://unpkg.com/nunjucks@3.0.1/browser/nunjucks.js'
 ---
 
 {% raw %}
 
 <section>
 
-## Séparation des *vues*
+## Generating HTML
 
-**Le problème :** considérez ce gestionnaire (PHP)
+### In classic JavaScript
 
-~~~
-$res = '<html><head><title>Bla</title><body><table>';
-foreach ($array as $k => $v) {
-	$res .= "<tr><td>$k</td><td>$v</td></tr>";
+```js
+function(req, res) {
+    var user = req.session.user;
+    res.send('<!Doctype html><html><head><title>Main page</title></head>'
+        + '<body><h1>Hello ' + user + '</h1></body></html>');
 }
-return $res . '</table></body></html>';
-~~~
-{:.php}
+```
 
-- Confusion entre **logique** et **présentation**,
-- Code difficile à lire et à organiser,
-- Syntaxe très lourde (répétition de la variable `$res`),
-- Pas possible de colorier la syntaxe HTML dans un éditeur,
-- Risques de sécurité...
-
-Les **templates** naissent pour résoudre ces problèmes.
+Imagine writing this for **every** HTML page your app needs to
+generate...
 
 </section>
 <section>
 
-## Templates
+### Starting from JS version ES6
 
-Un exemple de *template* (Twig)
+```js
+function(req, res) {
+    var user = req.session.user;
+    res.send(`
+<!Doctype html>
+<html>
+    <head>
+        <title>Main page</title>
+    </head>
+    <body>
+        <h1>Hello ${user}</h1>
+    </body>
+</html>
+`);
+}
+```
 
+More readable, useful for small snippets, but still...
+
+</section>
+<section>
+
+## Separating *views* from logic
+
+**The problem**
+
+~~~js
+function(req, res) {
+    body = '<html><head><title>Bla</title><body><table>';
+    for (var k in v) {
+        body += `<tr><td>${k}</td><td>${v[k]}</td></tr>`;
+    }
+    res.send(body + '</table></body></html>');
+}
 ~~~
+
+- Confusion between **logic** and **presentation**,
+- Code hard to read and organize,
+- Very heavy syntax (`body` variable repeated thrice),
+- No HTML syntax highlighting in code editors,
+- Security risks (injections, etc.)...
+
+**Template languages** address these problems.
+
+</section>
+<section>
+
+## Early template languages: PHP
+
+~~~php
 <!DOCTYPE html>
 <html>
   <head>
     <title>Blabla</title>
   </head>
   <body>
-    <h1>Bonjour {{ user }}</h1>
-	
-	{% include 'content.html' %}
+    <h1>Hello <?php echo $user; ?></h1>
+    
+    <?php include "content.php"; ?>
   </body>
 </html>
 ~~~
-{:.django}
 
-- La valeur de la variable `user` est remplacée pour `{{ user }}` ;
-- Le contenu de `content.html` est inséré dans la sortie ;
-- Tout le reste est renvoyé à l'identique.
+- Delimiters `<?php` ... `?>` introduce arbitrary executable PHP code,
+- Everything outside of delimiters is left as is.
+
+**Security risks:** No escaping by default, too powerful.
 
 </section>
 <section>
 
-## Langages de templating
+## Modern template languages
 
-Les *langanges de templating* permettent, en général, de
+An example
 
-- Remplacer des variables (`{{ var }}`) ;
-- Exécuter des tests (`{% if %}`) ;
-- Boucler sur des tableaux (`{% for %}`) ;
-- Inclure d'autres templates (`{% include %}`, `{% block %}`, `{% extends %}`) ;
-- Chaîner des transformations (`{{ var | upper | strip }}`) ;
-- Appliquer des opérateurs simples (mathématiques, logiques, comparaisons).
+~~~django
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blabla</title>
+  </head>
+  <body>
+    <h1>Hello {{ user }}</h1>
+    
+    {% include "content.html" %}
+  </body>
+</html>
+~~~
 
-Quelques langages de templating
+- Dedicated language, distinct from platform language, less powerful:
+  - The value of the `user` variable is replaced for `{{ user }}`;
+  - The contents of `content.html` are injected in the output;
+  - Everything else is output as is.
 
-- À la [Django](https://www.djangoproject.com/) (Python) :
-  [Twig](http://twig.sensiolabs.org/) (PHP),
+</section>
+<section>
+
+## Template languages
+
+*Template languages* typically have these features:
+
+- Replace variables (`{{ var }}`);
+- Execute tests (`{% if %}`);
+- Loop over lists, arrays and dictionaries (`{% for %}`);
+- Include other templates (`{% include %}`, `{% block %}`, `{% extends %}`);
+- Chain transformations (`{{ var | upper | strip }}`);
+- Apply simple operators (mathematical, logical, comparisons).
+
+Some template languages
+
+- *A la* [Django](https://www.djangoproject.com/) (Python):
   [Jinja](http://jinja.pocoo.org/) (Python),
-  [Nunjucks](https://mozilla.github.io/nunjucks/) (Node.js).
-- *Sans logique* : [Mustache](http://mustache.github.io/),
+  **[Nunjucks](https://mozilla.github.io/nunjucks/) (Node.js)**,
+  [Twig](http://twig.sensiolabs.org/) (PHP).
+- *Logic-less*: [Mustache](http://mustache.github.io/),
   [Handlebars](http://handlebarsjs.com/),
   [Hogan](http://twitter.github.io/hogan.js/).
-- *Embedded* : [PHP](http://php.net/), [ASP](http://www.asp.net/), JSP, Eruby,
+- *Embedded*: [PHP](http://php.net/), [ASP](http://www.asp.net/), JSP, Eruby,
   [EJS](http://embeddedjs.com/).
-- *Toute une philosphie* : [Pug](https://pugjs.org/).
+- *A whole other world*: [Pug](https://pugjs.org/).
 
 </section>
 <section>
 
-## Twig <small>(langage de templates par défaut de Silex)</small>
+## Nunjucks <small>(<https://mozilla.github.io/nunjucks/>)</small>
 
-**Contexte :** dictionnaire d'associations **clé → valeur** passé au
-template. Par exemple :
+**Context:** a dictionary of **key → value** associations given to the
+template engine. For example:
 
-- `nom` → `toto`
+- `name` → `toto`
 - `users` → `[titi, tutu, tata]`
 
-### Substitution de variables, filtres 
+### Variable substitution, filters
 
 <div class="two-cols">
 
+~~~django
+Hello {{ name }}
 ~~~
-Hello {{ nom }}
-~~~
-{:.django}
 
 ~~~
 Hello toto
@@ -120,19 +187,18 @@ Hello toto
 
 <div class="two-cols">
 
-~~~
-En majuscules : {{ nom | upper }}
-Une liste : {{ users | join(', ') }}
+~~~django
+Upper case: {{ name | upper }}
+A list: {{ users | join(', ') }}
 
 {% filter upper %}
-  {{ nom }}
+  {{ name }}
 {% endfilter %}
 ~~~
-{:.django}
 
 ~~~
-En majuscules : TOTO
-Une liste : titi, tutu, tata
+Upper case: TOTO
+A list: titi, tutu, tata
 
 
   TOTO
@@ -143,50 +209,48 @@ Une liste : titi, tutu, tata
 </section>
 <section>
 
-## Contrôle
+## Control
 
-### Conditionnel
+### Conditionals
 
 <div class="two-cols">
 
-~~~
-{% if nom == 'toto' %}
-Bonjour mon cher
+~~~django
+{% if name == 'toto' %}
+Hello my dear
 {% else %}
-Bonjour
+Hello
 {% endif %}
 ~~~
-{:.django}
 
 ~~~
-Bonjour mon cher
+Hello my dear
 ~~~
 
 </div>
 
-### Boucle
+### Loops
 
 <div class="two-cols">
 
-~~~
+~~~django
 {% for i in range(0, 3) %}
-  Utilisateur : {{ users[i] }}
+  User: {{ users[i] }}
 {% endfor %}
 
 {% for u in users %}
-  Utilisateur : {{ u }}
+  User: {{ u }}
 {% endfor %}
 ~~~
-{:.django}
 
 ~~~
-Utilisateur: titi
-Utilisateur: tutu
-Utilisateur: tata
+User: titi
+User: tutu
+User: tata
 
-Utilisateur: titi
-Utilisateur: tutu
-Utilisateur: tata
+User: titi
+User: tutu
+User: tata
 ~~~
 
 </div>
@@ -194,32 +258,29 @@ Utilisateur: tata
 </section>
 <section>
 
-## Modularité
+## Modularity
 
 ### Inclusion
 
+~~~django
+{% include 'other_template.html' %}
 ~~~
-{% include 'autre_template.html' %}
-~~~
-{:.django}
 
 ### Macros
 
-~~~
-{% macro greet(nom) %}
-  Bonjour Mr {{ nom }}
+~~~django
+{% macro greet(name) %}
+  Hello Mr {{ name }}
 {% endmacro %}
 ~~~
-{:.django}
 
 <div class="two-cols">
 
-~~~
+~~~django
 {% from "macros.html" import greet %}
 
 {{ greet('toto') }}
 ~~~
-{:.django}
 
 ~~~
 Bonjour Mr toto
@@ -230,29 +291,28 @@ Bonjour Mr toto
 </section>
 <section>
 
-### Héritage
+### Inheritance
 
 <div class="two-cols">
 
-~~~
-Voici le template `main.html`
-Les blocs sont affichés tels quels
+~~~django
+Here's the `main.html` template
+Blocks are shown as is
 
-{% block titre %}
-  Un titre quelconque
+{% block title %}
+  A title
 {% endblock %}
 
-{% block pied %}
+{% block footer %}
   Copyright Pinco Pallino
 {% endblock %}
 ~~~
-{:.django}
 
 ~~~ 
-Voici le template `main.html`
-Les blocs sont affichés tels quels
+Here's the `main.html` template
+Blocks are shown as is
 
-  Un titre quelconque
+  A Title
 
   Copyright Pinco Pallino
 ~~~
@@ -260,20 +320,19 @@ Les blocs sont affichés tels quels
 </div>
 <div class="two-cols">
 
-~~~
+~~~django
 {% extends 'main.html' %}
 
-{% block titre %}
-  Remplace titre
+{% block title %}
+  Replaces title
 {% endblock %}
 ~~~
-{:.django}
 
 ~~~
-Voici le template `main.html`
-Les blocs sont affichés tels quels
+Here's the `main.html` template
+Blocks are shown as is
 
-  Remplace titre
+  Replaces title
 
   Copyright Pinco Pallino
 ~~~
@@ -281,58 +340,47 @@ Les blocs sont affichés tels quels
 </div>
 
 </section>
-<section class="compact">
+<section>
 
-## Utiliser Twig: `render`
+## Using Nunjucks in Express: `res.render()`
 
-dans Silex
+~~~js
+...
+app = express();
 
-~~~
-$app->register(new Silex\Provider\TwigServiceProvider(), 
-               array('twig.path' => 'templates'));
-
-$app->get('/', function(Application $app) {
-	return $app['twig']->render('hello.html', array(
-		'nom' => 'Toto'
-	));
+var nunjucks = require("nunjucks");
+nunjucks.configure('views', {
+    express: app,
+    autoescape: true                 // automatic escaping
 });
-~~~
 
-dans Express (s'applique aussi à d'autres langages de templating)
-
-~~~
-var twig = require('twig');
-app.set('views', 'templates');       // où trouver les templates
-app.set('view engine', 'html');      // à quelle extension
-app.engine('html', twig.__express);  // associer twig
-app.set('twig options', {
-    autoescape: true                 // échappement automatique
-});
+app.set('views', 'templates');       // look for template files are in 
+                                     // 'templates' folder
 
 app.get('/', function(req, res) {
-	res.render('hello.html', { 'nom' : 'Toto' });
+    res.render('hello.html', { name : 'Toto' });
 });
 ~~~
 
 </section>
 <section>
 
-## Échappement
+## Escaping
 
-- La programmation web comporte le melange de plusieurs langages de
-  programmation : HTML, CSS, JavaScript, PHP, templates, SQL, ...
-- Chaque langage a ses caractères spéciaux. Par ex.: `<`, `>`, `&`,
+- Web programming mixes many different programming languages: HTML,
+  CSS, JavaScript, PHP, templates, SQL, ...
+- Each language has its own special characters. E.g.: `<`, `>`, `&`,
   `'`, `"`
 
-Considérez ce gestionnaire
+Take this handler:
 
-~~~
-function(Request $req) {
-  return '<h1>' . $req->query->get('nom') . '</h1>';
+~~~js
+function(req, res) {
+  res.send(`<h1>${req.query.nom}</h1>`);
 }
 ~~~
 
-Nom : <input id="replace" type="text" value="A&lt;U , Z>U"><input type="button" id="go" value="Go">
+Name: <input id="replace" type="text" value="A&lt;U , Z>U"><input type="button" id="go" value="Go">
 
 <div id="frame" style="width:80%;height:2em;margin:auto;border:solid thin #ccc;box-shadow:1px 1px 2px #aaa inset;padding: 5px"></div>
 
@@ -342,16 +390,16 @@ $('#go').onclick = function() {
 }
 </script>
 
-Les caractères `<U , Z>` sont interprétés comme la balise `<U>`.
+Characters `<U , Z>` are interpreted as the `<U>` html tag!
 
 </section>
 <section>
 
 
-## Échappement HTML
+## HTML escaping
 
-HTML définit des séquences d'échappement pour ses caractères spéciaux,
-appelées *character entities*.
+HTML defines escaping sequences for its special characters,
+called *character entities*.
 
 | `&lt;` | `&gt;` | `&amp;` | `&quot;` | `&apos;` |
 |  `<`   |  `>`   |   `&`   |   `"`    |   `'`    |
@@ -362,42 +410,38 @@ appelées *character entities*.
 #entities td:not(:first-child) { border-left: solid thin #aaa }
 </style>
 
-Ces remplacements sont appliqués automatiquement par
+These substitutions are automatically performed by
 
-- La fonction `htmlspecialchars()` de PHP,
-- La fonction `$app->escape()` de Silex,
-- Twig et la majorité des autres moteurs de templates,
-- Des modules de Node.js, comme [escape-html](https://www.npmjs.com/package/escape-html).
+- Nunjucks, and the majority of templating engines,
+- Some dedicated Node.js modules, like
+  [escape-html](https://www.npmjs.com/package/escape-html).
 
-**ATTENTION : n'utiliser que pour du HTML !**
+**WARING: only use for HTML!**
 
-- JSON : remplacer `'` → `\'`, `"` → `\"`,
-- JavaScript : comme JSON, mais avec beaucoup de soin !
+- JSON: replace `'` → `\'`, `"` → `\"` (in practice, use
+  `JSON.stringify()`, `res.json()`),
+- JavaScript: like JSON, but much more carefully!
 
 </section>
 <section>
 
-## Échappement dans Twig
+## Escaping in Nunjucks
 
-Les remplacements `{{ var }}` sont échappés par défaut.
+The `{{ var }}` substitutions are escaped by default
 
-Désactiver l'échappement :
-
-~~~
-{% autoescape false %} {{ nom }} {% endautoescape %}
-{{ nom | raw }}
-~~~
-
-Réactiver l'échappement :
+Disabling escaping:
 
 ~~~
-{% autoescape 'html' %}{{ nom }}{% endautoescape %}
-{% autoescape 'css' %}{{ nom }}{% endautoescape %}
-{{ nom | escape }}
-{{ nom | e }}
+{{ name | safe }}
 ~~~
 
-Nom : <input id="replace-esc" type="text" value="A&lt;U , Z>U"><input type="button" id="go-esc" value="Go">
+Re-activating escaping:
+
+~~~
+{{ name | escape }}
+~~~
+
+Name: <input id="replace-esc" type="text" value="A&lt;U , Z>U"><input type="button" id="go-esc" value="Go">
 
 <div id="frame-esc" style="width:80%;height:2em;margin:auto;border:solid thin #ccc;box-shadow:1px 1px 2px #aaa inset;padding: 5px"></div>
 
@@ -418,11 +462,81 @@ $('#go-esc').onclick = function() {
 </section>
 <section>
 
-## Lectures
+## Nunjucks in the browser
 
-- La [doc officielle de Twig](http://twig.sensiolabs.org/documentation) (en anglais),
-- L'[introduction pour les designers](http://twig.sensiolabs.org/doc/templates.html) (en anglais),
-- Le [tutoriel de Symfony](http://symfony.com/fr/doc/current/book/templating.html) (en français).
+- Add Nunjucks to your HTML page with a `<script>` tag
+  
+  ```html
+  <script src="nunjucks.js"></script>
+  ```
+  
+- Use `nunjucks.render(template, context)` to evaluate templates
+  
+  ```js
+  nunjucks.render('index.html', { foo: 'bar' });
+  ```
+  
+See instructions at <https://mozilla.github.io/nunjucks/getting-started.html>
+
+<div id="njk">
+<p>Template</p><p>Context</p><p>Document</p>
+<textarea id="njk-src">
+&lt;h3>Hello {{ name }}&lt;/h3>
+
+&lt;ul>
+  {% for u in users %}
+  &lt;li>{{ u }}&lt;/li>
+  {% endfor %}
+&lt;/ul>
+</textarea>
+<div id="njk-ctx" title="Open JavaScript console and modify `context` variable"></div>
+<iframe id="njk-dst"></iframe>
+</div>
+
+<script>
+var context = {
+    name: 'toto',
+    users: ['titi', 'tutu', 'tata'],
+};
+$('#njk').css({
+    'padding': '0 1em',
+    'display': 'grid',
+    'grid-template-columns': 'repeat(3, 1fr)',
+    ':scope > *': {
+        'border': 'solid thin black',
+        'overflow': 'auto',
+        'height': '10em',
+        'font-size': 'smaller',
+    },
+    '#njk-ctx': {
+        'font-family': 'mono',
+        'white-space': 'pre',
+    },
+    'p': {
+        border: 'none',
+        height: 'inherit',
+        'text-align': 'center',
+        'font-weight': 'bold',
+    }
+});
+const dst = $('#njk-dst');
+const ctx = $('#njk-ctx');
+const src = $('#njk-src');
+setInterval(
+    () => {
+        dst.contentDocument.body.innerHTML = nunjucks.renderString(src.value, context);
+        ctx.textContent = JSON.stringify(context, null, 2);
+    },
+    2000);
+</script>
+
+</section>
+<section>
+
+## References
+
+- [Installing Nunjucks](https://mozilla.github.io/nunjucks/getting-started.html),
+- The [official Nunjucks docs](https://mozilla.github.io/nunjucks/templating.html).
 
 </section>
 
