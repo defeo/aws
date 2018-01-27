@@ -283,7 +283,7 @@ User: tata
 ~~~
 
 ~~~
-Bonjour Mr toto
+Hello Mr toto
 ~~~
 
 </div>
@@ -376,7 +376,7 @@ Take this handler:
 
 ~~~js
 function(req, res) {
-  res.send(`<h1>${req.query.nom}</h1>`);
+  res.send(`<h1>${req.query.name}</h1>`);
 }
 ~~~
 
@@ -416,7 +416,7 @@ These substitutions are automatically performed by
 - Some dedicated Node.js modules, like
   [escape-html](https://www.npmjs.com/package/escape-html).
 
-**WARING: only use for HTML!**
+**WARNING: only use for HTML!**
 
 - JSON: replace `'` → `\'`, `"` → `\"` (in practice, use
   `JSON.stringify()`, `res.json()`),
