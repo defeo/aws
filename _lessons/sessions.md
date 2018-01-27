@@ -1,7 +1,7 @@
 ---
 layout: lesson
 title: Sessions
-subtitle: Maintien d'état contrôlé par le serveur
+subtitle: State keeping by the server
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/sessions.webm
@@ -13,39 +13,38 @@ addons:
 
 ## Sessions
 
-Sous le nom de **sessions** on regroupe plusieurs techniques pour la
-réalisation d'un **stockage** clef-valeur **associé à un client** mais
-**contrôlé par le serveur**.
+Under the name of **sessions** go various techniques for keeping a
+key-value **storage associated to a client** and **controlled by the
+server**.
 
-- Différent du simple *stockage par le client*
-  ([cookies, storage API](etat)) :
+- Different from a simple *client-based storage*
+  ([cookies, storage API](etat)):
   
-  - Le client ne peut pas insérer/modifier les données sans l'accord
-	du serveur.
+  - The client cannot insert/modify data without help from the server
   
-  - (optionnel) Les données ne sont pas visibles par le client.
+  - (optional) Stored data are not visible to the client.
 
-- En général de courte durée (minutes) :
+- Typically short-lived:
   
-  - Réduit les risques associés au **vol/fixation de session**,
+  - Reduces risks associated to **session hijacking/fixing**.
 
 </section>
 <section>
 
-## Mécanique d'un système de session
+## Mechanics of a session system
 
 <div class="two-cols">
 <div>
 
-1. Le client se connecte pour la première fois :
+1. The client connects for the first time:
    
-   - Un **identifiant de session** lui est associé,
-   - le stockage est mis en place.
+   - It is given a **session identifier**,
+   - the server sets up a storage associated to the identifier.
 
-2. Le client visite à nouveau le site :
+2. When the client visits again the site:
    
-   - Il transmet l'identifiant de session
-   - le serveur *reconstruit* le stockage à partir de l'identifiant.
+   - It transmits the session identifier
+   - the server *recovers* the storage.
 
 </div>
 <svg style="margin:auto;display:block;flex: 0 0 550px"
@@ -132,119 +131,88 @@ réalisation d'un **stockage** clef-valeur **associé à un client** mais
 </section>
 <section>
 
-## Identifiants de session
+## Session identifiers
 
-Plusieurs canaux possibles (toutes les techniques de [maintien d'état](etat)) :
+Many possible channels (any techniques used for [keeping the state on the client](etat)):
 
-- URL (*query string*, chemin)
+- URL (*query string*, path)
   
   ~~~
-  /home?sessid=a3423f344
-  /a3423f344/home
+  https://www.example.com/home?sessid=a3423f344
+  https://www.example.com/a3423f344/home
   ~~~
-  {:no-highlight}
 
-- Formulaires cachés
+- Hidden forms
   
-  ~~~
+  ~~~html
   <input type="hidden" name="sessid" value="a3423f344">
   ~~~
-  {:.html}
 
-- Cookies (le plus courant) :
+- Cookies (the most used one):
   
   ~~~
   Cookie: sessid=a3423f344
   ~~~
 
-- Storage API (avec AJAX).
+- Storage API (with AJAX).
 
-**Sécurité** : les identifiants de session doivent être **éphémères**,
-**aléatoires** et **difficiles à deviner**.
+**Security**: session identifiers must be **ephemeral**, **random**
+and **hard to guess**.
 
 </section>
 <section>
 
-## Stockage par le serveur
+## Storage by the server
 
-- Zones de stockage possibles
+- Possible storage areas:
   
-  - mémoire volatile (RAM),
-  - fichier temporaire,
-  - base de données temporaire.
+  - volatile memory (RAM),
+  - temporary file,
+  - temporary database.
 
-- Le serveur est le seul à voir et modifier les données.
+- The server is the only one to see and modify data.
 
-- Capable de stocker beaucoup de données (mais déconseillé).
+- Potentially store large data (not recommended).
 
-- Système de sessions par défaut en PHP et Silex (fichier temporaire).
+- Default sessions system historically implemented in PHP (temporary file).
 
-- En Express :
+- In Express:
   
   - [`express-session`](https://www.npmjs.com/package/express-session)
-	(en mémoire).
-  - [`express-sessions`](https://www.npmjs.com/package/express-sessions)
-	(base de données temporaire).
+	(RAM, temporary database, ...).
   - ...
 
 </section>
 <section>
 
-## Stockage par le client
+## Storage by the client
 
-- Utilisation du stockage local du **client** : cookies, storage API
+- Leveraging the **client** local storage: cookies, storage API.
 
-- Méthodes **cryptographiques** (symétriques) pour garantir
+-  (Symmetric) **cryptographic** methods to guarantee
   
-  - **confidentialité →** Chiffrement : le serveur est le seul à voir
-	les données.
+  - **Confidentiality →** Encryption: the server is the only one able
+    to see the data.
   
-  - **integrité →** Signature (HMAC) : le serveur est le seul à
-    pouvoir créer/modifier les données.
+  - **Integrity →** Signature (HMAC): the server is the only one able
+    to create/modify data.
 
-- Identifiant de session = zone de stockage.
+- Session identifier = storage area.
 
-- Limité à des données de petite taille.
+- Limited to small data.
 
-- Le serveur doit générer une *clef secrète aléatoire* et ne jamais
-  le divulguer.
+- The server must generate a *random secret key*, and never give it
+  away.
 
-- En Express : [`cookie-session`](https://www.npmjs.com/package/cookie-session).
+- In Express:
+  [`cookie-session`](https://www.npmjs.com/package/cookie-session).
 
 </section>
 <section class="compact">
 
-## Exemple en Silex
+## Express example
 
-~~~
-// Configuration
-$app->register(new Silex\Provider\SessionServiceProvider());
-
-$app->get('/welcome',
-  function(Application $app, Request $req) {
-    // On stocke dans la session
-    $app['session']->set('user', $req->query->get('name'));
-    ...
-});
-
-$app->get('/next', function(Application $app) {
-  // On cherche dans la session
-  $u = $app['session']->get('user');
-  if ($u) {
-    return 'Hello ' . $u;
-  } else {
-    // Si user n'est pas défini, or rédirige sur /welcome
-    return $app->redirect('/welcome');
-  }
-});
-~~~
-
-</section>
-<section class="compact">
-
-## Exemple en Express
-
-~~~
+~~~js
 var express = require('express'),
     session = require('express-session');
 
@@ -255,18 +223,15 @@ app.use(session( {
 } ));
 
 app.get('/welcome', function (req, res) {
-  // On stocke dans la session
-  req.session.user = req.query.user;
+  req.session.user = req.query.user;       // Store data in the session
   ...
 });
 
 app.get('/next', function (req, res) {
-  // On cherche dans la session
-  if (req.session.user) {
+  if (req.session.user) {                  // Retrieve data from the session
     res.end('Hello ' + req.session.user);
   } else {
-    // Si user n'est pas défini, or rédirige sur /welcome
-    res.redirect('/welcome');
+    res.redirect('/welcome');              // If data is absent, redirect to /welcome
   }
 });
 ~~~
@@ -274,68 +239,67 @@ app.get('/next', function (req, res) {
 </section>
 <section>
 
-## Sessions : pour/contre
+## Sessions: pros/cons
 
-### Avantages
+### Advantages
 
-- API transparente, cache les détails du protocole et de
-  l'implantation.
-- Souvent plus rapide qu'une interrogation d'une BD.
+- Transparent API, hides the protocol and implementation details.
+- Often faster than querying a DB.
 
-### Désavantages
+### Disadvantages
 
-- Utilise plus de ressources serveur qu'un simple stockage par le
-  client.
-- Quasiment toutes les implantations nécessitent des cookies.
+- Uses more resources than a simple client-based storage.
+- Almost all implementations need the client to activate cookies.
 
-### Alternatives et compléments
+### Alternatives and complementary systems
 
-Systèmes de stockage global pour l'application
+Global storage for the application
 
-- Clef-valeur en mémoire : Redis, ...
-- *Big table* : Memcached, ...
+- Memory based key-value storages: Redis, ...
+- *Big table*: Memcached, ...
 
 </section>
 <section>
 
-## Rapples de sécurité
+## Security warnings
 
-**Ne pas stocker de données sensibles non chiffrées chez le client**,
-  ne pas les transmettre en clair par l'URL.
+**Never store unencrypted sensible data on the client**
+: Never transmit them via the URL.
 
-**Générer des identifiants de session difficiles à deviner :**
-  utiliser des générateurs aléatoires et beaucoup de caractères, les faire
-  dépendre de la requête HTTP(S).
-  
-**Chiffrer les sessions critiques :** transmettre exclusivement par
-  HTTPS les informations sensibles.
+**Always generate hard-to-guess session identifiers:** 
+: use random number generators and long strings, let identifiers
+depend on the HTTP(S) request.
 
-Un attaquant qui peut **voler/fixer** un identifiant de session peut
-accéder à **toutes les données** de l'utilisateur.
+**Use an encrypted transport layer:** 
+: only use HTTPS for sensitive information (remember **all** personal
+information is sensitive).
 
-**Donner des durées de vie limitées :** les cookies de session, les
-  identifiants, ... devraient périmer rapidement (ou régulièrement).
-  
-**ET NE JAMAIS FAIRE CONFIANCE AU CLIENT !**
+An attacker with the ability to **steal/fix** session identifiers can
+acces **all the user data**.
+
+**Use short-lived sessions:**
+: session cookies, identifiers, ... must expire fast (or at least
+regularly).
+
+ 
+
+### AND NEVER TRUST THE CLIENT!
 {:.centered}
 
 </section>
 <section>
 
-## Lectures
+## References
 
 ### Documentations
 
-- [Sessions PHP](http://php.net/manual/en/book.session.php),
-- [Sessions Silex](http://silex.sensiolabs.org/doc/providers/session.html),
 - Express
   - [`express-session`](https://www.npmjs.com/package/express-session),
-  - [`express-sessions`](https://www.npmjs.com/package/express-sessions),
   - [`cookie-session`](https://www.npmjs.com/package/cookie-session).
 
-### Sécurité
+### Security
 
-- [OWASP sur la fixation](https://www.owasp.org/index.php/Session_fixation),
-- [OWASP sur l'interception](https://www.owasp.org/index.php/Session_hijacking_attack).
+- [OWASP on fixation](https://www.owasp.org/index.php/Session_fixation),
+- [OWASP on hijacking](https://www.owasp.org/index.php/Session_hijacking_attack).
 
 </section>
