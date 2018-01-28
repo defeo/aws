@@ -10,7 +10,6 @@ The references for this tutorial are
 
 - The [JavaScript manual](https://developer.mozilla.org/docs/Web/JavaScript),
 - The [Node.js reference](http://nodejs.org/api/),
-- The [NodeJitsu help pages](http://docs.nodejitsu.com/),
 - The [Express guide](http://expressjs.com/),
 - The [Express reference](http://expressjs.com/4x/api.html),
 

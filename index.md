@@ -41,17 +41,18 @@ introduction à la sécurité des applications web.
 
 #### Pour les TDs
 
-- Mes [CodePens](http://codepen.io/collection/AaMOJZ/), qui
-  démontrent comment exécuter les passages délicats de certains TDs.
-- Les validateurs HTML <http://validator.w3.org/> et CSS <http://jigsaw.w3.org/css-validator/>.
+- Mes [CodePens](https://codepen.io/collection/AaMOJZ/) et mes
+  [Glitches](https://glitch.com/@defeo), qui démontrent comment
+  exécuter les passages délicats de certains TDs.
+- Les validateurs HTML <https://validator.w3.org/> et CSS <https://jigsaw.w3.org/css-validator/>.
 
 #### Documentation
 
-- Le framework [Express](http://expressjs.com/) pour Node.js.
+- Le framework [Express](https://expressjs.com/) pour Node.js.
 
 #### Associations de développeurs
 
-- Les initiations gratuites de NodeSchool Paris <http://nodeschool.io/paris/>.
+- Les initiations gratuites de NodeSchool Paris <https://nodeschool.io/paris/>.
 - Le [groupe français des utilisateurs de Node.js](https://plus.google.com/communities/113346206415381691435).
 
 #### Autres
@@ -80,15 +81,15 @@ plus utiles que la moyenne.
 ### HTML et CSS
 
 W3Schools. *HTML5 Tutorial*
-: <http://www.w3schools.com/html5/>. Très bon tutoriel pour
+: <https://www.w3schools.com/html/>. Très bon tutoriel pour
 débutants. Exemples à essayer en ligne.
 
 W3Schools. *CSS Tutorial*
-: <http://www.w3schools.com/CSS/>.  Très bon tutoriel pour
+: <https://www.w3schools.com/CSS/>.  Très bon tutoriel pour
 débutants. Exemples à essayer en ligne.
 
 W3Schools.
-: <http://www.w3schools.com>. D'autres tutoriels sont aussi
+: <https://www.w3schools.com>. D'autres tutoriels sont aussi
 disponibles sur le site de W3Schools.
 
 Mozilla Developer Network. *Ressources HTML*.
@@ -113,7 +114,7 @@ BU: 005.71htm LAW. Destiné à ceux qui connaissent déjà HTML4.
 
 Marijn Haverbeke. *Eloquent JavaScript*.
 : No Starch Press 2014. Disponible en ligne en anglais
-	<http://eloquentjavascript.net/>. Bel ouvrage sur JavaScript et le
+	<https://eloquentjavascript.net/>. Bel ouvrage sur JavaScript et le
 	DOM. La première édition est aussi disponible en français
 	<http://fr.eloquentjavascript.net/>, et à la BU (côte 005.71jaS HAV).
 
@@ -127,12 +128,15 @@ Mozilla Developer Network. *JavaScript Guide*.
 	français <https://developer.mozilla.org/fr/docs/JavaScript/Guide>. La
 	première référence pour JavaScript.
 
+Mozilla foundation. Mozilla DOM resources.
+: La référence sur le DOM <https://developer.mozilla.org/en/DOM>.
+
 D. Crockford. *JavaScript. Gardez le meilleur !*.
 : Pearson 2008. ISBN: 978-2-7440-2328-6. Côte BU : 005.13jaS
 CRO. Référence pour la syntaxe JavaScript.
 
 I. Wetzel and Z. Yi Jiang. *JavaScript Garden*.
-: <http://bonsaiden.github.com/JavaScript-Garden/>. Un guide aux
+: <https://bonsaiden.github.com/JavaScript-Garden/>. Un guide aux
 détails méconnus de JavaScript.
 
 C. Porteneuve. *Bien développer pour le Web 2.0*.
@@ -146,11 +150,6 @@ BU : 005.71jas ZAK. Livre très complet, centré sur le JavaScript côté
 client. Référence complète à JavaScript et au DOM, plus des extras sur
 les technologies récentes comme les Canvas et les Web Sockets.
 
-Mozilla foundation. Mozilla DOM resources.
-: La référence sur la partie du DOM implantée dans Firefox
-	<https://developer.mozilla.org/en/Gecko_DOM_Reference>, et 
-	les ressources liées <https://developer.mozilla.org/en/DOM>.
-
 T. Stubbs and G. Allain. *JQuery, Le guide complet*
 : Micro Application Éditions, 2011. ISBN: 978-2-300-036194. Côte
 BU: 005.71jsp ALL. Pour les programmeur déjà calé en Javascript.
@@ -159,24 +158,18 @@ BU: 005.71jsp ALL. Pour les programmeur déjà calé en Javascript.
 
 ### Node.js
 
-*NodeJitsu*.
-: <http://docs.nodejitsu.com/>, tutoriels communautaires.
-
 *Node school*.
-: <http://nodeschool.io/>, tutoriels interactifs.
+: <https://nodeschool.io/>, tutoriels interactifs.
 
 *The Node.js API reference*.
-: <http://www.nodejs.org/api>, le manuel de référence.
+: <https://www.nodejs.org/api>, le manuel de référence.
 
 M. Kiessling. *The Node beginner guide*.
-: en anglais <http://www.nodebeginner.org/> et français
-	<http://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/>.
+: en anglais <https://www.nodebeginner.org/> et français
+	<https://nodejs.developpez.com/tutoriels/javascript/node-js-livre-debutant/>.
 
 F. Geisendörfer. *Node.js Guide*
-: <http://nodeguide.com/>.
-
-*Understandanding Connect and middleware*
-: <http://project70.com/nodejs/understanding-connect-and-middleware/>
+: <https://nodeguide.com/>.
 
 A. MacCaw. *JavaScript Web Applications*.
 : O'Reilly 2011. ISBN: 978-1-449-30351-8. Côte BU: 005.71jsp
@@ -185,7 +178,7 @@ serveur. Aborde les patrons de développement (surtout MVC),
 la délégation de contrôle, et les frameworks JavaScript.
 
 M. Nebra. *Des applications ultra-rapides avec Node.js*
-: [Cours sur OpenClassrooms](http://fr.openclassrooms.com/informatique/cours/des-applications-ultra-rapides-avec-node-js) (anciennement Site du zéro).
+: [Cours sur OpenClassrooms](https://fr.openclassrooms.com/informatique/cours/des-applications-ultra-rapides-avec-node-js) (anciennement Site du zéro).
 
 [Ilya Grigorik](https://www.igvita.com/). *High performance Browser Networking*.
 : O'Reilly 2013. <https://hpbn.co/>. Texte avancé sur les techniques
@@ -197,7 +190,7 @@ de communication à bande large disponibles dans le navigateur.
 
 M. Zalewski. *Browser Security Handbook*.
 : Google Inc 2009.
-	<http://code.google.com/p/browsersec/wiki/Main>. Excellente traité sur
+	<https://code.google.com/p/browsersec/wiki/Main>. Excellente traité sur
 	la sécurité des browsers, la Same Origin Policy et d'autres
 	mécanismes expérimentaux.
 
