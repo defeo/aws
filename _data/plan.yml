@@ -28,11 +28,7 @@
     - templates.md
     - sessions.md
     - mustache.md
-  tutorials:
-#    - url: templates-etat-silex.md
-#      comment: version pour Silex
-#    - url: templates-etat-node.md
-#      comment: version pour Node
+  tutorials: templates-etat.md
 
 - desc: Bases de données et Web 2.0
   lessons:
