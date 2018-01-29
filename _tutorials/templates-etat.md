@@ -109,7 +109,7 @@ dynamic pages.
    shell. When you modify the `dependencies` section, you must run
    `npm install` again.
 
-4. Create a file named 
+4. Rename your file `form.html` to 
    `public/form.html`. Add the following line to `app.js`
    
    ~~~js
