@@ -47,6 +47,9 @@ dynamic pages.
    </div>
    {:/}
    
+   **You won't be able to access your `form.html` right now in the preview,
+   it is normal. See the next instructions to make this file accessible.**
+   
    Strive for a complete and valid HTML page: use a `<!Doctype>`,
    `<head>`, `<body>`, etc. Do not set the `method` and `action`
    attribute on the form, for the moment.
