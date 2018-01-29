@@ -203,8 +203,8 @@ tutorial we will stick to variable evaluation (the example above),
    ~~~
    
    **Note:** by default, modification on templates does not reload the application.
-   To solve this issue, you can create a `watch.json` as documented in the [support forum]
-   (https://support.glitch.com/t/reload-server-when-editing-frontend-files/1206/2).
+   To solve this issue, you can create a `watch.json` as documented in the 
+   [support forum](https://support.glitch.com/t/reload-server-when-editing-frontend-files/1206/2).
 
 3. In `app.js`, modify the handler for `/hello` by replacing
    `sendFile` with
