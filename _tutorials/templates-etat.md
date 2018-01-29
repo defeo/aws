@@ -206,7 +206,7 @@ tutorial we will stick to variable evaluation (the example above),
    `sendFile` with
        
    ~~~js
-   res.render('hello.twig', { 'nom' : 'Toto' });
+   res.render('hello.html', { 'name' : 'Toto' });
    ~~~
    
    Visit the `/hello` URL and see the result.
