@@ -189,7 +189,7 @@ and **hard to guess**.
 
 - Leveraging the **client** local storage: cookies, storage API.
 
--  (Symmetric) **cryptographic** methods to guarantee
+- (Symmetric) **cryptographic** methods to guarantee
   
   - **Confidentiality →** Encryption: the server is the only one able
     to see the data.
