@@ -26,22 +26,23 @@
   lessons:
     - etat.md
     - templates.md
-    - sessions.md
     - mustache.md
   tutorials: templates-etat.md
 
-- desc: Bases de données et Web 2.0
+- desc: Bases de données et sessions
   lessons:
+    - sessions.md
     - sql.md
     - orm.md
+    - async-js.md
+  tutorials: accounts.md
+
+- desc: Web 2.0 et Server push
+  lessons:
     - ajax.md
     - json.md
-    - async-js.md
-  tutorials:
-#    - url: accounts-silex.md
-#      comment: version pour Silex
-#    - url: accounts-node.md
-#      comment: version pour Node
+    - server-push.md
+#  tutorials:
 
 - desc: Securité
   lessons:
@@ -49,7 +50,6 @@
     - xss.md
     - cross-domain.md
     - session-fixation.md
-    - server-push.md
     - csrf.md
     - csp.md
     - samy.md
