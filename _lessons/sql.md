@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: Stockage Persistant
-subtitle: Interface avec bases de données SQL
+title: Persistent storage
+subtitle: SQL queries with Knex
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/sql.webm
@@ -12,245 +12,411 @@ addons:
 
 <section>
 
-## Stockage persistant
+## Persistent storage
 
-Toute application web nécessite de stocker des données de façon
-**permanente** sur le **server**.
+Every web app needs to store data **permanently** on the **server**.
 
-- Système de fichiers : **SQLite**, ...
-- BDs SQL : **MySQL**, **PostgreSQL**, ...
-- BDs NoSQL : **MongoDB**, **Couchbase**, **CouchDB**, ...
+- In the file system: **SQLite**, ...
+- In a SQL DB: **MySQL**, **MariaDB**, **PostgreSQL**, ...
+- In a NoSQL DB: **MongoDB**, **Couchbase**, **CouchDB**, **Redis**,
+  ...
 
 ### Abstractions
 
-Tous les frameworks offrent des modules pour faciliter l'interaction
-avec les bases de données :
+All web frameworks offer modules to smooth interactions with
+databases:
 
-- **DBAL (Database Abstraction Layer) :** accès à plusieurs systèmes
-  de BD (par ex., MySQL, SQLite, ...)  avec une API unique.
-- **ORM (Object Relational Mapping) :** traduction entre *objets* dans
-  le langage du framework, et *entités* de la BD.
+- **DBAL (Database Abstraction Layer):** unique API to access several
+  DB systems (e.g., MySQL, SQLite, ...).
+- **ORM (Object Relational Mapping):** translations between *objects*
+  in the host language and **entities** in the DB system.
 
 </section>
 <section>
 
-## PHP, Silex et MySQL
+## Storage in Node.js
 
-PHP fournit deux modules pour l'accès aux bases MySQL :
+### SQL
 
-- [mysqli](http://www.php.net/manual/book.mysqli.php) (spécifique pour MySQL),
-- [PDO](http://www.php.net/manual/book.pdo.php) (DBAL générique).
+Several modules to interact with SQL DBs available in `npm`:
 
-Silex ajoute son propre DBAL par dessus PDO :
-[Doctrine](http://www.doctrine-project.org/projects/dbal.html).
+- [`mysql`](https://www.npmjs.com/package/mysql),
+- [`sqlite3`](https://www.npmjs.com/package/sqlite3) (Unix only),
+- [`pg`](https://www.npmjs.com/package/pg) (Postgres),
+- [`oracledb`](https://www.npmjs.com/package/oracledb),
+- ...
 
-### Fonctionnalités
+Plus several abstraction modules built on top.
 
-- Connexion à une base de donnée (distante),
-- Interrogations SQL, parcours des résultats,
-- *Requêtes préparées*,
-- *Query builder*,
-- Transactions,
+### NoSQL
+
+- [`mongoose`](https://www.npmjs.com/package/mongoose) by far the most
+  popular DBAL for Mongo,
+- [`couchbase`](https://www.npmjs.com/package/couchbase),
 - ...
 
 </section>
-<section>
+<section class="compact">
 
-## Doctrine
+## MySQL in Node.js
 
-Activer Doctrine et se connecter à la base
+Install [`mysql`](https://www.npmjs.com/package/mysql)
 
-~~~
-use Silex\Provider\DoctrineServiceProvider;
-
-$app->register(new DoctrineServiceProvider(),
-  array('db.options' => array(
-            'driver'   => 'pdo_mysql',
-            'host'     => 'localhost',
-			'user'     => 'toto',
-			'password' => '12345'
-    ),
-));
-~~~
-
-Plus sur la configuration:
-
-- [Dans le manuel de Silex](http://silex.sensiolabs.org/doc/providers/doctrine.html),
-- [Dans le manuel de Doctrine](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html).
-
-</section>
-<section>
-
-Faire une requête
-
-~~~
-$q = $app['db']->executeQuery('SELECT * FROM users');
-~~~
-{:.php}
-
-Parcourir le résultat (en le copiant dans un tableau PHP)
-
-~~~
-$results = $q->fetchAll();
-foreach ($results as $row) {
-  $row['name'];
-}
-~~~
-
-ou (ligne par ligne)
-
-~~~
-while ($row = $q->fetch()) {
-  $row['name'];
-}
-~~~
-{:.php}
-
-Tout en un
-
-~~~
-$app['db']->fetchAll('SELECT * FROM users');
-~~~
-{:.php}
-
-Plus de fonctions dans le
-[manuel](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/data-retrieval-and-manipulation.html).
-
-
-</section>
-<section>
-
-## MySQL pour Node.js
-
-Installer le module [mysql](https://www.npmjs.com/package/mysql)
-
-~~~
+```
 npm install mysql
-~~~
+```
 
-Configurer
+Configure
 
-~~~
+```js
 var mysql = require('mysql');
 var db    = mysql.createConnection({
   host     : 'localhost',
-  user     : 'toto',
+  user     : 'foo',
   password : '12345',
-  database : 'ma_base'
+  database : 'mydb',
 });
-~~~
+```
 
-Plus d'options : <https://www.npmjs.com/package/mysql>
+Use (asynchronous call semantics only)
 
-</section>
-<section>
+```js
+db.query('SELECT * FROM users',  function(error, rows) {
+    // Handle data in the callback asynchronously
+});
+```
 
-Faire une requête
-
-~~~
-db.query('SELECT * FROM users',
-  // callback
-  function(err, rows) {
-    if (!err) {
-      for (var i = 0 ; i < rows.length ; i++) {
-        console.log(rows[i]);
-      }
-	}
-  });
-~~~
-
-**Attention :** Node.js a un modèle d'exécution **asyncrhone**. Le
-résultat de la requête est passé à une **callback**.
-
-#### Autres interfaces de BD pour Node.js
-
-- **SQLite :** [`sqlite3`](https://npmjs.org/package/sqlite3) ;
-- **Postgres :** [`pg`](https://npmjs.org/package/pg) ;
-- **MongoDB :** [`mongoose`](http://mongoosejs.com/) ;
-- ...
+Read more: <https://www.npmjs.com/package/mysql>
 
 </section>
 <section>
 
-# Échappement
+## SQL abstraction through Knex
+
+[Knex](http://knexjs.org/) is a Node DBAL for SQL:
+
+- Compatible with: Postgres, MSSQL, MySQL, MariaDB, SQLite3, and
+  Oracle.
+- *Query builder*: construct SQL queries through method calls.
+- *Schema builder*: construct SQL tables through method calls.
+- Asynchronous APIs: *Promises* (preferred, compatible with
+  `async/await`), *callbacks* and *streams*.
+- More features: *transactions*, *migrations*, connection *pooling*.
+
+Install with
+
+```
+npm install knex
+```
+
+Also install the low-level module for your database(s), e.g:
+
+```
+npm install sqlite3 mysql
+```
+
+Advantages over low-level modules:
+
+- Write once, use with many DBs (dev, testing, production, ...),
+- Safer queries with the query builder.
 
 </section>
 <section>
 
-## Échappement SQL
+## Using Knex
 
-On a avec SQL le même problème que dans la génération de HTML
+### Configure (e.g., with `mysql`)
 
-~~~
-function (Application $app, Request $req) {
- $app['db']->query(
-  'SELECT * FROM users WHERE id = \'' . $req->query->get('nom') . '\';' );
+```js
+var knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host     : 'localhost',
+    user     : 'foo',
+    password : '12345',
+    database : 'mydb',
+  }
+});
+```
+
+</section>
+<section class="compact">
+
+### Raw SQL
+
+Inside an `async` function (preferred):
+
+```js
+try {
+  var rows = await knex.raw('SELECT * FROM users');
+} catch (error) {
+  ...
 }
-~~~
+```
 
-Les caractères spéciaux SQL `` ` ``, `'`, `"`, `;` doivent être
-**échappés**.
+Using raw promises (for advanced parallelism):
 
-La syntaxe de l'échappement dépend de la base de données (MySQL,
-PostgreSQL, ...)
+```js
+knex.raw('SELECT * from users')
+  .then(function (rows) {
+    ...
+  })
+  .catch(function (error) {
+    ...
+  });
+```
 
-Fonctions d'échappement:
+Using an old-style callback (not chainable):
 
-- PHP : `mysqli::real_escape_string`,
-- PDO/Doctrine : `PDO::quote`, `Doctrine::quote`,
-- Échappement automatique : **requêtes préparées**.
-
-</section>
-<section>
-
-## Requêtes préparées
-
-En Silex
-
-~~~
-$app['db']->fetchAssoc("SELECT * FROM users WHERE id = ?",
-                       array($req->query->get("nom")));
-~~~
-
-~~~
-$app['db']->fetchAssoc("SELECT * FROM users WHERE id = :name",
-                       array(':name' => $req->query->get("nom")));
-~~~
-
-En Node.js avec `mysql`
-
-~~~
-db.query('SELECT * FROM users WHERE id = ?', [ req.query.nom ],
-		 function() { ... });
-~~~
-
-~~~
-db.query('SELECT * FROM users WHERE ?', { id: req.query.nom },
-		 function() { ... });
-~~~
-
-Tous donnent
-
-~~~
-SELECT * FROM users WHERE id='toto'
-~~~
+```js
+knex.raw('SELECT * from users')
+  .asCallback(function (error, rows) {
+    ...
+  });
+```
 
 </section>
 <section>
 
-## Lectures
+### Query builder
 
-### DBAL pour PHP
+<div class="two-cols">
 
-- [Configurer Doctrine dans Silex](http://silex.sensiolabs.org/doc/providers/doctrine.html),
-- [Manuel de mysqli](http://www.php.net/manual/book.mysqli.php),
-- [Manuel de PDO](http://www.php.net/manual/book.pdo.php),
-- [Manuel de Doctrine](http://docs.doctrine-project.org/projects/doctrine-dbal/) (en anglais).
+```js
+await knex.select('*').from('users');
+```
 
-### MySQL pour Node.js
+```sql
+SELECT * FROM users
+```
 
-- [Manuel de `mysql`](https://www.npmjs.com/package/mysql) (en anglais).
-- Plein d'autres modules disponibles, voir [NPM](https://www.npmjs.com/).
+```js
+await knex('users').select('*');
+```
 
+```sql
+SELECT * FROM users
+```
+
+```js
+await knex('users');
+```
+
+```sql
+SELECT * FROM users
+```
+
+```js
+await knex('users')
+  .select('name', 'surname')
+  .where('town', 'Paris')
+  .andWhere('age', '>', 18);
+```
+
+```sql
+SELECT 'name', 'surname'
+FROM users
+WHERE `town` = 'Paris'
+AND `age` < 18
+```
+
+</div>
+
+To test the query builder, use `toString()` (not asynchronous)
+
+```js
+console.log(knex('user').where('name', 'foo').toString())
+// Outputs: select * from `user` where `name` = 'foo'
+```
+
+- Also available: *inserts*, *unions*, *joins*, *groupbys*, ordering, ...
+- Read more at <http://knexjs.org/#Builder>.
+- Interactively try out queries at
+  <http://michaelavila.com/knex-querylab/>.
+
+</section>
+<section>
+
+### Create tables
+
+Using raw SQL
+
+```js
+await knex.raw(`CREATE TABLE users (
+  login VARCHAR(255) PRIMARY KEY,
+  password VARCHAR(30) NOT NULL
+)`);
+```
+
+Using the *schema builder*
+
+```js
+await knex.schema.createTable('users', function (table) {
+  table.string('login').primary();
+  table.string('password', 30).notNullable();
+});
+```
+
+- Dropping, modifying, done similarly.
+- Read more on the *schema builder* at <http://knexjs.org/#Schema>.
+
+</section>
+<section class="compact">
+
+## WARNING! Asynchronous calls ahead
+
+This does nothing (`x` is only a *promise*)
+
+```js
+var x = knex('users').select('*');
+```
+
+This prints out of order (control jumps to `'Done'` before the
+callback is executed)
+
+<div class="two-cols">
+
+```js
+knex('users').then(function (rows) {
+  for (var r of rows) {
+    console.log('User:', r.name);
+  }
+});
+console.log('Done');
+```
+
+```
+Done
+User: foo
+User: bar
+```
+
+</div>
+
+Always prefer `await` (unless you need complex parallelism)
+
+<div class="two-cols">
+
+```js
+var rows = await knex('users');
+for (var r of rows) {
+  console.log('User:', r.name);
+}
+console.log('Done');
+```
+
+```
+User: foo
+User: bar
+Done
+```
+
+</div>
+
+</section>
+<section class="compact">
+
+## A full example
+
+```js
+app.post('/login', async function(req, res) {
+  var login = req.body.login;                  // Get data from request body
+  var pass = req.body.pass;
+  
+  try {
+    var users = await knex('users').where({    // Query database:
+      'login'   : login,                       // SELECT * FROM users
+      'password': pass,                        // WHERE login = ? AND password = ?
+    });
+
+    if (users.length == 1) {                   // Check if credentials matched
+      res.send(`Hello, ${users[0].name}`);
+    } else {
+      res.status(401).send('Unknown user');
+    }
+  } catch (err) {                              // Handle errors
+    console.error('Database error:', err);     // (log and send generic 500 code)
+    res.status(500).send('Error');
+  }
+});
+```
+
+</section>
+<section>
+
+## SQL Escaping
+
+We have with SQL the same problem we found when [generating HTML code](templates)
+
+```js
+app.get('/login', async function(req, res) {
+  async knex.raw(`SELECT * FROM users WHERE login = ${req.query.user}`);
+  ...
+});
+```
+
+What if we sent this request?
+
+```
+https://www.example.com/login?user=le_ch'ti
+```
+
+```sql
+SELECT * FROM users WHERE login = 'le_ch'ti'
+```
+
+- Special SQL characters `` ` ``, `'`, `"`, `;` must be **escaped**.
+- Escaping syntax depends on the database engine (MySQL, Postgres,
+  ...)
+
+**Do not escape manually**, rely on your DBAL:
+
+- Use the *query builder*,
+- Use *prepared queries*.
+
+</section>
+<section>
+
+### Escaping in the query builder
+
+```js
+async knex('users').where('login', req.query.user);
+```
+
+### Escaping raw queries
+
+```js
+async knex.raw('SELECT * FROM users WHERE login = ?', [req.query.user]);
+```
+
+or
+
+```js
+async knex.raw('SELECT * FROM users WHERE login = :user', {
+  'user': req.query.user,
+});
+```
+
+Read more at <http://knexjs.org/#Raw>.
+
+### Output
+
+Passing `req.query.user = "le_ch'ti"` gives in all cases
+
+~~~sql
+SELECT * FROM users WHERE login='le_ch''ti'
+~~~
+
+</section>
+<section>
+
+## References
+
+- The [Knex docs](http://knexjs.org/),
+- The [lesson on asynchronous JavaScript](async-js),
+- MDN docs on
+  [`async/await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function),
+- MDN docs on [using
+  Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
 
 </section>
