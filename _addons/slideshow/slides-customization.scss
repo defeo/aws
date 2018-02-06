@@ -108,13 +108,13 @@ html.slideshow {
 
 // Double column layout
 .two-cols {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     margin: 1em 0;
+    grid-column-gap: 5px;
     & > * {
-	flex: 1 1 auto;
 	margin-top: 0;
 	margin-bottom: 0;
-	&:not(:first-child) { margin-left: 1em; }
     }
 }
 html.slideshow .slideshow-container .two-cols {
