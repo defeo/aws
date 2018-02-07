@@ -1,166 +1,297 @@
 ---
 layout: lesson
-title: JavaScript asynchrone
+title: Asynchronous JavaScript
 ---
 
-<section>
+<section class="compact">
 
-## Parallelisme et évènements 
+## Parallelism in JavaScript
 
-JavaScript est *single-threaded* (en général) :
+JavaScript engines are *single-threaded*:
 
-- Pas de mécanismes de parallélisme natifs,
-
-- Interactions asynchrones réalisés par une *boucle d'évènements*,
-
-- Exemples d'interfaces asynchrones :
+- All code runs in a single thread, in a single process,
   
-  - `setTimeout`, `setInterval`,
-  - Évènements DOM,
-  - `XMLHttpRequest`, Fetch API,
-  - Node.js : accès disque, réseau, bases de données, gestionnaires de
-    requête, ...
+  - In old browsers: one process for the whole browser,
+  - In modern browsers: one tab = one process.
 
-</section>
-<section>
+- No native way to do *background work*.
 
-## Callbacks
+- All asynchronism is implemented through a *event loop*:
+  
+  ```python
+  while True:                   # Fictive implementation of an event loop
+	  while queue.is_empty():
+	      wait()
+	  task = queue.pop()
+	  task.execute()
+  ```
 
-Le mécanisme de base de la *programmation par évènements* est la
-*fonction de callback* :
+- Two types of function calls:
+  
+  - **Blocking:** they execute immediately, block the thread until
+    they are done,
+  - **Non-blocking:** they *yield* control to the event loop, *queue*
+    a *task* when they are done.
 
-~~~
-function callback() {                  // À appeler dans 2 secondes
-	console.log('Hello world');
-}
-
-setTimeout(callback, 2000);
-~~~
-
-~~~
-div.addEventListener('click',
-	function() {                       // À appeler dès qu'il y a un
-		console.log('Hello click');    // click sur l'objet div
-	});
-~~~
-{:.javascript}
-
-~~~
-app.get('/toto',
-        function(req, res) {           // À appeler à l'arrivée d'une
-			res.send("Hello world");   // requête pour /toto
-        });
-~~~
 
 </section>
 <section class="compact">
 
-## *Callback hell*
+## Function calls: blocking vs non-blocking
 
+### Blocking calls
 
-~~~
-app.get('/toto', function(req, res) {
-	setTimeout(function() {
-		db.query('SELECT * FROM users', function(err, result) {
-			if (err)
-				console.log(err);
-			else if (result.length > 0) {
-				db.query(...)
-			}	
-		});
-	}, 2000);
-});
-~~~
+Most function calls:
 
-Difficile à coder
+- User defined functions,
+- Computations: `Math`, string manipulations, array/object manipulations, ...
+- DOM API: `.querySelector()`, `.appendChild`, ...
+- `eval`, `require`, `console.log`, ...
+- ...
 
-- Gestion de cas : succès/insuccès.
-- Boucles d'actions asynchrones :
-  - **exercice :** afficher *« Hello World »* toutes les 2 secondes sans se
-	servir de `setInterval`.
-- Synchronisation :
-  - attendre la fin de deux ou plusieurs actions asynchrones.
-  - attendre la fin d'une parmi plusieurs actions asynchrones.
+### Non-blocking calls
+
+- Sleeping: `setTimeout()`, `setInterval()`,
+- Input/Output:
+  - **System:** communicating with other processes (e.g., shell commands), ...
+  - **Disk:** reading/writing files, reading/executing templates, ...
+  - **Network:** reading/writing on sockets, HTTP requests/responses,
+    `XMLHttpRequest`, `fetch()`, `app.listen()`, ...
+  - **Databases:** connecting to databases, querying databases,
+    `knex.raw()`, `knex.select()`, ...
 
 </section>
-<section>
+<section class="compact">
 
-## Générateurs (ES6)
+## Handling asynchronous calls: *callbacks*
 
-Utilisation principale : répéter des évènements asynchrones.
+Classic technique, typical of *event-based* programming
+
+```js
+function callback() {             // (click to run)
+  alert('Hello');
+}
+setTimeout(callback, 2000);       // Run callback in 2 secs
+alert('world');
+```
+{:.eval}
+
+1. `setTimeout` *queues* `callback`, to be executed in 2 seconds,
+2. Control goes to the next instruction,
+3. After 2 seconds, `callback` is executed.
+
+### Also seen in *event handlers*, *request handlers*:
 
 <div class="two-cols">
+```js
+// Call when a click happens
+div.addEventListener('click',
+  function(e) {
+	console.log('Hello click');
+  });
+```
 
-~~~
-function* generateur() {
-	var cnt = 0;
-	while (true)
-		yield cnt++;
-}
-
-var g = generateur();
-for (var i = 0; i < 9; i++)
-	console.log( g.next() );
-~~~
-
-~~~
-{ value: 0, done: false }
-{ value: 1, done: false }
-{ value: 2, done: false }
-{ value: 3, done: false }
-{ value: 4, done: false }
-{ value: 5, done: false }
-{ value: 6, done: false }
-{ value: 7, done: false }
-{ value: 8, done: false }
-~~~
-
+```js
+// Call when a HTTP request happens
+app.get('/toto',
+  function(req, res) {
+	res.send("Hello world");
+  });
+```
 </div>
 
-Mots clef :
-
-- `function*` : pour définir un générateur,
-- `yield` : équivalent asynchrone de `return`,
-- `yield*` : pour déléguer à un autre générateur.
-
 </section>
-<section>
+<section class="compact">
 
-## Promesses (ES6)
+## The problem with callbacks: *Callback hell*
 
-Utiles pour : *linéariser* et *synchroniser* les callbacks. Exemple de
-AJAX avec l'API fetch :
-
-~~~
-fetch('/api/donnees.json').then(
-	function (res) {
-		console.log('téléchargement réussi', res);
-	},
-	function (err) {
-		console.log('téléchargement échoué', err);
+```js
+app.get('/foo', function(req, res) {
+  setTimeout(function() {
+	knex.raw('SELECT * FROM users').then(function(err, result) {
+	  if (err)
+		console.log(err);
+	  else if (result.length > 0) {
+		knex.raw(...).then(...)
+	  }
 	});
-~~~
+  }, 2000);
+});
+```
 
-- `fetch('/api/donnees.json')` renvoie une *promesse*,
-- `.then(success, fail)` définit quoi faire après que la promesse a
-  terminé :
-  - `success` : exécuté si la promesse a réussi.
-  - `fail` : exécuté si la promesse a eu une erreur.
-- `new Promise()` pour créer une promesse définie par l'utilisateur.
-- `.catch()` : à la place de `.then` pour gérer uniquement les erreurs.
+This style is error prone:
+
+- **Code flow** hard to follow,
+- **Exceptions** difficult to catch,
+- Very painful to write **loops**:
+  - **exercise:** write *"Hello world"* to the console every 2
+    seconds, without using `setInterval`.
+- Hard to **synchronize**:
+  - waiting for the end of *two or more* actions,
+  - waiting for the end of *the first among many* actions.
+
+</section>
+<section class="compact">
+
+## Promises and `async/await`
+
+Modern API and new syntax (only since ES2017) to handle asynchronous
+code
+
+```js
+async function get_readme() {
+  try {
+    var response = await fetch('/README.md');    // wait for HTTP response
+    var content = await response.text();         // wait for end of response body
+    alert(content);
+  } catch (err) {                                // asynchronous errors are catched too
+    console.log(err);
+  }
+}
+get_readme();
+```
+{:.eval}
+
+1. Non-blocking function (e.g., `fecth()`) returns a **Promise**,
+2. `await` blocks execution until the promise is *done*,
+3. when the promise is done `await` passes on the *return value*.
+
+- Must always be wrapped in `async` function.
+- Can be used in `for` loops, etc.
+- Only supported by modern APIs and libraries, e.g.,
+  [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API),
+  [Knex](http://knexjs.org/), ...
+
 
 </section>
 <section>
 
-## Lectures
+## Under the hood: naked promises
 
-- [MDN sur les iterateurs](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/function*)
-- [MDN sur les générateurs](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Les_protocoles_iteration),
-- Promesses A+ : <https://www.promisejs.org/>,
-- Eloquent JavaScript,
-  [Chapitre 17](http://eloquentjavascript.net/17_http.html#promises)
-  sur les promesses,
-- [Article sur les promesses](http://www.html5rocks.com/en/tutorials/es6/promises/),
-- [Article sur l'API fetch](https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/).
+`async/await` is just *syntactic sugar* for:
+
+```js
+fetch('/README.md')
+  .then(function(response) {    // 2. wait for HTTP response
+    return response.text();
+  })
+  .then(function(content) {     // 4. wait for end of response body
+    alert(content);
+  }).catch(function(err) {      // 5. catch asynchronous errors
+    console.log(err);
+  });
+```
+{:#promise.eval}
+
+1. `fetch()` returns a *promise*,
+2. `.then()` attaches a callback to the promise, to be called upon
+   (successful) completion.
+3. The return value of the callback (again a *promise*) is passed on
+   by `.then()`,
+4. The next `.then` attaches another callback.
+5. `.catch()` attaches a callback for unsuccessful completion of
+   promises.
+{:.incremental}
+
+<style>
+[data-incremental="1"] #promise span:nth-child(1),
+[data-incremental="2"] #promise span:nth-child(6),
+[data-incremental="2"] #promise span:nth-child(8),
+[data-incremental="3"] #promise span:nth-child(14),
+[data-incremental="4"] #promise span:nth-child(21),
+[data-incremental="4"] #promise span:nth-child(23),
+[data-incremental="5"] #promise span:nth-child(34),
+[data-incremental="5"] #promise span:nth-child(36)
+{ outline: solid thick red }
+</style>
 
 </section>
+<section class="compact">
+
+## Careful with naked promises
+
+Racing promises
+
+```js
+var start = Date.now()
+function cb(response) {
+  var elapsed = Date.now() - start;
+  alert(`${response.url} (${elapsed}ms)`);
+}
+fetch('/index.html').then(cb);             // these two execute in parallel
+fetch('/README.md').then(cb);
+```
+{:.eval}
+
+If you want to order requests, you must *chain* callbacks (or use `async/await`)
+
+```js
+var start = Date.now()
+fetch('/index.html')
+  .then(function (response) {
+    alert(`${response.url} (${Date.now() - start}ms)`);
+	return fetch('/README.md');           // fetch 2nd only after 1st is done
+  })
+  .then(function (response) {
+    alert(`${response.url} (${Date.now() - start}ms)`);
+  });
+```
+{:.eval}
+
+</section>
+<section>
+
+### Advanced parallelism
+
+```js
+Promise.all([                         // these two execute in parallel
+  fetch('/index.html'),
+  fetch('/README.md'),
+]).then(function(responses) {
+  alert(responses[0].url + ", "
+        + responses[1].url);
+  return fetch('/');                  // this one executes after
+}).then(function(response) {
+  alert(response.url);
+});
+```
+{:.eval}
+
+- Create your own promises using `new Promise()`,
+- Advanced parallelism using the `Promise` inferface,
+- Read more [on
+  MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+</section>
+<section>
+
+## References
+
+- Eloquent JavaScript,
+  [Chapter 17](http://eloquentjavascript.net/17_http.html#promises)
+  on promises,
+- MDN docs on
+  [`async/await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function),
+- MDN docs on [using
+  Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
+- [Article on promises](http://www.html5rocks.com/en/tutorials/es6/promises/),
+- [Article on the fetch API](https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/).
+
+</section>
+
+<style>
+.eval pre {
+  cursor: pointer;
+  box-shadow: 0 0 20px #aaf;
+}
+.eval:hover pre {
+  box-shadow: 0 0 20px blue;
+}
+</style>
+<script>
+$$('.eval').forEach((p) => {
+  p.title = "Click to run";
+  p.on('click', (e) => eval(p.textContent));
+});
+</script>
+
