@@ -20,10 +20,10 @@ JavaScript engines are *single-threaded*:
   
   ```python
   while True:                   # Fictive implementation of an event loop
-	  while queue.is_empty():
-	      wait()
-	  task = queue.pop()
-	  task.execute()
+      while queue.is_empty():
+          wait()
+      task = queue.pop()
+      task.execute()
   ```
 
 - Two types of function calls:
@@ -87,7 +87,7 @@ alert('world');
 // Call when a click happens
 div.addEventListener('click',
   function(e) {
-	console.log('Hello click');
+    console.log('Hello click');
   });
 ```
 
@@ -95,7 +95,7 @@ div.addEventListener('click',
 // Call when a HTTP request happens
 app.get('/toto',
   function(req, res) {
-	res.send("Hello world");
+    res.send("Hello world");
   });
 ```
 </div>
@@ -108,13 +108,13 @@ app.get('/toto',
 ```js
 app.get('/foo', function(req, res) {
   setTimeout(function() {
-	knex.raw('SELECT * FROM users').then(function(err, result) {
-	  if (err)
-		console.log(err);
-	  else if (result.length > 0) {
-		knex.raw(...).then(...)
-	  }
-	});
+    knex.raw('SELECT * FROM users').then(function(err, result) {
+      if (err)
+        console.log(err);
+      else if (result.length > 0) {
+        knex.raw(...).then(...)
+      }
+    });
   }, 2000);
 });
 ```
@@ -230,7 +230,7 @@ var start = Date.now()
 fetch('/index.html')
   .then(function (response) {
     alert(`${response.url} (${Date.now() - start}ms)`);
-	return fetch('/README.md');           // fetch 2nd only after 1st is done
+    return fetch('/README.md');           // fetch 2nd only after 1st is done
   })
   .then(function (response) {
     alert(`${response.url} (${Date.now() - start}ms)`);
@@ -294,4 +294,3 @@ $$('.eval').forEach((p) => {
   p.on('click', (e) => eval(p.textContent));
 });
 </script>
-
