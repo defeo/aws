@@ -1,0 +1,54 @@
+---
+---
+
+body { font-family: sans; }
+
+.blocks{
+    height: 2em;
+    margin: 0 4em;
+    
+    span {
+        display: inline-block;
+        height: 2em;
+        min-width: 1em;
+        margin: 0 2px;
+    }
+    span.selected {
+        opacity: 0.5;
+    }
+}
+#chunks span {
+    background-color: green;
+}
+#thrash span {
+    background-color: red;
+}
+
+#leds {
+    #recording {
+        --color: red;
+    }
+    #playing {
+        --color: green;
+    }
+    span {
+        opacity: 0.1;
+        display: inline-block;
+        width: 4em;
+        height: 4em;
+        margin: 1em;
+        border-radius: 2em;
+        background: radial-gradient(var(--color) 30%, white 90%);
+    }
+    span.active {
+        opacity: 1;
+    }
+}
+
+canvas {
+    display: block;
+    width: 90vw;
+    margin: auto;
+    height: 18vw;
+    background-color: #ddd;
+}

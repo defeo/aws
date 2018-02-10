@@ -53,6 +53,7 @@ defaults:
     values:
       addons:
         slideshow: { width: 1000, height: 562.5 }
+        recorder: yes
         style_goodies: yes
   - scope:
       path: '_tutorials'

@@ -1,0 +1,26 @@
+<!Doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Recorder monitor</title>
+    <link rel="stylesheet" href="visualisation.css"/>
+  </head>
+  <body>
+    <div id="leds">
+      <span id="recording"></span>
+      <span id="playing"></span>
+    </div>
+
+    <canvas id="waveform" height="200" width="1000"></canvas>
+      
+    <div id="chunks">
+      <h3>Chunks</h3>
+      <div class="blocks"></div>
+    </div>
+    <div id="thrash">
+      <h3>Thrash</h3>
+      <div class="blocks"></div>
+    </div>
+    <script src="visualisation.js"></script>
+  </body>
+</html>
