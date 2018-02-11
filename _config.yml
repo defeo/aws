@@ -16,8 +16,8 @@ created: 2013
 license:
   name: Creative Commons 4.0 Attribution-ShareAlike
   shortname: CC-BY-SA 4.0
-  url: http://creativecommons.org/licenses/by-sa/4.0/
-  badge: http://i.creativecommons.org/l/by-sa/4.0/80x15.png
+  url: https://creativecommons.org/licenses/by-sa/4.0/
+  badge: https://i.creativecommons.org/l/by-sa/4.0/80x15.png
 
 # Display a log in the top bar
 #logo: assets/logo/eLeMentS.svg

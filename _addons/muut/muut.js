@@ -28,7 +28,7 @@
         setTimeout(fetch, 30*1000);
     };
     var fetch = function() {
-        xhr.open('GET', 'http://api.muut.com/postcounts?path=/webdev-uvsq');
+        xhr.open('GET', 'https://api.muut.com/postcounts?path=/webdev-uvsq');
         xhr.responseType = 'json';
         xhr.send();
     }
