@@ -40,11 +40,11 @@ class Visualiser {
 
     drawWave(data) {
         ((w, c) => {
-            console.log(data.length);
             c.clearRect(0, 0, w.width, w.height);
             c.beginPath();
             c.moveTo(0, w.height/2);
-            for (let i = 0; i < data.length; i++) {
+            const step = Math.floor(data.length / w.width);
+            for (let i = 0; i < data.length; i += step) {
                 c.lineTo((i+1) * w.width / data.length, (2*data[i]+1)*w.height/2);
             }
             c.stroke();

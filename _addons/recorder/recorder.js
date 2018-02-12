@@ -3,10 +3,18 @@ class Recorder {
         const options = Object.assign({}, {
             constraints: {
                 audio: true,
-                video: { mediaSource: 'window' },
+                video: {
+                    mediaSource: 'window',
+                    frameRate: {
+                        ideal: 12,
+                        max: 24,
+                    },
+                },
             },
             recorder: {
                 mimeType: 'video/webm',
+//                audioBitsPerSecond:   96000,
+//                videoBitsPerSecond: 2000000,
             },
         }, opts);
         
@@ -84,11 +92,17 @@ class Recorder {
                 out.push(new Promise((resolve, reject) => {
                     const f = new FileReader();
                     f.readAsDataURL(c);
-                    f.onload = () => resolve(f.result);
+                    f.onload = () => resolve(new Blob(['"', f.result, '"']));
                 }));
             }
             Promise.all(out).then((out) => {
-                const blob = new Blob([JSON.stringify(out)], { type: 'application/json' });
+                const json = new Array(2*out.length + 1);
+                for (let i = 0; i < out.length; i++) {
+                    json[2*i] = i == 0 ? "[" : ",";
+                    json[2*i + 1] = out[i];
+                }
+                json[json.length - 1] = "]";
+                const blob = new Blob(json, { type: 'application/json' });
                 this.download.href = URL.createObjectURL(blob);
                 this.download.click();
             });
