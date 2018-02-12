@@ -3,7 +3,6 @@ title: Curiosity – Qu'y a-t-il sous les pavés?
 difficulty: 2
 frameworks: Node, Silex
 tags: [multi-utilisateur, jeu]
-publish: yes
 ---
 
 Le but de ce projet est de développer une version simplifiée du jeu

@@ -1,8 +1,8 @@
 ---
 title: Find my Friends
 difficulty: 3
-frameworks: Node
-tags: [mobile, géolocalisation, multi-utilisateur]
+tags: [mobile, geolocation, multi-user]
+publish: yes
 ---
 
 Le but de ce projet est de développer une application similaire à
@@ -14,13 +14,10 @@ temps réel la distance et la direction des autres utilisateurs
 connectés.
 
 Afin de pouvoir tester l'application, il est impératif de disposer de
-plusieurs appareils munis de géolocalisation. Puisque cette
-application utilise des technologies web non-standardisées, elles ne
-peut être compatible qu'avec les appareils suivants :
-
-- téléphones et tablettes Android avec navigateur Firefox,
-- téléphones et tablettes Firefox OS,
-- ordinateurs munis de GPS.
+plusieurs appareils munis de géolocalisation. Puisque les APIs
+utilisées dans ce projet sont récentes, il est important que les
+appareils utilisés pour tester aient un navigateur relativement récent
+(Firefox, Chrome ou Safari).
 
 L'utilisation d'une base de données n'est pas obligatoire pour cette
 application.
@@ -31,9 +28,9 @@ En imitant le modèle des chats, l'application compartimente les
 utilisateurs dans des *chambres*. Chaque chambre sera identifiée par
 une URL du type
 
-~~~
+```
 http://application.com/aeadfw23x
-~~~
+```
 
 où `aeadfw23x` est l'identifiant de la chambre. Les identifiants
 peuvent être générés aléatoirement, ou créés par les utilisateurs.
@@ -66,23 +63,18 @@ peuvent être générés aléatoirement, ou créés par les utilisateurs.
    géodésiques. C'est des mathématiques de niveau L1, mais si vous y
    êtes allergiques, ce projet n'est pas pour vous.
 
-L'application peut être testée en local en connectant le serveur et
-les clients mobiles au même réseau local (par ex.: un réseau wifi), ou
-en utilisant le serveur de Cloud9. Pour un test hors du laboratoire,
-il est nécessaire d'héberger le serveur à une adresse accessible
-depuis le web. Nous conseillons les hébergeurs gratuits suivants :
+L'API de géolocalisation n'étant activée que pour des sites en https,
+il est donc conseillé d'utiliser [Glitch](https://glitch.com) pour
+tester. D'autres options pour héberger votre application sont:
 
 - [Heroku](https://heroku.com),
-- [Openshift](https://openshift.com).
+- [Now](https://zeit.co/now).
 
 
-### Ressources
+### Resources
 
-- Pour la communication entre clients, vous avez le choix entre les
-  deux technologies de communication bidirectionnelle :
-  
-  - [`EventSource`](https://developer.mozilla.org/docs/Web/API/EventSource),
-  - [WebSockets](https://developer.mozilla.org/en/docs/WebSockets).
+- Pour la communication entre clients, il est conseillé d'utiliser les
+  [WebSockets](https://developer.mozilla.org/en/docs/WebSockets).
 
 - Les données de géolocalisation doivent être interrogées avec l'API
   web

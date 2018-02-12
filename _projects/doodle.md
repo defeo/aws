@@ -3,7 +3,6 @@ title: Doodle calendar
 difficulty: 1
 frameworks: Node, Silex
 tags: ajax
-publish: yes
 ---
 
 Le but du projet est de créer une version simplifiée d'un doodle,

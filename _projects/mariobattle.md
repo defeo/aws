@@ -3,7 +3,6 @@ title: Dario Battle
 difficulty: 3
 frameworks: Node
 tags: [multi-utilisateur, temps réel, jeu]
-publish: yes
 ---
 
 Le but de ce projet est de développer un jeu multi-joueurs en temps

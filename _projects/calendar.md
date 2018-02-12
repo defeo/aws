@@ -1,14 +1,12 @@
 ---
 title: Calendrier
 difficulty: 1
-frameworks: Node, Silex
 tags: ajax
+publish: yes
 ---
 
 Le but du projet est de définir une application permettant de gérer un
-calendrier personnel, un peu comme Google Calendar. Le meilleur projet
-sera utilisé, avec votre permission, pour l'organisation des
-soutenances de projet !
+calendrier personnel, un peu comme Google Calendar.
 
 ### Description
 
@@ -20,8 +18,8 @@ chevaucher ou se superposer**.  Un événement a au moins :
 * une date et heure de fin,
 * un créateur.
 
-Ces champs sont reflétés dans une table MySQL. Une autre table MySQL
-sera utilisée pour stocker les utilisateurs et leurs mots de passe.
+Ces champs sont reflétés dans une table SQL. Une autre table SQL sera
+utilisée pour stocker les utilisateurs et leurs mots de passe.
 
 L'application est composée de deux *vues* :
 
@@ -95,7 +93,7 @@ le souhaitez. Nous proposons ici un exemple de découpage en
 gestionnaires :
 
 - Route `/` : présentant la page principale.
-- Route `/signup` : permettant de créer un nouvel utilisateur.
+- Route `/signin` : permettant de créer un nouvel utilisateur.
 - Route `/login` : permettant de se connecter. Redirige vers `/` après
   un login réussi.
 - Route `/logout` : permettant de se déconnecter. Redirige vers `/` après
@@ -132,6 +130,10 @@ Les guides des évènements
   cases. Utiliser des classes CSS pour visualiser la plage
   sélectionnée pendant le glissement.
 
+* Utiliser le [CSS grid
+  layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout)
+  à la place d'un tableau HTML pour composer le calendrier.
+
 * Définir quatre niveaux d'accès au calendrier : création,
   modification, effacement, administration. Les administrateurs ont
   droit de modifier/effacer les évènements de tout le monde. Ajouter
@@ -143,14 +145,14 @@ Les guides des évènements
 
 * Gérer plusieurs calendriers : dans ce cas, chaque calendrier a un
   identifiant (par exemple toto, et sera accessible à l'adresse
-  <http://serveur-calendrier/toto>).
+  <https://serveur-calendrier/toto>).
 
 * Réaliser un affichage qui s'adapte à la taille de l'écran, notamment
   aux écrans mobiles. Ajouter de la gestion d'évènements tactiles, et
   tester avec un téléphone ou tablette.
 
 * Utiliser une base de données No-SQL (par exemple MongoDB) à la place
-  de MySQL.
+  de SQL.
 
 * Faire en sorte que 15 minutes avant un évènement, un message
   d'alerte soit affiché sur la page.

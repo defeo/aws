@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Propositions de projet
+title: Project proposals
 styles: assets/css/collapsible.css
 scripts: assets/js/collapsible.js
 ---
@@ -13,24 +13,21 @@ scripts: assets/js/collapsible.js
 }
 </style>
 
-# Propositions de projet
+# Project proposals
 
-Cette page présente les typologies de projet de développement
-acceptées aux fins de validation du contrôle continu. Les projets ne
-sont pas tous du même niveau : pour chacun on indique une estimation
-de sa difficulté.
+Here are the development project that will be accepted for passing the
+course. The difficulty of each project is not the same: stars indicate
+how difficult each project is.
 
-- Les projets sont à développer en groupe, idéalement binôme.
+- Projects must be developed in pairs.
 
-- Le projet doit faire l'objet d'une présentation orale.
+- You are expected to give an oral presentation of your project with a
+  demonstration.
 
-Il est conseillé d'héberger votre projet pour la démonstration
-finale. [Heroku](https://heroku.com) est une plateforme gratuite
-d'hébergement avec support pour PHP, Node.js et MySQL.
-[Now](https://zeit.co/now]) et [Gomix](https://gomix.com/) sont deux
-autre plateformes gratuites intéressantes pour Node.js, mais, à moins
-d'utiliser SQLite, vous allez devoir trouver une solution
-complémentaire pour héberger votre base de données.
+You can develop and host your projects on
+[Glitch](https://glitch.com). Other (free) options for hosting your
+project are [Heroku](https://heroku.com) and
+[Now](https://zeit.co/now).
 
 {% for p in site.projects %}{% if p.publish %}
 <div class="collapsible collapsed" id="project-{{ forloop.index }}">
@@ -38,13 +35,12 @@ complémentaire pour héberger votre base de données.
 ## {{ p.title }}
 
 
-- *Frameworks :* {{ p.frameworks | join: ', ' }}
-- *Difficulté :* {% for i in (1..p.difficulty) %}<i class="fa fa-star"></i>{% endfor %}
-- *Mots-clé :* {{ p.tags | join: ', ' }}
+- *Difficulty:* {% for i in (1..p.difficulty) %}<i class="fa fa-star"></i>{% endfor %}
+- *Keywords:* {{ p.tags | join: ', ' }}
 {:.info}
 </div>
 <div class="toggleable">
-{{ p.content | markdownify }}
+{{ p.content }}
 </div>
 </div>
 {% endif %}{% endfor %}

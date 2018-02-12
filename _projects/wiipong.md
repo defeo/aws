@@ -3,7 +3,6 @@ title: WiiPong
 difficulty: 4
 frameworks: Node
 tags: [multi-utilisateur, jeu, mobile]
-publish: yes
 ---
 
 Le but de ce projet est de réaliser un jeu de
