@@ -1,6 +1,6 @@
 ---
 layout: lesson
-title: Injections SQL
+title: SQL injections
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/sql-injection.webm
@@ -10,58 +10,58 @@ addons:
 
 <section>
 
-## Ne jamais se fier au client
+## Never trust the client
 
-Toutes les données en provenance du client :
+Every data coming from the client:
 
-- Entêtes HTTP,
-- Paramètres de l'URL, *query string*
-- Corps de la requête, données des formulaires,
+- HTTP headers,
+- URL parameters, query string,
+- Request body, form data,
 - Cookies, Storage API,
 
-peuvent contenir des valeurs **non valides**, pour plusieurs raisons :
+may contain **invalid** data, for many reasons:
 
-- L'utilisateur a fait une erreur de saisie ;
-- Le client n'utilise pas JavaScript ;
-- Le client est un robot ;
-- L'utilisateur est un hacker qui cible votre site.
+- Error by the user;
+- Old browser / JavaScript switched off;
+- The client is a robot;
+- The user is intentionally trying to hack your web app.
 
-Pour toutes ces raisons, le code du serveur **doit toujours vérifier**
-les données envoyées par le client.
+For these reasons, server-side code **must always verify** data sent
+by the client.
 
 </section>
 <section>
 
-## Injections SQL
+## SQL Injections 
 
-Considérez le code suivant, qui vérifie la connexion d'un utilisateur.
+Consider this code, verifying user credentials.
 
-~~~
-$user = $req->request->get('user');
-$pass = $req->request->get('pass');
-$sql = "SELECT * FROM users WHERE login='$user' AND password='$pass'";
-if ($app['db']->fetchAssoc($sql)) {
-  // utilisateur connecté
+```js
+var user = req.body.user;
+var pass = req.body.pass;
+var sql = `SELECT * FROM users WHERE login='${user}' AND password='${pass}'`;
+var rows = await knex.raw(sql);
+if (rows.length > 0) {
+  // user verified
 }
-~~~
-{:.php}
+```
 
-L'utilisateur envoie les paramètres suivants dans le corps de la requête :
+The user sends these data in the request body:
 
-~~~
+```
 user=root
 pass=' OR '1'='1
-~~~
-{:.bash}
+```
 
-La chaîne `$sql` vaudra alors
+The generated SQL query will be:
 
-~~~
+```sql
 SELECT * FROM users WHERE login='root' AND password='' OR '1'='1'
-~~~
+```
 
-La condition est toujours vérifiée : **le hacker est connecté en tant
-que root!**
+The `WHERE` condition is always true! **The hacker connects to your
+database as root!**.
+
 
 </section>
 <section>
@@ -73,58 +73,61 @@ que root!**
 </section>
 <section>
 
-### Que peut-on faire avec les injections SQL ?
+### What are the risks associated to an SQL injection?
 
-- Escalade de droits (se faire passer pour *root*),
-- Vol de données (lire la base),
-- Compromission de la base de données (effacer/modifier les données).
+- Rights escalation (connect as *root*),
+- Data theft (dump the database),
+- Data compromise (destroy/modify the data).
 
 
 ![](http://imgs.xkcd.com/comics/exploits_of_a_mom.png) <small style="display:inline-block;transform:rotate(-90deg);transform-origin:top left"><https://xkcd.com></small>
 {:.centered style="max-width:100%"}
 
-Et voici une
-[liste de attaques par injection SQL documentées](http://en.wikipedia.org/wiki/SQL_injection#Examples).
+Here's a [list of some documented SQL injection
+attacks](http://en.wikipedia.org/wiki/SQL_injection#Examples).
 
-**Note :** bien que réaliste, l'attaque suggérée par XKCD est
-improbable : aussi bien PHP que Node.js
-[interdisent](https://dev.mysql.com/doc/apis-php/en/apis-php-mysqli.quickstart.multiple-statement.html)
-[par défaut](https://github.com/mysqljs/mysql#multiple-statement-queries)
-les *statements* multiples.
+**Note:** although realistic, the attack suggested by XKCD is
+unlikely: most SQL engines nowadays forbid *multiple statements*,
+i.e. statements separated by a semi-colon (`;`).
 
 </section>
 <section>
 
-## Contrer les injections SQL
+## Countermeasures
 
-On connaît la solution : **échapper les caractères spéciaux** `'`,  `"`,  `;`
+We [already saw](sql) the solution: **escape special characters** `'`,
+`"`, `;`
 
-- PHP : `mysqli::real_escape_string`,
-- PDO/Doctrine : `PDO::quote`, `Doctrine::quote`,
-- Échappement automatique : **requêtes préparées**.
+- Using a *Query builder*,
+  
+  ```js
+  await knex('users').where({
+      'login': user,
+      'password': pass,
+  });
+  ```
 
-Exemple
+- Using *prepared statements*.
+  
+  ```js
+  await knex.raw('SELECT * FROM users WHERE login=? AND password=?', 
+                 [user, pass]);
+  ```
 
-~~~
-$app['db']->fetchAssoc("SELECT * FROM users WHERE login=? AND password=?",
-                       array($user, $pass));
-~~~
-{:.php}
+Result (in both cases)
 
-Résultat
-
-~~~
+```sql
 SELECT * FROM users WHERE login='root' AND password=''' OR ''1''=''1'
-~~~
+```
 
 </section>
 <section>
 
-## Lectures
+## References
 
-- [Code source de l'exemple](https://github.com/defeo/aws-security/blob/master/sql-injection.js),
-- OWASP sur l'[injection SQL](https://www.owasp.org/index.php/SQL_Injection),
-- Le
-  [manuel de php sur l'injection SQL](http://php.net/manual/en/security.database.sql-injection.php).
+- [Source code of the example](https://github.com/defeo/aws-security/blob/master/sql-injection.js),
+- OWASP on [SQL injections](https://www.owasp.org/index.php/SQL_Injection),
+- The [PHP manual on SQL
+  injections](http://php.net/manual/en/security.database.sql-injection.php).
 
 </section>
