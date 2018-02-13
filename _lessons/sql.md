@@ -210,7 +210,7 @@ SELECT * FROM users
 await knex('users')
   .select('name', 'surname')
   .where('town', 'Paris')
-  .andWhere('age', '>', 18);
+  .andWhere('age', '<', 18);
 ```
 
 ```sql
