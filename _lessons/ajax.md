@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: Applications asynchrones
-subtitle: AJAX et XMLHttpRequest
+title: Asynchronous applications
+subtitle: AJAX, XMLHttpRequest
 scripts: '../assets/js/stackoverflow-api.js'
 addons:
   video:
@@ -12,55 +12,55 @@ addons:
 
 <section>
 
-## Applications synchrones
+## Synchronous applications
 
-**Action → Requête → Réponse HTML → Action → ...**
+**Action → Request → HTML response → Action → ...**
 
-1. L'utilisateur demande une URL
+1. The user queries a URL
    
-   ~~~
-   GET /action?parametres HTTP/1.1
+   ```http
+   GET /action?parameters HTTP/1.1
    ...
-   ~~~
+   ```
 
-2. Le server répond avec du HTML.
+2. The servers replies with some HTML.
 
-3. L'utilisateur quitte la page en
+3. The user leaves the page by one of the following:
    
-   - Cliquant un **lien**,
-   - Cliquant un **bouton de type `submit`**,
-   - **rafraîchissant**.
+   - Clicking a **link**,
+   - Clicking a **`submit` button**,
+   - **reloading the page**.
    
-   ~~~
-   POST /autre_action?parametres HTTP/1.1
+   ```http
+   POST /other_action?parameters HTTP/1.1
    ...
-   ~~~
+   ```
     
-4. Le server répond avec de l'autre HTML.
+4. The server replies with more HTML.
 
 </section>
 <section>
 
-## Et l'état ?
+## And the state?
 
-### HTTP est **sans état**
+### HTTP is **stateless**
 
-Dans le **Web 1.0**, le server est **le seul** responsable du maintien
-de l'état
+In so-called **Web 1.0** apps, the server is **the only one**
+responsible for keeping the state
 
-- dans la logique de l'application (URLs, requêtes, etc.)
-- dans son stockage local (sessions, bases de données),
-- chez le client (cookies).
+- In the application logic (URLs, requests, etc.);
+- In its local storage (sessions, databases);
+- On the client (cookies).
 
-### Action → Requête → Réponse HTML → ...
+### Action → Request → HTML response → ...
 
-**Dommage collatéral :** le browser perd l'état (à l'exception de son
-  stockage local) à chaque nouvelle **action**.
+**Collateral damage:** the browser looses the state (except for its
+local storage) at each new **action**.
 
-**Démonstration :** <a href="../assets/referrer-echoer.html">naviguez
-  vers la racine,</a> puis revenez.
+**Demonstration:** <a href="../assets/referrer-echoer.html">surf to
+  some other page,</a> then come back.
 
-Temps passé sur ces slides : <span id="date"></span>
+Time spent on these slides: <span id="date"></span>
 
 <script type="text/javascript">
     var start = new Date();
@@ -73,35 +73,35 @@ Temps passé sur ces slides : <span id="date"></span>
 </section>
 <section>
 
-## Navigation synchrone
+## Synchronous browsing
 
-![Description du modèle de flux de données du Web 1.0, par Jesse J Garret](../assets/web1.0.png)
+![Description of the Web 1.0 dataflow model, by Jesse J
+Garret](../assets/web1.0.png)
 {:.centered}
 
 </section>
 <section>
 
-## Exemple synchrone
+## Synchronous example
 
 <form method='GET' action='http://stackoverflow.com/search'>
-**Ask [StackOverflow](http://stackoverflow.com/) :**
+**Ask [StackOverflow](http://stackoverflow.com/):**
 <input name='q' type='text' value='AJAX' />
 <input type='submit' value='Ask' />
 </form>
 
-~~~
+```html
 <form method='GET' action='http://stackoverflow.com/search'>
   
   <input name='q' type='text' value='AJAX' />
   <input type='submit' value='Ask' />
 </form>
-~~~
-{:.compact}
+```
 
 </section>
 <section>
 
-## Navigation asynchrone
+## Asynchronous browsing
 
 ![Description of the AJAX dataflow model, by Jesse J Garret](../assets/web2.0.png)
 {:.centered}
@@ -109,10 +109,10 @@ Temps passé sur ces slides : <span id="date"></span>
 </section>
 <section>
 
-## Exemple asynchrone
+## Asynchronous example
 
 <form id='stack'>
-  **Ask [StackOverflow](http://stackoverflow.com/) :**
+  **Ask [StackOverflow](http://stackoverflow.com/):**
   <input id='query' type='text' value='AJAX' />
   <input type='submit' value='Ask' />
 </form>
@@ -120,15 +120,15 @@ Temps passé sur ces slides : <span id="date"></span>
 <div id='answers'></div>
 <style>
 #answers {
-	width: 90%;
-	height: 440px;
-	margin: auto;
-	border: solid thin gray;
-	border-radius: 5px;
-	box-shadow: 0 0 2px gray inset;
-	overflow-y: auto;
-	transition: opacity 2s;
-	-webkit-transition: opacity 2s;
+    width: 90%;
+    height: 420px;
+    margin: auto;
+    border: solid thin gray;
+    border-radius: 5px;
+    box-shadow: 0 0 2px gray inset;
+    overflow-y: auto;
+    transition: opacity 2s;
+    -webkit-transition: opacity 2s;
 }
 #answers.fadein { opacity: 1; }
 #answers.fadeout { opacity: 0.1; }
@@ -137,38 +137,38 @@ Temps passé sur ces slides : <span id="date"></span>
 </section>
 <section>
 
-## Navigation asynchrone
+## Asynchronous browsing
 
-Quels éléments pour une navigation asynchrone ?
+What is needed for asynchronous browsing?
 
-### Action ≠ Requête
+### Action ≠ Request
 
-- JavaScript intercepte les actions (*évènements*) de l'utilisateur.
+- JavaScript intercepts user actions (*events*).
 
-### Requêtes asynchrones (`XMLHttpRequest`, [Fetch API](https://fetch.spec.whatwg.org/))
+### Asynchronous requests (`XMLHttpRequest`, [Fetch API](https://fetch.spec.whatwg.org/))
 
-- JavaScript peut initier une requête **indépendamment** des actions de
-  l'utilisateur,
-- Les requêtes **n'interrompent pas** la navigation.
+- JavaScript can initiat a request **independently** from the user
+  actions,
+- Requests **do not interrupt** browsing.
 
 ### *Server push* (`EventSource`, Web sockets)
 
-- Le serveur peut envoyer des données au client sans attendre une
-  requête.
+- The server can send data to the client without waiting for a
+  request.
 
 </section>
 <section>
 
 ## `XMLHttpRequest`
 
-Introduit par Microsoft dans IE5, maintenant un standard W3C.
+Introduced by Microsoft in IE5, now a W3C standard.
 
-- Envoie des requêtes **POST ou GET** (ou autre) vers le server ;
-- **Ne bloque pas le browser** en attendant la response ;
-- Exécute une callback asynchrone à l'arrivée de la response.
+- Sends **POST** or **GET** (and more) requests to the server;
+- **Does not block browser** while waiting for the response.
+- Runs an **asynchronous callback** when it receives the response.
 
-~~~
-/***************  Cliquez !  ***************/
+```js
+/***************  Click !  ***************/
 mydiv.onclick = function() {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "../LICENSE");
@@ -177,8 +177,8 @@ mydiv.onclick = function() {
   }
   xhr.send();
 }
-~~~
-{: #ajax-demo .javascript}
+```
+{: #ajax-demo}
 
 <style>
 #ajax-demo {
@@ -186,8 +186,8 @@ mydiv.onclick = function() {
   transition: box-shadow 0.2s;
   -webkit-transition: box-shadow 0.2s;
 }
-#ajax-demo:hover { box-shadow: 0 0 20px blue; }
-#ajax-demo.loading { box-shadow: 0 0 20px red; }
+#ajax-demo:hover pre { box-shadow: 0 0 20px blue; }
+#ajax-demo.loading pre { box-shadow: 0 0 20px red; }
 </style>
 
 <script>
@@ -199,7 +199,7 @@ div.onclick = function() {
   xhr.onload = function () {
     setTimeout(function() {
       alert(xhr.response);
-	  div.classList.remove('loading');
+      div.classList.remove('loading');
     }, 500);
   }
   xhr.send();
@@ -209,91 +209,91 @@ div.onclick = function() {
 </section>
 <section>
 
-### Creation et préparation
+### Creation and preparation
 
-~~~
+```js
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "http://.../action?params");
-~~~
+```
 
 ### Callbacks
 
-~~~
+```js
 xhr.onload = function(event) {
-  console.log('Succes');
+  console.log('Success');
 }
 xhr.onerror = function(event) {
-  console.log('Erreur');
+  console.log('Error');
 }
 xhr.onabort = function(event) {
-  console.log("Annulé par l'utilisateur");
+  console.log("Canceled by the user");
 }
 xhr.onprogress = function(event) {
-  console.log('Téléchargement...');
+  console.log('Downloading...');
 }
-~~~
+```
 
 </section>
 <section>
 
-### Envoyer des données
+### Sending data
 
-~~~
+```js
 xhr.setRequestHeader('Content-Type', 'text/plain')
 xhr.send("Hello world !");
-~~~
+```
 
-Simuler un formulaire
-([peut aussi envoyer des données binaires](https://developer.mozilla.org/en-US/docs/Web/Guide/Using_FormData_Objects))
+Emulating a form ([can also send binary
+data](https://developer.mozilla.org/en-US/docs/Web/Guide/Using_FormData_Objects))
 
-~~~
+```js
 var formData = new FormData();
 formData.append('q', 'AJAX');
 formData.append('hl', 'en');
-// Content-Type: multipart/form-data  par defaut
+// Content-Type: multipart/form-data  by default
 xhr.send(formData);
-~~~
+```
 
-Envoyer du JSON
+Sending JSON
 
-~~~
+```js
 var data = { primes : [2, 3, 5, 7],
              even   : [2, 4, 6, 8] };
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify(data));
-~~~
+```
 
 </section>
 <section class="compacts">
 
-## Lire la réponse
+## Reading the response
 
-~~~
+```js
 xhr.onload = function() {
-  console.log(xhr.responseText);  // Texte simple
-  console.log(xhr.responseXML);   // XML (si la réponse est dans ce format)
-  console.log(xhr.response);      // Configurable (texte par défaut)
+  console.log(xhr.responseText);  // Simple text
+  console.log(xhr.responseXML);   // XML (if the response is indeed XML)
+  console.log(xhr.response);      // Configurable (text by default)
 }
-~~~
+```
 
-Pré-traitement de la réponse par le browser
+Pre-parsing the response
 
-~~~
+```js
 xhr.responseType = "json";
 xhr.onload = function() {
-  var obj = xhr.response;         // transformé en objet JavaScript
-  console.log(obj.toto);          // par le browser
+  var obj = xhr.response;         // transformed to a JavaScript object
+  console.log(obj.toto);          // by the browser
 }
-~~~
+```
 
-- `responseType = "text"` : texte (default),
-- `responseType = "document"` : arbre DOM d'un document HTML,
-- `responseType = "arraybuffer"`, `responseType = "Blob"` : données binaires.
+- `responseType = "text"`: text (default),
+- `responseType = "document"`: DOM tree of a HTML document,
+- `responseType = "arraybuffer"`, `responseType = "Blob"`: binary data.
 
 </section>
 <section>
 
-## Étude de cas : API StackOverflow
+## Case study: StackOverflow API
 
 <pre><code>document.querySelector('#SO').onsubmit = function(e) {
 <div id="xhr-input">  var query = <span class="urlencode">encodeURIComponent</span>(document.querySelector('#query').value);
@@ -317,17 +317,17 @@ html[data-incremental="5"] #xhr-prevent
 { outline: solid thick red; }
 </style>
 
-- Récupération du contenu du champs de texte ;
-- Échappement des caractères spéciaux ;
-- Préparation de la requête à <https://api.stackexchange.com> ;
-- On attend un résultat au format JSON ;
-- On arrête la soumission du formulaire.
+- Extracting input field data;
+- Escaping special characters;
+- Preparing the request for <https://api.stackexchange.com>;
+- Waiting for a JSON-formatted response;
+- Preventing form submission.
 {: .incremental}
 
 </section>
 <section>
 
-## Étude de cas : API StackOverflow
+## Case study: StackOverflow API
 
 <pre><code>var callback = function(e) {
   if (xhr.response && <span class="xhr-parse">xhr.response.<span class="xhr-api">items</span></span>) {
@@ -335,7 +335,7 @@ html[data-incremental="5"] #xhr-prevent
 <div id="xhr-list">    for (var i = 0; i < liste.length; i++) {
       <span class="xhr-dom">document.querySelector('#answers > ul').innerHTML</span> =
         '&lt;li&gt;' + <span class="xhr-parse">liste<span class="xhr-api">[i].title</span></span> + '&lt;/li&gt;';
-	}
+    }
 </div>  } else {
     <span class="xhr-dom">document.querySelector('#answers').innerHTML</span> =
       '&lt;p&gt;Pas de résultats.&lt;/p&gt;';
@@ -351,24 +351,23 @@ html[data-incremental="4"] .xhr-api
 { outline: solid thick red; }
 </style>
 
-- La réponse (au format JSON) est automatiquement convertie en objet
-  JavaScript ;
-- On construit une liste des questions répondant aux critères ;
-- On insère le résultat dans la page via le DOM ;
-- Voir la documentation complète de l'API : <https://api.stackexchange.com/docs/>.
+- The (JSON) response is converted to a JavaScript object;
+- Building a list of the questions corresponding to our search;
+- Inserting the result in the web page through the DOM;
+- See the full API documentation: <https://api.stackexchange.com/docs/>.
 {: .incremental}
 
 </section>
 <section>
 
-## Lectures
+## References
 
-- Eloquent Javascript, [Chapitre 17](http://eloquentjavascript.net/17_http.html).
+- Eloquent Javascript, [Chapter 17](http://eloquentjavascript.net/17_http.html).
 
-- [Pages AJAX du MDN](https://developer.mozilla.org/fr/docs/AJAX) (aussi [en anglais](https://developer.mozilla.org/en-US/docs/AJAX)).
+- [MDN pages on AJAX](https://developer.mozilla.org/fr/docs/AJAX) (aussi [en anglais](https://developer.mozilla.org/en-US/docs/AJAX)).
 
-- [Tutoriel MDN `XMLHttpRequest`](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest).
+- [MDN tutorial on `XMLHttpRequest`](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest).
 
-- [Tutoriel MDN `FormData`](https://developer.mozilla.org/docs/Web/Guide/Using_FormData_Objects).
+- [MDN tutorial on `FormData`](https://developer.mozilla.org/docs/Web/Guide/Using_FormData_Objects).
 
 </section>

@@ -1,7 +1,7 @@
 ---
 layout: lesson
 title: JSON
-subtitle: Formats d'échange de données en AJAX
+subtitle: Data formats and AJAX
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/json.webm
@@ -11,216 +11,206 @@ addons:
 
 <section>
 
-## Formats de données en AJAX
+## AJAX and data formats
 
-AJAX est l'acronyme de *« Asynchronous JavaScript and XML »*.
+AJAX stands for *"Asynchronous JavaScript and XML"*.
 
-Mais chaque composant est optionnel, en particulier XML !
+But every component is optional, XML above all!
 
-Selon l'application, l'un des formats suivants peut être mieux adapté
-qu'un autre :
+Depending on the application, one of the following data formats may be
+preferred:
 
-- **Pas de données** : les entêtes HTTP suffisent ;
-- **Texte** simple ;
-- Extraits de **HTML** ;
-- **JavaScript**, **CSS**, ... ;
-- **JSON**, autres formats *légers* (YAML, ...) ;
-- **XML**, autres formats structurés (XHTML, ...) ;
-- Données **binaires**, encodage Base64, ... ;
+- **No data:** HTTP headers are enough;
+- **Simple text**;
+- **HTML** excerpts;
+- **JavaScript**, **CSS**, ...;
+- **JSON**, other *lightweight* formats (YAML, ...);
+- **XML**, other structured formats (XHTML, ...);
+- **Binairy** data, Base64 encoded data, ...;
 - ...
 
-Utiliser l'entête `Content-Type` pour déclarer le format.
+Use the `Content-Type` HTTP header to declare the format.
 
 </section>
 <section>
 
-## Texte ou rien
+## Text or nothing
 
 <div class="two-cols">
 
-Pour des actions simples comme
+For simple actions, such as
 
-- Sauvegardes automatiques (mails, documents, etc.),
-- Avancement.
+- Auto-saves (mails, documents, etc.),
+- Progress.
 
 </div>
 
-~~~
+```http
 POST /api/savemail HTTP/1.1
 Host: webmail.example.com
 ...
 
-Cher Monsieur,
+Dear Sir,
 
-Par la présente je vo
-~~~
-{:.http}
+I am wrting to y
+```
 
-~~~
+
+```http
 HTTP/1.1 200 OK
 Content-Type: text/plain
 ...
 
 39
-~~~
-{:.http}
+```
 
 </section>
 <section>
 
 ## HTML
 
-Pour une inclusion directe de fragments HTML (par ex., billets de
-blog, commentaires, ...)
+For direct inclusion of HTML fragments (e.g., blog posts, comments,
+...)
 
-~~~
+```http
 GET /api/post/23389 HTTP/1.1
 Host: blog.example.com
 ...
-~~~
-{:.http}
+```
 
-~~~
+```http
 HTTP/1.1 200 OK
 Content-Type: text/html
 ...
 
-<article class='post' id='post23389'><p>J'ai toujours cru...
-~~~
-{:.http}
+<article class='post' id='post23389'><p>I've always believed...
+```
 
-Exemple d'inclusion dans le document:
+Example: attaching to the DOM
 
-~~~
+```js
 xhr.onload = function() {
     $('#main').innerHTML = xhr.responseText;
 });
-~~~
+```
 
-**Problème:** Viole la séparation entre **données**, **présentation**
-  et **logique**.
+**Problem:** Violates separation betwen **data**, **presentation** and
+**logic**.
 
 </section>
 <section class="compact">
 
 ## XML
 
-Pour des données riches et structurées (par ex., requêtes BD, geodata,
-...)
+For rich, structured data (e.g., DB requests, geodata, ...)
 
-~~~
+```
 GET /v1/public/yql?q=SELECT * FROM geo.places WHERE text="Paris" HTTP/1.1
 Host: query.yahooapis.com
 ...
-~~~
-{:.no-highlight .compact}
+```
 
-(La requête a été légèrement modifiée pour faciliter la lecture)
+(the request has been slightly modified to ease reading)
 
-~~~
+```http
 HTTP/1.1 200 OK
 Content-Type: application/xml
 ...
 
 <?xml version="1.0" encoding="UTF-8"?>
 <query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng" yahoo:count="10" yahoo:created="2015-03-17T22:05:40Z" yahoo:lang="en-US">
-	<results>
-		<place xmlns="http://where.yahooapis.com/v1/schema.rng" xml:lang="en-US" yahoo:uri="http://where.yahooapis.com/v1/place/615702">
-			<woeid>615702</woeid>
-			<placeTypeName code="7">Town</placeTypeName>
-			<name>Paris</name>
+    <results>
+        <place xmlns="http://where.yahooapis.com/v1/schema.rng" xml:lang="en-US" yahoo:uri="http://where.yahooapis.com/v1/place/615702">
+            <woeid>615702</woeid>
+            <placeTypeName code="7">Town</placeTypeName>
+            <name>Paris</name>
             ...
-~~~
-{:.http .compact}
+```
 
 </section>
 <section>
 
 ## XML
 
-### Évaluation, manipulation
+### Evaluation, manipulation
 
-- **XPath**: *Query language* pour la sélection de nœuds dans un arbre
-  XML ;
-- **XSLT** (Extensible Stylesheet Language Transformations):
-    transformations de documents XML.
+- **XPath**: *Query language* for selecting nodes in a XML tree;
+- **XSLT** (Extensible Stylesheet Language Transformations): XML
+  document transformations.
     
-### Avantages / Désavantages
+### Advantages / Disadvantages
 
-- Puissant, robuste ;
-- Verbeux, relativement lent ;
-- Peux d'implantations complètes ;
-- Spécification énorme avec des risques de failles de securité.
+- Powerful, robust;
+- Verbose, relatively slow;
+- Few complete implementations;
+- Huge specification, with security risks.
 
 </section>
 <section>
 
 ## JavaScript
 
-~~~
+```http
 GET /api/car?user=toto HTTP/1.1
 Host: www.example.com
 ...
-~~~
-{:.http}
+```
 
-~~~
+```http
 HTTP/1.1 200 OK
 Content-Type: application/javascript
 ...
 
 { car : 'peugeot', color : 'blue' }
-~~~
-{:.http}
+```
 
-Exemple d'inclusion dans le document
+Example: attaching to the DOM
 
-~~~
+```js
 xhr.onload = function() {
   var res = eval(xhr.responseText);
 }
-~~~
+```
 
 <div class="two-cols">
 
-### Problèmes graves
+### Serious problems
 
-- Viole la séparation de la logique ;
-- Grande risque de failles XSS.
+- Violates separation from logic;
+- Huge [XSS](xss) risk!
 
 </div>
 </section>
-<section class="compacta">
+<section>
 
 ## JSON (JavaScript Object Notation)
 
-JSON est un langage *léger* de représentation de données, basé sur JavaScript.
+JSON is a *lightweight* data representation language, based on
+JavaScript.
 
-~~~
+```http
 GET /api/car?user=toto HTTP/1.1
 Host: www.example.com
 ...
-~~~
-{:.http}
+```
 
-~~~
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 ...
 
 { "car" : "peugeot", "color" : "blue" }
-~~~
-{:.http}
+```
 
 <div class="two-cols">
 
-### Pour / Contre
+### Pros / Cons
 
-- Plus compact que XML, facile et rapide à évaluer ;
-- Moins puissant que XML ;
-- Supporté par tous les browsers modernes ;
-- Pas de risques d'évaluer du code dangéreux ;
-- Peut créer une vulnérabilité XSS si évalué avec `eval()`.
+- More compact than XML, easy and fast to evaluate;
+- Less powerful than XML;
+- Supported by all modern browsers;
+- No security risks...
+- ...unless you evaluate it with `eval()`, of course.
 
 </div>
 </section>
@@ -228,166 +218,152 @@ Content-Type: application/json
 
 ## JSON
 
-- Créé en 2000 par Douglas Crockford : <http://json.org/>.
-- Sous-ensemble de JavaScript : code JSON valide → code JavaScript
-  valide
-  ([presque](http://timelessrepo.com/json-isnt-a-javascript-subset)).
-- Extrêmement populaire pour les API de type REST.
-- Exemples de APIs JSON :
+- Crated in 2000 by Douglas Crockford: <https://json.org/>.
+- Subset of JavaScript: valid JSON code → valid JavaScript
+  code
+  ([almost](http://timelessrepo.com/json-isnt-a-javascript-subset)).
+- Very popular in REST APIs.
+- Some JSON API examples:
   [Google](https://developers.google.com/apis-explorer/),
   [Yahoo](https://developer.yahoo.com/yql/),
-  [Facebook](http://developers.facebook.com),
-  [OpenStreetMap](http://wiki.openstreetmap.org/wiki/API),
-  [Wikipedia](http://www.mediawiki.org/wiki/API:Main_page),
+  [Facebook](https://developers.facebook.com),
+  [OpenStreetMap](https://wiki.openstreetmap.org/wiki/API),
+  [Wikipedia](https://www.mediawiki.org/wiki/API:Main_page),
   [StackOverflow](https://api.stackexchange.com/),
   [GitHub](https://developer.github.com/v3/),
-  [Ville de Paris](http://opendata.paris.fr/),
+  [Ville de Paris](https://opendata.paris.fr/),
   [Vélib](https://developer.jcdecaux.com/#/home),
-  [WordPress](http://wp-api.org/), ...
+  [WordPress](http://v2.wp-api.org/), ...
 
-### Types de données
+### Data types
 
-- Nombres : `10`, `10.3`, `10.0003e-10`,
-- Chaînes de caractères : `"abcdef"`,
-- Booléens : `true`, `false`,
+- Numbers: `10`, `10.3`, `10.0003e-10`,
+- Strings: `"abcdef"`,
+- Booleans: `true`, `false`,
 - `null`,
-- Listes : `[ 1, 2, "abcdef", true ]`,
-- Objects : `{ "clef" : "valeur", "autre_clef" : 1, "encore_une" : null }`.
+- Lists: `[ 1, 2, "abcdef", true ]`,
+- Objects: `{ "key" : "value", "other_key" : 1, "one_more" : null }`.
 
 </section>
 <section>
 
-## Exemple JSON
+## JSON example
 
-~~~
+```js
 {
-  "voitures" :
+  "cars" :
   [
-    { "modèle"          : "peugeot",
-	  "couleur"         : "bleu",
-	  "immatriculation" : 2008,
-	  "révisions"       : [ 2012, 2014 ]
+    { "model"       : "peugeot",
+      "color"       : "blue",
+      "plate"       : 2008,
+      "inspections" : [ 2012, 2014 ]
     },
-	{ "modèle"          : "citroën",
-	  "couleur"         : "blanc",
-	  "immatriculation" : 1999,
-	  "révisions"       : [ 2003, 2005, 2007, 2009, 2011, 2013 ]
-	}
+    { "model"       : "citroën",
+      "color"       : "white",
+      "plate"       : 1999,
+      "inspections" : [ 2003, 2005, 2007, 2009, 2011, 2013 ]
+    }
   ],
   "date" : "2015-03-18"
 }
-~~~
+```
 
 </section>
 <section>
 
 ## JavaScript ⊄ JSON
 
-~~~
-{ "voiture"  : "peugeot",
-  "vitesses" : [1, 2, 3, 10] }
-~~~
+```js
+{ "car"   : "peugeot",
+  "gears" : [1, 2, 3, 10] }
+```
 
-Codes JavaScript équivalents qui donnent une erreur en JSON :
+Some equivalent JavaScript code that is invalid JSON:
 
-~~~
-{ 'voiture'  : 'peugeot',
-  'vitesses' : [1, 2, 3, 10] }
-~~~
-{:.javascript}
+```js
+{ 'car'   : 'peugeot',
+  'gears' : [1, 2, 3, 10] }
+```
 
-~~~
-{ voiture  : "peugeot",
-  vitesses : [1, 2, 3, 10] }
-~~~
-{:.javascript}
+```js
+{ car   : "peugeot",
+  gears : [1, 2, 3, 10] }
+```
 
-~~~
-{ "voiture"  : "peugeot",
-  "vitesses" : [1, 2, 3, 10, ], }
-~~~
-{:.javascript}
+```js
+{ "car"   : "peugeot",
+  "gears" : [1, 2, 3, 10, ], }
+```
 
-~~~
-{ "voiture"  : "peugeot",
-  "vitesses" : [0x1, 0x2, 0x3, 0xA] }
-~~~
-{:.javascript}
+```js
+{ "car"   : "peugeot",
+  "gears" : [0x1, 0x2, 0x3, 0xA] }
+```
 
 </section>
-<section class="compact">
+<section>
 
-## Utilisation de JSON
+## Using JSON
 
-**Silex :** Transformer un objet PHP en réponse JSON
+**Express:** Transform a JavaScript object in JSON response
 
-~~~
-return $app->json(array( "voiture" => "peugeot",
-                         "vitesses" => array(1, 2, 3, 10)));
-~~~
-{:.php}
+```js
+res.json({ car: "peugeot",
+           gears: [1, 2, 3, 10] });
+```
 
-**Express :** Transformer un objet JavaScript en réponse JSON
-
-~~~
-res.json({ voiture: "peugeot",
-           vitesses: [1, 2, 3, 10] });
-~~~
-{:.javascript}
-
-**Browser/Node.js :** Transformations JSON ↔ Objet JavaScript
+**Browser/Node.js:** Transform JSON ↔ JavaScript object
 
 <div class="two-cols">
 
-~~~
+```js
 var a = JSON.stringify({ a: "b",
                          c: [1, 2] });
 console.log(a);
 console.log(JSON.parse(a));
-~~~
+```
 
-~~~
+```
 {"a":"b","c":[1,2]}
 Object { a: "b", c: [1, 2] }
-~~~
+```
 
 </div>
 
-**AJAX :** interprétation automatique des réponses JSON
+**AJAX:** automatic interpretation of JSON responses
 
 <div class="two-cols">
 
-~~~
+```js
 xhr.responseType = 'json';
 xhr.onload = function() {
   console.log(xhr.response);
 }
-~~~
+```
 
-~~~
-Object { voiture: "peugeot",
-         vitesses : [1, 2, 3, 10] }
-~~~
+```
+Object { car: "peugeot",
+         gears : [1, 2, 3, 10] }
+```
 
 </div>
 </section>
 <section>
 
-## Lectures
+## References
 
-- Eloquent JavaScript, Chapitres
-  [5](http://eloquentjavascript.net/05_higher_order.html) et
+- Eloquent JavaScript, Chapters
+  [5](http://eloquentjavascript.net/05_higher_order.html) and
   [17](http://eloquentjavascript.net/17_http.html),
-- Définition de JSON : <http://www.json.org/>,
-- [Guides MDN à JSON](https://developer.mozilla.org/docs/JSON),
-- [Référence Express](http://expressjs.com/4x/api.html#res.json),
-- [Référence Silex](http://silex.sensiolabs.org/doc/usage.html#json),
+- JSON definition: <https://www.json.org/>,
+- [MDN guides to JSON](https://developer.mozilla.org/docs/JSON),
+- [Express reference](http://expressjs.com/4x/api.html#res.json),
 
-### Quelques consoles pour tester des APIs JSON
+### Some JSON API consoles for testing
 
-- Google : <https://developers.google.com/apis-explorer/>,
-- Yahoo : <https://developer.yahoo.com/yql/console/>,
-- Ville de Paris : <http://opendata.paris.fr/explore/>,
-- Facebook : <https://developers.facebook.com/tools/explorer/>,
+- Google: <https://developers.google.com/apis-explorer/>,
+- Yahoo: <https://developer.yahoo.com/yql/console/>,
+- Ville de Paris: <https://opendata.paris.fr/explore/>,
+- Facebook: <https://developers.facebook.com/tools/explorer/>,
 
 </section>
