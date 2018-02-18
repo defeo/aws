@@ -15,7 +15,11 @@ function timeline(answers) {
 	    ret.score = answ.grade.on !== undefined
 		? 2 * answ.grade.ok / answ.grade.on - 1
 		: Number(answ.grade.ok);
-	}
+	} else {
+        // If answer is ungraded (too soon), assume it is wrong
+        ret.correct = false;
+        ret.score = 0;
+    }
 	return ret;
     });
     timeline.sort(function(a, b) {
