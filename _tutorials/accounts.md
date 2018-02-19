@@ -56,13 +56,14 @@ database with the tables we need.
    var knex = require('knex')({
        client: 'sqlite3',
        connection: {
-           filename: "./db.sqlite3"
+           filename: ".data/db.sqlite3"
        },
        debug: true,
    });
    ```
    
-This code creates a SQLite file named `db.sqlite3`, and initiates a
+This code creates a SQLite file named `db.sqlite3` in the folder `.data` (which is
+a "private place" in Glitch), and initiates a
 connection. We can query the connection by operating on the `knex`
 object. For example, to create a SQL statement, we can run
 
