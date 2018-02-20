@@ -4,23 +4,33 @@
   applis web?
 - Tourner toutes les leçons optionnelles.
 - Leçon DOM mal comprise
-- Tutorial on the event queue: http://latentflip.com/loupe/
 - Tourner une leçon sur HTTPS
+- Overhaul 2018:
+  - Translations:
+	- JavaScript: expand, update, add template strings, merge with Advanced JS
+	- Websockets
+	- CSS (make it more interactive?)
+	- Le DOM (see above)
+	- Mitigation d'attaques (mettre à jour?)
+	- URLs
+	- HTML
+	- Formulaires HTML
+	- HTTP
+	- XSS
+	- AJAX crossdomain
+	- CSRF et clickjacking
+  - Remount videos:
+	- Template languages
+	- Asynchronous applications
+	- JSON
 
 ## TDs
 
 - Check out http://labs.securitycompass.com/exploit-me/
 - ditch innerHTML? Create our own framework?
-- app.all gives bad habits
 - In Reflector: C9 does not install cookies anymore :(
-- Twig + Node.js does not autoescape, twig → swig in Node.js?
-- express-session has deprecations
-- EventSource → WebSockets? Parler des timeouts
 
 ## Site
 
 - Adapter pour avoir plusieurs plannings en simultanée.
-- Auto-open semaines hors période de cours.
-- Standardiser vidéo?
 - Revoir biblio
-- Améliorer techno vidéo
