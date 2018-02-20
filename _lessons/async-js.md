@@ -16,7 +16,7 @@ JavaScript engines are *single-threaded*:
 
 - No native way to do *background work*.
 
-- All asynchronism is implemented through a *event loop*:
+- All asynchronism is implemented through an *event loop*:
   
   ```python
   while True:                   # Fictive implementation of an event loop
@@ -108,11 +108,11 @@ app.get('/toto',
 ```js
 app.get('/foo', function(req, res) {
   setTimeout(function() {
-    knex.raw('SELECT * FROM users').then(function(err, result) {
+    knex.raw('SELECT * FROM users').asCallback(function(err, result) {
       if (err)
         console.log(err);
       else if (result.length > 0) {
-        knex.raw(...).then(...)
+        knex.raw(...).asCallback(...)
       }
     });
   }, 2000);
@@ -122,13 +122,13 @@ app.get('/foo', function(req, res) {
 This style is error prone:
 
 - **Code flow** hard to follow,
-- **Exceptions** difficult to catch,
+- **Errors** difficult to catch,
 - Very painful to write **loops**:
   - **exercise:** write *"Hello world"* to the console every 2
     seconds, without using `setInterval`.
 - Hard to **synchronize**:
   - waiting for the end of *two or more* actions,
-  - waiting for the end of *the first among many* actions.
+  - waiting for the end of *the first among two or more* actions.
 
 </section>
 <section class="compact">
@@ -145,16 +145,16 @@ async function get_readme() {
     var content = await response.text();         // wait for end of response body
     alert(content);
   } catch (err) {                                // asynchronous errors are catched too
-    console.log(err);
+    console.error(err);
   }
 }
 get_readme();
 ```
 {:.eval}
 
-1. Non-blocking function (e.g., `fecth()`) returns a **Promise**,
+1. Non-blocking functions (e.g., `fecth()`) return *Promises*,
 2. `await` blocks execution until the promise is *done*,
-3. when the promise is done `await` passes on the *return value*.
+3. when the promise is done `await` passes on the *promised* value.
 
 - Must always be wrapped in `async` function.
 - Can be used in `for` loops, etc.
@@ -166,49 +166,216 @@ get_readme();
 </section>
 <section>
 
-## Under the hood: naked promises
+## Memorandum: long story short
+
+- Always know **which calls are non-blocking**:
+  - Local input/output;
+  - Network requests (e.g., `fetch()`);
+  - Database queries (e.g., `knex.raw()`, `knex.from()`, ...);
+  - ...
+  
+- Always use `await` in front of non-blocking calls.
+
+- Always wrap `await` in `async` function.
+
+- Don't forget to catch errors with `try ... catch`.
+
+**Sadly:** most failures to do so will result in subtle,
+not-so-easy-to-read, errors!
+
+</section>
+<section>
+
+# Ok. Now to the hardcore stuff!
+
+</section>
+<section>
+
+## What on earth is a Promise?!
 
 `async/await` is just *syntactic sugar* for:
 
 ```js
-fetch('/README.md')
-  .then(function(response) {    // 2. wait for HTTP response
+var p1 = fetch('/README.md');
+var p2 = p1.then(function(response) {
     return response.text();
-  })
-  .then(function(content) {     // 4. wait for end of response body
-    alert(content);
-  }).catch(function(err) {      // 5. catch asynchronous errors
-    console.log(err);
-  });
+});
+var p3 = p2.then(function(content) {
+    console.log(content);
+});
+var p4 = p3.catch(function(err) {
+    console.error(err);
+});
+console.log(p1, p2, p3, p4);
 ```
-{:#promise.eval}
+{:.eval}
 
-1. `fetch()` returns a *promise*,
-2. `.then()` attaches a callback to the promise, to be called upon
-   (successful) completion.
-3. The return value of the callback (again a *promise*) is passed on
-   by `.then()`,
-4. The next `.then` attaches another callback.
-5. `.catch()` attaches a callback for unsuccessful completion of
-   promises.
-{:.incremental}
+- `p1`, `p2`, `p3`, `p4` are all **Promises**;
+- A promise is a sort of **box** protecting a **value**;
+- You (the programmer) are **only allowed** to act on the value by
+  passing **callbacks**.
 
-<style>
-[data-incremental="1"] #promise span:nth-child(1),
-[data-incremental="2"] #promise span:nth-child(6),
-[data-incremental="2"] #promise span:nth-child(8),
-[data-incremental="3"] #promise span:nth-child(14),
-[data-incremental="4"] #promise span:nth-child(21),
-[data-incremental="4"] #promise span:nth-child(23),
-[data-incremental="5"] #promise span:nth-child(34),
-[data-incremental="5"] #promise span:nth-child(36)
-{ outline: solid thick red }
-</style>
+</section>
+<section>
+
+## Promises are *boxes*
+
+<svg
+   class="centered"
+   style="display:block"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   height="420" width="760">
+  <style>
+    .callback { fill: #aaa; }
+
+    [data-on] { visibility: hidden }
+    [data-incremental="1"] [data-on~="1"],
+    [data-incremental="2"] [data-on~="2"],
+    [data-incremental="3"] [data-on~="3"],
+    [data-incremental="4"] [data-on~="4"],
+    [data-incremental="5"] [data-on~="5"],
+    [data-incremental="6"] [data-on~="6"],
+    [data-incremental="7"] [data-on~="7"],
+    [data-incremental="8"] [data-on~="8"],
+    [data-incremental="9"] [data-on~="9"],
+    [data-incremental="10"] [data-on~="10"]
+    { visibility: visible }
+
+    [data-incremental="1"] [data-not-on~="1"],
+    [data-incremental="2"] [data-not-on~="2"],
+    [data-incremental="3"] [data-not-on~="3"],
+    [data-incremental="4"] [data-not-on~="4"],
+    [data-incremental="5"] [data-not-on~="5"],
+    [data-incremental="6"] [data-not-on~="6"],
+    [data-incremental="7"] [data-not-on~="7"],
+    [data-incremental="8"] [data-not-on~="8"],
+    [data-incremental="9"] [data-not-on~="9"],
+    [data-incremental="10"] [data-not-on~="10"]
+    { visibility: hidden }
+    
+    [data-incremental="6"] #cb-response,
+    [data-incremental="7"] #cb-response,
+    [data-incremental="8"] #cb-content,
+    [data-incremental="9"] #cb-content
+    { fill: black }
+  </style>
+  <defs>
+    <marker style="overflow:visible" id="arrow" refX="0" refY="0" orient="auto">
+      <path transform="matrix(-0.8,0,0,-0.8,-10,0)" d="M 0,0 5,-5 -12.5,0 5,5 Z" />
+    </marker>
+  </defs>
+  <g class="incremental">
+    <g>
+      <g fill="none" stroke="black">
+        <rect y="9" x="70" height="60" width="70" />
+        <path d="M 400,19 C 260,19 246,11 230,55" style="marker-end:url(#arrow)" />
+        <path d="M 180,70 C 180,100 110,54 100,110"   style="marker-end:url(#arrow)" />
+      </g>
+      <g class="monotext" style="font-size:20px">
+        <text y="29" x="10">p1 =</text>
+        <text y="60" x="90" data-on="1 2 3 4" style="font-size:300%">?</text>
+        <text y="43" x="75" data-not-on="1 2 3 4" style="font-size:50%">http://...</text>
+        <text y="65" x="145" xml:space="preserve">.then(   )</text>
+        <text id="cb-response" class="callback" y="23" x="400" xml:space="preserve"><tspan
+        >function(response) {</tspan><tspan dy="20" x="400"
+        >  return response.text()</tspan><tspan dy="20" x="400"
+        >}</tspan></text>
+      </g>
+    </g>
+    <g transform="translate(0,110)">
+      <g fill="none" stroke="black">
+        <rect y="9" x="70" height="60" width="70" />
+        <path d="M 400,19 C 260,19 246,11 230,55" style="marker-end:url(#arrow)" />
+        <path d="M 180,70 C 180,100 110,54 100,110"   style="marker-end:url(#arrow)" />
+      </g>
+      <g class="monotext" style="font-size:20px">
+        <text y="29" x="10">p2 =</text>
+        <text y="60" x="90" data-on="1 2 3 4 5 6" style="font-size:300%">?</text>
+        <text y="43" x="75" data-not-on="1 2 3 4 5 6" style="font-size:60%">AWS – ...</text>
+        <text y="65" x="145" xml:space="preserve">.then(   )</text>
+        <text id="cb-content" class="callback" y="23" x="400" xml:space="preserve"><tspan
+        >function(content) {</tspan><tspan dy="20" x="400"
+        >  console.log(content)</tspan><tspan dy="20" x="400"
+        >}</tspan></text>
+      </g>
+    </g>
+    <g transform="translate(0,220)">
+      <g fill="none" stroke="black">
+        <rect y="9" x="70" height="60" width="70" />
+        <path d="M 400,19 C 260,19 246,11 230,55" style="marker-end:url(#arrow)" />
+        <path d="M 180,70 C 180,100 110,54 100,110"   style="marker-end:url(#arrow)" />
+      </g>
+      <g class="monotext" style="font-size:20px">
+        <text y="29" x="10">p3 =</text>
+        <text y="60" x="90" data-on="1 2 3 4 5 6 7 8" style="font-size:300%">?</text>
+        <text y="43" x="75" data-not-on="1 2 3 4 5 6 7 8" style="font-size:60%">undefined</text>
+        <text y="65" x="145" xml:space="preserve">.catch(   )</text>
+        <text id="cb-catch" class="callback" y="23" x="400" xml:space="preserve"><tspan
+        >function(err) {</tspan><tspan dy="20" x="400"
+        >  console.error(err)</tspan><tspan dy="20" x="400"
+        >}</tspan></text>
+      </g>
+    </g>
+    <g transform="translate(0,330)">
+      <g fill="none" stroke="black">
+        <rect y="9" x="70" height="60" width="70" />
+      </g>
+      <g class="monotext" style="font-size:20px">
+        <text y="29" x="10">p4 =</text>
+        <text y="60" x="90" data-on="1 2 3 4 5 6 7 8 9" style="font-size:300%">?</text>
+        <text y="43" x="75" data-not-on="1 2 3 4 5 6 7 8 9" style="font-size:60%">undefined</text>
+      </g>
+    </g>
+  </g>
+</svg>
+
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+{:.incremental style="display:none"}
+
+</section>
+<section>
+
+## Chain promises
+
+This style is more succint, and preferred:
+
+```js
+fetch('/README.md')
+    .then(function(response) {
+        return response.text();
+    })
+    .then(function(content) {
+        alert(content);
+    })
+    .catch(function(err) {
+        console.error(err);
+    });
+```
+{:.eval}
+
+Good to know:
+
+- JavaScript automatically *decapsulates nested promises* (e.g.,
+  `response.text()` returns a promise, the boxed value is passed to
+  the next callback).
+- Errors in the callbacks are passed to `.catch()`.
+- An error not handled by a `.catch()` will usually crash the
+  application.
 
 </section>
 <section class="compact">
 
-## Careful with naked promises
+## Careful with *naked* promises
 
 Racing promises
 
@@ -276,6 +443,10 @@ Promise.all([                         // these two execute in parallel
   Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
 - [Article on promises](http://www.html5rocks.com/en/tutorials/es6/promises/),
 - [Article on the fetch API](https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/).
+- An interactive visualisation of the event queue:
+  http://latentflip.com/loupe/
+
+
 
 </section>
 
