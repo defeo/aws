@@ -184,7 +184,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    You can remove an element from an object by using
    
    ```js
-   del connected_users[...]
+   delete connected_users[...]
    ```
 
 2. On the client side, listen for the
@@ -196,4 +196,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    it is guaranteed to be sent even if the window is closing).
    
    Test your application using private navigation and several browsers.
-
+   
+   **Note:** `beforeunload` is also fired when you reload the page, so
+   expect a lot of disconnection events everytime you restart the
+   server (as Glitch reloads the page automatically).
