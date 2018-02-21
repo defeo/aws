@@ -149,4 +149,31 @@ bit fragile and prone to memory leaks, but works nevertheless.
 4. On the client-side, now, use `XMLHttpRequest` or `fetch()` to send
    your username to `/connect/:user`. Wait for the acknowledgment
    message and log it to the console.
+
+## Getting the user list
+
+1. Create a new handler for the `/userlist` URL. It must take the
+   contents of `connected_users`, transform them to a list, and send
+   them via `res.json()`.
    
+   **Hint:** To transform a JavaScript object to a list, you can
+   either write a for loop, or use
+   [`Object.values`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values).
+   
+2. On the client side, after having successfully connected, use
+   `XMLHttpRequest` or `fetch()` to get the user list. Using the DOM
+   API, dynamically present the user list in the browser as a
+   `<table>` containing one row per user.
+   
+   Test using private navigation and several browsers. You can also
+   ask a fried to connect to your app.
+   
+   **Hint:** for convenience, it is best to write a function, say
+   `createUserList`, that takes the list of users as input and returns
+   a DOM element representing the `<table>`. Then you can add this DOM
+   element to the document by replacing the children of the div
+   `#main`.
+
+3. Using `setInterval()`, update the list of users every 2 seconds.
+
+
