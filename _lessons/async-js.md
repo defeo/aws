@@ -444,7 +444,7 @@ Promise.all([                         // these two execute in parallel
 - [Article on promises](http://www.html5rocks.com/en/tutorials/es6/promises/),
 - [Article on the fetch API](https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/).
 - An interactive visualisation of the event queue:
-  http://latentflip.com/loupe/
+  <http://latentflip.com/loupe/>
 
 
 
