@@ -179,7 +179,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
 
 ## Handling disconnections
 
-1. Create a POST handler for `/disconnect/:user`. When a request is
+1. Create a **POST** handler for `/disconnect/:user`. When a request is
    received, the corresponding user is removed from `connected_users`.
    You can remove an element from an object by using
    
@@ -200,3 +200,350 @@ bit fragile and prone to memory leaks, but works nevertheless.
    **Note:** `beforeunload` is also fired when you reload the page, so
    expect a lot of disconnection events everytime you restart the
    server (as Glitch reloads the page automatically).
+
+## Enter WebSockets
+
+We have reached the limits of the AJAX technique. We could keep using
+AJAX and *short polling* to write the full application, however this
+would quickly become messy, slow and error prone. Instead, we will
+replace our AJAX calls with WebSockets.
+
+To handle WebSockets on the server side, we will use the [`ws`
+module](https://www.npmjs.com/package/ws). On the client side, we will
+use the native [`WebSocket`
+API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications). These two have a very similar interface.
+
+Let's start from the server. To load and configure the `ws` module,
+modify your application like thus:
+
+```js
+var http = require('http');
+var ws = require('ws');
+var express = require('express');
+var app = express();
+
+// etc...
+
+// We attach express and ws to the same HTTP server
+var server = http.createServer(app);
+var wsserver = new ws.Server({ 
+    server: server,
+});
+
+// We define the WebSocket logic
+wsserver.on('connection', function(wsconn) {
+    console.log('Received new WS connection');
+    wsconn.send('Hello world!');
+    wsconn.on('message', function(data) {
+        console.log(data);
+    });
+    // etc...
+});
+
+// Watch out for this: app.listen would break ws!
+server.listen(process.env.PORT);
+```
+
+On the client side, it is very easy to talk to this WebSocket server
+
+```js
+var ws = new WebSocket('wss://' + window.location.host)
+
+ws.addEventListener('open', function(e) {
+    ws.send('Hi world!');
+    ws.addEventListener('message', function(e) {
+        console.log(e.data);
+    });
+});
+```
+
+**Warning:** Take note of the minor differences: 
+
+- The event is named `connection` on the server and `open` on the
+  client (as these are subtly different: it is always the client who
+  *opens the connction*);
+- It is `.addEventListener()` in the client and `.on()` in the server;
+- Callback parameters are subtly different.
+
+**Warning:** The `wss://` scheme is for WebSockets encrypted over
+TLS. This is only compatible with an HTTPS server. If you are
+developping locally, you must use `ws://` instead.
+
+1. Remove the AJAX call to `/connect/:user` from the client. Replace
+   it with a WebSocket message sending the user name to the server.
+   
+2. On the server side, wait for this message and insert the user into
+   `connected_users`.
+
+3. We will need to use the WebSocket channel to transfer many other
+   messages, and the server and client must be able to distinguish
+   them. Thus, it is not acceptable to send the username as plaintext
+   data. Instead, we will serialize data using JSON.
+   
+   - On the client side, create a message with this structure:
+     
+     ```js
+     { type: 'new_connection', username: '...' }
+     ```
+     
+     serialize it using `JSON.stringify()` and send it via the
+     WebSocket.
+     
+   - On the server side, parse the message with `JSON.parse()`, check
+     that the message type is `new_connection`, then create the new
+     user.
+   
+4. We need to keep track of which user is associated to which
+   WebSocket connection. Store a reference to the current user inside
+   the connection callback. Something like this:
+   
+   ```js
+   function(wsconn) {
+       var myuser = null;
+       
+       wsconn.on('message', function(data) {
+           myuser = new User(...);
+           ...
+       });
+   }
+   ```
+
+5. Remove the beacon to `/disconnect/:user`.
+
+6. On the server side, detect a disconnection by listening to the
+   `close` event on `wsconn`. If `myuser` is not `null`, remove the
+   user from `connected_users`.
+
+Test your application using private navigation and several
+browsers. Verify that connections and disconnections happen
+consistently.
+
+## Ditching short polling
+
+We still havent removed the short polling to `/userlist`. We must now
+notify all WebSocket clients whenever a connection/disconnection
+happens.
+
+1. Remove the AJAX calls to `/userlist` from the client.
+
+2. By looking at [this
+   example](https://github.com/websockets/ws#broadcast-example),
+   modify your server so that it broadcasts to all connected clients
+   the list of users whenever a connection or disconnetion happens.
+   
+   **Note:** You must now use `JSON.stringify()` on the server, and
+   `JSON.parse()` on the client. Like you did before, choose a
+   meaningful `type` for this message.
+
+3. Modify your client so that it updates the list of users whenever it
+   receives a new message.
+   
+Test your application using private navigation and several browsers.
+
+## Challenging
+
+We are ready to initiate a game. We need to encode the logic that
+allows one user to challenge another. Instead of broadcast messages to
+all users, we now need to send specific messages to each user.
+
+1. Modify your `User` class to hold three parameters:
+   
+   ```js
+   constructor(name, wsconn) {
+       this.name = name;           // The user name
+       this.wsconn = wsconn;       // The WS connection to the user browser
+       this.state = 'AVAILABLE';   // An internal state
+   }
+   ```
+   
+2. In the server, modify the WebSocket message handler to pass the
+   current connection to `new User(...)`.
+
+3. Modify the client code producing the list of users, so that it puts
+   next to the user names a column with *"Challenge"* buttons, like
+   thus
+   
+   | foo | <button>Challenge</button>
+   | bar | <button>Challenge</button>
+   | baz | <button disabled>Challenge</button>
+   {:.pretty.centered}
+   
+   The buttons must be *disabled* if the user state is not `AVAILABLE`
+   (you can enable/disable a button `b` via JavaScript by setting
+   `b.disabled` to `false/true`).
+   
+   Add an event listener to the *"Challenge"* buttons: whenever a
+   button is clicked, a WebSocket message is sent to the server,
+   containing the name of the challenged user.
+
+4. In the server, add a `.invite(opponent)` method to the `User`
+   class. This method takes another user (`opponent`) as parameter and
+   does the following:
+   
+   - Checks that `opponent` is not `this` (a user can't challenge itself);
+   - Checks that `opponent` and `this` are both `AVAILABLE`;
+   - Switches the state of both `opponent` and `this` to `PLAYING`;
+   - Sends a WebSocket message to `opponent` to notify it of the new
+     game;
+   - If everything has gone well:
+     - it sends a WebSocket message to `this` to notify it of the
+       start of the game;
+     - it broadcasts a message to all users with the updated list of
+       users;
+   - If there has been an error:
+     - it sends a WebSocket message to `this`, explaining the error.
+
+   Modify the WebSocket `message` handler to handle *challenge*
+   message types. When a new challenge request is received, it calls
+   the `.invite()` method on the challenger user.
+
+5. Modify the client code to replace the user list with a message
+   *"You are playing with..."* whenever a user is in `PLAYING` state.
+
+Test your code using private navigation and several browsers.
+
+## Quitting the game
+
+Before coding the game, let's jump straight to the end of it.
+
+1. In the server, create a class `Game` representing a game between
+   two users. For the moment, this class only has two fields:
+   `player1` and `player2`. By default, `player1` is the challenged.
+
+2. Modify `User.invite()` so that it creates a new `Game` instance
+   whenever a user challenges another. The `Game` instance will point
+   to the two users, and each of the users will point to it.
+
+3. Add a *"Quit"* button under the *"You are playing with..."*
+   message. When the user clicks it, send a quit message to the
+   server.
+
+4. Add a `.quit()` method to the `Game` class. It resets the user
+   states to `AVAILABLE`, and removes the references to itself.
+
+5. Add a `.quit()` method to the `User` class. It must:
+   
+   - Check that the user is `PLAYING`,
+   - Call the `.quit()` method of the associated `Game`,
+   - Notify the opponent that the game is over,
+   - If everything has gone well:
+     - send a WebSocket message to `this` to notify it of the
+       end of the game;
+     - broadcast a message to all users with the updated list of
+       users;
+   - If there has been an error:
+     - send a WebSocket message to `this`, explaining the error.
+
+6. Modify the client so that it reverts to showing the list of users
+   when a game has ended.
+
+## Let's play
+
+And we finally come to the real game. Using the code you wrote for
+[the Connect Four tutorial](tutorial2), or [this
+solution](https://codepen.io/defeo/pen/emPevV), you will make a full
+multi-user Connect Four app.
+
+Instructions are going to become more approximate from now on.
+
+1. Below the *"You are playing with..."* message, show the game board.
+
+2. Store the state of the game in the `Game` class: a 6×7 grid, and a
+   variable tracking which player plays next (`player1` takes red and
+   starts).
+
+3. Modify the click handler on the board so that:
+   
+   - If the move is valid (it's the player's turn, and the column is
+     not full), a message is sent to the server through the WebSocket;
+   - If the move is invalid, an error message is shown.
+
+4. Write the game logic in the server. When a move is received from
+   the client, it must:
+   
+   - Check that the move is valid (checking on the client side is not
+     enough);
+   - Update the state;
+   - Check if the move is a winning one.
+   
+   After doing the checks and updating the state, the server notifies
+   both players of the new state.
+
+5. When the game is over, both clients show a message indicating the
+   winner, and go back to the `AVAILABLE` state.
+   
+Test your application with several games simultaneously.
+
+## To go further (optional)
+
+1. Integrate the database from [the previous tutorial](accounts):
+   
+   - The users authenticate with their username and password,
+   - The colors of the tokens are chosen from the user preferences (the
+     challenged user always gets it preferred color).
+   - Keep track of the number of wins/losses in the database.
+   - Show all this information in the user list.
+   
+   **Warning:** You will need to get values from the session in the
+   WebSocket code. `express-session` does not work automatically with
+   WebSockets. You will need this hack, as [described
+   here](https://github.com/websockets/ws/blob/master/examples/express-session-parse/index.js).
+   
+   ```js
+   var sess_storage = session({ 
+       secret: "12345",
+       resave: false,
+       saveUninitialized: false,
+   });
+   app.use(sess_storage);
+
+   var wsserver = new ws.Server({ 
+       server: server,
+
+       verifyClient: function(info, next) {
+           sess_storage(info.req, {}, function(err) {
+               if (err) {
+                   next(false, 500, "Error: " + err);
+               } else {
+                   // Pass false if you want to refuse the connection
+                   next(true);
+               }
+           });
+       },
+   });
+   ```
+
+   Then the session will be available in `wsconn.upgradeReq.session`.
+
+1. Use a more elaborate challenging system, based upon four states:
+  `AVAILABLE`, `INVITATION SENT`, `INVITATION RECEIVED` and
+  `PLAYING`. Allow a user to decline an invitation.
+  
+1. Allow a user to quit a game by forfeiting (the game is considered
+  lost for the user).
+  
+1. Handle unexpected disconnections (forfeit the game if the user is
+  playing).
+  
+1. Allow playing many games simultaneously.
+
+1. We already mentioned that using global variables is fragile. In a
+   real-world scenario, where Node.js is distributed on many cores
+   (see the [Cluster API](http://nodejs.org/api/cluster.html)), global
+   memory is not even an option.
+   
+   Instead of using global state, you can use a database, for example
+   an SQL one. However this is not the most efficient and practical
+   solution.
+   
+   An in-memory NoSQL system, such as Redis, is more apt to the
+   task. Its [pub/sub system](http://redis.io/topics/pubsub) works
+   perfectly with Node.js and *server push*.
+   
+   Replace global variables with a Redis database. You will have to go
+   through the [Redis manuals](http://redis.io/documentation) and the
+   docs of the [`node_redis`](https://github.com/mranney/node_redis)
+   module.
+   
+   Redis is not available on Glitch. The simplest way is to develop
+   locally.
