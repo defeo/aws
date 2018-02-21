@@ -189,25 +189,25 @@ objets et leurs prototypes.
 
 ~~~js
 class Voiture {
-	constructor(vitesse) {
-		this.vitesse = vitesse;
-	}
-	vroom() {
-		console.log('VR' + Array(vitesse).join('O') + 'M!');
-	}
+    constructor(vitesse) {
+        this.vitesse = vitesse;
+    }
+    vroom() {
+        console.log('VR' + 'O'.repeat(this.vitesse) + 'M!');
+    }
 }
 class Ferrari extends Voiture {
-	constructor() {
-		super(20);
-	}
+    constructor() {
+        super(20);
+    }
 }
 
-v = Ferrari();
+v = new Ferrari();
 v.vroom();
 ~~~
 
 ~~~
-VROOOOOOOOOOOOOOOOOOOM!
+VROOOOOOOOOOOOOOOOOOOOM!
 ~~~
 
 </section>

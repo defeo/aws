@@ -42,7 +42,7 @@
     - ajax.md
     - json.md
     - server-push.md
-#  tutorials:
+  tutorials: websockets.md
 
 - desc: Securité
   lessons:
