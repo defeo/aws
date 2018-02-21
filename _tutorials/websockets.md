@@ -177,3 +177,23 @@ bit fragile and prone to memory leaks, but works nevertheless.
 3. Using `setInterval()`, update the list of users every 2 seconds.
 
 
+## Handling disconnections
+
+1. Create a POST handler for `/disconnect/:user`. When a request is
+   received, the corresponding user is removed from `connected_users`.
+   You can remove an element from an object by using
+   
+   ```js
+   del connected_users[...]
+   ```
+
+2. On the client side, listen for the
+   [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
+   event that is fired when the browser window is closed. React by
+   sending a
+   [*beacon*](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon)
+   to `/disconnect/:user` (a *beacon* is like a POST AJAX request, but
+   it is guaranteed to be sent even if the window is closing).
+   
+   Test your application using private navigation and several browsers.
+
