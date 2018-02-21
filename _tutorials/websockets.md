@@ -122,7 +122,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    Create a class named `User` with a very simple constructor:
    
    ```js
-   User(name) {
+   constructor(name) {
        this.name = name;
    }
    ```
