@@ -10,6 +10,19 @@
 	counter-increment: section;
 	content: counter(section) ". ";
     }
+
+    h2[id] { position: relative; }
+    a.int-ref {
+        position: absolute;
+        left: -2em;
+        display: inline-block;
+        margin-left: 1ex;
+        color: black;
+        opacity: 0;
+        text-decoration: none !important;
+    }
+    h2:hover .int-ref, .int-ref:hover
+    { opacity: 1; }
     
     /**
       Numberd exercises.

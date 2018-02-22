@@ -2,6 +2,9 @@
 name: style_goodies
 links:
   - href: goodies.css
+scripts:
+  - src: goodies.js
+    async: yes
 layout: default
 title: Style goodies
 addons:
