@@ -56,7 +56,10 @@ html.slideshow {
 	    text-align: center;
 	    font-size: 3em;
 	}
-	h2:before { content: ''; }
+    // Override style goodies
+	h2:before { content: '' !important; }
+    .int-ref { visibility: hidden !important; }
+    //
 	h2 {
 	    font-size: 2em;
 	    margin: 2% 1% 2% 8%;
