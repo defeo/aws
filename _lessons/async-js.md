@@ -1,6 +1,9 @@
 ---
 layout: lesson
 title: Asynchronous JavaScript
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/promises.webm
 ---
 
 <section class="compact">
