@@ -187,7 +187,7 @@ await knex.select('*').from('users');
 ```
 
 ```sql
-SELECT * FROM users
+SELECT * FROM `users`
 ```
 
 ```js
@@ -195,7 +195,7 @@ await knex('users').select('*');
 ```
 
 ```sql
-SELECT * FROM users
+SELECT * FROM `users`
 ```
 
 ```js
@@ -203,7 +203,7 @@ await knex('users');
 ```
 
 ```sql
-SELECT * FROM users
+SELECT * FROM `users`
 ```
 
 ```js
