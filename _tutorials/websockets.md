@@ -89,10 +89,11 @@ load, without creating a user account with a password.
    not available in [`sessionStorage`](../lessons/etat#storage-api)
    yet.
    
-   You can use private navigation (`Shift+Ctrl+P` in Firefox,
-   `Shift+Ctrl+N` in Chrome) to do your tests. You can also empty the
-   `sessionStorage` through the developer tools, or by issuing
-   `sessionStorage.clear()` in the console.
+   You can use several browser tabs and/or private navigation
+   (`Shift+Ctrl+P` in Firefox, `Shift+Ctrl+N` in Chrome) to do your
+   tests. You can also empty the `sessionStorage` through the
+   developer tools, or by issuing `sessionStorage.clear()` in the
+   console.
 
 4. Change the text shown in the main page to *"Hello ..."* when the
    user name is known (replaced the dots by the user name).
@@ -165,8 +166,8 @@ bit fragile and prone to memory leaks, but works nevertheless.
    API, dynamically present the user list in the browser as a
    `<table>` containing one row per user.
    
-   Test using private navigation and several browsers. You can also
-   ask a fried to connect to your app.
+   Test using several tabs. You can also ask a fried to connect to
+   your app.
    
    **Hint:** for convenience, it is best to write a function, say
    `createUserList`, that takes the list of users as input and returns
@@ -195,7 +196,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    to `/disconnect/:user` (a *beacon* is like a POST AJAX request, but
    it is guaranteed to be sent even if the window is closing).
    
-   Test your application using private navigation and several browsers.
+   Test your application using several tabs.
    
    **Note:** `beforeunload` is also fired when you reload the page, so
    expect a lot of disconnection events everytime you restart the
@@ -314,13 +315,12 @@ developping locally, you must use `ws://` instead.
    `close` event on `wsconn`. If `myuser` is not `null`, remove the
    user from `connected_users`.
 
-Test your application using private navigation and several
-browsers. Verify that connections and disconnections happen
-consistently.
+Test your application using several tabs. Verify that connections and
+disconnections happen consistently.
 
 ## Ditching short polling
 
-We still havent removed the short polling to `/userlist`. We must now
+We still haven't removed the short polling to `/userlist`. We must now
 notify all WebSocket clients whenever a connection/disconnection
 happens.
 
@@ -338,7 +338,7 @@ happens.
 3. Modify your client so that it updates the list of users whenever it
    receives a new message.
    
-Test your application using private navigation and several browsers.
+Test your application using several browsers tabs.
 
 ## Challenging
 
@@ -358,6 +358,22 @@ all users, we now need to send specific messages to each user.
    
 2. In the server, modify the WebSocket message handler to pass the
    current connection to `new User(...)`.
+
+3. The `wsconn` object is not serializable by `JSON.stringify()`; we
+   must adapt our code. Add a `.serialize()` method to the class
+   `User`, like thus
+   
+   ```js
+   serialize() {
+       return {
+           name: this.name,
+           state: this.state,
+       }
+   }
+   ```
+   
+   Modify the server code so that it uses `serialize()` when
+   broadcasting the user list.
 
 3. Modify the client code producing the list of users, so that it puts
    next to the user names a column with *"Challenge"* buttons, like
@@ -383,6 +399,12 @@ all users, we now need to send specific messages to each user.
    - Checks that `opponent` is not `this` (a user can't challenge itself);
    - Checks that `opponent` and `this` are both `AVAILABLE`;
    - Switches the state of both `opponent` and `this` to `PLAYING`;
+   - Returns `true`;
+   
+   Modify the WebSocket `message` handler to handle *challenge*
+   message types. When a new challenge request is received, it calls
+   the `.invite()` method on the challenger user, then
+
    - Sends a WebSocket message to `opponent` to notify it of the new
      game;
    - If everything has gone well:
@@ -393,14 +415,10 @@ all users, we now need to send specific messages to each user.
    - If there has been an error:
      - it sends a WebSocket message to `this`, explaining the error.
 
-   Modify the WebSocket `message` handler to handle *challenge*
-   message types. When a new challenge request is received, it calls
-   the `.invite()` method on the challenger user.
-
 5. Modify the client code to replace the user list with a message
    *"You are playing with..."* whenever a user is in `PLAYING` state.
 
-Test your code using private navigation and several browsers.
+Test your code using several browsers tabs.
 
 ## Quitting the game
 
@@ -425,6 +443,12 @@ Before coding the game, let's jump straight to the end of it.
    
    - Check that the user is `PLAYING`,
    - Call the `.quit()` method of the associated `Game`,
+   - Return `true` if everything went well.
+   
+   Modify the WebSocket `message` handler to handle *quit*
+   message types. When a new quit request is received, it calls
+   the `.quit()` method, then it must
+
    - Notify the opponent that the game is over,
    - If everything has gone well:
      - send a WebSocket message to `this` to notify it of the
