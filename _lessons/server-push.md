@@ -1,212 +1,125 @@
 ---
 layout: lesson
-title: Communication bidirectionnelle
-subtitle: Server push et WebSockets
+title: Two-way communication
+subtitle: Server push and WebSockets
 ---
 
 <section>
 
 ## *Server push*
 
-### Problème : AJAX est **unidirectionnel**
+### Problem: AJAX is **one-way** (request/response)
 
-1. Le client envoie des données dans la requête,
-2. Le serveur répond avec des données.
+1. The client sends data in the request,
+2. The server replies with data.
 
-- Le serveur ne peut pas initier un transfert de données ;
-- Le serveur ne peut pas appeler des fonctions (déclencher des
-  évènements) chez le client.
+- A server cannot **initiate data transfers**;
+- A server cannot **initiate actions** on the client (reverse remote
+  procedure call).
 
-**Simuler** une communication bidirectionnelle
-  ([Comet](http://en.wikipedia.org/wiki/Comet_%28programming%29))
+**Simulate** two-way communication (see
+  [Comet](https://en.wikipedia.org/wiki/Comet_%28programming%29))
 
 - *Short polling*, *Long polling*, *Streaming*.
 
-**Vraie** communication bidirectionnelle
+**True** two-way communication
 
-- `EventSource`, WebSockets.
+- `EventSource`, WebSockets, ...
 
 </section>
 <section>
 
 ## *Polling*
 
-Utile pour : notifications, compatibilité avec vieux navigateurs
+Useful for: notifications, backwards compatibility
 
 ### *Short polling*
 
-1. Le client envoie une requête AJAX à **intervalles réguliers** (de
-   l'ordre de la seconde),
-2. S'il y a des notifications depuis la dernière requête, le server
-   les envoie dans la réponse.
+1. The client **regularly** sends AJAX request (i.e., every few seconds),
+2. If there's new data, the server sends it in the response.
 
 ### *Long polling*, *Streaming*
 
-1. Le client ouvre une connexion HTTP avec le serveur,
-2. Le serveur envoie les entêtes mais ne ferme pas la connexion,
-3. Lorsque des notifications arrivent, le serveur les envoie dans la
-   connexion ;
-4. (*long polling*) Le server ferme la connexion.
+1. The client opens a HTTP with the server,
+2. The server sends HTTP headers, **does not close connection**
+   
+   ```http
+   HTTP/1.1 200 OK
+   Connection: keep-alive
+   ```
+
+3. When new data arrives, the server sends it in the response body;
+4. (only in *long polling*) the server shuts down the connection after
+   the first batch of data, client opens a new connection.
 
 </section>
 <section>
 
 ## Polling
 
-### Avantages
+### Pros
 
-- Compatible avec les vieux navigateurs,
-- Ne demande pas de support spécifique chez le serveur.
+- Backwards compatibility,
+- No special server support (for short polling),
 
-### Désavantages
+### Cons
 
-- Gourmand en bande passante et ressources (*overhead* du protocole
-  HTTP),
-- Latence.
-
-</section>
-<section class="compact">
-
-## Event stream
-
-Format de streaming **unidirectionnel Serveur → Client** : la connexion
-reste ouverte
-
-<pre class="http"><code>HTTP/1.1 200 OK
-Content-Type: text/event-stream
-...
-
-<span id="evt-1">data: un message</span>
-
-<div id="evt-2">data: un autre
-data: message
-</div>
-<div id="evt-3">event: toto
-data: un message avec un nom
-</div>
-<span id="evt-4">data: { "msg" : ["Porquoi", "pas", "du", "JSON"] }</span>
-</code></pre>
-
-<style>
-html[data-incremental="1"] #evt-1,
-html[data-incremental="2"] #evt-2,
-html[data-incremental="3"] #evt-3,
-html[data-incremental="4"] #evt-4
-{ outline: solid thick red }
-</style>
-
-1. Un message d'une ligne,
-2. Un message sur plusieurs lignes,
-3. Un message *nommé*,
-4. On est libres de choisir le format des données.
-{:.incremental}
-
-Plus de détails : <https://hpbn.co/server-sent-events-sse/>.
-
-</section>
-<section class="compact">
-
-## Exemple de event stream : serveur
-
-~~~
-app.get('/api/notifications', function(req, res) {
-  res.set({                                        // Configuration des entêtes
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  });                                              // On envoie les entêtes
-  res.writeHead(200);
-  
-  var count = 0;                                   // On envoie un message
-  var timer = setInterval(function() {             // toutes les 2 secondes
-    res.write('data: Hello ' + count + '\n\n');
-    count++;
-    if (count >= 10) {                             // Après 10 messages on
-	  res.end();                                   // ferme la connexion
-	  clearInterval(timer);
-	}
-  }, 2000);
-});
-~~~
-
-- Facile en Node.js, plusieurs
-  [paquets disponibles](https://www.npmjs.com/browse/keyword/server-sent-events)
-  (notamment,
-  [`sse-writer`](https://www.npmjs.com/package/sse-writer)).
-- Nécessite configuration spécifique pour Apache+PHP.
-
-</section>
-<section>
-
-## Exemple `EventSource` : client
-
-Le client est notifié des messages du server par des **évènements**
-
-~~~
-var evt = new EventSource("/api/notifications");
-
-// Messages sans nom
-evt.addEventListener('message', function(e) {
-  console.log(e.data);
-});
-
-// Messages nommés
-evt.addEventListener('toto', function(e) {
-  console.log('Évènement nommé :', e.data);
-});
-~~~
-
-- **Pour :** Léger, simple, relativement bien supporté,
-- **Contre :** Unidirectionnel, nécessite le support du serveur,
-- **Démo :** <http://www.w3schools.com/html/tryit.asp?filename=tryhtml5_sse>.
+- Expensive in bandwidth and resources (HTTP *overhead*),
+- Latency.
 
 </section>
 <section>
 
 ## Web Sockets
 
-Protocole de communication **full-duplex**, compatible avec HTTP.
+**Full-duplex** communication protocol, HTTP-compatible.
 
-- Protocole applicatif **au dessus de TCP** : pas de overhead HTTP ;
-- Conçu pour utiliser le **même port** que HTTP (port 80 par défaut).
+- Application-level protocol **over TCP**: no HTTP overhead;
+- Meant to use the **same port** as HTTP (80 or 443).
 
 <div class="two-cols">
 
-~~~
+```http
 GET /app/socket HTTP/1.1
 Upgrade: websocket
 Connection: Upgrade
 ...
-~~~
-{:.http}
+```
+{:#ws-client}
 
-~~~
+```http
 HTTP/1.1 101 Switching Protocols
 Upgrade: websocket
 Connection: Upgrade
 ...
-~~~
-{:.http}
+```
+{:#ws-server}
 
 </div>
 
-1. Le client demande une connexion web socket,
-2. Le serveur répond avec `101 Switching Protocols`,
-3. Le serveur et le client établissent une connexion TCP de type Web Socket
-   (schema `ws://` ou `wss://`).
+<style>
+html[data-incremental="1"] #ws-client pre,
+html[data-incremental="2"] #ws-server pre
+{ box-shadow: 0 0 5px 5px blue }
+</style>
+
+1. The client asks for a web socket connection via HTTP,
+2. The server replies with `101 Switching Protocols`,
+3. The server and the client establish a Web Socket TCP connection
+   (`ws://` or `wss://` schema).
 {:.incremental}
 
 </section>
 <section>
 
-## Exemple WebSocket : serveur
+## WebSocket example: server
 
-Exemple avec le paquet Node [`ws`](https://www.npmjs.com/package/ws):
+Example using the [`ws`](https://www.npmjs.com/package/ws) package:
 
-```
+```js
 var WebSocket = require('ws');
 
-var server = new WebSocket.Server({ port: 8080 });
+var server = new WebSocket.Server({ port: 80 });
 
 server.on('connection', function connection(ws) {
   ws.on('message', function(message) {
@@ -220,21 +133,45 @@ server.on('connection', function connection(ws) {
 </section>
 <section>
 
-## Exemple WebSocket : client (navigateur)
+## WebSocket example: client (browser)
 
-Exemple avec
-l'[API standardisée par le W3C](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket):
+Example using the [native browser
+API](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket):
 
-```
-var ws = new WebSocket('ws://localhost:8080');
+```js
+var ws = new WebSocket('ws://www.example.com/');
 
 ws.addEventListener('open', function(e) {
   ws.addEventListener('message', function(e) {
     console.log('received:', e.data);
   });
-	
+    
   ws.send('something else');
 });
+```
+</section>
+<section>
+
+## Server example with Express and ws <small>(see [demo](https://glitch.com/~defeo-lu-aws-ws-demo))</small>
+
+```js
+var http = require('http');
+var express = require('express');
+var WebSocket = require('ws');
+
+var app = express();
+var server = http.createServer(app);
+var wsserver = new WebSocket.Server({ server: server });
+
+wsserver.on('connection', function connection(ws) {
+  ws.on('message', function(message) {
+    console.log('received:', message);
+  });
+
+  ws.send('something');
+});
+
+server.listen(80);
 ```
 
 </section>
@@ -242,38 +179,78 @@ ws.addEventListener('open', function(e) {
 
 ## Web Sockets
 
-### Avantages
+### Pros
 
-- Bidirectionnels,
-- Peu de overhead,
-- Standardisés par l'IETF en 2011 (et *Candidate Recommendation* du W3C),
-- Disponibles dans tous les navigateurs modernes.
+- Two-way
+- Little overhead,
+- Supported by all modern browsers.
 
-### Désavantages
+### Cons
 
-- Nécessitent de support dans le serveur,
-- Difficiles à configurer avec Apache+PHP.
+- Need special support in the server.
+- Not compatible with old browsers.
+- Hard to mix with old style web programming (best to go
+  *full-WebSockets or nothing*).
 
+### Node.js libraries
 
-### Bibliothèques
-
-- Paquets Node.js : [`ws`](https://www.npmjs.com/package/ws),
+- Basic implementations: [`ws`](https://www.npmjs.com/package/ws),
   [`μws`](https://www.npmjs.com/package/uws),
   [`engine.io`](https://www.npmjs.com/package/engine.io),
   [`primus`](https://www.npmjs.com/package/primus), ...
-- Bibliothèque compatible Node.js : <http://socket.io/>;
-- PHP : <http://socketo.me/>.
+- Overlay libraries: <https://socket.io/> (automatic fallback, JSON handling, ...).
 
 </section>
 <section>
 
-## Lectures
+## Other server push techniques
 
-- [Tutoriel de html5rocks `EventSource`](http://www.html5rocks.com/en/tutorials/eventsource/basics/).
-- [Tutoriel MDN `EventSource`](https://developer.mozilla.org/docs/Server-sent_events/Using_server-sent_events).
-- [Détail du protocole SSE](https://hpbn.co/server-sent-events-sse/)
-  par [*Ilya Grigorik*](https://www.igvita.com/).
-- [Guides MDN Web Sockets](https://developer.mozilla.org/docs/WebSockets).
-- Exemple de [chat en Express+socket.io](http://socket.io/get-started/chat/).
+### Event streams and `EventSource` ([demo](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_sse))
+
+- A standardized version of HTTP streaming,
+- Uses special `Content-Type: text/event-stream`,
+- Standardized browser support via the [`EventSource`
+  API](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events).
+
+**Pros:** easy to implement, compatible with old-style AJAX.  
+**Cons:** HTTP overhead, one-way (server to client), inconsistent support.
+
+### Service workers and Push notifications
+
+- **[Service
+  workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API):**
+  technology for offline web apps, background work;
+  
+- **[Push
+  notifications](https://developer.mozilla.org/en-US/docs/Web/API/Push_API):**
+  API to send notifications to a Service Worker.
+
+**Pros:** powerful, enables unique features (mobile oriented).  
+**Cons:** still experimental, advanced API.
+
+</section>
+<section>
+
+## References
+
+### WebSockets
+
+- MDN [guides on Web
+  Sockets](https://developer.mozilla.org/docs/WebSockets): [writing
+  clients](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications),
+  [writing
+  servers](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers),
+  ...
+- [`ws` package docs](https://github.com/websockets/ws).
+- [Chat example](https://socket.io/get-started/chat/) with Express + socket.io.
+
+### Other technologies
+
+- [MDN tutorial on `EventSource`](https://developer.mozilla.org/docs/Server-sent_events/Using_server-sent_events).
+- [html5rocks tutorial on `EventSource`](https://www.html5rocks.com/en/tutorials/eventsource/basics/).
+- [Details on SSE](https://hpbn.co/server-sent-events-sse/)
+  by [*Ilya Grigorik*](https://www.igvita.com/).
+- [MDN on Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
+- [MDN on Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API).
 
 </section>
