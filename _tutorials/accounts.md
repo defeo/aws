@@ -62,49 +62,50 @@ database with the tables we need.
    });
    ```
    
-This code creates a SQLite file named `db.sqlite3` in the folder `.data` (which is
-a "private place" in Glitch), and initiates a
-connection. We can query the connection by operating on the `knex`
-object. For example, to create a SQL statement, we can run
+This code creates a SQLite file named `db.sqlite3` in the folder
+`.data` (a *hidden folder* on Unix systems, and a *special* folder on
+Glitch), and initiates a connection. We can now query the connection
+by operating on the `knex` object. For example, we can read the
+contents of a table, using the `async/await` syntax (see the [lesson
+on using databases](../lessons/sql)):
 
 ```js
-var chain = knex.raw('SELECT * FROM toto');
+async function foo() {
+    ...
+    var rows = await knex.raw('SELECT * FROM bar);
+    ...
+}
 ```
 
-This code does not execute any action for the moment. In order to
-**send** the query to the database, we need to use the `then()` method
-of the *chain*:
-
-```js
-chain.then();
-```
-
-1. Using a `CREATE TABLE` statement in `db_init.js`, create a table
+1. Using a raw `CREATE TABLE` statement in `db_init.js`, or using the
+   [schema builder](../lessons/sql#create-tables), create a table
    named `users`, with the following columns:
    
    - `login`: type `varchar(255)`, primary key,
    - `pass`: type `varchar(255) NOT NULL`.
    
-   Of course, nothing is going to happen if you don't run the
-   script. We will use Glitch's Linux console to do the sysadmin
-   magic. From the main menu (top left, click on the name of your
-   project), select *"Advanced Options"*, then *"Open Console"*.
-   
-   A Linux terminal opens in a new window. Run your script by typing
-   
-   ```bash
-   node db_init.js
-   ```
-   
-   Some debug messages will appear. If things have gone well, you can
-   check that your database was created and populated by issuing the
-   command
-   
-   ```bash
-   sqlite3 db.sqlite3 .schema
-   ```
+2. To be sure to terminate the program, add a call to `knex.destroy()`
+   after the table creation.
 {: start="2" }
 
+Of course, nothing is going to happen if you don't run the script. We
+will use Glitch's Linux console to do the sysadmin magic. From the
+main menu (top left, click on the name of your project), select
+*"Advanced Options"*, then *"Open Console"*.
+
+A Linux terminal opens in a new window. Run your script by typing
+
+```bash
+node db_init.js
+```
+
+Some debug messages will appear. If things have gone well, you can
+check that your database was created and populated by issuing the
+command
+
+```bash
+sqlite3 db.sqlite3 .schema
+```
 
 ## Damn! I need to update the schema
 
@@ -117,69 +118,6 @@ initialize the database. Instead, we are going to modify `db_init.js`
 so that it erases the database and recreates the table. This way, we
 can easily update the script and rerun it whenever we need a fresh
 state.
-
-But first we need to understand what `.then()` does. Before, we wrote
-something along these lines:
-
-```js
-var chain = knex.raw(`CREATE TABLE users (
-  login VARCHAR(255) PRIMARY KEY,
-  pass VARCHAR(255) NOT NULL
-)`);
-chain.then();
-```
-
-Actually, the `.then()` method takes one argument, that is a function
-(a callback) to execute when the query is done. For example, we may
-have written
-
-```js
-var chain = knex.raw(`CREATE TABLE users (
-    login VARCHAR(255) PRIMARY KEY,
-    pass VARCHAR(255) NOT NULL
-)`);
-chain.then(function () {
-    console.log('Created table users');
-});
-```
-
-and that would have printed "Created table users" only after the table
-was created in the database. But it gets better: `.then()` also has a
-return value, which is a *modified version* of `chain` (in JS-speak,
-`chain` is called a *Promise*). We can keep calling `.then()` on the
-chain to **execute SQL statements in sequence**.
-
-```js
-var chain = knex.raw(`CREATE TABLE users (
-    login VARCHAR(255) PRIMARY KEY,
-    pass VARCHAR(255) NOT NULL
-)`);
-chain = chain.then(function () {
-    console.log('Created table users');
-    // The return is needed here: 
-    // it passes the promise up the chain
-    return knex.raw('CREATE TABLE test (a INTEGER)');
-});
-chain.then(function() {
-    console.log('Create table test');
-});
-```
-
-Actually, we don't need to give a name to the `chain` variable: we can
-instead *chain* the method calls to `.then()`. If we combine with the
-ES6 syntax for functions we get something quite concise:
-
-```js
-knex.raw(`CREATE TABLE users (
-    login VARCHAR(255) PRIMARY KEY,
-    pass VARCHAR(255) NOT NULL
-)`).then(() => {
-    console.log('Created table users');
-    return knex.raw('CREATE TABLE test (a INTEGER)');
-}).then(() => {
-    console.log('Create table test');
-});
-```
 
 1. Modify `db_init.js` to:
    
@@ -194,20 +132,10 @@ knex.raw(`CREATE TABLE users (
    Rerun `db_init.js` via the console and verify that the table
    `users` is recreated correctly.
    
-2. Until now we have only used callbacks with no arguments inside
-   `.then()`. However, promises pass values from one callback to the
-   next through `.then()`.  For example, `knex('users').columnInfo()`
-   returns a promise *containing* a description of the columns of the
-   `users` table. It can be used in a promise chain like thus:
-   
-   ```js
-   knex('users').columnInfo().then(function(cols) {
-       console.log(cols);
-   });
-   ```
-   
-   Add a call to `.columnInfo()` to `db_init.js` to show the structure
-   of the `users` table after it has been created.
+2. The (asynchronous) function `knex('users').columnInfo()` returns a
+   description of the columns of the `users` table.  Add a call to
+   `.columnInfo()` to `db_init.js` to show the structure of the
+   `users` table after it has been created.
 
 3. Add some default users to the table by using a `INSERT INTO`
    statement.
@@ -268,9 +196,12 @@ second argument, which is a list of replacement values for *prepared
 statements*, like thus:
 
 ```js
-knex.raw('INSERT INTO users VALUES (?, ?, ?, ?, ?)',
-         [ 'karpov', 'checkmate', 'Anatoly Karpov', 'green', 'black' ]);
+await knex.raw('INSERT INTO users VALUES (?, ?, ?, ?, ?)',
+               [ 'karpov', 'checkmate', 'Anatoly Karpov', 'green', 'black' ]);
 ```
+
+Alternatively, you can use the [query](../lessons/sql#query-builder)
+[builder](http://knexjs.org/#Builder).
 
 1. Create a Nunjucks template for a web form for creating a new user,
    and serve it at the `/signin` URL. It must contain a login field, a
@@ -296,20 +227,21 @@ knex.raw('INSERT INTO users VALUES (?, ?, ?, ?, ?)',
 Errors may happen when you do SQL queries, and we cannot let them
 crash our application. For example, a user may try to create an
 account for a login that already exists (violating the `PRIMARY KEY`
-constraint). To handle errors in a Promise chain, we use the
-`.catch()` method in the same way we used `.then()`:
+constraint). To handle errors, you can use a `try ... catch`:
 
 ```js
-knex.raw('INSERT INTO ...')
-    .then(() => { ... })
-    .catch((error) => { console.log(error) })
+try {
+    await knex.raw('INSERT INTO ...');
+} catch (error) {
+    console.error(error);
+}
 ```
 
-3. Add a error handler to your promise chain. If the error is a
-   violation of the primary key constraint (inspect the error in the
-   console, and find out the error code for this violation), send back
-   the form with an explanatory message. For any other error, send
-   back the form with a generic message.
+3. Handle errors in your code. If the error is a violation of the
+   primary key constraint (inspect the error in the console, and find
+   out the error code for this violation), send back the form with an
+   explanatory message. For any other error, send back the form with a
+   generic message.
 {: start="3" }
 
 
@@ -326,7 +258,7 @@ every request, hence we will use a *session mechanism*.
 As seen in the [sessions](../lessons/sessions) lesson, we must start
 by configuring the Express app with
 
-~~~
+```js
 var session = require('express-session');
 
 app.use(session({
@@ -334,7 +266,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
-~~~
+```
 
 Then the session will be available in every handler at `req.session`.
 
@@ -351,9 +283,12 @@ Then the session will be available in every handler at `req.session`.
    
    - if they are correct, it saves the login, the name and the colors
      in the session, and redirects to `/userlist`.
- 
+
+3. Modify `/` so that it immediately redirects to `/userlist` if the
+   user is already logged in.
+
 3. Modify `/userlist` so that it redirects to `/` when the user is not
-   logged in.
+   logged in, and so that it shows in bold the current user.
 
 4. Write the `/logout` route to log the user out. For that, it is
    enough to put a special value in the session (for example, set the
@@ -371,19 +306,13 @@ sessions.
 1. In `/signin`, ask for the password twice, and only accept the new
    user if the two password fields match.
 
-1. We have only used `knex.raw()` in this tutorial, however `knex` has
+1. We have mostly used `knex.raw()` in this tutorial, however `knex` has
    a very convenient *query builder* to construct SQL statements with
    a more object-oriented syntax. [Read the
    docs](http://knexjs.org/#Builder) and replace your raw queries with
    built ones. You can also try [Schema
    building](http://knexjs.org/#Schema) in `db_init.js`.
    
-1. Promises are nice (nicer than callbacks, at least), but the syntax
-   is still quite heavy. The new `async/await` framework allows us to
-   write *promised* code as if it were synchronous. Read [this
-   tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
-   and replace your promises with `async/await` statements.
-
 1. It is very bad practice to store cleartext passwords in the
    database: what you if suffer a data breach and your database is
    divulged?
