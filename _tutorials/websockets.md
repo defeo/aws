@@ -123,7 +123,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    ```
 
 2. To conveniently represent the users, we will create a
-   [JavaScript](../lessons/advanced-js#classes-en-es6)
+   [JavaScript](../lessons/javascript#classes-new-in-es6)
    [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
    Create a class named `User` with a very simple constructor:
    

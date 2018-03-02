@@ -1,7 +1,7 @@
 ---
 layout: lesson
 title: JavaScript
-subtitle: Le langage
+subtitle: The language
 addons:
   video:
     url: https://sourcesup.renater.fr/aws-media/javascript.webm
@@ -9,37 +9,36 @@ addons:
       - 58900075ba7ec5013560f7c1
 ---
 
-<section>
+<section class="compact">
 
-## JavaScript
+## JavaScript ([ECMA-262](https://en.wikipedia.org/wiki/ECMAScript))
 
-JavaScript est un langage de scripting *interprété*, *dynamique*,
-*faiblement typé*, *basé sur les prototypes* qui supporte les styles
-de programmation *à objets*, *fonctionnel* et *impératif*.
+JavaScript is a *scripting* language, *interpreted*, *dynamic*,
+*weakly typed*,  
+supporting *object-oriented*, *functional* and *imperative*
+programming styles.
 
-**Interprété :** le code est distribué au format source et interprété à
-la volée.
+**Interpreted:** code is distributed in source format, and interpreted
+on the fly.
 
-**Dynamiquement typé :** les variables peuvent changer de type pendant
-l'exécution.
+**Dynamically typed:** variables can change type during execution.
 
-**Faiblement typé :** des variables avec types différent peuvent être
-combinées sans conversions explicites.
+**Weakly typed:** variables with different types can be *combined*
+without explicit conversions.
+
+**Object-oriented:** *everything is an object* in JavaScript.
   
-**Basé sur les prototypes :** il n'y a pas de distinction entre
-classes et objets : **tout est objet**.
-  
-**Fonctionnel:** les fonctions sont des *objets de première classe*.
+**Functional:** functions are *first class objects*.
 
-JavaScript **n'est pas Java**. Il est bien plus proche de Python ou
-Ruby.
+JavaScript **is not Java**. It is much closer to Python or Ruby.
 
-### Versions (Standard ECMAScript)
-
-- **ECMA 5.1 (JavaScript 1.8.x, 2009)** – Implanté par la majorité des browsers.
-- **ECMA 6,7,... (ES2015, ES2016, ...)** – Versions en développement
-  (*révisions annuelles*), voir la [table de
-  compatibilité](https://kangax.github.io/compat-table/es6/).
+| 1996 | **JavaScript 1.0** | First version introduced by Netscape.
+| 1997 | **ECMA 1 (JavaScript 1.3)** | First standardized version.
+| ...
+| 2011 | **ECMA 5.1 (JavaScript 1.8.x)** | Implemented by most browsers.
+| 2015 | **ECMA 6 (ES2015)** | Adds classes, `for ... of`, arrow functions, promises, ...
+| ... | **ECMA 7,8,... (ES2016, ES2017, ...)** | Yearly revisions. See the [compatibility table](https://kangax.github.io/compat-table/es6/).
+{:.pretty.compact style="margin:auto"}
 
 
 </section>
@@ -47,34 +46,157 @@ Ruby.
 
 ## Hello world
 
-### Vieux style
+### Old style
 
-[Tester](javascript:alert('Hello world!')) (marche seulement dans un browser)
+[Test it!](javascript:alert('Hello world!')) (only works in a browser)
 
 ~~~js
 alert('Hello world!');
 ~~~
 
-**À éviter**, partout !
+**Avoid it**, any time!
 
-### Nouveau style
+### Modern style
 
-[Tester](javascript:console.log('Hello world!')) (Firefox :
-`Shift+Ctrl+K`, Chrome : `F12`)
+[Test it!](javascript:console.log('Hello world!')) (Firefox:
+`Shift+Ctrl+K`, Chrome: `F12`)
 
 ~~~js
 console.log('Hello world!');
 ~~~
 
-Marche aussi hors du browser, par ex., dans
-[Node.js](https://nodejs.org/).
+Also works outside a browser, e.g., in [Node.js](https://nodejs.org/).
 
 </section>
 <section class="compact">
 
-## La syntaxe JavaScript
+## JavaScript syntax
 
-### Conditionnels
+### Types
+
+<div class="two-cols">
+
+Numbers
+
+```js
+0, 1, -1, 1.32, 1e10, 0x3E, NaN, Infinity
+```
+
+Strings
+
+```js
+"Hello world"
+'Hello world'
+`Hello world`
+```
+
+Booleans
+
+```js
+true
+false
+```
+
+Other constants
+
+```js
+undefined
+null
+```
+
+Objects
+
+```js
+{ a: 1, 
+  b: "hello", 
+  c: { a: 1 } }
+```
+
+Arrays
+
+```js
+[ 1, 2,
+  [ "a", "b" ] ]
+```
+
+</div>
+
+</section>
+<section>
+
+### Variables
+
+Always declare your variables
+
+~~~js
+let a = 0;
+a += 1;
+~~~
+
+- Variables are dynamically typed
+  
+  ~~~js
+  let a = 1;
+  a = 'something';
+  ~~~
+
+- Scope is **local to the block**
+  
+  ```js
+  let a = 1;
+  if (true) {
+      let a = 2;
+      console.log(a);   // prints 2
+  }
+  console.log(a);       // prints 1
+  ```
+
+</section>
+<section>
+
+### Other types of variables
+
+#### Alternative *old-style* syntax (scope *local to the function*)
+
+```js
+var a = 1;
+if (true) {
+    var a = 2;        // this is useless
+    console.log(a);   // prints 2
+}
+console.log(a);       // prints 2
+```
+
+#### Constants
+
+<div class="two-cols">
+
+```js
+const b = 1;
+const b = 2;
+```
+
+```
+TypeError: invalid assignment to const `b'
+```
+
+```js
+const b = [1, 2];
+b[2] = 10;
+console.log(b);
+```
+
+```
+Array [ 1, 2, 10 ]
+```
+
+</div>
+
+
+</section>
+<section>
+
+### Conditionals
 
 ~~~js
 if (x == 1) {
@@ -91,10 +213,10 @@ if (x == 1) {
 switch (2+x) {
 case 4:
     ...
-	break;
+    break;
 case 5+1:
     ...
-	break;
+    break;
 default:
     ...
 }
@@ -103,39 +225,72 @@ default:
 </section>
 <section class="compact">
 
-### Boucles
+### Loops
+
+<div class="two-cols">
 
 ~~~js
-for ( var i = 0 ; i < 10 ; i++ ) {
-    ...
+for ( let i = 0 ; i < 3 ; i++ ) {
+    console.log(i);
 }
 ~~~
 
+```
+0
+1
+2
+```
+
 ~~~js
-for ( var x in obj ) {
-    ...
+let obj = { a: 1, b: "hello" };
+for ( let x in obj ) {
+    console.log(x, obj[x]);
 }
 ~~~
 
+```
+a 1
+b hello
+```
+
 ~~~js
-while (condition) {
-    ...
+let array = ["a", "b", "c"];
+for ( let x of array ) {     // New in ES6
+    console.log(x);
 }
 ~~~
+
+```
+a
+b
+c
+```
+
+~~~js
+while (true) {
+    console.log("hello");
+}
+~~~
+
+```
+hello
+hello
+...
+```
 
 ~~~js
 do {
-    ...
-} while (condition);
+    console.log("hello");
+} while (true);
 ~~~
 
-Nouveau en ES6 (différent de `for ... in`)
+```
+hello
+hello
+...
+```
 
-~~~js
-for ( var x of array ) {
-	...
-}
-~~~
+</div>
 
 </section>
 <section>
@@ -156,135 +311,127 @@ try {
 }
 ~~~
 
-Note : il n'y a pas encore de standard pour capturer des exceptions
-d'un type spécifique.
+**Note:** contrary to other languages (e.g., Python), it is not
+allowed to have more than one `catch` clause.
 
 </section>
 <section>
 
-## Variables
+## Some operators
 
-### Les variables doivent être déclarées !
-
-~~~js
-var a = 0;
-a += 1;
-~~~
-
-- Les variables sont typées dynamiquement
-  
-  ~~~js
-  var a = 1;
-  a = 'quelque chose';
-  ~~~
-
-- Les variables **non déclarées** ont **portée globale**.
-  
-  ~~~js
-  function setA() { a = 1; }
-  setA();
-  console.log(a);  // affiche 1
-  ~~~
-  
-  Ceci va disparaître dans les futures version de JavaScript.
-
-- ES6 remplace `var` par `let`, et la **portée locale aux fonctions** (à la Python)
-  par la **portée locale aux blocs** (à la C/Java)
-
-</section>
-<section>
-
-## Constantes
-
-**Constantes prédéfinies** : `undefined`, `NaN`, `Infinity`.
-
-**Déclaration de constantes** (nouveau dans ES6) : `const`
-
-#### Utilisation de `undefined`
+**Weak comparison**
 
 ~~~js
-function bon(x, y) {
-	// teste si l'utilisateur a passé
-	// une valeur pour y 
-	if (undefined === y)
-		...
-}
-~~~
-
-
-~~~js
-function mauvais(x, y) {
-	if (undefined == y)
-		// s'exécute même si y vaut null
-		...
-}
-~~~
-
-
-</section>
-<section>
-
-## Quelques opérateurs
-
-**Comparaison faible**
-
-~~~js
-var x = 2;
+let x = 2;
 x == '2';     // true
 ~~~
 
-**Comparison forte** 
+**Strong comparison** 
 
 ~~~js
-var x = 2;
+let x = 2;
 x === '2';    // false
 ~~~
 
-**Existence d'attribut** (teste si une propriété est définie dans un
+**Property existence** (tests si une propriété est définie dans un
 object)
 
 ~~~js
-if ('property' in obj) ...;
+let obj = { a: 1, b: 'hello' };
+'a' in obj;                      \\ true
+'hello' in obj;                  \\ false
 ~~~
+
+**Arithmetic:** `+`, `-`, `*`, `/`, ...
+
+**Boolean:** `<`, `>`, `<=`, `>=`, `!`, `&&`, `||`, `^`, ...
+
+**String concatenation:** `+`
 
 </section>
 <section>
 
-## Tableaux
+## Strings
 
-### Allocation dynamique
+Single `'` and double `"` quote are **equivalent**.
 
-~~~js
-var myarray = ['un', 'deux', 'trois'];
-myarray[5] = 'cinq';
-myarray.length;                        // donne 6
-~~~
+```js
+"Hello world"
+'Hello world'
+```
 
-### Méthodes prédéfinies
-
-~~~js
-// donne 'un+deux+trois'
-['un', 'deux', 'trois'].join('+')
-~~~
-
-~~~js
-// donne -1
-['un', 'deux', 'trois'].indexOf('quatre')
-~~~
-
-Autres méthodes :
-
-- Itérateurs fonctionnels : `map`, `filter`, `reduce`, `every`, `some`, `forEach`, ...
-- ES6 : `from`, `of`, `find`, `fill`, ...
+### Backquotes `` ` ``  <small>(new in ES6)</small>
+	
+- Newlines **allowed** in backquotes:
+  
+  ```js
+  `Hello
+   world`
+  ```
+  
+- **Template strings**
+  
+  <div class="two-cols">
+  
+  ```js
+  let x = "brave new";
+  `Hello ${x} world`;
+  ```
+  
+  ```
+  Hello brave new world
+  ```
+  
+  </div>
 
 </section>
 <section>
 
-## Fonctions
+## Arrays
 
-### Syntaxe simple
+### Dynamic allocation
 
-(les arguments n'ont pas besoin du mot clef `var`/`let`)
+~~~js
+let myarray = ['one', 'two', 'three'];
+myarray[5] = 'five';
+myarray.length;                        // gives 6
+~~~
+
+### Common methods
+
+<div class="two-cols">
+
+~~~js
+['one', 'two', 'three'].join('+')
+~~~
+
+```
+one+two+three
+```
+
+~~~js
+['one', 'two', 'three'].indexOf('four')
+~~~
+
+```
+-1
+```
+
+</div>
+
+Other methods
+
+- Functional iterators: `map`, `filter`, `reduce`, `every`, `some`, `forEach`, ...
+- New in ES6: `from`, `of`, `find`, `fill`, ...
+
+</section>
+<section>
+
+## Functions
+
+### Simple syntax
+
+(Do not use `var`/`let` with function arguments)
 
 ~~~js
 function incr(a) {
@@ -292,58 +439,61 @@ function incr(a) {
 }
 ~~~
 
-### Les fonctions sont des objets de première classe
+### Functions are *first-class objects*
 
 ~~~js
 function apply(f, x) {
     return f(x);
 }
 
-apply(incr, 4);          // donne 5
+apply(incr, 4);          // gives 5
 ~~~
 
 </section>
 <section class="compact">
 
-### Fonctions anonymes
+### Anonymous functions
 
 ~~~js
-myFun = function () {
+let myFun = function (a, b) {
     ...
 }
 ~~~
 
-### Fonctions imbriquées (et clôture)
+New in ES6:
 
-~~~js
-function counter() {
-    var c = 0;
-    return function(step) {
-        return c += step;
-    }
+```js
+let myOtherFun = (a, b) => {   // New in ES6
+	...
 }
+```
 
-var cnt = counter();
-[cnt(1), cnt(2), cnt(1)]      // donne [1, 3, 4]
-~~~
+### More on *arrow functions*
 
-### Flèches <small>(nouveau en ES6)</small>
+Shorter version:
 
-~~~js
-var f = (a, b) => a + b;    // équivalent à function f(a,b) { return a+b; }
+```js
+let f = (a, b) => a + b;
+```
 
-[1, 2, 3].map( (x) => {
-	var tmp = x;
-	return tmp + 2;
-});                         // donne [3, 4, 5]
-~~~
+Is equivalent to:
+
+```js
+let f = (a, b) => {
+	return a + b;
+}
+```
+
+Arrow functions have [slightly different
+semantics](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Description)
+when used inside classes.
 
 </section>
 <section class="compact">
 
-## Fonctions *variadiques*
+### *Variadic* functions
 
-### Omettre des arguments
+#### Omit arguments
 
 ~~~js
 function maybe(x, y) {
@@ -353,32 +503,54 @@ function maybe(x, y) {
         return x+y;
 }
 
-maybe(1);          // donne 1
-maybe(1, 2);       // donne 3
+maybe(1);          // gives 1
+maybe(1, 2);       // gives 3
 ~~~
 
-### Arguments par défaut <small>(nouveau en ES6)</small>
+#### Default arguments <small>(new in ES6)</small>
 
 ~~~js
 function val(x=0) {
-	return x;
+    return x;
 }
 
-val();               // donne 0
-val(1);              // donne 1
+val();               // gives 0
+val(1);              // gives 1
 ~~~
+
+</section>
+<section>
+
+### Nested functions (and closures)
+
+~~~js
+function counter() {
+    let c = 0;
+    return function(step) {
+        return c += step;
+    }
+}
+
+let cnt = counter();
+[cnt(1), cnt(2), cnt(1)]      // gives [1, 3, 4]
+~~~
+
+The anonymous function is *closed around* the *outer variable* `c`:
+
+- `c` acts *like a global* variable for the anonymous function,
+- `c` is *local* to `counter`.
 
 </section>
 <section class="compact">
 
-## Objets
+## Objects
 
-### Objets anonymes
+### *Anonymous* objects
 
-(similaires aux tableaux associatifs)
+(similar to Python *dicts*, *associative arrays*, ...)
 
 ~~~js
-var myObj = {
+let myObj = {
     car: "Peugeot",
     color: "blue"
 };
@@ -387,114 +559,119 @@ var myObj = {
 myObj.car == "Peugeot";      // true
 myObj['car'] == "Peugeot";   // true
 
-var prop = 'car';
+let prop = 'car';
 myObj[prop] == "Peugeot";    // true
 ~~~
 
-Les contenus d'un objet peuvent **changer dynamiquement**
+An object contents can **change dynamically**
 
 ~~~js
-var myObj = {};
+let myObj = {};
 myObj.car = "Renault";
 ~~~
 
 </section>
-<section class="compact">
-
-## Méthodes
-
-~~~js
-var myObj = {
-  jour: "5",
-  mois: "Janvier",
-  annee: "2012",
-   
-  anglais: enDate,
-  
-  francais: function() {
-    return this.jour  + " " + this.mois + " " + this.annee;
-  }
-}
-
-function enDate() {
-  return this.mois + " "  + this.jour  + ", " + this.annee;
-}
-
-myObj.custom = function() {
-  return this.annee  + "-" + this.mois + "-" + this.jour;
-}
-~~~
-
-</section>
 <section>
 
-## Constructeurs
-
-Les constructeurs sont des simples fonctions
+### Classes <small>(new in ES6)</small>
 
 ~~~js
-function Car(model, color, year) {
-    this.model = model;
-    this.color = color;
-    this.year = year;
-    
-    this.revision = function() {
-        return this.year + 5;
+class Car {
+    constructor(speed) {
+        this.speed = speed;
+    }
+    vroom() {
+        console.log('VR' + 'O'.repeat(this.speed) + 'M!');
+    }
+}
+class Ferrari extends Car {
+    constructor() {
+        super(20);
     }
 }
 
-var mycar = new Car("Peugeot", "blue", 2010);
-
-// donne 2015
-mycar.revision();
+v = new Ferrari();
+v.vroom();
 ~~~
 
-**Nouveau :** ES6 introduit les [**classes**](advanced-js) !
+~~~
+VROOOOOOOOOOOOOOOOOOOOM!
+~~~
 
 </section>
 <section>
 
-## Objets prédéfinis
+### More on classes
 
-`String`, `Array`, `Boolean`, `Number`, `Date`: les noms disent tout
+- Classes are just *functions producing objects*;
 
-`Math`: Fonctions mathématiques (exp, log, etc.)
+  <div class="two-cols">
+  
+  ```js
+  class A{}
+  typeof(A)
+  typeof(new A())
+  new A() instanceof A
+  ```
+  
+  ```js
+  
+  "function"
+  "object"
+  true
+  ```
+  
+  </div>
+
+- Only *single inheritance* allowed.
+
+- Learn more [on
+  MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
+
+</section>
+<section>
+
+## Some predefined classes
+
+`String`, `Array`, `Boolean`, `Number`, `Date`: name says everything
+
+`Math`: Mathematical functions (exp, log, etc.)
 
 ~~~js
-Math.PI;         // la constante pi
-Math.sqrt(16);   // donne 4
+Math.PI;         // the pi constant
+Math.sqrt(16);   // gives 4
 ~~~
 
-`RegExp`: expressions régulières (syntaxe à la Perl)
+`RegExp`: regular expressions (Perl-like syntax)
 
 ~~~js
-var pattern = RegExp("sub", "i");
+let pattern = RegExp("sub", "i");
 
-// pareil que la ligne du dessus
+// same as the previous line
 pattern = /sub/i;
 
-// donne true
-pattern.test("Substring")
+// gives true
+pattern.test("Substring");
 ~~~
 
 </section>
 <section>
 
-## Lectures
+## References
 
-*Eloquent JavaScript* par Marijn Haverbeke, 2nd edition
-: <https://eloquentjavascript.net/>, avec exemples interactifs !
+*Eloquent JavaScript* by Marijn Haverbeke
+: <https://eloquentjavascript.net/>, with interactive examples!
 
 
-*JavaScript Éloquent* par Marijn Haverbeke, 1e édition (en français)
+*JavaScript Éloquent* by Marijn Haverbeke, 1st edition (in French)
 : <http://fr.eloquentjavascript.net/>,
 
-Le guide du MDN
+MDN guide on JavaScript
 : <https://developer.mozilla.org/docs/JavaScript/Guide>,
 
-Les tutoriels de W3Schools
+W3Schools tutorials
 : <https://www.w3schools.com/js/>,
 
-Plus de références dans la [page du cours](..).
+More references in the [course main page](..).
 
 </section>

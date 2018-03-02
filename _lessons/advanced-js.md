@@ -180,34 +180,3 @@ foo.methodeBete();                  // donne "bête"
 ~~~
 
 </section>
-<section class="compact">
-
-## Classes en ES6
-
-ES6 introduit les classes. Il s'agit de *sucre syntaxique* autour des
-objets et leurs prototypes.
-
-~~~js
-class Voiture {
-    constructor(vitesse) {
-        this.vitesse = vitesse;
-    }
-    vroom() {
-        console.log('VR' + 'O'.repeat(this.vitesse) + 'M!');
-    }
-}
-class Ferrari extends Voiture {
-    constructor() {
-        super(20);
-    }
-}
-
-v = new Ferrari();
-v.vroom();
-~~~
-
-~~~
-VROOOOOOOOOOOOOOOOOOOOM!
-~~~
-
-</section>
