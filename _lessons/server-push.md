@@ -2,6 +2,9 @@
 layout: lesson
 title: Two-way communication
 subtitle: Server push and WebSockets
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/websockets.webm
 ---
 
 <section>
