@@ -338,8 +338,8 @@ object)
 
 ~~~js
 let obj = { a: 1, b: 'hello' };
-'a' in obj;                      \\ true
-'hello' in obj;                  \\ false
+'a' in obj;                      // true
+'hello' in obj;                  // false
 ~~~
 
 **Arithmetic:** `+`, `-`, `*`, `/`, ...
