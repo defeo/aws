@@ -361,7 +361,7 @@ Single `'` and double `"` quote are **equivalent**.
 ```
 
 ### Backquotes `` ` ``  <small>(new in ES6)</small>
-	
+    
 - Newlines **allowed** in backquotes:
   
   ```js
@@ -464,7 +464,7 @@ New in ES6:
 
 ```js
 let myOtherFun = (a, b) => {   // New in ES6
-	...
+    ...
 }
 ```
 
@@ -480,7 +480,7 @@ Is equivalent to:
 
 ```js
 let f = (a, b) => {
-	return a + b;
+    return a + b;
 }
 ```
 
@@ -645,7 +645,7 @@ Math.sqrt(16);   // gives 4
 `RegExp`: regular expressions (Perl-like syntax)
 
 ~~~js
-let pattern = RegExp("sub", "i");
+let pattern = new RegExp("sub", "i");
 
 // same as the previous line
 pattern = /sub/i;
