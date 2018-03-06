@@ -328,7 +328,7 @@ interesting, we will implement a counter.
 1. Create a handler
    
    ~~~js
-   app.get('/:name/compteur', ...);
+   app.get('/:name/counter/', ...);
    ~~~
    
    Using a template, show the message *"..., this is your first
@@ -345,7 +345,7 @@ interesting, we will implement a counter.
    a [regular](http://expressjs.com/en/4x/api.html#path-examples)
    [expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
 
-3. Add a link inside the `/:name/counter` view to `/:name/counter/1`.
+3. Add a link inside the `/:name/counter/` view to `/:name/counter/1`.
 
 4. Add a link to the `/:name/counter/:cnt` view to the same view, with
    the counter incremented by one. 
