@@ -18,7 +18,7 @@ clicker._authXHR('/users', clicker.user.token, function(users, xhr) {
     window.users = users;
 });
 
-lessons.forEach(function(l) {
+quizzes.forEach(function(l) {
     var qdiv = $('#stats-questions');
     if (l.quizzes.length) {
 	qdiv.append('h3').append('a ' + l.lesson).href = l.url;

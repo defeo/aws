@@ -83,10 +83,10 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 	bezierCurve: false,
     });
 
-    $('#clicker-grade').textContent = 'Note : ' + grade(time) + '/6 ';
+    $('#clicker-grade').textContent = 'Note : ' + grade(time, count(quizzes)) + '/6 ';
     var help = $('#clicker-grade')
 	.append('a <i class="fa fa-question-circle"></i>');
-    help.href = 'https://github.com/defeo/aws/blob/gh-pages/_addons/clicker/grading.js#L27-L34';
+    help.href = 'https://github.com/defeo/aws/blob/gh-pages/_addons/clicker/grading.js#L35-L42';
     help.target = '_blank';
     
 }, function(err) {

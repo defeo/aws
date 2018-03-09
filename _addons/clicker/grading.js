@@ -28,21 +28,24 @@ function timeline(answers) {
     return timeline;
 }
 
-function grade(timeline, deadline) {
+function count(quizzes) {
+    return quizzes.reduce((c, l) => c + l.quizzes.length, 0);
+}
+
+function grade(timeline, total) {
     var answered = timeline.length;
     var score = timeline.reduce(function(sum, a) { return sum + a.score; }, 0);
-    var total = quizzes.reduce(function (c, l) { return c + l.quizzes.length }, 0)
 
     console.log(total, answered, score);
     return Math.round((2 * answered + 4 * score)/total * 10)/10;
 }
 
-function gradeAll(users) {
+function gradeAll(users, total) {
     users.forEach(function(u) {
-	clicker._authXHR('/stats/user/' + u._id, clicker.user.token, function(answers, xhr) {
-	    u.grade = grade(timeline(answers));
-	}, function(err) {
-	    console.log(err);
-	});
+	    clicker._authXHR('/stats/user/' + u._id, clicker.user.token, function(answers, xhr) {
+	        u.grade = grade(timeline(answers), total);
+	    }, function(err) {
+	        console.log(err);
+	    });
     });
 }
