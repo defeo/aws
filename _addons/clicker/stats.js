@@ -101,3 +101,15 @@ quizzes.forEach(function(l) {
 	});
     }
 });
+
+
+console.info(`Hello, this is Clicker!
+
+To grade all students seen in the last 30 days, and export their
+grades as CSV you may run
+
+    downloadGrades(Date.now() - 1000*60*60*24*30)
+
+Without parameters, it defaults to the last 90 days.
+
+Have a look at the source code:`, downloadGrades);

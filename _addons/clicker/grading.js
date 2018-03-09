@@ -41,11 +41,23 @@ function grade(timeline, total) {
 }
 
 function gradeAll(users, total) {
-    users.forEach(function(u) {
-	    clicker._authXHR('/stats/user/' + u._id, clicker.user.token, function(answers, xhr) {
+    return users.map((u) => new Promise((resolve, reject) => {
+	    clicker._authXHR('/stats/user/' + u._id, clicker.user.token, (answers, xhr) => {
 	        u.grade = grade(timeline(answers), total);
-	    }, function(err) {
+            resolve(u);
+	    }, (err) => {
 	        console.log(err);
+            reject(err);
 	    });
-    });
+    }));
+}
+
+function downloadGrades(since=Date.now() - 1000*60*60*24*90) {
+    return Promise.all(gradeAll(users, count(quizzes)))
+        .then((users) => window.open(
+            URL.createObjectURL(new Blob(
+                [users
+                 .filter(u => u.lastSeen > Date.now() - 1000*60*60*24*90)
+                 .map(u => `${u._id},${u.profile.name},${u.grade}`)
+                 .join('\n')]))));
 }
