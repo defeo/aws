@@ -58,5 +58,6 @@
 
 - desc: Autre
   lessons:
-    - samy.md
     - past-future.md
+    - url: samy.md
+      comment: '<small>🔒</small>'
