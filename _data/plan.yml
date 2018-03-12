@@ -27,14 +27,22 @@
     - etat.md
     - templates.md
     - mustache.md
+    - url: xss.md
+      comment: '<small>🔒</small>'
   tutorials: templates-etat.md
 
 - desc: Bases de données et sessions
   lessons:
     - sessions.md
     - sql.md
-    - orm.md
     - async-js.md
+    - orm.md
+    - url: sql-injection.md
+      comment: '<small>🔒</small>'
+    - url: csrf.md
+      comment: '<small>🔒</small>'
+    - url: session-fixation.md
+      comment: '<small>🔒</small>'
   tutorials: accounts.md
 
 - desc: Web 2.0 et Server push
@@ -42,18 +50,13 @@
     - ajax.md
     - json.md
     - server-push.md
+    - url: cross-domain.md
+      comment: '<small>🔒</small>'
+    - url: csp.md
+      comment: '<small>🔒</small>'
   tutorials: websockets.md
-
-- desc: Securité
-  lessons:
-    - sql-injection.md
-    - xss.md
-    - cross-domain.md
-    - session-fixation.md
-    - csrf.md
-    - csp.md
-    - samy.md
 
 - desc: Autre
   lessons:
+    - samy.md
     - past-future.md

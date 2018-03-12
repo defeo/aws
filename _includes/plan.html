@@ -35,14 +35,19 @@
     <tr><td>{{ theme.desc | markdownify }}</td></tr>
     <tr><td>
 	<ul>{% for l in theme.lessons %}
+	  {% if l.url %}
+	  <li>{% if l.comment %}{{ l.comment }}{% endif %}
+	    {% include link.html collection=lessons href=l.url %}</li>
+	  {% else %}
 	  <li>{% include link.html collection=lessons href=l %}</li>
+	  {% endif %}
 	  {% endfor %}
 	</ul>
       </td><td>
 	<ul>{% for t in theme.tutorials %}
 	  {% if t.url %}
-	  <li>{% include link.html collection=tds href=t.url %}
-	    {% if t.comment %}({{ t.comment }}){% endif %}</li>
+	  <li>{% if t.comment %}{{ t.comment }}{% endif %}
+	    {% include link.html collection=tds href=t.url %}</li>
 	  {% else %}
 	  <li>{% include link.html collection=tds href=t %}</li>
 	  {% endif %}
