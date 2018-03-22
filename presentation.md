@@ -34,7 +34,7 @@ addons:
 | Juil. 2016 | **DNC hack** | vol de mails du parti Démocrate US
 | Sept. 2016 | **Yahoo! breach** | vol de mots de passes et données
 | Oct. 2016 | **Dyn attacks** | DDOS (Mirai botnet)
-| Mai. 2017 | **WannaCry** | ransowmare
+| Mai. 2017 | **WannaCry** | ransomware
 | Sept. 2017 | **Equifax breach** | vol de données
 | ...
 {:.pretty.content}
