@@ -1,248 +1,240 @@
 ---
-title: HTML, CSS et formulaires
+title: HTML, CSS and forms
 ---
 
-## L'IDE Glitch
+## The Glitch IDE
 
-Dans ce cours nous allons utiliser un environnement de développement
-(IDE) *dans le cloud*. Même si ce TD pourrait être développé
-entièrement en local (il suffit d'un browser et d'un éditeur de
-texte), nous allons en profiter pour nous familiariser d'avance avec
-Glitch, notre IDE.
+In this tutorial we will use a *cloud based* development environment
+(IDE). Although the exercises could be developed entirely locally (a
+browser and an editor are all that's needed), we will use this
+occasion to get acquainted with our IDE Glitch.
 
-**Important :** vous devez avoir un **navigateur récent** pour pouvoir
-utiliser Glitch, de préférence la **dernière version** de Firefox,
-Chrome ou Safari. Contrôlez votre version avant de commencer.
+**Important:** you will need a **recent browser** to use Glitch,
+possibly the **latest version** of Firefox, Chrome or Safari. Check
+your version before starting.
 
-Dirigez votre browser sur <https://glitch.com/>, créez un compte si ce
-n'est pas déjà fait, et connectez-vous à votre espace personnel. Si
-vous possédez déjà un compte [GitHub](https://github.com/), vous
-pourrez importer et exporter vos projets vers celui-ci.
+Point your browser to <https://glitch.com/>, create an account if you
+haven't yet, and connect to your personal dashboard. If you already
+have a [GitHub](https://github.com/) account, you can import and
+export your projects from/to it.
 
-Pour votre premier projet, *rémixez*
-<https://glitch.com/~defeo-lu-aws-get-started> en cliquant sur le
-bouton "Remix". Vous pouvez également créer un nouveau projet: cliquez
-sur *"Start a new project"*, puis *"Create a website"*.
+For your first project, *reémix*
+<https://glitch.com/~defeo-lu-aws-get-started> by clicking on the
+*"Remix"* button. Alternatively, you can create a new sample project
+by clicking on *"Start a new project"*, then *"Create a website"*.
 
 ## HTML
 
-1. Ouvrez le fichier `index.html`, ou, si votre projet n'en contient
-   pas, créez-en un avec ce squelette:
+1. Open the `index.html` file, or, if your project does not contain
+   one, create a new one using this template:
 
    ~~~
    <!DOCTYPE html>
    <html>
 	 <head>
 	   <meta charset="utf-8" />
-	   <title>TD 1</title>
+	   <title>Tutorial 1</title>
 	 </head>
 	 <body>
-	   <!-- Votre contenu ici -->
+	   <!-- Content goes here -->
 	 </body>
    </html>
    ~~~
 	
-1. Éditez le fichier. Ajoutez un titre (`<h1>`) et quelques paragraphes.
+1. Edit the file. Add a title (`<h1>`) and some paragraphs.
 
-3. Visualisez le résultat dans le navigateur.
+3. Show the result in the browser.
    
-   Puisqu'il s'agit d'un projet public, tout le contenu est disponible
-   *statiquement* à l'URL
+   Since this is a public project, all the contents are 
+   *statically* viewable at the URL
    
-   > [https://[nom-du-projet].glitch.me/](about:invalid)
+   > [https://[name-of-the-project].glitch.me/](about:invalid)
    
-   (remplacez le nom du projet dans l'URL), et les pages HTML
-   sont servies comme telles.  Pour ouvrir ce lien dans un nouvel
-   onglet, cliquez sur le bouton *"Show"*.
+   (replace the project name in the URL), and HTML pages will be
+   served as such.  To open this link in a new tab, click on the
+   *"Show"* button.
 
-4. Transformez ce fichier en votre CV. **On va se désintéresser de
-   l'élégance et du style pour l'instant**.  Aidez vous avec la
-   [référence de w3schools](https://www.w3schools.com/tags/default.asp)
-   pour l'utilisation des balises.
+4. Make your own CV in this file. **We will disregard elegance and
+   style for the moment**.  You can consult the [MDN
+   reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+   to find out about HTML tags.
    
-   - Éditez la balise `<title>`.
+   - Edit the `<title>` tag.
    
-   - Donnez une titre à la page (`<h1>`).
+   - Give a title to the page (`<h1>`).
    
-   - Créez deux sections (`<section>`) : une pour vos données
-     personnélles et une pour tout le reste. Donnez un `id` à chaque
-     section.
+   - Create two sections (`<section>`): one for your personal data,
+     and one for all the rest. Give an `id` to each section.
    
-   - Dans la première section :
+   - In the first section:
 	 
-	 - Mettez un titre (`<h2>`) ;
-	 - Avec une liste à puces (`<ul>`), ou une liste de définitions
-       (`<dl>`), listez vos données personnelles ;
-	 - Ajoutez une photo de vous (l'attribut `alt` est obligatoire
-       pour la balise `<img>`), dans une balise `<figure>`.
+	 - Give a title (`<h2>`);
+	 - Using a bullet list (`<ul>`), or a description list
+       (`<dl>`), list your personal data;
+	 - Add a picture of yourself (do not forget to add an `alt`
+	   attribute to `<img>` tags), inside a `<figure>` tag.
+	   
+	   **Note:** Glitch stores pictures in a special folder called
+       *"assets"*. You can upload a picture to it from your computer,
+       then copy its URL by clicking on the thumbnail. Alternatively,
+       you can use a picture taken from the Internet. Do not forget
+       that your project is **public**.
 
-   - Dans la seconde section :
+   - In the second section:
 	 
-	 - Créez les sous-sections suivantes : *Études*, *Diplômes*,
-       *Hobbies*, chacune dans une balise `<article>`, avec son propre
-       `id` ;
-	 - Démarrez chaque sous-section par un titre (balise `<h2>`) ;
-	 - Remplissez chaque sous-section avec des entêtes (`<h3>`, etc.),
-       des paragraphes (`<p>`), des listes (`<ul>`, `<ol>`, `<dl>`),
-       des liens (`<a>`), etc.
-	 - Dans la sous-section *Diplômes*, utilisez un tableau
-       (`<table>`, `<tr>`, `<td>`) ;
-	 - En haut de cette section, ajoutez une zone de navigation
-       (`<nav>`), contenant une liste (`<ul>`) de liens (`<a>`) vers
-       les sous-sections. Souvenez-vous que vous pouvez *linker*
-       n'importe quel élément d'un document HTML avec l'URL `#id` (où
-       `id` est l'identifiant de la balise).
+	 - Create the following subsections: *Education*, *Degrees*,
+       *Hobbies*, each within an `<article>` tab, with its own `id`;
+	 - Start each subsection with a title (`<h2>` tag);
+	 - Fill each subsection with subtitles (`<h3>`, etc.),
+	   paragraphs (`<p>`), lists (`<ul>`, `<ol>`, `<dl>`),
+	   links (`<a>`), etc.
+	 - In the *Degrees* subsection, use a table (`<table>`, `<tr>`,
+       `<td>`) to list your degrees and years of graduation;
+	 - On top of this section, add a navigation area (`<nav>`),
+       containing a list (`<ul>`) of links (`<a>`) to each subsection.
+       Recall that you can *link* to any element inside an HTML
+       document using the `#id` URL (where `id` is the tag
+       identifier).
 
-	**Important :** évitez les balises de mise en forme, dépréciées
-	(par ex.: `<font>`, `<center>`, ...), ou hors place (par ex.:
-	`<h*>` pour faire autre chose que des titres, `<br>` pour faire
-	des listes, `<table>` pour faire de la mise en page, ...)
+	**Important:** avoid styling tags, deprecated tags (e.g.:
+	`<font>`, `<center>`, ...), or out of place (e.g.: `<h*>` to make
+	anything else than titles, `<br>` to make lists, `<table>` to do
+	page layout, ...)
 
-5. Validez votre document avec le validateur de W3C:
-   <https://validator.w3.org/>. Corrigez vos erreurs jusqu'à ne plus en
-   avoir.
+5. Validate your document with the W3C validator:
+   <https://validator.w3.org/>. Correct all errors until none is left.
 
 
 ## CSS
 
-Créez maintenant un fichier CSS et liez-le à votre CV avec la balise
-`<link>`. En vous aidant avec la
-[référence CSS de W3Schools](https://www.w3schools.com/css/),
-modifiez l'apparence de votre page comme suit :
+Create now a CSS file and linkt it to your CV with the `<link>`
+tag. Using the [MDN CSS
+reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference),
+modify your page look as follows:
 
-1. Délimitez les entêtes des sous-sections par une ligne horizontale
-   (propriété `border`). Ajoutez du `padding` et du `margin` à votre
-   goût.
+1. Delimit the subsection headers with a horizontal rule (`border`
+   property). Add some `padding` and some `margin` to your liking.
 
-2. Centrez les titres des sous-sections, modifiez la taille de la
-   police.
+2. Center titile of subsections, modify the font size.
 
-3. Bougez votre photo à droite de la page (voir le
-   [positionnement](https://www.w3schools.com/css/css_positioning.asp)).
+3. Move your picture to the right of the page (see
+   [Positioning](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning)).
 
-4. Faites disparaître les ronds/carrés/autres à gauche des listes de
-   la zone de navigation (voir les
-   [listes](https://www.w3schools.com/css/css_list.asp)).
+4. Remove the bullets to the left of lists in the navigation area (see
+   [lists](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Styling_lists)).
 
-5. Les liens de la zone de navigation doivent être en noir, et devenir
-   rouges lorsque la souris passe dessus (voir les pseudoclasses
-   `:link`, `:hover`, `:active`, `:visited`).
+5. Links in the navigation area must be black, and become red when the
+   mouse hovers on them (see the `:link`, `:hover`, `:active`,
+   `:visited` pseudoclasses).
 
-6. Les liens de la zone de navigation doivent s'afficher à la suite
-   sur la même ligne (propriété `display`, entre autres).
+6. Links in the navigation area must be all on the same line (use the
+   `display` property, for example).
 
-7. En ajoutant des attributs `class` dans le document HTML, faites en
-   sorte que les lignes impaires du tableau de diplômes aient un fond
-   différent des lignes paires. Allez voir, ensuite, la pseudo-classe
-   [`:nth-child`](https://www.w3schools.com/cssref/sel_nth-child.asp).
+7. By adding `class` attributes in the HTML document, give a different
+   background color to even and odd lines in the degree table. After
+   that, read the documentation of the
+   [`:nth-child`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)
+   pseudoclass.
 
-8. Faites en sorte que les `<h2>` contenus dans les `<article>` soient
-   écrits plus petit que les autres `<h2>`.
+8. Reduce the font size of the `<h2>` tags inside  `<article>` tags
+   (but not that of other `<h2>` tags).
 
-9. Faites en sorte que les `<h2>` contenus dans les `<article>` aient
-   la première lettre plus grande (pseudo-élément `:first-letter`).
+9. Enlarge the font size of the first letter of the `<h2>` tags inside
+   `<article>` tags (`:first-letter` pseudoelement).
 
-10. Ouvrez maintenant la page dans Chrome ou Firefox, lancez les
-*Outils du développeur* (`F12`) et sélectionnez l'onglet *Éléments*
-(Chrome) ou *Inspecteur* (Firefox). Sélectionnez une balise `<h2>` et
-observez les informations sur son style qui s'affichent à droite. Dans
-l'éditeur de style qui s'ouvre sur la droite, éditez quelques
-propriétés et ajoutez des nouvelles propriétés dans le groupe
-`element.style` (Chrome) ou `element` (Firefox). Bien évidemment, ces
-modifications ne seront pas sauvegardées dans la page, et elles ne
-survivront pas à un rechargement.
+10. Open now the page in Chrome or Firefox. Open the *developer tools*
+    (`F12`) and select the *Elements* (Chrome) or *Inspector*
+    (Firefox) tab. Select a `<h2>` tag and observe the information on
+    its style on the right. In the style editor on the right, edit
+    some properties and add new properties in the `element.style`
+    (Chrome) or `element` (Firefox) group. Obviously, these
+    modifications will not be saved, and will not survive a refresh.
 
-11. Validez le CSS de votre document avec le validateur du W3C :
-    <https://jigsaw.w3.org/css-validator/>. Corrigez vos erreurs
-    jusqu'à ne plus en avoir.
+11. Validate your CSS code using the W3C validator:
+    <https://jigsaw.w3.org/css-validator/>. Fix your errors until none
+    are left.
 
 
-## Formulaires
+## Forms
 
-On va ajouter un formulaire de recherche très simpliste, s'appuyant
-sur Google. L'URL utilisée par la recherche Google varie selon
-l'interface, mais une URL standard aura à peu près cette forme
+We are going to add a simplistic search tool, based on Google
+search. The URL used for Google searches varies according to the
+interface, however a standard URL will be similar to this
 
 ~~~
 https://www.google.fr/search?q=ma+recherche&hl=fr
 ~~~
 
-Le point d'interrogation `?` sépare l'adresse de la page de ses
-paramètres. Suivent des paires `nom=valeur` séparées par des
-*amperdand* `&`. Deux paires nom-valeur importantes pour google sont
-`q` (le contenu de la recherche) et `hl` (la langue de l'interface) ;
-il y en a plein d'autres.
+The question mark `?` separates the page path from its
+parameters. After the question mark follow `key=value` pairs, divided
+by *ampersands* `&`. Two important key=value pairs for Google are `q`
+(the search terms) and `hl` (the UI language). There's plenty of
+others.
 
-Les formulaires HTML permettent d'envoyer des requêtes contenant des
-paramètres vers d'autres pages. Ces paramètres sont envoyés soit dans
-l'URL d'une requête HTTP de type GET, comme c'est le cas pour Google ;
-soit dans le corps d'une requête de type POST.
+HTML forms let the browser send requests with parameters to other
+pages. These parameters can be sent either via the URL of a GET HTTP
+request, like in Google's case, or via the body of a POST request.
 
-1. Ajoutez un formulaire (balise `<form>`) à votre page, avec les
-   attributs `method="GET"` et `action="https://www.google.fr/search"`.
+1. Add a form (`<form>` tag) to your page, with the attributes
+   `method="GET"` and `action="https://www.google.fr/search"`.
 
-2. Dans le formulaire, ajoutez un champ de texte et un bouton de type
-   submit (balise `<input>` dans les deux cas), comme ceci
+2. In the form add a text field (`<input>`) and a button (`<button>`)
+      
+   <input type="text"><button>Chercher<button>
+
+   The text field must have a `name="q"` attribute.
+
+3. View the page, fill the form, and launch a search. Look at how the
+   URL in the address bar varies according to what you typed in the
+   text field.
+
+4. View the page again in Chrome or Firefox. Open the *developer
+   tools* (`F12`) and select the *Network* tab. Launch a search and
+   study the request sent by the browser. You will notice that the
+   original request (the first one) generates many other requests.
+
+5. Now use `method="POST"` in the `<form>` tag and launch a new
+   search. Besides the fact that Google rejects the request, what
+   other differences do you notice through the *developer tools*?
+
+6. Get back to the GET method. Add the `required` attribute to the
+   text field, and try and do an empty search. What happens?
+
+6. Add a `placeholder` attribute to the text field.
+
+6. Using the `pattern` attribute, limit the text field to those
+   searches that contain the words HTML or CSS (now it's the right
+   time to learn about [regular
+   expressions](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions),
+   if you haven't yet).
+
+6. Create a new text field with `name="q"`, prefilled with the text
+   `site:w3schools.com` (use the `value` attribute).
+
+7. Change this last field from `type="text"` to
+   `type="hidden"`. Launch a new search. What do you observe?
+
+8. Add some *checkboxes*, appending some pre-determined terms to the
+   search, like this (it is important that these checkboxes have
+   `name` and `value` attributes)
    
-   <input type="text"><input type="submit" value="Chercher">
+   <input type="checkbox">Apple<br>
+   <input type="checkbox">Pear<br>
+   <input type="checkbox">Banana
 
-   Le champ de texte doit avoir l'attribut `name="q"`. Le texte
-   affiché par le bouton peut être contrôlé avec l'attribut `value`.
-
-3. Ouvrez la page dans un onglet du navigateur (la *Preview* ne marchera
-   pas) et faites une recherche. Observez comment l'URL varie quand
-   vous changez le contenu du champ de texte.
-
-4. Ouvrez à nouveau la page avec Chrome ou Firefox, lancez les *outils
-   du développeur* (`F12`) et sélectionnez l'onglet *Network*. Lancez
-   une recherche et étudiez le type de requête envoyé par le
-   navigateur. Vous remarquerez que la requête originale (la première) a
-   donné lieu à beaucoup d'autres requêtes.
-
-5. Maintenant utilisez `method="POST"` dans la balise `<form>` et
-   faites à nouveau une recherche. À part le fait que Google refuse la
-   requête, quelles différences constatez-vous dans les *outils du
-   développeur* ?
-
-6. Revenez à la méthode GET. Ajoutez l'attribut `required` au champ
-   de texte et essayez de faire une recherche vide. Que
-   constatez-vous ?
-
-6. Ajoutez un attribut `placeholder` au champs de texte.
-
-6. Avec l'attribut `pattern`, restreignez le champ de texte aux
-   seules recherches contenant les mots HTML ou CSS (c'est l'occasion
-   d'apprendre les
-   [RegExp](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions), si vous ne
-   savez pas encore vous en servir).
-
-6. Pré-remplissez le champs `q` avec le texte `site:w3schools.com`
-   (utilisez l'attribut `value`).
-
-7. Changez ce dernier champs de `type="text"` à `type="hidden"`. Faites
-   une nouvelle recherche. Que constatez-vous ?
-
-8. Ajoutez quelques *checkbox* permettant d'ajouter des termes à la
-   recherche, comme ceci (il est important d'utiliser l'attribut
-   `value`)
+9. Add some *radio buttons* to choose the UI language (`hl=en` or
+   `hl=fr`), like this
    
-   <input type="checkbox">Pomme<br>
-   <input type="checkbox">Poire<br>
-   <input type="checkbox">Banane
+   <input type="radio" name="hl">French<br>
+   <input type="radio" name="hl">English
 
-9. Ajoutez des *boutons radio* pour choisir la langue de l'interface
-   (`hl=en` ou `hl=fr`), comme ceci
-   
-   <input type="radio" name="hl">Français<br>
-   <input type="radio" name="hl">Anglais
-
-10. Ajoutez plus de choix pour la recherche dans un menu déroulant
-    (balises `<select>` et `<option>`), comme ceci
+10. Add more search choices in a folding menu (`<select>` and
+    `<option>` tags), like this
 	
 	<select>
-	  <option>Mangue</option>
-	  <option>Fraise</option>
+	  <option>Mango</option>
+	  <option>Strawberry</option>
 	  <option>Melon</option>
 	</select>
 
-...et n'oubliez pas de valider, bien sûr !
+...and don't forge to validate, of course!
