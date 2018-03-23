@@ -1,0 +1,207 @@
+groups:
+  1:
+    project: Calendrier
+
+  2:
+    project: Calendrier
+
+  3:
+    project: Calendrier
+
+  4:
+    project: Calendrier
+
+  5:
+    project: Calendrier
+
+  6:
+    project:  JSON-Twitter
+
+  7:
+    project: Calendrier
+
+  8:
+    project: FindMyFriends
+
+  9:
+    project: Tetris 
+
+  10:
+    project: Calendrier 
+
+  11:
+    project: Tetris 
+
+  12:
+    project: Calendrier 
+
+  13:
+    project: Calendrier 
+
+  14:
+    project: Calendrier 
+
+  15:
+    project: Calendrier 
+
+  16:
+    project: Calendrier
+
+  17:
+    project: JSON-Twitter
+
+  18:
+    project: Calendrier
+    
+students:
+  - nom: SELVA
+    prenom: Vicnesh
+    group: 1
+
+  - nom: RAKOTOZANANY
+    prenom: Stéphane
+    group: 1
+
+  - nom: LEONETTI
+    prenom: Baptiste
+    group: 2
+
+  - nom: RIOU-FOUGERAS
+    prenom: Sylvain
+    group: 2
+
+  - nom: BONOLI
+    prenom: Gaétan
+    group: 3
+
+  - nom: LEDOYEN
+    prenom: Paul
+    group: 3
+
+  - nom: CHERPENTIER
+    prenom: Antoine
+    group: 4
+
+  - nom: DURUT
+    prenom: Thibault
+    group: 4
+
+  - nom: BRAUD
+    prenom: Matthias
+    group: 5
+
+  - nom: RENAULT
+    prenom: Gauthier
+    group: 5
+
+  - nom: BEUDARD
+    prenom: Quentin
+    group: 6
+
+  - nom: GALLO
+    prenom: Paul
+    group: 6
+
+  - nom: BRECHLER
+    prenom: Laurent
+    group: 7
+
+  - nom: DA SILVA FERRERRA
+    prenom: Julien
+    group: 7
+
+  - nom: CHUTTARSING
+    prenom: Adrien
+    group: 8
+
+  - nom: YUSNANDA
+    prenom: Hasan Jusuf
+    group: 8
+
+  - nom: CHEVALLIER
+    prenom: Zoé
+    group: 9
+
+  - nom: GUILLOU
+    prenom: Étienne
+    group: 9
+
+  - nom: TANKEU
+    prenom: Ivan
+    group: 10
+
+  - nom: TANGAO
+    prenom: Faras
+    group: 10
+
+  - nom: KÉRIBIN
+    prenom: Maxime
+    group: 11
+
+  - nom: TERRADE
+    prenom: Alexandre
+    group: 11
+
+  - nom: RIBEIRO
+    prenom: Daniel
+    group: 12
+
+  - nom: ROUVEL
+    prenom: Simon
+    group: 12
+
+  - nom: CRACIUN
+    prenom: Radu
+    group: 13
+
+  - nom: JAVET
+    prenom: Ludovic
+    group: 13
+
+  - nom: GRAUX
+    prenom: Sean
+    group: 14
+
+  - nom: HÉVIN
+    prenom: Louison
+    group: 14
+
+  - nom: AAJLI
+    prenom: Hamid
+    group: 15
+
+  - nom: LEGA
+    prenom: Othniel
+    group: 15
+
+  - nom: SOW
+    prenom: Ismaila
+    group: 16
+
+  - nom: DIEYE
+    prenom: Adja Aida
+    group: 16
+
+  - nom: VIRLORGEUX
+    prenom:  Marin
+    group: 17
+    
+  - nom: ALEXANDRE
+    prenom: Julien
+    group: 17
+    
+  - nom: DRISSI
+    prenom: Reda
+    group: 17
+
+  - nom: ZIANI
+    prenom: Ouissam
+    group: 18
+    
+  - nom: NDIAYE
+    prenom: Khady
+    group: 18
+    
+  - nom: KHARRAZ
+    prenom: Karim
+    group: 18

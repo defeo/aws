@@ -17,17 +17,10 @@ var Project = React.createClass({displayName: "Project",
     },
     
     render: function() {
-	var c9 = this.props.data.workspace;
+	var glitch = this.props.data.glitch;
 	var run = this.props.data.run
 	? this.props.data.run
-	: (c9
-	    ? (function(url) {
-		url = url.map(function(s) {
-		    return s.replace(/[^a-z0-9-]/g, '-').replace(/^-+/, '');
-		});
-		return "https://" + url[1] + '-' + url[0] + ".c9users.io/";
-	    })(c9.split("/"))
-	    : null);
+	: (glitch ? `https://${glitch}.glitch.me/` : null);
 	var github = this.props.data.github;
 	
 	return (
@@ -35,8 +28,8 @@ var Project = React.createClass({displayName: "Project",
 	    React.createElement("div", {className: "description"}, this.props.data.description), 
 
 	    React.createElement("div", {className: "buttons", onClick: this.stopClick}, 
-	    c9 ? (
-		React.createElement("a", {className: "c9", href: "https://ide.c9.io/" + c9, target: "_blank", title: "Cloud9"}, "C9")
+	    glitch ? (
+		React.createElement("a", {className: "glitch", href: 'https://glitch.com/edit/#!/' + glitch, target: "_blank", title: "Glitch"}, "Glitch")
 	    ) : null, 
 	    
 	    run ? (
@@ -94,7 +87,7 @@ var Slot = React.createClass({displayName: "Slot",
 	    editable: this.editable(),
 	});
 	var style = {
-	    top: (this.props.time.getHours() - 13 + this.props.time.getMinutes() / 60) * 4 + 'em'
+	    top: (this.props.time.getHours() - 8 + this.props.time.getMinutes() / 60) * 4 + 'em'
 	};
 	
 	return (
@@ -324,8 +317,29 @@ var Slots = React.createClass({displayName: "Slots",
 
 /******************************************************/
 var slots = React.createElement(Slots, {
-    firebase: new Firebase('https://defeo-aws.firebaseio.com/defenses/2017-uvsq'),
+    firebase: new Firebase('https://defeo-aws.firebaseio.com/defenses/2018-isty'),
     projects: window.groups,
 });
 
 React.render(slots, document.getElementById('component'));
+
+/******************************************************/
+
+function createSlots(n, ...start) {
+    return Array(n).fill(0).map((_, i) => ({ time: new Date(...start, i*30) }));
+}
+
+console.log(`To reset the slots, create those you want with
+
+    createSlots(n, ...start)
+
+for example
+
+    createSlots(10, 2018, 2, 20, 12)
+
+creates 10 slots starting from March 20, 2018 at noon (UTC).
+
+Then update firebase with
+
+    slots.props.firebase.update({ slots: ... })
+`);
