@@ -1,57 +1,77 @@
 groups:
   1:
     project: Calendrier
+    glitch: selva-rakotozanany-calendar
 
   2:
     project: Calendrier
+    glitch: clever-catsup-calendar
 
   3:
     project: Calendrier
+    glitch: ledoyen-bonoli-calendar
 
   4:
     project: Calendrier
+    glitch: special-mouth
 
   5:
     project: Calendrier
+    glitch: calendar-brd
 
   6:
-    project:  JSON-Twitter
+    project: JSON-Twitter
+    glitch: twitter-bb
 
   7:
     project: Calendrier
+    glitch: project-calendar-lbjdsf
 
   8:
     project: FindMyFriends
+    glitch: pototracker
 
   9:
-    project: Tetris 
+    project: Tetris
+    glitch: web-project-tetris
 
   10:
-    project: Calendrier 
+    project: Calendrier
+    glitch: webprojet
 
   11:
     project: Tetris 
+    glitch: fair-dentist-tetris
 
   12:
-    project: Calendrier 
+    project: Calendrier
+    glitch: calendar-rouvel-ribeiro
 
   13:
-    project: Calendrier 
+    project: Calendrier
+    glitch: celcat-plusplus
 
   14:
-    project: Calendrier 
+    project: Calendrier
+    glitch: calendrier-graux-hevin
 
   15:
-    project: Calendrier 
+    project: Calendrier
+    glitch: projet-webcal
 
   16:
     project: Calendrier
+    glitch: calendrier-dieye-sow
 
   17:
     project: JSON-Twitter
+    github: shisty/aws-app
+    run: 'https://aws-app.herokuapp.com/'
 
   18:
     project: Calendrier
+    glitch: therapeutic-forest
+    glitch2: calendaar
     
 students:
   - nom: SELVA
