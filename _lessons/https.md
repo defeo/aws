@@ -2,6 +2,9 @@
 layout: lesson
 title: HTTPS
 subtitle: Transport Layer Security
+addons:
+  video:
+    url: https://sourcesup.renater.fr/aws-media/https.webm
 ---
 
 <section>
