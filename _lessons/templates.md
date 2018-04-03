@@ -23,7 +23,7 @@ scripts: 'https://unpkg.com/nunjucks@3.0.1/browser/nunjucks.js'
 
 ```js
 function(req, res) {
-    var user = req.session.user;
+    let user = req.session.user;
     res.send('<!Doctype html><html><head><title>Main page</title></head>'
         + '<body><h1>Hello ' + user + '</h1></body></html>');
 }
@@ -39,7 +39,7 @@ generate...
 
 ```js
 function(req, res) {
-    var user = req.session.user;
+    let user = req.session.user;
     res.send(`
 <!Doctype html>
 <html>
@@ -65,8 +65,8 @@ More readable, useful for small snippets, but still...
 
 ~~~js
 function(req, res) {
-    body = '<html><head><title>Bla</title><body><table>';
-    for (var k in v) {
+    let body = '<html><head><title>Bla</title><body><table>';
+    for (let k in v) {
         body += `<tr><td>${k}</td><td>${v[k]}</td></tr>`;
     }
     res.send(body + '</table></body></html>');
@@ -166,8 +166,8 @@ Some template languages
 **Context:** a dictionary of **key → value** associations given to the
 template engine. For example:
 
-- `name` → `toto`
-- `users` → `[titi, tutu, tata]`
+- `name` → `"toto"`
+- `users` → `["titi", "tutu", "tata"]`
 
 ### Variable substitution, filters
 
@@ -312,7 +312,7 @@ Blocks are shown as is
 Here's the `main.html` template
 Blocks are shown as is
 
-  A Title
+  A title
 
   Copyright Pinco Pallino
 ~~~
@@ -346,9 +346,9 @@ Blocks are shown as is
 
 ~~~js
 ...
-app = express();
+const app = express();
 
-var nunjucks = require("nunjucks");
+const nunjucks = require("nunjucks");
 nunjucks.configure('views', {
     express: app,
     autoescape: true                 // automatic escaping
