@@ -107,7 +107,7 @@ Start by *remixing* the project
 ## Intermezzo: serving static files
 
 Using JavaScript strings and `res.send()` allowed us to dynamically
-generate HTML. However, this is not confortable for large HTML files,
+generate HTML. However, this is not efficient for large HTML files,
 especially if they are purely *static* (i.e., no content is generated
 on the fly).
 
