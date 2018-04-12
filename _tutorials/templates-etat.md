@@ -198,7 +198,7 @@ tutorial we will stick to variable evaluation (the example above),
    
    Nunjucks also caches templates by default, which in production we would
    want to use for better performance, but during development this can be
-   inconvenient.
+   inconvenient.  Alternatively you can create a `watch.json` file (see step 2).
 
 2. Rename your "Hello" page to `views/hello.html`. Modify it so that
    it contains this code:
