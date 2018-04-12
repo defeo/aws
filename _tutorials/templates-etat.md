@@ -184,7 +184,8 @@ tutorial we will stick to variable evaluation (the example above),
    
    ```js
    nunjucks.configure('views', {
-       express: app
+       express: app,
+       noCache: true
    });
    ```
    
@@ -194,6 +195,10 @@ tutorial we will stick to variable evaluation (the example above),
    ```js
    app.set('views', 'name_of_some_other_folder');
    ```
+   
+   Nunjucks also caches templates by default, which in production we would
+   want to use for better performance, but during development this can be
+   inconvenient.
 
 2. Rename your "Hello" page to `views/hello.html`. Modify it so that
    it contains this code:
