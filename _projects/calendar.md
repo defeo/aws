@@ -60,13 +60,14 @@ semaine.
 Un clic sur une case déjà occupé ne fait aucune action, ou donne un
 message d'erreur, au choix.
 
-Un clic sur une case libre ouvre un popup, permettant de préciser le
-titre de l'évènement, de modifier les heures de début et de fin, et
-éventuellement d'autres informations (couleur, description,
-etc...). Après validation, une requête est envoyée au serveur et
-l'événement est inséré dans la base de données.  Si l'insertion
-s'effectue avec succès, le nouvel évènement est affiché dans le
-tableau.
+Un clic sur une case libre ouvre un formulaire, pré-rempli avec la
+date et l'heure correspondant au clic, permettant en plus de préciser
+le titre de l'évènement, de modifier les heures de début et de fin, et
+éventuellement de renseigner d'autres informations (couleur,
+description, etc...). Après validation, une requête est envoyée au
+serveur et l'événement est inséré dans la base de données.  Si
+l'insertion s'effectue avec succès, le nouvel évènement est affiché
+dans le tableau.
 
 Une interaction de type AJAX et préférable pour cette action.
 
