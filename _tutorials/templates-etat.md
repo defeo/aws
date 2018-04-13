@@ -195,10 +195,6 @@ tutorial we will stick to variable evaluation (the example above),
    ```js
    app.set('views', 'name_of_some_other_folder');
    ```
-   
-   Nunjucks also caches templates by default, which in production we would
-   want to use for better performance, but during development this can be
-   inconvenient.  Alternatively you can create a `watch.json` file (see step 2).
 
 2. Rename your "Hello" page to `views/hello.html`. Modify it so that
    it contains this code:
@@ -206,10 +202,6 @@ tutorial we will stick to variable evaluation (the example above),
    ~~~jinja
    <p>Hello {{ name }} !</p>
    ~~~
-   
-   **Note:** by default, modification on templates does not reload the application.
-   To solve this issue, you can create a `watch.json` as documented in the 
-   [support forum](https://support.glitch.com/t/reload-server-when-editing-frontend-files/1206/2).
 
 3. In `app.js`, modify the handler for `/hello` by replacing
    `sendFile` with

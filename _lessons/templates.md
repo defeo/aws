@@ -352,6 +352,7 @@ const nunjucks = require("nunjucks");
 nunjucks.configure('views', {
     express: app,
     autoescape: true                 // automatic escaping
+    noCache: false                   // cache templates from filesystem
 });
 
 app.set('views', 'templates');       // look for template files are in 
