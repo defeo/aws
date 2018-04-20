@@ -104,7 +104,7 @@ check that your database was created and populated by issuing the
 command
 
 ```bash
-sqlite3 db.sqlite3 .schema
+sqlite3 .data/db.sqlite3 .schema
 ```
 
 ## Damn! I need to update the schema
