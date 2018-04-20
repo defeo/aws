@@ -350,7 +350,7 @@ We have with SQL the same problem we found when [generating HTML code](templates
 
 ```js
 app.get('/login', async function(req, res) {
-  async knex.raw(`SELECT * FROM users WHERE login = ${req.query.user}`);
+  await knex.raw(`SELECT * FROM users WHERE login = ${req.query.user}`);
   ...
 });
 ```
@@ -380,19 +380,19 @@ SELECT * FROM users WHERE login = 'le_ch'ti'
 ### Escaping in the query builder
 
 ```js
-async knex('users').where('login', req.query.user);
+await knex('users').where('login', req.query.user);
 ```
 
 ### Escaping raw queries
 
 ```js
-async knex.raw('SELECT * FROM users WHERE login = ?', [req.query.user]);
+await knex.raw('SELECT * FROM users WHERE login = ?', [req.query.user]);
 ```
 
 or
 
 ```js
-async knex.raw('SELECT * FROM users WHERE login = :user', {
+await knex.raw('SELECT * FROM users WHERE login = :user', {
   'user': req.query.user,
 });
 ```
