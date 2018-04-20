@@ -141,8 +141,8 @@ state.
    statement.
 
 4. Print the contents of the table on the console by using a `SELECT`
-   statement (**Note:** the rows returned by `SELECT` are passed as a
-   list to the callback in `.then()`).
+   statement (**Note:** the rows obtained by `SELECT` are returned as
+   a **list of JavaScript objects** by Knex).
 
 
 ## The Web app
