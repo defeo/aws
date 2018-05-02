@@ -171,7 +171,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    API, dynamically present the user list in the browser as a
    `<table>` containing one row per user.
    
-   Test using several tabs. You can also ask a fried to connect to
+   Test using several tabs. You can also ask a friend to connect to
    your app.
    
    **Hint:** for convenience, it is best to write a function, say
