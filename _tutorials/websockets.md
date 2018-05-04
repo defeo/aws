@@ -219,8 +219,8 @@ module](https://www.npmjs.com/package/ws). On the client side, we will
 use the native [`WebSocket`
 API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications). These two have a very similar interface.
 
-Let's start from the server. To load and configure the `ws` module,
-modify your application like thus:
+Let's start from the server.  First, don't forget to add add the `ws` module to your `package.json` file (it is not installed by default).  Just use the normal "Add Package" button in Glitch that is displayed at the top of the `package.json` file.  Then, to load and configure the `ws` module,
+modify your application thusly:
 
 ```js
 var http = require('http');
