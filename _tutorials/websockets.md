@@ -377,8 +377,9 @@ all users, we now need to send specific messages to each user.
    }
    ```
    
-   Modify the server code so that it uses `serialize()` when
-   broadcasting the user list.
+   Now when a `User` object is serialized to JSON by `JSON.stringify()`,
+   it will only include the `name` and `state` attributes of the `User`, but
+   not the `wsconn` attribute, which is not serializable.
 
 3. Modify the client code producing the list of users, so that it puts
    next to the user names a column with *"Challenge"* buttons, like
