@@ -332,7 +332,7 @@ happens.
 1. Remove the AJAX calls to `/userlist` from the client.
 
 2. By looking at [this
-   example](https://github.com/websockets/ws#broadcast-example),
+   example](https://github.com/websockets/ws#server-broadcast),
    modify your server so that it broadcasts to all connected clients
    the list of users whenever a connection or disconnetion happens.
    
