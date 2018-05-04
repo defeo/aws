@@ -171,7 +171,7 @@ bit fragile and prone to memory leaks, but works nevertheless.
    API, dynamically present the user list in the browser as a
    `<table>` containing one row per user.
    
-   Test using several tabs. You can also ask a fried to connect to
+   Test using several tabs. You can also ask a friend to connect to
    your app.
    
    **Hint:** for convenience, it is best to write a function, say
@@ -219,8 +219,8 @@ module](https://www.npmjs.com/package/ws). On the client side, we will
 use the native [`WebSocket`
 API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications). These two have a very similar interface.
 
-Let's start from the server. To load and configure the `ws` module,
-modify your application like thus:
+Let's start from the server.  First, don't forget to add add the `ws` module to your `package.json` file (it is not installed by default).  Just use the normal "Add Package" button in Glitch that is displayed at the top of the `package.json` file.  Then, to load and configure the `ws` module,
+modify your application thusly:
 
 ```js
 var http = require('http');
@@ -332,7 +332,7 @@ happens.
 1. Remove the AJAX calls to `/userlist` from the client.
 
 2. By looking at [this
-   example](https://github.com/websockets/ws#broadcast-example),
+   example](https://github.com/websockets/ws#server-broadcast),
    modify your server so that it broadcasts to all connected clients
    the list of users whenever a connection or disconnetion happens.
    
