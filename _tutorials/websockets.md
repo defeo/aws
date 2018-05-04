@@ -96,12 +96,7 @@ load, without creating a user account with a password.
    console.
 
 4. Change the text shown in the main page to *"Hello ..."* when the
-   user name is known (replaced the dots by the user name).
-   
-5. GET method is handy for debugging, however we are changing the
-   state of the server with the route `connect/:user` and a GET 
-   request should not change the state of the server.  Turn GET
-   into POST for this route.
+   user name is known (replace the dots by the user name).
    
 ## Communicating the user id to the server
 
@@ -155,6 +150,11 @@ bit fragile and prone to memory leaks, but works nevertheless.
 4. On the client-side, now, use `XMLHttpRequest` or `fetch()` to send
    your username to `/connect/:user`. Wait for the acknowledgment
    message and log it to the console.
+
+5. GET method is handy for debugging, however we are changing the
+   state of the server with the route `connect/:user` and a GET 
+   request should not change the state of the server.  Turn GET
+   into POST for this route.
 
 ## Getting the user list
 
