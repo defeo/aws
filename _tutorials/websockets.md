@@ -89,7 +89,7 @@ load, without creating a user account with a password.
    not available in [`sessionStorage`](../lessons/etat#storage-api)
    yet.
    
-   You can use several browser tabs and/or private navigation
+   **Note:** You can use several browser tabs and/or private navigation
    (`Shift+Ctrl+P` in Firefox, `Shift+Ctrl+N` in Chrome) to do your
    tests. You can also empty the `sessionStorage` through the
    developer tools, or by issuing `sessionStorage.clear()` in the
