@@ -1,0 +1,421 @@
+groups:
+  -1:
+    project: Unknown
+
+  1:
+    project: JSON-Twitter
+    
+  2:
+    project: Tetris
+    
+  3:
+    project: Calendrier
+    
+  4:
+    project: Calendrier
+    
+  5:
+    project: Calendrier
+    
+  6:
+    project: ??
+    
+  7:
+    project: Tetris
+    
+  8:
+    project: Calendrier
+    
+  9:
+    project: Tetris
+    
+  10:
+    project: Calendrier
+    
+  11:
+    project: ??
+    
+  12:
+    project: Find My Friends
+    
+  13:
+    project: Calendrier
+    
+  14:
+    project: Calendrier
+    
+  15:
+    project: ??
+    
+  16:
+    project: Calendrier
+    
+  17:
+    project: Calendrier
+    
+  18:
+    project: Find My Friends
+    
+  19:
+    project: Calendrier
+    
+  20:
+    project: Calendrier
+    
+  21:
+    project: Calendrier
+    
+  22:
+    project: Calendrier
+    
+  23:
+    project: Find My Friends
+    
+  24:
+    project: JSON Twitter
+    
+  25:
+    project: Calendrier
+    
+  26:
+    project: Find My Friends
+    
+  27:
+    project: Calendrier
+    
+  28:
+    project: Calendrier
+    
+  29:
+    project: Calendrier
+    
+  30:
+    project: Calendrier
+    
+  31:
+    project: JSON Twitter
+    
+students:
+  - nom: ABAKAR  
+    prenom: Mahamat Moussa
+    group: -1
+
+  - nom: ABDOULKADER ABDOUL-AZIZ  
+    prenom: Ammar
+    group: 21
+
+  - nom: AIAD MOUHAMMAD  
+    prenom: Diyab
+    group: 21
+
+  - nom: AID  
+    prenom: Rania
+    group: 22
+
+  - nom: AKHTAR  
+    prenom: hammad
+    group: 7
+
+  - nom: AKLIL  
+    prenom: Thinhinane
+    group: -1
+
+  - nom: ALABI  
+    prenom: Steve
+    group: 16
+
+  - nom: ALIOUI  
+    prenom: Dyhia
+    group: 18
+
+  - nom: AMARA  
+    prenom: Salima
+    group: -1
+
+  - nom: AOUES  
+    prenom: Nouzha
+    group: 26
+
+  - nom: AOUIMEUR  
+    prenom: Leila Sarah
+    group: 22
+
+  - nom: ASSIEDOU  
+    prenom: Kouame Brou Fulgence
+    group: 25
+
+  - nom: ATIG  
+    prenom: Badreddine
+    group: -1
+
+  - nom: ATTOUT  
+    prenom: Mohamed El Amine
+    group: -1
+
+  - nom: BARRIENTOS  
+    prenom: Carlos Andres
+    group: 29
+
+  - nom: BARRY  
+    prenom: Thierno Sadou
+    group: 19
+
+  - nom: BARRY  
+    prenom: Oumar Salamata
+    group: 15
+
+  - nom: BEN TOUIRAD  
+    prenom: Sadia
+    group: -1
+
+  - nom: BENDJEDDOU  
+    prenom: Taha
+    group: 3
+
+  - nom: BENNAI  
+    prenom: Louanas
+    group: -1
+
+  - nom: BENYAMNA  
+    prenom: Younes
+    group: 16
+
+  - nom: BERNOT  
+    prenom: Yoann
+    group: 4
+
+  - nom: BOUHAJ  
+    prenom: samiha
+    group: 19
+
+  - nom: BOUMAZA  
+    prenom: Khaled
+    group: 3
+
+  - nom: BOUREGHIT  
+    prenom: Rostom
+    group: 1
+
+  - nom: BOUREZK  
+    prenom: Mokrane
+    group: -1
+
+  - nom: CAMARA  
+    prenom: ousmane
+    group: 11
+
+  - nom: CHARPENTIER  
+    prenom: Alexandre
+    group: 13
+
+  - nom: CHASHCHINA  
+    prenom: Aleksandra
+    group: 29
+
+  - nom: CHAUVE  
+    prenom: Joseph
+    group: 9
+
+  - nom: CHOUIPE  
+    prenom: THIBAULT
+    group: 17
+
+  - nom: COUPVENT DES GRAVIERS  
+    prenom: Frederick
+    group: 5
+
+  - nom: COURTOUX  
+    prenom: Emmanuel
+    group: 1
+
+  - nom: "D'AMONVILLE"
+    prenom: Ronan
+    group: 2
+
+  - nom: DIALLO  
+    prenom: Ousmane I
+    group: 10
+
+  - nom: DJOUDI  
+    prenom: Fares
+    group: 20
+
+  - nom: EL HAJJAMI  
+    prenom: Mouad
+    group: 27
+
+  - nom: EL HARTI  
+    prenom: Zakaria
+    group: 17
+
+  - nom: FERNANDEZ  
+    prenom: Antoine
+    group: 2
+
+  - nom: FILALI  
+    prenom: Yacine
+    group: -1
+
+  - nom: FOUDIL AOUIDAT  
+    prenom: Khirreddine
+    group: 10
+
+  - nom: GALBANE  
+    prenom: Djamila
+    group: 28
+
+  - nom: GILLOT  
+    prenom: Florian
+    group: 26
+
+  - nom: GUEDDOU  
+    prenom: Chaouki
+    group: 6
+
+  - nom: GUERFA  
+    prenom: Billel
+    group: -1
+
+  - nom: GUEYE  
+    prenom: Cheikh abdou mbacke
+    group: 11
+
+  - nom: HAMAD  
+    prenom: IDIR
+    group: 12
+
+  - nom: HAMMA  
+    prenom: Belkacem
+    group: 31
+
+  - nom: HAMMAD  
+    prenom: Said
+    group: 15
+
+  - nom: KAADA  
+    prenom: Soumeya
+    group: 5
+
+  - nom: KAIS  
+    prenom: Ahmed
+    group: -1
+
+  - nom: KANE  
+    prenom: Boubacar
+    group: 12
+
+  - nom: KETAM  
+    prenom: Djillali
+    group: 27
+
+  - nom: KETROUCI  
+    prenom: abdelhak
+    group: -1
+
+  - nom: KLOTZ  
+    prenom: Sonny
+    group: 18
+
+  - nom: KOURDACHE  
+    prenom: Missipssa
+    group: 20
+
+  - nom: LI  
+    prenom: Hongyu
+    group: -1
+
+  - nom: LIENHARDT  
+    prenom: Florian
+    group: -1
+
+  - nom: LIU  
+    prenom: Bin
+    group: -1
+
+  - nom: LOUED  
+    prenom: Oussama
+    group: 7
+
+  - nom: MEGHRABI  
+    prenom: Salah Eddine
+    group: 13
+
+  - nom: MELAB  
+    prenom: Ilyes
+    group: -1
+
+  - nom: MERAKCHI  
+    prenom: Ayoub Younes
+    group: -1
+
+  - nom: METALLAOUI  
+    prenom: Rabah Akram
+    group: 8
+
+  - nom: MOMENZADEH  
+    prenom: Thomas
+    group: -1
+
+  - nom: MOUHRI  
+    prenom: Ayoub
+    group: 8
+
+  - nom: MULLER  
+    prenom: Raphael
+    group: 25
+
+  - nom: NGEYA NKOUEMI  
+    prenom: Landry
+    group: 4
+
+  - nom: NGO NJEMBE  
+    prenom: Rachel
+    group: 28
+
+  - nom: OUAKKOUCHE  
+    prenom: Amanda
+    group: 6
+
+  - nom: PENON  
+    prenom: Thomas
+    group: 9
+
+  - nom: QUERE  
+    prenom: Nathalie
+    group: 14
+
+  - nom: RASAMOELY  
+    prenom: Tsiory
+    group: 24
+
+  - nom: RASOLONIAINA  
+    prenom: Marlino
+    group: 30
+
+  - nom: RICHOU  
+    prenom: Yann
+    group: 23
+
+  - nom: SADAOUI  
+    prenom: Amayes
+    group: 31
+
+  - nom: SAKHO  
+    prenom: Salya
+    group: 30
+
+  - nom: TROUVE  
+    prenom: Camille
+    group: 14
+
+  - nom: ZAAROUR  
+    prenom: Martin
+    group: 23
+
+  - nom: ZANGUE KEABOU  
+    prenom: Yanick
+    group: 24
+
+  - nom: ZEMNI  
+    prenom: Malek
+    group: 18
