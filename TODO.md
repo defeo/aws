@@ -2,13 +2,11 @@
 
 - Dans les premiers cours, mieux détailler le modèle client-server des
   applis web?
+- Sessions: expliquer avec exemple Prof-elèves-notes/ID
 - Tourner toutes les leçons optionnelles.
 - Leçon DOM mal comprise
-- Tourner une leçon sur HTTPS
 - Overhaul 2018:
   - Translations:
-	- JavaScript: expand, update, add template strings, merge with Advanced JS
-	- Websockets
 	- CSS (make it more interactive?)
 	- Le DOM (see above)
 	- Mitigation d'attaques (mettre à jour?)
@@ -20,15 +18,17 @@
 	- AJAX crossdomain
 	- CSRF et clickjacking
   - Remount videos:
-	- Template languages
 	- Asynchronous applications
 	- JSON
 
 ## TDs
 
+- Translate one and two
+- Change structure of Connect Four to be more React-like
+- Add more AJAX!
 - Check out http://labs.securitycompass.com/exploit-me/
 - ditch innerHTML? Create our own framework?
-- In Reflector: C9 does not install cookies anymore :(
+- In Reflector: Glitch does not install cookies :(
 
 ## Site
 
