@@ -326,7 +326,9 @@ React.render(slots, document.getElementById('component'));
 /******************************************************/
 
 function createSlots(n, ...start) {
-    return Array(n).fill(0).map((_, i) => ({ time: new Date(...start, i*30) }));
+    return Array(n).fill(0).map((_, i) => ({
+        time: new Date(new Date(...start).getTime() + i*30*60*1000)
+    }));
 }
 
 console.log(`To reset the slots, create those you want with
