@@ -1,7 +1,4 @@
 groups:
-  -1:
-    project: Unknown
-
   1:
     project: JSON-Twitter
     
