@@ -92,6 +92,9 @@ groups:
   31:
     project: JSON Twitter
     
+  32:
+    project: JSON Twitter
+    
 students:
   - nom: ABAKAR  
     prenom: Mahamat Moussa
@@ -323,7 +326,7 @@ students:
 
   - nom: LIENHARDT  
     prenom: Florian
-    group: -1
+    group: 32
 
   - nom: LIU  
     prenom: Bin
@@ -351,7 +354,7 @@ students:
 
   - nom: MOMENZADEH  
     prenom: Thomas
-    group: -1
+    group: 32
 
   - nom: MOUHRI  
     prenom: Ayoub
