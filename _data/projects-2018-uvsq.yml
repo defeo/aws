@@ -95,6 +95,9 @@ groups:
   32:
     project: Calendrier
     
+  33:
+    project: Calendrier
+    
 students:
   - nom: ABAKAR  
     prenom: Mahamat Moussa
@@ -130,7 +133,7 @@ students:
 
   - nom: AMARA  
     prenom: Salima
-    group: -1
+    group: 33
 
   - nom: AOUES  
     prenom: Nouzha
@@ -166,7 +169,7 @@ students:
 
   - nom: BEN TOUIRAD  
     prenom: Sadia
-    group: -1
+    group: 33
 
   - nom: BENDJEDDOU  
     prenom: Taha
