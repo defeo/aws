@@ -98,6 +98,9 @@ groups:
   33:
     project: Calendrier
     
+  34:
+    project: Calendrier
+    
 students:
   - nom: ABAKAR  
     prenom: Mahamat Moussa
@@ -325,7 +328,7 @@ students:
 
   - nom: LI  
     prenom: Hongyu
-    group: -1
+    group: 34
 
   - nom: LIENHARDT  
     prenom: Florian
@@ -333,7 +336,7 @@ students:
 
   - nom: LIU  
     prenom: Bin
-    group: -1
+    group: 34
 
   - nom: LOUED  
     prenom: Oussama
