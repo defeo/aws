@@ -101,10 +101,13 @@ groups:
   34:
     project: Calendrier
     
+  35:
+    project: Calendrier
+    
 students:
   - nom: ABAKAR  
     prenom: Mahamat Moussa
-    group: -1
+    group: 35
 
   - nom: ABDOULKADER ABDOUL-AZIZ  
     prenom: Ammar
