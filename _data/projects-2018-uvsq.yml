@@ -37,6 +37,7 @@ groups:
     
   10:
     project: Calendrier
+    glitch: ous-bruillon
     
   11:
     project: Calendrier
@@ -48,6 +49,8 @@ groups:
     
   13:
     project: Calendrier
+    glitch: project-abcn
+    github: megsasa/SASA
     
   14:
     project: Calendrier
@@ -137,7 +140,7 @@ groups:
     glitch: giant-bongo
     
 students:
-  - nom: ABAKAR  
+  - nom: ABAKAR
     prenom: Mahamat Moussa
     group: 35
 
@@ -187,7 +190,7 @@ students:
 
   - nom: ATIG  
     prenom: Badreddine
-    group: -1
+    group: 35
 
   - nom: ATTOUT  
     prenom: Mohamed El Amine
