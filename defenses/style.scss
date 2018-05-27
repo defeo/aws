@@ -190,3 +190,7 @@ $slot-height: 2em;
     @extend .icon;
     background-image: url("github.png");
 }
+.source {
+    @extend .icon;
+    background-image: url("source.png");
+}

@@ -21,7 +21,7 @@
       ];
       var groups = {
       {% for g in site.data.projects-2018-uvsq.groups %}
-      "{{ g[0] }}" : { project: "{{ g[1].project }}", glitch: "{{ g[1].glitch }}", github: "{{ g[1].github }}", run: "{{ g[1].run }}", students: [] },
+      "{{ g[0] }}" : { project: "{{ g[1].project }}", glitch: "{{ g[1].glitch }}", github: "{{ g[1].github }}", run: "{{ g[1].run }}", source: "{{ g[1].source }}", students: [] },
       {% endfor %}
       };
       for (var s of students) groups[s.group] && groups[s.group].students.push(s);

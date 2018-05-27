@@ -1,108 +1,140 @@
 groups:
   1:
     project: JSON-Twitter
-    
+    glitch: screamer
+
   2:
     project: Tetris
+    glitch: aws-tetris-multijoueur
     
   3:
     project: Calendrier
+    glitch: friendly-pink
     
   4:
     project: Calendrier
+    glitch: calandar-landybe
     
   5:
     project: Calendrier
-    
+    glitch: kaada-coupventdesgraviers
+
   6:
-    project: ??
-    
+    project: Calendrier
+    github: GueddouChaouki/Google-Calendar-AWS
+
   7:
     project: Tetris
-    
+    glitch: multi-player-tetris
+
   8:
     project: Calendrier
+    github: ayoublaw/Calendrier
     
   9:
     project: Tetris
+    glitch: tetris-chauve-penon
     
   10:
     project: Calendrier
     
   11:
-    project: ??
+    project: Calendrier
+    glitch: sencalendar
     
   12:
     project: Find My Friends
+    glitch: findyourfriend
     
   13:
     project: Calendrier
     
   14:
     project: Calendrier
+    github: CaTrKae/projetAWS
     
   15:
-    project: ??
+    project: Calendrier
+    glitch: industrious-dogsled
     
   16:
     project: Calendrier
+    glitch: projet-aws
     
   17:
     project: Calendrier
+    glitch: projet-calendrier-aws
     
   18:
-    project: Find My Friends
+    project: Calendrier
+    glitch: aws-calendrier
     
   19:
     project: Calendrier
+    glitch: cal-aws
     
   20:
     project: Calendrier
     
   21:
     project: Calendrier
+    source: 'https://bitbucket.org/AMMAR-ABDOULKADER/projet-aws-21708022-21708008/'
     
   22:
     project: Calendrier
+    github: AIDRania/calendar
+    run: 'https://calendars14.herokuapp.com'
     
   23:
     project: Find My Friends
+    glitch: find-my-friend-aws-lotr
     
   24:
     project: JSON Twitter
+    glitch: tsiory-yannick-aws
     
   25:
     project: Calendrier
+    glitch: projet-awscalendar
     
   26:
     project: Find My Friends
+    glitch: findmyfag
     
   27:
     project: Calendrier
+    glitch: amber-year
     
   28:
     project: Calendrier
+    glitch: projetfinal-calendrier
     
   29:
     project: Calendrier
+    glitch: blue-ketchup
     
   30:
     project: Calendrier
+    source: 'https://bitbucket.org/m1_aws/calendar'
     
   31:
     project: JSON Twitter
+    glitch: json-twitter
     
   32:
     project: Calendrier
+    glitch: 21300685projetaws
     
   33:
     project: Calendrier
     
   34:
     project: Calendrier
+    github: suoqingqiu2011/calendarApp
     
   35:
     project: Calendrier
+    glitch: giant-bongo
     
 students:
   - nom: ABAKAR  

@@ -22,6 +22,7 @@ var Project = React.createClass({displayName: "Project",
 	? this.props.data.run
 	: (glitch ? `https://${glitch}.glitch.me/` : null);
 	var github = this.props.data.github;
+	var source = this.props.data.source;
 	
 	return (
 	    React.createElement("div", {className: "project", onClick: this.props.onClick}, 
@@ -38,6 +39,10 @@ var Project = React.createClass({displayName: "Project",
 	    
 	    github ? (
 		React.createElement("a", {className: "github", href: "https://github.com/" + github, target: "_blank", title: "GitHub"}, "GitHub")
+	    ) : null, 
+	    
+	    source ? (
+		React.createElement("a", {className: "source", href: source, target: "_blank", title: "Source"}, "Source")
 	    ) : null, 
 	    
 	    this.props.closeBtn ? (
