@@ -34,3 +34,8 @@
 
 - Adapter pour avoir plusieurs plannings en simultanée.
 - Revoir biblio
+
+## Projects
+
+- Point to Date docs in Calendar project
+- Be more direct on plagiarism
