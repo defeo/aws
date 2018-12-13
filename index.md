@@ -18,7 +18,7 @@ introduction à la sécurité des applications web.
 
 ## Contenus du cours
 
-#### **8 décembre 2017:** [Amphi de presentation (slides)](presentation)
+#### **13 décembre 2018:** [Amphi de presentation (slides)](presentation)
 
 {% include plan.html plan=site.data.plan %}
 
