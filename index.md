@@ -32,10 +32,11 @@ introduction à la sécurité des applications web.
 
 Éditions précédentes de ce cours :
 
-- [2016-2017](http://defeo.lu/aws-2017)
-- [2015-2016](http://defeo.lu/aws-2016)
-- [2014-2015](http://defeo.lu/aws-2015)
-- [2013-2014](http://defeo.lu/aws-2014)
+- [2017-2018](https://defeo.lu/aws-2018)
+- [2016-2017](https://defeo.lu/aws-2017)
+- [2015-2016](https://defeo.lu/aws-2016)
+- [2014-2015](https://defeo.lu/aws-2015)
+- [2013-2014](https://defeo.lu/aws-2014)
 
 ## Liens utiles
 
