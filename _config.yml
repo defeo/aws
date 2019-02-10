@@ -6,7 +6,7 @@ title: AWS
 tagline: Applications Web et Sécurité
 authors:
   - name: Luca De Feo
-    url: 'http://defeo.lu/'
+    url: 'https://defeo.lu/'
   - name: Sébastien Besnier
   - name: Erik Bray
   - name: Nicolas Gama
@@ -37,7 +37,7 @@ defaults:
         favicon: yes
         muut: yes
         clicker:
-          host: 'https://clicker-uvsq.herokuapp.com'
+          host: 'https://keats.prism.uvsq.fr/aws'
           methods: 
             - title: " GitHub"
               icon: github
