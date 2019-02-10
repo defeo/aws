@@ -18,7 +18,7 @@ haven't yet, and connect to your personal dashboard. If you already
 have a [GitHub](https://github.com/) account, you can import and
 export your projects from/to it.
 
-For your first project, *reémix*
+For your first project, *remix*
 <https://glitch.com/~defeo-lu-aws-get-started> by clicking on the
 *"Remix"* button. Alternatively, you can create a new sample project
 by clicking on *"Start a new project"*, then *"Create a website"*.
