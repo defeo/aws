@@ -33,11 +33,13 @@
 	
 	video.on('ended', function(e) {
 	    quizzes.classList.add('shown');
+        video.classList.add('hidden');
 	    (document.exitFullScreen || document.mozCancelFullScreen
 	     || document.webkitExitFullscreen || document.msExitFullScreen).call(document);
 	});
 	close.on('click', function(e) {
 	    quizzes.classList.remove('shown');
+	    video.classList.remove('hidden');
 	});
     }
 })($('#content'), eLeMentS.page.addons.video);
