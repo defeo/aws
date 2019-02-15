@@ -185,6 +185,6 @@ ex., dans la navigation de **liens**) :
 ## Références
 
 - <https://en.wikipedia.org/wiki/Uniform_Resource_Identifier>,
-- [*The tangled web*](../../#scurit), Chapitre 2.
+- [*The tangled web*](../#sécurité), Chapitre 2.
 
 </section>
