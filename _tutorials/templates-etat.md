@@ -58,11 +58,11 @@ dynamic pages.
    code:
    
    ```js
-   var express = require('express');
-   var bodyP = require('body-parser');
-   var cookieP = require('cookie-parser');
+   const express = require('express');
+   const bodyP = require('body-parser');
+   const cookieP = require('cookie-parser');
    
-   var app = express();
+   const app = express();
    app
 	   .use(bodyP.urlencoded({ extended: false }))
 	   .use(cookieP());
@@ -98,7 +98,7 @@ dynamic pages.
    automatically with `npm`.
    
    Install the dependencies needed for this tutorial: `body-parser`,
-   `cookie-parser` and `nunjucks`.
+   `cookie-parser`, `consolidate` and `nunjucks`.
    
    **Note:** If you're working on your local machine, you can create a
    `package.json` file by running the `npm init` command in a
@@ -177,17 +177,10 @@ tutorial we will stick to variable evaluation (the example above),
    with
    
    ~~~js
-   var nunjucks = require('nunjucks');
+   const consolidate = require('consolidate');
+   app.engine('html', consolidate.nunjucks);
+   app.set('view engine', 'nunjucks');
    ~~~
-   
-   Then configure it for express with
-   
-   ```js
-   nunjucks.configure('views', {
-       express: app,
-       noCache: true
-   });
-   ```
    
    **Note:** All your templates must go in a folder named `views`. You can
    change the default folder, if you wish, with

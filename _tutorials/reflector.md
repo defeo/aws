@@ -48,7 +48,7 @@ Start by *remixing* the project
    `for ... in` loop, printing the contents of the object
    
    ~~~js
-   var jours = { 'mon' : 'Lundi',
+   let jours = { 'mon' : 'Lundi',
                  'tue' : 'Mardi',
                  'wed' : 'Mercredi',
                  'thu' : 'Jeudi',
@@ -87,7 +87,7 @@ Start by *remixing* the project
    such as
    
    ~~~
-   https://shrouded-piccolo.glitch.me/query_string?user=toto&pwd=12345
+   https://<name-of-my-project>.glitch.me/query_string?user=toto&pwd=12345
    ~~~
 
 2. The unparsed query string is accessible via the
@@ -140,7 +140,7 @@ POST requests must be activated via the *middleware*
 `body-parser`. Add these lines to your configuration
 
 ```js
-var bodyP = require('body-parser');
+const bodyP = require('body-parser');
 app.use(bodyP.urlencoded({ extended: false }));
 ```
 
@@ -185,7 +185,7 @@ can also do this manually).
    in your application with
    
    ```js
-   var cookieP = require('cookie-parser');
+   const cookieP = require('cookie-parser');
    app.use(cookieP());
    ```
 
