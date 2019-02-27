@@ -15,8 +15,8 @@ développé.
 
 ### Les données
 
-On peut envisager deux tables : une table utilisateur, et une table 
-présentation.
+On peut envisager deux tables : une table pour les utilisateurs, et une table 
+pour les présentations.
 
 Une présentation comprend : 
 
@@ -53,26 +53,20 @@ Un fois enregistré, l'utilisateur peut:
 
 * créer une nouvelle présentation,
 * voir la liste des présentations qu'il a créées et les modifier,
-* lancer une présentation (en utilisant l'ordinateur relié au vidéo projecteur 
+* lancer une présentation en mode "visionnage" (en utilisant l'ordinateur relié au vidéo projecteur 
 par exemple),
-* voir la liste des présentations en cours et en prendre le contrôle (en 
+* prendre le contrôle d'une de ses présentations (en 
 utilisant son téléphone par exemple), c'est à dire pouvoir faire défiler les
 diapositives en avant ou en arrière.
 
+*Remarque :* il est envisageable que le mode "visionnage" soit accessible à 
+n'importe qui. Cependant, le mode "contrôle" doit être uniquement accessible par
+le propriétaire de la présentation.
 
 **Côté technique :** 
 
-* le serveur peut contenir une variable globale 
-`running_presentations` contenant la liste des présentations en cours, chaque 
-présentation étant identifiée grâce à un
-[`uuid`](https://github.com/kelektiv/node-uuid) (on pourra notamment stocker la
-diapositive actuellement affichée). De façon alternative, on peut
-également stocker ces informations dans une base de données SQL (plus propre, 
-cela évite de perdre les informations de présentation si le serveur redémarre)
-ou dans un systèmes type [Redis](https://redis.io/) (pour les étudiants les plus
-avancés) ;
-* au lancement d'une présentation, le serveur génère un `uuid` pour la 
-présentation, et le navigateur ouvre une websocket vers le serveur pour recevoir
+* au lancement d'une présentation, le navigateur ouvre une websocket vers le
+serveur pour recevoir
 des ordres comme "avancer/reculer" (c'est à peu près le seul endroit où une 
 websocket est indispensable);
 * depuis le téléphone contrôlant la présentation, lorsque l'utilisateur fait 
@@ -87,19 +81,14 @@ qui transfert l'ordre au navigateur via la websocket.
   pour gérer le contrôle de la présentation (par exemple, un glissement vers 
   la droite fait avancer d'une diapositive).
 
-* Améliorer l'interface d'édition des diapositives. Par exemple, en permettant à 
-  l'utilisateur de créer des blocs déplaçables à la souris (on pourra utiliser
-  des `<div>` avec comme propriété CSS 
-  [`position; absolute`](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
-  et modifier les
-  propriétés `left` et `top` en écoutant les événements `mousedown` et 
-  `mousemove`).
+* Utiliser une base de données NO-SQL (comme MongoDB) au lieu d'une base SQL.
 
 * Ajouter la possibilité au présentateur de pointer des choses sur l'écran en
   agissant sur son téléphone (par exemple pour surligner un bout de texte ou une
   image...).
 
-* Permettre aux personnes du public de suivre la présentation et également de
+* Permettre aux personnes du public de suivre la présentation sur leur 
+  téléphone. Dans un second temps, permettre également au public de
   poser des questions grâce à leur téléphone pendant la présentation.
   Les questions
   seront affichées à la fin de la présentation. Pour cela, on peut envisager 
@@ -113,4 +102,10 @@ qui transfert l'ordre au navigateur via la websocket.
   pérenne est de stocker ces images sur un serveur (soit le même que votre 
   application, soit un serveur dédié à cet usage).
 
-* Utiliser une base de données NO-SQL (comme MongoDB) au lieu d'une base SQL.
+* Améliorer l'interface d'édition des diapositives. Par exemple, en permettant à 
+  l'utilisateur de créer des blocs déplaçables à la souris (on pourra utiliser
+  des `<div>` avec comme propriété CSS 
+  [`position; absolute`](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+  et modifier les
+  propriétés `left` et `top` en écoutant les événements `mousedown` et 
+  `mousemove`).
