@@ -2,7 +2,7 @@
 title: Calendrier
 difficulty: 1
 tags: ajax
-publish: yes
+publish: no
 ---
 
 Le but du projet est de définir une application permettant de gérer un

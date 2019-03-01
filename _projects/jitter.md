@@ -2,7 +2,7 @@
 title: JSON-Twitter
 difficulty: 2
 tags: [ajax, json]
-publish: yes
+publish: no
 ---
 
 The goal of this project is to code a Twitter-like application with

@@ -2,7 +2,7 @@
 title: Find my Friends
 difficulty: 3
 tags: [mobile, geolocation, multi-user]
-publish: yes
+publish: no
 ---
 
 Le but de ce projet est de développer une application similaire à

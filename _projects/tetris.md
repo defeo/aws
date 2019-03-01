@@ -2,7 +2,7 @@
 title: Multi-player Tetris
 difficulty: 3
 tags: [multi-player, real time, game]
-publish: yes
+publish: no
 ---
 
 The goal of this project is to develop a real-time multi-player

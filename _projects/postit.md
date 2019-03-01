@@ -1,9 +1,8 @@
 ---
 title: Post-it
 difficulty: 1
-frameworks: Node, Silex
 tags: ajax
-publish: no
+publish: yes
 ---
 
 Le but du projet est de créer une application de post-it sociale. Il
@@ -54,7 +53,7 @@ plus anciens.
 faire apparaître des barres de défilement sur la page.
 
 
-#### Ajout d'un nouveau post-ti
+#### Ajout d'un nouveau post-it
 
 Uniquement les utilisateurs connectés ont droit de créer un
 post-it. Lorsque l'utilisateur fait double-clic n'importe où dans la
