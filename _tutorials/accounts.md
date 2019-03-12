@@ -89,9 +89,8 @@ async function foo() {
 {: start="2" }
 
 Of course, nothing is going to happen if you don't run the script. We
-will use Glitch's Linux console to do the sysadmin magic. From the
-main menu (top left, click on the name of your project), select
-*"Advanced Options"*, then *"Open Console"*.
+will use Glitch's Linux console to do the sysadmin magic. In the
+bottom left corner, click *"Tools"*, then *"Console"*.
 
 A Linux terminal opens in a new window. Run your script by typing
 
