@@ -86,6 +86,11 @@ async function foo() {
    
 2. To be sure to terminate the program, add a call to `knex.destroy()`
    after the table creation.
+   
+   **Warning:** `knex.destroy()` is an asynchronous call, like
+   `knex.raw()`. To call the two functions in order, and avoid *race
+   conditions*, be sure to `await` for them (and thus put the two
+   calls inside an `async` function).
 {: start="2" }
 
 Of course, nothing is going to happen if you don't run the script. We
