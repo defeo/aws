@@ -286,7 +286,11 @@ html.slideshow {
 }
 
 // (temporary) color code to distinguish login
-[title="https://keats.prism.uvsq.fr/aws-alt"] {
-    background-color: #c1fff2e6;
-    box-shadow: 0 0 10px 15px #c1fff2e6;
+[title="https://keats.prism.uvsq.fr/aws-alt"][data-level="0"]:after {
+    content: "se connecter @ISTY!";
+    position:fixed;
+    background-color:#f33;
+    box-shadow:0 0 5px 5px #f33;
+    opacity: 0.8;
+    z-index: -1;
 }
