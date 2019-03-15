@@ -1,6 +1,6 @@
 var url = '/stats/' + (location.search ? 'user/' + location.search.substr(1) : 'me');
 
-clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
+clicker._authXHR(null, url, clicker.user.token, function(answers, xhr) {
     if (xhr.status != 200)
 	throw new Error(xhr.status + " " + answers.code + ": " + answers.message);
 
@@ -19,7 +19,7 @@ clicker._authXHR(url, clicker.user.token, function(answers, xhr) {
 		    if (answer.grade)
 			q.append('i.clicker-grade.fa' + (answer.correct ? '.fa-check' : '.fa-close'));
 		} else {
-		    clicker._authXHR('/polls/' + quiz, clicker.user.token, function(poll) {
+		    clicker._authXHR(null, '/polls/' + quiz, clicker.user.token, function(poll) {
 			var q = list.append('li ' + poll.title);
 			if (poll.can.answer === false) {
 			    q.classList.add('past')

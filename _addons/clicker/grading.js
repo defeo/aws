@@ -42,7 +42,7 @@ function grade(timeline, total) {
 
 function gradeAll(users, total) {
     return users.map((u) => new Promise((resolve, reject) => {
-	    clicker._authXHR('/stats/user/' + u._id, clicker.user.token, (answers, xhr) => {
+	    clicker._authXHR(null, '/stats/user/' + u._id, clicker.user.token, (answers, xhr) => {
 	        u.grade = grade(timeline(answers), total);
             resolve(u);
 	    }, (err) => {

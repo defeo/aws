@@ -37,10 +37,14 @@ defaults:
         favicon: yes
         muut: yes
         clicker:
-          host: 'https://keats.prism.uvsq.fr/aws'
-          methods: 
-            - title: " GitHub"
+          auths:
+            - title: " Login ISTY"
               icon: github
+              host: 'https://keats.prism.uvsq.fr/aws'
+              path: /login/github
+            - title: " Login UVSQ"
+              icon: github
+              host: 'https://keats.prism.uvsq.fr/aws-alt'
               path: /login/github
           messages:
             loginError: Veulliez vous connecter pour visualiser ce questionnaire.

@@ -1,4 +1,4 @@
-clicker._authXHR('/users', clicker.user.token, function(users, xhr) {
+clicker._authXHR(null, '/users', clicker.user.token, function(users, xhr) {
     if (xhr.status != 200)
 	throw new Error(xhr.status + " " + answers.code + ": " + answers.message);
 
@@ -12,6 +12,7 @@ clicker._authXHR('/users', clicker.user.token, function(users, xhr) {
 	    var staleness = Math.max(now - u.lastSeen, 0);
 	    var a = udiv.append('li').append('a ' + u.profile.name);
 	    a.href = "results?" + u._id;
+        a.title = u.profile.data.login;
 	    a.css({ opacity: Math.max((month - staleness)/month, 0.1) });
 	}
     });
@@ -27,7 +28,7 @@ quizzes.forEach(function(l) {
 	    var quiz = quizzes.append('li');
 	    var title = quiz.append('h4 <span></span> <span></span>');
 	    var statdiv = quiz.append('p');
-	    clicker._authXHR('/stats/poll/' + q, clicker.user.token, function(answers, xhr) {
+	    clicker._authXHR(null, '/stats/poll/' + q, clicker.user.token, function(answers, xhr) {
 		var timeline = answers.map(function (a) {
 		    var answ = a.answers.reduce(function(min, a) {
 			return new Date(a.date) < new Date(min.date) ? a : min;
@@ -95,7 +96,7 @@ quizzes.forEach(function(l) {
 		    bezierCurve: false,
 		});
 	    });
-	    clicker._authXHR('/polls/' + q, clicker.user.token, function(poll, xhr) {
+	    clicker._authXHR(null, '/polls/' + q, clicker.user.token, function(poll, xhr) {
 		title.$('span:nth-child(1)').textContent = poll.title;
 	    });
 	});
