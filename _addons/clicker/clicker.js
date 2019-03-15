@@ -31,6 +31,7 @@ function Clicker(provider) {
         if (clicker.user) {
             this.$('.title').textContent = clicker.user.user.profile.name || clicker.user.user._id;
             this.title = clicker.user.host;
+            this.dataset.level = clicker.user.user.level;
             this.$('.submenu')
                 .append('li <a href="#" class="rename-profile"><i class="fa fa-user"></i> <span class="title">Éditer nom</span></a>');
             this.$('.submenu')
@@ -124,6 +125,7 @@ function Clicker(provider) {
         this.user = null;
         window.sessionStorage.removeItem('clicker.user');
         window.localStorage.removeItem('clicker.token');
+        window.localStorage.removeItem('clicker.auth_host');
     }
 
     this.injectPoll = function(id, node) {
