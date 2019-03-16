@@ -126,6 +126,7 @@ SELECT * FROM users WHERE login='root' AND password=''' OR ''1''=''1'
 ## References
 
 - [Source code of the example](https://github.com/defeo/aws-security/blob/master/sql-injection.js),
+- [Port of the same example to Knex](https://glitch.com/edit/#!/defeo-lu-aws-injection-sql)
 - OWASP on [SQL injections](https://www.owasp.org/index.php/SQL_Injection),
 - The [PHP manual on SQL
   injections](http://php.net/manual/en/security.database.sql-injection.php).
