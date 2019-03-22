@@ -72,7 +72,7 @@ on using databases](../lessons/sql)):
 ```js
 async function foo() {
     ...
-    var rows = await knex.raw('SELECT * FROM bar);
+    var rows = await knex.raw('SELECT * FROM bar');
     ...
 }
 ```
