@@ -180,7 +180,7 @@ request, like in Google's case, or via the body of a POST request.
 
 2. In the form add a text field (`<input>`) and a button (`<button>`)
       
-   <input type="text"><button>Chercher<button>
+   <input type="text"><button>Chercher</button>
 
    The text field must have a `name="q"` attribute.
 
