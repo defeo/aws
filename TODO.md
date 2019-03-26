@@ -24,7 +24,6 @@
 ## TDs
 
 - Translate one and two
-- Change structure of Connect Four to be more React-like
 - Add more AJAX!
 - Check out http://labs.securitycompass.com/exploit-me/
 - ditch innerHTML? Create our own framework?
