@@ -20,7 +20,7 @@ auteurs.  Un message a au moins :
 * des coordonnées x et y dans le plan,
 * un auteur.
 
-Ces champs sont reflétés dans une table MySQL. Une autre table MySQL
+Ces champs sont reflétés dans une table SQL. Une autre table SQL
 sera utilisée pour stocker les utilisateurs et leurs mots de passe (et
 d'éventuelles autres données relatives aux utilisateurs).
 
@@ -141,7 +141,7 @@ Les guides des évènements
   plutôt que sur un tableau plat.
 
 * Utiliser une base de données No-SQL (par exemple MongoDB) à la place
-  de MySQL.
+  de SQL.
 
 * Faire en sorte qu'à chaque ajout/suppression/modification d'un
   post-it, tous les navigateurs qui affichent le même tableau soient
