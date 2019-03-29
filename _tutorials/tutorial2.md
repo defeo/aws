@@ -21,10 +21,10 @@ References for this tutorial are:
 We refer to the book [Eloquent
 JavaScript](https://eloquentjavascript.net/) for more details.
 
-The Q&R platform [StackOverflow](https://stackoverflow.com/) has good
+The Q&A platform [StackOverflow](https://stackoverflow.com/) has good
 answers, but apply some critical thinking before using them. Many
-other tutorials you can find on internet may refer to outdated
-versions of JavaScript, be careful before copy-pasting.
+other tutorials you can find on the internet may refer to outdated
+versions of JavaScript, so be careful before copy-pasting.
 
 Like you did for last tutorial, create a new project in Glitch.
 
@@ -46,7 +46,7 @@ For simplicity, let's start with a 3×2 board.
    <div style="margin:auto;width:2em;height:2em;border-radius:2em;border:solid 0.2em blue"></div>
    
    Last touch: fill the blanks between the cells. For that, use wisely
-   the `background-color` property on some elements of the table, so
+   the `background-color` property on some elements of the table
    to obtain this:
    
    <div style="background-color:blue;width:2.4em;margin:auto">
@@ -62,7 +62,7 @@ For simplicity, let's start with a 3×2 board.
 ## Unobtrusive JavaScript
 
 We are ready to write the real interactive application. We could
-create a 6×7 board right in the HTML soruces, like in the previous
+create a 6×7 board right in the HTML sources, like in the previous
 section, but we are too lazy to type 42 times `<td></td>` by hand.
 Instead we will dynamically generate the board via JavaScript.
 
@@ -135,15 +135,16 @@ not loaded.
      element).
    - Creates a `<table>` DOM node using `document.createElement`, and
      adds it to the `<div>` using the `.appendChild` method.
-   - Using a double `for` loop, creates `<tr>`'s and `<td>`'s inside the
-     `<table>` element, so to obtain a 6×7 table.
+   - Using a double `for` loop (one `for` loop nested in another),
+     create `<tr>`'s and `<td>`'s inside the `<table>` element,
+     so as to obtain a 6×7 table.
    
    You can take some inspiration from the example below.
    
    {% include codepen.md pen="xbYawz" tab="js" height="250" %}
    
-   Test your function by calling it on startup, and verifying that the
-   game board is properly drawn on screen.
+   Test your function by calling it on page load, and verifying
+   that the game board is properly drawn on screen.
 
 6. Modify `render()` so that the `<td>` in position (i,j) has
    class `player1` if `board[i][j]` is equal to 1, and class `player2`
