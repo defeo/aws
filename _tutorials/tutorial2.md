@@ -28,7 +28,7 @@ versions of JavaScript, so be careful before copy-pasting.
 
 Like you did for last tutorial, create a new project in Glitch.
 
-## Le game board in pure CSS
+## The game board in pure CSS
 
 For simplicity, let's start with a 3×2 board.
 
@@ -235,7 +235,7 @@ how many `<td>`'s are on the left of our clicked `<td>`), the HTML5
    Modify the click event handler so that it prints in the console the
    value of the `data-column` attribute. Test in the console.
 
-3. Modify the click event handelr to respond to clicks by playing a
+3. Modify the click event handler to respond to clicks by playing a
    token in the corresponding column (calling `play` and `render`
    successively), or by not doing anything if the click happens to be
    outside of a cell (you can test the existence of `dataset.column`
@@ -269,7 +269,7 @@ inspiration!
 4. Add some style touches using the `box-shadow` property.
 
 5. Wrap your code in a JavaScript class, and remove all global
-   variables, so to allow having more than one board per page.
+   variables, so as to allow having more than one board per page.
 
 6. Test your application on a smartphone, and adapt it to small
    screens. If you do not have a smartphone, you can test smartphone
