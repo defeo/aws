@@ -31,6 +31,7 @@ through `package.json`:
 - `body-parser` for handling POST requests,
 - `express-session` for creating sessions,
 - `knex` for querying databases,
+- `express-async-errors` for easier debugging,
 - `sqlite3` for the engine doing the real work.
 
 **Note:** The `sqlite3` module won't work if you develop locally on
@@ -156,9 +157,16 @@ simple: we want to be able to create a new user, log in, and show the
 list of users.
 
 1. Initialize the server with the usual Express skeleton (with
-   `body-parser` and `nunjucks` configured). Add a Knex configuration
-   section as done in `db_init.js`. Add (emtpy) routes for the URLs
-   `/`, `/signin`, `/logout` and `/userlist`.
+   `body-parser` and `nunjucks` configured). Add the following import
+   to help with debugging asynchronous code:
+   
+   ```
+   require('express-async-errors');
+   ```
+   
+   Add a Knex configuration section as done in `db_init.js`. Add
+   (emtpy) routes for the URLs `/`, `/signin`, `/logout` and
+   `/userlist`.
 
 2. Write the handler for `/userlist`. It must select all rows from the
    `users` table, and show them in a HTML table.
