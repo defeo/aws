@@ -1,0 +1,289 @@
+groups:
+  1:
+    project: Tron
+    glitch: 
+
+  2:
+    project: Post-it
+    glitch: 
+
+  3:
+    project: Dames
+    glitch: 
+
+  4:
+    project: Dames
+    glitch: 
+
+  5:
+    project: Slides
+    glitch: 
+
+  6:
+    project: Dames
+    glitch: 
+
+  7:
+    project: Dames
+    glitch: 
+
+  8:
+    project: Dames
+    glitch: 
+
+  9:
+    project: Tron
+    glitch: 
+
+  10:
+    project: Dames
+    glitch: 
+
+  11:
+    project: Dames
+    glitch: 
+
+  12:
+    project: Dames
+    glitch: 
+
+  13:
+    project: Dames
+    glitch: 
+
+  14:
+    project: Dames
+    glitch: 
+
+  15:
+    project: Post-it
+    glitch: 
+
+  16:
+    project: Dames
+    glitch: 
+
+  17:
+    project: Dames
+    glitch: 
+
+  18:
+    project: 
+    glitch: 
+
+  19:
+    project: 
+    glitch: 
+
+  20:
+    project: 
+    glitch: 
+
+  21:
+    project: 
+    glitch: 
+    
+students:
+  - nom: AAJLI
+    prenom: Hamid
+    group: 0
+
+  - nom: ANNOCQUE
+    prenom: Come
+    group: 7
+
+  - nom: ARMAND
+    prenom: Louison
+    group: 9
+
+  - nom: AYOUB
+    prenom: Pierre
+    group: 11
+
+  - nom: BAROTIN
+    prenom: Alexis
+    group: 13
+
+  - nom: BESBES
+    prenom: Iheb
+    group: 0
+
+  - nom: BLOT
+    prenom: Nicolas
+    group: 0
+
+  - nom: BONNAFOUS
+    prenom: Camille
+    group: 0
+
+  - nom: CALEM
+    prenom: Lea
+    group: 1
+
+  - nom: CHAARI
+    prenom: Iteb
+    group: 17
+
+  - nom: CHEBERLI
+    prenom: Iyed
+    group: 0
+
+  - nom: COELHO
+    prenom: O Nice
+    group: 0
+
+  - nom: CONIN
+    prenom: Elisa
+    group: 7
+
+  - nom: COUZINET
+    prenom: Romain
+    group: 9
+
+  - nom: DAHBY
+    prenom: Younes
+    group: 10
+
+  - nom: DIOP
+    prenom: Papa Amadou
+    group: 0
+
+  - nom: DONA
+    prenom: Alessandro
+    group: 8
+
+  - nom: DOYEN
+    prenom: Heloise
+    group: 4
+
+  - nom: EL AJROUD
+    prenom: Mohamed Ilyes
+    group: 0
+
+  - nom: FAKHFAKH
+    prenom: Sami
+    group: 0
+
+  - nom: FLAMANT
+    prenom: Oceane
+    group: 11
+
+  - nom: FRIGUI
+    prenom: Dorsaf
+    group: 0
+
+  - nom: GAILLARD
+    prenom: Robin
+    group: 13
+
+  - nom: GONIDEC
+    prenom: Leia
+    group: 4
+
+  - nom: GUEMMI
+    prenom: Kawtar
+    group: 15
+
+  - nom: HAMMAMI
+    prenom: Sirine
+    group: 17
+
+  - nom: ISLAHI
+    prenom: Safwan
+    group: 0
+
+  - nom: JALLED
+    prenom: Chaima
+    group: 16
+
+  - nom: JOOBER
+    prenom: Cyrine
+    group: 12
+
+  - nom: JULLIEN
+    prenom: Lois
+    group: 6
+
+  - nom: JULLIENNE
+    prenom: Jeremy
+    group: 0
+
+  - nom: KANA ZEBAZE
+    prenom: Wareine Kyndra
+    group: 2
+
+  - nom: LAMOTTE
+    prenom: Mickael
+    group: 10
+
+  - nom: LE FEBVRE DE NAILLY
+    prenom: Christine
+    group: 1
+
+  - nom: LEFEVRE
+    prenom: Clement
+    group: 5
+
+  - nom: LEGA
+    prenom: Gnadou-Othniel
+    group: 0
+
+  - nom: LENORMAND
+    prenom: Olivia
+    group: 8
+
+  - nom: NGOMPAZA REKOULA
+    prenom: Lynda Karen Anthonya
+    group: 2
+
+  - nom: NGUYEN
+    prenom: Khuong-Duy
+    group: 14
+
+  - nom: PRAGASSAM
+    prenom: Valentin
+    group: 0
+
+  - nom: RAKOTOZANANY
+    prenom: Andriamananjaka Step
+    group: 0
+
+  - nom: ROUXEL
+    prenom: Mael
+    group: 14
+
+  - nom: SAIDI
+    prenom: Omar
+    group: 15
+
+  - nom: SATOURI
+    prenom: Mayssa
+    group: 16
+
+  - nom: SAUVEE
+    prenom: Etienne
+    group: 6
+
+  - nom: SIDIBE
+    prenom: Mouhamadou Moustapha
+    group: 0
+
+  - nom: SOURI
+    prenom: Mohamed Firas
+    group: 0
+
+  - nom: TEBOUL-TORNEZY
+    prenom: Daniel
+    group: 3
+
+  - nom: THEBAULT
+    prenom: Florent
+    group: 0
+
+  - nom: VERDURE
+    prenom: Pierre
+    group: 5
+
+  - nom: YAKDI
+    prenom: Zakaria
+    group: 12
