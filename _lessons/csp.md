@@ -2,7 +2,7 @@
 layout: lesson
 title: "Mitigation d'attaques"
 subtitle: Transport security, Sandboxing, Subresource integrity, CSP
-ContentSecurityPolicy: "child-src 'self' ent.uvsq.fr"
+ContentSecurityPolicy: "frame-src 'self' ent.uvsq.fr"
 scripts:  ../assets/js/mock-browser.js
 addons:
   video:
@@ -78,11 +78,11 @@ L'attribut `sandbox` permet de restreindre les capacité d'un
 - Naviguer la fenêtre parent, ...
 
 ~~~
-<iframe sandbox="" src="http://ent.uvsq.fr/">
+<iframe sandbox="" src="https://ent.uvsq.fr/">
 ~~~
 
 <div id="sop" class="mock-browser content" data-sandbox=""
-     data-height="200px" data-src="http://ent.uvsq.fr/"></div>
+     data-height="200px" data-src="https://ent.uvsq.fr/"></div>
 
 </section>
 <section>
@@ -107,7 +107,7 @@ L'attribut `sandbox` permet de restreindre les capacité d'un
 - Sources pour les APIs DOM : formulaires, `XMLHttpRequest`, WebSockets, Server events :
 - Permet aussi d'affaiblir certaines protections (*mixed content*, heuristiques anti-XSS).
 
-Standard depuis février 2015, voir : <http://www.w3.org/TR/CSP/#sotd>
+Standard depuis février 2015, voir : <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>
 
 </section>
 <section>
@@ -117,7 +117,7 @@ Standard depuis février 2015, voir : <http://www.w3.org/TR/CSP/#sotd>
 Cette page définit la CSP suivante :
 
 ~~~
-<meta http-equiv="Content-Security-Policy" content="child-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="frame-src 'self'">
 ~~~
 
 <div class="mock-browser content" data-height="300px" data-src="{{ site.baseurl }}/"></div>
