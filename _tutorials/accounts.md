@@ -160,7 +160,7 @@ list of users.
    `body-parser` and `nunjucks` configured). Add the following import
    to help with debugging asynchronous code:
    
-   ```
+   ```js
    require('express-async-errors');
    ```
    
