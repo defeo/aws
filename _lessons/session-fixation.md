@@ -8,7 +8,7 @@ subtitle: Vol, prédiction, fixation
 
 ## Exemple d'utilisation (risquée) de sessions
 
-~~~
+```js
 app.get('/login', function (req, res) {
 	db.query('SELECT * FROM users WHERE ? AND ?', {
 		'id'  : req.query.userid,
@@ -30,7 +30,7 @@ app.get('/reset-pass', function(req, res) {
 	}
 	...
 });
-~~~
+```
 
 </section>
 <section class="compact">
