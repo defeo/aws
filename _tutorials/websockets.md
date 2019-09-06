@@ -98,6 +98,11 @@ load, without creating a user account with a password.
 4. Change the text shown in the main page to *"Hello ..."* when the
    user name is known (replace the dots by the user name).
    
+5. GET method is handy for debugging, however we are changing the
+   state of the server with the route `connect/:user` and a GET 
+   request should not change the state of the server.  Turn GET
+   into POST for this route.
+   
 ## Communicating the user id to the server
 
 We will now use AJAX to send the user name to the server, so that it
